@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "mage-c4259": {
+      "hosting": {
+        "mage": [
+          "mage-c4259"
+        ]
+      }
+    }
+  }
+}
