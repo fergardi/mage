@@ -8,11 +8,7 @@ import * as mapboxgl from 'mapbox-gl';
 export class MapboxService {
   mapbox = (mapboxgl as typeof mapboxgl);
   map: mapboxgl.Map;
-
-  lat = 43.1746;
-  lng = -2.4125;
-  zoom = 15;
-
+  
   constructor() {
     this.mapbox.accessToken = environment.mapbox.token;
   }
@@ -21,10 +17,11 @@ export class MapboxService {
     this.map = new mapboxgl.Map({
       container: container,
       style: environment.mapbox.style,
-      zoom: this.zoom,
-      center: [this.lng, this.lat],
+      zoom: environment.mapbox.zoom,
+      center: [environment.mapbox.lng, environment.mapbox.lat],
+      pitch: environment.mapbox.pitch,
       attributionControl: false,
-      pitch: 60
+      interactive: false
     });
   }
 

@@ -11,11 +11,15 @@ export const environment = {
     projectId: "mage-c4259",
     storageBucket: "mage-c4259.appspot.com",
     messagingSenderId: "210042498621",
-    appId: "1:210042498621:web:c4a21bc796b32d8bf40454"
+    appId: "1:210042498621:web:c4a21bc796b32d8bf40454",
   },
   mapbox: {
     style: 'mapbox://styles/fergardi/ck8wxw7m02u0i1imofu9i0tur/draft',
-    token: 'pk.eyJ1IjoiZmVyZ2FyZGkiLCJhIjoiY2lxdWl1enJiMDAzaWh4bTNwY3F6MnNwdiJ9.fPkJoOfrARPtZWCj1ehyCQ'
+    token: 'pk.eyJ1IjoiZmVyZ2FyZGkiLCJhIjoiY2lxdWl1enJiMDAzaWh4bTNwY3F6MnNwdiJ9.fPkJoOfrARPtZWCj1ehyCQ',
+    lat: 43.1746,
+    lng: -2.4125,
+    zoom: 15,
+    pitch: 60,
   }
 };
 
