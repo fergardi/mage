@@ -1,3 +1,16 @@
-<button mat-raised-button appGooglogin>
-  🔐 Login with Google
-</button>
+<main>
+  <div *ngIf="!(angularFireAuth.authState | async)">
+    <h1>Login</h1>
+    <button mat-raised-button appGooglogin>
+      🔐 Login with Google
+    </button>
+  </div>
+  <div *ngIf="angularFireAuth.authState | async as user">
+      <p>
+        Logged in as <strong>{{ user.email }}</strong>
+      </p>
+      <button mat-stroked-button (click)="angularFireAuth.signOut()">
+        🔒 Logout
+      </button>
+    </div>
+</main>

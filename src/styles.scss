@@ -1,7 +1,7 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+@import url("https://use.typekit.net/jnq3uxd.css");
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -53,7 +53,7 @@ $mage-accent: mat-palette($mat-pink, A200, A100, A400);
 $mage-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$mage-theme: mat-light-theme($mage-primary, $mage-accent, $mage-warn);
+$mage-theme: mat-dark-theme($mage-primary, $mage-accent, $mage-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
