@@ -4,6 +4,8 @@
     <button mat-raised-button appGooglogin>
       🔐 Login with Google
     </button>
+    <h5>OR</h5>
+    <app-email></app-email>
   </div>
   <div *ngIf="angularFireAuth.authState | async as user">
       <p>
