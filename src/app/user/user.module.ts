@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
+import { GoogloginDirective } from './googlogin.directive';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, GoogloginDirective],
   imports: [
     CommonModule,
     SharedModule,
