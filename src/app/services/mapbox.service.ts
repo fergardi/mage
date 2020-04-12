@@ -21,7 +21,7 @@ export class MapboxService {
       center: [environment.mapbox.lng, environment.mapbox.lat],
       pitch: environment.mapbox.pitch,
       attributionControl: false,
-      interactive: false
+      // interactive: false
     });
   }
 

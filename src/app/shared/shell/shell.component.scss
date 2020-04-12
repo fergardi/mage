@@ -47,3 +47,9 @@ i {
 .mat-drawer-content.mat-sidenav-content {
   overflow: hidden;
 }
+
+.main-content {
+  width: 100vw;
+  height: calc(100vh - 64px);
+  overflow-x: hidden;
+}
