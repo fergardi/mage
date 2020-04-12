@@ -43,3 +43,7 @@ i {
   border-radius: 50%;
   margin: 0 10px 5px;
 }
+
+.mat-drawer-content.mat-sidenav-content {
+  overflow: hidden;
+}

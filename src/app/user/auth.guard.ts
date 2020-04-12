@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NotificationService } from '../services/notification.service';
 
@@ -11,9 +10,7 @@ export class AuthGuard implements CanActivate {
   
   constructor(private angularFireAuth: AngularFireAuth, private notificationService: NotificationService) {}
 
-  async canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Promise<boolean> {
+  async canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const user = await this.angularFireAuth.currentUser;
     const logged = !!user;
     if (!logged) this.notificationService.authError();
