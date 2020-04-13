@@ -17,3 +17,18 @@
 ::ng-deep a.mapboxgl-ctrl-logo {
   display: none !important;
 }
+
+::ng-deep .mapboxgl-popup-content {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  pointer-events: auto;
+  .mat-card {
+    margin: 0 !important;
+    min-width: 350px;
+  }
+}
+
+::ng-deep .mapboxgl-popup-tip {
+  display: none;
+}
