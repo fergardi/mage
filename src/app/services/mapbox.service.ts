@@ -25,4 +25,25 @@ export class MapboxService {
     });
   }
 
+  addMarker(lat: number, lng: number, fly:boolean = false): void {
+    var el = document.createElement('div');
+    el.className = 'marker';
+    el.style.backgroundImage = 'url(http://localhost:7777/assets/badge.png)';
+    el.style.width = '50px';
+    el.style.height = '50px';
+    
+    new mapboxgl.Marker(el)
+    .setLngLat({ lat: lat, lng: lng })
+    .setPopup(new mapboxgl.Popup({ offset: 25 })
+      .setHTML('<app-building></app-building>'))
+    .addTo(this.map);
+    
+    if (fly) {
+      this.map.flyTo({
+        center: [lng, lat],
+        essential: true
+      });
+    }
+  }
+
 }

@@ -14,8 +14,7 @@
 }
 
 .sidenav {
-  width: 200px;
-  font-family: sofia-pro;
+  width: 300px;
 }
 
 .sidenav .mat-toolbar {
@@ -49,7 +48,15 @@ i {
 }
 
 .main-content {
-  width: 100vw;
-  height: calc(100vh - 64px);
+  // height: calc(100vh - 64px);
   overflow-x: hidden;
+}
+
+.sidenav-logo {
+  width: 200px;
+  height: auto;
+}
+
+.sidenav-logo-container {
+  text-align: center;
 }

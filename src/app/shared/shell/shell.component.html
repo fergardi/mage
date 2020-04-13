@@ -1,17 +1,27 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" autosize>
   <mat-sidenav
     #drawer
     class="sidenav"
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="false">
-    <mat-toolbar>Menu</mat-toolbar>
+    [opened]="true">
+    <mat-toolbar>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="logo">Menu</span>
+      <span class="fill-space"></span>
+    </mat-toolbar>
+    <div class="sidenav-logo-container">
+      <img class="sidenav-logo" src="/assets/badge.png" alt="icon"/>
+    </div>
     <mat-nav-list>
-      <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
-      <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
-      <a mat-list-item routerLink="/bla" (click)="drawer.close()">Home</a>
-      <a mat-list-item routerLink="/customers" (click)="drawer.close()">Home</a>
+      <a mat-list-item [routerLink]="link.url" (click)="drawer.close()" *ngFor="let link of links">{{ link.name }}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -20,19 +30,25 @@
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="logo" routerLink="/">Mage</span>
+      <span class="logo">Archmage</span>
       <span class="fill-space"></span>
       <div *ngIf="!(isHandset$ | async)">
-        <a mat-button routerLink="/world/map">World</a>
-        <a mat-button routerLink="/kingdom/city">City</a>
-        <a mat-button routerLink="/user/login">🔑 Login</a>
+        <a mat-button [routerLink]="link.url" *ngFor="let link of links">{{ link.name }}</a>
       </div>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item href="https://fireship.page.link/slack"><i>💬</i><span>Chat on Slack</span></a>
+        <a mat-menu-item href="https://github.com/codediodeio/angular-firestarter"><i>💾</i><span>Code on Github</span></a>
+        <a mat-menu-item href="https://fireship.io/courses/angular"><i>🔥</i><span>Full Course on Fireship</span></a>
+        <a mat-menu-item href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA"><i>📺</i><span>Watch on the YouTube</span></a>
+      </mat-menu>
     </mat-toolbar>
-    <main class="main-content">
+    <main class="main-content" [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100vh - 64px)' : 'calc(100vh - 56px)' }">
       <ng-content></ng-content>
     </main>
   </mat-sidenav-content>

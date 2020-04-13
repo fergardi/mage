@@ -1,5 +1,19 @@
+@import "https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css";
+
 .map-container {
   height: 100%;
   width: 100vw;
   overflow: hidden;
+}
+
+.marker {
+  display: block;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+}
+
+::ng-deep a.mapboxgl-ctrl-logo {
+  display: none !important;
 }

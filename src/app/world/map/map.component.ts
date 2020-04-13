@@ -14,6 +14,17 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.mapboxService.initialize(this.container);
+    this.mapboxService.map.on('load', () => {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.mapboxService.addMarker(position.coords.latitude, position.coords.longitude, true);
+      }, error => {
+        // TODO
+      }, {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+      });
+    })
   }
 
 }

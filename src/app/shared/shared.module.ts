@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { ShellComponent } from './shell/shell.component';
 import { BuildingComponent } from './building/building.component';
@@ -38,6 +39,7 @@ const modules = [
   MatInputModule,
   MatSnackBarModule,
   FlexLayoutModule,
+  MatChipsModule,
 ];
 
 @NgModule({
