@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/rpg-awesome/css/rpg-awesome.min.css",
               "src/styles.scss"
             ],
             "scripts": []
