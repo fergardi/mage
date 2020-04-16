@@ -18,9 +18,19 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
+
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { ShellComponent } from './shell/shell.component';
 import { BuildingComponent } from './building/building.component';
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 const components = [
   ShellComponent,
@@ -46,6 +56,8 @@ const modules = [
   MatTableModule,
   MatPaginatorModule,
   MatSortModule,
+  HttpClientModule,
+  MatSelectModule,
 ];
 
 @NgModule({
@@ -54,10 +66,19 @@ const modules = [
   ],
   imports: [
     ...modules,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      },
+      isolate: false,
+    }),
   ],
   exports: [
     ...components,
     ...modules,
+    TranslateModule,
   ]
 })
 export class SharedModule { }

@@ -35,17 +35,22 @@
       </button>
       <span class="logo">Archmage</span>
       <span class="fill-space"></span>
+      
       <div *ngIf="!(isHandset$ | async)">
         <a mat-button [routerLink]="link.url" *ngFor="let link of links">{{ link.name }}</a>
       </div>
+  
+      <button mat-icon-button [matMenuTriggerFor]="language">
+        {{ translateService.currentLang }}
+      </button>
+      <mat-menu #language="matMenu">
+        <a mat-menu-item *ngFor="let lang of translateService.getLangs()" (click)="changeLanguage(lang)">{{ lang }}</a>
+      </mat-menu>
+      
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <a mat-menu-item href="https://fireship.page.link/slack"><i>💬</i><span>Chat on Slack</span></a>
-        <a mat-menu-item href="https://github.com/codediodeio/angular-firestarter"><i>💾</i><span>Code on Github</span></a>
-        <a mat-menu-item href="https://fireship.io/courses/angular"><i>🔥</i><span>Full Course on Fireship</span></a>
-        <a mat-menu-item href="https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA"><i>📺</i><span>Watch on the YouTube</span></a>
       </mat-menu>
     </mat-toolbar>
     <main class="main-content" [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100vh - 64px)' : 'calc(100vh - 56px)' }">
