@@ -16,10 +16,13 @@ export class MapComponent implements OnInit {
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.on('load', () => {
       navigator.geolocation.getCurrentPosition(position => {
-        this.mapboxService.addMarker(position.coords.latitude, position.coords.longitude, true);
-      }, error => {
-        // TODO
-      }, {
+        console.log(position.coords);
+        Array.from({ length: 10 }, _ => {
+          let coords = this.mapboxService.randomCoordinates(position.coords.latitude, position.coords.longitude);
+          this.mapboxService.addMarker(coords.latitude, coords.longitude);
+        });
+        this.mapboxService.addMarker(position.coords.latitude, position.coords.longitude, true, true);
+      }, null, {
         enableHighAccuracy: true,
         timeout: 5000,
         maximumAge: 0

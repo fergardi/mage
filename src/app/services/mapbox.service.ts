@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
 import { ComponentService } from '../services/component.service';
 import { LocationComponent } from '../world/location/location.component';
+import MapboxCircle from 'mapbox-gl-circle';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class MapboxService {
   initialize(container: string) {
     this.map = new mapboxgl.Map({
       container: container,
-      style: environment.mapbox.style,
+      style: environment.mapbox.style + '?optimize=true',
       zoom: environment.mapbox.zoom,
       center: [environment.mapbox.lng, environment.mapbox.lat],
       pitch: environment.mapbox.pitch,
@@ -27,17 +28,18 @@ export class MapboxService {
     });
   }
 
-  addMarker(lat: number, lng: number, fly:boolean = false): void {
+  addMarker(lat: number, lng: number, radius: boolean = false, fly:boolean = false): void {
+    let size = 50;
     var el = document.createElement('div');
     el.className = 'marker';
     el.style.backgroundImage = 'url("http://localhost:7777/assets/badge.png")';
     el.style.backgroundSize = '100% 100%';
-    el.style.width = '50px';
-    el.style.height = '50px';
-
-    let popup = this.componentService.injectComponent(LocationComponent);
+    el.style.height = size + 'px';
+    el.style.width = size + 'px';
     
-    new mapboxgl.Marker(el)
+    new mapboxgl.Marker(el, {
+      anchor: 'bottom'
+    })
     .setLngLat({ lat: lat, lng: lng })
     .setPopup(new mapboxgl.Popup({
       offset: [-12.5, -30],
@@ -45,8 +47,17 @@ export class MapboxService {
       closeOnClick: true,
       closeOnMove: false,
       maxWidth: 'none',
-    }).setDOMContent(popup))
+    }).setDOMContent(this.componentService.injectComponent(LocationComponent)))
     .addTo(this.map);
+  
+    if (radius) {
+      new MapboxCircle({lat: lat, lng: lng}, 1000, {
+        editable: false,
+        fillColor: '#424242',
+        fillOpacity: 0.1,
+        strokeColor: '#424242'
+      }).addTo(this.map);
+    }
     
     if (fly) {
       this.map.flyTo({
@@ -54,6 +65,22 @@ export class MapboxService {
         essential: true
       });
     }
+  }
+
+  randomCoordinates(lat: number, lng: number, km: number = 5): { latitude: number, longitude: number } {
+    let y0 = lat;
+    let x0 = lng;
+    let rd = km * 1000 / 111300;
+    let u = Math.random();
+    let v = Math.random();
+    let w = rd * Math.sqrt(u);
+    let t = 2 * Math.PI * v;
+    let x = w * Math.cos(t);
+    let y = w * Math.sin(t);
+    return {
+      latitude: y + y0,
+      longitude: x + x0
+    };
   }
 
 }
