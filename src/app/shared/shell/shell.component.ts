@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterLink } from '@angular/router';
-import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-shell',
@@ -27,6 +25,7 @@ export class ShellComponent implements OnInit {
       { url: '/world/map', name: 'World' },
       { url: '/kingdom/city', name: 'City' },
       { url: '/user/login', name: 'Login' },
+      { url: '/kingdom/census', name: 'Census' },
     ]
   }
 

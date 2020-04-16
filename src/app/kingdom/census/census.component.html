@@ -1,0 +1,55 @@
+<div class="kingdom-census">
+  <mat-card>
+
+    <mat-card-header>
+      <img mat-card-avatar src="/assets/badge.png" alt="icon">
+      <mat-card-title>Skeletons</mat-card-title>
+      <mat-card-subtitle>Really, they are!</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <div fxLayout="row" fxLayoutAlign="flex-end">
+        <mat-form-field>
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+        </mat-form-field>
+      </div>
+
+      <table mat-table matSort [dataSource]="dataSource" multiTemplateDataRows>
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
+          <mat-cell *matCellDef="let row" [attr.data-label]="column">
+            <span *ngIf="column !== 'img'; else img">
+              {{ row[column] }}
+            </span>
+            <ng-template #img>
+              <img class="item-image" [src]="row[column]" alt="logo"/>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
+<!--
+        <ng-container matColumnDef="expanded">
+          <mat-cell *matCellDef="let row">
+            <div class="item-detail" [@detailExpand]="row === expanded ? 'expanded' : 'collapsed'">
+              // TODO
+            </div>
+          </mat-cell>
+        </ng-container>
+-->
+        <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+<!--
+        <mat-row *matRowDef="let row; columns: columnsToDisplay;" class="item-row"
+          [class.expanded-row]="expanded === row"
+          (click)="expanded = expanded === row ? null : row">
+        </mat-row>
+        <mat-row *matRowDef="let row; columns: ['expanded']" class="detail-row"></mat-row>
+-->
+        <mat-row *matRowDef="let row; columns: columnsToDisplay;" class="item-row"></mat-row>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    </mat-card-content>
+  </mat-card>
+</div>
