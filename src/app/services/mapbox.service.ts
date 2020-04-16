@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
 import { ComponentService } from '../services/component.service';
-import { BuildingComponent } from '../shared/building/building.component';
+import { LocationComponent } from '../world/location/location.component';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class MapboxService {
     el.style.width = '50px';
     el.style.height = '50px';
 
-    let popup = this.componentService.injectComponent(BuildingComponent);
+    let popup = this.componentService.injectComponent(LocationComponent);
     
     new mapboxgl.Marker(el)
     .setLngLat({ lat: lat, lng: lng })
