@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './user/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'user/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'world/map', pathMatch: 'full' },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
-  { path: 'world', loadChildren: () => import('./world/world.module').then(m => m.WorldModule) },
-  { path: 'kingdom', loadChildren: () => import('./kingdom/kingdom.module').then(m => m.KingdomModule) }
+  { path: 'world', loadChildren: () => import('./world/world.module').then(m => m.WorldModule), canActivate: [AuthGuard] },
+  { path: 'kingdom', loadChildren: () => import('./kingdom/kingdom.module').then(m => m.KingdomModule), canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

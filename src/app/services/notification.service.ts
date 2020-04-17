@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 
@@ -7,14 +7,19 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class NotificationService {
-  private options = {
-    duration: 5000
+  private options: MatSnackBarConfig = {
+    duration: 3000,
+    horizontalPosition: 'right',
+    verticalPosition: 'top',
   }
 
-  constructor(private snackBar: MatSnackBar, private router: Router) {}
+  constructor(
+    private snackBar: MatSnackBar,
+    private router: Router,
+  ) {}
 
-  authError() {
-    this.snackBar.open('You must be logged in!', 'OK', this.options);
+  unauthorized() {
+    this.snackBar.open('You must be logged in!', 'OK', {...this.options, panelClass: ['mat-toolbar', 'mat-primary']} );
     return this.snackBar._openedSnackBarRef
       .onAction()
       .pipe(

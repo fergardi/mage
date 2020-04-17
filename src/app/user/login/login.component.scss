@@ -1,0 +1,46 @@
+.app-login {
+  height: 100%;
+  > form {
+    height: 100%;
+  }
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  .server-error {
+    margin: 8px 0;;
+  }
+  input {    
+    height: 2em;              
+    div.mat-form-field-infix {
+      padding: .3em 0;
+      input.mat-input-element {
+        vertical-align: top;
+      }
+    }
+  }
+  .mat-card-actions {
+    display: flex;
+  }
+  div.mat-form-field-wrapper{
+    padding-bottom: 1.15em;
+  }
+  ::ng-deep.mat-tab-labels {
+    justify-content: space-around;
+  }
+  ::ng-deep.mat-tab-group {
+    margin-bottom: 10px;
+  }
+  ::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+    min-width: 0px;
+    padding: 3px;
+    margin: 3px;
+    width: 100%;
+  }
+  ::ng-deep.mat-tab-body-content {
+    display: none !important;
+  }
+  ::ng-deep.mat-tab-nav-bar, ::ng-deep.mat-tab-header {
+    border: none;
+  }
+}

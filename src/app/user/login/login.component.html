@@ -1,18 +1,45 @@
-<main>
-  <div *ngIf="!(angularFireAuth.authState | async)">
-    <h1>Login</h1>
-    <button mat-raised-button appGooglogin>
-      🔐 Login with Google
-    </button>
-    <h5>OR</h5>
-    <app-email></app-email>
-  </div>
-  <div *ngIf="angularFireAuth.authState | async as user">
-      <p>
-        Logged in as <strong>{{ user.email }}</strong>
-      </p>
-      <button mat-stroked-button (click)="angularFireAuth.signOut()">
-        🔒 Logout
-      </button>
-    </div>
-</main>
+<div class="app-login" *ngIf="!(angularFireAuth.authState | async)">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card fxFlex.xl="20" fxFlex.lg="25" fxFlex.md="33" fxFlex.sm="50" fxFlex.xs="100">
+
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/badge.png" alt="icon">
+        <mat-card-title>{{ 'test' | translate }}</mat-card-title>
+        <mat-card-subtitle>Really, they are!</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <img mat-card-md-image src="/assets/skeleton.png" alt="icon">
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-tab-group mat-align-tabs="center" (selectedTabChange)="changeType($event)">
+          <mat-tab *ngFor="let type of types" [label]="type"></mat-tab>
+        </mat-tab-group>
+
+        <mat-form-field [color]="email.valid && 'accent'">
+          <input matInput formControlName="email" placeholder="Email" autocomplete="off"/>
+          <mat-error *ngIf="email.invalid && email.dirty">You must enter a valid email address</mat-error>
+        </mat-form-field>
+
+        <mat-form-field [color]="password.valid && 'accent'" *ngIf="type !== 'reset'">
+          <input matInput type="password" formControlName="password" placeholder="Password" autocomplete="off"/>
+          <mat-error *ngIf="password.invalid && password.dirty">Password must be at least 6 characters long</mat-error>
+        </mat-form-field>
+
+        <mat-form-field [color]="match ? 'accent' : 'warn'" *ngIf="type === 'signup'">
+          <input matInput type="password" formControlName="password2" placeholder="Confirm password" autocomplete="off"/>
+          <mat-error *ngIf="password2.dirty && !match">Password does not match</mat-error>
+        </mat-form-field>
+        <mat-error class="server-error">{{ message }}</mat-error>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button type="button" appGooglogin>Google</button>
+        <span class="fill-space"></span>
+        <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid || !match || loading">Submit</button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+</div>

@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container" autosize>
+<mat-sidenav-container class="app-shell sidenav-container" autosize>
   <mat-sidenav
     #drawer
     class="sidenav"
@@ -38,13 +38,15 @@
       
       <div *ngIf="!(isHandset$ | async)">
         <a mat-button [routerLink]="link.url" *ngFor="let link of links">{{ link.name }}</a>
+        <a mat-button *ngIf="!(angularFireAuth.authState | async)" routerLink="/user/login">Login</a>
+        <a mat-button *ngIf="(angularFireAuth.authState | async)" (click)="logout()">Logout</a>
       </div>
   
       <button mat-icon-button [matMenuTriggerFor]="language">
         {{ translateService.currentLang }}
       </button>
       <mat-menu #language="matMenu">
-        <a mat-menu-item *ngFor="let lang of translateService.getLangs()" (click)="changeLanguage(lang)">{{ lang }}</a>
+        <a mat-menu-item *ngFor="let lang of translateService.getLangs()" (click)="translateService.use(lang)">{{ lang }}</a>
       </mat-menu>
       
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
