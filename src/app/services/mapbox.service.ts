@@ -4,15 +4,20 @@ import * as mapboxgl from 'mapbox-gl';
 import { ComponentService } from '../services/component.service';
 import { LocationComponent } from '../world/location/location.component';
 import MapboxCircle from 'mapbox-gl-circle';
+import { FirebaseService } from './firebase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapboxService {
   mapbox = (mapboxgl as typeof mapboxgl);
-  map: mapboxgl.Map;
+  map: mapboxgl.Map = null;
+  markers: mapboxgl.Marker[] = [];
   
-  constructor(private componentService: ComponentService) {
+  constructor(
+    private componentService: ComponentService,
+    private firebaseService: FirebaseService,
+  ) {
     this.mapbox.accessToken = environment.mapbox.token;
   }
 
@@ -26,19 +31,27 @@ export class MapboxService {
       attributionControl: false,
       // interactive: false
     });
+    this.map.on('click', ($event: mapboxgl.MapMouseEvent) => {
+      this.clearMarkers();
+      this.firebaseService.saveElement('kingdoms', {
+        faction: ['red', 'white', 'green', 'blue', 'black'][Math.floor(Math.random() * 5)],
+        lat: $event.lngLat.lat,
+        lng: $event.lngLat.lng
+      })
+    })
   }
 
-  addMarker(lat: number, lng: number, radius: boolean = false, fly:boolean = false): void {
+  addMarker(lat: number, lng: number, image: string, radius: boolean = false, fly:boolean = false): mapboxgl.Marker {
     let size = 50;
     var el = document.createElement('div');
     el.className = 'marker';
-    el.style.backgroundImage = 'url("http://localhost:7777/assets/badge.png")';
+    el.style.backgroundImage = `url(${image})`;
     el.style.backgroundSize = '100% 100%';
     el.style.height = size + 'px';
     el.style.width = size + 'px';
     
-    new mapboxgl.Marker(el, {
-      anchor: 'bottom'
+    let marker = new mapboxgl.Marker(el, {
+      anchor: 'bottom',
     })
     .setLngLat({ lat: lat, lng: lng })
     .setPopup(new mapboxgl.Popup({
@@ -60,11 +73,30 @@ export class MapboxService {
     }
     
     if (fly) {
+      this.goTo(lat, lng, true);
+    }
+
+    this.markers.push(marker);
+
+    return marker;
+  }
+
+  goTo(lat: number, lng: number, fly: boolean = false): void {
+    if (fly) {
       this.map.flyTo({
         center: [lng, lat],
         essential: true
       });
+    } else {
+      this.map.easeTo({
+        center: [lng, lat],
+        essential: true
+      })
     }
+  }
+
+  clearMarkers(): void {
+    this.markers.forEach(marker => marker.remove());
   }
 
   randomCoordinates(lat: number, lng: number, km: number = 5): { latitude: number, longitude: number } {

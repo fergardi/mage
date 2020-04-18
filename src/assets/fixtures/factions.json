@@ -1,0 +1,27 @@
+[
+  {
+    "name": "faction.black",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/factions%2Fblack.png?alt=media&token=f349aa5f-71f9-45e3-8d30-be91e92ff11b",
+    "id": "black"
+  },
+  {
+    "name": "faction.blue",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/factions%2Fblue.png?alt=media&token=9212b517-c015-4fa0-b260-e00d05e6d0db",
+    "id": "blue"
+  },
+  {
+    "name": "faction.green",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/factions%2Fgreen.png?alt=media&token=2ae00a03-3526-45cf-a4f9-cec9e2dd320b",
+    "id": "green"
+  },
+  {
+    "name": "faction.red",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/factions%2Fred.png?alt=media&token=2ec53553-319c-4afd-a3ba-7aa92548ab6b",
+    "id": "red"
+  },
+  {
+    "name": "faction.white",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/factions%2Fwhite.png?alt=media&token=0d8bf78a-a418-4dba-8ab6-c4bd98f2e073",
+    "id": "white"
+  }
+]

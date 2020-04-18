@@ -1,0 +1,52 @@
+[
+  {
+    "name": "building.barrack",
+    "id": "barrack",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/buildings%2Fbarrack.png?alt=media&token=4546828b-be2d-4c12-9893-d2ff3acba19d"
+  },
+  {
+    "name": "building.barrier",
+    "id": "barrier",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/buildings%2Fbarrier.png?alt=media&token=620bf6e9-f2d8-4594-aea8-837c1616c9e7"
+  },
+  {
+    "name": "building.farm",
+    "id": "farm",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/buildings%2Ffarm.png?alt=media&token=e52f3bdb-0f6c-497f-a6ed-a316ee282391"
+  },
+  {
+    "name": "building.fortress",
+    "id": "fortress",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/buildings%2Ffortress.png?alt=media&token=55b9d058-c181-445d-9b0c-24bc7f10225b"
+  },
+  {
+    "name": "building.guild",
+    "id": "guild",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/buildings%2Fguild.png?alt=media&token=b5198ca5-e0cc-4861-844f-5d4f9843b38f"
+  },
+  {
+    "name": "building.node",
+    "id": "node",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/buildings%2Fnode.png?alt=media&token=4906b992-2a3b-4afe-9571-4a40687c3ddc"
+  },
+  {
+    "name": "building.temple",
+    "id": "temple",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/buildings%2Ftemple.png?alt=media&token=e29f2d6e-5b46-480c-8bb0-a4f516e601b3"
+  },
+  {
+    "name": "building.terrain",
+    "id": "terrain",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/buildings%2Fterrain.png?alt=media&token=4052361f-cd63-4017-a333-7acfe79c46ce"
+  },
+  {
+    "name": "building.village",
+    "id": "village",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/buildings%2Fterrain.png?alt=media&token=4052361f-cd63-4017-a333-7acfe79c46ce"
+  },
+  {
+    "name": "building.workshop",
+    "id": "workshop",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/buildings%2Fworkshop.png?alt=media&token=16abcb30-02f2-4ffe-80e7-703252876bc7"
+  }
+]

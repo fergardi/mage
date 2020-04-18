@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FirebaseService } from './services/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'mage';
 
-  constructor() { }
+  constructor(
+    private firebaseService: FirebaseService,
+  ) {
+    this.firebaseService.importCollection('buildings');
+    this.firebaseService.importCollection('factions');
+    // this.firebaseService.importCollection('kingdoms');
+  }
 }

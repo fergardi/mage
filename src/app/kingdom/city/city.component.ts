@@ -2,11 +2,10 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { switchMap, map } from 'rxjs/operators';
-import { combineLatest } from 'rxjs';
-import { TranslateService } from '@ngx-translate/core';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 interface Building {
   name: string
@@ -25,13 +24,13 @@ export class CityComponent implements AfterViewInit {
   columns = ['name', 'quantity'];
   data: MatTableDataSource<Building>;
 
-  constructor(
-    private angularFireAuth: AngularFireAuth,
-    private angularFirestore: AngularFirestore,
-  ) {}
-
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  constructor(
+    private firebaseService: FirebaseService,
+    private angularFireAuth: AngularFireAuth,
+  ) {}
 
   applyFilter(event: Event) {
     const value = (event.target as HTMLInputElement).value;
@@ -43,32 +42,17 @@ export class CityComponent implements AfterViewInit {
       this.data = new MatTableDataSource(data);
       this.data.sort = this.sort;
       this.data.paginator = this.paginator;
-    })
+    });
   }
 
   getUserBuildings() {
     return this.angularFireAuth.authState.pipe(
       switchMap(user => {
-        if (user) {
-          return combineLatest([
-            this.angularFirestore.collection<Building>(`users/${user.uid}/buildings`).valueChanges(),
-            this.angularFirestore.collection<Building>(`buildings`).valueChanges(),
-          ]).pipe(
-            map(([
-              userBuildings,
-              buildings,
-            ]) => {
-              return userBuildings.map(userBuilding => {
-                return {
-                  ...userBuilding,
-                  ...buildings.find(b => b.uid === userBuilding.uid)
-                }
-              })
-            })
-          )
-        }
+        return user
+          ? this.firebaseService.leftJoin(`users/${user.uid}/buildings`, 'buildings')
+          : of([]);
       })
-    )
+    );
   }
 
 }
