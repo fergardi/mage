@@ -1,4 +1,4 @@
-<div class="kingdom-census">
+<div class="kingdom-census table-responsive">
   <mat-card>
 
     <mat-card-header>
@@ -28,23 +28,8 @@
             </ng-template>
           </mat-cell>
         </ng-container>
-<!--
-        <ng-container matColumnDef="expanded">
-          <mat-cell *matCellDef="let row">
-            <div class="item-detail" [@detailExpand]="row === expanded ? 'expanded' : 'collapsed'">
-              // TODO
-            </div>
-          </mat-cell>
-        </ng-container>
--->
+
         <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-<!--
-        <mat-row *matRowDef="let row; columns: columnsToDisplay;" class="item-row"
-          [class.expanded-row]="expanded === row"
-          (click)="expanded = expanded === row ? null : row">
-        </mat-row>
-        <mat-row *matRowDef="let row; columns: ['expanded']" class="detail-row"></mat-row>
--->
         <mat-row *matRowDef="let row; columns: columnsToDisplay;" class="item-row"></mat-row>
       </table>
 

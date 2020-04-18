@@ -82,3 +82,90 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .fill-space {
   flex: 1 1 auto;
 }
+
+.table-responsive {
+  table {
+    width: 100%;
+  }
+  .mat-row:hover {
+    background: #303030;
+    cursor: pointer;
+  }
+  .mat-row td {
+    border-bottom-width: 0;
+  }
+  .mat-row .mat-cell img {
+    width: 64px;
+    height: 64px;
+    margin: 5px;
+    border-radius: 4px;
+  }
+  .mat-row::after, .mat-header-row::after, .mat-footer-row::after {
+    display: none;
+  }
+  .table-responsive-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// responsive custom table
+@media screen and (max-width: 960px) {
+  .table-responsive {
+    .mat-form-field {
+      width: 100%;
+    }
+    .mat-table {
+      border: 0;
+      vertical-align: middle
+    }
+    .mat-table caption {
+      font-size: 1em;
+    }
+    .mat-table .mat-row {
+      display: block;
+    }
+    .mat-table .mat-row:not(:last-of-type) {
+      border-bottom: 3px solid #303030;
+    }
+    .mat-row, .mat-footer-row {
+      min-height: auto;
+    }
+    .mat-row .mat-cell img {
+      height: 32px;
+      width: 32px;
+    }
+    .mat-table .mat-cell {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      font-size: 1em;
+      text-align: right;
+      font-weight: bold;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 42px;
+    }
+    .mat-table .mat-cell:before {
+      content: attr(data-label);
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size: .85em;
+    }
+    .table-responsive-image-wrapper {
+      flex-direction: row-reverse;
+    }
+    .mat-table .mat-cell:last-child {
+      border-bottom: 0;
+    }
+    .mat-cell:first-of-type, .mat-header-cell:first-of-type, .mat-footer-cell:first-of-type {
+      padding-left: 0;
+    }
+    .mat-cell:last-of-type, .mat-header-cell:last-of-type, .mat-footer-cell:last-of-type {
+      padding-right: 0;
+    }
+    .mat-cell, .mat-header-cell, .mat-footer-cell {
+      justify-content: center;
+    }
+  }
+}
