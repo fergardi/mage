@@ -5,6 +5,7 @@ import { ComponentService } from '../services/component.service';
 import { LocationComponent } from '../world/location/location.component';
 import MapboxCircle from 'mapbox-gl-circle';
 import { FirebaseService } from './firebase.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 export const enum MarkerType {
   'kingdom',
@@ -12,7 +13,7 @@ export const enum MarkerType {
 }
 
 interface Marker {
-  uid: string
+  id: string
   type: MarkerType
   marker: mapboxgl.Marker
   circle: MapboxCircle
@@ -29,6 +30,7 @@ export class MapboxService {
   constructor(
     private componentService: ComponentService,
     private firebaseService: FirebaseService,
+    private angularFireAuth: AngularFireAuth,
   ) {
     this.mapbox.accessToken = environment.mapbox.token;
   }
@@ -43,8 +45,30 @@ export class MapboxService {
       attributionControl: false,
       // interactive: false
     });
-    this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'top-left');
+    this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'bottom-left');
     this.map.addControl(new MapboxGLButtonControl('scroll-unfurled', 'Item', this.addLocation.bind(this)), 'bottom-left');
+    this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addUser.bind(this)), 'bottom-left');
+  }
+
+  addUser(): void {
+    this.angularFireAuth.authState.subscribe(user => {
+      if (user) {
+        navigator.geolocation.getCurrentPosition(async position => {
+          await this.firebaseService.addElementToCollection('kingdoms', {
+            uid: user.uid,
+            faction: 'blue',
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            radius: 1500
+          }, user.uid);
+          this.goTo(position.coords.latitude, position.coords.longitude, true);
+        }, null, {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0
+        });
+      }
+    })
   }
 
   addKingdom(): void {
@@ -53,7 +77,7 @@ export class MapboxService {
       this.firebaseService.addElementToCollection('kingdoms', {
         faction: factions[Math.floor(Math.random() * factions.length)],
         lat: $event.lngLat.lat,
-        lng: $event.lngLat.lng
+        lng: $event.lngLat.lng,
       })
     })
   }
@@ -73,13 +97,13 @@ export class MapboxService {
     lat: number,
     lng: number,
     image: string,
-    uid: string,
+    id: string,
     type: MarkerType,
     popup: boolean = false,
     radius: number = 0,
     fly: boolean = false
   ): mapboxgl.Marker {
-
+    // html
     let size = 36;
     var wrapper = document.createElement('div');
     var el = document.createElement('div');
@@ -89,15 +113,14 @@ export class MapboxService {
     el.style.height = size + 'px';
     el.style.width = size + 'px';
     wrapper.appendChild(el);
-    
+    // marker
     let marker = new mapboxgl.Marker(wrapper, {
       anchor: 'bottom',
     })
     .setLngLat({ lat: lat, lng: lng })
     .addTo(this.map);
-  
+    // popup
     if (popup) {
-      console.log('popup')
       let info = null;
       switch (type) {
         case MarkerType.kingdom:
@@ -112,7 +135,7 @@ export class MapboxService {
         maxWidth: 'none',
       }).setDOMContent(info))
     }
-
+    // radius
     let circle = null;
     if (radius) {
       circle = new MapboxCircle({lat: lat, lng: lng}, radius, {
@@ -122,10 +145,10 @@ export class MapboxService {
         strokeColor: '#424242'
       }).addTo(this.map);
     }
-    
+    // center
     if (fly) this.goTo(lat, lng, true);
-
-    this.markers.push({ uid: uid, marker: marker, circle: circle, type: type });
+    // return
+    this.markers.push({ id: id, marker: marker, circle: circle, type: type });
     return marker;
   }
 
@@ -143,8 +166,10 @@ export class MapboxService {
     }
   }
 
-  removeMarker(uid: string): void {
-    let index = this.markers.findIndex(item => item.uid === uid);
+  removeMarker(id: string): void {
+    let index = this.markers.findIndex(item => {
+      return item.id === id
+    });
     if (index) {
       let found = this.markers[index];
       if (found.marker) found.marker.remove();
@@ -154,7 +179,7 @@ export class MapboxService {
   }
 
   clearMarkers(type: MarkerType): void {
-    this.markers.filter((marker: Marker) => marker.type === type).forEach((marker: Marker) => this.removeMarker(marker.uid));
+    this.markers.filter((marker: Marker) => marker.type === type).forEach((marker: Marker) => this.removeMarker(marker.id));
   }
 
   randomCoordinates(lat: number, lng: number, km: number = 5): { latitude: number, longitude: number } {

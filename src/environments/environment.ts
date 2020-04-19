@@ -16,9 +16,9 @@ export const environment = {
   mapbox: {
     style: 'mapbox://styles/fergardi/ck8wxw7m02u0i1imofu9i0tur/draft',
     token: 'pk.eyJ1IjoiZmVyZ2FyZGkiLCJhIjoiY2lxdWl1enJiMDAzaWh4bTNwY3F6MnNwdiJ9.fPkJoOfrARPtZWCj1ehyCQ',
-    lat: 43.1746,
-    lng: -2.4125,
-    zoom: 15,
+    lat: 42.618060799999995,
+    lng: -5.5508992,
+    zoom: 12,
     pitch: 60,
   }
 };

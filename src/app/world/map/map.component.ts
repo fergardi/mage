@@ -23,35 +23,20 @@ export class MapComponent implements OnInit {
     this.mapboxService.map.on('load', () => {
       this.angularFireAuth.authState.subscribe(user => {
         if (user) {
-          navigator.geolocation.getCurrentPosition(async position => {
-            let kingdom = {
-              uid: user.uid,
-              faction: ['red', 'white', 'green', 'blue', 'black'][Math.floor(Math.random() * 5)],
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-              radius: 1500
-            }
-            await this.firebaseService.addElementToCollection('kingdoms', kingdom, user.uid);
-            this.mapboxService.goTo(position.coords.latitude, position.coords.longitude, true);
-          }, null, {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-          });
           this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id').subscribe(kingdoms => {
             this.mapboxService.clearMarkers(MarkerType.kingdom);
             kingdoms.forEach(kingdom => {
-              this.mapboxService.addMarker(kingdom.lat, kingdom.lng, kingdom.image, kingdom.uid, MarkerType.kingdom, true, kingdom.uid === user.uid ? kingdom.radius : null, false);
+              this.mapboxService.addMarker(kingdom.lat, kingdom.lng, kingdom.image, kingdom.fid, MarkerType.kingdom, true, kingdom.uid === user.uid ? kingdom.radius : null, false);
             })
           });
           this.firebaseService.leftJoin('locations', 'items', 'item', 'id').subscribe(locations => {
             this.mapboxService.clearMarkers(MarkerType.location);
             locations.forEach(location => {
-              this.mapboxService.addMarker(location.lat, location.lng, location.image, location.uid, MarkerType.location, false, null, false);
+              this.mapboxService.addMarker(location.lat, location.lng, location.image, location.fid, MarkerType.location, false, null, false);
             })
           });
         }
-      })
+      });
     })
   }
 
