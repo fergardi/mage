@@ -36,20 +36,20 @@ export class FirebaseService {
     )
   }
 
-  retrieveElement(path: string) {
+  retrieveElementFromPath(path: string) {
     return this.angularFirestore.doc<any>(path).get();
   }
 
-  saveElement(collection: string, element: any, id?:string) {
+  addElementToCollection(collection: string, element: any, id?:string) {
     return id
       ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
       : this.angularFirestore.collection<any>(collection).add(element);
   }
 
-  importCollection(collection: string) {
+  importCollectionFromJson(collection: string) {
     return this.httpClient.get<any[]>(`assets/fixtures/${collection}.json`).pipe(first()).subscribe(data => {
       data.forEach(element => {
-        return this.saveElement(collection, element, element.id);
+        return this.addElementToCollection(collection, element, element.id);
       })
     });
   }

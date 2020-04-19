@@ -6,13 +6,25 @@ import { LocationComponent } from '../world/location/location.component';
 import MapboxCircle from 'mapbox-gl-circle';
 import { FirebaseService } from './firebase.service';
 
+export const enum MarkerType {
+  'kingdom',
+  'location',
+}
+
+interface Marker {
+  uid: string
+  type: MarkerType
+  marker: mapboxgl.Marker
+  circle: MapboxCircle
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class MapboxService {
   mapbox = (mapboxgl as typeof mapboxgl);
   map: mapboxgl.Map = null;
-  markers: mapboxgl.Marker[] = [];
+  markers: Marker[] = [];
   
   constructor(
     private componentService: ComponentService,
@@ -31,18 +43,44 @@ export class MapboxService {
       attributionControl: false,
       // interactive: false
     });
-    this.map.on('click', ($event: mapboxgl.MapMouseEvent) => {
-      this.clearMarkers();
-      this.firebaseService.saveElement('kingdoms', {
-        faction: ['red', 'white', 'green', 'blue', 'black'][Math.floor(Math.random() * 5)],
+    this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'top-left');
+    this.map.addControl(new MapboxGLButtonControl('scroll-unfurled', 'Item', this.addLocation.bind(this)), 'bottom-left');
+  }
+
+  addKingdom(): void {
+    this.map.once('click', ($event: mapboxgl.MapMouseEvent) => {
+      let factions = ['red', 'white', 'green', 'blue', 'black'];
+      this.firebaseService.addElementToCollection('kingdoms', {
+        faction: factions[Math.floor(Math.random() * factions.length)],
         lat: $event.lngLat.lat,
         lng: $event.lngLat.lng
       })
     })
   }
 
-  addMarker(lat: number, lng: number, image: string, radius: boolean = false, fly:boolean = false): mapboxgl.Marker {
-    let size = 50;
+  addLocation(): void {
+    this.map.once('click', ($event: mapboxgl.MapMouseEvent) => {
+      let items = ['legendary-chest'];
+      this.firebaseService.addElementToCollection('locations', {
+        item: items[Math.floor(Math.random() * items.length)],
+        lat: $event.lngLat.lat,
+        lng: $event.lngLat.lng
+      })
+    })
+  }
+
+  addMarker(
+    lat: number,
+    lng: number,
+    image: string,
+    uid: string,
+    type: MarkerType,
+    popup: boolean = false,
+    radius: number = 0,
+    fly: boolean = false
+  ): mapboxgl.Marker {
+
+    let size = type === MarkerType.kingdom ? 50 : 25;
     var el = document.createElement('div');
     el.className = 'marker';
     el.style.backgroundImage = `url(${image})`;
@@ -54,17 +92,21 @@ export class MapboxService {
       anchor: 'bottom',
     })
     .setLngLat({ lat: lat, lng: lng })
-    .setPopup(new mapboxgl.Popup({
-      offset: [-12.5, -30],
-      closeButton: false,
-      closeOnClick: true,
-      closeOnMove: false,
-      maxWidth: 'none',
-    }).setDOMContent(this.componentService.injectComponent(LocationComponent)))
     .addTo(this.map);
   
+    if (popup) {
+      marker = marker.setPopup(new mapboxgl.Popup({
+        offset: [-12.5, -30],
+        closeButton: false,
+        closeOnClick: true,
+        closeOnMove: false,
+        maxWidth: 'none',
+      }).setDOMContent(this.componentService.injectComponent(LocationComponent)))
+    }
+
+    let circle = null;
     if (radius) {
-      new MapboxCircle({lat: lat, lng: lng}, 1000, {
+      circle = new MapboxCircle({lat: lat, lng: lng}, radius, {
         editable: false,
         fillColor: '#424242',
         fillOpacity: 0.1,
@@ -72,12 +114,9 @@ export class MapboxService {
       }).addTo(this.map);
     }
     
-    if (fly) {
-      this.goTo(lat, lng, true);
-    }
+    if (fly) this.goTo(lat, lng, true);
 
-    this.markers.push(marker);
-
+    this.markers.push({ uid: uid, marker: marker, circle: circle, type: type });
     return marker;
   }
 
@@ -95,8 +134,18 @@ export class MapboxService {
     }
   }
 
-  clearMarkers(): void {
-    this.markers.forEach(marker => marker.remove());
+  removeMarker(uid: string): void {
+    let index = this.markers.findIndex(item => item.uid === uid);
+    if (index) {
+      let found = this.markers[index];
+      if (found.marker) found.marker.remove();
+      if (found.circle) found.circle.remove();
+      this.markers.splice(index, 1);
+    }
+  }
+
+  clearMarkers(type: MarkerType): void {
+    this.markers.filter((marker: Marker) => marker.type === type).forEach((marker: Marker) => this.removeMarker(marker.uid));
   }
 
   randomCoordinates(lat: number, lng: number, km: number = 5): { latitude: number, longitude: number } {
@@ -115,4 +164,44 @@ export class MapboxService {
     };
   }
 
+  resize(): void {
+    this.map.resize();
+  }
+
+}
+
+class MapboxGLButtonControl {
+
+  private map: mapboxgl.Map;
+  private container: HTMLElement;
+  private icon: string;
+  private title: string;
+  private event: any;
+
+  constructor(icon: string, title: string, event: any) {
+    this.icon = icon;
+    this.title = title;
+    this.event = event;
+  }
+
+  onAdd(map: mapboxgl.Map) {
+    this.container = document.getElementById('custom-controls');
+    if (!this.container) {
+      this.container = document.createElement('div');
+      this.container.className = 'mapboxgl-ctrl-group mapboxgl-ctrl';
+      this.container.id = 'custom-controls';
+    }
+    let button = document.createElement("button");
+    button.type = "button";
+    button.title = this.title;
+    button.onclick = this.event;
+    button.innerHTML = `<i class="ra ra-${this.icon}"></i>`;
+    this.container.appendChild(button);
+    return this.container;
+  }
+
+  onRemove() {
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
 }

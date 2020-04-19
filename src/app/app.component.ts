@@ -7,13 +7,14 @@ import { FirebaseService } from './services/firebase.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  
   title = 'mage';
 
   constructor(
     private firebaseService: FirebaseService,
   ) {
-    this.firebaseService.importCollection('buildings');
-    this.firebaseService.importCollection('factions');
-    // this.firebaseService.importCollection('kingdoms');
+    this.firebaseService.importCollectionFromJson('buildings');
+    this.firebaseService.importCollectionFromJson('factions');
+    this.firebaseService.importCollectionFromJson('items');
   }
 }
