@@ -15,7 +15,7 @@ export class ComponentService {
 
   public injectComponent<T>(component: Type<T>, propertySetter?: (type: T) => void): HTMLDivElement {
 
-    if (this.compRef) this.compRef.destroy();
+    // if (this.compRef) this.compRef.destroy();
     const compFactory = this.resolver.resolveComponentFactory(component);
     this.compRef = compFactory.create(this.injector);
     if (propertySetter) propertySetter(this.compRef.instance);

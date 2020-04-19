@@ -25,6 +25,7 @@
     "@angular/router": "~9.1.1",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
+    "animate.css": "^3.7.2",
     "firebase": "^7.14.0",
     "mapbox-gl": "^1.9.1",
     "mapbox-gl-circle": "^1.6.5",

@@ -80,28 +80,37 @@ export class MapboxService {
     fly: boolean = false
   ): mapboxgl.Marker {
 
-    let size = type === MarkerType.kingdom ? 50 : 25;
+    let size = 36;
+    var wrapper = document.createElement('div');
     var el = document.createElement('div');
-    el.className = 'marker';
+    el.className = `marker animated bounce delay-${Math.floor(Math.random() * 5) + 1}s`;
     el.style.backgroundImage = `url(${image})`;
     el.style.backgroundSize = '100% 100%';
     el.style.height = size + 'px';
     el.style.width = size + 'px';
+    wrapper.appendChild(el);
     
-    let marker = new mapboxgl.Marker(el, {
+    let marker = new mapboxgl.Marker(wrapper, {
       anchor: 'bottom',
     })
     .setLngLat({ lat: lat, lng: lng })
     .addTo(this.map);
   
     if (popup) {
+      console.log('popup')
+      let info = null;
+      switch (type) {
+        case MarkerType.kingdom:
+          info = this.componentService.injectComponent(LocationComponent);
+          break;
+      }
       marker = marker.setPopup(new mapboxgl.Popup({
-        offset: [-12.5, -30],
+        offset: [-(size/2), -36],
         closeButton: false,
         closeOnClick: true,
         closeOnMove: false,
         maxWidth: 'none',
-      }).setDOMContent(this.componentService.injectComponent(LocationComponent)))
+      }).setDOMContent(info))
     }
 
     let circle = null;
@@ -195,7 +204,7 @@ class MapboxGLButtonControl {
     button.type = "button";
     button.title = this.title;
     button.onclick = this.event;
-    button.innerHTML = `<i class="ra ra-${this.icon}"></i>`;
+    button.innerHTML = `<i class="ra ra-${this.icon} ra-lg"></i>`;
     this.container.appendChild(button);
     return this.container;
   }

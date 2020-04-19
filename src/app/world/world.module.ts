@@ -8,11 +8,17 @@ import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [MapComponent, LocationComponent],
+  declarations: [
+    MapComponent,
+    LocationComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
     WorldRoutingModule
+  ],
+  entryComponents: [
+    LocationComponent
   ]
 })
 export class WorldModule { }

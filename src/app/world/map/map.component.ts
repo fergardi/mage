@@ -41,7 +41,7 @@ export class MapComponent implements OnInit {
           this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id').subscribe(kingdoms => {
             this.mapboxService.clearMarkers(MarkerType.kingdom);
             kingdoms.forEach(kingdom => {
-              this.mapboxService.addMarker(kingdom.lat, kingdom.lng, kingdom.image, kingdom.uid, MarkerType.kingdom, false, kingdom.radius, false);
+              this.mapboxService.addMarker(kingdom.lat, kingdom.lng, kingdom.image, kingdom.uid, MarkerType.kingdom, true, kingdom.uid === user.uid ? kingdom.radius : null, false);
             })
           });
           this.firebaseService.leftJoin('locations', 'items', 'item', 'id').subscribe(locations => {
