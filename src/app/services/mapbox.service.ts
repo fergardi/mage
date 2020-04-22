@@ -58,11 +58,12 @@ export class MapboxService {
       if (user) {
         navigator.geolocation.getCurrentPosition(async position => {
           await this.firebaseService.addElementToCollection('kingdoms', {
-            uid: user.uid,
+            id: user.uid,
             faction: 'blue',
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-            radius: 1500
+            radius: 1500,
+            name: 'Fergardi'
           }, user.uid);
           this.goTo(position.coords.latitude, position.coords.longitude, true);
         }, null, {
@@ -120,7 +121,7 @@ export class MapboxService {
     var el = document.createElement('div');
     el.className = 'marker animated bounce';
     el.style.animationDelay = `${Math.random() + 1}s`;
-    el.style.backgroundImage = `url(${data.image})`;
+    el.style.backgroundImage = `url(${data.join.image})`;
     el.style.backgroundSize = '100% 100%';
     el.style.height = size + 'px';
     el.style.width = size + 'px';
@@ -137,7 +138,7 @@ export class MapboxService {
     // popup
     if (popup) {
       marker = marker.setPopup(new mapboxgl.Popup({
-        offset: [0, -(size + 5)],
+        offset: [0, -(size + 10)],
         anchor: 'bottom',
         closeButton: false,
         closeOnClick: true,
@@ -158,7 +159,7 @@ export class MapboxService {
     // center
     if (fly) this.goTo(data.lat, data.lng, true);
     // return
-    this.markers.push({ id: data.fid, marker: marker, circle: circle, type: type });
+    this.markers.push({ id: data.id, marker: marker, circle: circle, type: type });
     return marker;
   }
 

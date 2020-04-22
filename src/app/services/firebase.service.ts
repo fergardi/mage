@@ -15,7 +15,6 @@ export class FirebaseService {
   ) { }
 
   leftJoin(left: string, right: string, from: string = 'id', to: string = 'id') {
-    console.info(`Joining query {${left}}[${from}] with {${right}}[${to}]...`);
     return combineLatest([
       this.angularFirestore.collection<any>(left).valueChanges({idField: 'fid'}),
       this.angularFirestore.collection<any>(right).valueChanges(),
@@ -27,7 +26,7 @@ export class FirebaseService {
         return leftCollection.map(leftElement => {
           return {
             ...leftElement,
-            ...rightCollection.find(rightElement => {
+            join: rightCollection.find(rightElement => {
               return leftElement[from] === rightElement[to]
             })
           }
@@ -40,7 +39,7 @@ export class FirebaseService {
     return this.angularFirestore.doc<any>(path).get();
   }
 
-  addElementToCollection(collection: string, element: any, id?:string) {
+  addElementToCollection(collection: string, element: any, id?: string) {
     return id
       ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
       : this.angularFirestore.collection<any>(collection).add(element);

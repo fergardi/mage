@@ -3,6 +3,12 @@
     "name": "Buscar",
     "placeholder": "Buscar"
   },
+  "faction": {
+    "blue": {
+      "name": "Azul",
+      "description": ""
+    }
+  },
   "building": {
     "name": "Edificio",
     "quantity": "Cantidad",
@@ -21,10 +27,36 @@
     "title": "Ciudad",
     "subtitle": "Construye edificios"
   },
+  "army": {
+    "title": "Ejército disponible",
+    "subtitle": "Gestiona tu armada"
+  },
+  "tavern": {
+    "title": "Héroes disponibles",
+    "subtitle": "Construye edificios"
+  },
   "store": {
+    "empty": "Ahora mismo no hay nada en la tienda, quizá más tarde...",
     "inn": {
-      "name": "Posada",
-      "description": "Contrata héroes"
+      "name": "Posada del Viajero",
+      "description": "Contrata héroes para tu Reino"
+    }
+  },
+  "hero": {
+    "dragon-rider": {
+      "name": "Jinete de Dragones",
+      "description": "Incrementa el daño de los Dragones"
+    }
+  },
+  "type": {
+    "flying": {
+      "name": "Volador",
+      "description": "Las unidades Voladoras son fuertes contra las unidades Cuerpo a Cuerpo y débiles contra las unidades a Distancia"
+    }
+  },
+  "unit": {
+    "red-dragon": {
+      "name": "Dragones Rojos"
     }
   }
 }

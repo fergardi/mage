@@ -49,7 +49,7 @@ export class CityComponent implements AfterViewInit {
     return this.angularFireAuth.authState.pipe(
       switchMap(user => {
         return user
-          ? this.firebaseService.leftJoin(`users/${user.uid}/buildings`, 'buildings', 'uid', 'id')
+          ? this.firebaseService.leftJoin(`kingdoms/${user.uid}/buildings`, 'buildings', 'id', 'id')
           : of([]);
       })
     );

@@ -1,0 +1,9 @@
+[
+  {
+    "name": "unit.red-dragon.name",
+    "description": "unit.red-dragon.description",
+    "id": "red-dragon",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred-dragon.png?alt=media&token=82a49e40-b60e-4537-97c3-91be25026144",
+    "type": "type.flying.name"
+  }
+]

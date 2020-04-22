@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-marker',
@@ -8,11 +9,20 @@ import { Component, OnInit } from '@angular/core';
 export class MarkerComponent implements OnInit {
 
   data: any = null;
+  contracts: any[] = [];
+  troops: any[] = [];
 
-  constructor() { }
+  constructor(
+    private firebaseService: FirebaseService,
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.data);
+    this.firebaseService.leftJoin(`shops/${this.data.fid}/contracts`, 'heroes', 'id', 'id').subscribe(contracts => {
+      this.contracts = contracts;
+    });
+    this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/troops`, 'units', 'id', 'id').subscribe(troops => {
+      this.troops = troops;
+    });
   }
 
 }

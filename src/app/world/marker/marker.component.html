@@ -1,14 +1,38 @@
 <mat-card class="map-marker animated bounceIn mat-elevation-z4">
   <mat-card-header>
-    <img mat-card-avatar [src]="data.image" alt="Image">
-    <mat-card-title>{{ data.name | translate }}</mat-card-title>
-    <mat-card-subtitle>{{ data.description | translate }}</mat-card-subtitle>
+    <img mat-card-avatar [src]="data.join.image" alt="Image">
+    <mat-card-title>{{ (data.faction ? data.name : data.join.name) | translate }}</mat-card-title>
+    <mat-card-subtitle>{{ (data.faction ? data.join.name : data.join.description) | translate }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <img mat-card-image [src]="data.image" alt="Image">
+    <ng-template [ngIf]="contracts.length">
+      <div matSubheader>{{ 'tavern.title' | translate }}</div>
+      <mat-action-list>
+        <button mat-list-item *ngFor="let contract of contracts">
+          <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before" matBadgeOverlap="true">
+            <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
+          </div>
+          <div mat-line>{{ contract.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ contract.join.description | translate }}</div>
+          <div mat-line>
+            <mat-chip-list>
+              <mat-chip>{{ contract.gold }}</mat-chip>
+            </mat-chip-list>
+          </div>
+        </button>
+      </mat-action-list>
+    </ng-template>
+    <ng-template [ngIf]="troops.length">
+      <div matSubheader>{{ 'army.title' | translate }}</div>
+      <mat-list *ngIf="troops.length">
+        <mat-list-item *ngFor="let troop of troops">
+          <div mat-list-avatar [matBadge]="troop.quantity" matBadgePosition="above before" matBadgeOverlap="true">
+            <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
+          </div>
+          <div mat-line>{{ troop.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ troop.join.type | translate }}</div>
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button>Button</button>
-    <button mat-raised-button>Button</button>
-  </mat-card-actions>
 </mat-card>

@@ -17,5 +17,7 @@ export class AppComponent {
     this.firebaseService.importCollectionFromJson('buildings');
     this.firebaseService.importCollectionFromJson('items');
     this.firebaseService.importCollectionFromJson('stores');
+    this.firebaseService.importCollectionFromJson('heroes');
+    this.firebaseService.importCollectionFromJson('units');
   }
 }
