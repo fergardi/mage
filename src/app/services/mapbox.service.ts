@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
 import { ComponentService } from '../services/component.service';
-import { LocationComponent } from '../world/location/location.component';
 import MapboxCircle from 'mapbox-gl-circle';
 import { FirebaseService } from './firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { first } from 'rxjs/operators';
+import { MarkerComponent } from '../world/marker/marker.component';
 
 export const enum MarkerType {
   'kingdom',
@@ -108,13 +108,10 @@ export class MapboxService {
   }
 
   addMarker(
-    lat: number,
-    lng: number,
-    image: string,
-    id: string,
+    data: any,
     type: MarkerType,
     popup: boolean = false,
-    radius: number = 0,
+    radius: boolean = false,
     fly: boolean = false
   ): mapboxgl.Marker {
     // html
@@ -123,7 +120,7 @@ export class MapboxService {
     var el = document.createElement('div');
     el.className = 'marker animated bounce';
     el.style.animationDelay = `${Math.random() + 1}s`;
-    el.style.backgroundImage = `url(${image})`;
+    el.style.backgroundImage = `url(${data.image})`;
     el.style.backgroundSize = '100% 100%';
     el.style.height = size + 'px';
     el.style.width = size + 'px';
@@ -135,28 +132,23 @@ export class MapboxService {
     let marker = new mapboxgl.Marker(wrapper, {
       anchor: 'bottom',
     })
-    .setLngLat({ lat: lat, lng: lng })
+    .setLngLat({ lat: data.lat, lng: data.lng })
     .addTo(this.map);
     // popup
     if (popup) {
-      let info = null;
-      switch (type) {
-        case MarkerType.kingdom:
-          info = this.componentService.injectComponent(LocationComponent);
-          break;
-      }
       marker = marker.setPopup(new mapboxgl.Popup({
-        offset: [-(size/2), -size],
+        offset: [0, -(size + 5)],
+        anchor: 'bottom',
         closeButton: false,
         closeOnClick: true,
         closeOnMove: false,
         maxWidth: 'none',
-      }).setDOMContent(info))
+      }).setDOMContent(this.componentService.injectComponent(MarkerComponent, x => x.data = data)))
     }
     // radius
     let circle = null;
     if (radius) {
-      circle = new MapboxCircle({lat: lat, lng: lng}, radius, {
+      circle = new MapboxCircle({lat: data.lat, lng: data.lng}, data.radius, {
         editable: false,
         fillColor: '#424242',
         fillOpacity: 0.1,
@@ -164,9 +156,9 @@ export class MapboxService {
       }).addTo(this.map);
     }
     // center
-    if (fly) this.goTo(lat, lng, true);
+    if (fly) this.goTo(data.lat, data.lng, true);
     // return
-    this.markers.push({ id: id, marker: marker, circle: circle, type: type });
+    this.markers.push({ id: data.fid, marker: marker, circle: circle, type: type });
     return marker;
   }
 

@@ -1,0 +1,14 @@
+<mat-card class="map-marker animated bounceIn mat-elevation-z4">
+  <mat-card-header>
+    <img mat-card-avatar [src]="data.image" alt="Image">
+    <mat-card-title>{{ data.name | translate }}</mat-card-title>
+    <mat-card-subtitle>{{ data.description | translate }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <img mat-card-image [src]="data.image" alt="Image">
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button>Button</button>
+    <button mat-raised-button>Button</button>
+  </mat-card-actions>
+</mat-card>

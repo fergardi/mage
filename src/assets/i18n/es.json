@@ -20,5 +20,11 @@
   "city": {
     "title": "Ciudad",
     "subtitle": "Construye edificios"
+  },
+  "store": {
+    "inn": {
+      "name": "Posada",
+      "description": "Contrata héroes"
+    }
   }
 }

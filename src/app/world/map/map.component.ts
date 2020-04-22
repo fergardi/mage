@@ -26,19 +26,19 @@ export class MapComponent implements OnInit {
           this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id').subscribe(kingdoms => {
             this.mapboxService.clearMarkers(MarkerType.kingdom);
             kingdoms.forEach(kingdom => {
-              this.mapboxService.addMarker(kingdom.lat, kingdom.lng, kingdom.image, kingdom.fid, MarkerType.kingdom, true, kingdom.uid === user.uid ? kingdom.radius : null, false);
+              this.mapboxService.addMarker(kingdom, MarkerType.kingdom, true, kingdom.uid === user.uid, false);
             })
           });
-          this.firebaseService.leftJoin('artifacts', 'items', 'item', 'id').subscribe(locations => {
+          this.firebaseService.leftJoin('artifacts', 'items', 'item', 'id').subscribe(artifacts => {
             this.mapboxService.clearMarkers(MarkerType.artifact);
-            locations.forEach(location => {
-              this.mapboxService.addMarker(location.lat, location.lng, location.image, location.fid, MarkerType.artifact, false, null, false);
+            artifacts.forEach(artifact => {
+              this.mapboxService.addMarker(artifact, MarkerType.artifact, true, false, false);
             })
           });
-          this.firebaseService.leftJoin('shops', 'stores', 'store', 'id').subscribe(locations => {
+          this.firebaseService.leftJoin('shops', 'stores', 'store', 'id').subscribe(shops => {
             this.mapboxService.clearMarkers(MarkerType.shop);
-            locations.forEach(location => {
-              this.mapboxService.addMarker(location.lat, location.lng, location.image, location.fid, MarkerType.shop, false, null, false);
+            shops.forEach(shop => {
+              this.mapboxService.addMarker(shop, MarkerType.shop, true, false, false);
             })
           });
         }

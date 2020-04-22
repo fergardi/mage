@@ -5,7 +5,7 @@
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     mode="over"
-    [opened]="!(isHandset$ | async)">
+    [opened]="(isHandset$ | async)">
     <mat-toolbar>
       <button
         type="button"
