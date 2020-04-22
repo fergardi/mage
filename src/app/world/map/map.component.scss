@@ -6,12 +6,22 @@
   overflow: hidden;
   position: relative;
 }
-.marker {
+::ng-deep .marker {
   display: block;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   padding: 0;
+  &:hover {
+    transform: scale(1.1) translateZ(0) !important;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+::ng-deep .marker-shadow {
+  width: 100%;
+  box-shadow: 0px 10px 10px 0px black;
+  height: 1px;
 }
 ::ng-deep a.mapboxgl-ctrl-logo {
   display: none !important;

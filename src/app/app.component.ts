@@ -13,8 +13,9 @@ export class AppComponent {
   constructor(
     private firebaseService: FirebaseService,
   ) {
-    this.firebaseService.importCollectionFromJson('buildings');
     this.firebaseService.importCollectionFromJson('factions');
+    this.firebaseService.importCollectionFromJson('buildings');
     this.firebaseService.importCollectionFromJson('items');
+    this.firebaseService.importCollectionFromJson('stores');
   }
 }

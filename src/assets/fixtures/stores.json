@@ -1,0 +1,14 @@
+[
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Finn.png?alt=media&token=5c648e19-36af-4f41-b7af-aca98e16d5a5",
+    "name": "store.inn.name",
+    "description": "store.inn.description",
+    "id": "inn"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Fstable.png?alt=media&token=e83a4ea0-7dd4-4a56-b035-d8d0223cd945",
+    "name": "store.stable.name",
+    "description": "store.stable.description",
+    "id": "stable"
+  }
+]

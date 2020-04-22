@@ -6,10 +6,12 @@ import { LocationComponent } from '../world/location/location.component';
 import MapboxCircle from 'mapbox-gl-circle';
 import { FirebaseService } from './firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { first } from 'rxjs/operators';
 
 export const enum MarkerType {
   'kingdom',
-  'location',
+  'artifact',
+  'shop',
 }
 
 interface Marker {
@@ -45,13 +47,14 @@ export class MapboxService {
       attributionControl: false,
       // interactive: false
     });
-    this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'bottom-left');
-    this.map.addControl(new MapboxGLButtonControl('scroll-unfurled', 'Item', this.addLocation.bind(this)), 'bottom-left');
-    this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addUser.bind(this)), 'bottom-left');
+    this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'bottom-right');
+    this.map.addControl(new MapboxGLButtonControl('scroll-unfurled', 'Artifact', this.addArtifact.bind(this)), 'bottom-right');
+    this.map.addControl(new MapboxGLButtonControl('book', 'Shop', this.addShop.bind(this)), 'bottom-right');
+    this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addUser.bind(this)), 'bottom-right');
   }
 
   addUser(): void {
-    this.angularFireAuth.authState.subscribe(user => {
+    this.angularFireAuth.authState.pipe(first()).subscribe(user => {
       if (user) {
         navigator.geolocation.getCurrentPosition(async position => {
           await this.firebaseService.addElementToCollection('kingdoms', {
@@ -82,11 +85,22 @@ export class MapboxService {
     })
   }
 
-  addLocation(): void {
+  addArtifact(): void {
     this.map.once('click', ($event: mapboxgl.MapMouseEvent) => {
-      let items = ['legendary-chest'];
-      this.firebaseService.addElementToCollection('locations', {
+      let items = ['wooden-chest', 'golden-chest', 'magical-chest', 'petrified-chest'];
+      this.firebaseService.addElementToCollection('artifacts', {
         item: items[Math.floor(Math.random() * items.length)],
+        lat: $event.lngLat.lat,
+        lng: $event.lngLat.lng
+      })
+    })
+  }
+
+  addShop(): void {
+    this.map.once('click', ($event: mapboxgl.MapMouseEvent) => {
+      let stores = ['inn', 'stable'];
+      this.firebaseService.addElementToCollection('shops', {
+        store: stores[Math.floor(Math.random() * stores.length)],
         lat: $event.lngLat.lat,
         lng: $event.lngLat.lng
       })
@@ -104,15 +118,19 @@ export class MapboxService {
     fly: boolean = false
   ): mapboxgl.Marker {
     // html
-    let size = 36;
+    let size = type === MarkerType.kingdom ? 64 : 32;
     var wrapper = document.createElement('div');
     var el = document.createElement('div');
-    el.className = `marker animated bounce delay-${Math.floor(Math.random() * 5) + 1}s`;
+    el.className = 'marker animated bounce';
+    el.style.animationDelay = `${Math.random() + 1}s`;
     el.style.backgroundImage = `url(${image})`;
     el.style.backgroundSize = '100% 100%';
     el.style.height = size + 'px';
     el.style.width = size + 'px';
     wrapper.appendChild(el);
+    var shadow = document.createElement('div');
+    shadow.className = 'marker-shadow';
+    wrapper.appendChild(shadow);
     // marker
     let marker = new mapboxgl.Marker(wrapper, {
       anchor: 'bottom',
@@ -128,7 +146,7 @@ export class MapboxService {
           break;
       }
       marker = marker.setPopup(new mapboxgl.Popup({
-        offset: [-(size/2), -36],
+        offset: [-(size/2), -size],
         closeButton: false,
         closeOnClick: true,
         closeOnMove: false,

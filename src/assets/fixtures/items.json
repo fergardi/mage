@@ -1,7 +1,26 @@
 [
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Flegendary-chest.png?alt=media&token=d1f32e78-c6c2-4b1b-83cb-7d5b1e11db39",
-    "name": "items.legendary-chest",
-    "id": "legendary-chest"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fgolden-chest.png?alt=media&token=614edd6f-8603-4843-930e-33c4fb6ab3e9",
+    "name": "item.golden-chest.name",
+    "description": "item.golden-chest.description",
+    "id": "golden-chest"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fmagical-chest.png?alt=media&token=cf873860-b879-4882-8b0c-64ebc734f286",
+    "name": "item.magical-chest.name",
+    "description": "item.magical-chest.description",
+    "id": "magical-chest"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fpetrified-chest.png?alt=media&token=89d735ad-5889-401a-ad58-8ef3e774e5b7",
+    "name": "item.petrified-chest.name",
+    "description": "item.petrified-chest.description",
+    "id": "petrified-chest"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fwooden-chest.png?alt=media&token=aa9928ed-a617-4d2d-861c-d5419df901de",
+    "name": "item.wooden-chest.name",
+    "description": "item.wooden-chest.description",
+    "id": "wooden-chest"
   }
 ]

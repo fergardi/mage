@@ -23,7 +23,10 @@
           <mat-cell *matCellDef="let row" [attr.data-label]="'building.name' | translate">
             <div class="table-responsive-image-wrapper">
               <img class="mat-elevation-z4" [src]="row.image" alt="{{ 'building.name' | translate }}"/>
-              <mat-chip-list><mat-chip>{{ row.name | translate }}</mat-chip></mat-chip-list>
+              <div>
+                <div><strong>{{ row.name | translate }}</strong></div>
+                <div><small>texto</small></div>
+              </div>
             </div>
           </mat-cell>
         </ng-container>

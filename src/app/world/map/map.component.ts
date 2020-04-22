@@ -29,10 +29,16 @@ export class MapComponent implements OnInit {
               this.mapboxService.addMarker(kingdom.lat, kingdom.lng, kingdom.image, kingdom.fid, MarkerType.kingdom, true, kingdom.uid === user.uid ? kingdom.radius : null, false);
             })
           });
-          this.firebaseService.leftJoin('locations', 'items', 'item', 'id').subscribe(locations => {
-            this.mapboxService.clearMarkers(MarkerType.location);
+          this.firebaseService.leftJoin('artifacts', 'items', 'item', 'id').subscribe(locations => {
+            this.mapboxService.clearMarkers(MarkerType.artifact);
             locations.forEach(location => {
-              this.mapboxService.addMarker(location.lat, location.lng, location.image, location.fid, MarkerType.location, false, null, false);
+              this.mapboxService.addMarker(location.lat, location.lng, location.image, location.fid, MarkerType.artifact, false, null, false);
+            })
+          });
+          this.firebaseService.leftJoin('shops', 'stores', 'store', 'id').subscribe(locations => {
+            this.mapboxService.clearMarkers(MarkerType.shop);
+            locations.forEach(location => {
+              this.mapboxService.addMarker(location.lat, location.lng, location.image, location.fid, MarkerType.shop, false, null, false);
             })
           });
         }

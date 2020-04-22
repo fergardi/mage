@@ -1,10 +1,10 @@
-<mat-sidenav-container class="app-shell sidenav-container" autosize>
+<mat-sidenav-container class="app-shell sidenav-container" autosize [hasBackdrop]="(isHandset$ | async)">
   <mat-sidenav
     #drawer
     class="sidenav"
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    mode="over"
     [opened]="!(isHandset$ | async)">
     <mat-toolbar>
       <button
@@ -14,7 +14,7 @@
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="logo">Menu</span>
+      <span class="logo">Archmage</span>
       <span class="fill-space"></span>
     </mat-toolbar>
     <div class="sidenav-logo-container">

@@ -47,7 +47,7 @@ export class FirebaseService {
   }
 
   importCollectionFromJson(collection: string) {
-    return this.httpClient.get<any[]>(`assets/fixtures/${collection}.json`).pipe(first()).subscribe(data => {
+    return this.httpClient.get<any[]>(`assets/fixtures/${collection}.json`).subscribe(data => {
       data.forEach(element => {
         return this.addElementToCollection(collection, element, element.id);
       })
