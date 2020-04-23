@@ -10,5 +10,29 @@
     "name": "store.stable.name",
     "description": "store.stable.description",
     "id": "stable"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Falchemist.png?alt=media&token=4cb2b2f7-5845-40b4-b8fa-98ab51f60fcb",
+    "name": "store.alchemist.name",
+    "description": "store.alchemist.description",
+    "id": "alchemist"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Fcamp.png?alt=media&token=bc1d65c4-fe9e-4930-bf96-0ddbdde38ecc",
+    "name": "store.camp.name",
+    "description": "store.camp.description",
+    "id": "camp"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Fmerchant.png?alt=media&token=42b99269-cf62-4394-975a-31027c4d2c2f",
+    "name": "store.merchant.name",
+    "description": "store.merchant.description",
+    "id": "merchant"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Fsorcerer.png?alt=media&token=1a94b734-919a-42a0-a0fc-d9e755b8a3e2",
+    "name": "store.sorcerer.name",
+    "description": "store.sorcerer.description",
+    "id": "sorcerer"
   }
 ]

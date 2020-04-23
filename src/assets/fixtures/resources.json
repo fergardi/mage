@@ -1,0 +1,32 @@
+[
+  {
+    "id": "people",
+    "name": "resource.people.name",
+    "description": "resource.people.description",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/resources%2Fpeople.png?alt=media&token=6abe7f66-6d3f-4ff6-b19e-e9d0327e14ff"
+  },
+  {
+    "id": "gold",
+    "name": "resource.gold.name",
+    "description": "resource.gold.description",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/resources%2Fgold.png?alt=media&token=675e415c-d424-48d3-96e0-626cc2dc2a27"
+  },
+  {
+    "id": "mana",
+    "name": "resource.mana.name",
+    "description": "resource.mana.description",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/resources%2Fmana.png?alt=media&token=d5ecd30b-728f-4d46-9357-b6fb14cd44e8"
+  },
+  {
+    "id": "gem",
+    "name": "resource.gem.name",
+    "description": "resource.gem.description",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/resources%2Fgem.png?alt=media&token=7c599035-cc07-4b77-903e-5f42bf70fc4a"
+  },
+  {
+    "id": "turn",
+    "name": "resource.turn.name",
+    "description": "resource.turn.description",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/resources%2Fturn.png?alt=media&token=d08b443c-75eb-4a8c-a719-3e8f3708628a"
+  }
+]

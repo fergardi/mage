@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { map, first } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -38,18 +38,22 @@ export class FirebaseService {
   retrieveElementFromPath(path: string) {
     return this.angularFirestore.doc<any>(path).get();
   }
-
+  
   addElementToCollection(collection: string, element: any, id?: string) {
     return id
-      ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
-      : this.angularFirestore.collection<any>(collection).add(element);
+    ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
+    : this.angularFirestore.collection<any>(collection).add(element);
+  }
+  
+  addElementsToCollection(collection: string, elements: any[], master: boolean = false) {
+    elements.forEach(async element => {
+      await this.addElementToCollection(collection, element, master ? element.id : null);
+    })
   }
 
   importCollectionFromJson(collection: string) {
-    return this.httpClient.get<any[]>(`assets/fixtures/${collection}.json`).subscribe(data => {
-      data.forEach(element => {
-        return this.addElementToCollection(collection, element, element.id);
-      })
+    this.httpClient.get<any[]>(`assets/fixtures/${collection}.json`).pipe(first()).subscribe(elements => {
+      this.addElementsToCollection(collection, elements, true);
     });
   }
 

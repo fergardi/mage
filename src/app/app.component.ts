@@ -13,11 +13,13 @@ export class AppComponent {
   constructor(
     private firebaseService: FirebaseService,
   ) {
-    this.firebaseService.importCollectionFromJson('factions');
-    this.firebaseService.importCollectionFromJson('buildings');
-    this.firebaseService.importCollectionFromJson('items');
-    this.firebaseService.importCollectionFromJson('stores');
-    this.firebaseService.importCollectionFromJson('heroes');
-    this.firebaseService.importCollectionFromJson('units');
+    // this.firebaseService.importCollectionFromJson('factions');
+    // this.firebaseService.importCollectionFromJson('buildings');
+    // this.firebaseService.importCollectionFromJson('items');
+    // this.firebaseService.importCollectionFromJson('stores');
+    // this.firebaseService.importCollectionFromJson('heroes');
+    // this.firebaseService.importCollectionFromJson('units');
+    this.firebaseService.importCollectionFromJson('locations');
+    // this.firebaseService.importCollectionFromJson('resources');
   }
 }

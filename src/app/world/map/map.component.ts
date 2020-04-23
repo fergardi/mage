@@ -41,6 +41,12 @@ export class MapComponent implements OnInit {
               this.mapboxService.addMarker(shop, MarkerType.shop, true, false, false);
             })
           });
+          this.firebaseService.leftJoin('quests', 'locations', 'location', 'id').subscribe(quests => {
+            this.mapboxService.clearMarkers(MarkerType.quest);
+            quests.forEach(quest => {
+              this.mapboxService.addMarker(quest, MarkerType.quest, true, false, false);
+            })
+          });
         }
       });
     })

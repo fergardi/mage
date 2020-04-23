@@ -9,9 +9,15 @@ import { first } from 'rxjs/operators';
 import { MarkerComponent } from '../world/marker/marker.component';
 
 export const enum MarkerType {
-  'kingdom',
-  'artifact',
-  'shop',
+  'kingdom', 'artifact', 'shop', 'quest'
+}
+
+export enum StoreType {
+  'inn', 'stable', 'camp', 'alchemist', 'sorcerer', 'merchant',
+}
+
+export enum LocationType {
+  'graveyard'
 }
 
 interface Marker {
@@ -50,6 +56,7 @@ export class MapboxService {
     this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('scroll-unfurled', 'Artifact', this.addArtifact.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('book', 'Shop', this.addShop.bind(this)), 'bottom-right');
+    this.map.addControl(new MapboxGLButtonControl('capitol', 'Quest', this.addQuest.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addUser.bind(this)), 'bottom-right');
   }
 
@@ -76,52 +83,124 @@ export class MapboxService {
   }
 
   addKingdom(): void {
-    this.map.once('click', ($event: mapboxgl.MapMouseEvent) => {
+    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
       let factions = ['red', 'white', 'green', 'blue', 'black'];
-      this.firebaseService.addElementToCollection('kingdoms', {
+      let ref = await this.firebaseService.addElementToCollection('kingdoms', {
         faction: factions[Math.floor(Math.random() * factions.length)],
         lat: $event.lngLat.lat,
         lng: $event.lngLat.lng,
       })
+      this.firebaseService.addElementsToCollection(`kingdoms/${ref['id']}/troops`, [{
+        gold: 1,
+        quantity: 20000,
+        id: 'skeleton'
+      }]);
     })
   }
 
   addArtifact(): void {
-    this.map.once('click', ($event: mapboxgl.MapMouseEvent) => {
-      let items = ['wooden-chest', 'golden-chest', 'magical-chest', 'petrified-chest'];
-      this.firebaseService.addElementToCollection('artifacts', {
+    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
+      let items = ['wooden-chest', 'golden-chest', 'magical-chest', 'stone-chest'];
+      let ref = await this.firebaseService.addElementToCollection('artifacts', {
         item: items[Math.floor(Math.random() * items.length)],
         lat: $event.lngLat.lat,
         lng: $event.lngLat.lng
-      })
-    })
+      });
+      this.firebaseService.addElementsToCollection(`artifacts/${ref['id']}/rewards`, [{
+        id: 'gold',
+        quantity: [1000, 100000]
+      }, {
+        id: 'people',
+        quantity: [100, 1000]
+      }, {
+        id: 'mana',
+        quantity: [1000, 100000]
+      }]);
+    });
   }
 
   addShop(): void {
-    this.map.once('click', ($event: mapboxgl.MapMouseEvent) => {
-      let stores = ['inn', 'stable'];
-      this.firebaseService.addElementToCollection('shops', {
-        store: stores[Math.floor(Math.random() * stores.length)],
+    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
+      let stores: StoreType[] = [StoreType.inn, StoreType.camp, StoreType.merchant]; // , StoreType.stable, StoreType.camp, StoreType.alchemist, StoreType.sorcerer, 
+      let store = stores[Math.floor(Math.random() * stores.length)];
+      let ref = await this.firebaseService.addElementToCollection('shops', {
+        store: StoreType[store],
         lat: $event.lngLat.lat,
         lng: $event.lngLat.lng
-      })
+      });
+      switch (store) {
+        case StoreType.inn:
+          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/contracts`, [{
+            gold: 23000,
+            level: 2,
+            id: 'dragon-rider'
+          }]);
+          break;
+        case StoreType.camp:
+          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/troops`, [{
+            gold: 1,
+            quantity: 20000,
+            id: 'skeleton'
+          }]);
+          break;
+        case StoreType.merchant:
+          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [{
+            gold: 1000000,
+            quantity: 1,
+            id: 'magical-chest'
+          }, {
+            gold: 1000000,
+            quantity: 2,
+            id: 'stone-chest'
+          }]);
+          break;
+      }
     })
   }
 
-  addMarker(
-    data: any,
-    type: MarkerType,
-    popup: boolean = false,
-    radius: boolean = false,
-    fly: boolean = false
-  ): mapboxgl.Marker {
+  addQuest(): void {
+    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
+      let locations: LocationType[] = [LocationType.graveyard];
+      let location = locations[Math.floor(Math.random() * locations.length)];
+      let ref = await this.firebaseService.addElementToCollection('quests', {
+        location: LocationType[location],
+        lat: $event.lngLat.lat,
+        lng: $event.lngLat.lng
+      });
+      switch (location) {
+        case LocationType.graveyard:
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [{
+            id: 'skeleton',
+            quantity: 2432576
+          }, {
+            id: 'lich',
+            quantity: 543267
+          }]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/rewards`, [{
+            id: 'gold',
+            quantity: 1
+          }]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/contracts`, [{
+            id: 'dragon-rider',
+            level: 12
+          }]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [{
+            id: 'magical-chest',
+            quantity: 1
+          }]);
+          break;
+      }
+    })
+  }
+
+  addMarker(data: any, type: MarkerType, popup: boolean = false, radius: boolean = false, fly: boolean = false): mapboxgl.Marker {
     // html
     let size = type === MarkerType.kingdom ? 64 : 32;
     var wrapper = document.createElement('div');
     var el = document.createElement('div');
     el.className = 'marker animated bounce';
     el.style.animationDelay = `${Math.random() + 1}s`;
-    el.style.backgroundImage = `url(${data.join.image})`;
+    el.style.backgroundImage = `url(${data.image || data.join.image})`;
     el.style.backgroundSize = '100% 100%';
     el.style.height = size + 'px';
     el.style.width = size + 'px';
@@ -135,6 +214,13 @@ export class MapboxService {
     })
     .setLngLat({ lat: data.lat, lng: data.lng })
     .addTo(this.map);
+    // onclick
+    el['markerInstance'] = marker;
+    el.addEventListener('click', e => {
+      this.map.easeTo({
+        center: e.target['markerInstance'].getLngLat()
+      });
+    })
     // popup
     if (popup) {
       marker = marker.setPopup(new mapboxgl.Popup({
@@ -158,8 +244,9 @@ export class MapboxService {
     }
     // center
     if (fly) this.goTo(data.lat, data.lng, true);
+    // add to list for future disposal
+    this.markers.push({ id: data.fid, marker: marker, circle: circle, type: type });
     // return
-    this.markers.push({ id: data.id, marker: marker, circle: circle, type: type });
     return marker;
   }
 

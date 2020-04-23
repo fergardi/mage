@@ -27,19 +27,67 @@
     "title": "Ciudad",
     "subtitle": "Construye edificios"
   },
-  "army": {
-    "title": "Ejército disponible",
-    "subtitle": "Gestiona tu armada"
-  },
-  "tavern": {
-    "title": "Héroes disponibles",
-    "subtitle": "Construye edificios"
-  },
   "store": {
-    "empty": "Ahora mismo no hay nada en la tienda, quizá más tarde...",
     "inn": {
-      "name": "Posada del Viajero",
-      "description": "Contrata héroes para tu Reino"
+      "name": "Posada del viajero",
+      "description": "Contrata héroes para tu reino"
+    },
+    "merchant": {
+      "name": "Mercader ambulante",
+      "description": "Compra artefactos peculiares"
+    },
+    "camp": {
+      "name": "Campamento de mercenarios",
+      "description": "Contrata tropas para tu ejército"
+    }
+  },
+  "marker": {
+    "list": {
+      "resources": "Recursos",
+      "heroes": "Héroes",
+      "artifacts": "Artefactos",
+      "troops": "Tropas"
+    }
+  },
+  "resource": {
+    "list": "Lista de recursos",
+    "gold": {
+      "name": "Oro",
+      "description": "Principal moneda del reino"
+    },
+    "people": {
+      "name": "Población",
+      "description": "Súbditos de tu reino"
+    },
+    "mana": {
+      "name": "Maná",
+      "description": "Recurso mágico"
+    },
+    "gem": {
+      "name": "Gemas",
+      "description": "Piedras preciosas muy valoradas por algunos"
+    },
+    "turn": {
+      "name": "Turnos",
+      "description": "Unidades de tiempo con las que se miden los eventos"
+    }
+  },
+  "item": {
+    "magical-chest": {
+      "name": "Cofre mágico",
+      "description": "Otorga una cantidad moderada de maná"
+    },
+    "wooden-chest": {
+      "name": "Cofre de madera",
+      "description": "Otorga una cantidad pequeña de personas"
+    },
+    "golden-chest": {
+      "name": "Cofre dorado",
+      "description": "Contiene una cantidad grande de oro"
+    },
+    "stone-chest": {
+      "name": "Cofre pétreo",
+      "description": "Contiene una cantidad menor de gemas"
     }
   },
   "hero": {
@@ -54,9 +102,212 @@
       "description": "Las unidades Voladoras son fuertes contra las unidades Cuerpo a Cuerpo y débiles contra las unidades a Distancia"
     }
   },
+  "location": {
+    "graveyard": {
+      "name": "Cementerio encantado",
+      "description": "Este cementerio ha visto tiempos mejores"
+    }
+  },
   "unit": {
+    "ash-golem": {
+      "name": "",
+      "description": ""
+    },
+    "banshee": {
+      "name": "",
+      "description": ""
+    },
+    "bone-dragon": {
+      "name": "",
+      "description": ""
+    },
+    "dark-knight": {
+      "name": "",
+      "description": ""
+    },
+    "hound": {
+      "name": "",
+      "description": ""
+    },
+    "lich": {
+      "name": "Liches",
+      "description": ""
+    },
+    "skeleton": {
+      "name": "Esqueletos",
+      "description": ""
+    },
+    "vampire": {
+      "name": "",
+      "description": ""
+    },
+    "werewolf": {
+      "name": "",
+      "description": ""
+    },
+    "zombie": {
+      "name": "",
+      "description": ""
+    },
+    "blue-dragon": {
+      "name": "",
+      "description": ""
+    },
+    "crystal-golem": {
+      "name": "",
+      "description": ""
+    },
+    "djinni": {
+      "name": "",
+      "description": ""
+    },
+    "frost-giant": {
+      "name": "",
+      "description": ""
+    },
+    "ice-golem": {
+      "name": "",
+      "description": ""
+    },
+    "ice-troll": {
+      "name": "",
+      "description": ""
+    },
+    "kraken": {
+      "name": "",
+      "description": ""
+    },
+    "leviathan": {
+      "name": "",
+      "description": ""
+    },
+    "mage": {
+      "name": "",
+      "description": ""
+    },
+    "yeti": {
+      "name": "",
+      "description": ""
+    },
+    "carnivore-plant": {
+      "name": "",
+      "description": ""
+    },
+    "frog": {
+      "name": "",
+      "description": ""
+    },
+    "gnoll": {
+      "name": "",
+      "description": ""
+    },
+    "goblin": {
+      "name": "",
+      "description": ""
+    },
+    "green-dragon": {
+      "name": "",
+      "description": ""
+    },
+    "lizard": {
+      "name": "",
+      "description": ""
+    },
+    "slime": {
+      "name": "",
+      "description": ""
+    },
+    "giant-spider": {
+      "name": "",
+      "description": ""
+    },
+    "stone-golem": {
+      "name": "",
+      "description": ""
+    },
+    "swamp-monster": {
+      "name": "",
+      "description": ""
+    },
+    "cyclop": {
+      "name": "",
+      "description": ""
+    },
+    "demon": {
+      "name": "",
+      "description": ""
+    },
+    "devil": {
+      "name": "",
+      "description": ""
+    },
+    "fire-golem": {
+      "name": "",
+      "description": ""
+    },
+    "imp": {
+      "name": "",
+      "description": ""
+    },
+    "ogre": {
+      "name": "",
+      "description": ""
+    },
+    "orc": {
+      "name": "",
+      "description": ""
+    },
+    "phoenix": {
+      "name": "",
+      "description": ""
+    },
     "red-dragon": {
-      "name": "Dragones Rojos"
+      "name": "",
+      "description": ""
+    },
+    "wendigo": {
+      "name": "",
+      "description": ""
+    },
+    "sheep": {
+      "name": "",
+      "description": ""
+    },
+    "golden-dragon": {
+      "name": "",
+      "description": ""
+    },
+    "gryphon": {
+      "name": "",
+      "description": ""
+    },
+    "knight": {
+      "name": "",
+      "description": ""
+    },
+    "light-golem": {
+      "name": "",
+      "description": ""
+    },
+    "living-armor": {
+      "name": "",
+      "description": ""
+    },
+    "monk": {
+      "name": "",
+      "description": ""
+    },
+    "warrior": {
+      "name": "",
+      "description": ""
+    },
+    "wyvern": {
+      "name": "",
+      "description": ""
+    },
+    "paladin": {
+      "name": "",
+      "description": ""
     }
   }
 }
