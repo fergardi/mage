@@ -66,7 +66,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-standard-chip {
-  min-height: 24px !important;
+  min-height: 18px !important;
   padding: 5px 7px !important;
 }
 .mat-chip {
@@ -81,6 +81,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .fill-space {
   flex: 1 1 auto;
+}
+
+.overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  box-sizing: border-box;
 }
 
 .table-responsive {

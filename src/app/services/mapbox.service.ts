@@ -31,9 +31,11 @@ interface Marker {
   providedIn: 'root'
 })
 export class MapboxService {
+  
   mapbox = (mapboxgl as typeof mapboxgl);
   map: mapboxgl.Map = null;
   markers: Marker[] = [];
+  offset: number = 10;
   
   constructor(
     private componentService: ComponentService,
@@ -89,9 +91,9 @@ export class MapboxService {
         faction: factions[Math.floor(Math.random() * factions.length)],
         lat: $event.lngLat.lat,
         lng: $event.lngLat.lng,
+        name: 'Bot'
       })
       this.firebaseService.addElementsToCollection(`kingdoms/${ref['id']}/troops`, [{
-        gold: 1,
         quantity: 20000,
         id: 'skeleton'
       }]);
@@ -163,6 +165,7 @@ export class MapboxService {
       let locations: LocationType[] = [LocationType.graveyard];
       let location = locations[Math.floor(Math.random() * locations.length)];
       let ref = await this.firebaseService.addElementToCollection('quests', {
+        description: '',
         location: LocationType[location],
         lat: $event.lngLat.lat,
         lng: $event.lngLat.lng
@@ -214,23 +217,23 @@ export class MapboxService {
     })
     .setLngLat({ lat: data.lat, lng: data.lng })
     .addTo(this.map);
-    // onclick
-    el['markerInstance'] = marker;
-    el.addEventListener('click', e => {
-      this.map.easeTo({
-        center: e.target['markerInstance'].getLngLat()
-      });
-    })
     // popup
     if (popup) {
       marker = marker.setPopup(new mapboxgl.Popup({
-        offset: [0, -(size + 10)],
+        offset: [0, -(size + this.offset)],
         anchor: 'bottom',
         closeButton: false,
         closeOnClick: true,
         closeOnMove: false,
         maxWidth: 'none',
-      }).setDOMContent(this.componentService.injectComponent(MarkerComponent, x => x.data = data)))
+      })
+      .setDOMContent(this.componentService.injectComponent(MarkerComponent, component => component.data = data))
+      .on('open', $e => {
+        this.map.easeTo({
+          center: $e.target.getLngLat(),
+          offset: [0, ($e.target.getElement().clientHeight / 2) + this.offset],
+        });
+      }));
     }
     // radius
     let circle = null;
@@ -240,7 +243,8 @@ export class MapboxService {
         fillColor: '#424242',
         fillOpacity: 0.1,
         strokeColor: '#424242'
-      }).addTo(this.map);
+      })
+      .addTo(this.map);
     }
     // center
     if (fly) this.goTo(data.lat, data.lng, true);
@@ -279,27 +283,6 @@ export class MapboxService {
   clearMarkers(type: MarkerType): void {
     this.markers.filter((marker: Marker) => marker.type === type).forEach((marker: Marker) => this.removeMarker(marker.id));
   }
-
-  randomCoordinates(lat: number, lng: number, km: number = 5): { latitude: number, longitude: number } {
-    let y0 = lat;
-    let x0 = lng;
-    let rd = km * 1000 / 111300;
-    let u = Math.random();
-    let v = Math.random();
-    let w = rd * Math.sqrt(u);
-    let t = 2 * Math.PI * v;
-    let x = w * Math.cos(t);
-    let y = w * Math.sin(t);
-    return {
-      latitude: y + y0,
-      longitude: x + x0
-    };
-  }
-
-  resize(): void {
-    this.map.resize();
-  }
-
 }
 
 class MapboxGLButtonControl {

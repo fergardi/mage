@@ -1,59 +1,62 @@
 <mat-card class="map-marker animated bounceIn mat-elevation-z4">
   <mat-card-header>
     <img mat-card-avatar [src]="data.join.image" alt="Image">
-    <mat-card-title>{{ (data.faction ? data.name : data.join.name) | translate }}</mat-card-title>
-    <mat-card-subtitle>{{ (data.faction ? data.join.name : data.join.description) | translate }}</mat-card-subtitle>
+    <mat-card-title class="overflow">{{ (data.faction ? data.name : data.join.name) | translate }}</mat-card-title>
+    <mat-card-subtitle class="overflow">{{ (data.faction ? data.join.name : data.join.description) | translate }}</mat-card-subtitle>
   </mat-card-header>
+  <mat-card-content *ngIf="data.description">
+    {{ data.description | translate }}
+  </mat-card-content>
   <mat-card-content>
     <!-- shop contracts -->
     <ng-template [ngIf]="shopContracts.length">
       <div matSubheader>{{ 'marker.list.heroes' | translate }}:</div>
-      <mat-action-list>
+      <mat-action-list dense>
         <button mat-list-item *ngFor="let contract of shopContracts">
-          <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before" matBadgeOverlap="true">
+          <div mat-list-avatar [matBadge]="contract.level | number" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
           </div>
           <div mat-line>{{ contract.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ contract.join.description | translate }}</div>
-          <div mat-line><mat-chip-list><mat-chip>{{ contract.gold }}</mat-chip></mat-chip-list></div>
+          <div mat-line class="marker-number"><mat-chip-list><mat-chip>{{ contract.gold | number }}</mat-chip></mat-chip-list></div>
         </button>
       </mat-action-list>
     </ng-template>
     <!-- shop troops -->
     <ng-template [ngIf]="shopTroops.length">
       <div matSubheader>{{ 'marker.list.troops' | translate }}:</div>
-      <mat-action-list>
+      <mat-action-list dense>
         <button mat-list-item *ngFor="let troop of shopTroops">
-          <div mat-list-avatar [matBadge]="troop.quantity" matBadgePosition="above before" matBadgeOverlap="true">
+          <div mat-list-avatar [matBadge]="troop.quantity | number" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
           </div>
           <div mat-line>{{ troop.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ troop.join.type | translate }}</div>
-          <div mat-line><mat-chip-list><mat-chip>{{ troop.gold }}</mat-chip></mat-chip-list></div>
+          <div mat-line class="mat-card-subtitle">{{ troop.join.category | translate }}</div>
+          <div mat-line class="marker-number"><mat-chip-list><mat-chip>{{ troop.gold | number }}</mat-chip></mat-chip-list></div>
         </button>
       </mat-action-list>
     </ng-template>
     <!-- shop artifacts -->
     <ng-template [ngIf]="shopArtifacts.length">
       <div matSubheader>{{ 'marker.list.artifacts' | translate }}:</div>
-      <mat-action-list>
+      <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of shopArtifacts">
-          <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before" matBadgeOverlap="true">
+          <div mat-list-avatar [matBadge]="artifact.quantity | number" matBadgePosition="above before">
             <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
           </div>
           <div mat-line>{{ artifact.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
-          <div mat-line><mat-chip-list><mat-chip>{{ artifact.gold }}</mat-chip></mat-chip-list></div>
+          <div mat-line class="marker-number"><mat-chip-list><mat-chip>{{ artifact.gold | number }}</mat-chip></mat-chip-list></div>
         </button>
       </mat-action-list>
     </ng-template>
     <!-- artifact rewards -->
     <ng-template [ngIf]="artifactRewards.length">
       <div matSubheader>{{ 'marker.list.resources' | translate }}:</div>
-      <mat-action-list>
+      <mat-action-list dense>
         <button mat-list-item *ngFor="let resource of artifactRewards">
-          <div mat-list-avatar matBadge="?" matBadgePosition="above before" matBadgeOverlap="true">
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="resource.join.image" alt="{{ resource.join.name | translate }}"/>
           </div>
           <div mat-line>{{ resource.join.name | translate }}</div>
@@ -61,12 +64,26 @@
         </button>
       </mat-action-list>
     </ng-template>
+    <!-- quest troops -->
+    <ng-template [ngIf]="kingdomTroops.length">
+      <div matSubheader>{{ 'marker.list.troops' | translate }}:</div>
+      <mat-list dense>
+        <mat-list-item *ngFor="let troop of kingdomTroops">
+          <div mat-list-avatar [matBadge]="troop.quantity | number" matBadgePosition="above before">
+            <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
+          </div>
+          <div mat-line>{{ troop.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ troop.join.category | translate }}</div>
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
     <!-- quest contracts -->
     <ng-template [ngIf]="questContracts.length">
       <div matSubheader>{{ 'marker.list.heroes' | translate }}:</div>
-      <mat-list>
+      <mat-list dense>
         <mat-list-item *ngFor="let contract of questContracts">
-          <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before" matBadgeOverlap="true">
+          <div mat-list-avatar [matBadge]="contract.level | number" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
           </div>
           <div mat-line>{{ contract.join.name | translate }}</div>
@@ -77,23 +94,23 @@
     <!-- quest troops -->
     <ng-template [ngIf]="questTroops.length">
       <div matSubheader>{{ 'marker.list.troops' | translate }}:</div>
-      <mat-list>
+      <mat-list dense>
         <mat-list-item *ngFor="let troop of questTroops">
-          <div mat-list-avatar [matBadge]="troop.quantity" matBadgePosition="above before" matBadgeOverlap="true">
+          <div mat-list-avatar [matBadge]="troop.quantity | number" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
           </div>
           <div mat-line>{{ troop.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ troop.join.type | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ troop.join.category | translate }}</div>
         </mat-list-item>
       </mat-list>
     </ng-template>
     <!-- quest rewards -->
     <ng-template [ngIf]="questRewards.length">
       <div matSubheader>{{ 'marker.list.resources' | translate }}:</div>
-      <mat-action-list>
+      <mat-action-list dense>
         <button mat-list-item *ngFor="let resource of questRewards">
-          <div mat-list-avatar matBadge="?" matBadgePosition="above before" matBadgeOverlap="true">
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="resource.join.image" alt="{{ resource.join.name | translate }}"/>
           </div>
           <div mat-line>{{ resource.join.name | translate }}</div>
@@ -104,9 +121,9 @@
     <!-- quest artifacts -->
     <ng-template [ngIf]="questArtifacts.length">
       <div matSubheader>{{ 'marker.list.artifacts' | translate }}:</div>
-      <mat-action-list>
+      <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of questArtifacts">
-          <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before" matBadgeOverlap="true">
+          <div mat-list-avatar [matBadge]="artifact.quantity | number" matBadgePosition="above before">
             <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
           </div>
           <div mat-line>{{ artifact.join.name | translate }}</div>

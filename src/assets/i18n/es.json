@@ -7,6 +7,22 @@
     "blue": {
       "name": "Azul",
       "description": ""
+    },
+    "white": {
+      "name": "Blanco",
+      "description": ""
+    },
+    "red": {
+      "name": "Rojo",
+      "description": ""
+    },
+    "green": {
+      "name": "Verde",
+      "description": ""
+    },
+    "black": {
+      "name": "Negro",
+      "description": ""
     }
   },
   "building": {
@@ -105,7 +121,12 @@
   "location": {
     "graveyard": {
       "name": "Cementerio encantado",
-      "description": "Este cementerio ha visto tiempos mejores"
+      "description": "Misión"
+    }
+  },
+  "quest": {
+    "graveyard": {
+      "text1": "Un grupo de NoMuertos está asolando nuestras casas... Se ocultan en el cementerio local. Por favor, ¡ayúdanos!"
     }
   },
   "unit": {
