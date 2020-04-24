@@ -40,13 +40,19 @@ export class FirebaseService {
   }
   
   addElementToCollection(collection: string, element: any, id?: string) {
+    console.log('Adding ' + element.name + ' to ' + collection + '...');
     return id
     ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
     : this.angularFirestore.collection<any>(collection).add(element);
   }
+
+  delay(ms) {
+    return new Promise(res => setTimeout(res, ms));
+  }
   
   addElementsToCollection(collection: string, elements: any[], master: boolean = false) {
-    elements.forEach(async element => {
+    elements.forEach(async (element, index) => {
+      await this.delay(index * 250);
       await this.addElementToCollection(collection, element, master ? element.id : null);
     })
   }

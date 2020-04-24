@@ -55,6 +55,10 @@
     "camp": {
       "name": "Campamento de mercenarios",
       "description": "Contrata tropas para tu ejército"
+    },
+    "alchemist": {
+      "name": "Alquimista hermitaño",
+      "description": "Compra pociones mágicas"
     }
   },
   "marker": {
@@ -104,6 +108,26 @@
     "stone-chest": {
       "name": "Cofre pétreo",
       "description": "Contiene una cantidad menor de gemas"
+    },
+    "strength-potion": {
+      "name": "Poción de fuerza",
+      "description": "+1% daño por nivel a una tropa"
+    },
+    "agility-potion": {
+      "name": "Poción de agilidad",
+      "description": "+1 iniciativa por nivel a una tropa"
+    },
+    "defense-potion": {
+      "name": "Poción de defensa",
+      "description": "+1% vida por nivel a una tropa"
+    },
+    "love-potion": {
+      "name": "Poción de amor",
+      "description": "+1% población por nivel al reino"
+    },
+    "mana-potion": {
+      "name": "Poción de maná",
+      "description": "+1% maná por nivel al reino"
     }
   },
   "hero": {

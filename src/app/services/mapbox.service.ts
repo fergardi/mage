@@ -123,7 +123,7 @@ export class MapboxService {
 
   addShop(): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      let stores: StoreType[] = [StoreType.inn, StoreType.camp, StoreType.merchant]; // , StoreType.stable, StoreType.camp, StoreType.alchemist, StoreType.sorcerer, 
+      let stores: StoreType[] = [StoreType.alchemist];
       let store = stores[Math.floor(Math.random() * stores.length)];
       let ref = await this.firebaseService.addElementToCollection('shops', {
         store: StoreType[store],
@@ -154,6 +154,20 @@ export class MapboxService {
             gold: 1000000,
             quantity: 2,
             id: 'stone-chest'
+          }]);
+        case StoreType.alchemist:
+          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [{
+            gold: 1000000,
+            quantity: 1,
+            id: 'love-potion'
+          }, {
+            gold: 1000000,
+            quantity: 2,
+            id: 'mana-potion'
+          }, {
+            gold: 1000000,
+            quantity: 2,
+            id: 'strength-potion'
           }]);
           break;
       }

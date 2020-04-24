@@ -1,30 +1,126 @@
 [
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fgolden-chest.png?alt=media&token=614edd6f-8603-4843-930e-33c4fb6ab3e9",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fgolden-chest.png?alt=media&token=2670740b-8bb0-4999-88b2-2fc64ad98924",
     "name": "item.golden-chest.name",
     "description": "item.golden-chest.description",
     "id": "golden-chest",
     "gold": [10000, 1000000]
   },
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fmagical-chest.png?alt=media&token=cf873860-b879-4882-8b0c-64ebc734f286",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fmagical-chest.png?alt=media&token=0d947e62-e800-4c27-9d0b-5ea9459c7b3b",
     "name": "item.magical-chest.name",
     "description": "item.magical-chest.description",
     "id": "magical-chest",
     "mana": [1000, 100000]
   },
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fstone-chest.png?alt=media&token=907b4455-4a2a-4a8a-94a1-a5d9704f3c13",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fstone-chest.png?alt=media&token=e2ba6296-b847-4a9d-ae6b-9f6866692507",
     "name": "item.stone-chest.name",
     "description": "item.stone-chest.description",
     "id": "stone-chest",
     "gem": [1, 10]
   },
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fwooden-chest.png?alt=media&token=aa9928ed-a617-4d2d-861c-d5419df901de",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fwooden-chest.png?alt=media&token=00893127-00e2-4d8b-82a3-52522f0787f0",
     "name": "item.wooden-chest.name",
     "description": "item.wooden-chest.description",
     "id": "wooden-chest",
     "people": [100, 1000]
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fnecronomicron.png?alt=media&token=16c40c78-db1f-41b5-99cd-4ec0a5f7c561",
+    "name": "item.necronomicron.name",
+    "description": "item.necronomicron.description",
+    "id": "necronomicron"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Flantern.png?alt=media&token=c1aceefe-a8ee-4a63-9984-03a9e0766460",
+    "name": "item.lantern.name",
+    "description": "item.lantern.description",
+    "id": "lantern"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fwisdom-tome.png?alt=media&token=2dcbc618-3768-4913-b868-0dc2227f0bab",
+    "name": "item.wisdom-tome.name",
+    "description": "item.wisdom-tome.description",
+    "id": "wisdom-tome"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fdemon-horn.png?alt=media&token=f78f8342-df40-4036-b16e-62caba59dcc9",
+    "name": "item.demon-horn.name",
+    "description": "item.demon-horn.description",
+    "id": "demon-horn"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fdarkness-orb.png?alt=media&token=857480cd-a0ba-4ed0-8ed5-973c3f2cb14a",
+    "name": "item.darkness-orb.name",
+    "description": "item.darkness-orb.description",
+    "id": "darkness-orb"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fdragon-egg.png?alt=media&token=9102e8ec-e2d5-4b4a-bdfb-719e2ccc770e",
+    "name": "item.dragon-egg.name",
+    "description": "item.dragon-egg.description",
+    "id": "dragon-egg"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fcrystal-ball.png?alt=media&token=cbb71ba8-8832-4016-903b-9d07c8a6a1ac",
+    "name": "item.crystal-ball.name",
+    "description": "item.crystal-ball.description",
+    "id": "crystal-ball"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fagility-potion.png?alt=media&token=3c672e2a-7c26-473c-b2b3-35ebc6ef991e",
+    "name": "item.agility-potion.name",
+    "description": "item.agility-potion.description",
+    "id": "agility-potion"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fdefense-potion.png?alt=media&token=5b76a1d3-8b14-4e4a-806f-8fc5bba20d4d",
+    "name": "item.defense-potion.name",
+    "description": "item.defense-potion.description",
+    "id": "defense-potion"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fice-orb.png?alt=media&token=e78d5bcd-a5cb-42a8-8632-dd95b1a2bdc8",
+    "name": "item.ice-orb.name",
+    "description": "item.ice-orb.description",
+    "id": "ice-orb"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fearth-orb.png?alt=media&token=f2775eae-5fd3-4668-a742-146fe81b0c7c",
+    "name": "item.earth-orb.name",
+    "description": "item.earth-orb.description",
+    "id": "earth-orb"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Ffire-orb.png?alt=media&token=127d4cde-15e8-4ff4-b45e-ec6951d5a26f",
+    "name": "item.fire-orb.name",
+    "description": "item.fire-orb.description",
+    "id": "fire-orb"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fmana-potion.png?alt=media&token=3e6e73eb-5f31-46ac-aa39-4a9e9db67cb4",
+    "name": "item.mana-potion.name",
+    "description": "item.mana-potion.description",
+    "id": "mana-potion"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fholy-orb.png?alt=media&token=acdb15fe-7d27-4bfb-bbb2-dd1ed3e66fde",
+    "name": "item.holy-orb.name",
+    "description": "item.holy-orb.description",
+    "id": "holy-orb"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Fstrength-potion.png?alt=media&token=748a8e42-36e8-4843-99e3-83edab0f76e4",
+    "name": "item.strength-potion.name",
+    "description": "item.strength-potion.description",
+    "id": "strength-potion"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/items%2Flove-potion.png?alt=media&token=96285597-ce96-442d-9c98-cd88eb31451e",
+    "name": "item.love-potion.name",
+    "description": "item.love-potion.description",
+    "id": "love-potion"
   }
 ]
