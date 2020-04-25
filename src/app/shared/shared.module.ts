@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,13 +24,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
-
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ShellComponent } from './shell/shell.component';
 import { BuildingComponent } from './building/building.component';
+import { ShortPipe } from '../pipes/short.pipe';
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
@@ -37,6 +38,7 @@ export function httpTranslateLoader(http: HttpClient) {
 const components = [
   ShellComponent,
   BuildingComponent,
+  ShortPipe,
 ];
 const modules = [
   CommonModule,
@@ -62,6 +64,7 @@ const modules = [
   MatSelectModule,
   MatTabsModule,
   MatBadgeModule,
+  MatTooltipModule,
 ];
 
 @NgModule({

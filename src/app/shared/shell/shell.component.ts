@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay, filter } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, shareReplay, filter, switchMap } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router, NavigationEnd } from '@angular/router';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss']
 })
-export class ShellComponent {
+export class ShellComponent implements OnInit {
 
   langs: Array<any> = [
     { lang: 'es', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/languages%2Fes.png?alt=media&token=6fd7ecaf-4127-44d2-983b-08490bd1b708' },
@@ -29,6 +30,8 @@ export class ShellComponent {
     { url: '/kingdom/temple', name: 'sidenav.temple.name', description: 'sidenav.temple.description', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Ftemple.png?alt=media&token=abbe4941-7aef-45c7-a451-6b1617c0c447' },
     { url: null, name: 'sidenav.sleep.name', description: 'sidenav.sleep.description', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fsleep.png?alt=media&token=ea8c0fb7-7889-4460-821b-be4e13bb522b' },
   ];
+  kingdomSupplies: any[] = [];
+
   link$: Observable<any> = this.router.events
   .pipe(
     filter((event): event is NavigationEnd => event instanceof NavigationEnd),
@@ -50,6 +53,7 @@ export class ShellComponent {
     public translateService: TranslateService,
     public angularFireAuth: AngularFireAuth,
     private router: Router,
+    private firebaseService: FirebaseService,
   ) {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));
@@ -57,6 +61,23 @@ export class ShellComponent {
     let browser = this.translateService.getBrowserLang();  
     this.translateService.use(this.langs.map(l => l.lang).includes(browser) ? browser : this.langs[0].lang);  
   }
+
+  ngOnInit() {
+    this.getKingdomSupplies().subscribe(supplies => {
+      this.kingdomSupplies = supplies.sort((a, b) => a.join.sort - b.join.sort);
+    });
+  }
+
+  getKingdomSupplies(): Observable<any> {
+    return this.angularFireAuth.authState.pipe(
+      switchMap(user => {
+        return user
+          ? this.firebaseService.leftJoin(`kingdoms/${user.uid}/supplies`, 'resources', 'id', 'id')
+          : of([]);
+      })
+    );
+  }
+
 
   async logout() {
     await this.angularFireAuth.signOut();

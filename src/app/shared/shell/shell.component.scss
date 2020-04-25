@@ -46,11 +46,35 @@
     overflow-x: hidden;
   }
   .sidenav-logo {
-    width: 256px;
-    height: 256px;
+    width: 200px;
+    height: 200px;
     margin-top: 20px;
   }
   .sidenav-logo-container {
     text-align: center;
+  }
+  .supply-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .mat-badge-content {
+      width: auto;
+      border-radius: 4px;
+      padding: 0 5px;
+    }
+  }
+  .scroll-container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .app-shell {
+    ::ng-deep .mat-list-item-content {
+      padding: 0 12px !important;
+      z-index: 1;
+    }
   }
 }

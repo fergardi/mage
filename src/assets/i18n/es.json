@@ -129,7 +129,7 @@
       "description": "Principal moneda del reino"
     },
     "people": {
-      "name": "Población",
+      "name": "Personas",
       "description": "Súbditos de tu reino"
     },
     "mana": {

@@ -27,20 +27,23 @@
         </a>
       </mat-menu>
     </mat-toolbar>
-    <!-- image -->
-    <div class="sidenav-logo-container">
-      <img class="sidenav-logo" [src]="(link$ | async)?.image" alt="icon"/>
+    <!-- scroll container -->
+    <div class="scroll-container" [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100% - 64px)' : 'calc(100% - 56px)' }">
+      <!-- image -->
+      <div class="sidenav-logo-container" *ngIf="!(isHandset$ | async)">
+        <img class="sidenav-logo" [src]="(link$ | async)?.image" alt="icon"/>
+      </div>
+      <!-- links -->
+      <mat-nav-list dense>
+        <a mat-list-item [routerLink]="link.url ? link.url : null" [routerLinkActive]="link.url ? ['active'] : []" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let link of links">
+          <div mat-list-avatar>
+            <img mat-list-avatar [src]="link.image" alt="{{ link.name | translate }}"/>
+          </div>
+          <div mat-line>{{ link.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ link.description | translate }}</div>
+        </a>
+      </mat-nav-list>
     </div>
-    <!-- links -->
-    <mat-nav-list dense>
-      <a mat-list-item [routerLink]="link.url ? link.url : null" [routerLinkActive]="link.url ? ['active'] : []" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let link of links">
-        <div mat-list-avatar>
-          <img mat-list-avatar [src]="link.image" alt="{{ link.name | translate }}"/>
-        </div>
-        <div mat-line>{{ link.name | translate }}</div>
-        <div mat-line class="mat-card-subtitle">{{ link.description | translate }}</div>
-      </a>
-    </mat-nav-list>
   </mat-sidenav>
   <!-- sidenav content -->
   <mat-sidenav-content>
@@ -50,8 +53,21 @@
         <mat-icon aria-label="menu">menu</mat-icon>
       </button>
       <!-- title -->
-      <span class="logo">{{ 'topnav.title' | translate }}</span>
+      <span class="logo" *ngIf="!(isHandset$ | async)">{{ 'topnav.title' | translate }}</span>
       <span class="fill-space"></span>
+      <!-- supply list -->
+      <mat-list dense class="supply-list" role="list">
+        <mat-list-item *ngFor="let supply of kingdomSupplies; let i = index" role="listitem">
+          <div 
+            mat-list-avatar 
+            [matTooltip]="supply.join.name | translate"
+            [matBadge]="supply.quantity | short" 
+            [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
+            matBadgeOverlap="true">
+            <img mat-list-avatar [src]="supply.join.image" alt="{{ supply.join.name | translate }}"/>
+          </div>
+        </mat-list-item>
+      </mat-list>
     </mat-toolbar>
     <!-- main content -->
     <main class="main-content" [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100vh - 64px)' : 'calc(100vh - 56px)' }">
