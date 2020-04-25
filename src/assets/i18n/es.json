@@ -6,7 +6,7 @@
   "topnav": {
     "title": "Archimago"
   },
-  "sidenav": {
+  "kingdom": {
     "map": {
       "name": "Mapa",
       "description": "Planifica tu estrategia"
@@ -25,7 +25,18 @@
     },
     "army": {
       "name": "Ejército",
-      "description": "Gestiona tus tropas"
+      "description": "Gestiona tus tropas",
+      "help": "TODO"
+    },
+    "attack": {
+      "name": "Ataque",
+      "description": "Gestiona tus tropas",
+      "help": "TODO"
+    },
+    "defense": {
+      "name": "Defensa",
+      "description": "Gestiona tus tropas",
+      "help": "TODO"
     },
     "auction": {
       "name": "Subasta",
@@ -87,12 +98,6 @@
     "temple": "Templos",
     "guild": "Gremios",
     "fortress": "Fortalezas"
-  },
-  "kingdom": {
-    "city": {
-      "name": "Ciudad",
-      "description": "Construye edificios"
-    }
   },
   "store": {
     "inn": {

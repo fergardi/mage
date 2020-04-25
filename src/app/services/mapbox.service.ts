@@ -66,7 +66,6 @@ export class MapboxService {
     this.angularFireAuth.authState.pipe(first()).subscribe(user => {
       if (user) {
         navigator.geolocation.getCurrentPosition(async position => {
-          console.log(user)
           await this.firebaseService.addElementToCollection('kingdoms', {
             id: user.uid,
             faction: 'black',
@@ -328,7 +327,7 @@ export class MapboxService {
   }
 
   resize() {
-    this.map.resize();
+    if (this.map) this.map.resize();
   }
 }
 

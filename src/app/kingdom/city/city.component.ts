@@ -1,7 +1,4 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { switchMap } from 'rxjs/operators';
@@ -12,7 +9,7 @@ import { of } from 'rxjs';
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.scss']
 })
-export class CityComponent implements AfterViewInit {
+export class CityComponent implements OnInit {
 
   kingdomBuildings: any[] = [];
 
@@ -21,13 +18,13 @@ export class CityComponent implements AfterViewInit {
     private angularFireAuth: AngularFireAuth,
   ) {}
 
-  ngAfterViewInit() {
-    this.getUserBuildings().subscribe(buildings => {
+  ngOnInit() {
+    this.getKingdomBuildings().subscribe(buildings => {
       this.kingdomBuildings = buildings;
     });
   }
 
-  getUserBuildings() {
+  getKingdomBuildings() {
     return this.angularFireAuth.authState.pipe(
       switchMap(user => {
         return user
