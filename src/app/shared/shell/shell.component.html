@@ -5,11 +5,11 @@
     class="sidenav"
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) || !(isHandset$ | async) && (isMap$ | async) ? 'over' : 'side'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
     opened="true">
     <mat-toolbar>
       <!-- toggler -->
-      <button type="button" aria-label="toggle" mat-icon-button (click)="drawer.toggle()">
+      <button type="button" aria-label="toggle" mat-icon-button (click)="toggle()">
         <mat-icon aria-label="menu">menu</mat-icon>
       </button>
       <!-- title -->
@@ -21,7 +21,7 @@
         {{ translateService.currentLang }}
       </button>
       <mat-menu #language="matMenu">
-        <a mat-menu-item *ngFor="let l of langs" (click)="translateService.use(l.lang)" class="flag-menu">
+        <a mat-menu-item *ngFor="let l of langs" [ngClass]="{ 'active': translateService.currentLang === l.lang }" (click)="translateService.use(l.lang)" class="flag-menu">
           <img [src]="l.image"/>
           <span>{{ l.lang }}</span>
         </a>
@@ -49,11 +49,11 @@
   <mat-sidenav-content>
     <mat-toolbar>
       <!-- toggler -->
-      <button type="button" aria-label="toggle" mat-icon-button (click)="drawer.toggle()">
+      <button type="button" aria-label="toggle" mat-icon-button (click)="toggle()" *ngIf="!drawer.opened">
         <mat-icon aria-label="menu">menu</mat-icon>
       </button>
       <!-- title -->
-      <span class="logo" *ngIf="!(isHandset$ | async)">{{ 'topnav.title' | translate }}</span>
+      <span class="logo" [hidden]="(isHandset$ | async) || drawer.opened">{{ (link$ | async)?.name | translate }}</span>
       <span class="fill-space"></span>
       <!-- supply list -->
       <mat-list dense class="supply-list" role="list">
@@ -70,7 +70,9 @@
       </mat-list>
     </mat-toolbar>
     <!-- main content -->
-    <main class="main-content" [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100vh - 64px)' : 'calc(100vh - 56px)' }">
+    <main 
+      class="main-content" 
+      [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100vh - 64px)' : 'calc(100vh - 56px)', width: !(isHandset$ | async) && drawer.opened ? 'calc(100vw - 300px)' : '100vw' }">
       <ng-content></ng-content>
     </main>
   </mat-sidenav-content>

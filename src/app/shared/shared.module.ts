@@ -27,7 +27,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ShellComponent } from './shell/shell.component';
-import { BuildingComponent } from './building/building.component';
 import { ShortPipe } from '../pipes/short.pipe';
 
 // AOT compilation support
@@ -37,7 +36,6 @@ export function httpTranslateLoader(http: HttpClient) {
 
 const components = [
   ShellComponent,
-  BuildingComponent,
   ShortPipe,
 ];
 const modules = [

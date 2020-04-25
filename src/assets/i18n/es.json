@@ -46,6 +46,10 @@
     "temple": {
       "name": "Templo",
       "description": "Complace a los dioses"
+    },
+    "store": {
+      "name": "Tienda",
+      "description": "Invierte tus gemas"
     }
   },
   "faction": {
@@ -112,18 +116,18 @@
       "description": "Aprende hechizos nuevos"
     }
   },
-  "marker": {
+  "card": {
     "list": {
       "resources": "Recursos",
       "heroes": "Héroes",
       "artifacts": "Artefactos",
       "troops": "Tropas",
       "potions": "Pociones",
-      "charms": "Hechizos"
+      "charms": "Hechizos",
+      "buildings": "Edificios"
     }
   },
   "resource": {
-    "list": "Lista de recursos",
     "gold": {
       "name": "Oro",
       "description": "Principal moneda del reino"

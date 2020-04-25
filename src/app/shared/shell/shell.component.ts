@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, of } from 'rxjs';
 import { map, shareReplay, filter, switchMap } from 'rxjs/operators';
@@ -6,6 +6,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router, NavigationEnd } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { MatSidenav } from '@angular/material/sidenav';
+import { MapboxService } from 'src/app/services/mapbox.service';
 
 @Component({
   selector: 'app-shell',
@@ -28,6 +30,7 @@ export class ShellComponent implements OnInit {
     { url: '/kingdom/tavern', name: 'sidenav.tavern.name', description: 'sidenav.tavern.description', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Ftavern.png?alt=media&token=162b4678-d152-4a12-9c2c-2873bc304500' },
     { url: '/kingdom/archive', name: 'sidenav.archive.name', description: 'sidenav.archive.description', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Farchive.png?alt=media&token=afd1b2d3-999e-45d0-a7ae-17c85287dcda' },
     { url: '/kingdom/temple', name: 'sidenav.temple.name', description: 'sidenav.temple.description', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Ftemple.png?alt=media&token=abbe4941-7aef-45c7-a451-6b1617c0c447' },
+    { url: '/kingdom/store', name: 'sidenav.store.name', description: 'sidenav.store.description', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fstore.png?alt=media&token=dc9b28b8-28f7-495a-bcc1-7e8f12c04eed' },
     { url: null, name: 'sidenav.sleep.name', description: 'sidenav.sleep.description', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fsleep.png?alt=media&token=ea8c0fb7-7889-4460-821b-be4e13bb522b' },
   ];
   kingdomSupplies: any[] = [];
@@ -48,12 +51,15 @@ export class ShellComponent implements OnInit {
     map(event => event.url.includes('/world/map'))
   )
 
+  @ViewChild(MatSidenav, {static: true}) drawer: MatSidenav;
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     public translateService: TranslateService,
     public angularFireAuth: AngularFireAuth,
     private router: Router,
     private firebaseService: FirebaseService,
+    private mapboxService: MapboxService,
   ) {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));
@@ -78,6 +84,10 @@ export class ShellComponent implements OnInit {
     );
   }
 
+  async toggle() {
+    await this.drawer.toggle()
+    this.mapboxService.resize();
+  }
 
   async logout() {
     await this.angularFireAuth.signOut();

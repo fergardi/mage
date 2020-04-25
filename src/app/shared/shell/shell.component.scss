@@ -36,9 +36,6 @@
     border-radius: 50%;
     margin: 0 10px 5px;
   }
-  .active {
-    background-color: #212121;
-  }
   .mat-drawer-content.mat-sidenav-content {
     overflow: hidden;
   }
@@ -46,8 +43,8 @@
     overflow-x: hidden;
   }
   .sidenav-logo {
-    width: 200px;
-    height: 200px;
+    width: 175px;
+    height: 175px;
     margin-top: 20px;
   }
   .sidenav-logo-container {
@@ -57,11 +54,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    .mat-badge-content {
-      width: auto;
-      border-radius: 4px;
-      padding: 0 5px;
-    }
   }
   .scroll-container {
     overflow: hidden;

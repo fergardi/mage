@@ -14,7 +14,7 @@ export class AppComponent {
     private firebaseService: FirebaseService,
   ) {
     // this.firebaseService.importCollectionFromJson('factions');
-    // this.firebaseService.importCollectionFromJson('buildings');
+    // this.firebaseService.importCollectionFromJson('structures');
     // this.firebaseService.importCollectionFromJson('items');
     // this.firebaseService.importCollectionFromJson('stores');
     // this.firebaseService.importCollectionFromJson('heroes');

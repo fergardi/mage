@@ -10,7 +10,7 @@
   <mat-card-content>
     <!-- shop contracts -->
     <ng-template [ngIf]="shopContracts.length">
-      <div matSubheader>{{ 'marker.list.contracts' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let contract of shopContracts">
           <div mat-list-avatar [matBadge]="contract.level | number" matBadgePosition="above before">
@@ -24,7 +24,7 @@
     </ng-template>
     <!-- shop troops -->
     <ng-template [ngIf]="shopTroops.length">
-      <div matSubheader>{{ 'marker.list.troops' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let troop of shopTroops">
           <div mat-list-avatar [matBadge]="troop.quantity | number" matBadgePosition="above before">
@@ -39,7 +39,7 @@
     </ng-template>
     <!-- shop artifacts -->
     <ng-template [ngIf]="shopArtifacts.length">
-      <div matSubheader>{{ 'marker.list.artifacts' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of shopArtifacts">
           <div mat-list-avatar [matBadge]="artifact.quantity | number" matBadgePosition="above before">
@@ -53,7 +53,7 @@
     </ng-template>
     <!-- shop spells -->
     <ng-template [ngIf]="shopCharms.length">
-      <div matSubheader>{{ 'marker.list.charms' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let charm of shopCharms">
           <div mat-list-avatar [matBadge]="charm.level | number" matBadgePosition="above before">
@@ -67,7 +67,7 @@
     </ng-template>
     <!-- artifact rewards -->
     <ng-template [ngIf]="artifactRewards.length">
-      <div matSubheader>{{ 'marker.list.resources' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.resources' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let resource of artifactRewards">
           <div mat-list-avatar matBadge="?" matBadgePosition="above before">
@@ -80,7 +80,7 @@
     </ng-template>
     <!-- quest troops -->
     <ng-template [ngIf]="kingdomTroops.length">
-      <div matSubheader>{{ 'marker.list.troops' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
         <mat-list-item *ngFor="let troop of kingdomTroops">
           <div mat-list-avatar [matBadge]="troop.quantity | number" matBadgePosition="above before">
@@ -94,7 +94,7 @@
     </ng-template>
     <!-- quest contracts -->
     <ng-template [ngIf]="questContracts.length">
-      <div matSubheader>{{ 'marker.list.heroes' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.heroes' | translate }}:</div>
       <mat-list dense>
         <mat-list-item *ngFor="let contract of questContracts">
           <div mat-list-avatar [matBadge]="contract.level | number" matBadgePosition="above before">
@@ -107,7 +107,7 @@
     </ng-template>
     <!-- quest troops -->
     <ng-template [ngIf]="questTroops.length">
-      <div matSubheader>{{ 'marker.list.troops' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
         <mat-list-item *ngFor="let troop of questTroops">
           <div mat-list-avatar [matBadge]="troop.quantity | number" matBadgePosition="above before">
@@ -121,7 +121,7 @@
     </ng-template>
     <!-- quest rewards -->
     <ng-template [ngIf]="questRewards.length">
-      <div matSubheader>{{ 'marker.list.resources' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.resources' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let resource of questRewards">
           <div mat-list-avatar matBadge="?" matBadgePosition="above before">
@@ -134,7 +134,7 @@
     </ng-template>
     <!-- quest artifacts -->
     <ng-template [ngIf]="questArtifacts.length">
-      <div matSubheader>{{ 'marker.list.artifacts' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of questArtifacts">
           <div mat-list-avatar [matBadge]="artifact.quantity | number" matBadgePosition="above before">

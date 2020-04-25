@@ -40,7 +40,6 @@ export class FirebaseService {
   }
   
   addElementToCollection(collection: string, element: any, id?: string) {
-    console.log('Adding ' + element.name + ' to ' + collection + '...');
     return id
     ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
     : this.angularFirestore.collection<any>(collection).add(element);

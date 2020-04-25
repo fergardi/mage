@@ -66,14 +66,37 @@ export class MapboxService {
     this.angularFireAuth.authState.pipe(first()).subscribe(user => {
       if (user) {
         navigator.geolocation.getCurrentPosition(async position => {
+          console.log(user)
           await this.firebaseService.addElementToCollection('kingdoms', {
             id: user.uid,
-            faction: 'blue',
+            faction: 'black',
             lat: position.coords.latitude,
             lng: position.coords.longitude,
             radius: 1500,
             name: 'Fergardi'
           }, user.uid);
+          this.firebaseService.addElementsToCollection(`kingdoms/${user.uid}/troops`, [
+            { id: 'skeleton', quantity: 20000 },
+          ]);
+          this.firebaseService.addElementsToCollection(`kingdoms/${user.uid}/supplies`, [
+            { id: 'gold', quantity: 20000 },
+            { id: 'mana', quantity: 20000 },
+            { id: 'people', quantity: 20000 },
+            { id: 'gem', quantity: 10 },
+            { id: 'turn', quantity: 300 },
+          ]);
+          this.firebaseService.addElementsToCollection(`kingdoms/${user.uid}/buildings`, [
+            { id: 'barrack', quantity: 0 },
+            { id: 'barrier', quantity: 0 },
+            { id: 'farm', quantity: 0 },
+            { id: 'fortress', quantity: 0 },
+            { id: 'guild', quantity: 0 },
+            { id: 'node', quantity: 0 },
+            { id: 'temple', quantity: 0 },
+            { id: 'terrain', quantity: 0 },
+            { id: 'village', quantity: 0 },
+            { id: 'workshop', quantity: 0 },
+          ]);
           this.goTo(position.coords.latitude, position.coords.longitude, true);
         }, null, {
           enableHighAccuracy: true,
@@ -81,7 +104,7 @@ export class MapboxService {
           maximumAge: 0
         });
       }
-    })
+    });
   }
 
   addKingdom(): void {
@@ -97,7 +120,7 @@ export class MapboxService {
         quantity: 20000,
         id: 'skeleton'
       }]);
-    })
+    });
   }
 
   addArtifact(): void {
@@ -155,6 +178,7 @@ export class MapboxService {
             quantity: 2,
             id: 'stone-chest'
           }]);
+          break;
         case StoreType.alchemist:
           this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [{
             gold: 1000000,
@@ -171,14 +195,14 @@ export class MapboxService {
           }]);
           break;
         case StoreType.sorcerer:
-            this.firebaseService.addElementsToCollection(`shops/${ref['id']}/charms`, [{
-              gold: 1000000,
-              level: 1,
-              id: 'summon-golden-dragon'
-            }]);
-            break;
+          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/charms`, [{
+            gold: 1000000,
+            level: 1,
+            id: 'summon-golden-dragon'
+          }]);
+          break;
       }
-    })
+    });
   }
 
   addQuest(): void {
@@ -214,7 +238,7 @@ export class MapboxService {
           }]);
           break;
       }
-    })
+    });
   }
 
   addMarker(data: any, type: MarkerType, popup: boolean = false, radius: boolean = false, fly: boolean = false): mapboxgl.Marker {
@@ -290,9 +314,7 @@ export class MapboxService {
   }
 
   removeMarker(id: string): void {
-    let index = this.markers.findIndex(item => {
-      return item.id === id
-    });
+    let index = this.markers.findIndex(item => item.id === id);
     if (index) {
       let found = this.markers[index];
       if (found.marker) found.marker.remove();
@@ -303,6 +325,10 @@ export class MapboxService {
 
   clearMarkers(type: MarkerType): void {
     this.markers.filter((marker: Marker) => marker.type === type).forEach((marker: Marker) => this.removeMarker(marker.id));
+  }
+
+  resize() {
+    this.map.resize();
   }
 }
 

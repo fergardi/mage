@@ -126,6 +126,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
+.mat-menu-item.active,
+.mat-list-item.active {
+  background-color: #212121;
+}
+
+.mat-badge-content {
+  width: auto !important;
+  border-radius: 4px;
+  padding: 0 5px;
+}
+
 // responsive custom table
 @media screen and (max-width: 960px) {
   .table-responsive {
