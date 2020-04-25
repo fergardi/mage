@@ -14,8 +14,8 @@ import { Router, NavigationEnd } from '@angular/router';
 export class ShellComponent {
 
   langs: Array<any> = [
-    'es',
-    'en',
+    { lang: 'es', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/languages%2Fes.png?alt=media&token=6fd7ecaf-4127-44d2-983b-08490bd1b708' },
+    { lang: 'en', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/languages%2Fen.png?alt=media&token=f9bc5fd7-4050-4ef9-99ba-6477c7bee0d4' },
   ]
   links: Array<any> = [
     { url: '/world/map', name: 'sidenav.map.name', description: 'sidenav.map.description', image: 'https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fmap.png?alt=media&token=a2e85734-3e8a-4cb4-a83e-c308da7fe741' },
@@ -52,10 +52,10 @@ export class ShellComponent {
     private router: Router,
   ) {
     // i18n
-    this.translateService.addLangs(this.langs);
-    this.translateService.setDefaultLang(this.langs[0]);
+    this.translateService.addLangs(this.langs.map(l => l.lang));
+    this.translateService.setDefaultLang(this.langs[0].lang);
     let browser = this.translateService.getBrowserLang();  
-    this.translateService.use(this.langs.includes(browser) ? browser : this.langs[0]);  
+    this.translateService.use(this.langs.map(l => l.lang).includes(browser) ? browser : this.langs[0].lang);  
   }
 
   async logout() {

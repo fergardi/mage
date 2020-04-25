@@ -21,7 +21,10 @@
         {{ translateService.currentLang }}
       </button>
       <mat-menu #language="matMenu">
-        <a mat-menu-item *ngFor="let lang of translateService.getLangs()" (click)="translateService.use(lang)">{{ lang }}</a>
+        <a mat-menu-item *ngFor="let l of langs" (click)="translateService.use(l.lang)" class="flag-menu">
+          <img [src]="l.image"/>
+          <span>{{ l.lang }}</span>
+        </a>
       </mat-menu>
     </mat-toolbar>
     <!-- image -->

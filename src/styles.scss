@@ -118,6 +118,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
+.flag-menu {
+  display: flex !important;
+  align-items: center;
+  img {
+    margin-right: 10px;
+  }
+}
+
 // responsive custom table
 @media screen and (max-width: 960px) {
   .table-responsive {
