@@ -10,7 +10,7 @@
   <mat-card-content>
     <!-- shop contracts -->
     <ng-template [ngIf]="shopContracts.length">
-      <div matSubheader>{{ 'marker.list.heroes' | translate }}:</div>
+      <div matSubheader>{{ 'marker.list.contracts' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let contract of shopContracts">
           <div mat-list-avatar [matBadge]="contract.level | number" matBadgePosition="above before">
@@ -48,6 +48,20 @@
           <div mat-line>{{ artifact.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
           <div mat-line class="marker-number"><mat-chip-list><mat-chip>{{ artifact.gold | number }}</mat-chip></mat-chip-list></div>
+        </button>
+      </mat-action-list>
+    </ng-template>
+    <!-- shop spells -->
+    <ng-template [ngIf]="shopCharms.length">
+      <div matSubheader>{{ 'marker.list.charms' | translate }}:</div>
+      <mat-action-list dense>
+        <button mat-list-item *ngFor="let charm of shopCharms">
+          <div mat-list-avatar [matBadge]="charm.level | number" matBadgePosition="above before">
+            <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
+          </div>
+          <div mat-line>{{ charm.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ charm.join.description | translate }}</div>
+          <div mat-line class="marker-number"><mat-chip-list><mat-chip>{{ charm.gold | number }}</mat-chip></mat-chip-list></div>
         </button>
       </mat-action-list>
     </ng-template>

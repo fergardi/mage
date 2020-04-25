@@ -11,11 +11,15 @@
     border: none;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
   }
+  ::ng-deep .mat-drawer-inner-container {
+    overflow: hidden;
+  }
   .sidenav {
     width: 300px;
-  }
-  .sidenav .mat-toolbar {
-    background: inherit;
+    overflow: hidden;
+    ::ng-deep .mat-nav-list {
+      overflow-y: auto;
+    }
   }
   .mat-toolbar.mat-primary {
     position: sticky;
@@ -32,6 +36,9 @@
     border-radius: 50%;
     margin: 0 10px 5px;
   }
+  .active {
+    background-color: #212121;
+  }
   .mat-drawer-content.mat-sidenav-content {
     overflow: hidden;
   }
@@ -39,8 +46,9 @@
     overflow-x: hidden;
   }
   .sidenav-logo {
-    width: 200px;
-    height: auto;
+    width: 256px;
+    height: 256px;
+    margin-top: 20px;
   }
   .sidenav-logo-container {
     text-align: center;

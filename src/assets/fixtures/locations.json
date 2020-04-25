@@ -70,5 +70,17 @@
     "name": "location.blacksmith.name",
     "description": "location.blacksmith.description",
     "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fblacksmith.png?alt=media&token=9a2ffae4-0932-476f-a03e-6909e0428cee"
+  },
+  {
+    "id": "shipwreck",
+    "name": "location.shipwreck.name",
+    "description": "location.shipwreck.description",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fshipwreck.png?alt=media&token=1fc357c3-20f4-4fc0-8a87-42e077e901e5"
+  },
+  {
+    "id": "forest",
+    "name": "location.forest.name",
+    "description": "location.forest.description",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fforest.png?alt=media&token=db091c6e-408e-4b17-b4c0-451e6435ab8d"
   }
 ]

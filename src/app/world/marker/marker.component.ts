@@ -14,6 +14,7 @@ export class MarkerComponent implements OnInit {
   shopTroops: any[] = [];
   kingdomTroops: any[] = [];
   artifactRewards: any[] = [];
+  shopCharms: any[] = [];
   questContracts: any[] = [];
   questTroops: any[] = [];
   questRewards: any[] = [];
@@ -33,6 +34,9 @@ export class MarkerComponent implements OnInit {
     });
     this.firebaseService.leftJoin(`shops/${this.data.fid}/artifacts`, 'items', 'id', 'id').subscribe(artifacts => {
       this.shopArtifacts = artifacts;
+    });
+    this.firebaseService.leftJoin(`shops/${this.data.fid}/charms`, 'spells', 'id', 'id').subscribe(charms => {
+      this.shopCharms = charms;
     });
     // kingdom
     this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/troops`, 'units', 'id', 'id').subscribe(troops => {

@@ -3,6 +3,51 @@
     "name": "Buscar",
     "placeholder": "Buscar"
   },
+  "topnav": {
+    "title": "Archimago"
+  },
+  "sidenav": {
+    "map": {
+      "name": "Mapa",
+      "description": "Planifica tu estrategia"
+    },
+    "city": {
+      "name": "Ciudad",
+      "description": "Administra tu capital"
+    },
+    "census": {
+      "name": "Censo",
+      "description": "Conoce a tus enemigos"
+    },
+    "sleep": {
+      "name": "Dormir",
+      "description": "Medita tus decisiones"
+    },
+    "army": {
+      "name": "Ejército",
+      "description": "Gestiona tus tropas"
+    },
+    "auction": {
+      "name": "Subasta",
+      "description": "Comercia con otros reinos"
+    },
+    "sorcery": {
+      "name": "Magia",
+      "description": "Conjura tus hechizos"
+    },
+    "tavern": {
+      "name": "Taberna",
+      "description": "Entrena a tus héroes"
+    },
+    "archive": {
+      "name": "Archivo",
+      "description": "Revisa tus informes"
+    },
+    "temple": {
+      "name": "Templo",
+      "description": "Complace a los dioses"
+    }
+  },
   "faction": {
     "blue": {
       "name": "Azul",
@@ -39,9 +84,11 @@
     "guild": "Gremios",
     "fortress": "Fortalezas"
   },
-  "city": {
-    "title": "Ciudad",
-    "subtitle": "Construye edificios"
+  "kingdom": {
+    "city": {
+      "name": "Ciudad",
+      "description": "Construye edificios"
+    }
   },
   "store": {
     "inn": {
@@ -50,15 +97,19 @@
     },
     "merchant": {
       "name": "Mercader ambulante",
-      "description": "Compra artefactos peculiares"
+      "description": "Adquiere artefactos peculiares"
     },
     "camp": {
       "name": "Campamento de mercenarios",
-      "description": "Contrata tropas para tu ejército"
+      "description": "Incorpora tropas para tu ejército"
     },
     "alchemist": {
       "name": "Alquimista hermitaño",
       "description": "Compra pociones mágicas"
+    },
+    "sorcerer": {
+      "name": "Hechicero renegado",
+      "description": "Aprende hechizos nuevos"
     }
   },
   "marker": {
@@ -66,7 +117,9 @@
       "resources": "Recursos",
       "heroes": "Héroes",
       "artifacts": "Artefactos",
-      "troops": "Tropas"
+      "troops": "Tropas",
+      "potions": "Pociones",
+      "charms": "Hechizos"
     }
   },
   "resource": {
@@ -351,6 +404,208 @@
       "description": ""
     },
     "paladin": {
+      "name": "",
+      "description": ""
+    }
+  },
+  "spell": {
+    "summon-ash-golem": {
+      "name": "",
+      "description": ""
+    },
+    "summon-banshee": {
+      "name": "",
+      "description": ""
+    },
+    "summon-bone-dragon": {
+      "name": "",
+      "description": ""
+    },
+    "summon-dark-knight": {
+      "name": "",
+      "description": ""
+    },
+    "summon-hound": {
+      "name": "",
+      "description": ""
+    },
+    "summon-lich": {
+      "name": "",
+      "description": ""
+    },
+    "summon-skeleton": {
+      "name": "",
+      "description": ""
+    },
+    "summon-vampire": {
+      "name": "",
+      "description": ""
+    },
+    "summon-werewolf": {
+      "name": "",
+      "description": ""
+    },
+    "summon-zombie": {
+      "name": "",
+      "description": ""
+    },
+    "summon-blue-dragon": {
+      "name": "",
+      "description": ""
+    },
+    "summon-crystal-golem": {
+      "name": "",
+      "description": ""
+    },
+    "summon-djinni": {
+      "name": "",
+      "description": ""
+    },
+    "summon-frost-giant": {
+      "name": "",
+      "description": ""
+    },
+    "summon-ice-golem": {
+      "name": "",
+      "description": ""
+    },
+    "summon-ice-troll": {
+      "name": "",
+      "description": ""
+    },
+    "summon-kraken": {
+      "name": "",
+      "description": ""
+    },
+    "summon-leviathan": {
+      "name": "",
+      "description": ""
+    },
+    "summon-mage": {
+      "name": "",
+      "description": ""
+    },
+    "summon-yeti": {
+      "name": "",
+      "description": ""
+    },
+    "summon-carnivore-plant": {
+      "name": "",
+      "description": ""
+    },
+    "summon-frog": {
+      "name": "",
+      "description": ""
+    },
+    "summon-gnoll": {
+      "name": "",
+      "description": ""
+    },
+    "summon-goblin": {
+      "name": "",
+      "description": ""
+    },
+    "summon-green-dragon": {
+      "name": "",
+      "description": ""
+    },
+    "summon-lizard": {
+      "name": "",
+      "description": ""
+    },
+    "summon-slime": {
+      "name": "",
+      "description": ""
+    },
+    "summon-giant-spider": {
+      "name": "",
+      "description": ""
+    },
+    "summon-stone-golem": {
+      "name": "",
+      "description": ""
+    },
+    "summon-swamp-monster": {
+      "name": "",
+      "description": ""
+    },
+    "summon-cyclop": {
+      "name": "",
+      "description": ""
+    },
+    "summon-demon": {
+      "name": "",
+      "description": ""
+    },
+    "summon-devil": {
+      "name": "",
+      "description": ""
+    },
+    "summon-fire-golem": {
+      "name": "",
+      "description": ""
+    },
+    "summon-imp": {
+      "name": "",
+      "description": ""
+    },
+    "summon-ogre": {
+      "name": "",
+      "description": ""
+    },
+    "summon-orc": {
+      "name": "",
+      "description": ""
+    },
+    "summon-phoenix": {
+      "name": "",
+      "description": ""
+    },
+    "summon-red-dragon": {
+      "name": "",
+      "description": ""
+    },
+    "summon-wendigo": {
+      "name": "",
+      "description": ""
+    },
+    "summon-sheep": {
+      "name": "",
+      "description": ""
+    },
+    "summon-golden-dragon": {
+      "name": "Invocar Dragones Dorados",
+      "description": "Agrega Dragones Dorados a tu ejército"
+    },
+    "summon-gryphon": {
+      "name": "",
+      "description": ""
+    },
+    "summon-knight": {
+      "name": "",
+      "description": ""
+    },
+    "summon-light-golem": {
+      "name": "",
+      "description": ""
+    },
+    "summon-living-armor": {
+      "name": "",
+      "description": ""
+    },
+    "summon-monk": {
+      "name": "",
+      "description": ""
+    },
+    "summon-warrior": {
+      "name": "",
+      "description": ""
+    },
+    "summon-wyvern": {
+      "name": "",
+      "description": ""
+    },
+    "summon-paladin": {
       "name": "",
       "description": ""
     }
