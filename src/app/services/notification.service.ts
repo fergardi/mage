@@ -3,12 +3,14 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 @UntilDestroy()
 export class NotificationService {
+
   private options: MatSnackBarConfig = {
     duration: 3000,
     horizontalPosition: 'right',
@@ -18,6 +20,7 @@ export class NotificationService {
   constructor(
     private snackBar: MatSnackBar,
     private router: Router,
+    private translateService: TranslateService,
   ) {}
 
   unauthorized() {
@@ -31,6 +34,18 @@ export class NotificationService {
         )
       )
       .subscribe();
+  }
+
+  success(text: string) {
+    this.snackBar.open(this.translateService.instant(text), '', {...this.options, panelClass: ['mat-toolbar', 'mat-primary']} );
+  }
+
+  warning(text: string) {
+    this.snackBar.open(this.translateService.instant(text), '', {...this.options, panelClass: ['mat-toolbar', 'mat-accent']} );
+  }
+
+  error(text: string) {
+    this.snackBar.open(this.translateService.instant(text), '', {...this.options, panelClass: ['mat-toolbar', 'mat-warn']} );
   }
 
 }

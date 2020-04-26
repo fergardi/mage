@@ -1,0 +1,159 @@
+<div class="kingdom-sorcery" fxLayout="row wrap" fxLayoutGap="10px grid">
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fsorcery.png?alt=media&token=b9416d03-9196-464c-92c8-1dc82a0aeca7" alt="{{ 'kingdom.sorcery.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.sorcery.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.sorcery.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        {{ 'kingdom.sorcery.help' | translate }}
+      </mat-card-content>
+      <mat-card-content>
+
+        <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
+        <mat-action-list
+          #kngdmArtifacts="cdkDropList"
+          [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]"
+          cdkDropList 
+          cdkDropListOrientation="vertical" 
+          (cdkDropListDropped)="assignArtifact($event)"
+          [cdkDropListData]="kingdomArtifacts">
+          <button mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag [cdkDragDisabled]="!artifact.join.battle" [ngClass]="{ 'handle': artifact.join.battle }">
+            <div mat-list-avatar [matBadge]="artifact.quantity | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ artifact.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
+            <mat-icon *ngIf="artifact.join.battle">open_with</mat-icon>
+          </button>
+        </mat-action-list>
+
+        <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
+        <mat-action-list
+          #kngdmCharms="cdkDropList"
+          [cdkDropListConnectedTo]="[atckCharms, defCharms]"
+          cdkDropList 
+          cdkDropListOrientation="vertical" 
+          (cdkDropListDropped)="assignCharm($event)"
+          [cdkDropListData]="kingdomCharms">
+          <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.join.battle" [ngClass]="{ 'handle': charm.join.battle }">
+            <div mat-list-avatar [matBadge]="charm.level | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ charm.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ charm.join.description | translate }}</div>
+            <mat-icon *ngIf="charm.join.battle">open_with</mat-icon>
+          </button>
+        </mat-action-list>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fattack.png?alt=media&token=31053e9f-68d8-499c-b5f1-60ea24262e33" alt="{{ 'kingdom.sorcery-attack.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.sorcery-attack.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.sorcery-attack.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        {{ 'kingdom.sorcery-attack.help' | translate }}
+      </mat-card-content>
+      <mat-card-content>
+        
+        <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
+        <mat-list
+          #atckArtifacts="cdkDropList"
+          [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]"
+          cdkDropList 
+          cdkDropListOrientation="vertical" 
+          (cdkDropListDropped)="assignArtifact($event)"
+          [cdkDropListData]="attackArtifacts">
+          <mat-list-item *ngFor="let artifact of attackArtifacts" cdkDrag class="handle">
+            <div mat-list-avatar [matBadge]="artifact.quantity | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ artifact.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
+            <mat-icon>open_with</mat-icon>
+          </mat-list-item>
+        </mat-list>
+
+        <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
+        <mat-list
+          #atckCharms="cdkDropList"
+          [cdkDropListConnectedTo]="[kngdmCharms, defCharms]"
+          cdkDropList 
+          cdkDropListOrientation="vertical" 
+          (cdkDropListDropped)="assignCharm($event)"
+          [cdkDropListData]="attackCharms">
+          <mat-list-item *ngFor="let charm of attackCharms" cdkDrag class="handle">
+            <div mat-list-avatar [matBadge]="charm.level | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ charm.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ charm.join.description | translate }}</div>
+            <mat-icon>open_with</mat-icon>
+          </mat-list-item>
+        </mat-list>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fdefense.png?alt=media&token=7d7959de-7e5b-4f23-8745-fa29a2131c0e" alt="{{ 'kingdom.sorcery-defense.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.sorcery-defense.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.sorcery-defense.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        {{ 'kingdom.sorcery-defense.help' | translate }}
+      </mat-card-content>
+      <mat-card-content>
+        
+        <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
+        <mat-list
+          #defArtifacts="cdkDropList"
+          [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]"
+          cdkDropList 
+          cdkDropListOrientation="vertical" 
+          (cdkDropListDropped)="assignArtifact($event)"
+          [cdkDropListData]="defenseArtifacts">
+          <mat-list-item *ngFor="let artifact of defenseArtifacts" cdkDrag class="handle">
+            <div mat-list-avatar [matBadge]="artifact.quantity | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ artifact.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
+            <mat-icon>open_with</mat-icon>
+          </mat-list-item>
+        </mat-list>
+        
+        <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
+        <mat-list 
+          #defCharms="cdkDropList"
+          [cdkDropListConnectedTo]="[kngdmCharms, atckCharms]"
+          cdkDropList 
+          cdkDropListOrientation="vertical" 
+          (cdkDropListDropped)="assignCharm($event)"
+          [cdkDropListData]="defenseCharms">
+          <mat-list-item *ngFor="let charm of defenseCharms" cdkDrag class="handle">
+            <div mat-list-avatar [matBadge]="charm.level | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ charm.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ charm.join.description | translate }}</div>
+            <mat-icon>open_with</mat-icon>
+          </mat-list-item>
+        </mat-list>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

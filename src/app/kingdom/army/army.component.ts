@@ -5,8 +5,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NotificationService } from 'src/app/services/notification.service';
 
-enum AssignmentType {
+export enum AssignmentType {
   'none', 'attack', 'defense'
 }
 
@@ -21,11 +22,13 @@ export class ArmyComponent implements OnInit {
   kingdomTroops: any[] = [];
   attackTroops: any[] = [];
   defenseTroops: any[] = [];
+  maximumTroops: number = 3;
 
   constructor(
     private firebaseService: FirebaseService,
     private angularFireAuth: AngularFireAuth,
     private angularFireStore: AngularFirestore,
+    private notificationService: NotificationService,
   ) {}
 
   ngOnInit() {
@@ -39,15 +42,19 @@ export class ArmyComponent implements OnInit {
   }
 
   assignTroop($event: CdkDragDrop<any>) {
-    if ($event.previousContainer === $event.container) {
-      moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
+    if ($event.container.data.length < this.maximumTroops) {
+      if ($event.previousContainer === $event.container) {
+        moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
+      } else {
+        transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
+      }
+      this.updateTroops();
     } else {
-      transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
+      this.notificationService.warning('kingdom.army.maximum')
     }
-    this.sortTroops();
   }
 
-  async sortTroops() {
+  async updateTroops() {
     try {
       let refs = [];
       const db = this.angularFireStore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/troops`);
@@ -63,8 +70,10 @@ export class ArmyComponent implements OnInit {
       const batch = this.angularFireStore.firestore.batch();
       refs.forEach((r, index) => batch.update(r.ref.ref, { sort: index, assignment: r.assignment }))
       await batch.commit();
+      this.notificationService.success('kingdom.army.success')
     } catch (error) {
       console.error(error);
+      this.notificationService.error('kingdom.army.error')
     }
   }
 

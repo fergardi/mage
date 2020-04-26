@@ -26,17 +26,20 @@
     "army": {
       "name": "Ejército",
       "description": "Gestiona tus tropas",
-      "help": "TODO"
+      "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente.",
+      "maximum": "No puedes superar el máximo permitido.",
+      "success": "Los cambios de tus tropas se han guardado.",
+      "error": "Ha habido un problema al gestionar tus tropas."
     },
-    "attack": {
+    "army-attack": {
       "name": "Ataque",
-      "description": "Gestiona tus tropas",
-      "help": "TODO"
+      "description": "Organiza tus fuerzas ofensivas",
+      "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar 3 al ataque, y su orden tiene mucha importancia en las batallas."
     },
-    "defense": {
+    "army-defense": {
       "name": "Defensa",
-      "description": "Gestiona tus tropas",
-      "help": "TODO"
+      "description": "Organiza tus fuerzas defensivas",
+      "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar 3 a la defensa, y su orden tiene mucha importancia en las batallas."
     },
     "auction": {
       "name": "Subasta",
@@ -44,7 +47,21 @@
     },
     "sorcery": {
       "name": "Magia",
-      "description": "Conjura tus hechizos"
+      "description": "Conjura tus hechizos y artefactos",
+      "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas.",
+      "maximum": "No puedes superar el máximo permitido.",
+      "success": "Los cambios de tus hechizos se han guardado.",
+      "error": "Ha habido un problema al gestionar tus hechizos."
+    },
+    "sorcery-attack": {
+      "name": "Ataque mágico",
+      "description": "Organiza tus artimañas ofensivas",
+      "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar 1 de cada tipo al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
+    },
+    "sorcery-defense": {
+      "name": "Defensa mágica",
+      "description": "Organiza tus artimañas defensivas",
+      "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar 1 de cada tipo a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
     },
     "tavern": {
       "name": "Taberna",
