@@ -26,6 +26,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 
 import { ShellComponent } from './shell/shell.component';
 import { ShortPipe } from '../pipes/short.pipe';
@@ -65,6 +68,9 @@ const modules = [
   MatBadgeModule,
   MatTooltipModule,
   DragDropModule,
+  MatProgressBarModule,
+  MatDialogModule,
+  FormsModule,
 ];
 
 @NgModule({

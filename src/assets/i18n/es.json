@@ -48,7 +48,7 @@
     "sorcery": {
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
-      "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas.",
+      "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás subir de nivel a tus hechizos, invirtiendo turnos en su investigación.",
       "maximum": "No puedes superar el máximo permitido.",
       "success": "Los cambios de tus hechizos se han guardado.",
       "error": "Ha habido un problema al gestionar tus hechizos."
@@ -62,6 +62,11 @@
       "name": "Defensa mágica",
       "description": "Organiza tus artimañas defensivas",
       "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar 1 de cada tipo a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
+    },
+    "sorcery-charge": {
+      "name": "Cargar maná",
+      "description": "Recarga tus reservas mágicas",
+      "help": "Aquí podrás invertir turnos en reponer los depósitos de maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas."
     },
     "tavern": {
       "name": "Taberna",
@@ -460,8 +465,8 @@
       "description": ""
     },
     "summon-skeleton": {
-      "name": "",
-      "description": ""
+      "name": "Invocar esqueletos",
+      "description": "Genera un grupo de esqueletos"
     },
     "summon-vampire": {
       "name": "",

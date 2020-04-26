@@ -7,6 +7,8 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { AssignmentType } from '../army/army.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ResearchComponent } from './research.component';
 
 @Component({
   selector: 'app-sorcery',
@@ -31,6 +33,7 @@ export class SorceryComponent implements OnInit {
     private angularFireAuth: AngularFireAuth,
     private angularFireStore: AngularFirestore,
     private notificationService: NotificationService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -118,6 +121,18 @@ export class SorceryComponent implements OnInit {
       console.error(error);
       this.notificationService.error('kingdom.sorcery.error')
     }
+  }
+
+  openResearchDialog(charm: any): void {
+    const dialogRef = this.dialog.open(ResearchComponent, {
+      width: '300px',
+      data: charm
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.angularFireStore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/charms/`).doc(charm.fid).update({ turns: result });
+      }
+    })
   }
 
 }

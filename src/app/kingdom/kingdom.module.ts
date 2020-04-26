@@ -7,14 +7,24 @@ import { SharedModule } from '../shared/shared.module';
 import { CensusComponent } from './census/census.component';
 import { ArmyComponent } from './army/army.component';
 import { SorceryComponent } from './sorcery/sorcery.component';
+import { ResearchComponent } from './sorcery/research.component';
 
 
 @NgModule({
-  declarations: [CityComponent, CensusComponent, ArmyComponent, SorceryComponent],
+  declarations: [
+    CityComponent,
+    CensusComponent,
+    ArmyComponent,
+    SorceryComponent,
+    ResearchComponent,
+  ],
   imports: [
     CommonModule,
     KingdomRoutingModule,
     SharedModule,
+  ],
+  entryComponents: [
+    ResearchComponent,
   ]
 })
 export class KingdomModule { }
