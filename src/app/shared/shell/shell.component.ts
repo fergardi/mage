@@ -1,19 +1,21 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, of } from 'rxjs';
-import { map, shareReplay, filter, switchMap } from 'rxjs/operators';
+import { map, shareReplay, filter, switchMap, first } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router, NavigationEnd } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MapboxService } from 'src/app/services/mapbox.service';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss']
 })
+@UntilDestroy()
 export class ShellComponent implements OnInit {
 
   langs: Array<any> = [
@@ -45,11 +47,6 @@ export class ShellComponent implements OnInit {
     map(result => result.matches),
     shareReplay()
   );
-  isMap$: Observable<boolean> = this.router.events
-  .pipe(
-    filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-    map(event => event.url.includes('/world/map'))
-  )
 
   @ViewChild(MatSidenav, {static: true}) drawer: MatSidenav;
 
@@ -69,19 +66,11 @@ export class ShellComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getKingdomSupplies().subscribe(supplies => {
-      this.kingdomSupplies = supplies.sort((a, b) => a.join.sort - b.join.sort);
+    this.angularFireAuth.authState.pipe(first()).subscribe(user => {
+      this.firebaseService.leftJoin(`kingdoms/${user.uid}/supplies`, 'resources', 'id', 'id').pipe(untilDestroyed(this)).subscribe(supplies => {
+        this.kingdomSupplies = supplies.sort((a, b) => a.join.sort - b.join.sort);
+      });
     });
-  }
-
-  getKingdomSupplies(): Observable<any> {
-    return this.angularFireAuth.authState.pipe(
-      switchMap(user => {
-        return user
-          ? this.firebaseService.leftJoin(`kingdoms/${user.uid}/supplies`, 'resources', 'id', 'id')
-          : of([]);
-      })
-    );
   }
 
   async toggle() {

@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Injectable({
   providedIn: 'root'
 })
+@UntilDestroy()
 export class NotificationService {
   private options: MatSnackBarConfig = {
     duration: 3000,
@@ -23,6 +25,7 @@ export class NotificationService {
     return this.snackBar._openedSnackBarRef
       .onAction()
       .pipe(
+        untilDestroyed(this),
         tap(_ => 
           this.router.navigate(['/user/login'])
         )

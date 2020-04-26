@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'app-army',
   templateUrl: './army.component.html',
   styleUrls: ['./army.component.scss']
 })
+@UntilDestroy()
 export class ArmyComponent implements OnInit {
 
   kingdomTroops: any[] = [];
@@ -19,19 +20,11 @@ export class ArmyComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getKingdomTroops().subscribe(troops => {
-      this.kingdomTroops = troops;
+    this.angularFireAuth.authState.pipe(first()).subscribe(user => {
+      this.firebaseService.leftJoin(`kingdoms/${user.uid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
+        this.kingdomTroops = troops;
+      });
     });
-  }
-
-  getKingdomTroops() {
-    return this.angularFireAuth.authState.pipe(
-      switchMap(user => {
-        return user
-          ? this.firebaseService.leftJoin(`kingdoms/${user.uid}/troops`, 'units', 'id', 'id')
-          : of([]);
-      })
-    );
   }
 
 }
