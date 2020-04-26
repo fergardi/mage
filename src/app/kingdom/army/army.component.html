@@ -1,101 +1,90 @@
-<div class="kingdom-army" fxLayout="row wrap" fxLayoutGap="10px grid">
+<div class="kingdom-army" fxLayout="row wrap" fxLayoutGap="10px grid" cdkDropListGroup>
 
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-  <mat-card>
-    <mat-card-header>
-      <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Farmy.png?alt=media&token=cb4c9a9f-4903-4499-b71d-8545365cff8e" alt="{{ 'kingdom.army.name' | translate }}">
-      <mat-card-title >{{ 'kingdom.army.name' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'kingdom.army.description' | translate }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      {{ 'kingdom.army.help' | translate }}
-    </mat-card-content>
-    <mat-card-content>
-      <ng-template [ngIf]="kingdomTroops.length">
-        <mat-action-list>
-          <button mat-list-item *ngFor="let troop of kingdomTroops">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Farmy.png?alt=media&token=cb4c9a9f-4903-4499-b71d-8545365cff8e" alt="{{ 'kingdom.army.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.army.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.army.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        {{ 'kingdom.army.help' | translate }}
+      </mat-card-content>
+      <mat-card-content>
+        <mat-list
+          cdkDropList 
+          cdkDropListOrientation="vertical" 
+          (cdkDropListDropped)="assignTroop($event)"
+          [cdkDropListData]="kingdomTroops">
+          <mat-list-item *ngFor="let troop of kingdomTroops" cdkDrag class="handle">
             <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
             </div>
             <div mat-line>{{ troop.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
-          </button>
-        </mat-action-list>
-      </ng-template>
-    </mat-card-content>
-  </mat-card>
+            <mat-icon>open_with</mat-icon>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
   </div>
 
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-  <mat-card>
-    <mat-card-header>
-      <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fattack.png?alt=media&token=31053e9f-68d8-499c-b5f1-60ea24262e33" alt="{{ 'kingdom.attack.name' | translate }}">
-      <mat-card-title >{{ 'kingdom.attack.name' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'kingdom.attack.description' | translate }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      {{ 'kingdom.attack.help' | translate }}
-    </mat-card-content>
-    <mat-card-content>
-      <mat-form-field>
-        <mat-label>Favorite food</mat-label>
-        <mat-select>
-          <mat-option value="1">1</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Favorite food</mat-label>
-        <mat-select>
-          <mat-option value="1">1</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Favorite food</mat-label>
-        <mat-select>
-          <mat-option value="1">1</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Favorite food</mat-label>
-        <mat-select>
-          <mat-option value="1">1</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-card-content>
-  </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fattack.png?alt=media&token=31053e9f-68d8-499c-b5f1-60ea24262e33" alt="{{ 'kingdom.attack.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.attack.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.attack.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        {{ 'kingdom.attack.help' | translate }}
+      </mat-card-content>
+      <mat-card-content>
+        <mat-list 
+          cdkDropList 
+          cdkDropListOrientation="vertical" 
+          (cdkDropListDropped)="assignTroop($event)"
+          [cdkDropListData]="attackTroops">
+          <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle">
+            <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ troop.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
+            <mat-icon>open_with</mat-icon>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
   </div>
 
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-  <mat-card>
-    <mat-card-header>
-      <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fdefense.png?alt=media&token=7d7959de-7e5b-4f23-8745-fa29a2131c0e" alt="{{ 'kingdom.defense.name' | translate }}">
-      <mat-card-title >{{ 'kingdom.defense.name' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'kingdom.defense.description' | translate }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      {{ 'kingdom.defense.help' | translate }}
-    </mat-card-content>
-    <mat-card-content>
-      <mat-form-field>
-        <mat-label>Favorite food</mat-label>
-        <mat-select>
-          <mat-option value="1">1</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Favorite food</mat-label>
-        <mat-select>
-          <mat-option value="1">1</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Favorite food</mat-label>
-        <mat-select>
-          <mat-option value="1">1</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-card-content>
-  </mat-card>
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/pages%2Fdefense.png?alt=media&token=7d7959de-7e5b-4f23-8745-fa29a2131c0e" alt="{{ 'kingdom.defense.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.defense.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.defense.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        {{ 'kingdom.defense.help' | translate }}
+      </mat-card-content>
+      <mat-card-content>
+        <mat-list 
+          cdkDropList 
+          cdkDropListOrientation="vertical" 
+          (cdkDropListDropped)="assignTroop($event)"
+          [cdkDropListData]="defenseTroops">
+          <mat-list-item *ngFor="let troop of defenseTroops" cdkDrag class="handle">
+            <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ troop.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
+            <mat-icon>open_with</mat-icon>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
   </div>
 
 </div>

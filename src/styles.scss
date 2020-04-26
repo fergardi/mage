@@ -137,6 +137,68 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 0 5px;
 }
 
+// DRAG AND DROP
+.cdk-drag-placeholder {
+  opacity: 0.5;
+  box-sizing: border-box;
+  border: 2px dashed gray;
+}
+.cdk-drag-animating,
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform .3s ease;
+}
+.cdk-drag-preview {
+  @extend .cdk-drag-placeholder;
+  display: block;
+  height: 72px;
+  width: 100%;
+  padding: 0;
+  position: relative;
+  background-color: #424242;
+  color: white;
+  font-size: 16px;
+  .mat-list-item-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 16px;
+    position: relative;
+    height: inherit;
+    .mat-list-avatar {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .mat-list-text {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      padding: 0;
+      padding-right: 0;
+      padding-left: 16px;
+      .mat-line {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+        font-size: inherit;
+      }
+      .mat-line:nth-child(n+2) {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
 // responsive custom table
 @media screen and (max-width: 960px) {
   .table-responsive {

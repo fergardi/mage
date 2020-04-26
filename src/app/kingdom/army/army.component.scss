@@ -6,4 +6,18 @@
       width: 100%;
     }
   }
+  .handle {
+    &:hover {
+      cursor: move;
+      background-color: #212121;
+    }
+    &:active {
+      cursor: grabbing;
+    }
+  }
+  ::ng-deep .mat-list-base {
+    padding-top: 0;
+    min-height: 72px;
+    border: 2px dashed gray;
+  }
 }
