@@ -6,14 +6,14 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
-  selector: 'app-census',
-  templateUrl: './census.component.html',
-  styleUrls: ['./census.component.scss'],
+  selector: 'app-archive',
+  templateUrl: './archive.component.html',
+  styleUrls: ['./archive.component.scss'],
 })
 @UntilDestroy()
-export class CensusComponent implements OnInit {
+export class ArchiveComponent implements OnInit {
 
-  columns = ['position', 'name', 'faction', 'radius'];
+  columns = ['from', 'subject', 'date'];
   data: MatTableDataSource<any> = null;
 
   constructor(
@@ -24,8 +24,8 @@ export class CensusComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit() {
-    this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id').pipe(untilDestroyed(this)).subscribe(kingdoms => {
-      this.data = new MatTableDataSource(kingdoms.map((kingdom, index) => { return { ...kingdom, position: index + 1 } }));
+    this.firebaseService.leftJoin(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/letters`, 'kingdoms', 'from', 'id').pipe(untilDestroyed(this)).subscribe(letters => {
+      this.data = new MatTableDataSource(letters);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
     })

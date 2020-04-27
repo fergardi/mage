@@ -8,6 +8,7 @@ import { CensusComponent } from './census/census.component';
 import { ArmyComponent } from './army/army.component';
 import { SorceryComponent } from './sorcery/sorcery.component';
 import { ResearchComponent } from './sorcery/research.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ResearchComponent } from './sorcery/research.component';
     ArmyComponent,
     SorceryComponent,
     ResearchComponent,
+    ArchiveComponent,
   ],
   imports: [
     CommonModule,

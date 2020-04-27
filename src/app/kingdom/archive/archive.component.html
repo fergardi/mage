@@ -1,14 +1,14 @@
-<div class="kingdom-census table-responsive">
+<div class="kingdom-archive table-responsive">
   <mat-card>
 
     <mat-card-header>
-      <img mat-card-avatar src="/assets/images/icons/census.png" alt="{{ 'kingdom.census.name' | translate }}">
-      <mat-card-title >{{ 'kingdom.census.name' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'kingdom.census.description' | translate }}</mat-card-subtitle>
+      <img mat-card-avatar src="/assets/images/icons/archive.png" alt="{{ 'kingdom.archive.name' | translate }}">
+      <mat-card-title >{{ 'kingdom.archive.name' | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ 'kingdom.archive.description' | translate }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
-      {{ 'kingdom.census.help' | translate }}
+      {{ 'kingdom.archive.help' | translate }}
     </mat-card-content>
 
     <mat-card-content>
@@ -23,12 +23,7 @@
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
           <mat-cell *matCellDef="let kingdom" [attr.data-label]="column">
-            <span *ngIf="column !== 'faction'; else faction">
-              {{ kingdom[column] }}
-            </span>
-            <ng-template #faction>
-              <img class="item-image" [src]="kingdom['join']['image']" [alt]="kingdom['join']['name'] | translate"/>
-            </ng-template>
+            {{ column === 'from' ? kingdom['join']['name'] : column === 'date' ? ((kingdom[column]).toMillis() | date) : kingdom[column] }}
           </mat-cell>
         </ng-container>
 
