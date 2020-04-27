@@ -2,39 +2,41 @@
   <mat-card>
 
     <mat-card-header>
-      <img mat-card-avatar src="/assets/badge.png" alt="icon">
-      <mat-card-title>{{ 'test' | translate }}</mat-card-title>
-      <mat-card-subtitle>Really, they are!</mat-card-subtitle>
+      <img mat-card-avatar src="/assets/images/icons/census.png" alt="{{ 'kingdom.census.name' | translate }}">
+      <mat-card-title >{{ 'kingdom.census.name' | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ 'kingdom.census.description' | translate }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
+      {{ 'kingdom.census.help' | translate }}
+    </mat-card-content>
 
+    <mat-card-content>
       <div fxLayout="row" fxLayoutAlign="flex-end">
         <mat-form-field>
-          <mat-label>Filter</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+          <mat-label>{{ 'table.filter.name' | translate }}</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'table.filter.name' | translate }}">
         </mat-form-field>
       </div>
 
-      <table mat-table matSort [dataSource]="dataSource" multiTemplateDataRows>
-        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+      <table mat-table matSort [dataSource]="data" multiTemplateDataRows>
+        <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="column">
-            <span *ngIf="column !== 'img'; else img">
-              {{ row[column] }}
+          <mat-cell *matCellDef="let kingdom" [attr.data-label]="column">
+            <span *ngIf="column !== 'faction'; else faction">
+              {{ kingdom[column] }}
             </span>
-            <ng-template #img>
-              <img class="item-image" [src]="row[column]" alt="logo"/>
+            <ng-template #faction>
+              <img class="item-image" [src]="kingdom['join']['image']" [alt]="kingdom['join']['name'] | translate"/>
             </ng-template>
           </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: columnsToDisplay;" class="item-row"></mat-row>
+        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columns;" class="item-row"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-
     </mat-card-content>
   </mat-card>
 </div>

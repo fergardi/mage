@@ -3,87 +3,87 @@
     "name": "spell.summon-ash-golem.name",
     "description": "spell.summon-ash-golem.description",
     "id": "summon-ash-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fash-golem.png?alt=media&token=6cc3658c-94d8-4078-8768-5a558956770a",
-    "faction": "dark",
+    "image": "/assets/images/units/black/ash-golem.png",
+    "faction": "black",
     "level": 1
   },
   {
     "name": "spell.summon-banshee.name",
     "description": "spell.summon-banshee.description",
     "id": "summon-banshee",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fbanshee.png?alt=media&token=8755998c-7b1a-4e6b-9897-7eb78bd588d7",
-    "faction": "dark",
+    "image": "/assets/images/units/black/banshee.png",
+    "faction": "black",
     "level": 1
   },
   {
     "name": "spell.summon-bone-dragon.name",
     "description": "spell.summon-bone-dragon.description",
     "id": "summon-bone-dragon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fbone-dragon.png?alt=media&token=05553d85-8256-4b66-9ca9-948b235877ab",
-    "faction": "dark",
+    "image": "/assets/images/units/black/bone-dragon.png",
+    "faction": "black",
     "level": 1
   },
   {
     "name": "spell.summon-dark-knight.name",
     "description": "spell.summon-dark-knight.description",
     "id": "summon-dark-knight",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fdark-knight.png?alt=media&token=f9afa163-9834-45e1-b493-570c66a467f7",
-    "faction": "dark",
+    "image": "/assets/images/units/black/dark-knight.png",
+    "faction": "black",
     "level": 1
   },
   {
     "name": "spell.summon-hound.name",
     "description": "spell.summon-hound.description",
     "id": "summon-hound",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fhound.png?alt=media&token=2afa3a64-9ad5-45ea-b469-2de395e2e1b1",
-    "faction": "dark",
+    "image": "/assets/images/units/black/hound.png",
+    "faction": "black",
     "level": 1
   },
   {
     "name": "spell.summon-lich.name",
     "description": "spell.summon-lich.description",
     "id": "summon-lich",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Flich.png?alt=media&token=e7862c38-80ba-4494-8ba2-fbbd2fb1587c",
-    "faction": "dark",
+    "image": "/assets/images/units/black/lich.png",
+    "faction": "black",
     "level": 1
   },
   {
     "name": "spell.summon-skeleton.name",
     "description": "spell.summon-skeleton.description",
     "id": "summon-skeleton",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fskeleton.png?alt=media&token=7b4cdb49-029e-41e4-8bcc-cdeeed56ef08",
-    "faction": "dark",
+    "image": "/assets/images/units/black/skeleton.png",
+    "faction": "black",
     "level": 1
   },
   {
     "name": "spell.summon-vampire.name",
     "description": "spell.summon-vampire.description",
     "id": "summon-vampire",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fvampire.png?alt=media&token=e5caac66-cbb1-4837-afe7-b49afc9e689f",
-    "faction": "dark",
+    "image": "/assets/images/units/black/vampire.png",
+    "faction": "black",
     "level": 1
   },
   {
     "name": "spell.summon-werewolf.name",
     "description": "spell.summon-werewolf.description",
     "id": "summon-werewolf",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fwerewolf.png?alt=media&token=02272d04-f932-4161-8b1b-80cba0982f66",
-    "faction": "dark",
+    "image": "/assets/images/units/black/werewolf.png",
+    "faction": "black",
     "level": 1
   },
   {
     "name": "spell.summon-zombie.name",
     "description": "spell.summon-zombie.description",
     "id": "summon-zombie",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fzombie.png?alt=media&token=5520932c-5cbf-418a-a3ed-0d82aed55fd2",
-    "faction": "dark",
+    "image": "/assets/images/units/black/zombie.png",
+    "faction": "black",
     "level": 1
   },
   {
     "name": "spell.summon-blue-dragon.name",
     "description": "spell.summon-blue-dragon.description",
     "id": "summon-blue-dragon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fblue-dragon.png?alt=media&token=1a99da53-a0f9-4d39-b675-1304a4fe48ac",
+    "image": "/assets/images/units/blue/blue-dragon.png",
     "faction": "blue",
     "level": 1
   },
@@ -91,7 +91,7 @@
     "name": "spell.summon-crystal-golem.name",
     "description": "spell.summon-crystal-golem.description",
     "id": "summon-crystal-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fcrystal-golem.png?alt=media&token=0eb3f5e0-3eaa-4cb2-b7b3-383e5ca8ad4b",
+    "image": "/assets/images/units/blue/crystal-golem.png",
     "faction": "blue",
     "level": 1
   },
@@ -99,7 +99,7 @@
     "name": "spell.summon-djinni.name",
     "description": "spell.summon-djinni.description",
     "id": "summon-djinni",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fdjinni.png?alt=media&token=483add7b-3a2c-48de-beca-34bee0c58673",
+    "image": "/assets/images/units/blue/djinni.png",
     "faction": "blue",
     "level": 1
   },
@@ -107,7 +107,7 @@
     "name": "spell.summon-frost-giant.name",
     "description": "spell.summon-frost-giant.description",
     "id": "summon-frost-giant",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Ffrost-giant.png?alt=media&token=fa829f67-92bc-41ba-991e-7a6d7f9ddb7c",
+    "image": "/assets/images/units/blue/frost-giant.png",
     "faction": "blue",
     "level": 1
   },
@@ -115,7 +115,7 @@
     "name": "spell.summon-ice-golem.name",
     "description": "spell.summon-ice-golem.description",
     "id": "summon-ice-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fice-golem.png?alt=media&token=6e657562-4f0a-448b-b2e3-e672b43b4a03",
+    "image": "/assets/images/units/blue/ice-golem.png",
     "faction": "blue",
     "level": 1
   },
@@ -123,7 +123,7 @@
     "name": "spell.summon-ice-troll.name",
     "description": "spell.summon-ice-troll.description",
     "id": "summon-ice-troll",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fice-troll.png?alt=media&token=e0f34633-8963-4eee-8bf0-89d24c56fb24",
+    "image": "/assets/images/units/blue/ice-troll.png",
     "faction": "blue",
     "level": 1
   },
@@ -131,7 +131,7 @@
     "name": "spell.summon-kraken.name",
     "description": "spell.summon-kraken.description",
     "id": "summon-kraken",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fkraken.png?alt=media&token=f9dbbef9-5ae3-412b-af20-10be0a37070f",
+    "image": "/assets/images/units/blue/kraken.png",
     "faction": "blue",
     "level": 1
   },
@@ -139,7 +139,7 @@
     "name": "spell.summon-leviathan.name",
     "description": "spell.summon-leviathan.description",
     "id": "summon-leviathan",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fleviathan.png?alt=media&token=c75ea958-446f-46ac-9243-a1271dd46259",
+    "image": "/assets/images/units/blue/leviathan.png",
     "faction": "blue",
     "level": 1
   },
@@ -147,7 +147,7 @@
     "name": "spell.summon-mage.name",
     "description": "spell.summon-mage.description",
     "id": "summon-mage",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fmage.png?alt=media&token=b85a8f11-de5d-4e5a-8fa3-c0079b7acc2e",
+    "image": "/assets/images/units/blue/mage.png",
     "faction": "blue",
     "level": 1
   },
@@ -155,7 +155,7 @@
     "name": "spell.summon-yeti.name",
     "description": "spell.summon-yeti.description",
     "id": "summon-yeti",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fyeti.png?alt=media&token=9ee85f03-f3e9-4487-8f20-61680d5e6c2e",
+    "image": "/assets/images/units/blue/yeti.png",
     "faction": "blue",
     "level": 1
   },
@@ -163,7 +163,7 @@
     "name": "spell.summon-carnivore-plant.name",
     "description": "spell.summon-carnivore-plant.description",
     "id": "summon-carnivore-plant",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fcarnivore-plant.png?alt=media&token=f852226b-4e11-419e-89b5-bca37eaac63f",
+    "image": "/assets/images/units/green/carnivore-plant.png",
     "faction": "green",
     "level": 1
   },
@@ -171,7 +171,7 @@
     "name": "spell.summon-frog.name",
     "description": "spell.summon-frog.description",
     "id": "summon-frog",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Ffrog.png?alt=media&token=1b7bee06-2eee-4bdd-baec-226059793dc9",
+    "image": "/assets/images/units/green/frog.png",
     "faction": "green",
     "level": 1
   },
@@ -179,7 +179,7 @@
     "name": "spell.summon-gnoll.name",
     "description": "spell.summon-gnoll.description",
     "id": "summon-gnoll",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fgnoll.png?alt=media&token=681dba32-09b6-45c9-ad53-7b75bd6b0157",
+    "image": "/assets/images/units/green/gnoll.png",
     "faction": "green",
     "level": 1
   },
@@ -187,7 +187,7 @@
     "name": "spell.summon-goblin.name",
     "description": "spell.summon-goblin.description",
     "id": "summon-goblin",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fgoblin.png?alt=media&token=6cee58c7-371e-4876-949e-90d96427053f",
+    "image": "/assets/images/units/green/goblin.png",
     "faction": "green",
     "level": 1
   },
@@ -195,7 +195,7 @@
     "name": "spell.summon-green-dragon.name",
     "description": "spell.summon-green-dragon.description",
     "id": "summon-green-dragon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fgreen-dragon.png?alt=media&token=91867786-ea0a-4cc9-b5c9-33d39b2eb0ad",
+    "image": "/assets/images/units/green/green-dragon.png",
     "faction": "green",
     "level": 1
   },
@@ -203,7 +203,7 @@
     "name": "spell.summon-lizard.name",
     "description": "spell.summon-lizard.description",
     "id": "summon-lizard",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Flizard.png?alt=media&token=f0c4507b-8f2e-410d-89ad-8387ec685578",
+    "image": "/assets/images/units/green/lizard.png",
     "faction": "green",
     "level": 1
   },
@@ -211,7 +211,7 @@
     "name": "spell.summon-slime.name",
     "description": "spell.summon-slime.description",
     "id": "summon-slime",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fslime.png?alt=media&token=6fe357b5-896a-4979-91fa-0c23b9bd968d",
+    "image": "/assets/images/units/green/slime.png",
     "faction": "green",
     "level": 1
   },
@@ -219,7 +219,7 @@
     "name": "spell.summon-giant-spider.name",
     "description": "spell.summon-giant-spider.description",
     "id": "summon-giant-spider",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fgiant-spider.png?alt=media&token=769172f4-5b66-4b6e-800e-c9a9c1da6a2d",
+    "image": "/assets/images/units/green/giant-spider.png",
     "faction": "green",
     "level": 1
   },
@@ -227,7 +227,7 @@
     "name": "spell.summon-stone-golem.name",
     "description": "spell.summon-stone-golem.description",
     "id": "summon-stone-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fstone-golem.png?alt=media&token=74c74643-b194-4ac3-bf76-b0bcf49da02a",
+    "image": "/assets/images/units/green/stone-golem.png",
     "faction": "green",
     "level": 1
   },
@@ -235,7 +235,7 @@
     "name": "spell.summon-swamp-monster.name",
     "description": "spell.summon-swamp-monster.description",
     "id": "summon-swamp-monster",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fswamp-monster.png?alt=media&token=b1444ff0-54f5-4d23-a2c3-2ba17ae2eeda",
+    "image": "/assets/images/units/green/swamp-monster.png",
     "faction": "green",
     "level": 1
   },
@@ -243,7 +243,7 @@
     "name": "spell.summon-cyclop.name",
     "description": "spell.summon-cyclop.description",
     "id": "summon-cyclop",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fcyclop.png?alt=media&token=acf0ffac-4874-4666-b45e-275bd5b8bed2",
+    "image": "/assets/images/units/red/cyclop.png",
     "faction": "red",
     "level": 1
   },
@@ -251,7 +251,7 @@
     "name": "spell.summon-demon.name",
     "description": "spell.summon-demon.description",
     "id": "summon-demon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fdemon.png?alt=media&token=31b677e8-5851-4609-a698-1c609cb9c3f1",
+    "image": "/assets/images/units/red/demon.png",
     "faction": "red",
     "level": 1
   },
@@ -259,7 +259,7 @@
     "name": "spell.summon-devil.name",
     "description": "spell.summon-devil.description",
     "id": "summon-devil",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fdevil.png?alt=media&token=ad55996c-7592-420f-838a-4dec35f72424",
+    "image": "/assets/images/units/red/devil.png",
     "faction": "red",
     "level": 1
   },
@@ -267,7 +267,7 @@
     "name": "spell.summon-fire-golem.name",
     "description": "spell.summon-fire-golem.description",
     "id": "summon-fire-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Ffire-golem.png?alt=media&token=c24b3fdb-1486-465e-9551-8bba26ad26c1",
+    "image": "/assets/images/units/red/fire-golem.png",
     "faction": "red",
     "level": 1
   },
@@ -275,7 +275,7 @@
     "name": "spell.summon-imp.name",
     "description": "spell.summon-imp.description",
     "id": "summon-imp",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fimp.png?alt=media&token=fdd4b0ae-edae-41e6-b388-900a17ea2f0a",
+    "image": "/assets/images/units/red/imp.png",
     "faction": "red",
     "level": 1
   },
@@ -283,7 +283,7 @@
     "name": "spell.summon-ogre.name",
     "description": "spell.summon-ogre.description",
     "id": "summon-ogre",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fogre.png?alt=media&token=1d6a72aa-0800-4890-aad2-8c0c1095f321",
+    "image": "/assets/images/units/red/ogre.png",
     "faction": "red",
     "level": 1
   },
@@ -291,7 +291,7 @@
     "name": "spell.summon-orc.name",
     "description": "spell.summon-orc.description",
     "id": "summon-orc",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Forc.png?alt=media&token=66735680-d5c6-4d64-abb9-a4aea31f9818",
+    "image": "/assets/images/units/red/orc.png",
     "faction": "red",
     "level": 1
   },
@@ -299,7 +299,7 @@
     "name": "spell.summon-phoenix.name",
     "description": "spell.summon-phoenix.description",
     "id": "summon-phoenix",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fphoenix.png?alt=media&token=619db699-0f13-49e8-bae1-2207111e14e4",
+    "image": "/assets/images/units/red/phoenix.png",
     "faction": "red",
     "level": 1
   },
@@ -307,7 +307,7 @@
     "name": "spell.summon-red-dragon.name",
     "description": "spell.summon-red-dragon.description",
     "id": "summon-red-dragon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fred-dragon.png?alt=media&token=b9238fc9-9c2b-4965-9316-5e418df4e6cf",
+    "image": "/assets/images/units/red/red-dragon.png",
     "faction": "red",
     "level": 1
   },
@@ -315,7 +315,7 @@
     "name": "spell.summon-wendigo.name",
     "description": "spell.summon-wendigo.description",
     "id": "summon-wendigo",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fwendigo.png?alt=media&token=272b00f4-5101-4ef0-b103-15a31f7e21ed",
+    "image": "/assets/images/units/red/wendigo.png",
     "faction": "red",
     "level": 1
   },
@@ -323,7 +323,7 @@
     "name": "spell.summon-sheep.name",
     "description": "spell.summon-sheep.description",
     "id": "summon-sheep",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fsheep.png?alt=media&token=6dcca450-e5d3-476f-b13c-de85c01098ff",
+    "image": "/assets/images/units/white/sheep.png",
     "faction": "white",
     "level": 1
   },
@@ -331,7 +331,7 @@
     "name": "spell.summon-golden-dragon.name",
     "description": "spell.summon-golden-dragon.description",
     "id": "summon-golden-dragon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fgolden-dragon.png?alt=media&token=558c23c8-ac54-4d39-b5a9-519478e71fb5",
+    "image": "/assets/images/units/white/golden-dragon.png",
     "faction": "white",
     "level": 1
   },
@@ -339,7 +339,7 @@
     "name": "spell.summon-gryphon.name",
     "description": "spell.summon-gryphon.description",
     "id": "summon-gryphon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fgryphon.png?alt=media&token=a4a48e79-0627-4ee8-9194-e04d363a67a8",
+    "image": "/assets/images/units/white/gryphon.png",
     "faction": "white",
     "level": 1
   },
@@ -347,7 +347,7 @@
     "name": "spell.summon-knight.name",
     "description": "spell.summon-knight.description",
     "id": "summon-knight",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fknight.png?alt=media&token=0facc221-54f3-43be-b48d-00d1258ed1de",
+    "image": "/assets/images/units/white/knight.png",
     "faction": "white",
     "level": 1
   },
@@ -355,7 +355,7 @@
     "name": "spell.summon-light-golem.name",
     "description": "spell.summon-light-golem.description",
     "id": "summon-light-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Flight-golem.png?alt=media&token=34182e76-d43d-4c5b-8002-b8b7681e8e0d",
+    "image": "/assets/images/units/white/light-golem.png",
     "faction": "white",
     "level": 1
   },
@@ -363,7 +363,7 @@
     "name": "spell.summon-living-armor.name",
     "description": "spell.summon-living-armor.description",
     "id": "summon-living-armor",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fliving-armor.png?alt=media&token=3cccc588-ca26-4db8-87ea-17a6a132996c",
+    "image": "/assets/images/units/white/living-armor.png",
     "faction": "white",
     "level": 1
   },
@@ -371,7 +371,7 @@
     "name": "spell.summon-monk.name",
     "description": "spell.summon-monk.description",
     "id": "summon-monk",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fmonk.png?alt=media&token=00e96322-dd87-4968-89d4-18f9512c6f29",
+    "image": "/assets/images/units/white/monk.png",
     "faction": "white",
     "level": 1
   },
@@ -379,7 +379,7 @@
     "name": "spell.summon-warrior.name",
     "description": "spell.summon-warrior.description",
     "id": "summon-warrior",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fwarrior.png?alt=media&token=d21a8f8d-85f1-4190-9253-af243c63a8e2",
+    "image": "/assets/images/units/white/warrior.png",
     "faction": "white",
     "level": 1
   },
@@ -387,7 +387,7 @@
     "name": "spell.summon-wyvern.name",
     "description": "spell.summon-wyvern.description",
     "id": "summon-wyvern",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fwyvern.png?alt=media&token=4a2f2c33-835b-4934-8445-c457a6c6e63e",
+    "image": "/assets/images/units/white/wyvern.png",
     "faction": "white",
     "level": 1
   },
@@ -395,7 +395,7 @@
     "name": "spell.summon-paladin.name",
     "description": "spell.summon-paladin.description",
     "id": "summon-paladin",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fpaladin.png?alt=media&token=8f4dc8e1-ffe2-4708-88a5-105f1f97d6f8",
+    "image": "/assets/images/units/white/paladin.png",
     "faction": "white",
     "level": 1
   }

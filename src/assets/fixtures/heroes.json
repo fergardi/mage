@@ -3,70 +3,60 @@
     "name": "hero.dragon-rider.name",
     "description": "hero.dragon-rider.description",
     "id": "dragon-rider",
-    "faction": "red",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/heroes%2Fdragon-rider.png?alt=media&token=86bb7574-5c45-4057-9278-6e1d0ccdf2ef"
+    "image": "/assets/images/heroes/dragon-rider.png"
   },
   {
     "name": "hero.demon-king.name",
     "description": "hero.demon-king.description",
     "id": "demon-king",
-    "faction": "red",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/heroes%2Fdemon-king.png?alt=media&token=91d69e8c-c956-4ec1-9398-49416495719d"
+    "image": "/assets/images/heroes/demon-king.png"
   },
   {
     "name": "hero.barbarian.name",
     "description": "hero.barbarian.description",
     "id": "barbarian",
-    "faction": "white",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/heroes%2Fbarbarian.png?alt=media&token=a5ee789e-97eb-4db3-af8c-3ebb8f77de20"
+    "image": "/assets/images/heroes/barbarian.png"
   },
   {
     "name": "hero.robot.name",
     "description": "hero.robot.description",
     "id": "robot",
-    "faction": "white",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/heroes%2Frobot.png?alt=media&token=d0f14399-2923-4577-a50b-19bac224eb38"
+    "image": "/assets/images/heroes/robot.png"
   },
   {
     "name": "hero.beast-master.name",
     "description": "hero.beast-master.description",
     "id": "beast-master",
-    "faction": "green",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/heroes%2Fbeast-master.png?alt=media&token=9947da6c-5209-4f9a-9241-b3626e414a2d"
+    "image": "/assets/images/heroes/beast-master.png"
   },
   {
     "name": "hero.shaman.name",
     "description": "hero.shaman.description",
     "id": "shaman",
-    "faction": "green",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/heroes%2Fshaman.png?alt=media&token=3e3643d1-173b-4e74-92e6-69375ce213f9"
+    "image": "/assets/images/heroes/shaman.png"
   },
   {
     "name": "hero.elementalist.name",
     "description": "hero.elementalist.description",
     "id": "elementalist",
-    "faction": "blue",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/heroes%2Felementalist.png?alt=media&token=3241ea6d-6bca-46c4-af64-bd67f3b871b4"
+    "image": "/assets/images/heroes/elementalist.png"
   },
   {
     "name": "hero.sage.name",
     "description": "hero.sage.description",
     "id": "sage",
-    "faction": "blue",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/heroes%2Fsage.png?alt=media&token=16c1a5f9-a148-414a-a652-53eb516a921a"
+    "image": "/assets/images/heroes/sage.png"
   },
   {
     "name": "hero.mummy.name",
     "description": "hero.mummy.description",
     "id": "mummy",
-    "faction": "black",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/heroes%2Fmummy.png?alt=media&token=1d20a38f-042d-4494-bcb8-b5753764c1fb"
+    "image": "/assets/images/heroes/mummy.png"
   },
   {
     "name": "hero.necromancer.name",
     "description": "hero.necromancer.description",
     "id": "necromancer",
-    "faction": "black",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/heroes%2Fnecromancer.png?alt=media&token=a42728af-e999-4c43-8892-3c9bf1724539"
+    "image": "/assets/images/heroes/necromancer.png"
   }
 ]

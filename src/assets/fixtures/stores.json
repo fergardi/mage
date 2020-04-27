@@ -1,36 +1,36 @@
 [
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Finn.png?alt=media&token=5c648e19-36af-4f41-b7af-aca98e16d5a5",
+    "image": "/assets/images/stores/inn.png",
     "name": "store.inn.name",
     "description": "store.inn.description",
     "id": "inn"
   },
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Fstable.png?alt=media&token=e83a4ea0-7dd4-4a56-b035-d8d0223cd945",
+    "image": "/assets/images/stores/stable.png",
     "name": "store.stable.name",
     "description": "store.stable.description",
     "id": "stable"
   },
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Falchemist.png?alt=media&token=4cb2b2f7-5845-40b4-b8fa-98ab51f60fcb",
+    "image": "/assets/images/stores/alchemist.png",
     "name": "store.alchemist.name",
     "description": "store.alchemist.description",
     "id": "alchemist"
   },
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Fcamp.png?alt=media&token=bc1d65c4-fe9e-4930-bf96-0ddbdde38ecc",
+    "image": "/assets/images/stores/camp.png",
     "name": "store.camp.name",
     "description": "store.camp.description",
     "id": "camp"
   },
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Fmerchant.png?alt=media&token=42b99269-cf62-4394-975a-31027c4d2c2f",
+    "image": "/assets/images/stores/merchant.png",
     "name": "store.merchant.name",
     "description": "store.merchant.description",
     "id": "merchant"
   },
   {
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/stores%2Fsorcerer.png?alt=media&token=1a94b734-919a-42a0-a0fc-d9e755b8a3e2",
+    "image": "/assets/images/stores/sorcerer.png",
     "name": "store.sorcerer.name",
     "description": "store.sorcerer.description",
     "id": "sorcerer"

@@ -3,8 +3,8 @@
     "name": "unit.ash-golem.name",
     "description": "unit.ash-golem.description",
     "id": "ash-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fash-golem.png?alt=media&token=6cc3658c-94d8-4078-8768-5a558956770a",
-    "faction": "dark",
+    "image": "/assets/images/units/black/ash-golem.png",
+    "faction": "black",
     "category": "flying",
     "family": ["elemental", "giant", "undead"]
   },
@@ -12,8 +12,8 @@
     "name": "unit.banshee.name",
     "description": "unit.banshee.description",
     "id": "banshee",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fbanshee.png?alt=media&token=8755998c-7b1a-4e6b-9897-7eb78bd588d7",
-    "faction": "dark",
+    "image": "/assets/images/units/black/banshee.png",
+    "faction": "black",
     "category": "ranged",
     "family": ["undead"]
   },
@@ -21,8 +21,8 @@
     "name": "unit.bone-dragon.name",
     "description": "unit.bone-dragon.description",
     "id": "bone-dragon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fbone-dragon.png?alt=media&token=05553d85-8256-4b66-9ca9-948b235877ab",
-    "faction": "dark",
+    "image": "/assets/images/units/black/bone-dragon.png",
+    "faction": "black",
     "category": "flying",
     "family": ["dragon", "undead"]
   },
@@ -30,8 +30,8 @@
     "name": "unit.dark-knight.name",
     "description": "unit.dark-knight.description",
     "id": "dark-knight",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fdark-knight.png?alt=media&token=f9afa163-9834-45e1-b493-570c66a467f7",
-    "faction": "dark",
+    "image": "/assets/images/units/black/dark-knight.png",
+    "faction": "black",
     "category": "melee",
     "family": ["undead", "humanoid"]
   },
@@ -39,8 +39,8 @@
     "name": "unit.hound.name",
     "description": "unit.hound.description",
     "id": "hound",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fhound.png?alt=media&token=2afa3a64-9ad5-45ea-b469-2de395e2e1b1",
-    "faction": "dark",
+    "image": "/assets/images/units/black/hound.png",
+    "faction": "black",
     "category": "melee",
     "family": ["undead", "beast"]
   },
@@ -48,8 +48,8 @@
     "name": "unit.lich.name",
     "description": "unit.lich.description",
     "id": "lich",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Flich.png?alt=media&token=e7862c38-80ba-4494-8ba2-fbbd2fb1587c",
-    "faction": "dark",
+    "image": "/assets/images/units/black/lich.png",
+    "faction": "black",
     "category": "ranged",
     "family": ["undead"]
   },
@@ -57,8 +57,8 @@
     "name": "unit.skeleton.name",
     "description": "unit.skeleton.description",
     "id": "skeleton",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fskeleton.png?alt=media&token=7b4cdb49-029e-41e4-8bcc-cdeeed56ef08",
-    "faction": "dark",
+    "image": "/assets/images/units/black/skeleton.png",
+    "faction": "black",
     "category": "melee",
     "family": ["undead"]
   },
@@ -66,8 +66,8 @@
     "name": "unit.vampire.name",
     "description": "unit.vampire.description",
     "id": "vampire",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fvampire.png?alt=media&token=e5caac66-cbb1-4837-afe7-b49afc9e689f",
-    "faction": "dark",
+    "image": "/assets/images/units/black/vampire.png",
+    "faction": "black",
     "category": "flying",
     "family": ["undead", "humanoid"]
   },
@@ -75,8 +75,8 @@
     "name": "unit.werewolf.name",
     "description": "unit.werewolf.description",
     "id": "werewolf",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fwerewolf.png?alt=media&token=02272d04-f932-4161-8b1b-80cba0982f66",
-    "faction": "dark",
+    "image": "/assets/images/units/black/werewolf.png",
+    "faction": "black",
     "category": "melee",
     "family": ["beast", "humanoid"]
   },
@@ -84,8 +84,8 @@
     "name": "unit.zombie.name",
     "description": "unit.zombie.description",
     "id": "zombie",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblack%2Fzombie.png?alt=media&token=5520932c-5cbf-418a-a3ed-0d82aed55fd2",
-    "faction": "dark",
+    "image": "/assets/images/units/black/zombie.png",
+    "faction": "black",
     "category": "flying",
     "family": ["undead"]
   },
@@ -93,7 +93,7 @@
     "name": "unit.blue-dragon.name",
     "description": "unit.blue-dragon.description",
     "id": "blue-dragon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fblue-dragon.png?alt=media&token=1a99da53-a0f9-4d39-b675-1304a4fe48ac",
+    "image": "/assets/images/units/blue/blue-dragon.png",
     "faction": "blue",
     "category": "flying",
     "family": ["dragon"]
@@ -102,7 +102,7 @@
     "name": "unit.crystal-golem.name",
     "description": "unit.crystal-golem.description",
     "id": "crystal-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fcrystal-golem.png?alt=media&token=0eb3f5e0-3eaa-4cb2-b7b3-383e5ca8ad4b",
+    "image": "/assets/images/units/blue/crystal-golem.png",
     "faction": "blue",
     "category": "ranged",
     "family": ["elemental"]
@@ -111,7 +111,7 @@
     "name": "unit.djinni.name",
     "description": "unit.djinni.description",
     "id": "djinni",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fdjinni.png?alt=media&token=483add7b-3a2c-48de-beca-34bee0c58673",
+    "image": "/assets/images/units/blue/djinni.png",
     "faction": "blue",
     "category": "ranged",
     "family": ["elemental"]
@@ -120,7 +120,7 @@
     "name": "unit.frost-giant.name",
     "description": "unit.frost-giant.description",
     "id": "frost-giant",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Ffrost-giant.png?alt=media&token=fa829f67-92bc-41ba-991e-7a6d7f9ddb7c",
+    "image": "/assets/images/units/blue/frost-giant.png",
     "faction": "blue",
     "category": "melee",
     "family": ["giant", "elemental"]
@@ -129,7 +129,7 @@
     "name": "unit.ice-golem.name",
     "description": "unit.ice-golem.description",
     "id": "ice-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fice-golem.png?alt=media&token=6e657562-4f0a-448b-b2e3-e672b43b4a03",
+    "image": "/assets/images/units/blue/ice-golem.png",
     "faction": "blue",
     "category": "melee",
     "family": ["elemental"]
@@ -138,7 +138,7 @@
     "name": "unit.ice-troll.name",
     "description": "unit.ice-troll.description",
     "id": "ice-troll",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fice-troll.png?alt=media&token=e0f34633-8963-4eee-8bf0-89d24c56fb24",
+    "image": "/assets/images/units/blue/ice-troll.png",
     "faction": "blue",
     "category": "melee",
     "family": ["humanoid"]
@@ -147,7 +147,7 @@
     "name": "unit.kraken.name",
     "description": "unit.kraken.description",
     "id": "kraken",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fkraken.png?alt=media&token=f9dbbef9-5ae3-412b-af20-10be0a37070f",
+    "image": "/assets/images/units/blue/kraken.png",
     "faction": "blue",
     "category": "ranged",
     "family": ["beast", "giant"]
@@ -156,7 +156,7 @@
     "name": "unit.leviathan.name",
     "description": "unit.leviathan.description",
     "id": "leviathan",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fleviathan.png?alt=media&token=c75ea958-446f-46ac-9243-a1271dd46259",
+    "image": "/assets/images/units/blue/leviathan.png",
     "faction": "blue",
     "category": "flying",
     "family": ["giant", "dragon"]
@@ -165,7 +165,7 @@
     "name": "unit.mage.name",
     "description": "unit.mage.description",
     "id": "mage",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fmage.png?alt=media&token=b85a8f11-de5d-4e5a-8fa3-c0079b7acc2e",
+    "image": "/assets/images/units/blue/mage.png",
     "faction": "blue",
     "category": "ranged",
     "family": ["humanoid"]
@@ -174,7 +174,7 @@
     "name": "unit.yeti.name",
     "description": "unit.yeti.description",
     "id": "yeti",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fblue%2Fyeti.png?alt=media&token=9ee85f03-f3e9-4487-8f20-61680d5e6c2e",
+    "image": "/assets/images/units/blue/yeti.png",
     "faction": "blue",
     "category": "melee",
     "family": ["giant"]
@@ -183,7 +183,7 @@
     "name": "unit.carnivore-plant.name",
     "description": "unit.carnivore-plant.description",
     "id": "carnivore-plant",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fcarnivore-plant.png?alt=media&token=f852226b-4e11-419e-89b5-bca37eaac63f",
+    "image": "/assets/images/units/green/carnivore-plant.png",
     "faction": "green",
     "category": "melee",
     "family": ["beast", "giant"]
@@ -192,7 +192,7 @@
     "name": "unit.frog.name",
     "description": "unit.frog.description",
     "id": "frog",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Ffrog.png?alt=media&token=1b7bee06-2eee-4bdd-baec-226059793dc9",
+    "image": "/assets/images/units/green/frog.png",
     "faction": "green",
     "category": "melee",
     "family": ["beast"]
@@ -201,7 +201,7 @@
     "name": "unit.gnoll.name",
     "description": "unit.gnoll.description",
     "id": "gnoll",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fgnoll.png?alt=media&token=681dba32-09b6-45c9-ad53-7b75bd6b0157",
+    "image": "/assets/images/units/green/gnoll.png",
     "faction": "green",
     "category": "melee",
     "family": ["humanoid"]
@@ -210,7 +210,7 @@
     "name": "unit.goblin.name",
     "description": "unit.goblin.description",
     "id": "goblin",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fgoblin.png?alt=media&token=6cee58c7-371e-4876-949e-90d96427053f",
+    "image": "/assets/images/units/green/goblin.png",
     "faction": "green",
     "category": "melee",
     "family": ["humanoid"]
@@ -219,16 +219,16 @@
     "name": "unit.green-dragon.name",
     "description": "unit.green-dragon.description",
     "id": "green-dragon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fgreen-dragon.png?alt=media&token=91867786-ea0a-4cc9-b5c9-33d39b2eb0ad",
+    "image": "/assets/images/units/green/green-dragon.png",
     "faction": "green",
     "category": "flying",
     "family": ["dragon", "beast"]
   },
   {
-    "name": "unit.lizard.name",
-    "description": "unit.lizard.description",
-    "id": "lizard",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Flizard.png?alt=media&token=f0c4507b-8f2e-410d-89ad-8387ec685578",
+    "name": "unit.basilisk.name",
+    "description": "unit.basilisk.description",
+    "id": "basilisk",
+    "image": "/assets/images/units/green/basilisk.png",
     "faction": "green",
     "category": "ranged",
     "family": ["beast"]
@@ -237,7 +237,7 @@
     "name": "unit.slime.name",
     "description": "unit.slime.description",
     "id": "slime",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fslime.png?alt=media&token=6fe357b5-896a-4979-91fa-0c23b9bd968d",
+    "image": "/assets/images/units/green/slime.png",
     "faction": "green",
     "category": "melee",
     "family": ["undead"]
@@ -246,7 +246,7 @@
     "name": "unit.giant-spider.name",
     "description": "unit.giant-spider.description",
     "id": "giant-spider",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fgiant-spider.png?alt=media&token=769172f4-5b66-4b6e-800e-c9a9c1da6a2d",
+    "image": "/assets/images/units/green/giant-spider.png",
     "faction": "green",
     "category": "ranged",
     "family": ["beast", "giant"]
@@ -255,7 +255,7 @@
     "name": "unit.stone-golem.name",
     "description": "unit.stone-golem.description",
     "id": "stone-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fstone-golem.png?alt=media&token=74c74643-b194-4ac3-bf76-b0bcf49da02a",
+    "image": "/assets/images/units/green/stone-golem.png",
     "faction": "green",
     "category": "ranged",
     "family": ["elemental"]
@@ -264,7 +264,7 @@
     "name": "unit.swamp-monster.name",
     "description": "unit.swamp-monster.description",
     "id": "swamp-monster",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fgreen%2Fswamp-monster.png?alt=media&token=b1444ff0-54f5-4d23-a2c3-2ba17ae2eeda",
+    "image": "/assets/images/units/green/swamp-monster.png",
     "faction": "green",
     "category": "melee",
     "family": ["beast"]
@@ -273,7 +273,7 @@
     "name": "unit.cyclop.name",
     "description": "unit.cyclop.description",
     "id": "cyclop",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fcyclop.png?alt=media&token=acf0ffac-4874-4666-b45e-275bd5b8bed2",
+    "image": "/assets/images/units/red/cyclop.png",
     "faction": "red",
     "category": "melee",
     "family": ["giant"]
@@ -282,7 +282,7 @@
     "name": "unit.demon.name",
     "description": "unit.demon.description",
     "id": "demon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fdemon.png?alt=media&token=31b677e8-5851-4609-a698-1c609cb9c3f1",
+    "image": "/assets/images/units/red/demon.png",
     "faction": "red",
     "category": "melee",
     "family": ["demon"]
@@ -291,7 +291,7 @@
     "name": "unit.devil.name",
     "description": "unit.devil.description",
     "id": "devil",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fdevil.png?alt=media&token=ad55996c-7592-420f-838a-4dec35f72424",
+    "image": "/assets/images/units/red/devil.png",
     "faction": "red",
     "category": "flying",
     "family": ["demon", "humanoid"]
@@ -300,7 +300,7 @@
     "name": "unit.fire-golem.name",
     "description": "unit.fire-golem.description",
     "id": "fire-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Ffire-golem.png?alt=media&token=c24b3fdb-1486-465e-9551-8bba26ad26c1",
+    "image": "/assets/images/units/red/fire-golem.png",
     "faction": "red",
     "category": "ranged",
     "family": ["elemental", "giant", "demon"]
@@ -309,7 +309,7 @@
     "name": "unit.imp.name",
     "description": "unit.imp.description",
     "id": "imp",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fimp.png?alt=media&token=fdd4b0ae-edae-41e6-b388-900a17ea2f0a",
+    "image": "/assets/images/units/red/imp.png",
     "faction": "red",
     "category": "ranged",
     "family": ["demon", "humanoid"]
@@ -318,7 +318,7 @@
     "name": "unit.ogre.name",
     "description": "unit.ogre.description",
     "id": "ogre",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fogre.png?alt=media&token=1d6a72aa-0800-4890-aad2-8c0c1095f321",
+    "image": "/assets/images/units/red/ogre.png",
     "faction": "red",
     "category": "melee",
     "family": ["demon", "humanoid"]
@@ -327,7 +327,7 @@
     "name": "unit.orc.name",
     "description": "unit.orc.description",
     "id": "orc",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Forc.png?alt=media&token=66735680-d5c6-4d64-abb9-a4aea31f9818",
+    "image": "/assets/images/units/red/orc.png",
     "faction": "red",
     "category": "melee",
     "family": ["demon", "humanoid"]
@@ -336,7 +336,7 @@
     "name": "unit.phoenix.name",
     "description": "unit.phoenix.description",
     "id": "phoenix",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fphoenix.png?alt=media&token=619db699-0f13-49e8-bae1-2207111e14e4",
+    "image": "/assets/images/units/red/phoenix.png",
     "faction": "red",
     "category": "flying",
     "family": ["beast", "giant"]
@@ -345,7 +345,7 @@
     "name": "unit.red-dragon.name",
     "description": "unit.red-dragon.description",
     "id": "red-dragon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fred-dragon.png?alt=media&token=b9238fc9-9c2b-4965-9316-5e418df4e6cf",
+    "image": "/assets/images/units/red/red-dragon.png",
     "faction": "red",
     "category": "flying",
     "family": ["dragon"]
@@ -354,7 +354,7 @@
     "name": "unit.wendigo.name",
     "description": "unit.wendigo.description",
     "id": "wendigo",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fred%2Fwendigo.png?alt=media&token=272b00f4-5101-4ef0-b103-15a31f7e21ed",
+    "image": "/assets/images/units/red/wendigo.png",
     "faction": "red",
     "category": "melee",
     "family": ["demon", "giant", "humanoid", "beast"]
@@ -363,7 +363,7 @@
     "name": "unit.sheep.name",
     "description": "unit.sheep.description",
     "id": "sheep",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fsheep.png?alt=media&token=6dcca450-e5d3-476f-b13c-de85c01098ff",
+    "image": "/assets/images/units/white/sheep.png",
     "faction": "white",
     "category": "melee",
     "family": ["beast"]
@@ -372,7 +372,7 @@
     "name": "unit.golden-dragon.name",
     "description": "unit.golden-dragon.description",
     "id": "golden-dragon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fgolden-dragon.png?alt=media&token=558c23c8-ac54-4d39-b5a9-519478e71fb5",
+    "image": "/assets/images/units/white/golden-dragon.png",
     "faction": "white",
     "category": "flying",
     "family": ["dragon"]
@@ -381,7 +381,7 @@
     "name": "unit.gryphon.name",
     "description": "unit.gryphon.description",
     "id": "gryphon",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fgryphon.png?alt=media&token=a4a48e79-0627-4ee8-9194-e04d363a67a8",
+    "image": "/assets/images/units/white/gryphon.png",
     "faction": "white",
     "category": "flying",
     "family": ["beast"]
@@ -390,7 +390,7 @@
     "name": "unit.knight.name",
     "description": "unit.knight.description",
     "id": "knight",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fknight.png?alt=media&token=0facc221-54f3-43be-b48d-00d1258ed1de",
+    "image": "/assets/images/units/white/knight.png",
     "faction": "white",
     "category": "melee",
     "family": ["humanoid"]
@@ -399,7 +399,7 @@
     "name": "unit.light-golem.name",
     "description": "unit.light-golem.description",
     "id": "light-golem",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Flight-golem.png?alt=media&token=34182e76-d43d-4c5b-8002-b8b7681e8e0d",
+    "image": "/assets/images/units/white/light-golem.png",
     "faction": "white",
     "category": "melee",
     "family": ["elemental", "humanoid", "giant"]
@@ -408,7 +408,7 @@
     "name": "unit.living-armor.name",
     "description": "unit.living-armor.description",
     "id": "living-armor",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fliving-armor.png?alt=media&token=3cccc588-ca26-4db8-87ea-17a6a132996c",
+    "image": "/assets/images/units/white/living-armor.png",
     "faction": "white",
     "category": "melee",
     "family": ["elemental", "humanoid"]
@@ -417,7 +417,7 @@
     "name": "unit.monk.name",
     "description": "unit.monk.description",
     "id": "monk",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fmonk.png?alt=media&token=00e96322-dd87-4968-89d4-18f9512c6f29",
+    "image": "/assets/images/units/white/monk.png",
     "faction": "white",
     "category": "ranged",
     "family": ["humanoid"]
@@ -426,7 +426,7 @@
     "name": "unit.warrior.name",
     "description": "unit.warrior.description",
     "id": "warrior",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fwarrior.png?alt=media&token=d21a8f8d-85f1-4190-9253-af243c63a8e2",
+    "image": "/assets/images/units/white/warrior.png",
     "faction": "white",
     "category": "melee",
     "family": ["humanoid"]
@@ -435,7 +435,7 @@
     "name": "unit.wyvern.name",
     "description": "unit.wyvern.description",
     "id": "wyvern",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fwyvern.png?alt=media&token=4a2f2c33-835b-4934-8445-c457a6c6e63e",
+    "image": "/assets/images/units/white/wyvern.png",
     "faction": "white",
     "category": "flying",
     "family": ["beast", "giant"]
@@ -444,7 +444,7 @@
     "name": "unit.paladin.name",
     "description": "unit.paladin.description",
     "id": "paladin",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/units%2Fwhite%2Fpaladin.png?alt=media&token=8f4dc8e1-ffe2-4708-88a5-105f1f97d6f8",
+    "image": "/assets/images/units/white/paladin.png",
     "faction": "white",
     "category": "melee",
     "family": ["humanoid"]

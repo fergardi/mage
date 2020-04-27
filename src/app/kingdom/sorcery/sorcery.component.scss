@@ -3,10 +3,12 @@
   .mat-card {
     opacity: 0.95;
   }
+  ::ng-deep .mat-list-item:hover {
+    background-color: #303030;
+  }
   .handle {
     &:hover {
       cursor: move;
-      background-color: #212121;
     }
     &:active {
       cursor: grabbing;

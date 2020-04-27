@@ -3,84 +3,84 @@
     "id": "witch",
     "name": "location.witch.name",
     "description": "location.witch.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fwitch.png?alt=media&token=20ec02ff-5c45-476a-9bbf-2b529e1c2d2e"
+    "image": "/assets/images/locations/witch.png"
   },
   {
     "id": "cave",
     "name": "location.cave.name",
     "description": "location.cave.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fcave.png?alt=media&token=7f311ae0-ea42-4dad-bfc6-76238d08beeb"
+    "image": "/assets/images/locations/cave.png"
   },
   {
     "id": "stronghold",
     "name": "location.stronghold.name",
     "description": "location.stronghold.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fstronghold.png?alt=media&token=89ab0c43-aaf5-46ae-867e-8196455e6769"
+    "image": "/assets/images/locations/stronghold.png"
   },
   {
     "id": "graveyard",
     "name": "location.graveyard.name",
     "description": "location.graveyard.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fgraveyard.png?alt=media&token=a278e1ed-93a8-4fbe-9686-e2864ab08d97"
+    "image": "/assets/images/locations/graveyard.png"
   },
   {
     "id": "dungeon",
     "name": "location.dungeon.name",
     "description": "location.dungeon.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fdungeon.png?alt=media&token=957509e9-2477-493b-a3a9-0bc0a8b6f9a1"
+    "image": "/assets/images/locations/dungeon.png"
   },
   {
     "id": "sawmill",
     "name": "location.sawmill.name",
     "description": "location.sawmill.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fsawmill.png?alt=media&token=ed1d792c-08ce-4de1-9576-28f6d1f72029"
+    "image": "/assets/images/locations/sawmill.png"
   },
   {
     "id": "treasure-map",
     "name": "location.treasure-map.name",
     "description": "location.treasure-map.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Ftreasure-map.png?alt=media&token=92e78020-d3af-4150-a542-a4ff5e741860"
+    "image": "/assets/images/locations/treasure.png"
   },
   {
     "id": "battle",
     "name": "location.battle.name",
     "description": "location.battle.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fbattle.png?alt=media&token=3fc18bc3-f571-4033-a2ed-9059124c621e"
+    "image": "/assets/images/locations/battle.png"
   },
   {
     "id": "tower",
     "name": "location.tower.name",
     "description": "location.tower.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Ftower.png?alt=media&token=a1999d0d-8781-4528-8489-cfb5611f0c8c"
+    "image": "/assets/images/locations/tower.png"
   },
   {
     "id": "lumberjack",
     "name": "location.lumberjack.name",
     "description": "location.lumberjack.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Flumberjack.png?alt=media&token=90fbdf48-bea0-4196-bdca-b22c333a8553"
+    "image": "/assets/images/locations/lumberjack.png"
   },
   {
     "id": "mine",
     "name": "location.mine.name",
     "description": "location.mine.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fmine.png?alt=media&token=ace882d9-da42-4d73-84a0-e13ae9d09738"
+    "image": "/assets/images/locations/mine.png"
   },
   {
     "id": "blacksmith",
     "name": "location.blacksmith.name",
     "description": "location.blacksmith.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fblacksmith.png?alt=media&token=9a2ffae4-0932-476f-a03e-6909e0428cee"
+    "image": "/assets/images/locations/blacksmith.png"
   },
   {
     "id": "shipwreck",
     "name": "location.shipwreck.name",
     "description": "location.shipwreck.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fshipwreck.png?alt=media&token=1fc357c3-20f4-4fc0-8a87-42e077e901e5"
+    "image": "/assets/images/locations/shipwreck.png"
   },
   {
     "id": "forest",
     "name": "location.forest.name",
     "description": "location.forest.description",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mage-c4259.appspot.com/o/locations%2Fforest.png?alt=media&token=db091c6e-408e-4b17-b4c0-451e6435ab8d"
+    "image": "/assets/images/locations/forest.png"
   }
 ]

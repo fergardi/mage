@@ -31,7 +31,7 @@ export class SorceryComponent implements OnInit {
   constructor(
     private firebaseService: FirebaseService,
     private angularFireAuth: AngularFireAuth,
-    private angularFireStore: AngularFirestore,
+    private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
     public dialog: MatDialog,
   ) { }
@@ -67,7 +67,7 @@ export class SorceryComponent implements OnInit {
   async updateArtifacts() {
     try {
       let refs = [];
-      const artifacts = this.angularFireStore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/artifacts`);
+      const artifacts = this.angularFirestore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/artifacts`);
       this.kingdomArtifacts.forEach(kingdomArtifact => {
         refs.push({ ref: artifacts.doc(kingdomArtifact.fid), assignment: AssignmentType.none });
       });
@@ -77,7 +77,7 @@ export class SorceryComponent implements OnInit {
       this.defenseArtifacts.forEach(defenseArtifact => {
         refs.push({ ref: artifacts.doc(defenseArtifact.fid), assignment: AssignmentType.defense });
       });
-      const batch = this.angularFireStore.firestore.batch();
+      const batch = this.angularFirestore.firestore.batch();
       refs.forEach(r => batch.update(r.ref.ref, { assignment: r.assignment }))
       await batch.commit();
       this.notificationService.success('kingdom.army.success')
@@ -103,7 +103,7 @@ export class SorceryComponent implements OnInit {
   async updateCharms() {
     try {
       let refs = [];
-      const charms = this.angularFireStore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/charms`);
+      const charms = this.angularFirestore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/charms`);
       this.kingdomCharms.forEach(kingdomCharm => {
         refs.push({ ref: charms.doc(kingdomCharm.fid), assignment: AssignmentType.none });
       });
@@ -113,7 +113,7 @@ export class SorceryComponent implements OnInit {
       this.defenseCharms.forEach(defenseCharm => {
         refs.push({ ref: charms.doc(defenseCharm.fid), assignment: AssignmentType.defense });
       });
-      const batch = this.angularFireStore.firestore.batch();
+      const batch = this.angularFirestore.firestore.batch();
       refs.forEach(r => batch.update(r.ref.ref, { assignment: r.assignment }))
       await batch.commit();
       this.notificationService.success('kingdom.sorcery.success')
@@ -130,7 +130,7 @@ export class SorceryComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.angularFireStore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/charms/`).doc(charm.fid).update({ turns: result });
+        this.angularFirestore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/charms/`).doc(charm.fid).update({ turns: result });
       }
     })
   }

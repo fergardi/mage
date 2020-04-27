@@ -27,7 +27,7 @@ export class ArmyComponent implements OnInit {
   constructor(
     private firebaseService: FirebaseService,
     private angularFireAuth: AngularFireAuth,
-    private angularFireStore: AngularFirestore,
+    private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
   ) {}
 
@@ -57,7 +57,7 @@ export class ArmyComponent implements OnInit {
   async updateTroops() {
     try {
       let refs = [];
-      const db = this.angularFireStore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/troops`);
+      const db = this.angularFirestore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/troops`);
       this.kingdomTroops.forEach(kingdomTroop => {
         refs.push({ ref: db.doc(kingdomTroop.fid), assignment: AssignmentType.none });
       });
@@ -67,7 +67,7 @@ export class ArmyComponent implements OnInit {
       this.defenseTroops.forEach(defenseTroop => {
         refs.push({ ref: db.doc(defenseTroop.fid), assignment: AssignmentType.defense });
       });
-      const batch = this.angularFireStore.firestore.batch();
+      const batch = this.angularFirestore.firestore.batch();
       refs.forEach((r, index) => batch.update(r.ref.ref, { sort: index, assignment: r.assignment }))
       await batch.commit();
       this.notificationService.success('kingdom.army.success')
