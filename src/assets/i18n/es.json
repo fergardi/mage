@@ -86,7 +86,17 @@
     },
     "temple": {
       "name": "Templo",
-      "description": "Complace a los dioses"
+      "description": "Complace a los dioses",
+      "help": "TODO"
+    },
+    "temple-offering": {
+      "name": "Ofrenda",
+      "description": "Ofrece oro a tu dios como sacrificio",
+      "gold": "Oro",
+      "cancel": "Cancelar",
+      "offer": "Ofrecer",
+      "success": "Tu ofrenda satisface a los dioses",
+      "error": "Debes ofrecer más oro que la ofrenda anterior"
     },
     "store": {
       "name": "Tienda",
@@ -210,6 +220,28 @@
     "turn": {
       "name": "Turnos",
       "description": "Unidades de tiempo con las que se miden los eventos"
+    }
+  },
+  "god": {
+    "death": {
+      "name": "Muerte",
+      "description": ""
+    },
+    "void": {
+      "name": "Vacío",
+      "description": ""
+    },
+    "famine": {
+      "name": "Hambre",
+      "description": ""
+    },
+    "war": {
+      "name": "Guerra",
+      "description": ""
+    },
+    "pestilence": {
+      "name": "Peste",
+      "description": ""
     }
   },
   "item": {

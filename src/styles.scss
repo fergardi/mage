@@ -91,6 +91,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   box-sizing: border-box;
 }
 
+.mat-dialog-actions {
+  justify-content: flex-end;
+}
+
 .table-responsive {
   table {
     width: 100%;

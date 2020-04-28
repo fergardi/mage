@@ -5,6 +5,7 @@ import { CensusComponent } from './census/census.component';
 import { ArmyComponent } from './army/army.component';
 import { SorceryComponent } from './sorcery/sorcery.component';
 import { ArchiveComponent } from './archive/archive.component';
+import { TempleComponent } from './temple/temple.component';
 
 const routes: Routes = [
   { path: 'city', component: CityComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'army', component: ArmyComponent },
   { path: 'sorcery', component: SorceryComponent },
   { path: 'archive', component: ArchiveComponent },
+  { path: 'temple', component: TempleComponent },
 ];
 
 @NgModule({

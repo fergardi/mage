@@ -10,6 +10,8 @@ import { SorceryComponent } from './sorcery/sorcery.component';
 import { ResearchComponent } from './sorcery/research.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { LetterComponent } from './archive/letter.component';
+import { TempleComponent } from './temple/temple.component';
+import { OfferingComponent } from './temple/offering.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { LetterComponent } from './archive/letter.component';
     ResearchComponent,
     ArchiveComponent,
     LetterComponent,
+    TempleComponent,
+    OfferingComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +34,7 @@ import { LetterComponent } from './archive/letter.component';
   entryComponents: [
     ResearchComponent,
     LetterComponent,
+    OfferingComponent,
   ]
 })
 export class KingdomModule { }

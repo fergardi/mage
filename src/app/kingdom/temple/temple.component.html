@@ -1,0 +1,29 @@
+<div class="kingdom-temple">
+  <mat-card>
+
+    <mat-card-header>
+      <img mat-card-avatar src="/assets/images/icons/temple.png" alt="{{ 'kingdom.temple.name' | translate }}">
+      <mat-card-title >{{ 'kingdom.temple.name' | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ 'kingdom.temple.description' | translate }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      {{ 'kingdom.temple.help' | translate }}
+    </mat-card-content>
+
+    <mat-card-content>
+      <mat-action-list>
+        <button mat-list-item *ngFor="let god of kingdomGods" (click)="openOfferingDialog(god)">
+          <div mat-list-avatar>
+            <img mat-list-avatar [src]="god.image" alt="{{ god.name | translate }}"/>
+          </div>
+          <div mat-line>{{ god.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
+          <span *ngIf="god.join">{{ god.join.name }}&nbsp;&nbsp;</span>
+          <mat-chip-list><mat-chip>{{ god.gold | number }}</mat-chip></mat-chip-list>
+        </button>
+      </mat-action-list>
+    </mat-card-content>
+
+  </mat-card>
+</div>

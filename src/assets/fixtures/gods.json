@@ -1,0 +1,32 @@
+[
+  {
+    "name": "god.death.name",
+    "description": "god.death.description",
+    "image": "/assets/images/gods/death.png",
+    "gold": 0
+  },
+  {
+    "name": "god.void.name",
+    "description": "god.void.description",
+    "image": "/assets/images/gods/void.png",
+    "gold": 0
+  },
+  {
+    "name": "god.famine.name",
+    "description": "god.famine.description",
+    "image": "/assets/images/gods/famine.png",
+    "gold": 0
+  },
+  {
+    "name": "god.war.name",
+    "description": "god.war.description",
+    "image": "/assets/images/gods/war.png",
+    "gold": 0
+  },
+  {
+    "name": "god.pestilence.name",
+    "description": "god.pestilence.description",
+    "image": "/assets/images/gods/pestilence.png",
+    "gold": 0
+  }
+]

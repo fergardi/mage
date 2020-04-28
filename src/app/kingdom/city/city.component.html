@@ -8,21 +8,20 @@
     </mat-card-header>
 
     <mat-card-content>
-      TODO
+      {{ 'kingdom.city.help' | translate }}
     </mat-card-content>
 
     <mat-card-content>
-      <ng-template [ngIf]="kingdomBuildings.length">
-        <mat-action-list>
-          <button mat-list-item *ngFor="let building of kingdomBuildings">
-            <div mat-list-avatar [matBadge]="building.quantity | short" matBadgePosition="above before">
-              <img mat-list-avatar [src]="building.join.image" alt="{{ building.join.name | translate }}"/>
-            </div>
-            <div mat-line>{{ building.join.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ building.join.description | translate }}</div>
-          </button>
-        </mat-action-list>
-      </ng-template>
+      <mat-action-list>
+        <button mat-list-item *ngFor="let building of kingdomBuildings">
+          <div mat-list-avatar [matBadge]="building.quantity | short" matBadgePosition="above before">
+            <img mat-list-avatar [src]="building.join.image" alt="{{ building.join.name | translate }}"/>
+          </div>
+          <div mat-line>{{ building.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ building.join.description | translate }}</div>
+        </button>
+      </mat-action-list>
     </mat-card-content>
+
   </mat-card>
 </div>
