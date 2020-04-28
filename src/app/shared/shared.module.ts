@@ -29,6 +29,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { ShellComponent } from './shell/shell.component';
 import { ShortPipe } from '../pipes/short.pipe';
@@ -71,6 +72,7 @@ const modules = [
   MatProgressBarModule,
   MatDialogModule,
   FormsModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({

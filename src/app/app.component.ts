@@ -7,7 +7,7 @@ import { FirebaseService } from './services/firebase.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  
+
   title = 'mage';
 
   constructor(

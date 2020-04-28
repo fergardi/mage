@@ -24,10 +24,10 @@
     "image": "/assets/images/structures/fortress.png"
   },
   {
-    "name": "structure.guild.name",
-    "description": "structure.guild.description",
-    "id": "guild",
-    "image": "/assets/images/structures/guild.png"
+    "name": "structure.tower.name",
+    "description": "structure.tower.description",
+    "id": "tower",
+    "image": "/assets/images/structures/tower.png"
   },
   {
     "name": "structure.node.name",
@@ -36,16 +36,10 @@
     "image": "/assets/images/structures/node.png"
   },
   {
-    "name": "structure.temple.name",
-    "description": "structure.temple.description",
-    "id": "temple",
-    "image": "/assets/images/structures/temple.png"
-  },
-  {
-    "name": "structure.terrain.name",
-    "description": "structure.terrain.description",
-    "id": "terrain",
-    "image": "/assets/images/structures/terrain.png"
+    "name": "structure.land.name",
+    "description": "structure.land.description",
+    "id": "land",
+    "image": "/assets/images/structures/land.png"
   },
   {
     "name": "structure.village.name",

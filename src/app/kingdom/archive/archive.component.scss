@@ -1,3 +1,12 @@
 .kingdom-archive {
   padding: 10px;
+  .mat-column-select {
+    overflow: initial;
+  }
+  .mat-toolbar {
+    background-color: transparent;
+    .mat-toolbar-row {
+      padding: 0 0 0 12px;
+    }
+  }
 }
