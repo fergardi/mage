@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MapboxService, MarkerType } from 'src/app/services/mapbox.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.on('load', () => {
-      this.angularFireAuth.authState.pipe(first()).subscribe(user => {
+      this.angularFireAuth.authState.pipe(take(1)).subscribe(user => {
         if (user) {
           this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id').pipe(untilDestroyed(this)).subscribe(kingdoms => {
             this.mapboxService.clearMarkers(MarkerType.kingdom);

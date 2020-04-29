@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -22,7 +22,7 @@ export class SorceryComponent implements OnInit {
   attackArtifacts: any[] = [];
   defenseArtifacts: any[] = [];
   maximumArtifacts: number = 1;
-  
+
   kingdomCharms: any[] = [];
   attackCharms: any[] = [];
   defenseCharms: any[] = [];
@@ -37,7 +37,7 @@ export class SorceryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.angularFireAuth.authState.pipe(first()).subscribe(user => {
+    this.angularFireAuth.authState.pipe(take(1)).subscribe(user => {
       this.firebaseService.leftJoin(`kingdoms/${user.uid}/artifacts`, 'items', 'id', 'id').pipe(untilDestroyed(this)).subscribe(artifacts => {
         this.kingdomArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.none || !artifact.assignment);
         this.attackArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.attack);

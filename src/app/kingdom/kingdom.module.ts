@@ -12,6 +12,7 @@ import { ArchiveComponent } from './archive/archive.component';
 import { LetterComponent } from './archive/letter.component';
 import { TempleComponent } from './temple/temple.component';
 import { OfferingComponent } from './temple/offering.component';
+import { TavernComponent } from './tavern/tavern.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { OfferingComponent } from './temple/offering.component';
     LetterComponent,
     TempleComponent,
     OfferingComponent,
+    TavernComponent,
   ],
   imports: [
     CommonModule,

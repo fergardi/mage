@@ -5,7 +5,7 @@ import { ComponentService } from '../services/component.service';
 import MapboxCircle from 'mapbox-gl-circle';
 import { FirebaseService } from './firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { MarkerComponent } from '../world/marker/marker.component';
 
 export const enum MarkerType {
@@ -31,12 +31,12 @@ interface Marker {
   providedIn: 'root'
 })
 export class MapboxService {
-  
+
   mapbox = (mapboxgl as typeof mapboxgl);
   map: mapboxgl.Map = null;
   markers: Marker[] = [];
   offset: number = 10;
-  
+
   constructor(
     private componentService: ComponentService,
     private firebaseService: FirebaseService,
@@ -63,7 +63,7 @@ export class MapboxService {
   }
 
   addUser(): void {
-    this.angularFireAuth.authState.pipe(first()).subscribe(user => {
+    this.angularFireAuth.authState.pipe(take(1)).subscribe(user => {
       if (user) {
         navigator.geolocation.getCurrentPosition(async position => {
           await this.firebaseService.addElementToCollection('kingdoms', {

@@ -1,4 +1,13 @@
 {
+  "user": {
+    "auth": {
+      "login": "Iniciar sesión",
+      "logout": "Cerrar sesión",
+      "loggedin": "Bienvenido de nuevo!",
+      "loggedout": "Hasta pronto!",
+      "error": "Ha ocurrido un error con el servicio de autenticación"
+    }
+  },
   "table": {
     "filter": {
       "name": "Buscar"
@@ -16,10 +25,6 @@
     "census": {
       "name": "Censo",
       "description": "Conoce a tus enemigos"
-    },
-    "sleep": {
-      "name": "Dormir",
-      "description": "Medita tus decisiones"
     },
     "army": {
       "name": "Ejército",
@@ -68,7 +73,8 @@
     },
     "tavern": {
       "name": "Taberna",
-      "description": "Entrena a tus héroes"
+      "description": "Entrena a tus héroes",
+      "help": "TODO"
     },
     "archive": {
       "name": "Archivo",
@@ -280,12 +286,52 @@
     "mana-potion": {
       "name": "Poción de maná",
       "description": "+1% maná por nivel al reino"
+    },
+    "magic-sword": {
+      "name": "Espada mágica",
+      "description": ""
     }
   },
   "hero": {
     "dragon-rider": {
       "name": "Jinete de Dragones",
       "description": "Incrementa el daño de los Dragones"
+    },
+    "demon-king": {
+      "name": "",
+      "description": ""
+    },
+    "barbarian": {
+      "name": "",
+      "description": ""
+    },
+    "robot": {
+      "name": "",
+      "description": ""
+    },
+    "beast-master": {
+      "name": "",
+      "description": ""
+    },
+    "shaman": {
+      "name": "",
+      "description": ""
+    },
+    "elementalist": {
+      "name": "",
+      "description": ""
+    },
+    "sage": {
+      "name": "",
+      "description": ""
+    },
+    "mummy": {
+      "name": "",
+      "description": ""
+    },
+    "necromancer": {
+      "name": "Nigromante",
+      "description": "Incrementa el daño de los NoMuertos"
     }
   },
   "type": {

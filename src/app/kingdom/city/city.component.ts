@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { first } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
@@ -20,7 +20,7 @@ export class CityComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.angularFireAuth.authState.pipe(first()).subscribe(user => {
+    this.angularFireAuth.authState.pipe(take(1)).subscribe(user => {
       this.firebaseService.leftJoin(`kingdoms/${user.uid}/buildings`, 'structures', 'id', 'id').pipe(untilDestroyed(this)).subscribe(buildings => {
         this.kingdomBuildings = buildings;
       });

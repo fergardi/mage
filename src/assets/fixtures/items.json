@@ -122,5 +122,12 @@
     "name": "item.love-potion.name",
     "description": "item.love-potion.description",
     "id": "love-potion"
+  },
+  {
+    "image": "/assets/images/items/magic-sword.png",
+    "name": "item.magic-sword.name",
+    "description": "item.magic-sword.description",
+    "id": "magic-sword",
+    "hero": true
   }
 ]

@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { first } from 'rxjs/operators';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 
 @Component({
@@ -56,7 +55,7 @@ export class LetterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.angularFirestore.collection('kingdoms').valueChanges().pipe(first(), untilDestroyed(this)).subscribe(kingdoms => {
+    this.angularFirestore.collection('kingdoms').valueChanges().pipe(untilDestroyed(this)).subscribe(kingdoms => {
       this.kingdoms = kingdoms;
     });
   }

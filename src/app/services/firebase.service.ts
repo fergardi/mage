@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { map, first } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+
+export interface Query {
+  collection: string
+  id: string
+  function: QueryFn
+}
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +22,7 @@ export class FirebaseService {
 
   leftJoin(left: string, right: string, from: string = 'id', to: string = 'id') {
     return combineLatest([
-      this.angularFirestore.collection<any>(left).valueChanges({idField: 'fid'}),
+      this.angularFirestore.collection<any>(left).valueChanges({ idField: 'fid' }),
       this.angularFirestore.collection<any>(right).valueChanges(),
     ]).pipe(
       map(([
@@ -26,9 +32,7 @@ export class FirebaseService {
         return leftCollection.map(leftElement => {
           return {
             ...leftElement,
-            join: rightCollection.find(rightElement => {
-              return leftElement[from] === rightElement[to]
-            })
+            join: rightCollection.find(rightElement => leftElement[from] === rightElement[to])
           }
         })
       })
@@ -38,7 +42,7 @@ export class FirebaseService {
   retrieveElementFromPath(path: string) {
     return this.angularFirestore.doc<any>(path).get();
   }
-  
+
   addElementToCollection(collection: string, element: any, id?: string) {
     return id
     ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
@@ -48,7 +52,7 @@ export class FirebaseService {
   delay(ms) {
     return new Promise(res => setTimeout(res, ms));
   }
-  
+
   addElementsToCollection(collection: string, elements: any[], master: boolean = false) {
     elements.forEach(async (element, index) => {
       await this.delay(index * 250);

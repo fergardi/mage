@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { first, take } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -32,7 +32,7 @@ export class ArmyComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.angularFireAuth.authState.pipe(first()).subscribe(user => {
+    this.angularFireAuth.authState.pipe(take(1)).subscribe(user => {
       this.firebaseService.leftJoin(`kingdoms/${user.uid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
         this.kingdomTroops = troops.filter(troop => troop.assignment === AssignmentType.none || !troop.assignment).sort((a, b) => a.sort - b.sort);
         this.attackTroops = troops.filter(troop => troop.assignment === AssignmentType.attack).sort((a, b) => a.sort - b.sort);

@@ -49,29 +49,38 @@
   <mat-sidenav-content>
     <mat-toolbar>
       <!-- toggler -->
-      <button type="button" aria-label="toggle" mat-icon-button (click)="toggle()" *ngIf="!drawer.opened">
-        <mat-icon aria-label="menu">menu</mat-icon>
+      <button type="button" aria-label="toggle" mat-icon-button (click)="toggle()">
+        <mat-icon aria-label="menu">{{ drawer.opened ? 'first_page' : 'last_page' }}</mat-icon>
       </button>
       <!-- title -->
-      <span class="logo" [hidden]="(isHandset$ | async) || drawer.opened">{{ (link$ | async)?.name | translate }}</span>
+      <!--<span class="logo" [hidden]="(isHandset$ | async) || drawer.opened">{{ (link$ | async)?.name | translate }}</span>-->
       <span class="fill-space"></span>
       <!-- supply list -->
       <mat-list dense class="supply-list" role="list">
         <mat-list-item *ngFor="let supply of kingdomSupplies; let i = index" role="listitem">
-          <div 
-            mat-list-avatar 
+          <div
+            mat-list-avatar
             [matTooltip]="supply.join.name | translate"
-            [matBadge]="supply.quantity | short" 
+            [matBadge]="supply.quantity | short"
             [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
             matBadgeOverlap="true">
             <img mat-list-avatar [src]="supply.join.image" alt="{{ supply.join.name | translate }}"/>
           </div>
         </mat-list-item>
       </mat-list>
+      <!-- auth -->
+      <span class="fill-space"></span>
+      <button mat-icon-button [matMenuTriggerFor]="auth">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #auth="matMenu">
+        <a mat-menu-item><mat-icon>lock_open</mat-icon>{{ 'user.auth.login' | translate }}</a>
+        <a mat-menu-item (click)="logout()"><mat-icon>lock</mat-icon>{{ 'user.auth.logout' | translate }}</a>
+      </mat-menu>
     </mat-toolbar>
     <!-- main content -->
-    <main 
-      class="main-content" 
+    <main
+      class="main-content"
       [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100vh - 64px)' : 'calc(100vh - 56px)', width: !(isHandset$ | async) && drawer.opened ? 'calc(100vw - 300px)' : '100vw' }">
       <ng-content></ng-content>
     </main>

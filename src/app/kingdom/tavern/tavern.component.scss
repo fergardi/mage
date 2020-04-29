@@ -1,0 +1,20 @@
+.kingdom-tavern {
+  padding: 10px;
+  .mat-card {
+    opacity: 0.95;
+  }
+  .handle {
+    &:hover {
+      cursor: move;
+      background-color: #303030;
+    }
+    &:active {
+      cursor: grabbing;
+    }
+  }
+  ::ng-deep .mat-list-base {
+    padding-top: 0;
+    min-height: 72px;
+    border: 2px dashed gray;
+  }
+}
