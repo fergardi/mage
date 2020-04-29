@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent {
 
   constructor(
     public angularFireAuth: AngularFireAuth,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private notificationService: NotificationService,
   ) { }
 
   ngOnInit(): void {
@@ -64,11 +66,12 @@ export class LoginComponent {
           break;
         case 'reset':
           await this.angularFireAuth.sendPasswordResetEmail(email);
-          this.message = 'Check your email';
+          this.notificationService.warning('user.login.check');
           break;
       }
     } catch (error){
-      this.message = error
+      console.error(error);
+      this.notificationService.error('user.login.error');
     }
     this.loading = false;
   }

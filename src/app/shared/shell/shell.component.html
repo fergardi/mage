@@ -56,7 +56,7 @@
       <!--<span class="logo" [hidden]="(isHandset$ | async) || drawer.opened">{{ (link$ | async)?.name | translate }}</span>-->
       <span class="fill-space"></span>
       <!-- supply list -->
-      <mat-list dense class="supply-list" role="list">
+      <mat-list dense class="supply-list" role="list" *ngIf="(angularFireAuth.authState | async)">
         <mat-list-item *ngFor="let supply of kingdomSupplies; let i = index" role="listitem">
           <div
             mat-list-avatar
@@ -74,8 +74,8 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #auth="matMenu">
-        <a mat-menu-item><mat-icon>lock_open</mat-icon>{{ 'user.auth.login' | translate }}</a>
-        <a mat-menu-item (click)="logout()"><mat-icon>lock</mat-icon>{{ 'user.auth.logout' | translate }}</a>
+        <a mat-menu-item routerLink="/user/login" *ngIf="!(angularFireAuth.authState | async)"><mat-icon>lock_open</mat-icon>{{ 'user.auth.login' | translate }}</a>
+        <a mat-menu-item (click)="logout()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>lock</mat-icon>{{ 'user.auth.logout' | translate }}</a>
       </mat-menu>
     </mat-toolbar>
     <!-- main content -->

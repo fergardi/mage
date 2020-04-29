@@ -6,6 +6,22 @@
       "loggedin": "Bienvenido de nuevo!",
       "loggedout": "Hasta pronto!",
       "error": "Ha ocurrido un error con el servicio de autenticación"
+    },
+    "login": {
+      "name": "¡Bienvenid@ a Archimago!",
+      "description": "Inicia sesión o regístrate para continuar",
+      "login": "Iniciar sesión",
+      "signup": "Nuevo jugador",
+      "reset": "Recuperar contraseña",
+      "email": "Email",
+      "password": "Contraseña",
+      "password2": "Confirmar contraseña",
+      "mismatch": "Las contraseñas no coinciden",
+      "insecure": "Debe contener al menos 6 caracteres alfanuméricos",
+      "invalid": "Debe ser un correo electrónico válido",
+      "accept": "Aceptar",
+      "check": "Comprueba tu correo",
+      "error": "Ha ocurrido un error en el proceso autenticación"
     }
   },
   "table": {
@@ -78,7 +94,7 @@
     },
     "archive": {
       "name": "Archivo",
-      "description": "Revisa tus cartas",
+      "description": "Revisa tu correspondencia",
       "help": "Aqui puedes ver un listado de las cartas, informes, avisos y cualquier otro tipo de información referente a tu reino. También puedes enviar cartas a otros reinos.",
       "filter": "Filtrar cartas"
     },
@@ -231,23 +247,23 @@
   "god": {
     "death": {
       "name": "Muerte",
-      "description": ""
+      "description": "Aumenta tu producción de personas al turno"
     },
     "void": {
       "name": "Vacío",
-      "description": ""
+      "description": "Aumenta tu producción de mana al turno"
     },
     "famine": {
       "name": "Hambre",
-      "description": ""
+      "description": "Aumenta tu producción de oro al turno"
     },
     "war": {
       "name": "Guerra",
-      "description": ""
+      "description": "Aumenta el daño de tus tropas en batalla"
     },
     "pestilence": {
       "name": "Peste",
-      "description": ""
+      "description": "Aumenta la defensa de tus tropas en la batalla"
     }
   },
   "item": {

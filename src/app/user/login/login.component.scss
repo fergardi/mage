@@ -10,8 +10,8 @@
   .server-error {
     margin: 8px 0;;
   }
-  input {    
-    height: 2em;              
+  input {
+    height: 2em;
     div.mat-form-field-infix {
       padding: .3em 0;
       input.mat-input-element {
@@ -42,5 +42,8 @@
   }
   ::ng-deep.mat-tab-nav-bar, ::ng-deep.mat-tab-header {
     border: none;
+  }
+  ::ng-deep .mat-tab-label .mat-tab-label-content {
+    white-space: break-spaces;
   }
 }

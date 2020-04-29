@@ -68,10 +68,12 @@ export class ShellComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.angularFireAuth.authState.pipe(take(1)).subscribe(user => {
-      this.firebaseService.leftJoin(`kingdoms/${user.uid}/supplies`, 'resources', 'id', 'id').pipe(untilDestroyed(this)).subscribe(supplies => {
-        this.kingdomSupplies = supplies.sort((a, b) => a.join.sort - b.join.sort);
-      });
+    this.angularFireAuth.authState.pipe(untilDestroyed(this)).subscribe(user => {
+      if (user && user.uid) {
+        this.firebaseService.leftJoin(`kingdoms/${user.uid}/supplies`, 'resources', 'id', 'id').pipe(untilDestroyed(this)).subscribe(supplies => {
+          this.kingdomSupplies = supplies.sort((a, b) => a.join.sort - b.join.sort);
+        });
+      }
     });
   }
 
