@@ -1,27 +1,71 @@
-<div class="kingdom-city">
-  <mat-card>
+<div class="kingdom-city" fxLayout="row wrap" fxLayoutGap="10px grid">
 
-    <mat-card-header>
-      <img mat-card-avatar src="/assets/images/icons/city.png" alt="{{ 'kingdom.city.name' | translate }}">
-      <mat-card-title >{{ 'kingdom.city.name' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'kingdom.city.description' | translate }}</mat-card-subtitle>
-    </mat-card-header>
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-card>
 
-    <mat-card-content>
-      {{ 'kingdom.city.help' | translate }}
-    </mat-card-content>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/icons/city.png" alt="{{ 'kingdom.city.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.city.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.city.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
 
-    <mat-card-content>
-      <mat-action-list>
-        <button mat-list-item *ngFor="let building of kingdomBuildings">
-          <div mat-list-avatar [matBadge]="building.quantity | short" matBadgePosition="above before">
-            <img mat-list-avatar [src]="building.join.image" alt="{{ building.join.name | translate }}"/>
-          </div>
-          <div mat-line>{{ building.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ building.join.description | translate }}</div>
-        </button>
-      </mat-action-list>
-    </mat-card-content>
+      <mat-card-content>
+        {{ 'kingdom.city.help' | translate }}
+      </mat-card-content>
 
-  </mat-card>
+      <mat-card-content>
+        <mat-action-list>
+          <button mat-list-item *ngFor="let building of kingdomBuildings">
+            <div mat-list-avatar [matBadge]="building.quantity | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="building.join.image" alt="{{ building.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ building.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ building.join.description | translate }}</div>
+          </button>
+        </mat-action-list>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-card>
+
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/resources/gold.png" alt="{{ 'kingdom.tax.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.tax.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.tax.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        {{ 'kingdom.tax.help' | translate }}
+      </mat-card-content>
+
+      <mat-card-content>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-card>
+
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/resources/mana.png" alt="{{ 'kingdom.charge.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.charge.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.charge.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        {{ 'kingdom.charge.help' | translate }}
+      </mat-card-content>
+
+      <mat-card-content>
+
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+
 </div>
