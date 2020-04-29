@@ -66,9 +66,11 @@
 
 @media screen and (max-width: 960px) {
   .app-shell {
-    ::ng-deep .mat-list-item-content {
-      padding: 0 12px !important;
-      z-index: 1;
+    .supply-list {
+      ::ng-deep .mat-list-item-content {
+        padding: 0 6px !important;
+        z-index: 1;
+      }
     }
   }
 }

@@ -2,7 +2,6 @@
 
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card>
-
       <mat-card-header>
         <img mat-card-avatar src="/assets/images/icons/city.png" alt="{{ 'kingdom.city.name' | translate }}">
         <mat-card-title >{{ 'kingdom.city.name' | translate }}</mat-card-title>
@@ -24,48 +23,51 @@
           </button>
         </mat-action-list>
       </mat-card-content>
-
     </mat-card>
   </div>
 
-  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-    <mat-card>
+  <div fxFlex.xl="66" fxFlex.lg="66" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
 
-      <mat-card-header>
-        <img mat-card-avatar src="/assets/images/resources/gold.png" alt="{{ 'kingdom.tax.name' | translate }}">
-        <mat-card-title >{{ 'kingdom.tax.name' | translate }}</mat-card-title>
-        <mat-card-subtitle>{{ 'kingdom.tax.description' | translate }}</mat-card-subtitle>
-      </mat-card-header>
+    <div fxLayout="row wrap" fxLayoutGap="10px grid">
+      <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
 
-      <mat-card-content>
-        {{ 'kingdom.tax.help' | translate }}
-      </mat-card-content>
+        <mat-card>
+          <mat-card-header>
+            <img mat-card-avatar src="/assets/images/resources/gold.png" alt="{{ 'kingdom.tax.name' | translate }}">
+            <mat-card-title >{{ 'kingdom.tax.name' | translate }}</mat-card-title>
+            <mat-card-subtitle>{{ 'kingdom.tax.description' | translate }}</mat-card-subtitle>
+          </mat-card-header>
 
-      <mat-card-content>
+          <mat-card-content>
+            {{ 'kingdom.tax.help' | translate }}
+          </mat-card-content>
 
-      </mat-card-content>
+          <mat-card-content>
 
-    </mat-card>
-  </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
 
-  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-    <mat-card>
+      <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
 
-      <mat-card-header>
-        <img mat-card-avatar src="/assets/images/resources/mana.png" alt="{{ 'kingdom.charge.name' | translate }}">
-        <mat-card-title >{{ 'kingdom.charge.name' | translate }}</mat-card-title>
-        <mat-card-subtitle>{{ 'kingdom.charge.description' | translate }}</mat-card-subtitle>
-      </mat-card-header>
+        <mat-card>
+          <mat-card-header>
+            <img mat-card-avatar src="/assets/images/resources/mana.png" alt="{{ 'kingdom.charge.name' | translate }}">
+            <mat-card-title >{{ 'kingdom.charge.name' | translate }}</mat-card-title>
+            <mat-card-subtitle>{{ 'kingdom.charge.description' | translate }}</mat-card-subtitle>
+          </mat-card-header>
 
-      <mat-card-content>
-        {{ 'kingdom.charge.help' | translate }}
-      </mat-card-content>
+          <mat-card-content>
+            {{ 'kingdom.charge.help' | translate }}
+          </mat-card-content>
 
-      <mat-card-content>
+          <mat-card-content>
 
-      </mat-card-content>
+          </mat-card-content>
+        </mat-card>
+      </div>
 
-    </mat-card>
+    </div>
   </div>
 
 </div>
