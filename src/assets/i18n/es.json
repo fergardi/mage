@@ -92,6 +92,11 @@
       "description": "Engrosa tus arcas",
       "help": "Aquí podrás invertir turnos en cobrar impuestos a los súbditos de tu reino. El oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas."
     },
+    "dispell": {
+      "name": "Desencantar",
+      "description": "Rompe encantamientos",
+      "help": "Aquí podrás invertir turnos en romper encantamientos que afectan a tu reino. Los encantamientos pueden ser beneficiosos o perjudiciales, dependiendo de su función. Tus propios encantamientos deberás mantenerlos tu mismo pagando su coste de mantenimiento al turno, pero otros reinos también podrán encantar el tuyo, auque serán ellos los que paguen sus mantenimientos."
+    },
     "tavern": {
       "name": "Taberna",
       "description": "Entrena a tus héroes",

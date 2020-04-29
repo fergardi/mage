@@ -2,12 +2,14 @@
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 @import url("https://use.typekit.net/jnq3uxd.css");
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-@include mat-core();
+$custom-typography: mat-typography-config($font-family: '"Manrope", sans-serif;');
+@include mat-core($custom-typography);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -62,8 +64,12 @@ $mage-theme: mat-dark-theme($mage-primary, $mage-accent, $mage-warn);
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
 
 .mat-standard-chip {
   min-height: 18px !important;

@@ -1,29 +1,59 @@
-<div class="kingdom-temple">
-  <mat-card>
+<div class="kingdom-temple" fxLayout="row wrap" fxLayoutGap="10px grid">
 
-    <mat-card-header>
-      <img mat-card-avatar src="/assets/images/icons/temple.png" alt="{{ 'kingdom.temple.name' | translate }}">
-      <mat-card-title >{{ 'kingdom.temple.name' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'kingdom.temple.description' | translate }}</mat-card-subtitle>
-    </mat-card-header>
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
 
-    <mat-card-content>
-      {{ 'kingdom.temple.help' | translate }}
-    </mat-card-content>
+    <mat-card>
 
-    <mat-card-content>
-      <mat-action-list>
-        <button mat-list-item *ngFor="let god of kingdomGods" (click)="openOfferingDialog(god)">
-          <div mat-list-avatar>
-            <img mat-list-avatar [src]="god.image" alt="{{ god.name | translate }}"/>
-          </div>
-          <div mat-line>{{ god.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
-          <span *ngIf="god.join">{{ god.join.name }}&nbsp;&nbsp;</span>
-          <mat-chip-list><mat-chip>{{ god.gold | number }}</mat-chip></mat-chip-list>
-        </button>
-      </mat-action-list>
-    </mat-card-content>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/icons/temple.png" alt="{{ 'kingdom.temple.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.temple.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.temple.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
 
-  </mat-card>
+      <mat-card-content>
+        {{ 'kingdom.temple.help' | translate }}
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-action-list>
+          <button mat-list-item *ngFor="let god of kingdomGods" (click)="openOfferingDialog(god)">
+            <div mat-list-avatar>
+              <img mat-list-avatar [src]="god.image" alt="{{ god.name | translate }}"/>
+            </div>
+            <div mat-line>{{ god.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
+            <mat-chip-list><mat-chip>{{ god.gold | number }}</mat-chip></mat-chip-list>
+          </button>
+        </mat-action-list>
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+  <div fxFlex.xl="66" fxFlex.lg="66" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+
+    <div fxLayout="row wrap" fxLayoutGap="10px grid">
+      <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+
+        <mat-card>
+          <mat-card-header>
+            <img mat-card-avatar src="/assets/images/icons/dispell.png" alt="{{ 'kingdom.dispell.name' | translate }}">
+            <mat-card-title >{{ 'kingdom.dispell.name' | translate }}</mat-card-title>
+            <mat-card-subtitle>{{ 'kingdom.dispell.description' | translate }}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            {{ 'kingdom.dispell.help' | translate }}
+          </mat-card-content>
+
+          <mat-card-content>
+
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </div>
+
+  </div>
 </div>
