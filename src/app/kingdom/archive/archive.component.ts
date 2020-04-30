@@ -9,11 +9,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { LetterComponent } from './letter.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app'
+import { fadeInOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-archive',
   templateUrl: './archive.component.html',
   styleUrls: ['./archive.component.scss'],
+  animations: [fadeInOnEnterAnimation({ duration: 250, delay: 250 })],
 })
 @UntilDestroy()
 export class ArchiveComponent implements OnInit {

@@ -5,7 +5,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 @Component({
   selector: 'app-marker',
   templateUrl: './marker.component.html',
-  styleUrls: ['./marker.component.scss']
+  styleUrls: ['./marker.component.scss'],
 })
 @UntilDestroy()
 export class MarkerComponent implements OnInit {

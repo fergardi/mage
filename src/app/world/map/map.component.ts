@@ -24,7 +24,8 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.on('load', () => {
-      this.angularFireAuth.authState.pipe(take(1)).subscribe(user => {
+      this.mapboxService.resize();
+      this.angularFireAuth.authState.pipe(take(1), untilDestroyed(this)).subscribe(user => {
         if (user) {
           this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id').pipe(untilDestroyed(this)).subscribe(kingdoms => {
             this.mapboxService.clearMarkers(MarkerType.kingdom);

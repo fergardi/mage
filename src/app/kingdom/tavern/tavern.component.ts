@@ -6,11 +6,13 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
+import { fadeInOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-tavern',
   templateUrl: './tavern.component.html',
-  styleUrls: ['./tavern.component.scss']
+  styleUrls: ['./tavern.component.scss'],
+  animations: [fadeInOnEnterAnimation({ duration: 250, delay: 250 })],
 })
 @UntilDestroy()
 export class TavernComponent implements OnInit {

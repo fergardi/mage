@@ -6,6 +6,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
+import { fadeInOnEnterAnimation } from 'angular-animations';
 
 export enum AssignmentType {
   'none', 'attack', 'defense'
@@ -14,7 +15,8 @@ export enum AssignmentType {
 @Component({
   selector: 'app-army',
   templateUrl: './army.component.html',
-  styleUrls: ['./army.component.scss']
+  styleUrls: ['./army.component.scss'],
+  animations: [fadeInOnEnterAnimation({ duration: 250, delay: 250 })],
 })
 @UntilDestroy()
 export class ArmyComponent implements OnInit {

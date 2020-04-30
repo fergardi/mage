@@ -9,11 +9,13 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { AssignmentType } from '../army/army.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ResearchComponent } from './research.component';
+import { fadeInOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-sorcery',
   templateUrl: './sorcery.component.html',
-  styleUrls: ['./sorcery.component.scss']
+  styleUrls: ['./sorcery.component.scss'],
+  animations: [fadeInOnEnterAnimation({ duration: 250, delay: 250 })],
 })
 @UntilDestroy()
 export class SorceryComponent implements OnInit {

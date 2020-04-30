@@ -4,11 +4,13 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OfferingComponent } from './offering.component';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { fadeInOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-temple',
   templateUrl: './temple.component.html',
-  styleUrls: ['./temple.component.scss']
+  styleUrls: ['./temple.component.scss'],
+  animations: [fadeInOnEnterAnimation({ duration: 250, delay: 250 })],
 })
 @UntilDestroy()
 export class TempleComponent implements OnInit {

@@ -26,6 +26,7 @@
     "@ngneat/until-destroy": "^7.1.6",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
+    "angular-animations": "0.0.10",
     "animate.css": "^3.7.2",
     "firebase": "^7.14.0",
     "mapbox-gl": "^1.9.1",

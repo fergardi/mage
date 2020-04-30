@@ -1,4 +1,4 @@
-<div class="kingdom-army" fxLayout="row wrap" fxLayoutGap="10px grid" cdkDropListGroup>
+<div class="kingdom-army" fxLayout="row wrap" fxLayoutGap="10px grid" cdkDropListGroup [@fadeInOnEnter]>
 
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card>
@@ -12,8 +12,8 @@
       </mat-card-content>
       <mat-card-content>
         <mat-list
-          cdkDropList 
-          cdkDropListOrientation="vertical" 
+          cdkDropList
+          cdkDropListOrientation="vertical"
           (cdkDropListDropped)="assignTroop($event)"
           [cdkDropListData]="kingdomTroops">
           <mat-list-item *ngFor="let troop of kingdomTroops" cdkDrag class="handle">
@@ -40,9 +40,9 @@
         {{ 'kingdom.army-attack.help' | translate }}
       </mat-card-content>
       <mat-card-content>
-        <mat-list 
-          cdkDropList 
-          cdkDropListOrientation="vertical" 
+        <mat-list
+          cdkDropList
+          cdkDropListOrientation="vertical"
           (cdkDropListDropped)="assignTroop($event)"
           [cdkDropListData]="attackTroops">
           <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle">
@@ -69,9 +69,9 @@
         {{ 'kingdom.army-defense.help' | translate }}
       </mat-card-content>
       <mat-card-content>
-        <mat-list 
-          cdkDropList 
-          cdkDropListOrientation="vertical" 
+        <mat-list
+          cdkDropList
+          cdkDropListOrientation="vertical"
           (cdkDropListDropped)="assignTroop($event)"
           [cdkDropListData]="defenseTroops">
           <mat-list-item *ngFor="let troop of defenseTroops" cdkDrag class="handle">
