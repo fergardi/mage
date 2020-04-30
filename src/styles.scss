@@ -147,6 +147,12 @@ body {
   padding: 0 5px;
 }
 
+.mat-list-base:not(.supply-list) {
+  .mat-list-item + .mat-list-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}
+
 // DRAG AND DROP
 .cdk-drag-placeholder {
   opacity: 0.5;
@@ -160,7 +166,7 @@ body {
 .cdk-drag-preview {
   @extend .cdk-drag-placeholder;
   display: block;
-  height: 72px;
+  height: 60px;
   width: 100%;
   padding: 0;
   position: relative;

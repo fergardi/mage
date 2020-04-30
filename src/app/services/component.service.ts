@@ -5,24 +5,21 @@ import { Injectable, Injector, ApplicationRef, ComponentFactoryResolver, Compone
 })
 export class ComponentService {
 
-  private compRef: ComponentRef<any>;
+  private componentRef: ComponentRef<any>;
 
   constructor(
     private injector: Injector,
-    private resolver: ComponentFactoryResolver,
-    private appRef: ApplicationRef
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private applicationRef: ApplicationRef
   ) { }
 
   public injectComponent<T>(component: Type<T>, propertySetter?: (type: T) => void): HTMLDivElement {
-
-    // if (this.compRef) this.compRef.destroy();
-    const compFactory = this.resolver.resolveComponentFactory(component);
-    this.compRef = compFactory.create(this.injector);
-    if (propertySetter) propertySetter(this.compRef.instance);
-    this.appRef.attachView(this.compRef.hostView);
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+    this.componentRef = componentFactory.create(this.injector);
+    if (propertySetter) propertySetter(this.componentRef.instance);
+    this.applicationRef.attachView(this.componentRef.hostView);
     let div = document.createElement('div');
-    div.appendChild(this.compRef.location.nativeElement);
-
+    div.appendChild(this.componentRef.location.nativeElement);
     return div;
   }
 

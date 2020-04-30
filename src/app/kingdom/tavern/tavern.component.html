@@ -1,7 +1,7 @@
-<div class="kingdom-tavern" fxLayout="row wrap" fxLayoutGap="10px grid" cdkDropListGroup [@fadeInOnEnter]>
+<div class="kingdom-tavern" fxLayout="row wrap" fxLayoutGap="10px grid" cdkDropListGroup>
 
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-    <mat-card>
+    <mat-card [@fadeInOnEnter]>
       <mat-card-header>
         <img mat-card-avatar src="/assets/images/icons/tavern.png" alt="{{ 'kingdom.tavern.name' | translate }}">
         <mat-card-title >{{ 'kingdom.tavern.name' | translate }}</mat-card-title>
@@ -13,7 +13,7 @@
       </mat-card-content>
 
       <mat-card-content>
-        <mat-list
+        <mat-list dense
           id="kingdom-tavern"
           cdkDropList
           cdkDropListOrientation="vertical"
@@ -37,7 +37,7 @@
     <div fxLayout="row wrap" fxLayoutGap="10px grid">
       <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" *ngFor="let contract of kingdomContracts">
 
-        <mat-card>
+        <mat-card [@fadeInOnEnter]>
           <mat-card-header>
             <img mat-card-avatar [matBadge]="contract.level" matBadgePosition="above before" [src]="contract.join.image" alt="{{ contract.join.name | translate }}">
             <mat-card-title >{{ contract.join.name | translate }}</mat-card-title>
@@ -45,7 +45,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <mat-list
+            <mat-list dense
               [id]="contract.fid"
               cdkDropList
               cdkDropListOrientation="vertical"

@@ -7,6 +7,7 @@ import { FirebaseService } from './firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { take } from 'rxjs/operators';
 import { MarkerComponent } from '../world/marker/marker.component';
+import { PopupComponent } from '../world/popup/popup.component';
 
 export const enum MarkerType {
   'kingdom', 'artifact', 'shop', 'quest'
@@ -243,22 +244,8 @@ export class MapboxService {
   addMarker(data: any, type: MarkerType, popup: boolean = false, radius: boolean = false, fly: boolean = false): mapboxgl.Marker {
     // html
     let size = type === MarkerType.kingdom ? 64 : 32;
-    var wrapper = document.createElement('div');
-    var el = document.createElement('div');
-    el.className = 'marker animated bounce';
-    el.style.animationDelay = `${Math.random() + 1}s`;
-    el.style.backgroundImage = `url(${data.image || data.join.image})`;
-    el.style.backgroundSize = '100% 100%';
-    el.style.height = size + 'px';
-    el.style.width = size + 'px';
-    wrapper.appendChild(el);
-    var shadow = document.createElement('div');
-    shadow.className = 'marker-shadow';
-    wrapper.appendChild(shadow);
     // marker
-    let marker = new mapboxgl.Marker(wrapper, {
-      anchor: 'bottom',
-    })
+    let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = { ...data, size: size }), { anchor: 'bottom' })
     .setLngLat({ lat: data.lat, lng: data.lng })
     .addTo(this.map);
     // popup
@@ -271,11 +258,11 @@ export class MapboxService {
         closeOnMove: false,
         maxWidth: 'none',
       })
-      .setDOMContent(this.componentService.injectComponent(MarkerComponent, component => component.data = data))
-      .on('open', $e => {
+      .setDOMContent(this.componentService.injectComponent(PopupComponent, component => component.data = data))
+      .on('open', $event => {
         this.map.easeTo({
-          center: $e.target.getLngLat(),
-          offset: [0, ($e.target.getElement().clientHeight / 2) + this.offset],
+          center: $event.target.getLngLat(),
+          offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],
         });
       }));
     }

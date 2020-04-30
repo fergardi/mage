@@ -32,11 +32,6 @@ import { TavernComponent } from './tavern/tavern.component';
     CommonModule,
     KingdomRoutingModule,
     SharedModule,
-  ],
-  entryComponents: [
-    ResearchComponent,
-    LetterComponent,
-    OfferingComponent,
   ]
 })
 export class KingdomModule { }

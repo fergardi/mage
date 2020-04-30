@@ -5,7 +5,8 @@
       "logout": "Cerrar sesión",
       "loggedin": "Bienvenido de nuevo!",
       "loggedout": "Hasta pronto!",
-      "error": "Ha ocurrido un error con el servicio de autenticación"
+      "error": "Ha ocurrido un error con el servicio de autenticación",
+      "unauthorized": "Debes autenticarte para continuar"
     },
     "login": {
       "name": "¡Bienvenid@ a Archimago!",
@@ -36,7 +37,8 @@
     },
     "city": {
       "name": "Ciudad",
-      "description": "Administra tu capital"
+      "description": "Administra tu capital",
+      "help": "TODO"
     },
     "census": {
       "name": "Censo",

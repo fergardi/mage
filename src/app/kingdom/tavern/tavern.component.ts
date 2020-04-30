@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { first, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';

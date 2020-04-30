@@ -19,22 +19,8 @@ export class NotificationService {
 
   constructor(
     private snackBar: MatSnackBar,
-    private router: Router,
     private translateService: TranslateService,
   ) {}
-
-  unauthorized() {
-    this.snackBar.open('You must be logged in!', 'OK', {...this.options, panelClass: ['mat-toolbar', 'mat-primary']} );
-    return this.snackBar._openedSnackBarRef
-      .onAction()
-      .pipe(
-        untilDestroyed(this),
-        tap(_ => 
-          this.router.navigate(['/user/login'])
-        )
-      )
-      .subscribe();
-  }
 
   success(text: string) {
     this.snackBar.open(this.translateService.instant(text), '', {...this.options, panelClass: ['mat-toolbar', 'mat-primary']} );

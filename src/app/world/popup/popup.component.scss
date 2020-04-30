@@ -1,0 +1,26 @@
+.map-popup {
+  min-width: 250px;
+  max-width: 350px;
+  ::ng-deep .mat-card-header-text {
+    overflow: hidden !important;
+  }
+  .mat-subheader {
+    padding: 0;
+  }
+  .mat-list-item {
+    height: 64px;
+  }
+  ::ng-deep .mat-list-text {
+    line-height: 1.25;
+  }
+  .popup-number {
+    margin-top: 5px;
+  }
+}
+
+// responsive custom card
+@media screen and (max-width: 960px) {
+  .map-popup {
+    max-width: 250px !important;
+  }
+}

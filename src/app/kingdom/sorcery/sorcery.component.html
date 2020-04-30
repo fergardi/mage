@@ -14,7 +14,7 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
-        <mat-action-list
+        <mat-action-list dense
           #kngdmArtifacts="cdkDropList"
           [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]"
           cdkDropList
@@ -32,7 +32,7 @@
         </mat-action-list>
 
         <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
-        <mat-action-list
+        <mat-action-list dense
           #kngdmCharms="cdkDropList"
           [cdkDropListConnectedTo]="[atckCharms, defCharms]"
           cdkDropList
@@ -79,7 +79,7 @@
 
           <mat-card-content>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
-            <mat-list
+            <mat-list dense
               #atckArtifacts="cdkDropList"
               [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]"
               cdkDropList
@@ -97,7 +97,7 @@
             </mat-list>
 
             <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
-            <mat-list
+            <mat-list dense
               #atckCharms="cdkDropList"
               [cdkDropListConnectedTo]="[kngdmCharms, defCharms]"
               cdkDropList
@@ -133,7 +133,7 @@
 
           <mat-card-content>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
-            <mat-list
+            <mat-list dense
               #defArtifacts="cdkDropList"
               [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]"
               cdkDropList
@@ -151,7 +151,7 @@
             </mat-list>
 
             <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
-            <mat-list
+            <mat-list dense
               #defCharms="cdkDropList"
               [cdkDropListConnectedTo]="[kngdmCharms, atckCharms]"
               cdkDropList

@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  
+
   constructor(
-    private angularFireAuth: AngularFireAuth, 
+    private angularFireAuth: AngularFireAuth,
     private notificationService: NotificationService,
     private router: Router,
   ) {}
@@ -22,11 +22,11 @@ export class AuthGuard implements CanActivate {
       map((authState) => !!authState),
       tap(logged => {
         if (!logged) {
-          this.notificationService.unauthorized();
+          this.notificationService.error('user.auth.unauthorized');
           this.router.navigate(['/user/login'])
         }
       })
     )
   }
-  
+
 }

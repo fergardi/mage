@@ -86,10 +86,10 @@ export class ShellComponent implements OnInit {
     try {
       await this.angularFireAuth.signOut();
       this.router.navigate(['/user/login']);
-      this.notificationService.success('user.authentication.logout');
+      this.notificationService.success('user.auth.logout');
     } catch(error) {
       console.error(error);
-      this.notificationService.error('user.authentication.error');
+      this.notificationService.error('user.auth.error');
     }
   }
 
