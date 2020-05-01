@@ -7,6 +7,7 @@ import { SorceryComponent } from './sorcery/sorcery.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { TempleComponent } from './temple/temple.component';
 import { TavernComponent } from './tavern/tavern.component';
+import { AuctionComponent } from './auction/auction.component';
 
 const routes: Routes = [
   { path: 'city', component: CityComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'archive', component: ArchiveComponent },
   { path: 'temple', component: TempleComponent },
   { path: 'tavern', component: TavernComponent },
+  { path: 'auction', component: AuctionComponent },
 ];
 
 @NgModule({

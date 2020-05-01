@@ -13,6 +13,7 @@ import { LetterComponent } from './archive/letter.component';
 import { TempleComponent } from './temple/temple.component';
 import { OfferingComponent } from './temple/offering.component';
 import { TavernComponent } from './tavern/tavern.component';
+import { AuctionComponent } from './auction/auction.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { TavernComponent } from './tavern/tavern.component';
     TempleComponent,
     OfferingComponent,
     TavernComponent,
+    AuctionComponent,
   ],
   imports: [
     CommonModule,

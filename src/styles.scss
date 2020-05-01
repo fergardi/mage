@@ -101,7 +101,8 @@ body {
   justify-content: flex-end;
 }
 
-.table-responsive {
+.table-responsive,
+.table-no-responsive {
   table {
     width: 100%;
   }
@@ -112,19 +113,8 @@ body {
   .mat-row td {
     border-bottom-width: 0;
   }
-  .mat-row .mat-cell img {
-    width: 64px;
-    height: 64px;
-    margin: 5px;
-    border-radius: 4px;
-  }
   .mat-row::after, .mat-header-row::after, .mat-footer-row::after {
     display: none;
-  }
-  .table-responsive-image-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 
@@ -151,6 +141,10 @@ body {
   .mat-list-item + .mat-list-item {
     border-top: 1px solid rgba(255, 255, 255, 0.12);
   }
+}
+
+.mat-card {
+  opacity: 0.95;
 }
 
 // DRAG AND DROP
@@ -218,8 +212,8 @@ body {
 // responsive custom table
 @media screen and (max-width: 960px) {
   .table-responsive {
-    .mat-form-field {
-      width: 100%;
+    .mat-list-item-content {
+      padding-right: 0 !important;
     }
     .mat-table {
       border: 0;
@@ -237,10 +231,6 @@ body {
     .mat-row, .mat-footer-row {
       min-height: auto;
     }
-    .mat-row .mat-cell img {
-      height: 32px;
-      width: 32px;
-    }
     .mat-table .mat-cell {
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       display: flex;
@@ -248,7 +238,7 @@ body {
       text-align: right;
       justify-content: space-between;
       align-items: center;
-      min-height: 42px;
+      min-height: 65px;
     }
     .mat-table .mat-cell:before {
       content: attr(data-label);
@@ -256,11 +246,11 @@ body {
       font-weight: normal;
       font-size: .85em;
     }
-    .table-responsive-image-wrapper {
-      flex-direction: row-reverse;
-    }
     .mat-table .mat-cell:last-child {
       border-bottom: 0;
+    }
+    .mat-cell {
+      padding: 0 12px !important;
     }
     .mat-cell:first-of-type, .mat-header-cell:first-of-type, .mat-footer-cell:first-of-type {
       padding-left: 0;

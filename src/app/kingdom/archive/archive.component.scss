@@ -10,3 +10,23 @@
     }
   }
 }
+
+// responsive custom table
+@media screen and (max-width: 960px) {
+  .kingdom-archive {
+    .mat-toolbar {
+      .mat-toolbar-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: auto;
+        padding: 0;
+        justify-content: flex-end;
+        align-items: flex-end;
+        .fill-space {
+          display: none;
+        }
+      }
+    }
+  }
+}

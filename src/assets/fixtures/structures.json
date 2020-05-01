@@ -36,12 +36,6 @@
     "image": "/assets/images/structures/node.png"
   },
   {
-    "name": "structure.land.name",
-    "description": "structure.land.description",
-    "id": "land",
-    "image": "/assets/images/structures/land.png"
-  },
-  {
     "name": "structure.village.name",
     "description": "structure.village.description",
     "id": "village",

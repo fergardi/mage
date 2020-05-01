@@ -1,14 +1,14 @@
-<div class="kingdom-census table-responsive" [@fadeInOnEnter]>
+<div class="kingdom-auction table-responsive" [@fadeInOnEnter]>
   <mat-card>
 
     <mat-card-header>
-      <img mat-card-avatar src="/assets/images/icons/census.png" alt="{{ 'kingdom.census.name' | translate }}">
-      <mat-card-title >{{ 'kingdom.census.name' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'kingdom.census.description' | translate }}</mat-card-subtitle>
+      <img mat-card-avatar src="/assets/images/icons/auction.png" alt="{{ 'kingdom.auction.name' | translate }}">
+      <mat-card-title >{{ 'kingdom.auction.name' | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ 'kingdom.auction.description' | translate }}</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
-      {{ 'kingdom.census.help' | translate }}
+      {{ 'kingdom.auction.help' | translate }}
     </mat-card-content>
 
     <mat-card-content>
@@ -22,18 +22,18 @@
       <table mat-table matSort [dataSource]="data">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
-          <mat-cell *matCellDef="let kingdom" [attr.data-label]="column">
+          <mat-cell *matCellDef="let auction" [attr.data-label]="column">
             <span *ngIf="column !== 'name'; else name">
-              {{ kingdom[column] }}
+              {{ auction[column] }}
             </span>
             <ng-template #name>
               <mat-list dense>
                 <mat-list-item>
-                  <div mat-list-avatar [matBadge]="kingdom.position | short" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="kingdom.join.image" alt="{{ kingdom.join.name | translate }}"/>
+                  <div mat-list-avatar [matBadge]="auction.quantity | short" matBadgePosition="above before">
+                    <img mat-list-avatar [src]="auction.join.image" alt="{{ auction.join.name | translate }}"/>
                   </div>
-                  <div mat-line>{{ kingdom.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle">{{ kingdom.join.name | translate }}</div>
+                  <div mat-line>{{ auction.join.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ auction.join.description | translate }}</div>
                 </mat-list-item>
               </mat-list>
             </ng-template>

@@ -7,15 +7,15 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 
 @Component({
-  selector: 'app-census',
-  templateUrl: './census.component.html',
-  styleUrls: ['./census.component.scss'],
+  selector: 'app-auction',
+  templateUrl: './auction.component.html',
+  styleUrls: ['./auction.component.scss'],
   animations: [fadeInOnEnterAnimation({ duration: 250, delay: 250 })],
 })
 @UntilDestroy()
-export class CensusComponent implements OnInit {
+export class AuctionComponent implements OnInit {
 
-  columns = ['name', 'radius'];
+  columns = ['name', 'gold'];
   data: MatTableDataSource<any> = null;
 
   constructor(
@@ -26,8 +26,8 @@ export class CensusComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit() {
-    this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id').pipe(untilDestroyed(this)).subscribe(kingdoms => {
-      this.data = new MatTableDataSource(kingdoms.map((kingdom, index) => { return { ...kingdom, position: index + 1 } }));
+    this.firebaseService.leftJoin('auctions', 'items', 'item', 'id').pipe(untilDestroyed(this)).subscribe(auctions => {
+      this.data = new MatTableDataSource(auctions);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
     })

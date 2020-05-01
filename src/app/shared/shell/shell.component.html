@@ -6,7 +6,7 @@
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    opened="true">
+    [opened]="!(isHandset$ | async)">
     <mat-toolbar>
       <!-- toggler -->
       <button type="button" aria-label="toggle" mat-icon-button (click)="toggle()">
@@ -30,7 +30,7 @@
     <!-- scroll container -->
     <div class="scroll-container" [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100% - 64px)' : 'calc(100% - 56px)' }">
       <!-- image -->
-      <div class="sidenav-logo-container" *ngIf="!(isHandset$ | async)">
+      <div class="sidenav-logo-container">
         <img class="sidenav-logo" [src]="(link$ | async)?.image" alt="icon"/>
       </div>
       <!-- links -->

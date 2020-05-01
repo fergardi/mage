@@ -24,14 +24,21 @@
     "id": "gem",
     "name": "resource.gem.name",
     "description": "resource.gem.description",
-    "sort": 5,
+    "sort": 6,
     "image": "/assets/images/resources/gem.png"
   },
   {
     "id": "turn",
     "name": "resource.turn.name",
     "description": "resource.turn.description",
-    "sort": 4,
+    "sort": 5,
     "image": "/assets/images/resources/turn.png"
+  },
+  {
+    "id": "land",
+    "name": "resource.land.name",
+    "description": "resource.land.description",
+    "sort": 4,
+    "image": "/assets/images/resources/land.png"
   }
 ]

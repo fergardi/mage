@@ -52,9 +52,7 @@
               (cdkDropListDropped)="assignArtifact($event)"
               [cdkDropListData]="contract.contractArtifacts">
               <mat-list-item *ngFor="let artifact of contract.contractArtifacts" cdkDrag class="handle" [id]="artifact.fid">
-                <div mat-list-avatar>
-                  <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
-                </div>
+                <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
                 <div mat-line>{{ artifact.join.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
                 <mat-icon>open_with</mat-icon>

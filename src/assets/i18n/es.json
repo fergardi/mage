@@ -162,43 +162,35 @@
   "structure": {
     "barrack": {
       "name": "Barracones",
-      "description": ""
+      "description": "Aumentan la capacidad de tropas de tu reino"
     },
     "barrier": {
       "name": "Barreras",
-      "description": ""
+      "description": "Aumentan la defensa mágica de tu reino contra hechizos, artefactos y encantamientos"
     },
     "node": {
       "name": "Nodos",
-      "description": ""
+      "description": "Aumentan la capacidad y la producción de maná de tu reino"
     },
     "farm": {
       "name": "Granjas",
-      "description": ""
+      "description": "Otorgan comida a las personas de tu reino"
     },
     "village": {
       "name": "Pueblos",
-      "description": ""
-    },
-    "land": {
-      "name": "Tierras",
-      "description": ""
+      "description": "Aumentan la capacidad y la producción de personas de tu reino"
     },
     "workshop": {
       "name": "Talleres",
-      "description": ""
-    },
-    "temple": {
-      "name": "Templos",
-      "description": ""
+      "description": "Aumentan la velocidad de construcción de edificios de tu reino"
     },
     "tower": {
-      "name": "Torre",
-      "description": ""
+      "name": "Torres",
+      "description": "Aumentan la velocidad de investigación de hechizos de tu reino"
     },
     "fortress": {
       "name": "Fortalezas",
-      "description": ""
+      "description": "Aumentan la defensa física de tu reino contra pillajes, asedios y batallas"
     }
   },
   "store": {
@@ -254,6 +246,10 @@
     "turn": {
       "name": "Turnos",
       "description": "Unidades de tiempo con las que se miden los eventos"
+    },
+    "land": {
+      "name": "Tierras",
+      "description": "Permiten construir nuevos edificios en tu reino"
     }
   },
   "god": {

@@ -72,5 +72,8 @@
         z-index: 1;
       }
     }
+    .mat-toolbar-row, .mat-toolbar-single-row {
+      padding: 0 !important;
+    }
   }
 }
