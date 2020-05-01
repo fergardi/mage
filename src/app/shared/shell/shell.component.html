@@ -35,13 +35,15 @@
       </div>
       <!-- links -->
       <mat-nav-list dense>
-        <a mat-list-item [routerLink]="link.url ? link.url : null" [routerLinkActive]="link.url ? ['active'] : []" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let link of links">
-          <div mat-list-avatar>
-            <img mat-list-avatar [src]="link.image" alt="{{ link.name | translate }}"/>
-          </div>
-          <div mat-line>{{ link.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ link.description | translate }}</div>
-        </a>
+        <ng-container *ngFor="let link of links">
+          <a mat-list-item [routerLink]="link.url ? link.url : null" [routerLinkActive]="link.url ? ['active'] : []" [routerLinkActiveOptions]="{ exact: true }" *ngIf="link.visible">
+            <div mat-list-avatar>
+              <img mat-list-avatar [src]="link.image" alt="{{ link.name | translate }}"/>
+            </div>
+            <div mat-line>{{ link.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ link.description | translate }}</div>
+          </a>
+        </ng-container>
       </mat-nav-list>
     </div>
   </mat-sidenav>

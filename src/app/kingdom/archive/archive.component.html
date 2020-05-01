@@ -1,55 +1,102 @@
-<div class="kingdom-archive table-no-responsive" [@fadeInOnEnter]>
-  <mat-card>
-    <mat-card-header>
-      <img mat-card-avatar src="/assets/images/icons/archive.png" alt="{{ 'kingdom.archive.name' | translate }}"/>
-      <mat-card-title>{{ "kingdom.archive.name" | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ "kingdom.archive.description" | translate }}</mat-card-subtitle>
-    </mat-card-header>
+<div class="kingdom-archive table-no-responsive" fxLayout="row wrap" fxLayoutGap="10px grid" [@fadeInOnEnter]>
 
-    <mat-card-content>
-      {{ "kingdom.archive.help" | translate }}
-    </mat-card-content>
+  <div fxFlex.xl="66" fxFlex.lg="66" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
 
-    <mat-card-content>
-      <div fxLayout="row" fxLayoutAlign="flex-end">
-        <mat-form-field>
-          <mat-label>{{ "kingdom.archive.filter" | translate }}</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'kingdom.archive.filter' | translate }}" />
-        </mat-form-field>
-      </div>
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/icons/archive.png" alt="{{ 'kingdom.archive.name' | translate }}"/>
+        <mat-card-title>{{ "kingdom.archive.name" | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ "kingdom.archive.description" | translate }}</mat-card-subtitle>
+      </mat-card-header>
 
-      <table mat-table matSort [dataSource]="data">
-        <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
-          <ng-container *ngIf="column === 'select'; else noSelect">
-            <mat-header-cell *matHeaderCellDef>
-              <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
-            </mat-header-cell>
-            <mat-cell *matCellDef="let letter" [attr.data-label]="column">
-              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(letter) : null" [checked]="selection.isSelected(letter)"></mat-checkbox>
-            </mat-cell>
+      <mat-card-content>
+        {{ "kingdom.archive.help" | translate }}
+      </mat-card-content>
+
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="flex-end">
+          <mat-form-field>
+            <mat-label>{{ "kingdom.archive.filter" | translate }}</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'kingdom.archive.filter' | translate }}" />
+          </mat-form-field>
+        </div>
+
+        <table mat-table matSort [dataSource]="data">
+          <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
+            <ng-container *ngIf="column === 'select'; else noSelect">
+              <mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let letter" [attr.data-label]="column">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(letter) : null" [checked]="selection.isSelected(letter)"></mat-checkbox>
+              </mat-cell>
+            </ng-container>
+
+            <ng-template #noSelect>
+              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
+              <mat-cell *matCellDef="let letter" [attr.data-label]="column">
+                {{ column === "from" ? letter["join"]["name"] : column === "timestamp" ? (letter[column]?.toMillis() | date) : letter[column] }}
+              </mat-cell>
+            </ng-template>
           </ng-container>
 
-          <ng-template #noSelect>
-            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
-            <mat-cell *matCellDef="let letter" [attr.data-label]="column">
-              {{ column === "from" ? letter["join"]["name"] : column === "timestamp" ? (letter[column].toMillis() | date) : letter[column] }}
-            </mat-cell>
-          </ng-template>
-        </ng-container>
+          <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+          <mat-row *matRowDef="let letter; columns: columns" class="item-row" (click)="openLetterDialog(letter)"></mat-row>
+        </table>
 
-        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-        <mat-row *matRowDef="let letter; columns: columns" class="item-row" (click)="openLetterDialog(letter)"></mat-row>
-      </table>
+        <mat-toolbar>
+          <mat-toolbar-row>
+            <button mat-icon-button [disabled]="!selection.selected.length" (click)="deleteLetters()"><mat-icon>delete</mat-icon></button>
+            <span class="fill-space"></span>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </mat-toolbar-row>
+        </mat-toolbar>
 
-      <mat-toolbar>
-        <mat-toolbar-row>
-          <button mat-icon-button [disabled]="!selection.selected.length" (click)="deleteLetters()"><mat-icon>delete</mat-icon></button>
-          <button mat-icon-button (click)="newLetter()"><mat-icon>add_circle</mat-icon></button>
-          <span class="fill-space"></span>
-          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-        </mat-toolbar-row>
-      </mat-toolbar>
+      </mat-card-content>
+    </mat-card>
 
-    </mat-card-content>
-  </mat-card>
+  </div>
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/icons/letter.png" alt="{{ 'kingdom.letter.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.letter.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.letter.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        {{ 'kingdom.letter.help' | translate }}
+      </mat-card-content>
+
+      <mat-card-content>
+
+        <form [formGroup]="form" class="letter-form">
+          <mat-form-field>
+            <mat-label>{{ 'kingdom.letter.subject' | translate }}</mat-label>
+            <input placeholder="{{ 'kingdom.letter.subject' | translate }}" matInput formControlName="subject" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{ 'kingdom.letter.to' | translate }}</mat-label>
+            <mat-select formControlName="to">
+              <mat-option *ngFor="let kingdom of kingdoms" [value]="kingdom.id">{{ kingdom.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>{{ 'kingdom.letter.message' | translate }}</mat-label>
+            <textarea placeholder="{{ 'kingdom.letter.message' | translate }}" matInput rows="5" formControlName="message"></textarea>
+          </mat-form-field>
+        </form>
+
+      </mat-card-content>
+
+      <mat-card-actions fxLayoutAlign="flex-end">
+        <button mat-raised-button (click)="sendLetter()" cdkFocusInitial>{{ 'kingdom.letter.send' | translate }}</button>
+      </mat-card-actions>
+
+    </mat-card>
+
+  </div>
+
 </div>

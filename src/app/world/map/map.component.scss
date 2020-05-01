@@ -12,11 +12,6 @@
   border-radius: 50%;
   cursor: pointer;
   padding: 0;
-  &:hover {
-    transform: scale(1.1) translateZ(0) !important;
-    backface-visibility: hidden;
-    -webkit-font-smoothing: subpixel-antialiased;
-  }
 }
 ::ng-deep .marker-shadow {
   width: 100%;

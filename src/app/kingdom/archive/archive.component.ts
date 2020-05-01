@@ -10,6 +10,10 @@ import { LetterComponent } from './letter.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { fadeInOnEnterAnimation } from 'angular-animations';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-archive',
@@ -20,6 +24,9 @@ import { fadeInOnEnterAnimation } from 'angular-animations';
 @UntilDestroy()
 export class ArchiveComponent implements OnInit {
 
+  uid: string = null;
+  kingdoms: any[] = [];
+  form: FormGroup = null;
   columns = ['select', 'from', 'subject', 'timestamp'];
   selection: SelectionModel<any> = new SelectionModel<any>(true, []);
   data: MatTableDataSource<any> = new MatTableDataSource([]);
@@ -28,17 +35,30 @@ export class ArchiveComponent implements OnInit {
     private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     public dialog: MatDialog,
+    private store: Store,
+    private formBuilder: FormBuilder,
+    private notificationService: NotificationService,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit() {
-    this.firebaseService.leftJoin(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/letters`, 'kingdoms', 'from', 'id').pipe(untilDestroyed(this)).subscribe(letters => {
+    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
+    this.firebaseService.leftJoin(`kingdoms/${this.uid}/letters`, 'kingdoms', 'from', 'id').pipe(untilDestroyed(this)).subscribe(letters => {
       this.data = new MatTableDataSource(letters);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
-    })
+    });
+    this.angularFirestore.collection('kingdoms').valueChanges().pipe(untilDestroyed(this)).subscribe(kingdoms => {
+      this.kingdoms = kingdoms;
+    });
+    this.form = this.formBuilder.group({
+      from: [this.uid, [Validators.required]],
+      to: ['', [Validators.required]],
+      subject: ['', [Validators.required]],
+      message: ['', [Validators.required]],
+    });
   }
 
   applyFilter(event: Event) {
@@ -58,31 +78,47 @@ export class ArchiveComponent implements OnInit {
 
   openLetterDialog(letter: any): void {
     const dialogRef = this.dialog.open(LetterComponent, {
-      width: '80%',
-      data: letter
+      minWidth: '60%',
+      maxWidth: '80%',
+      data: letter,
     });
   }
 
-  deleteLetters() {
+  async deleteLetters() {
     if (this.selection.selected.length) {
-      // TODO
+      try {
+        const batch = this.angularFirestore.firestore.batch();
+        this.selection.selected.forEach(letter => {
+          batch.delete(this.angularFirestore.collection(`kingdoms/${this.uid}/letters`).doc(letter.fid).ref);
+        });
+        await batch.commit();
+        this.selection.clear();
+        this.notificationService.success('kingdom.letter.success');
+      } catch (error) {
+        this.notificationService.error('kingdom.letter.error');
+      }
     }
   }
 
-  newLetter() {
-    const letter = this.dialog.open(LetterComponent, {
-      width: '50%',
-      data: {
-        fid: null,
-        from: 'wS6oK6Epj3XvavWFtngLZkgFx263',
-        to: null,
-        subject: '',
-        message: '',
+  async sendLetter() {
+    if (this.form.valid) {
+      try {
+        await this.angularFirestore.collection(`kingdoms/${this.form.value.to}/letters`).add({
+          from: this.form.value.from,
+          to: this.form.value.to,
+          subject: this.form.value.subject,
+          message: this.form.value.message,
+          timestamp: firestore.FieldValue.serverTimestamp(),
+        });
+        this.notificationService.success('kingdom.letter.success');
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.letter.error');
       }
-    });
-    letter.afterClosed().pipe(untilDestroyed(this)).subscribe(data => {
-      this.angularFirestore.collection(`kingdoms/${data.to}/letters`).add({ ...data, timestamp: firestore.FieldValue.serverTimestamp() });
-    });
+    } else {
+      console.error(this.form.errors);
+      this.notificationService.error('kingdom.letter.error');
+    }
   }
 
 }

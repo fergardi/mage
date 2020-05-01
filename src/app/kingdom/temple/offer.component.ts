@@ -9,6 +9,15 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
     <h1 mat-dialog-title>{{ 'kingdom.offer.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.offer.description' | translate }}</p>
+      <mat-list dense>
+        <mat-list-item>
+          <div mat-list-avatar>
+            <img mat-list-avatar [src]="data.god.image" alt="{{ data.god.name | translate }}"/>
+          </div>
+          <div mat-line>{{ data.god.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ data.god.description | translate }}</div>
+        </mat-list-item>
+      </mat-list>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.gold.name' | translate }}</mat-label>
@@ -52,7 +61,7 @@ export class OfferComponent implements OnInit {
 
   offer(): void {
     if (this.form.valid) {
-      this.dialogRef.close(this.form.value);
+      this.dialogRef.close(this.form.value.offer);
     } else {
       this.notificationService.error('kingdom.offer.error');
     }

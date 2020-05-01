@@ -31,6 +31,10 @@
     }
   },
   "kingdom": {
+    "login": {
+      "name": "Archimago",
+      "description": "Planifica tu estrategia"
+    },
     "map": {
       "name": "Mapa",
       "description": "Planifica tu estrategia"
@@ -40,7 +44,7 @@
       "description": "Administra tu capital",
       "help": "TODO",
       "success": "Edificios construidos correctamente",
-      "error": "Ha habido un error al construir edificios"
+      "error": "Ha ocurrido un error al construir edificios"
     },
     "census": {
       "name": "Censo",
@@ -52,7 +56,7 @@
       "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente.",
       "maximum": "No puedes superar el máximo permitido.",
       "success": "Los cambios de tus tropas se han guardado.",
-      "error": "Ha habido un problema al gestionar tus tropas."
+      "error": "Ha ocurrido un problema al gestionar tus tropas."
     },
     "attack": {
       "name": "Ataque",
@@ -74,7 +78,7 @@
       "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás subir de nivel a tus hechizos, invirtiendo turnos en su investigación.",
       "maximum": "No puedes superar el máximo permitido.",
       "success": "Los cambios de tus hechizos se han guardado.",
-      "error": "Ha habido un problema al gestionar tus hechizos."
+      "error": "Ha ocurrido un problema al gestionar tus hechizos."
     },
     "sorcery-attack": {
       "name": "Ataque mágico",
@@ -96,6 +100,11 @@
       "description": "Engrosa tus arcas",
       "help": "Aquí podrás invertir turnos en cobrar impuestos a los súbditos de tu reino. El oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas."
     },
+    "explore": {
+      "name": "Explorar tierras",
+      "description": "Anexiona nuevos territorios a tu reino",
+      "help": "Aquí podrás invertir turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas tierras libres. Las tierras libres sirven como espacio para construir nuevos edificios en tu reino."
+    },
     "dispell": {
       "name": "Desencantar",
       "description": "Rompe encantamientos",
@@ -113,12 +122,17 @@
       "filter": "Filtrar cartas"
     },
     "letter": {
+      "name": "Redactar carta",
+      "description": "Envía un mensajes a otro reino",
+      "help": "TODO",
       "close": "Cerrar",
       "create": "Redactar",
       "subject": "Asunto",
       "to": "Destinatario",
       "message": "Mensaje",
-      "send": "Enviar"
+      "send": "Enviar",
+      "success": "Mensaje enviado o borrado correctamente",
+      "error": "Ha ocurrido un error al enviar o borrar el mensaje"
     },
     "temple": {
       "name": "Templo",

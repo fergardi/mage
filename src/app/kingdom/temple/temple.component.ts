@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { OfferComponent } from './offer.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { fadeInOnEnterAnimation } from 'angular-animations';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 @Component({
   selector: 'app-temple',
@@ -15,15 +17,18 @@ import { fadeInOnEnterAnimation } from 'angular-animations';
 @UntilDestroy()
 export class TempleComponent implements OnInit {
 
+  uid: string = null;
   kingdomGods: any[] = [];
 
   constructor(
     private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     public dialog: MatDialog,
+    private store: Store,
   ) {}
 
   ngOnInit() {
+    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.firebaseService.leftJoin('gods', 'kingdoms', 'kingdom', 'id').pipe(untilDestroyed(this)).subscribe(gods => {
       this.kingdomGods = gods;
     });
@@ -31,15 +36,16 @@ export class TempleComponent implements OnInit {
 
   openOfferDialog(god: any): void {
     const dialogRef = this.dialog.open(OfferComponent, {
-      width: '33%',
+      minWidth: '20%',
+      maxWidth: '80%',
       data: {
-        ...god,
+        god: god,
         offer: 0,
       }
     });
-    dialogRef.afterClosed().subscribe(data => {
-      if (data && data.offer > god.gold) {
-        this.angularFirestore.collection('gods').doc(god.fid).update({ gold: data.offer, kingdom: 'wS6oK6Epj3XvavWFtngLZkgFx263' });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.angularFirestore.collection('gods').doc(god.fid).update({ gold: result, kingdom: this.uid });
       }
     })
   }

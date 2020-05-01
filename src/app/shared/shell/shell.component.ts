@@ -27,16 +27,17 @@ export class ShellComponent implements OnInit {
     { lang: 'fr', image: '/assets/images/languages/fr.png' },
   ]
   links: Array<any> = [
-    { url: '/world/map', name: 'kingdom.map.name', description: 'kingdom.map.description', image: '/assets/images/icons/map.png' },
-    { url: '/kingdom/city', name: 'kingdom.city.name', description: 'kingdom.city.description', image: '/assets/images/icons/city.png' },
-    { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/icons/army.png' },
-    { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/icons/auction.png' },
-    { url: '/kingdom/census', name: 'kingdom.census.name', description: 'kingdom.census.description', image: '/assets/images/icons/census.png' },
-    { url: '/kingdom/sorcery', name: 'kingdom.sorcery.name', description: 'kingdom.sorcery.description', image: '/assets/images/icons/sorcery.png' },
-    { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/icons/tavern.png' },
-    { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/icons/archive.png' },
-    { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/icons/temple.png' },
-    { url: '/kingdom/store', name: 'kingdom.store.name', description: 'kingdom.store.description', image: '/assets/images/icons/store.png' },
+    { url: '/user/login', name: 'kingdom.login.name', description: 'kingdom.login.description', image: '/assets/images/icons/login.png', visible: false },
+    { url: '/world/map', name: 'kingdom.map.name', description: 'kingdom.map.description', image: '/assets/images/icons/map.png', visible: true },
+    { url: '/kingdom/city', name: 'kingdom.city.name', description: 'kingdom.city.description', image: '/assets/images/icons/city.png', visible: true },
+    { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/icons/army.png', visible: true },
+    { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/icons/auction.png', visible: true },
+    { url: '/kingdom/census', name: 'kingdom.census.name', description: 'kingdom.census.description', image: '/assets/images/icons/census.png', visible: true },
+    { url: '/kingdom/sorcery', name: 'kingdom.sorcery.name', description: 'kingdom.sorcery.description', image: '/assets/images/icons/sorcery.png', visible: true },
+    { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/icons/tavern.png', visible: true },
+    { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/icons/archive.png', visible: true },
+    { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/icons/temple.png', visible: true },
+    { url: '/kingdom/store', name: 'kingdom.store.name', description: 'kingdom.store.description', image: '/assets/images/icons/store.png', visible: true },
   ];
   kingdomSupplies: any[] = [];
 

@@ -9,6 +9,11 @@
       padding: 0 0 0 12px;
     }
   }
+  .letter-form {
+    .mat-form-field {
+      width: 100%;
+    }
+  }
 }
 
 // responsive custom table
