@@ -6,21 +6,21 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-offering',
   template: `
-    <h1 mat-dialog-title>{{ 'kingdom.temple-offering.name' | translate }}</h1>
+    <h1 mat-dialog-title>{{ 'kingdom.offering.name' | translate }}</h1>
     <div mat-dialog-content>
-      <p>{{ 'kingdom.temple-offering.description' | translate }}</p>
+      <p>{{ 'kingdom.offering.description' | translate }}</p>
       <form [formGroup]="form">
         <mat-form-field>
-          <mat-label>{{ 'kingdom.temple-offering.gold' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'kingdom.temple-offering.gold' | translate }}" matInput formControlName="offering" />
-          <mat-hint>{{ 'kingdom.temple-offering.error' | translate }}</mat-hint>
-          <mat-error>{{ 'kingdom.temple-offering.error' | translate }}</mat-error>
+          <mat-label>{{ 'resource.gold.name' | translate }}</mat-label>
+          <input type="number" placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="offering" />
+          <mat-hint>{{ 'kingdom.offering.hint' | translate }}</mat-hint>
+          <mat-error>{{ 'kingdom.offering.error' | translate }}</mat-error>
         </mat-form-field>
       </form>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="close()">{{ 'kingdom.temple-offering.cancel' | translate }}</button>
-      <button mat-button (click)="offer()" cdkFocusInitial>{{ 'kingdom.temple-offering.offer' | translate }}</button>
+      <button mat-button (click)="close()">{{ 'kingdom.offering.cancel' | translate }}</button>
+      <button mat-button (click)="offer()" cdkFocusInitial>{{ 'kingdom.offering.offer' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -53,9 +53,8 @@ export class OfferingComponent implements OnInit {
   offer(): void {
     if (this.form.valid) {
       this.dialogRef.close(this.form.value);
-      this.notificationService.success('kingdom.temple-offering.success')
     } else {
-      this.notificationService.error('kingdom.temple-offering.error')
+      this.notificationService.error('kingdom.offering.error');
     }
   }
 

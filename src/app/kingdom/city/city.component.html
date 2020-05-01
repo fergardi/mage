@@ -15,7 +15,7 @@
 
       <mat-card-content>
         <mat-action-list dense>
-          <button mat-list-item *ngFor="let building of kingdomBuildings">
+          <button mat-list-item *ngFor="let building of kingdomBuildings" (click)="openBuildDialog(building)">
             <div mat-list-avatar [matBadge]="building.quantity | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="building.join.image" alt="{{ building.join.name | translate }}"/>
             </div>

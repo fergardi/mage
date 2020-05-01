@@ -8,7 +8,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 import { LetterComponent } from './letter.component';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase/app'
+import { firestore } from 'firebase/app';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 
 @Component({

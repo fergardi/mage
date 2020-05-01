@@ -141,6 +141,10 @@ body {
   .mat-list-item + .mat-list-item {
     border-top: 1px solid rgba(255, 255, 255, 0.12);
   }
+  .mat-line {
+    white-space: initial !important;
+    line-height: 1.25 !important;
+  }
 }
 
 .mat-card {
@@ -151,7 +155,7 @@ body {
 .cdk-drag-placeholder {
   opacity: 0.5;
   box-sizing: border-box;
-  border: 2px dashed gray;
+  border: 2px dashed rgba(255, 255, 255, 0.12);
 }
 .cdk-drag-animating,
 .cdk-drop-list-dragging .cdk-drag {

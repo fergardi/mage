@@ -52,12 +52,12 @@
       "success": "Los cambios de tus tropas se han guardado.",
       "error": "Ha habido un problema al gestionar tus tropas."
     },
-    "army-attack": {
+    "attack": {
       "name": "Ataque",
       "description": "Organiza tus fuerzas ofensivas",
       "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar 3 al ataque, y su orden tiene mucha importancia en las batallas."
     },
-    "army-defense": {
+    "defense": {
       "name": "Defensa",
       "description": "Organiza tus fuerzas defensivas",
       "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar 3 a la defensa, y su orden tiene mucha importancia en las batallas."
@@ -110,7 +110,7 @@
       "help": "Aqui puedes ver un listado de las cartas, informes, avisos y cualquier otro tipo de información referente a tu reino. También puedes enviar cartas a otros reinos.",
       "filter": "Filtrar cartas"
     },
-    "archive-letter": {
+    "letter": {
       "close": "Cerrar",
       "create": "Redactar",
       "subject": "Asunto",
@@ -123,18 +123,26 @@
       "description": "Complace a los dioses",
       "help": "TODO"
     },
-    "temple-offering": {
+    "offering": {
       "name": "Ofrenda",
       "description": "Ofrece oro a tu dios como sacrificio",
-      "gold": "Oro",
       "cancel": "Cancelar",
       "offer": "Ofrecer",
       "success": "Tu ofrenda satisface a los dioses",
+      "hint": "Ofrece más oro que la ofrenda anterior",
       "error": "Debes ofrecer más oro que la ofrenda anterior"
     },
     "store": {
       "name": "Tienda",
       "description": "Invierte tus gemas"
+    },
+    "build": {
+      "name": "Construcción",
+      "description": "TODO",
+      "cancel": "Cancelar",
+      "build": "Construir",
+      "hint": "Necesitas tierras, oro, personas y turnos",
+      "error": "Insuficientes tierras, oro, personas o turnos"
     }
   },
   "faction": {

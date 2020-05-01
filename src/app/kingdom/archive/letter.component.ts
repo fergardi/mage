@@ -13,27 +13,27 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
         <p>{{ data.message }}</p>
       </div>
       <div mat-dialog-actions>
-        <button mat-button (click)="close()">{{ 'kingdom.archive-letter.close' | translate }}</button>
+        <button mat-button (click)="close()">{{ 'kingdom.letter.close' | translate }}</button>
       </div>
     </ng-container>
     <ng-template #create>
-      <h1 mat-dialog-title>{{ 'kingdom.archive-letter.create' | translate }}</h1>
+      <h1 mat-dialog-title>{{ 'kingdom.letter.create' | translate }}</h1>
       <mat-form-field>
-        <mat-label>{{ 'kingdom.archive-letter.subject' | translate }}</mat-label>
-        <input placeholder="{{ 'kingdom.archive-letter.subject' | translate }}" matInput [(ngModel)]="data.subject" />
+        <mat-label>{{ 'kingdom.letter.subject' | translate }}</mat-label>
+        <input placeholder="{{ 'kingdom.letter.subject' | translate }}" matInput [(ngModel)]="data.subject" />
       </mat-form-field>
       <mat-form-field>
-        <mat-label>{{ 'kingdom.archive-letter.to' | translate }}</mat-label>
+        <mat-label>{{ 'kingdom.letter.to' | translate }}</mat-label>
         <mat-select [(ngModel)]="data.to">
           <mat-option *ngFor="let kingdom of kingdoms" [value]="kingdom.id">{{ kingdom.name }}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>{{ 'kingdom.archive-letter.message' | translate }}</mat-label>
-        <textarea placeholder="{{ 'kingdom.archive-letter.message' | translate }}" matInput rows="5" [(ngModel)]="data.message"></textarea>
+        <mat-label>{{ 'kingdom.letter.message' | translate }}</mat-label>
+        <textarea placeholder="{{ 'kingdom.letter.message' | translate }}" matInput rows="5" [(ngModel)]="data.message"></textarea>
       </mat-form-field>
       <div mat-dialog-actions>
-        <button mat-button (click)="send()">{{ 'kingdom.archive-letter.send' | translate }}</button>
+        <button mat-button (click)="send()">{{ 'kingdom.letter.send' | translate }}</button>
       </div>
     </ng-template>
   `,
