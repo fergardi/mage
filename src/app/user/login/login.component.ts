@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngxs/store';
+import { LoginWithGoogleAction } from 'src/app/shared/auth/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,7 @@ export class LoginComponent {
     public angularFireAuth: AngularFireAuth,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +55,7 @@ export class LoginComponent {
       : this.password.value === this.password2.value;
   }
 
-  async onSubmit() {
+  async login() {
     this.loading = true;
     const email = this.email.value;
     const password = this.password.value;
@@ -74,6 +77,10 @@ export class LoginComponent {
       this.notificationService.error('user.login.error');
     }
     this.loading = false;
+  }
+
+  async google() {
+    this.store.dispatch(new LoginWithGoogleAction())
   }
 
 }

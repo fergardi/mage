@@ -1,5 +1,5 @@
 <div class="app-login">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" fxLayout="row" fxLayoutAlign="center center">
+  <form [formGroup]="form" (ngSubmit)="login()" fxLayout="row" fxLayoutAlign="center center">
 
     <mat-card fxFlex.xl="25" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="66" fxFlex.xs="100">
       <mat-card-header>
@@ -30,7 +30,7 @@
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-button type="button" appGooglogin class="flag-menu">
+        <button mat-button type="button" (click)="google()" class="flag-menu">
           <img src="/assets/images/brands/google.png"/>
           <span>Google</span>
         </button>

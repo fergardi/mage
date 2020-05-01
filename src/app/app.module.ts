@@ -12,6 +12,9 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { AuthState } from './shared/auth/auth.state';
 
 // AOT compilation support
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,6 +40,14 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       },
       isolate: false
+    }),
+    NgxsModule.forRoot(
+      [AuthState],
+      { developmentMode: !environment.production },
+    ),
+    NgxsReduxDevtoolsPluginModule.forRoot({
+      name: 'NGXS store',
+      disabled: environment.production
     }),
   ],
   providers: [

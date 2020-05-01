@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 @Component({
   selector: 'app-city',
@@ -19,21 +21,21 @@ import { NotificationService } from 'src/app/services/notification.service';
 @UntilDestroy()
 export class CityComponent implements OnInit {
 
+  uid: string = null;
   kingdomBuildings: any[] = [];
 
   constructor(
     private firebaseService: FirebaseService,
-    private angularFireAuth: AngularFireAuth,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
     public dialog: MatDialog,
+    private store: Store,
   ) {}
 
   ngOnInit() {
-    this.angularFireAuth.authState.pipe(take(1)).subscribe(user => {
-      this.firebaseService.leftJoin(`kingdoms/${user.uid}/buildings`, 'structures', 'id', 'id').pipe(untilDestroyed(this)).subscribe(buildings => {
-        this.kingdomBuildings = buildings;
-      });
+    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
+    this.firebaseService.leftJoin(`kingdoms/${this.uid}/buildings`, 'structures', 'id', 'id').pipe(untilDestroyed(this)).subscribe(buildings => {
+      this.kingdomBuildings = buildings;
     });
   }
 
@@ -50,15 +52,15 @@ export class CityComponent implements OnInit {
       if (result) {
         try {
           const batch = this.angularFirestore.firestore.batch();
-          const buildingRef = this.angularFirestore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/buildings/`).doc(building.fid);
-          const landsRef = this.angularFirestore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/supplies/`).doc('iH6DURLEckp4wffrzryK');
+          const buildingRef = this.angularFirestore.collection(`kingdoms/${this.uid}/buildings/`).doc(building.fid);
+          const landsRef = this.angularFirestore.collection(`kingdoms/${this.uid}/supplies/`).doc('iH6DURLEckp4wffrzryK');
           batch.update(buildingRef.ref, { quantity: firestore.FieldValue.increment(result) });
           batch.update(landsRef.ref, { quantity: firestore.FieldValue.increment(-result) });
           await batch.commit();
-          this.notificationService.success('');
+          this.notificationService.success('kingdom.city.success');
         } catch(error) {
           console.error(error);
-          this.notificationService.error('');
+          this.notificationService.error('kingdom.city.error');
         }
       }
     })

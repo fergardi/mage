@@ -61,7 +61,7 @@ export class BuildComponent implements OnInit {
 
   build(): void {
     if (this.form.valid) {
-      this.dialogRef.close(this.form.value);
+      this.dialogRef.close(this.form.value.lands);
     } else {
       this.notificationService.error('kingdom.build.error');
     }

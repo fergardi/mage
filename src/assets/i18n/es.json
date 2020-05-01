@@ -38,7 +38,9 @@
     "city": {
       "name": "Ciudad",
       "description": "Administra tu capital",
-      "help": "TODO"
+      "help": "TODO",
+      "success": "Edificios construidos correctamente",
+      "error": "Ha habido un error al construir edificios"
     },
     "census": {
       "name": "Censo",

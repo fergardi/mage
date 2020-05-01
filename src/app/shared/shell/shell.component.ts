@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map, shareReplay, filter, take } from 'rxjs/operators';
+import { map, shareReplay, filter } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router, NavigationEnd } from '@angular/router';
@@ -10,6 +10,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngxs/store';
+import { LogoutAction } from '../auth/auth.actions';
 
 @Component({
   selector: 'app-shell',
@@ -59,6 +61,7 @@ export class ShellComponent implements OnInit {
     private firebaseService: FirebaseService,
     private mapboxService: MapboxService,
     private notificationService: NotificationService,
+    private store: Store,
   ) {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));
@@ -83,14 +86,7 @@ export class ShellComponent implements OnInit {
   }
 
   async logout() {
-    try {
-      await this.angularFireAuth.signOut();
-      this.router.navigate(['/user/login']);
-      this.notificationService.success('user.auth.logout');
-    } catch(error) {
-      console.error(error);
-      this.notificationService.error('user.auth.error');
-    }
+    this.store.dispatch(new LogoutAction());
   }
 
 }
