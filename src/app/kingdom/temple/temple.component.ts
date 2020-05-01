@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { MatDialog } from '@angular/material/dialog';
-import { OfferingComponent } from './offering.component';
+import { OfferComponent } from './offer.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 
@@ -29,17 +29,17 @@ export class TempleComponent implements OnInit {
     });
   }
 
-  openOfferingDialog(god: any): void {
-    const dialogRef = this.dialog.open(OfferingComponent, {
+  openOfferDialog(god: any): void {
+    const dialogRef = this.dialog.open(OfferComponent, {
       width: '33%',
       data: {
         ...god,
-        offering: 0,
+        offer: 0,
       }
     });
     dialogRef.afterClosed().subscribe(data => {
-      if (data && data.offering > god.gold) {
-        this.angularFirestore.collection('gods').doc(god.fid).update({ gold: data.offering, kingdom: 'wS6oK6Epj3XvavWFtngLZkgFx263' });
+      if (data && data.offer > god.gold) {
+        this.angularFirestore.collection('gods').doc(god.fid).update({ gold: data.offer, kingdom: 'wS6oK6Epj3XvavWFtngLZkgFx263' });
       }
     })
   }

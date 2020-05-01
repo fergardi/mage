@@ -4,23 +4,23 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-offering',
+  selector: 'app-offer',
   template: `
-    <h1 mat-dialog-title>{{ 'kingdom.offering.name' | translate }}</h1>
+    <h1 mat-dialog-title>{{ 'kingdom.offer.name' | translate }}</h1>
     <div mat-dialog-content>
-      <p>{{ 'kingdom.offering.description' | translate }}</p>
+      <p>{{ 'kingdom.offer.description' | translate }}</p>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.gold.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="offering" />
-          <mat-hint>{{ 'kingdom.offering.hint' | translate }}</mat-hint>
-          <mat-error>{{ 'kingdom.offering.error' | translate }}</mat-error>
+          <input type="number" placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="offer" />
+          <mat-hint>{{ 'kingdom.offer.hint' | translate }}</mat-hint>
+          <mat-error>{{ 'kingdom.offer.error' | translate }}</mat-error>
         </mat-form-field>
       </form>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="close()">{{ 'kingdom.offering.cancel' | translate }}</button>
-      <button mat-button (click)="offer()" cdkFocusInitial>{{ 'kingdom.offering.offer' | translate }}</button>
+      <button mat-button (click)="close()">{{ 'kingdom.offer.cancel' | translate }}</button>
+      <button mat-button (click)="offer()" cdkFocusInitial>{{ 'kingdom.offer.offer' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -29,12 +29,12 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
     }
   `]
 })
-export class OfferingComponent implements OnInit {
+export class OfferComponent implements OnInit {
 
   form: FormGroup = null;
 
   constructor(
-    public dialogRef: MatDialogRef<OfferingComponent>,
+    public dialogRef: MatDialogRef<OfferComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private notificationService: NotificationService,
     private formBuilder: FormBuilder,
@@ -42,7 +42,7 @@ export class OfferingComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      offering: ['', [Validators.required, Validators.min(this.data.gold + 1)]]
+      offer: ['', [Validators.required, Validators.min(this.data.gold + 1)]]
     });
   }
 
@@ -54,7 +54,7 @@ export class OfferingComponent implements OnInit {
     if (this.form.valid) {
       this.dialogRef.close(this.form.value);
     } else {
-      this.notificationService.error('kingdom.offering.error');
+      this.notificationService.error('kingdom.offer.error');
     }
   }
 

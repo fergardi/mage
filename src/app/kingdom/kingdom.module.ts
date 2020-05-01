@@ -11,7 +11,7 @@ import { ResearchComponent } from './sorcery/research.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { LetterComponent } from './archive/letter.component';
 import { TempleComponent } from './temple/temple.component';
-import { OfferingComponent } from './temple/offering.component';
+import { OfferComponent } from './temple/offer.component';
 import { TavernComponent } from './tavern/tavern.component';
 import { AuctionComponent } from './auction/auction.component';
 import { BuildComponent } from './city/build.component';
@@ -27,7 +27,7 @@ import { BuildComponent } from './city/build.component';
     ArchiveComponent,
     LetterComponent,
     TempleComponent,
-    OfferingComponent,
+    OfferComponent,
     TavernComponent,
     AuctionComponent,
     BuildComponent,

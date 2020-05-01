@@ -16,7 +16,7 @@
 
       <mat-card-content>
         <mat-action-list dense>
-          <button mat-list-item *ngFor="let god of kingdomGods" (click)="openOfferingDialog(god)">
+          <button mat-list-item *ngFor="let god of kingdomGods" (click)="openOfferDialog(god)">
             <div mat-list-avatar>
               <img mat-list-avatar [src]="god.image" alt="{{ god.name | translate }}"/>
             </div>

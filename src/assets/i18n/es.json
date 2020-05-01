@@ -123,7 +123,7 @@
       "description": "Complace a los dioses",
       "help": "TODO"
     },
-    "offering": {
+    "offer": {
       "name": "Ofrenda",
       "description": "Ofrece oro a tu dios como sacrificio",
       "cancel": "Cancelar",
