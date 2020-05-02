@@ -1,0 +1,61 @@
+<div class="user-encyclopedia table-responsive" [@fadeInOnEnter]>
+  <mat-card>
+
+    <mat-card-header>
+      <img mat-card-avatar src="/assets/images/icons/encyclopedia.png" alt="{{ 'user.encyclopedia.name' | translate }}">
+      <mat-card-title >{{ 'user.encyclopedia.name' | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ 'user.encyclopedia.description' | translate }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      {{ 'user.encyclopedia.help' | translate }}
+    </mat-card-content>
+
+    <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="flex-end">
+        <mat-form-field>
+          <mat-label>{{ 'table.filter.name' | translate }}</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'table.filter.name' | translate }}">
+        </mat-form-field>
+      </div>
+
+      <table mat-table matSort [dataSource]="data">
+        <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
+          <mat-cell *matCellDef="let spell" [attr.data-label]="column">
+            <span *ngIf="column !== 'name' && column !== 'faction'">
+              {{ spell[column] }}
+            </span>
+            <ng-template [ngIf]="column === 'faction'">
+              <mat-list dense>
+                <mat-list-item>
+                  <div mat-list-avatar>
+                    <img mat-list-avatar [src]="spell.join.image" alt="{{ spell.join.name | translate }}"/>
+                  </div>
+                  <div mat-line>{{ spell.join.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ spell.join.description | translate }}</div>
+                </mat-list-item>
+              </mat-list>
+            </ng-template>
+            <ng-template [ngIf]="column === 'name'">
+              <mat-list dense>
+                <mat-list-item>
+                  <div mat-list-avatar [matBadge]="spell.level | short" matBadgePosition="above before">
+                    <img mat-list-avatar [src]="spell.image" alt="{{ spell.name | translate }}"/>
+                  </div>
+                  <div mat-line>{{ spell.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ spell.description | translate }}</div>
+                </mat-list-item>
+              </mat-list>
+            </ng-template>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columns;" class="item-row"></mat-row>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

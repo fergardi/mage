@@ -1,402 +1,162 @@
 [
   {
-    "name": "spell.summon-ash-golem.name",
-    "description": "spell.summon-ash-golem.description",
-    "id": "summon-ash-golem",
-    "image": "/assets/images/units/black/ash-golem.png",
+    "name": "spell.animate-skeleton.name",
+    "description": "spell.animate-skeleton.description",
+    "id": "animate-skeleton",
+    "image": "/assets/images/spells/black/animate-skeleton.png",
     "faction": "black",
     "level": 1
   },
   {
-    "name": "spell.summon-banshee.name",
-    "description": "spell.summon-banshee.description",
-    "id": "summon-banshee",
-    "image": "/assets/images/units/black/banshee.png",
+    "name": "spell.animate-zombie.name",
+    "description": "spell.animate-zombie.description",
+    "id": "animate-zombie",
+    "image": "/assets/images/spells/black/animate-zombie.png",
     "faction": "black",
     "level": 1
   },
   {
-    "name": "spell.summon-bone-dragon.name",
-    "description": "spell.summon-bone-dragon.description",
-    "id": "summon-bone-dragon",
-    "image": "/assets/images/units/black/bone-dragon.png",
+    "name": "spell.animate-ghoul.name",
+    "description": "spell.animate-ghoul.description",
+    "id": "animate-ghoul",
+    "image": "/assets/images/spells/black/animate-ghoul.png",
+    "faction": "black",
+    "level": 2
+  },
+  {
+    "name": "spell.gluttony.name",
+    "description": "spell.gluttony.description",
+    "id": "gluttony",
+    "image": "/assets/images/spells/black/gluttony.png",
+    "faction": "black",
+    "level": 3
+  },
+  {
+    "name": "spell.fear.name",
+    "description": "spell.fear.description",
+    "id": "fear",
+    "image": "/assets/images/spells/black/fear.png",
     "faction": "black",
     "level": 1
   },
   {
-    "name": "spell.summon-dark-knight.name",
-    "description": "spell.summon-dark-knight.description",
-    "id": "summon-dark-knight",
-    "image": "/assets/images/units/black/dark-knight.png",
+    "name": "spell.night-living-dead.name",
+    "description": "spell.night-living-dead.description",
+    "id": "night-living-dead",
+    "image": "/assets/images/spells/black/night-living-dead.png",
     "faction": "black",
-    "level": 1
+    "level": 4
   },
   {
-    "name": "spell.summon-hound.name",
-    "description": "spell.summon-hound.description",
-    "id": "summon-hound",
-    "image": "/assets/images/units/black/hound.png",
+    "name": "spell.necromancy-touch.name",
+    "description": "spell.necromancy-touch.description",
+    "id": "necromancy-touch",
+    "image": "/assets/images/spells/black/necromancy-touch.png",
     "faction": "black",
-    "level": 1
+    "level": 4
+  },
+  {
+    "name": "spell.summon-wraith.name",
+    "description": "spell.summon-wraith.description",
+    "id": "summon-wraith",
+    "image": "/assets/images/spells/black/summon-wraith.png",
+    "faction": "black",
+    "level": 2
   },
   {
     "name": "spell.summon-lich.name",
     "description": "spell.summon-lich.description",
     "id": "summon-lich",
-    "image": "/assets/images/units/black/lich.png",
+    "image": "/assets/images/spells/black/summon-lich.png",
     "faction": "black",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-skeleton.name",
-    "description": "spell.summon-skeleton.description",
-    "id": "summon-skeleton",
-    "image": "/assets/images/units/black/skeleton.png",
-    "faction": "black",
-    "level": 1
+    "level": 3
   },
   {
     "name": "spell.summon-vampire.name",
     "description": "spell.summon-vampire.description",
     "id": "summon-vampire",
-    "image": "/assets/images/units/black/vampire.png",
+    "image": "/assets/images/spells/black/summon-vampire.png",
     "faction": "black",
-    "level": 1
+    "level": 3
   },
   {
-    "name": "spell.summon-werewolf.name",
-    "description": "spell.summon-werewolf.description",
-    "id": "summon-werewolf",
-    "image": "/assets/images/units/black/werewolf.png",
+    "name": "spell.death-decay.name",
+    "description": "spell.death-decay.description",
+    "id": "death-decay",
+    "image": "/assets/images/spells/black/death-decay.png",
     "faction": "black",
-    "level": 1
+    "level": 4
   },
   {
-    "name": "spell.summon-zombie.name",
-    "description": "spell.summon-zombie.description",
-    "id": "summon-zombie",
-    "image": "/assets/images/units/black/zombie.png",
+    "name": "spell.shroud-darkness.name",
+    "description": "spell.shroud-darkness.description",
+    "id": "shroud-darkness",
+    "image": "/assets/images/spells/black/shroud-darkness.png",
     "faction": "black",
-    "level": 1
+    "level": 2
   },
   {
-    "name": "spell.summon-blue-dragon.name",
-    "description": "spell.summon-blue-dragon.description",
-    "id": "summon-blue-dragon",
-    "image": "/assets/images/units/blue/blue-dragon.png",
-    "faction": "blue",
-    "level": 1
+    "name": "spell.poison.name",
+    "description": "spell.poison.description",
+    "id": "poison",
+    "image": "/assets/images/spells/black/poison.png",
+    "faction": "black",
+    "level": 3
   },
   {
-    "name": "spell.summon-crystal-golem.name",
-    "description": "spell.summon-crystal-golem.description",
-    "id": "summon-crystal-golem",
-    "image": "/assets/images/units/blue/crystal-golem.png",
-    "faction": "blue",
-    "level": 1
+    "name": "spell.soul-pact.name",
+    "description": "spell.soul-pact.description",
+    "id": "soul-pact",
+    "image": "/assets/images/spells/black/soul-pact.png",
+    "faction": "black",
+    "level": 5
   },
   {
-    "name": "spell.summon-djinni.name",
-    "description": "spell.summon-djinni.description",
-    "id": "summon-djinni",
-    "image": "/assets/images/units/blue/djinni.png",
-    "faction": "blue",
-    "level": 1
+    "name": "spell.icy-touch.name",
+    "description": "spell.icy-touch.description",
+    "id": "icy-touch",
+    "image": "/assets/images/spells/black/icy-touch.png",
+    "faction": "black",
+    "level": 4
   },
   {
-    "name": "spell.summon-frost-giant.name",
-    "description": "spell.summon-frost-giant.description",
-    "id": "summon-frost-giant",
-    "image": "/assets/images/units/blue/frost-giant.png",
-    "faction": "blue",
-    "level": 1
+    "name": "spell.vampire-kiss.name",
+    "description": "spell.vampire-kiss.description",
+    "id": "vampire-kiss",
+    "image": "/assets/images/spells/black/vampire-kiss.png",
+    "faction": "black",
+    "level": 4
   },
   {
-    "name": "spell.summon-ice-golem.name",
-    "description": "spell.summon-ice-golem.description",
-    "id": "summon-ice-golem",
-    "image": "/assets/images/units/blue/ice-golem.png",
-    "faction": "blue",
-    "level": 1
+    "name": "spell.seduction.name",
+    "description": "spell.seduction.description",
+    "id": "seduction",
+    "image": "/assets/images/spells/black/seduction.png",
+    "faction": "black",
+    "level": 5
   },
   {
-    "name": "spell.summon-ice-troll.name",
-    "description": "spell.summon-ice-troll.description",
-    "id": "summon-ice-troll",
-    "image": "/assets/images/units/blue/ice-troll.png",
-    "faction": "blue",
-    "level": 1
+    "name": "spell.black-death.name",
+    "description": "spell.black-death.description",
+    "id": "black-death",
+    "image": "/assets/images/spells/black/black-death.png",
+    "faction": "black",
+    "level": 5
   },
   {
-    "name": "spell.summon-kraken.name",
-    "description": "spell.summon-kraken.description",
-    "id": "summon-kraken",
-    "image": "/assets/images/units/blue/kraken.png",
-    "faction": "blue",
-    "level": 1
+    "name": "spell.curse.name",
+    "description": "spell.curse.description",
+    "id": "curse",
+    "image": "/assets/images/spells/black/curse.png",
+    "faction": "black",
+    "level": 5
   },
   {
-    "name": "spell.summon-leviathan.name",
-    "description": "spell.summon-leviathan.description",
-    "id": "summon-leviathan",
-    "image": "/assets/images/units/blue/leviathan.png",
-    "faction": "blue",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-mage.name",
-    "description": "spell.summon-mage.description",
-    "id": "summon-mage",
-    "image": "/assets/images/units/blue/mage.png",
-    "faction": "blue",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-yeti.name",
-    "description": "spell.summon-yeti.description",
-    "id": "summon-yeti",
-    "image": "/assets/images/units/blue/yeti.png",
-    "faction": "blue",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-carnivore-plant.name",
-    "description": "spell.summon-carnivore-plant.description",
-    "id": "summon-carnivore-plant",
-    "image": "/assets/images/units/green/carnivore-plant.png",
-    "faction": "green",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-frog.name",
-    "description": "spell.summon-frog.description",
-    "id": "summon-frog",
-    "image": "/assets/images/units/green/frog.png",
-    "faction": "green",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-gnoll.name",
-    "description": "spell.summon-gnoll.description",
-    "id": "summon-gnoll",
-    "image": "/assets/images/units/green/gnoll.png",
-    "faction": "green",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-goblin.name",
-    "description": "spell.summon-goblin.description",
-    "id": "summon-goblin",
-    "image": "/assets/images/units/green/goblin.png",
-    "faction": "green",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-green-dragon.name",
-    "description": "spell.summon-green-dragon.description",
-    "id": "summon-green-dragon",
-    "image": "/assets/images/units/green/green-dragon.png",
-    "faction": "green",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-lizard.name",
-    "description": "spell.summon-lizard.description",
-    "id": "summon-lizard",
-    "image": "/assets/images/units/green/lizard.png",
-    "faction": "green",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-slime.name",
-    "description": "spell.summon-slime.description",
-    "id": "summon-slime",
-    "image": "/assets/images/units/green/slime.png",
-    "faction": "green",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-giant-spider.name",
-    "description": "spell.summon-giant-spider.description",
-    "id": "summon-giant-spider",
-    "image": "/assets/images/units/green/giant-spider.png",
-    "faction": "green",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-stone-golem.name",
-    "description": "spell.summon-stone-golem.description",
-    "id": "summon-stone-golem",
-    "image": "/assets/images/units/green/stone-golem.png",
-    "faction": "green",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-swamp-monster.name",
-    "description": "spell.summon-swamp-monster.description",
-    "id": "summon-swamp-monster",
-    "image": "/assets/images/units/green/swamp-monster.png",
-    "faction": "green",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-cyclop.name",
-    "description": "spell.summon-cyclop.description",
-    "id": "summon-cyclop",
-    "image": "/assets/images/units/red/cyclop.png",
-    "faction": "red",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-demon.name",
-    "description": "spell.summon-demon.description",
-    "id": "summon-demon",
-    "image": "/assets/images/units/red/demon.png",
-    "faction": "red",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-devil.name",
-    "description": "spell.summon-devil.description",
-    "id": "summon-devil",
-    "image": "/assets/images/units/red/devil.png",
-    "faction": "red",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-fire-golem.name",
-    "description": "spell.summon-fire-golem.description",
-    "id": "summon-fire-golem",
-    "image": "/assets/images/units/red/fire-golem.png",
-    "faction": "red",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-imp.name",
-    "description": "spell.summon-imp.description",
-    "id": "summon-imp",
-    "image": "/assets/images/units/red/imp.png",
-    "faction": "red",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-ogre.name",
-    "description": "spell.summon-ogre.description",
-    "id": "summon-ogre",
-    "image": "/assets/images/units/red/ogre.png",
-    "faction": "red",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-orc.name",
-    "description": "spell.summon-orc.description",
-    "id": "summon-orc",
-    "image": "/assets/images/units/red/orc.png",
-    "faction": "red",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-phoenix.name",
-    "description": "spell.summon-phoenix.description",
-    "id": "summon-phoenix",
-    "image": "/assets/images/units/red/phoenix.png",
-    "faction": "red",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-red-dragon.name",
-    "description": "spell.summon-red-dragon.description",
-    "id": "summon-red-dragon",
-    "image": "/assets/images/units/red/red-dragon.png",
-    "faction": "red",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-wendigo.name",
-    "description": "spell.summon-wendigo.description",
-    "id": "summon-wendigo",
-    "image": "/assets/images/units/red/wendigo.png",
-    "faction": "red",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-sheep.name",
-    "description": "spell.summon-sheep.description",
-    "id": "summon-sheep",
-    "image": "/assets/images/units/white/sheep.png",
-    "faction": "white",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-golden-dragon.name",
-    "description": "spell.summon-golden-dragon.description",
-    "id": "summon-golden-dragon",
-    "image": "/assets/images/units/white/golden-dragon.png",
-    "faction": "white",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-gryphon.name",
-    "description": "spell.summon-gryphon.description",
-    "id": "summon-gryphon",
-    "image": "/assets/images/units/white/gryphon.png",
-    "faction": "white",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-knight.name",
-    "description": "spell.summon-knight.description",
-    "id": "summon-knight",
-    "image": "/assets/images/units/white/knight.png",
-    "faction": "white",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-light-golem.name",
-    "description": "spell.summon-light-golem.description",
-    "id": "summon-light-golem",
-    "image": "/assets/images/units/white/light-golem.png",
-    "faction": "white",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-living-armor.name",
-    "description": "spell.summon-living-armor.description",
-    "id": "summon-living-armor",
-    "image": "/assets/images/units/white/living-armor.png",
-    "faction": "white",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-monk.name",
-    "description": "spell.summon-monk.description",
-    "id": "summon-monk",
-    "image": "/assets/images/units/white/monk.png",
-    "faction": "white",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-warrior.name",
-    "description": "spell.summon-warrior.description",
-    "id": "summon-warrior",
-    "image": "/assets/images/units/white/warrior.png",
-    "faction": "white",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-wyvern.name",
-    "description": "spell.summon-wyvern.description",
-    "id": "summon-wyvern",
-    "image": "/assets/images/units/white/wyvern.png",
-    "faction": "white",
-    "level": 1
-  },
-  {
-    "name": "spell.summon-paladin.name",
-    "description": "spell.summon-paladin.description",
-    "id": "summon-paladin",
-    "image": "/assets/images/units/white/paladin.png",
-    "faction": "white",
-    "level": 1
+    "name": "spell.blood-ritual.name",
+    "description": "spell.blood-ritual.description",
+    "id": "blood-ritual",
+    "image": "/assets/images/spells/black/blood-ritual.png",
+    "faction": "black",
+    "level": 5
   }
 ]

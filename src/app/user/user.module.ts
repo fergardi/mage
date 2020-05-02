@@ -6,11 +6,13 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { GoogloginDirective } from './googlogin.directive';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EncyclopediaComponent } from './encyclopedia/encyclopedia.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    GoogloginDirective
+    GoogloginDirective,
+    EncyclopediaComponent
   ],
   imports: [
     CommonModule,

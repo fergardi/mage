@@ -23,6 +23,10 @@
       "accept": "Aceptar",
       "check": "Comprueba tu correo",
       "error": "Ha ocurrido un error en el proceso autenticación"
+    },
+    "encyclopedia": {
+      "name": "Enciclopedia",
+      "description": "Adquiere el conocimiento"
     }
   },
   "table": {
@@ -30,15 +34,13 @@
       "name": "Buscar"
     }
   },
-  "kingdom": {
-    "login": {
-      "name": "Archimago",
-      "description": "Planifica tu estrategia"
-    },
+  "world": {
     "map": {
       "name": "Mapa",
       "description": "Planifica tu estrategia"
-    },
+    }
+  },
+  "kingdom": {
     "city": {
       "name": "Ciudad",
       "description": "Administra tu capital",
@@ -163,23 +165,23 @@
   },
   "faction": {
     "blue": {
-      "name": "Azul",
+      "name": "Fantasmal",
       "description": ""
     },
     "white": {
-      "name": "Blanco",
+      "name": "Ascendente",
       "description": ""
     },
     "red": {
-      "name": "Rojo",
+      "name": "Erradicación",
       "description": ""
     },
     "green": {
-      "name": "Verde",
+      "name": "Naturaleza",
       "description": ""
     },
     "black": {
-      "name": "Negro",
+      "name": "Oscuridad",
       "description": ""
     }
   },
@@ -597,208 +599,6 @@
       "description": ""
     },
     "paladin": {
-      "name": "",
-      "description": ""
-    }
-  },
-  "spell": {
-    "summon-ash-golem": {
-      "name": "",
-      "description": ""
-    },
-    "summon-banshee": {
-      "name": "",
-      "description": ""
-    },
-    "summon-bone-dragon": {
-      "name": "",
-      "description": ""
-    },
-    "summon-dark-knight": {
-      "name": "",
-      "description": ""
-    },
-    "summon-hound": {
-      "name": "",
-      "description": ""
-    },
-    "summon-lich": {
-      "name": "",
-      "description": ""
-    },
-    "summon-skeleton": {
-      "name": "Invocar esqueletos",
-      "description": "Genera un grupo de esqueletos"
-    },
-    "summon-vampire": {
-      "name": "",
-      "description": ""
-    },
-    "summon-werewolf": {
-      "name": "",
-      "description": ""
-    },
-    "summon-zombie": {
-      "name": "",
-      "description": ""
-    },
-    "summon-blue-dragon": {
-      "name": "",
-      "description": ""
-    },
-    "summon-crystal-golem": {
-      "name": "",
-      "description": ""
-    },
-    "summon-djinni": {
-      "name": "",
-      "description": ""
-    },
-    "summon-frost-giant": {
-      "name": "",
-      "description": ""
-    },
-    "summon-ice-golem": {
-      "name": "",
-      "description": ""
-    },
-    "summon-ice-troll": {
-      "name": "",
-      "description": ""
-    },
-    "summon-kraken": {
-      "name": "",
-      "description": ""
-    },
-    "summon-leviathan": {
-      "name": "",
-      "description": ""
-    },
-    "summon-mage": {
-      "name": "",
-      "description": ""
-    },
-    "summon-yeti": {
-      "name": "",
-      "description": ""
-    },
-    "summon-carnivore-plant": {
-      "name": "",
-      "description": ""
-    },
-    "summon-frog": {
-      "name": "",
-      "description": ""
-    },
-    "summon-gnoll": {
-      "name": "",
-      "description": ""
-    },
-    "summon-goblin": {
-      "name": "",
-      "description": ""
-    },
-    "summon-green-dragon": {
-      "name": "",
-      "description": ""
-    },
-    "summon-lizard": {
-      "name": "",
-      "description": ""
-    },
-    "summon-slime": {
-      "name": "",
-      "description": ""
-    },
-    "summon-giant-spider": {
-      "name": "",
-      "description": ""
-    },
-    "summon-stone-golem": {
-      "name": "",
-      "description": ""
-    },
-    "summon-swamp-monster": {
-      "name": "",
-      "description": ""
-    },
-    "summon-cyclop": {
-      "name": "",
-      "description": ""
-    },
-    "summon-demon": {
-      "name": "",
-      "description": ""
-    },
-    "summon-devil": {
-      "name": "",
-      "description": ""
-    },
-    "summon-fire-golem": {
-      "name": "",
-      "description": ""
-    },
-    "summon-imp": {
-      "name": "",
-      "description": ""
-    },
-    "summon-ogre": {
-      "name": "",
-      "description": ""
-    },
-    "summon-orc": {
-      "name": "",
-      "description": ""
-    },
-    "summon-phoenix": {
-      "name": "",
-      "description": ""
-    },
-    "summon-red-dragon": {
-      "name": "",
-      "description": ""
-    },
-    "summon-wendigo": {
-      "name": "",
-      "description": ""
-    },
-    "summon-sheep": {
-      "name": "",
-      "description": ""
-    },
-    "summon-golden-dragon": {
-      "name": "Invocar Dragones Dorados",
-      "description": "Agrega Dragones Dorados a tu ejército"
-    },
-    "summon-gryphon": {
-      "name": "",
-      "description": ""
-    },
-    "summon-knight": {
-      "name": "",
-      "description": ""
-    },
-    "summon-light-golem": {
-      "name": "",
-      "description": ""
-    },
-    "summon-living-armor": {
-      "name": "",
-      "description": ""
-    },
-    "summon-monk": {
-      "name": "",
-      "description": ""
-    },
-    "summon-warrior": {
-      "name": "",
-      "description": ""
-    },
-    "summon-wyvern": {
-      "name": "",
-      "description": ""
-    },
-    "summon-paladin": {
       "name": "",
       "description": ""
     }

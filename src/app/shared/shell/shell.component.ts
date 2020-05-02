@@ -27,8 +27,8 @@ export class ShellComponent implements OnInit {
     { lang: 'fr', image: '/assets/images/languages/fr.png' },
   ]
   links: Array<any> = [
-    { url: '/user/login', name: 'kingdom.login.name', description: 'kingdom.login.description', image: '/assets/images/icons/login.png', visible: false },
-    { url: '/world/map', name: 'kingdom.map.name', description: 'kingdom.map.description', image: '/assets/images/icons/map.png', visible: true },
+    { url: '/user/login', name: 'user.login.name', description: 'user.login.description', image: '/assets/images/icons/login.png', visible: false },
+    { url: '/world/map', name: 'world.map.name', description: 'world.map.description', image: '/assets/images/icons/map.png', visible: true },
     { url: '/kingdom/city', name: 'kingdom.city.name', description: 'kingdom.city.description', image: '/assets/images/icons/city.png', visible: true },
     { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/icons/army.png', visible: true },
     { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/icons/auction.png', visible: true },
@@ -38,6 +38,7 @@ export class ShellComponent implements OnInit {
     { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/icons/archive.png', visible: true },
     { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/icons/temple.png', visible: true },
     { url: '/kingdom/store', name: 'kingdom.store.name', description: 'kingdom.store.description', image: '/assets/images/icons/store.png', visible: true },
+    { url: '/user/encyclopedia', name: 'user.encyclopedia.name', description: 'user.encyclopedia.description', image: '/assets/images/icons/encyclopedia.png', visible: true },
   ];
   kingdomSupplies: any[] = [];
 

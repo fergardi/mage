@@ -1,21 +1,21 @@
 [
   {
-    "name": "unit.ash-golem.name",
-    "description": "unit.ash-golem.description",
-    "id": "ash-golem",
-    "image": "/assets/images/units/black/ash-golem.png",
+    "name": "unit.shadow-elemental.name",
+    "description": "unit.shadow-elemental.description",
+    "id": "shadow-elemental",
+    "image": "/assets/images/units/black/shadow-elemental.png",
     "faction": "black",
     "category": "flying",
     "family": ["elemental", "giant", "undead"]
   },
   {
-    "name": "unit.banshee.name",
-    "description": "unit.banshee.description",
-    "id": "banshee",
-    "image": "/assets/images/units/black/banshee.png",
+    "name": "unit.wraith.name",
+    "description": "unit.wraith.description",
+    "id": "wraith",
+    "image": "/assets/images/units/black/wraith.png",
     "faction": "black",
     "category": "ranged",
-    "family": ["undead"]
+    "family": ["flying"]
   },
   {
     "name": "unit.bone-dragon.name",
@@ -27,19 +27,19 @@
     "family": ["dragon", "undead"]
   },
   {
-    "name": "unit.dark-knight.name",
-    "description": "unit.dark-knight.description",
-    "id": "dark-knight",
-    "image": "/assets/images/units/black/dark-knight.png",
+    "name": "unit.mummy.name",
+    "description": "unit.mummy.description",
+    "id": "mummy",
+    "image": "/assets/images/units/black/mummy.png",
     "faction": "black",
-    "category": "melee",
+    "category": "ranged",
     "family": ["undead", "humanoid"]
   },
   {
-    "name": "unit.hound.name",
-    "description": "unit.hound.description",
-    "id": "hound",
-    "image": "/assets/images/units/black/hound.png",
+    "name": "unit.ghoul.name",
+    "description": "unit.ghoul.description",
+    "id": "ghoul",
+    "image": "/assets/images/units/black/ghoul.png",
     "faction": "black",
     "category": "melee",
     "family": ["undead", "beast"]
@@ -126,10 +126,10 @@
     "family": ["giant", "elemental"]
   },
   {
-    "name": "unit.ice-golem.name",
-    "description": "unit.ice-golem.description",
-    "id": "ice-golem",
-    "image": "/assets/images/units/blue/ice-golem.png",
+    "name": "unit.ice-elemental.name",
+    "description": "unit.ice-elemental.description",
+    "id": "ice-elemental",
+    "image": "/assets/images/units/blue/ice-elemental.png",
     "faction": "blue",
     "category": "melee",
     "family": ["elemental"]
@@ -144,10 +144,10 @@
     "family": ["humanoid"]
   },
   {
-    "name": "unit.kraken.name",
-    "description": "unit.kraken.description",
-    "id": "kraken",
-    "image": "/assets/images/units/blue/kraken.png",
+    "name": "unit.basilisk.name",
+    "description": "unit.basilisk.description",
+    "id": "basilisk",
+    "image": "/assets/images/units/blue/basilisk.png",
     "faction": "blue",
     "category": "ranged",
     "family": ["beast", "giant"]
@@ -180,22 +180,22 @@
     "family": ["giant"]
   },
   {
-    "name": "unit.carnivore-plant.name",
-    "description": "unit.carnivore-plant.description",
-    "id": "carnivore-plant",
-    "image": "/assets/images/units/green/carnivore-plant.png",
-    "faction": "green",
-    "category": "melee",
-    "family": ["beast", "giant"]
-  },
-  {
-    "name": "unit.frog.name",
-    "description": "unit.frog.description",
-    "id": "frog",
-    "image": "/assets/images/units/green/frog.png",
+    "name": "unit.locust-swarm.name",
+    "description": "unit.locust-swarm.description",
+    "id": "locust-swarm",
+    "image": "/assets/images/units/green/locust-swarm.png",
     "faction": "green",
     "category": "melee",
     "family": ["beast"]
+  },
+  {
+    "name": "unit.giant-snail.name",
+    "description": "unit.giant-snail.description",
+    "id": "giant-snail",
+    "image": "/assets/images/units/green/giant-snail.png",
+    "faction": "green",
+    "category": "melee",
+    "family": ["beast", "giant"]
   },
   {
     "name": "unit.gnoll.name",
@@ -216,28 +216,28 @@
     "family": ["humanoid"]
   },
   {
-    "name": "unit.green-dragon.name",
-    "description": "unit.green-dragon.description",
-    "id": "green-dragon",
-    "image": "/assets/images/units/green/green-dragon.png",
+    "name": "unit.golden-dragon.name",
+    "description": "unit.golden-dragon.description",
+    "id": "golden-dragon",
+    "image": "/assets/images/units/green/golden-dragon.png",
     "faction": "green",
     "category": "flying",
     "family": ["dragon", "beast"]
   },
   {
-    "name": "unit.basilisk.name",
-    "description": "unit.basilisk.description",
-    "id": "basilisk",
-    "image": "/assets/images/units/green/basilisk.png",
+    "name": "unit.giant-slug.name",
+    "description": "unit.giant-slug.description",
+    "id": "giant-slug",
+    "image": "/assets/images/units/green/giant-slug.png",
     "faction": "green",
     "category": "ranged",
-    "family": ["beast"]
+    "family": ["beast", "giant"]
   },
   {
-    "name": "unit.slime.name",
-    "description": "unit.slime.description",
-    "id": "slime",
-    "image": "/assets/images/units/green/slime.png",
+    "name": "unit.wisp.name",
+    "description": "unit.wisp.description",
+    "id": "wisp",
+    "image": "/assets/images/units/green/wisp.png",
     "faction": "green",
     "category": "melee",
     "family": ["undead"]
@@ -252,22 +252,22 @@
     "family": ["beast", "giant"]
   },
   {
-    "name": "unit.stone-golem.name",
-    "description": "unit.stone-golem.description",
-    "id": "stone-golem",
-    "image": "/assets/images/units/green/stone-golem.png",
+    "name": "unit.earth-elemental.name",
+    "description": "unit.earth-elemental.description",
+    "id": "earth-elemental",
+    "image": "/assets/images/units/green/earth-elemental.png",
     "faction": "green",
     "category": "ranged",
     "family": ["elemental"]
   },
   {
-    "name": "unit.swamp-monster.name",
-    "description": "unit.swamp-monster.description",
-    "id": "swamp-monster",
-    "image": "/assets/images/units/green/swamp-monster.png",
+    "name": "unit.wyvern.name",
+    "description": "unit.wyvern.description",
+    "id": "wyvern",
+    "image": "/assets/images/units/green/wyvern.png",
     "faction": "green",
     "category": "melee",
-    "family": ["beast"]
+    "family": ["giant", "beast"]
   },
   {
     "name": "unit.cyclop.name",
@@ -288,31 +288,31 @@
     "family": ["demon"]
   },
   {
-    "name": "unit.devil.name",
-    "description": "unit.devil.description",
-    "id": "devil",
-    "image": "/assets/images/units/red/devil.png",
+    "name": "unit.eye.name",
+    "description": "unit.eye.description",
+    "id": "eye",
+    "image": "/assets/images/units/red/eye.png",
     "faction": "red",
     "category": "flying",
-    "family": ["demon", "humanoid"]
+    "family": ["demon"]
   },
   {
-    "name": "unit.fire-golem.name",
-    "description": "unit.fire-golem.description",
-    "id": "fire-golem",
-    "image": "/assets/images/units/red/fire-golem.png",
+    "name": "unit.fire-elemental.name",
+    "description": "unit.fire-elemental.description",
+    "id": "fire-elemental",
+    "image": "/assets/images/units/red/fire-elemental.png",
     "faction": "red",
     "category": "ranged",
     "family": ["elemental", "giant", "demon"]
   },
   {
-    "name": "unit.imp.name",
-    "description": "unit.imp.description",
-    "id": "imp",
-    "image": "/assets/images/units/red/imp.png",
+    "name": "unit.lizardman.name",
+    "description": "unit.lizardman.description",
+    "id": "lizardman",
+    "image": "/assets/images/units/red/lizardman.png",
     "faction": "red",
     "category": "ranged",
-    "family": ["demon", "humanoid"]
+    "family": ["beast"]
   },
   {
     "name": "unit.ogre.name",
@@ -321,7 +321,7 @@
     "image": "/assets/images/units/red/ogre.png",
     "faction": "red",
     "category": "melee",
-    "family": ["demon", "humanoid"]
+    "family": ["demon", "giant"]
   },
   {
     "name": "unit.orc.name",
@@ -360,19 +360,19 @@
     "family": ["demon", "giant", "humanoid", "beast"]
   },
   {
-    "name": "unit.sheep.name",
-    "description": "unit.sheep.description",
-    "id": "sheep",
-    "image": "/assets/images/units/white/sheep.png",
+    "name": "unit.werebear.name",
+    "description": "unit.werebear.description",
+    "id": "werebear",
+    "image": "/assets/images/units/white/werebear.png",
     "faction": "white",
     "category": "melee",
-    "family": ["beast"]
+    "family": ["beast", "humanoid"]
   },
   {
-    "name": "unit.golden-dragon.name",
-    "description": "unit.golden-dragon.description",
-    "id": "golden-dragon",
-    "image": "/assets/images/units/white/golden-dragon.png",
+    "name": "unit.white-dragon.name",
+    "description": "unit.white-dragon.description",
+    "id": "white-dragon",
+    "image": "/assets/images/units/white/white-dragon.png",
     "faction": "white",
     "category": "flying",
     "family": ["dragon"]
@@ -396,13 +396,13 @@
     "family": ["humanoid"]
   },
   {
-    "name": "unit.light-golem.name",
-    "description": "unit.light-golem.description",
-    "id": "light-golem",
-    "image": "/assets/images/units/white/light-golem.png",
+    "name": "unit.light-elemental.name",
+    "description": "unit.light-elemental.description",
+    "id": "light-elemental",
+    "image": "/assets/images/units/white/light-elemental.png",
     "faction": "white",
     "category": "melee",
-    "family": ["elemental", "humanoid", "giant"]
+    "family": ["elemental", "humanoid"]
   },
   {
     "name": "unit.living-armor.name",
@@ -432,13 +432,13 @@
     "family": ["humanoid"]
   },
   {
-    "name": "unit.wyvern.name",
-    "description": "unit.wyvern.description",
-    "id": "wyvern",
-    "image": "/assets/images/units/white/wyvern.png",
+    "name": "unit.crusader.name",
+    "description": "unit.crusader.description",
+    "id": "crusader",
+    "image": "/assets/images/units/white/crusader.png",
     "faction": "white",
-    "category": "flying",
-    "family": ["beast", "giant"]
+    "category": "melee",
+    "family": ["humanoid", "beast"]
   },
   {
     "name": "unit.paladin.name",
