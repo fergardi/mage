@@ -22,29 +22,29 @@
       <table mat-table matSort [dataSource]="data">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
-          <mat-cell *matCellDef="let spell" [attr.data-label]="column">
+          <mat-cell *matCellDef="let row" [attr.data-label]="column">
             <span *ngIf="column !== 'name' && column !== 'faction'">
-              {{ spell[column] }}
+              {{ row[column] }}
             </span>
             <ng-template [ngIf]="column === 'faction'">
               <mat-list dense>
                 <mat-list-item>
                   <div mat-list-avatar>
-                    <img mat-list-avatar [src]="spell.join.image" alt="{{ spell.join.name | translate }}"/>
+                    <img mat-list-avatar [src]="row.join.image" alt="{{ row.join.name | translate }}"/>
                   </div>
-                  <div mat-line>{{ spell.join.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle">{{ spell.join.description | translate }}</div>
+                  <div mat-line>{{ row.join.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ row.join.description | translate }}</div>
                 </mat-list-item>
               </mat-list>
             </ng-template>
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item>
-                  <div mat-list-avatar [matBadge]="spell.level | short" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="spell.image" alt="{{ spell.name | translate }}"/>
+                  <div mat-list-avatar [matBadge]="(row.level ? (row.level | short) : '?')" matBadgePosition="above before">
+                    <img mat-list-avatar [src]="row.image" alt="{{ row.name | translate }}"/>
                   </div>
-                  <div mat-line>{{ spell.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle">{{ spell.description | translate }}</div>
+                  <div mat-line>{{ row.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ row.description | translate }}</div>
                 </mat-list-item>
               </mat-list>
             </ng-template>

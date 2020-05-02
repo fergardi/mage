@@ -28,5 +28,11 @@
     "description": "faction.white.description",
     "image": "/assets/images/factions/white.png",
     "id": "white"
+  },
+  {
+    "name": "faction.grey.name",
+    "description": "faction.grey.description",
+    "image": "/assets/images/factions/grey.png",
+    "id": "grey"
   }
 ]

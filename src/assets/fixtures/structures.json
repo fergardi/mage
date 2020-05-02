@@ -3,48 +3,56 @@
     "name": "structure.barrack.name",
     "description": "structure.barrack.description",
     "id": "barrack",
+    "faction": "grey",
     "image": "/assets/images/structures/barrack.png"
   },
   {
     "name": "structure.barrier.name",
     "description": "structure.barrier.description",
     "id": "barrier",
+    "faction": "grey",
     "image": "/assets/images/structures/barrier.png"
   },
   {
     "name": "structure.farm.name",
     "description": "structure.farm.description",
     "id": "farm",
+    "faction": "grey",
     "image": "/assets/images/structures/farm.png"
   },
   {
     "name": "structure.fortress.name",
     "description": "structure.fortress.description",
     "id": "fortress",
+    "faction": "grey",
     "image": "/assets/images/structures/fortress.png"
   },
   {
     "name": "structure.tower.name",
     "description": "structure.tower.description",
     "id": "tower",
+    "faction": "grey",
     "image": "/assets/images/structures/tower.png"
   },
   {
     "name": "structure.node.name",
     "description": "structure.node.description",
     "id": "node",
+    "faction": "grey",
     "image": "/assets/images/structures/node.png"
   },
   {
     "name": "structure.village.name",
     "description": "structure.village.description",
     "id": "village",
+    "faction": "grey",
     "image": "/assets/images/structures/village.png"
   },
   {
     "name": "structure.workshop.name",
     "description": "structure.workshop.description",
     "id": "workshop",
+    "faction": "grey",
     "image": "/assets/images/structures/workshop.png"
   }
 ]

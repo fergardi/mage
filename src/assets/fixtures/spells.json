@@ -638,5 +638,173 @@
     "image": "/assets/images/spells/green/sunray.png",
     "faction": "green",
     "level": 1
+  },
+  {
+    "name": "spell.blessing.name",
+    "description": "spell.blessing.description",
+    "id": "blessing",
+    "image": "/assets/images/spells/white/blessing.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.call-crusader.name",
+    "description": "spell.call-crusader.description",
+    "id": "call-crusader",
+    "image": "/assets/images/spells/white/call-crusader.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.call-knight.name",
+    "description": "spell.call-knight.description",
+    "id": "call-knight",
+    "image": "/assets/images/spells/white/call-knight.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.call-warrior.name",
+    "description": "spell.call-warrior.description",
+    "id": "call-warrior",
+    "image": "/assets/images/spells/white/call-warrior.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.flash.name",
+    "description": "spell.flash.description",
+    "id": "flash",
+    "image": "/assets/images/spells/white/flash.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.gate.name",
+    "description": "spell.gate.description",
+    "id": "gate",
+    "image": "/assets/images/spells/white/gate.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.healing-hand.name",
+    "description": "spell.healing-hand.description",
+    "id": "healing-hand",
+    "image": "/assets/images/spells/white/healing-hand.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.heavenly-protection.name",
+    "description": "spell.heavenly-protection.description",
+    "id": "heavenly-protection",
+    "image": "/assets/images/spells/white/heavenly-protection.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.holy-word.name",
+    "description": "spell.holy-word.description",
+    "id": "holy-word",
+    "image": "/assets/images/spells/white/holy-word.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.armor-light.name",
+    "description": "spell.armor-light.description",
+    "id": "armor-light",
+    "image": "/assets/images/spells/white/armor-light.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.locate-artifact.name",
+    "description": "spell.locate-artifact.description",
+    "id": "locate-artifact",
+    "image": "/assets/images/spells/white/locate-artifact.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.miracle.name",
+    "description": "spell.miracle.description",
+    "id": "miracle",
+    "image": "/assets/images/spells/white/miracle.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.love-peace.name",
+    "description": "spell.love-peace.description",
+    "id": "love-peace",
+    "image": "/assets/images/spells/white/love-peace.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.resurrection.name",
+    "description": "spell.resurrection.description",
+    "id": "resurrection",
+    "image": "/assets/images/spells/white/resurrection.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.shield-light.name",
+    "description": "spell.shield-light.description",
+    "id": "shield-light",
+    "image": "/assets/images/spells/white/shield-light.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-gryphon.name",
+    "description": "spell.summon-gryphon.description",
+    "id": "summon-gryphon",
+    "image": "/assets/images/spells/white/summon-gryphon.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-living-armor.name",
+    "description": "spell.summon-living-armor.description",
+    "id": "summon-living-armor",
+    "image": "/assets/images/spells/white/summon-living-armor.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-monk.name",
+    "description": "spell.summon-monk.description",
+    "id": "summon-monk",
+    "image": "/assets/images/spells/white/summon-monk.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.sword-light.name",
+    "description": "spell.sword-light.description",
+    "id": "sword-light",
+    "image": "/assets/images/spells/white/sword-light.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.tranquility.name",
+    "description": "spell.tranquility.description",
+    "id": "tranquility",
+    "image": "/assets/images/spells/white/tranquility.png",
+    "faction": "white",
+    "level": 1
+  },
+  {
+    "name": "spell.armageddon.name",
+    "description": "spell.armageddon.description",
+    "id": "armageddon",
+    "image": "/assets/images/spells/grey/armageddon.png",
+    "faction": "grey",
+    "level": 6
   }
 ]

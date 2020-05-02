@@ -450,12 +450,93 @@
     "family": ["humanoid"]
   },
   {
-    "name": "unit.paladin.name",
-    "description": "unit.paladin.description",
-    "id": "paladin",
-    "image": "/assets/images/units/white/paladin.png",
-    "faction": "white",
+    "name": "unit.cavalry.name",
+    "description": "unit.cavalry.description",
+    "id": "cavalry",
+    "image": "/assets/images/units/grey/cavalry.png",
+    "faction": "grey",
     "category": "melee",
     "family": ["humanoid"]
+  },
+  {
+    "name": "unit.fanatic.name",
+    "description": "unit.fanatic.description",
+    "id": "fanatic",
+    "image": "/assets/images/units/grey/fanatic.png",
+    "faction": "grey",
+    "category": "ranged",
+    "family": ["humanoid"]
+  },
+  {
+    "name": "unit.pikeman.name",
+    "description": "unit.pikeman.description",
+    "id": "pikeman",
+    "image": "/assets/images/units/grey/pikeman.png",
+    "faction": "grey",
+    "category": "melee",
+    "family": ["humanoid"]
+  },
+  {
+    "name": "unit.fighter.name",
+    "description": "unit.fighter.description",
+    "id": "fighter",
+    "image": "/assets/images/units/grey/fighter.png",
+    "faction": "grey",
+    "category": "melee",
+    "family": ["humanoid"]
+  },
+  {
+    "name": "unit.archer.name",
+    "description": "unit.archer.description",
+    "id": "archer",
+    "image": "/assets/images/units/grey/archer.png",
+    "faction": "grey",
+    "category": "ranged",
+    "family": ["humanoid"]
+  },
+  {
+    "name": "unit.frog.name",
+    "description": "unit.frog.description",
+    "id": "frog",
+    "image": "/assets/images/units/grey/frog.png",
+    "faction": "grey",
+    "category": "melee",
+    "family": ["beast", "giant"]
+  },
+  {
+    "name": "unit.sheep.name",
+    "description": "unit.sheep.description",
+    "id": "sheep",
+    "image": "/assets/images/units/grey/sheep.png",
+    "faction": "grey",
+    "category": "melee",
+    "family": ["beast", "humanoid"]
+  },
+  {
+    "name": "unit.bat.name",
+    "description": "unit.bat.description",
+    "id": "bat",
+    "image": "/assets/images/units/grey/bat.png",
+    "faction": "grey",
+    "category": "flying",
+    "family": ["beast", "elemental"]
+  },
+  {
+    "name": "unit.rat.name",
+    "description": "unit.rat.description",
+    "id": "rat",
+    "image": "/assets/images/units/grey/rat.png",
+    "faction": "grey",
+    "category": "melee",
+    "family": ["undead", "beast"]
+  },
+  {
+    "name": "unit.eye.name",
+    "description": "unit.eye.description",
+    "id": "eye",
+    "image": "/assets/images/units/grey/eye.png",
+    "faction": "grey",
+    "category": "ranged",
+    "family": ["demon"]
   }
 ]
