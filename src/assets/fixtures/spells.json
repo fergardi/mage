@@ -318,5 +318,165 @@
     "image": "/assets/images/spells/red/giant-strength.png",
     "faction": "red",
     "level": 1
+  },
+  {
+    "name": "spell.call-frost-giant.name",
+    "description": "spell.call-frost-giant.description",
+    "id": "call-frost-giant",
+    "image": "/assets/images/spells/blue/call-frost-giant.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.call-ice-troll.name",
+    "description": "spell.call-ice-troll.description",
+    "id": "call-ice-troll",
+    "image": "/assets/images/spells/blue/call-ice-troll.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.call-yeti.name",
+    "description": "spell.call-yeti.description",
+    "id": "call-yeti",
+    "image": "/assets/images/spells/blue/call-yeti.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-mage.name",
+    "description": "spell.summon-mage.description",
+    "id": "summon-mage",
+    "image": "/assets/images/spells/blue/summon-mage.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-basilisk.name",
+    "description": "spell.summon-basilisk.description",
+    "id": "summon-basilisk",
+    "image": "/assets/images/spells/blue/summon-basilisk.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-djinni.name",
+    "description": "spell.summon-djinni.description",
+    "id": "summon-djinni",
+    "image": "/assets/images/spells/blue/summon-djinni.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.concentration.name",
+    "description": "spell.concentration.description",
+    "id": "concentration",
+    "image": "/assets/images/spells/blue/concentration.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.confuse.name",
+    "description": "spell.confuse.description",
+    "id": "confuse",
+    "image": "/assets/images/spells/blue/confuse.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.conjure-elemental.name",
+    "description": "spell.conjure-elemental.description",
+    "id": "conjure-elemental",
+    "image": "/assets/images/spells/blue/conjure-elemental.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.flight.name",
+    "description": "spell.flight.description",
+    "id": "flight",
+    "image": "/assets/images/spells/blue/flight.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.fog.name",
+    "description": "spell.fog.description",
+    "id": "fog",
+    "image": "/assets/images/spells/blue/fog.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.fools-gold.name",
+    "description": "spell.fools-gold.description",
+    "id": "fools-gold",
+    "image": "/assets/images/spells/blue/fools-gold.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.hallucination.name",
+    "description": "spell.hallucination.description",
+    "id": "hallucination",
+    "image": "/assets/images/spells/blue/hallucination.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.ice-shock.name",
+    "description": "spell.ice-shock.description",
+    "id": "ice-shock",
+    "image": "/assets/images/spells/blue/ice-shock.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.ice-wall.name",
+    "description": "spell.ice-wall.description",
+    "id": "ice-wall",
+    "image": "/assets/images/spells/blue/ice-wall.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.invisibility.name",
+    "description": "spell.invisibility.description",
+    "id": "invisibility",
+    "image": "/assets/images/spells/blue/invisibility.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.laziness.name",
+    "description": "spell.laziness.description",
+    "id": "laziness",
+    "image": "/assets/images/spells/blue/laziness.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.light-feet.name",
+    "description": "spell.light-feet.description",
+    "id": "light-feet",
+    "image": "/assets/images/spells/blue/light-feet.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.spy.name",
+    "description": "spell.spy.description",
+    "id": "spy",
+    "image": "/assets/images/spells/blue/spy.png",
+    "faction": "blue",
+    "level": 1
+  },
+  {
+    "name": "spell.steal-artifact.name",
+    "description": "spell.steal-artifact.description",
+    "id": "steal-artifact",
+    "image": "/assets/images/spells/blue/steal-artifact.png",
+    "faction": "blue",
+    "level": 1
   }
 ]
