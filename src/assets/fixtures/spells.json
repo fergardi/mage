@@ -158,5 +158,165 @@
     "image": "/assets/images/spells/black/blood-ritual.png",
     "faction": "black",
     "level": 5
+  },
+  {
+    "name": "spell.fireball.name",
+    "description": "spell.fireball.description",
+    "id": "fireball",
+    "image": "/assets/images/spells/red/fireball.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.battle-chant.name",
+    "description": "spell.battle-chant.description",
+    "id": "battle-chant",
+    "image": "/assets/images/spells/red/battle-chant.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.call-lizardman.name",
+    "description": "spell.call-lizardman.description",
+    "id": "call-lizardman",
+    "image": "/assets/images/spells/red/call-lizardman.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.call-orc.name",
+    "description": "spell.call-orc.description",
+    "id": "call-orc",
+    "image": "/assets/images/spells/red/call-orc.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.chain-lightning.name",
+    "description": "spell.chain-lightning.description",
+    "id": "chain-lightning",
+    "image": "/assets/images/spells/red/chain-lightning.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.destroy-artifact.name",
+    "description": "spell.destroy-artifact.description",
+    "id": "destroy-artifact",
+    "image": "/assets/images/spells/red/destroy-artifact.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.inferno.name",
+    "description": "spell.inferno.description",
+    "id": "inferno",
+    "image": "/assets/images/spells/red/inferno.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.flame-shield.name",
+    "description": "spell.flame-shield.description",
+    "id": "flame-shield",
+    "image": "/assets/images/spells/red/flame-shield.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.flame-blade.name",
+    "description": "spell.flame-blade.description",
+    "id": "flame-blade",
+    "image": "/assets/images/spells/red/flame-blade.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.flame-arrow.name",
+    "description": "spell.flame-arrow.description",
+    "id": "flame-arrow",
+    "image": "/assets/images/spells/red/flame-arrow.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.gravity.name",
+    "description": "spell.gravity.description",
+    "id": "gravity",
+    "image": "/assets/images/spells/red/gravity.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.meteor-shower.name",
+    "description": "spell.meteor-shower.description",
+    "id": "meteor-shower",
+    "image": "/assets/images/spells/red/meteor-shower.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.stun.name",
+    "description": "spell.stun.description",
+    "id": "stun",
+    "image": "/assets/images/spells/red/stun.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-eye.name",
+    "description": "spell.summon-eye.description",
+    "id": "summon-eye",
+    "image": "/assets/images/spells/red/summon-eye.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-ogre.name",
+    "description": "spell.summon-ogre.description",
+    "id": "summon-ogre",
+    "image": "/assets/images/spells/red/summon-ogre.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-wendigo.name",
+    "description": "spell.summon-wendigo.description",
+    "id": "summon-wendigo",
+    "image": "/assets/images/spells/red/summon-wendigo.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.call-cyclop.name",
+    "description": "spell.call-cyclop.description",
+    "id": "call-cyclop",
+    "image": "/assets/images/spells/red/call-cyclop.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.volcano.name",
+    "description": "spell.volcano.description",
+    "id": "volcano",
+    "image": "/assets/images/spells/red/volcano.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.fire-wall.name",
+    "description": "spell.fire-wall.description",
+    "id": "fire-wall",
+    "image": "/assets/images/spells/red/fire-wall.png",
+    "faction": "red",
+    "level": 1
+  },
+  {
+    "name": "spell.giant-strength.name",
+    "description": "spell.giant-strength.description",
+    "id": "giant-strength",
+    "image": "/assets/images/spells/red/giant-strength.png",
+    "faction": "red",
+    "level": 1
   }
 ]
