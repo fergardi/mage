@@ -478,5 +478,165 @@
     "image": "/assets/images/spells/blue/steal-artifact.png",
     "faction": "blue",
     "level": 1
+  },
+  {
+    "name": "spell.accuracy.name",
+    "description": "spell.accuracy.description",
+    "id": "accuracy",
+    "image": "/assets/images/spells/green/accuracy.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.ambush.name",
+    "description": "spell.ambush.description",
+    "id": "ambush",
+    "image": "/assets/images/spells/green/ambush.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.ancient-secret.name",
+    "description": "spell.ancient-secret.description",
+    "id": "ancient-secret",
+    "image": "/assets/images/spells/green/ancient-secret.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.beast-council.name",
+    "description": "spell.beast-council.description",
+    "id": "beast-council",
+    "image": "/assets/images/spells/green/beast-council.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.call-giant-snail.name",
+    "description": "spell.call-giant-snail.description",
+    "id": "call-giant-snail",
+    "image": "/assets/images/spells/green/call-giant-snail.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.call-giant-spider.name",
+    "description": "spell.call-giant-spider.description",
+    "id": "call-giant-spider",
+    "image": "/assets/images/spells/green/call-giant-spider.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.call-gnoll.name",
+    "description": "spell.call-gnoll.description",
+    "id": "call-gnoll",
+    "image": "/assets/images/spells/green/call-gnoll.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.climate-control.name",
+    "description": "spell.climate-control.description",
+    "id": "climate-control",
+    "image": "/assets/images/spells/green/climate-control.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.cure.name",
+    "description": "spell.cure.description",
+    "id": "cure",
+    "image": "/assets/images/spells/green/cure.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.growth.name",
+    "description": "spell.growth.description",
+    "id": "growth",
+    "image": "/assets/images/spells/green/growth.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.locust-swarm.name",
+    "description": "spell.locust-swarm.description",
+    "id": "locust-swarm",
+    "image": "/assets/images/spells/green/locust-swarm.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.natures-favor.name",
+    "description": "spell.natures-favor.description",
+    "id": "natures-favor",
+    "image": "/assets/images/spells/green/natures-favor.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.regeneration.name",
+    "description": "spell.regeneration.description",
+    "id": "regeneration",
+    "image": "/assets/images/spells/green/regeneration.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.rust-armor.name",
+    "description": "spell.rust-armor.description",
+    "id": "rust-armor",
+    "image": "/assets/images/spells/green/rust-armor.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.serenity.name",
+    "description": "spell.serenity.description",
+    "id": "serenity",
+    "image": "/assets/images/spells/green/serenity.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.slow.name",
+    "description": "spell.slow.description",
+    "id": "slow",
+    "image": "/assets/images/spells/green/slow.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-goblin.name",
+    "description": "spell.summon-goblin.description",
+    "id": "summon-goblin",
+    "image": "/assets/images/spells/green/summon-goblin.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-werebear.name",
+    "description": "spell.summon-werebear.description",
+    "id": "summon-werebear",
+    "image": "/assets/images/spells/green/summon-werebear.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.summon-wisp.name",
+    "description": "spell.summon-wisp.description",
+    "id": "summon-wisp",
+    "image": "/assets/images/spells/green/summon-wisp.png",
+    "faction": "green",
+    "level": 1
+  },
+  {
+    "name": "spell.sunray.name",
+    "description": "spell.sunray.description",
+    "id": "sunray",
+    "image": "/assets/images/spells/green/sunray.png",
+    "faction": "green",
+    "level": 1
   }
 ]

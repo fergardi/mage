@@ -180,13 +180,13 @@
     "family": ["giant"]
   },
   {
-    "name": "unit.locust-swarm.name",
-    "description": "unit.locust-swarm.description",
-    "id": "locust-swarm",
-    "image": "/assets/images/units/green/locust-swarm.png",
+    "name": "unit.wood-golem.name",
+    "description": "unit.wood-golem.description",
+    "id": "wood-golem",
+    "image": "/assets/images/units/green/wood-golem.png",
     "faction": "green",
     "category": "melee",
-    "family": ["beast"]
+    "family": ["golem"]
   },
   {
     "name": "unit.giant-snail.name",
@@ -439,6 +439,15 @@
     "faction": "white",
     "category": "melee",
     "family": ["humanoid", "beast"]
+  },
+  {
+    "name": "unit.paladin.name",
+    "description": "unit.paladin.description",
+    "id": "paladin",
+    "image": "/assets/images/units/white/paladin.png",
+    "faction": "white",
+    "category": "melee",
+    "family": ["humanoid"]
   },
   {
     "name": "unit.paladin.name",
