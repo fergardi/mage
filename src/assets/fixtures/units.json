@@ -1,5 +1,6 @@
 [
   {
+    "type": "unit",
     "name": "unit.shadow-elemental.name",
     "description": "unit.shadow-elemental.description",
     "id": "shadow-elemental",
@@ -9,6 +10,7 @@
     "family": ["elemental", "giant", "undead"]
   },
   {
+    "type": "unit",
     "name": "unit.wraith.name",
     "description": "unit.wraith.description",
     "id": "wraith",
@@ -18,6 +20,7 @@
     "family": ["flying"]
   },
   {
+    "type": "unit",
     "name": "unit.bone-dragon.name",
     "description": "unit.bone-dragon.description",
     "id": "bone-dragon",
@@ -27,6 +30,7 @@
     "family": ["dragon", "undead"]
   },
   {
+    "type": "unit",
     "name": "unit.mummy.name",
     "description": "unit.mummy.description",
     "id": "mummy",
@@ -36,6 +40,7 @@
     "family": ["undead", "humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.ghoul.name",
     "description": "unit.ghoul.description",
     "id": "ghoul",
@@ -45,6 +50,7 @@
     "family": ["undead", "beast"]
   },
   {
+    "type": "unit",
     "name": "unit.lich.name",
     "description": "unit.lich.description",
     "id": "lich",
@@ -54,6 +60,7 @@
     "family": ["undead"]
   },
   {
+    "type": "unit",
     "name": "unit.skeleton.name",
     "description": "unit.skeleton.description",
     "id": "skeleton",
@@ -63,6 +70,7 @@
     "family": ["undead"]
   },
   {
+    "type": "unit",
     "name": "unit.vampire.name",
     "description": "unit.vampire.description",
     "id": "vampire",
@@ -72,6 +80,7 @@
     "family": ["undead", "humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.werewolf.name",
     "description": "unit.werewolf.description",
     "id": "werewolf",
@@ -81,6 +90,7 @@
     "family": ["beast", "humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.zombie.name",
     "description": "unit.zombie.description",
     "id": "zombie",
@@ -90,6 +100,7 @@
     "family": ["undead"]
   },
   {
+    "type": "unit",
     "name": "unit.blue-dragon.name",
     "description": "unit.blue-dragon.description",
     "id": "blue-dragon",
@@ -99,6 +110,7 @@
     "family": ["dragon"]
   },
   {
+    "type": "unit",
     "name": "unit.crystal-golem.name",
     "description": "unit.crystal-golem.description",
     "id": "crystal-golem",
@@ -108,6 +120,7 @@
     "family": ["elemental"]
   },
   {
+    "type": "unit",
     "name": "unit.djinni.name",
     "description": "unit.djinni.description",
     "id": "djinni",
@@ -117,6 +130,7 @@
     "family": ["elemental"]
   },
   {
+    "type": "unit",
     "name": "unit.frost-giant.name",
     "description": "unit.frost-giant.description",
     "id": "frost-giant",
@@ -126,6 +140,7 @@
     "family": ["giant", "elemental"]
   },
   {
+    "type": "unit",
     "name": "unit.ice-elemental.name",
     "description": "unit.ice-elemental.description",
     "id": "ice-elemental",
@@ -135,6 +150,7 @@
     "family": ["elemental"]
   },
   {
+    "type": "unit",
     "name": "unit.ice-troll.name",
     "description": "unit.ice-troll.description",
     "id": "ice-troll",
@@ -144,6 +160,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.basilisk.name",
     "description": "unit.basilisk.description",
     "id": "basilisk",
@@ -153,6 +170,7 @@
     "family": ["beast", "giant"]
   },
   {
+    "type": "unit",
     "name": "unit.leviathan.name",
     "description": "unit.leviathan.description",
     "id": "leviathan",
@@ -162,6 +180,7 @@
     "family": ["giant", "dragon"]
   },
   {
+    "type": "unit",
     "name": "unit.mage.name",
     "description": "unit.mage.description",
     "id": "mage",
@@ -171,6 +190,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.yeti.name",
     "description": "unit.yeti.description",
     "id": "yeti",
@@ -180,6 +200,7 @@
     "family": ["giant"]
   },
   {
+    "type": "unit",
     "name": "unit.wood-golem.name",
     "description": "unit.wood-golem.description",
     "id": "wood-golem",
@@ -189,6 +210,7 @@
     "family": ["golem"]
   },
   {
+    "type": "unit",
     "name": "unit.giant-snail.name",
     "description": "unit.giant-snail.description",
     "id": "giant-snail",
@@ -198,6 +220,7 @@
     "family": ["beast", "giant"]
   },
   {
+    "type": "unit",
     "name": "unit.gnoll.name",
     "description": "unit.gnoll.description",
     "id": "gnoll",
@@ -207,6 +230,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.goblin.name",
     "description": "unit.goblin.description",
     "id": "goblin",
@@ -216,6 +240,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.golden-dragon.name",
     "description": "unit.golden-dragon.description",
     "id": "golden-dragon",
@@ -225,15 +250,17 @@
     "family": ["dragon", "beast"]
   },
   {
-    "name": "unit.giant-slug.name",
-    "description": "unit.giant-slug.description",
-    "id": "giant-slug",
-    "image": "/assets/images/units/green/giant-slug.png",
+    "type": "unit",
+    "name": "unit.werebear.name",
+    "description": "unit.werebear.description",
+    "id": "werebear",
+    "image": "/assets/images/units/green/werebear.png",
     "faction": "green",
-    "category": "ranged",
-    "family": ["beast", "giant"]
+    "category": "melee",
+    "family": ["beast"]
   },
   {
+    "type": "unit",
     "name": "unit.wisp.name",
     "description": "unit.wisp.description",
     "id": "wisp",
@@ -243,6 +270,7 @@
     "family": ["undead"]
   },
   {
+    "type": "unit",
     "name": "unit.giant-spider.name",
     "description": "unit.giant-spider.description",
     "id": "giant-spider",
@@ -252,6 +280,7 @@
     "family": ["beast", "giant"]
   },
   {
+    "type": "unit",
     "name": "unit.earth-elemental.name",
     "description": "unit.earth-elemental.description",
     "id": "earth-elemental",
@@ -261,6 +290,7 @@
     "family": ["elemental"]
   },
   {
+    "type": "unit",
     "name": "unit.wyvern.name",
     "description": "unit.wyvern.description",
     "id": "wyvern",
@@ -270,6 +300,7 @@
     "family": ["giant", "beast"]
   },
   {
+    "type": "unit",
     "name": "unit.cyclop.name",
     "description": "unit.cyclop.description",
     "id": "cyclop",
@@ -279,6 +310,7 @@
     "family": ["giant"]
   },
   {
+    "type": "unit",
     "name": "unit.demon.name",
     "description": "unit.demon.description",
     "id": "demon",
@@ -288,6 +320,7 @@
     "family": ["demon"]
   },
   {
+    "type": "unit",
     "name": "unit.eye.name",
     "description": "unit.eye.description",
     "id": "eye",
@@ -297,6 +330,7 @@
     "family": ["demon"]
   },
   {
+    "type": "unit",
     "name": "unit.fire-elemental.name",
     "description": "unit.fire-elemental.description",
     "id": "fire-elemental",
@@ -306,6 +340,7 @@
     "family": ["elemental", "giant", "demon"]
   },
   {
+    "type": "unit",
     "name": "unit.lizardman.name",
     "description": "unit.lizardman.description",
     "id": "lizardman",
@@ -315,6 +350,7 @@
     "family": ["beast"]
   },
   {
+    "type": "unit",
     "name": "unit.ogre.name",
     "description": "unit.ogre.description",
     "id": "ogre",
@@ -324,6 +360,7 @@
     "family": ["demon", "giant"]
   },
   {
+    "type": "unit",
     "name": "unit.orc.name",
     "description": "unit.orc.description",
     "id": "orc",
@@ -333,6 +370,7 @@
     "family": ["demon", "humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.phoenix.name",
     "description": "unit.phoenix.description",
     "id": "phoenix",
@@ -342,6 +380,7 @@
     "family": ["beast", "giant"]
   },
   {
+    "type": "unit",
     "name": "unit.red-dragon.name",
     "description": "unit.red-dragon.description",
     "id": "red-dragon",
@@ -351,6 +390,7 @@
     "family": ["dragon"]
   },
   {
+    "type": "unit",
     "name": "unit.wendigo.name",
     "description": "unit.wendigo.description",
     "id": "wendigo",
@@ -360,15 +400,17 @@
     "family": ["demon", "giant", "humanoid", "beast"]
   },
   {
-    "name": "unit.werebear.name",
-    "description": "unit.werebear.description",
-    "id": "werebear",
-    "image": "/assets/images/units/white/werebear.png",
+    "type": "unit",
+    "name": "unit.bear.name",
+    "description": "unit.bear.description",
+    "id": "bear",
+    "image": "/assets/images/units/white/bear.png",
     "faction": "white",
     "category": "melee",
     "family": ["beast", "humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.white-dragon.name",
     "description": "unit.white-dragon.description",
     "id": "white-dragon",
@@ -378,6 +420,7 @@
     "family": ["dragon"]
   },
   {
+    "type": "unit",
     "name": "unit.gryphon.name",
     "description": "unit.gryphon.description",
     "id": "gryphon",
@@ -387,6 +430,7 @@
     "family": ["beast"]
   },
   {
+    "type": "unit",
     "name": "unit.knight.name",
     "description": "unit.knight.description",
     "id": "knight",
@@ -396,6 +440,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.light-elemental.name",
     "description": "unit.light-elemental.description",
     "id": "light-elemental",
@@ -405,6 +450,7 @@
     "family": ["elemental", "humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.living-armor.name",
     "description": "unit.living-armor.description",
     "id": "living-armor",
@@ -414,6 +460,7 @@
     "family": ["elemental", "humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.monk.name",
     "description": "unit.monk.description",
     "id": "monk",
@@ -423,6 +470,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.warrior.name",
     "description": "unit.warrior.description",
     "id": "warrior",
@@ -432,6 +480,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.crusader.name",
     "description": "unit.crusader.description",
     "id": "crusader",
@@ -441,6 +490,7 @@
     "family": ["humanoid", "beast"]
   },
   {
+    "type": "unit",
     "name": "unit.paladin.name",
     "description": "unit.paladin.description",
     "id": "paladin",
@@ -450,6 +500,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.cavalry.name",
     "description": "unit.cavalry.description",
     "id": "cavalry",
@@ -459,6 +510,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.fanatic.name",
     "description": "unit.fanatic.description",
     "id": "fanatic",
@@ -468,6 +520,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.pikeman.name",
     "description": "unit.pikeman.description",
     "id": "pikeman",
@@ -477,6 +530,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.fighter.name",
     "description": "unit.fighter.description",
     "id": "fighter",
@@ -486,6 +540,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.archer.name",
     "description": "unit.archer.description",
     "id": "archer",
@@ -495,6 +550,7 @@
     "family": ["humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.frog.name",
     "description": "unit.frog.description",
     "id": "frog",
@@ -504,6 +560,7 @@
     "family": ["beast", "giant"]
   },
   {
+    "type": "unit",
     "name": "unit.sheep.name",
     "description": "unit.sheep.description",
     "id": "sheep",
@@ -513,6 +570,7 @@
     "family": ["beast", "humanoid"]
   },
   {
+    "type": "unit",
     "name": "unit.bat.name",
     "description": "unit.bat.description",
     "id": "bat",
@@ -522,6 +580,7 @@
     "family": ["beast", "elemental"]
   },
   {
+    "type": "unit",
     "name": "unit.rat.name",
     "description": "unit.rat.description",
     "id": "rat",
@@ -531,6 +590,7 @@
     "family": ["undead", "beast"]
   },
   {
+    "type": "unit",
     "name": "unit.eye.name",
     "description": "unit.eye.description",
     "id": "eye",

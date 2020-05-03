@@ -1,35 +1,41 @@
 [
   {
+    "type": "faction",
     "name": "faction.black.name",
     "description": "faction.black.description",
     "image": "/assets/images/factions/black.png",
     "id": "black"
   },
   {
+    "type": "faction",
     "name": "faction.blue.name",
     "description": "faction.blue.description",
     "image": "/assets/images/factions/blue.png",
     "id": "blue"
   },
   {
+    "type": "faction",
     "name": "faction.green.name",
     "description": "faction.green.description",
     "image": "/assets/images/factions/green.png",
     "id": "green"
   },
   {
+    "type": "faction",
     "name": "faction.red.name",
     "description": "faction.red.description",
     "image": "/assets/images/factions/red.png",
     "id": "red"
   },
   {
+    "type": "faction",
     "name": "faction.white.name",
     "description": "faction.white.description",
     "image": "/assets/images/factions/white.png",
     "id": "white"
   },
   {
+    "type": "faction",
     "name": "faction.grey.name",
     "description": "faction.grey.description",
     "image": "/assets/images/factions/grey.png",

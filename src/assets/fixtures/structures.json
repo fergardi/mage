@@ -1,5 +1,6 @@
 [
   {
+    "type": "structure",
     "name": "structure.barrack.name",
     "description": "structure.barrack.description",
     "id": "barrack",
@@ -7,6 +8,7 @@
     "image": "/assets/images/structures/barrack.png"
   },
   {
+    "type": "structure",
     "name": "structure.barrier.name",
     "description": "structure.barrier.description",
     "id": "barrier",
@@ -14,6 +16,7 @@
     "image": "/assets/images/structures/barrier.png"
   },
   {
+    "type": "structure",
     "name": "structure.farm.name",
     "description": "structure.farm.description",
     "id": "farm",
@@ -21,6 +24,7 @@
     "image": "/assets/images/structures/farm.png"
   },
   {
+    "type": "structure",
     "name": "structure.fortress.name",
     "description": "structure.fortress.description",
     "id": "fortress",
@@ -28,6 +32,7 @@
     "image": "/assets/images/structures/fortress.png"
   },
   {
+    "type": "structure",
     "name": "structure.tower.name",
     "description": "structure.tower.description",
     "id": "tower",
@@ -35,6 +40,7 @@
     "image": "/assets/images/structures/tower.png"
   },
   {
+    "type": "structure",
     "name": "structure.node.name",
     "description": "structure.node.description",
     "id": "node",
@@ -42,6 +48,7 @@
     "image": "/assets/images/structures/node.png"
   },
   {
+    "type": "structure",
     "name": "structure.village.name",
     "description": "structure.village.description",
     "id": "village",
@@ -49,6 +56,7 @@
     "image": "/assets/images/structures/village.png"
   },
   {
+    "type": "structure",
     "name": "structure.workshop.name",
     "description": "structure.workshop.description",
     "id": "workshop",

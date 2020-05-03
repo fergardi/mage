@@ -246,7 +246,7 @@ body {
     }
     .mat-table .mat-cell:before {
       content: attr(data-label);
-      text-transform: uppercase;
+      // text-transform: uppercase;
       font-weight: normal;
       font-size: .85em;
     }

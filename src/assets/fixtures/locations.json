@@ -1,83 +1,111 @@
 [
   {
+    "type": "location",
+    "faction": "grey",
     "id": "witch",
     "name": "location.witch.name",
     "description": "location.witch.description",
     "image": "/assets/images/locations/witch.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "cave",
     "name": "location.cave.name",
     "description": "location.cave.description",
     "image": "/assets/images/locations/cave.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "stronghold",
     "name": "location.stronghold.name",
     "description": "location.stronghold.description",
     "image": "/assets/images/locations/stronghold.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "graveyard",
     "name": "location.graveyard.name",
     "description": "location.graveyard.description",
     "image": "/assets/images/locations/graveyard.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "dungeon",
     "name": "location.dungeon.name",
     "description": "location.dungeon.description",
     "image": "/assets/images/locations/dungeon.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "sawmill",
     "name": "location.sawmill.name",
     "description": "location.sawmill.description",
     "image": "/assets/images/locations/sawmill.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "treasure-map",
     "name": "location.treasure-map.name",
     "description": "location.treasure-map.description",
     "image": "/assets/images/locations/treasure.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "battle",
     "name": "location.battle.name",
     "description": "location.battle.description",
     "image": "/assets/images/locations/battle.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "tower",
     "name": "location.tower.name",
     "description": "location.tower.description",
     "image": "/assets/images/locations/tower.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "lumberjack",
     "name": "location.lumberjack.name",
     "description": "location.lumberjack.description",
     "image": "/assets/images/locations/lumberjack.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "mine",
     "name": "location.mine.name",
     "description": "location.mine.description",
     "image": "/assets/images/locations/mine.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "blacksmith",
     "name": "location.blacksmith.name",
     "description": "location.blacksmith.description",
     "image": "/assets/images/locations/blacksmith.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "shipwreck",
     "name": "location.shipwreck.name",
     "description": "location.shipwreck.description",
     "image": "/assets/images/locations/shipwreck.png"
   },
   {
+    "type": "location",
+    "faction": "grey",
     "id": "forest",
     "name": "location.forest.name",
     "description": "location.forest.description",

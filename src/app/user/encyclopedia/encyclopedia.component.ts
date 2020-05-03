@@ -2,14 +2,15 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+//import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
-import { combineLatest, pipe, forkJoin } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { MatSelectChange } from '@angular/material/select';
 
 export enum TomeType {
-  'spell', 'unit', 'hero', 'god', 'structure'
+  'any', 'spell', 'summon', 'enchantment', 'battle', 'unit', 'hero', 'god', 'structure', 'item', 'resource', 'location'
 }
 
 @Component({
@@ -18,10 +19,13 @@ export enum TomeType {
   styleUrls: ['./encyclopedia.component.scss'],
   animations: [fadeInOnEnterAnimation({ duration: 250, delay: 250 })],
 })
-@UntilDestroy()
+//@UntilDestroy()
 export class EncyclopediaComponent implements OnInit {
 
-  columns = ['name', 'type', 'faction'];
+  search: string = '';
+  types = TomeType;
+  type: TomeType = TomeType.any;
+  columns: string[] = ['name', 'type', 'faction'];
   data: MatTableDataSource<any> = null;
 
   constructor(
@@ -34,22 +38,36 @@ export class EncyclopediaComponent implements OnInit {
   ngOnInit() {
     combineLatest([
       this.firebaseService.leftJoin('spells', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('units', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('gods', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('items', 'factions', 'faction', 'id'),
       this.firebaseService.leftJoin('structures', 'factions', 'faction', 'id'),
-    ]).pipe(
-      untilDestroyed(this),
+      this.firebaseService.leftJoin('resources', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('locations', 'factions', 'faction', 'id'),
+    ])
+    .pipe(
       map(([
         spells,
+        units,
+        gods,
+        items,
         structures,
+        resources,
+        locations,
       ]) => {
-        console.log(spells, structures)
         return [
-          ...spells.map(spell => { return { ...spell, type: TomeType.spell } }),
-          ...structures.map(structure => { return { ...structure, type: TomeType.structure } }),
-        ];
+          ...spells,
+          ...units,
+          ...gods,
+          ...items,
+          ...structures,
+          ...resources,
+          ...locations,
+        ]
       }
     ))
+    //.pipe(untilDestroyed(this))
     .subscribe(data => {
-      console.log(data)
       this.data = new MatTableDataSource(data);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;

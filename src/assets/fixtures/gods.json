@@ -1,32 +1,47 @@
 [
   {
+    "type": "god",
+    "id": "death",
     "name": "god.death.name",
     "description": "god.death.description",
     "image": "/assets/images/gods/death.png",
+    "faction": "black",
     "gold": 0
   },
   {
+    "type": "god",
+    "id": "void",
     "name": "god.void.name",
     "description": "god.void.description",
     "image": "/assets/images/gods/void.png",
+    "faction": "blue",
     "gold": 0
   },
   {
+    "type": "god",
+    "id": "famine",
     "name": "god.famine.name",
     "description": "god.famine.description",
     "image": "/assets/images/gods/famine.png",
+    "faction": "green",
     "gold": 0
   },
   {
+    "type": "god",
+    "id": "war",
     "name": "god.war.name",
     "description": "god.war.description",
     "image": "/assets/images/gods/war.png",
+    "faction": "red",
     "gold": 0
   },
   {
+    "type": "god",
+    "id": "pestilence",
     "name": "god.pestilence.name",
     "description": "god.pestilence.description",
     "image": "/assets/images/gods/pestilence.png",
+    "faction": "white",
     "gold": 0
   }
 ]

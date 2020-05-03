@@ -1,5 +1,6 @@
 [
   {
+    "type": "summon",
     "name": "spell.animate-skeleton.name",
     "description": "spell.animate-skeleton.description",
     "id": "animate-skeleton",
@@ -8,6 +9,7 @@
     "level": 1
   },
   {
+    "type": "summon",
     "name": "spell.animate-zombie.name",
     "description": "spell.animate-zombie.description",
     "id": "animate-zombie",
@@ -16,6 +18,7 @@
     "level": 1
   },
   {
+    "type": "summon",
     "name": "spell.animate-ghoul.name",
     "description": "spell.animate-ghoul.description",
     "id": "animate-ghoul",
@@ -24,6 +27,7 @@
     "level": 2
   },
   {
+    "type": "spell",
     "name": "spell.gluttony.name",
     "description": "spell.gluttony.description",
     "id": "gluttony",
@@ -32,6 +36,7 @@
     "level": 3
   },
   {
+    "type": "spell",
     "name": "spell.fear.name",
     "description": "spell.fear.description",
     "id": "fear",
@@ -40,6 +45,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.night-living-dead.name",
     "description": "spell.night-living-dead.description",
     "id": "night-living-dead",
@@ -48,6 +54,7 @@
     "level": 4
   },
   {
+    "type": "spell",
     "name": "spell.necromancy-touch.name",
     "description": "spell.necromancy-touch.description",
     "id": "necromancy-touch",
@@ -56,6 +63,7 @@
     "level": 4
   },
   {
+    "type": "spell",
     "name": "spell.summon-wraith.name",
     "description": "spell.summon-wraith.description",
     "id": "summon-wraith",
@@ -64,6 +72,7 @@
     "level": 2
   },
   {
+    "type": "spell",
     "name": "spell.summon-lich.name",
     "description": "spell.summon-lich.description",
     "id": "summon-lich",
@@ -72,6 +81,7 @@
     "level": 3
   },
   {
+    "type": "spell",
     "name": "spell.summon-vampire.name",
     "description": "spell.summon-vampire.description",
     "id": "summon-vampire",
@@ -80,6 +90,7 @@
     "level": 3
   },
   {
+    "type": "spell",
     "name": "spell.death-decay.name",
     "description": "spell.death-decay.description",
     "id": "death-decay",
@@ -88,6 +99,7 @@
     "level": 4
   },
   {
+    "type": "spell",
     "name": "spell.shroud-darkness.name",
     "description": "spell.shroud-darkness.description",
     "id": "shroud-darkness",
@@ -96,6 +108,7 @@
     "level": 2
   },
   {
+    "type": "spell",
     "name": "spell.poison.name",
     "description": "spell.poison.description",
     "id": "poison",
@@ -104,6 +117,7 @@
     "level": 3
   },
   {
+    "type": "spell",
     "name": "spell.soul-pact.name",
     "description": "spell.soul-pact.description",
     "id": "soul-pact",
@@ -112,6 +126,7 @@
     "level": 5
   },
   {
+    "type": "spell",
     "name": "spell.icy-touch.name",
     "description": "spell.icy-touch.description",
     "id": "icy-touch",
@@ -120,6 +135,7 @@
     "level": 4
   },
   {
+    "type": "spell",
     "name": "spell.vampire-kiss.name",
     "description": "spell.vampire-kiss.description",
     "id": "vampire-kiss",
@@ -128,6 +144,7 @@
     "level": 4
   },
   {
+    "type": "spell",
     "name": "spell.seduction.name",
     "description": "spell.seduction.description",
     "id": "seduction",
@@ -136,6 +153,7 @@
     "level": 5
   },
   {
+    "type": "spell",
     "name": "spell.black-death.name",
     "description": "spell.black-death.description",
     "id": "black-death",
@@ -144,6 +162,7 @@
     "level": 5
   },
   {
+    "type": "spell",
     "name": "spell.curse.name",
     "description": "spell.curse.description",
     "id": "curse",
@@ -152,6 +171,7 @@
     "level": 5
   },
   {
+    "type": "spell",
     "name": "spell.blood-ritual.name",
     "description": "spell.blood-ritual.description",
     "id": "blood-ritual",
@@ -160,6 +180,7 @@
     "level": 5
   },
   {
+    "type": "spell",
     "name": "spell.fireball.name",
     "description": "spell.fireball.description",
     "id": "fireball",
@@ -168,6 +189,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.battle-chant.name",
     "description": "spell.battle-chant.description",
     "id": "battle-chant",
@@ -176,6 +198,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-lizardman.name",
     "description": "spell.call-lizardman.description",
     "id": "call-lizardman",
@@ -184,6 +207,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-orc.name",
     "description": "spell.call-orc.description",
     "id": "call-orc",
@@ -192,6 +216,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.chain-lightning.name",
     "description": "spell.chain-lightning.description",
     "id": "chain-lightning",
@@ -200,6 +225,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.destroy-artifact.name",
     "description": "spell.destroy-artifact.description",
     "id": "destroy-artifact",
@@ -208,6 +234,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.inferno.name",
     "description": "spell.inferno.description",
     "id": "inferno",
@@ -216,6 +243,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.flame-shield.name",
     "description": "spell.flame-shield.description",
     "id": "flame-shield",
@@ -224,6 +252,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.flame-blade.name",
     "description": "spell.flame-blade.description",
     "id": "flame-blade",
@@ -232,6 +261,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.flame-arrow.name",
     "description": "spell.flame-arrow.description",
     "id": "flame-arrow",
@@ -240,6 +270,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.gravity.name",
     "description": "spell.gravity.description",
     "id": "gravity",
@@ -248,6 +279,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.meteor-shower.name",
     "description": "spell.meteor-shower.description",
     "id": "meteor-shower",
@@ -256,6 +288,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.stun.name",
     "description": "spell.stun.description",
     "id": "stun",
@@ -264,6 +297,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-eye.name",
     "description": "spell.summon-eye.description",
     "id": "summon-eye",
@@ -272,6 +306,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-ogre.name",
     "description": "spell.summon-ogre.description",
     "id": "summon-ogre",
@@ -280,6 +315,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-wendigo.name",
     "description": "spell.summon-wendigo.description",
     "id": "summon-wendigo",
@@ -288,6 +324,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-cyclop.name",
     "description": "spell.call-cyclop.description",
     "id": "call-cyclop",
@@ -296,6 +333,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.volcano.name",
     "description": "spell.volcano.description",
     "id": "volcano",
@@ -304,6 +342,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.fire-wall.name",
     "description": "spell.fire-wall.description",
     "id": "fire-wall",
@@ -312,6 +351,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.giant-strength.name",
     "description": "spell.giant-strength.description",
     "id": "giant-strength",
@@ -320,6 +360,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-frost-giant.name",
     "description": "spell.call-frost-giant.description",
     "id": "call-frost-giant",
@@ -328,6 +369,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-ice-troll.name",
     "description": "spell.call-ice-troll.description",
     "id": "call-ice-troll",
@@ -336,6 +378,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-yeti.name",
     "description": "spell.call-yeti.description",
     "id": "call-yeti",
@@ -344,6 +387,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-mage.name",
     "description": "spell.summon-mage.description",
     "id": "summon-mage",
@@ -352,6 +396,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-basilisk.name",
     "description": "spell.summon-basilisk.description",
     "id": "summon-basilisk",
@@ -360,6 +405,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-djinni.name",
     "description": "spell.summon-djinni.description",
     "id": "summon-djinni",
@@ -368,6 +414,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.concentration.name",
     "description": "spell.concentration.description",
     "id": "concentration",
@@ -376,6 +423,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.confuse.name",
     "description": "spell.confuse.description",
     "id": "confuse",
@@ -384,6 +432,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.conjure-elemental.name",
     "description": "spell.conjure-elemental.description",
     "id": "conjure-elemental",
@@ -392,6 +441,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.flight.name",
     "description": "spell.flight.description",
     "id": "flight",
@@ -400,6 +450,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.fog.name",
     "description": "spell.fog.description",
     "id": "fog",
@@ -408,6 +459,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.fools-gold.name",
     "description": "spell.fools-gold.description",
     "id": "fools-gold",
@@ -416,6 +468,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.hallucination.name",
     "description": "spell.hallucination.description",
     "id": "hallucination",
@@ -424,6 +477,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.ice-shock.name",
     "description": "spell.ice-shock.description",
     "id": "ice-shock",
@@ -432,6 +486,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.ice-wall.name",
     "description": "spell.ice-wall.description",
     "id": "ice-wall",
@@ -440,6 +495,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.invisibility.name",
     "description": "spell.invisibility.description",
     "id": "invisibility",
@@ -448,6 +504,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.laziness.name",
     "description": "spell.laziness.description",
     "id": "laziness",
@@ -456,6 +513,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.light-feet.name",
     "description": "spell.light-feet.description",
     "id": "light-feet",
@@ -464,6 +522,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.spy.name",
     "description": "spell.spy.description",
     "id": "spy",
@@ -472,6 +531,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.steal-artifact.name",
     "description": "spell.steal-artifact.description",
     "id": "steal-artifact",
@@ -480,6 +540,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.accuracy.name",
     "description": "spell.accuracy.description",
     "id": "accuracy",
@@ -488,6 +549,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.ambush.name",
     "description": "spell.ambush.description",
     "id": "ambush",
@@ -496,6 +558,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.ancient-secret.name",
     "description": "spell.ancient-secret.description",
     "id": "ancient-secret",
@@ -504,6 +567,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.beast-council.name",
     "description": "spell.beast-council.description",
     "id": "beast-council",
@@ -512,6 +576,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-giant-snail.name",
     "description": "spell.call-giant-snail.description",
     "id": "call-giant-snail",
@@ -520,6 +585,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-giant-spider.name",
     "description": "spell.call-giant-spider.description",
     "id": "call-giant-spider",
@@ -528,6 +594,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-gnoll.name",
     "description": "spell.call-gnoll.description",
     "id": "call-gnoll",
@@ -536,6 +603,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.climate-control.name",
     "description": "spell.climate-control.description",
     "id": "climate-control",
@@ -544,6 +612,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.cure.name",
     "description": "spell.cure.description",
     "id": "cure",
@@ -552,6 +621,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.growth.name",
     "description": "spell.growth.description",
     "id": "growth",
@@ -560,6 +630,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.locust-swarm.name",
     "description": "spell.locust-swarm.description",
     "id": "locust-swarm",
@@ -568,6 +639,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.natures-favor.name",
     "description": "spell.natures-favor.description",
     "id": "natures-favor",
@@ -576,6 +648,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.regeneration.name",
     "description": "spell.regeneration.description",
     "id": "regeneration",
@@ -584,6 +657,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.rust-armor.name",
     "description": "spell.rust-armor.description",
     "id": "rust-armor",
@@ -592,6 +666,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.serenity.name",
     "description": "spell.serenity.description",
     "id": "serenity",
@@ -600,6 +675,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.slow.name",
     "description": "spell.slow.description",
     "id": "slow",
@@ -608,6 +684,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-goblin.name",
     "description": "spell.summon-goblin.description",
     "id": "summon-goblin",
@@ -616,6 +693,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-werebear.name",
     "description": "spell.summon-werebear.description",
     "id": "summon-werebear",
@@ -624,6 +702,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-wisp.name",
     "description": "spell.summon-wisp.description",
     "id": "summon-wisp",
@@ -632,6 +711,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.sunray.name",
     "description": "spell.sunray.description",
     "id": "sunray",
@@ -640,6 +720,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.blessing.name",
     "description": "spell.blessing.description",
     "id": "blessing",
@@ -648,6 +729,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-crusader.name",
     "description": "spell.call-crusader.description",
     "id": "call-crusader",
@@ -656,6 +738,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-knight.name",
     "description": "spell.call-knight.description",
     "id": "call-knight",
@@ -664,6 +747,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.call-warrior.name",
     "description": "spell.call-warrior.description",
     "id": "call-warrior",
@@ -672,6 +756,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.flash.name",
     "description": "spell.flash.description",
     "id": "flash",
@@ -680,6 +765,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.gate.name",
     "description": "spell.gate.description",
     "id": "gate",
@@ -688,6 +774,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.healing-hand.name",
     "description": "spell.healing-hand.description",
     "id": "healing-hand",
@@ -696,6 +783,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.heavenly-protection.name",
     "description": "spell.heavenly-protection.description",
     "id": "heavenly-protection",
@@ -704,6 +792,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.holy-word.name",
     "description": "spell.holy-word.description",
     "id": "holy-word",
@@ -712,6 +801,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.armor-light.name",
     "description": "spell.armor-light.description",
     "id": "armor-light",
@@ -720,6 +810,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.locate-artifact.name",
     "description": "spell.locate-artifact.description",
     "id": "locate-artifact",
@@ -728,6 +819,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.miracle.name",
     "description": "spell.miracle.description",
     "id": "miracle",
@@ -736,6 +828,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.love-peace.name",
     "description": "spell.love-peace.description",
     "id": "love-peace",
@@ -744,6 +837,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.resurrection.name",
     "description": "spell.resurrection.description",
     "id": "resurrection",
@@ -752,6 +846,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.shield-light.name",
     "description": "spell.shield-light.description",
     "id": "shield-light",
@@ -760,6 +855,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-gryphon.name",
     "description": "spell.summon-gryphon.description",
     "id": "summon-gryphon",
@@ -768,6 +864,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-living-armor.name",
     "description": "spell.summon-living-armor.description",
     "id": "summon-living-armor",
@@ -776,6 +873,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.summon-monk.name",
     "description": "spell.summon-monk.description",
     "id": "summon-monk",
@@ -784,6 +882,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.sword-light.name",
     "description": "spell.sword-light.description",
     "id": "sword-light",
@@ -792,6 +891,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.tranquility.name",
     "description": "spell.tranquility.description",
     "id": "tranquility",
@@ -800,6 +900,7 @@
     "level": 1
   },
   {
+    "type": "spell",
     "name": "spell.armageddon.name",
     "description": "spell.armageddon.description",
     "id": "armageddon",

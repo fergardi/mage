@@ -12,20 +12,24 @@
     </mat-card-content>
 
     <mat-card-content>
+
       <div fxLayout="row" fxLayoutAlign="flex-end">
         <mat-form-field>
-          <mat-label>{{ 'table.filter.name' | translate }}</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'table.filter.name' | translate }}">
+          <mat-label>{{ 'table.filter.search' | translate }}</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'table.filter.search' | translate }}" [(ngModel)]="search"/>
+          <button mat-button *ngIf="search" matSuffix mat-icon-button (click)="search=''">
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
       </div>
 
       <table mat-table matSort [dataSource]="data">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
-          <mat-cell *matCellDef="let row" [attr.data-label]="column">
-            <span *ngIf="column !== 'name' && column !== 'faction'">
-              {{ row[column] }}
-            </span>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'table.column.' + column | translate }}</mat-header-cell>
+          <mat-cell *matCellDef="let row" [attr.data-label]="'table.column.' + column | translate">
+            <ng-template [ngIf]="column === 'type'">
+              {{ 'type. ' + row[column] + '.name' | translate }}
+            </ng-template>
             <ng-template [ngIf]="column === 'faction'">
               <mat-list dense>
                 <mat-list-item>

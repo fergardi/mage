@@ -49,13 +49,13 @@ export class FirebaseService {
     : this.angularFirestore.collection<any>(collection).add(element);
   }
 
-  delay(ms) {
+  delay(ms: number) {
     return new Promise(res => setTimeout(res, ms));
   }
 
   addElementsToCollection(collection: string, elements: any[], master: boolean = false) {
     elements.forEach(async (element, index) => {
-      await this.delay(index * 250);
+      await this.delay(index * 500);
       await this.addElementToCollection(collection, element, master ? element.id : null);
     })
   }

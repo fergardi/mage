@@ -33,6 +33,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { ShellComponent } from './shell/shell.component';
 import { ShortPipe } from '../pipes/short.pipe';
+import { EnumPipe } from '../pipes/enum.pipe';
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
@@ -42,6 +43,7 @@ export function httpTranslateLoader(http: HttpClient) {
 const components = [
   ShellComponent,
   ShortPipe,
+  EnumPipe,
 ];
 const modules = [
   CommonModule,

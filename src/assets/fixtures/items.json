@@ -1,130 +1,172 @@
 [
   {
+    "type": "item",
     "image": "/assets/images/items/golden-chest.png",
+    "faction": "grey",
     "name": "item.golden-chest.name",
     "description": "item.golden-chest.description",
     "id": "golden-chest",
     "gold": [10000, 1000000]
   },
   {
+    "type": "item",
     "image": "/assets/images/items/magical-chest.png",
+    "faction": "grey",
     "name": "item.magical-chest.name",
     "description": "item.magical-chest.description",
     "id": "magical-chest",
     "mana": [1000, 100000]
   },
   {
+    "type": "item",
     "image": "/assets/images/items/stone-chest.png",
+    "faction": "grey",
     "name": "item.stone-chest.name",
     "description": "item.stone-chest.description",
     "id": "stone-chest",
     "gem": [1, 10]
   },
   {
+    "type": "item",
     "image": "/assets/images/items/wooden-chest.png",
+    "faction": "grey",
     "name": "item.wooden-chest.name",
     "description": "item.wooden-chest.description",
     "id": "wooden-chest",
     "people": [100, 1000]
   },
   {
-    "image": "/assets/images/items/necronomicro.png",
+    "type": "item",
+    "image": "/assets/images/items/necronomicron.png",
+    "faction": "grey",
     "name": "item.necronomicron.name",
     "description": "item.necronomicron.description",
     "id": "necronomicron"
   },
   {
-    "image": "/assets/images/items/lanter.png",
+    "type": "item",
+    "image": "/assets/images/items/lantern.png",
+    "faction": "grey",
     "name": "item.lantern.name",
     "description": "item.lantern.description",
     "id": "lantern"
   },
   {
-    "image": "/assets/images/items/wisdom-tom.png",
+    "type": "item",
+    "image": "/assets/images/items/wisdom-tome.png",
+    "faction": "grey",
     "name": "item.wisdom-tome.name",
     "description": "item.wisdom-tome.description",
     "id": "wisdom-tome"
   },
   {
-    "image": "/assets/images/items/demon-hor.png",
+    "type": "item",
+    "image": "/assets/images/items/demon-horn.png",
+    "faction": "grey",
     "name": "item.demon-horn.name",
     "description": "item.demon-horn.description",
     "id": "demon-horn"
   },
   {
-    "image": "/assets/images/items/darkness-or.png",
+    "type": "item",
+    "image": "/assets/images/items/darkness-orb.png",
+    "faction": "grey",
     "name": "item.darkness-orb.name",
     "description": "item.darkness-orb.description",
     "id": "darkness-orb"
   },
   {
-    "image": "/assets/images/items/dragon-eg.png",
+    "type": "item",
+    "image": "/assets/images/items/dragon-egg.png",
+    "faction": "grey",
     "name": "item.dragon-egg.name",
     "description": "item.dragon-egg.description",
     "id": "dragon-egg"
   },
   {
-    "image": "/assets/images/items/crystal-bal.png",
+    "type": "item",
+    "image": "/assets/images/items/crystal-ball.png",
+    "faction": "grey",
     "name": "item.crystal-ball.name",
     "description": "item.crystal-ball.description",
     "id": "crystal-ball"
   },
   {
+    "type": "item",
     "image": "/assets/images/items/agility-potion.png",
+    "faction": "grey",
     "name": "item.agility-potion.name",
     "description": "item.agility-potion.description",
     "id": "agility-potion"
   },
   {
+    "type": "item",
     "image": "/assets/images/items/defense-potion.png",
+    "faction": "grey",
     "name": "item.defense-potion.name",
     "description": "item.defense-potion.description",
     "id": "defense-potion"
   },
   {
-    "image": "/assets/images/items/ice-or.png",
+    "type": "item",
+    "image": "/assets/images/items/ice-orb.png",
+    "faction": "grey",
     "name": "item.ice-orb.name",
     "description": "item.ice-orb.description",
     "id": "ice-orb"
   },
   {
-    "image": "/assets/images/items/earth-or.png",
+    "type": "item",
+    "image": "/assets/images/items/earth-orb.png",
+    "faction": "grey",
     "name": "item.earth-orb.name",
     "description": "item.earth-orb.description",
     "id": "earth-orb"
   },
   {
-    "image": "/assets/images/items/fire-or.png",
+    "type": "item",
+    "image": "/assets/images/items/fire-orb.png",
+    "faction": "grey",
     "name": "item.fire-orb.name",
     "description": "item.fire-orb.description",
     "id": "fire-orb"
   },
   {
+    "type": "item",
     "image": "/assets/images/items/mana-potion.png",
+    "faction": "grey",
     "name": "item.mana-potion.name",
     "description": "item.mana-potion.description",
     "id": "mana-potion"
   },
   {
-    "image": "/assets/images/items/holy-or.png",
+    "type": "item",
+    "image": "/assets/images/items/holy-orb.png",
+    "faction": "grey",
     "name": "item.holy-orb.name",
     "description": "item.holy-orb.description",
     "id": "holy-orb"
   },
   {
+    "type": "item",
     "image": "/assets/images/items/strength-potion.png",
+    "faction": "grey",
     "name": "item.strength-potion.name",
     "description": "item.strength-potion.description",
     "id": "strength-potion"
   },
   {
+    "type": "item",
     "image": "/assets/images/items/love-potion.png",
+    "faction": "grey",
     "name": "item.love-potion.name",
     "description": "item.love-potion.description",
     "id": "love-potion"
   },
   {
+    "type": "item",
     "image": "/assets/images/items/magic-sword.png",
+    "faction": "grey",
     "name": "item.magic-sword.name",
     "description": "item.magic-sword.description",
     "id": "magic-sword",

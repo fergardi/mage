@@ -1,6 +1,8 @@
 [
   {
     "id": "people",
+    "type": "resource",
+    "faction": "grey",
     "name": "resource.people.name",
     "description": "resource.people.description",
     "sort": 3,
@@ -8,6 +10,8 @@
   },
   {
     "id": "gold",
+    "type": "resource",
+    "faction": "grey",
     "name": "resource.gold.name",
     "description": "resource.gold.description",
     "sort": 1,
@@ -15,6 +19,8 @@
   },
   {
     "id": "mana",
+    "type": "resource",
+    "faction": "grey",
     "name": "resource.mana.name",
     "description": "resource.mana.description",
     "sort": 2,
@@ -22,6 +28,8 @@
   },
   {
     "id": "gem",
+    "type": "resource",
+    "faction": "grey",
     "name": "resource.gem.name",
     "description": "resource.gem.description",
     "sort": 6,
@@ -29,6 +37,8 @@
   },
   {
     "id": "turn",
+    "type": "resource",
+    "faction": "grey",
     "name": "resource.turn.name",
     "description": "resource.turn.description",
     "sort": 5,
@@ -36,6 +46,8 @@
   },
   {
     "id": "land",
+    "type": "resource",
+    "faction": "grey",
     "name": "resource.land.name",
     "description": "resource.land.description",
     "sort": 4,
