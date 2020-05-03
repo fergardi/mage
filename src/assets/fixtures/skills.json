@@ -1,0 +1,82 @@
+[
+  {
+    "type": "skill",
+    "faction": "green",
+    "id": "regeneration",
+    "name": "skill.regeneration.name",
+    "description": "skill.regeneration.description",
+    "image": "/assets/images/skills/regeneration.png"
+  },
+  {
+    "type": "skill",
+    "faction": "black",
+    "id": "life-steal",
+    "name": "skill.life-steal.name",
+    "description": "skill.life-steal.description",
+    "image": "/assets/images/skills/life-steal.png"
+  },
+  {
+    "type": "skill",
+    "faction": "white",
+    "id": "scales",
+    "name": "skill.scales.name",
+    "description": "skill.scales.description",
+    "image": "/assets/images/skills/scales.png"
+  },
+  {
+    "type": "skill",
+    "faction": "white",
+    "id": "double-strike",
+    "name": "skill.double-strike.name",
+    "description": "skill.double-strike.description",
+    "image": "/assets/images/skills/double-strike.png"
+  },
+  {
+    "type": "skill",
+    "faction": "blue",
+    "id": "haste",
+    "name": "skill.haste.name",
+    "description": "skill.haste.description",
+    "image": "/assets/images/skills/haste.png"
+  },
+  {
+    "type": "skill",
+    "faction": "red",
+    "id": "stun",
+    "name": "skill.stun.name",
+    "description": "skill.stun.description",
+    "image": "/assets/images/skills/stun.png"
+  },
+  {
+    "type": "skill",
+    "faction": "black",
+    "id": "seduction",
+    "name": "skill.seduction.name",
+    "description": "skill.seduction.description",
+    "image": "/assets/images/skills/seduction.png"
+  },
+  {
+    "type": "skill",
+    "faction": "green",
+    "id": "slow",
+    "name": "skill.slow.name",
+    "description": "skill.slow.description",
+    "image": "/assets/images/skills/slow.png"
+  },
+  {
+    "type": "skill",
+    "faction": "blue",
+    "id": "flight",
+    "name": "skill.flight.name",
+    "description": "skill.flight.description",
+    "image": "/assets/images/skills/flight.png"
+  },
+  {
+    "type": "skill",
+    "faction": "red",
+    "id": "frenzy",
+    "name": "skill.frenzy.name",
+    "description": "skill.frenzy.description",
+    "image": "/assets/images/skills/frenzy.png"
+  }
+]

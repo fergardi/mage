@@ -8,10 +8,6 @@ import { fadeInOnEnterAnimation } from 'angular-animations';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export enum TomeType {
-  'any', 'spell', 'summon', 'enchantment', 'battle', 'unit', 'hero', 'god', 'structure', 'item', 'resource', 'location'
-}
-
 @Component({
   selector: 'app-encyclopedia',
   templateUrl: './encyclopedia.component.html',
@@ -22,8 +18,6 @@ export enum TomeType {
 export class EncyclopediaComponent implements OnInit {
 
   search: string = '';
-  types = TomeType;
-  type: TomeType = TomeType.any;
   columns: string[] = ['name', 'type', 'faction'];
   filters: any = {
     name: {
@@ -59,6 +53,8 @@ export class EncyclopediaComponent implements OnInit {
       this.firebaseService.leftJoin('structures', 'factions', 'faction', 'id'),
       this.firebaseService.leftJoin('resources', 'factions', 'faction', 'id'),
       this.firebaseService.leftJoin('locations', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('skills', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('heroes', 'factions', 'faction', 'id'),
     ])
     .pipe(
       map(([
@@ -69,6 +65,8 @@ export class EncyclopediaComponent implements OnInit {
         structures,
         resources,
         locations,
+        skills,
+        heroes,
       ]) => {
         return [
           ...spells,
@@ -78,6 +76,8 @@ export class EncyclopediaComponent implements OnInit {
           ...structures,
           ...resources,
           ...locations,
+          ...skills,
+          ...heroes,
         ]
       }
     ))

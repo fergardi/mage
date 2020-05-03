@@ -28,10 +28,10 @@
   },
   {
     "type": "spell",
-    "name": "spell.gluttony.name",
-    "description": "spell.gluttony.description",
-    "id": "gluttony",
-    "image": "/assets/images/spells/black/gluttony.png",
+    "name": "spell.life-steal.name",
+    "description": "spell.life-steal.description",
+    "id": "life-steal",
+    "image": "/assets/images/spells/black/life-steal.png",
     "faction": "black",
     "level": 3
   },
@@ -352,10 +352,10 @@
   },
   {
     "type": "spell",
-    "name": "spell.giant-strength.name",
-    "description": "spell.giant-strength.description",
-    "id": "giant-strength",
-    "image": "/assets/images/spells/red/giant-strength.png",
+    "name": "spell.frenzy.name",
+    "description": "spell.frenzy.description",
+    "id": "frenzy",
+    "image": "/assets/images/spells/red/frenzy.png",
     "faction": "red",
     "level": 1
   },
@@ -514,10 +514,10 @@
   },
   {
     "type": "spell",
-    "name": "spell.light-feet.name",
-    "description": "spell.light-feet.description",
-    "id": "light-feet",
-    "image": "/assets/images/spells/blue/light-feet.png",
+    "name": "spell.haste.name",
+    "description": "spell.haste.description",
+    "id": "haste",
+    "image": "/assets/images/spells/blue/haste.png",
     "faction": "blue",
     "level": 1
   },
@@ -721,10 +721,10 @@
   },
   {
     "type": "spell",
-    "name": "spell.blessing.name",
-    "description": "spell.blessing.description",
-    "id": "blessing",
-    "image": "/assets/images/spells/white/blessing.png",
+    "name": "spell.double-strike.name",
+    "description": "spell.double-strike.description",
+    "id": "double-strike",
+    "image": "/assets/images/spells/white/double-strike.png",
     "faction": "white",
     "level": 1
   },
@@ -784,10 +784,10 @@
   },
   {
     "type": "spell",
-    "name": "spell.heavenly-protection.name",
-    "description": "spell.heavenly-protection.description",
-    "id": "heavenly-protection",
-    "image": "/assets/images/spells/white/heavenly-protection.png",
+    "name": "spell.divine-protection.name",
+    "description": "spell.divine-protection.description",
+    "id": "divine-protection",
+    "image": "/assets/images/spells/white/divine-protection.png",
     "faction": "white",
     "level": 1
   },
@@ -802,10 +802,10 @@
   },
   {
     "type": "spell",
-    "name": "spell.armor-light.name",
-    "description": "spell.armor-light.description",
-    "id": "armor-light",
-    "image": "/assets/images/spells/white/armor-light.png",
+    "name": "spell.scales.name",
+    "description": "spell.scales.description",
+    "id": "scales",
+    "image": "/assets/images/spells/white/scales.png",
     "faction": "white",
     "level": 1
   },
