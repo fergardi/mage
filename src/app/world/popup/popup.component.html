@@ -4,9 +4,11 @@
     <mat-card-title class="overflow">{{ (data.faction ? data.name : data.join.name) | translate }}</mat-card-title>
     <mat-card-subtitle class="overflow">{{ (data.faction ? data.join.name : data.join.description) | translate }}</mat-card-subtitle>
   </mat-card-header>
+
   <mat-card-content *ngIf="data.description">
     {{ data.description | translate }}
   </mat-card-content>
+
   <mat-card-content>
     <!-- shop contracts -->
     <ng-template [ngIf]="shopContracts.length">
@@ -18,10 +20,13 @@
           </div>
           <div mat-line>{{ contract.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ contract.join.description | translate }}</div>
-          <div mat-line class="popup-number"><mat-chip-list><mat-chip>{{ contract.gold | number }}</mat-chip></mat-chip-list></div>
+          <div mat-list-avatar [matBadge]="contract.gold" matBadgePosition="above before" >
+            <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
+          </div>
         </button>
       </mat-action-list>
     </ng-template>
+
     <!-- shop troops -->
     <ng-template [ngIf]="shopTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
@@ -33,10 +38,13 @@
           <div mat-line>{{ troop.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ troop.join.category | translate }}</div>
-          <div mat-line class="popup-number"><mat-chip-list><mat-chip>{{ troop.gold | number }}</mat-chip></mat-chip-list></div>
+          <div mat-list-avatar [matBadge]="troop.gold" matBadgePosition="above before" >
+            <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
+          </div>
         </button>
       </mat-action-list>
     </ng-template>
+
     <!-- shop artifacts -->
     <ng-template [ngIf]="shopArtifacts.length">
       <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
@@ -47,10 +55,13 @@
           </div>
           <div mat-line>{{ artifact.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
-          <div mat-line class="popup-number"><mat-chip-list><mat-chip>{{ artifact.gold | number }}</mat-chip></mat-chip-list></div>
+          <div mat-list-avatar [matBadge]="artifact.gold" matBadgePosition="above before" >
+            <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
+          </div>
         </button>
       </mat-action-list>
     </ng-template>
+
     <!-- shop spells -->
     <ng-template [ngIf]="shopCharms.length">
       <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
@@ -61,10 +72,13 @@
           </div>
           <div mat-line>{{ charm.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ charm.join.description | translate }}</div>
-          <div mat-line class="popup-number"><mat-chip-list><mat-chip>{{ charm.gold | number }}</mat-chip></mat-chip-list></div>
+          <div mat-list-avatar [matBadge]="charm.gold" matBadgePosition="above before" >
+            <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
+          </div>
         </button>
       </mat-action-list>
     </ng-template>
+
     <!-- artifact rewards -->
     <ng-template [ngIf]="artifactRewards.length">
       <div matSubheader>{{ 'card.list.resources' | translate }}:</div>
@@ -78,6 +92,7 @@
         </button>
       </mat-action-list>
     </ng-template>
+
     <!-- quest troops -->
     <ng-template [ngIf]="kingdomTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
@@ -92,6 +107,7 @@
         </mat-list-item>
       </mat-list>
     </ng-template>
+
     <!-- quest contracts -->
     <ng-template [ngIf]="questContracts.length">
       <div matSubheader>{{ 'card.list.heroes' | translate }}:</div>
@@ -105,6 +121,7 @@
         </mat-list-item>
       </mat-list>
     </ng-template>
+
     <!-- quest troops -->
     <ng-template [ngIf]="questTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
@@ -119,6 +136,7 @@
         </mat-list-item>
       </mat-list>
     </ng-template>
+
     <!-- quest rewards -->
     <ng-template [ngIf]="questRewards.length">
       <div matSubheader>{{ 'card.list.resources' | translate }}:</div>
@@ -132,6 +150,7 @@
         </button>
       </mat-action-list>
     </ng-template>
+
     <!-- quest artifacts -->
     <ng-template [ngIf]="questArtifacts.length">
       <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
@@ -145,5 +164,6 @@
         </button>
       </mat-action-list>
     </ng-template>
+
   </mat-card-content>
 </mat-card>

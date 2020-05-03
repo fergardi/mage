@@ -37,7 +37,7 @@ export class ShellComponent implements OnInit {
     { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/icons/tavern.png', visible: true },
     { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/icons/archive.png', visible: true },
     { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/icons/temple.png', visible: true },
-    { url: '/kingdom/store', name: 'kingdom.store.name', description: 'kingdom.store.description', image: '/assets/images/icons/store.png', visible: true },
+    { url: '/kingdom/emporium', name: 'kingdom.emporium.name', description: 'kingdom.emporium.description', image: '/assets/images/icons/emporium.png', visible: true },
     { url: '/user/encyclopedia', name: 'user.encyclopedia.name', description: 'user.encyclopedia.description', image: '/assets/images/icons/encyclopedia.png', visible: true },
   ];
   kingdomSupplies: any[] = [];

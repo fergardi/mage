@@ -22,7 +22,9 @@
             </div>
             <div mat-line>{{ god.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
-            <mat-chip-list><mat-chip>{{ god.gold | number }}</mat-chip></mat-chip-list>
+            <div mat-list-avatar [matBadge]="god.gold" matBadgePosition="above before" >
+              <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
+            </div>
           </button>
         </mat-action-list>
       </mat-card-content>

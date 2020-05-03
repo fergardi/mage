@@ -15,6 +15,7 @@ import { OfferComponent } from './temple/offer.component';
 import { TavernComponent } from './tavern/tavern.component';
 import { AuctionComponent } from './auction/auction.component';
 import { BuildComponent } from './city/build.component';
+import { EmporiumComponent } from './emporium/emporium.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { BuildComponent } from './city/build.component';
     TavernComponent,
     AuctionComponent,
     BuildComponent,
+    EmporiumComponent,
   ],
   imports: [
     CommonModule,

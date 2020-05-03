@@ -1,0 +1,64 @@
+<div class="kingdom-emporium" fxLayout="row wrap" fxLayoutGap="10px grid" [@fadeInOnEnter]>
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/icons/emporium.png" alt="{{ 'kingdom.emporium.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.emporium.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.emporium.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        {{ 'kingdom.emporium.help' | translate }}
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-action-list dense>
+          <button mat-list-item *ngFor="let artifact of emporiumArtifacts">
+            <div mat-list-avatar [matBadge]="1" matBadgePosition="above before" >
+              <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ artifact.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
+            <div mat-list-avatar [matBadge]="123" matBadgePosition="above before" >
+              <img mat-list-avatar src="/assets/images/resources/gem.png" alt="{{ 'resource.gem.name' | translate }}"/>
+            </div>
+          </button>
+        </mat-action-list>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/resources/gem.png" alt="{{ 'kingdom.gemology.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.gemology.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.gemology.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        {{ 'kingdom.gemology.help' | translate }}
+      </mat-card-content>
+
+      <mat-card-content>
+        <mat-action-list dense>
+          <button mat-list-item *ngFor="let pack of emporiumPacks">
+            <div mat-list-avatar [matBadge]="pack.quantity" matBadgePosition="above before" >
+              <img mat-list-avatar src="/assets/images/resources/gem.png" alt="{{ 'resource.gem.name' | translate }}"/>
+            </div>
+            <div mat-line>{{ pack.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ pack.description | translate }}</div>
+            <div mat-list-avatar [matBadge]="pack.money" matBadgePosition="above before" >
+              <img mat-list-avatar src="/assets/images/stores/merchant.png" alt="{{ 'resource.money.name' | translate }}"/>
+            </div>
+          </button>
+        </mat-action-list>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>

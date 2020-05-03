@@ -155,8 +155,8 @@
       "hint": "Ofrece más oro que la ofrenda anterior",
       "error": "Debes ofrecer más oro que la ofrenda anterior"
     },
-    "store": {
-      "name": "Tienda",
+    "emporium": {
+      "name": "Emporio",
       "description": "Invierte tus gemas"
     },
     "build": {
