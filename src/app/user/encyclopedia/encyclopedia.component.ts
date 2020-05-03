@@ -2,12 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-//import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { MatSelectChange } from '@angular/material/select';
 
 export enum TomeType {
   'any', 'spell', 'summon', 'enchantment', 'battle', 'unit', 'hero', 'god', 'structure', 'item', 'resource', 'location'
@@ -19,13 +18,29 @@ export enum TomeType {
   styleUrls: ['./encyclopedia.component.scss'],
   animations: [fadeInOnEnterAnimation({ duration: 250, delay: 250 })],
 })
-//@UntilDestroy()
+@UntilDestroy()
 export class EncyclopediaComponent implements OnInit {
 
   search: string = '';
   types = TomeType;
   type: TomeType = TomeType.any;
   columns: string[] = ['name', 'type', 'faction'];
+  filters: any = {
+    name: {
+      type: 'text',
+      value: '',
+    },
+    type: {
+      type: 'select',
+      value: '',
+      options: [],
+    },
+    faction: {
+      type: 'select',
+      value: '',
+      options: [],
+    }
+  }
   data: MatTableDataSource<any> = null;
 
   constructor(
@@ -66,17 +81,33 @@ export class EncyclopediaComponent implements OnInit {
         ]
       }
     ))
-    //.pipe(untilDestroyed(this))
+    .pipe(untilDestroyed(this))
     .subscribe(data => {
       this.data = new MatTableDataSource(data);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
+      this.filters.type.options = [...new Set(data.map(row => row.type))].map(type => { return { name: 'type.' + type + '.name', value: type } });
+      this.filters.faction.options = [...new Set(data.map(row => row.faction))].map(faction => { return { name: 'faction.' + faction + '.name', value: faction } });
+      this.data.filterPredicate = this.createFilter();
     });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.data.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    this.data.filter = JSON.stringify({
+      name: this.filters.name.value,
+      type: this.filters.type.value,
+      faction: this.filters.faction.value,
+    });
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data: any, filter: string): boolean {
+      let filters = JSON.parse(filter);
+      return data.name.toLowerCase().includes(filters.name)
+        && data.type.toString().toLowerCase().includes(filters.type)
+        && data.faction.toLowerCase().includes(filters.faction)
+    }
+    return filterFunction;
   }
 
 }

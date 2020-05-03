@@ -13,19 +13,18 @@
 
     <mat-card-content>
 
-      <div fxLayout="row" fxLayoutAlign="flex-end">
-        <mat-form-field>
-          <mat-label>{{ 'table.filter.search' | translate }}</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'table.filter.search' | translate }}" [(ngModel)]="search"/>
-          <button mat-button *ngIf="search" matSuffix mat-icon-button (click)="search=''">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-
       <table mat-table matSort [dataSource]="data">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'table.column.' + column | translate }}</mat-header-cell>
+          <mat-header-cell class="table-header" *matHeaderCellDef>
+            <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
+            <mat-form-field class="table-filter" *ngIf="filters[column]">
+              <input *ngIf="filters[column].type === 'text'" matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()"/>
+              <mat-select *ngIf="filters[column].type === 'select'" [(ngModel)]="filters[column].value" (selectionChange)="applyFilter()">
+                <mat-option [value]="''">{{ 'table.filter.any' | translate }}</mat-option>
+                <mat-option *ngFor="let option of filters[column].options" [value]="option.value">{{ option.name | translate }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-header-cell>
           <mat-cell *matCellDef="let row" [attr.data-label]="'table.column.' + column | translate">
             <ng-template [ngIf]="column === 'type'">
               {{ 'type. ' + row[column] + '.name' | translate }}

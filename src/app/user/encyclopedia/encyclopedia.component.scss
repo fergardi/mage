@@ -1,3 +1,13 @@
 .user-encyclopedia {
   padding: 10px;
+  .table-header {
+    padding: 5px;
+  }
+  .table-filter {
+    display: block;
+    width: 100%;
+  }
+  ::ng-deep .mat-header-cell {
+    flex-wrap: wrap;
+  }
 }
