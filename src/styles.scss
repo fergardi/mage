@@ -175,7 +175,7 @@ body {
   position: relative;
   background-color: #424242;
   color: white;
-  font-size: 16px;
+  font-size: 12px;
   .mat-list-item-content {
     display: flex;
     flex-direction: row;
@@ -186,8 +186,8 @@ body {
     height: inherit;
     .mat-list-avatar {
       flex-shrink: 0;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       object-fit: cover;
     }

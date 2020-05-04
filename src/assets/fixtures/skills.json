@@ -10,10 +10,10 @@
   {
     "type": "skill",
     "faction": "black",
-    "id": "life-steal",
-    "name": "skill.life-steal.name",
-    "description": "skill.life-steal.description",
-    "image": "/assets/images/skills/life-steal.png"
+    "id": "life-leech",
+    "name": "skill.life-leech.name",
+    "description": "skill.life-leech.description",
+    "image": "/assets/images/skills/life-leech.png"
   },
   {
     "type": "skill",

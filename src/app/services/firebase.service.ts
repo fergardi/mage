@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
-import { map, first } from 'rxjs/operators';
+import { map, first, take } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 export interface Query {
   collection: string
@@ -17,22 +18,47 @@ export class FirebaseService {
 
   constructor(
     private angularFirestore: AngularFirestore,
+    private angularFireAuth: AngularFireAuth,
     private httpClient: HttpClient,
   ) { }
 
-  leftJoin(left: string, right: string, from: string = 'id', to: string = 'id') {
-    return combineLatest([
+  leftJoin(left: string, right: string, from: string = 'id', to: string = 'id', leftArray: string[] = [], rightArray: string[] = []) {
+    let collections = [
       this.angularFirestore.collection<any>(left).valueChanges({ idField: 'fid' }),
       this.angularFirestore.collection<any>(right).valueChanges(),
-    ]).pipe(
-      map(([
-        leftCollection,
-        rightCollection,
-      ]) => {
-        return leftCollection.map(leftElement => {
+      ...leftArray.map(leftExtra => this.angularFirestore.collection<any>(leftExtra).valueChanges()),
+      ...rightArray.map(rightExtra => this.angularFirestore.collection<any>(rightExtra).valueChanges()),
+    ];
+    return combineLatest(collections).pipe(
+      map((collections) => {
+        collections[0].forEach(element => {
+          leftArray.forEach((subCollection, subCollectionIndex, subCollectionArray) => {
+            if (element[subCollection] && element[subCollection].length) {
+              element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
+                element[subCollection][subElementIndex] = {
+                  ...collections[2 + subCollectionIndex].find(element => element['id'] === subElement)
+                }
+              });
+            }
+          });
+        });
+        collections[1].forEach(element => {
+          rightArray.forEach((subCollection, subCollectionIndex, subCollectionArray) => {
+            if (element[subCollection] && element[subCollection].length) {
+              element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
+                element[subCollection][subElementIndex] = {
+                  ...collections[2 + leftArray.length + subCollectionIndex].find(element => element['id'] === subElement)
+                }
+              });
+            }
+          });
+        });
+        return collections[0].map(leftElement => {
           return {
             ...leftElement,
-            join: rightCollection.find(rightElement => leftElement[from] === rightElement[to])
+            join: {
+              ...collections[1].find(rightElement => leftElement[from] === rightElement[to])
+            }
           }
         })
       })
@@ -44,6 +70,7 @@ export class FirebaseService {
   }
 
   addElementToCollection(collection: string, element: any, id?: string) {
+    console.log(`Adding ${element.name} to ${collection}...`);
     return id
     ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
     : this.angularFirestore.collection<any>(collection).add(element);
@@ -60,9 +87,14 @@ export class FirebaseService {
     })
   }
 
-  importCollectionFromJson(collection: string) {
-    this.httpClient.get<any[]>(`assets/fixtures/${collection}.json`).pipe(first()).subscribe(elements => {
-      this.addElementsToCollection(collection, elements, true);
+  async importCollectionFromJson(collection: string) {
+    this.angularFireAuth.authState.subscribe(user => {
+      if (user) {
+        console.log(`Loading collection ${collection}...`)
+        this.httpClient.get<any[]>(`assets/fixtures/${collection}.json`).pipe(first()).subscribe(elements => {
+          this.addElementsToCollection(collection, elements, true);
+        });
+      }
     });
   }
 

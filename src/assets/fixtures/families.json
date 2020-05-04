@@ -1,0 +1,82 @@
+[
+  {
+    "type": "family",
+    "faction": "grey",
+    "id": "human",
+    "name": "family.human.name",
+    "description": "family.human.description",
+    "image": "/assets/images/families/human.png"
+  },
+  {
+    "type": "family",
+    "faction": "grey",
+    "id": "demon",
+    "name": "family.demon.name",
+    "description": "family.demon.description",
+    "image": "/assets/images/families/demon.png"
+  },
+  {
+    "type": "family",
+    "faction": "grey",
+    "id": "giant",
+    "name": "family.giant.name",
+    "description": "family.giant.description",
+    "image": "/assets/images/families/giant.png"
+  },
+  {
+    "type": "family",
+    "faction": "grey",
+    "id": "reptile",
+    "name": "family.reptile.name",
+    "description": "family.reptile.description",
+    "image": "/assets/images/families/reptile.png"
+  },
+  {
+    "type": "family",
+    "faction": "grey",
+    "id": "animal",
+    "name": "family.animal.name",
+    "description": "family.animal.description",
+    "image": "/assets/images/families/animal.png"
+  },
+  {
+    "type": "family",
+    "faction": "grey",
+    "id": "dragon",
+    "name": "family.dragon.name",
+    "description": "family.dragon.description",
+    "image": "/assets/images/families/dragon.png"
+  },
+  {
+    "type": "family",
+    "faction": "grey",
+    "id": "elemental",
+    "name": "family.elemental.name",
+    "description": "family.elemental.description",
+    "image": "/assets/images/families/elemental.png"
+  },
+  {
+    "type": "family",
+    "faction": "grey",
+    "id": "golem",
+    "name": "family.golem.name",
+    "description": "family.golem.description",
+    "image": "/assets/images/families/golem.png"
+  },
+  {
+    "type": "family",
+    "faction": "grey",
+    "id": "undead",
+    "name": "family.undead.name",
+    "description": "family.undead.description",
+    "image": "/assets/images/families/undead.png"
+  },
+  {
+    "type": "family",
+    "faction": "grey",
+    "id": "orc",
+    "name": "family.orc.name",
+    "description": "family.orc.description",
+    "image": "/assets/images/families/orc.png"
+  }
+]

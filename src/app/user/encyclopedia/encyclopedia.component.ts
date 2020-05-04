@@ -22,7 +22,7 @@ export class EncyclopediaComponent implements OnInit {
   filters: any = {
     name: {
       type: 'text',
-      value: '',
+      value: 'skeleton',
     },
     type: {
       type: 'select',
@@ -47,14 +47,16 @@ export class EncyclopediaComponent implements OnInit {
   ngOnInit() {
     combineLatest([
       this.firebaseService.leftJoin('spells', 'factions', 'faction', 'id'),
-      this.firebaseService.leftJoin('units', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('units', 'factions', 'faction', 'id', ['skills', 'families', 'categories']),
       this.firebaseService.leftJoin('gods', 'factions', 'faction', 'id'),
       this.firebaseService.leftJoin('items', 'factions', 'faction', 'id'),
       this.firebaseService.leftJoin('structures', 'factions', 'faction', 'id'),
       this.firebaseService.leftJoin('resources', 'factions', 'faction', 'id'),
       this.firebaseService.leftJoin('locations', 'factions', 'faction', 'id'),
       this.firebaseService.leftJoin('skills', 'factions', 'faction', 'id'),
-      this.firebaseService.leftJoin('heroes', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('heroes', 'factions', 'faction', 'id', ['skills', 'families', 'categories']),
+      this.firebaseService.leftJoin('categories', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('families', 'factions', 'faction', 'id'),
     ])
     .pipe(
       map(([
@@ -67,6 +69,8 @@ export class EncyclopediaComponent implements OnInit {
         locations,
         skills,
         heroes,
+        categories,
+        families,
       ]) => {
         return [
           ...spells,
@@ -78,6 +82,8 @@ export class EncyclopediaComponent implements OnInit {
           ...locations,
           ...skills,
           ...heroes,
+          ...categories,
+          ...families,
         ]
       }
     ))
@@ -89,6 +95,7 @@ export class EncyclopediaComponent implements OnInit {
       this.filters.type.options = [...new Set(data.map(row => row.type))].map(type => { return { name: 'type.' + type + '.name', value: type } });
       this.filters.faction.options = [...new Set(data.map(row => row.faction))].map(faction => { return { name: 'faction.' + faction + '.name', value: faction } });
       this.data.filterPredicate = this.createFilter();
+      this.applyFilter();
     });
   }
 

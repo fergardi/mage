@@ -8,8 +8,6 @@ import { FirebaseService } from './services/firebase.service';
 })
 export class AppComponent {
 
-  title = 'mage';
-
   constructor(
     private firebaseService: FirebaseService,
   ) {
@@ -24,5 +22,7 @@ export class AppComponent {
     // this.firebaseService.importCollectionFromJson('spells');
     // this.firebaseService.importCollectionFromJson('gods');
     // this.firebaseService.importCollectionFromJson('skills');
+    // this.firebaseService.importCollectionFromJson('families');
+    // this.firebaseService.importCollectionFromJson('categories');
   }
 }

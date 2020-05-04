@@ -1,0 +1,82 @@
+[
+  {
+    "type": "category",
+    "faction": "grey",
+    "id": "melee",
+    "name": "category.melee.name",
+    "description": "category.melee.description",
+    "image": "/assets/images/categories/melee.png"
+  },
+  {
+    "type": "category",
+    "faction": "grey",
+    "id": "ranged",
+    "name": "category.ranged.name",
+    "description": "category.ranged.description",
+    "image": "/assets/images/categories/ranged.png"
+  },
+  {
+    "type": "category",
+    "faction": "grey",
+    "id": "magic",
+    "name": "category.magic.name",
+    "description": "category.magic.description",
+    "image": "/assets/images/categories/magic.png"
+  },
+  {
+    "type": "category",
+    "faction": "grey",
+    "id": "fire",
+    "name": "category.fire.name",
+    "description": "category.fire.description",
+    "image": "/assets/images/categories/fire.png"
+  },
+  {
+    "type": "category",
+    "faction": "grey",
+    "id": "poison",
+    "name": "category.poison.name",
+    "description": "category.poison.description",
+    "image": "/assets/images/categories/poison.png"
+  },
+  {
+    "type": "category",
+    "faction": "grey",
+    "id": "cold",
+    "name": "category.cold.name",
+    "description": "category.cold.description",
+    "image": "/assets/images/categories/cold.png"
+  },
+  {
+    "type": "category",
+    "faction": "grey",
+    "id": "lightning",
+    "name": "category.lightning.name",
+    "description": "category.lightning.description",
+    "image": "/assets/images/categories/lightning.png"
+  },
+  {
+    "type": "category",
+    "faction": "grey",
+    "id": "holy",
+    "name": "category.holy.name",
+    "description": "category.holy.description",
+    "image": "/assets/images/categories/holy.png"
+  },
+  {
+    "type": "category",
+    "faction": "grey",
+    "id": "psychic",
+    "name": "category.psychic.name",
+    "description": "category.psychic.description",
+    "image": "/assets/images/categories/psychic.png"
+  },
+  {
+    "type": "category",
+    "faction": "grey",
+    "id": "breath",
+    "name": "category.breath.name",
+    "description": "category.breath.description",
+    "image": "/assets/images/categories/breath.png"
+  }
+]

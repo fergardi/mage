@@ -47,7 +47,15 @@
                     <img mat-list-avatar [src]="row.image" alt="{{ row.name | translate }}"/>
                   </div>
                   <div mat-line>{{ row.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle">{{ row.description | translate }}</div>
+                  <div mat-line class="mat-card-subtitle"
+                    *ngIf="!row.families && !row.families?.length && !row.skills && !row.skills?.length && !row.categories && !row.categories?.length">
+                    {{ row.description | translate }}
+                  </div>
+                  <div mat-line class="mat-card-subtitle">
+                    <img [matTooltip]="family.name | translate" class="family" *ngFor="let family of row.families" [src]="family.image"/>
+                    <img [matTooltip]="category.name | translate" class="category" *ngFor="let category of row.categories" [src]="category.image"/>
+                    <img [matTooltip]="skill.name | translate" class="skill" *ngFor="let skill of row.skills" [src]="skill.image"/>
+                  </div>
                 </mat-list-item>
               </mat-list>
             </ng-template>
