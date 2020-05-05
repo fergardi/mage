@@ -22,7 +22,7 @@ export class EncyclopediaComponent implements OnInit {
   filters: any = {
     name: {
       type: 'text',
-      value: 'skeleton',
+      value: '',
     },
     type: {
       type: 'select',

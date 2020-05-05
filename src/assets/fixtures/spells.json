@@ -27,16 +27,16 @@
     "level": 2
   },
   {
-    "type": "spell",
-    "name": "spell.life-steal.name",
-    "description": "spell.life-steal.description",
-    "id": "life-steal",
-    "image": "/assets/images/spells/black/life-steal.png",
+    "type": "instant",
+    "name": "spell.life-leech.name",
+    "description": "spell.life-leech.description",
+    "id": "life-leech",
+    "image": "/assets/images/spells/black/life-leech.png",
     "faction": "black",
     "level": 3
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.fear.name",
     "description": "spell.fear.description",
     "id": "fear",
@@ -45,7 +45,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "sorcery",
     "name": "spell.night-living-dead.name",
     "description": "spell.night-living-dead.description",
     "id": "night-living-dead",
@@ -54,7 +54,7 @@
     "level": 4
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.necromancy-touch.name",
     "description": "spell.necromancy-touch.description",
     "id": "necromancy-touch",
@@ -63,7 +63,7 @@
     "level": 4
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-wraith.name",
     "description": "spell.summon-wraith.description",
     "id": "summon-wraith",
@@ -72,7 +72,7 @@
     "level": 2
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-lich.name",
     "description": "spell.summon-lich.description",
     "id": "summon-lich",
@@ -81,7 +81,7 @@
     "level": 3
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-vampire.name",
     "description": "spell.summon-vampire.description",
     "id": "summon-vampire",
@@ -90,7 +90,7 @@
     "level": 3
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.death-decay.name",
     "description": "spell.death-decay.description",
     "id": "death-decay",
@@ -99,7 +99,7 @@
     "level": 4
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.shroud-darkness.name",
     "description": "spell.shroud-darkness.description",
     "id": "shroud-darkness",
@@ -108,7 +108,7 @@
     "level": 2
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.poison.name",
     "description": "spell.poison.description",
     "id": "poison",
@@ -117,7 +117,7 @@
     "level": 3
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.soul-pact.name",
     "description": "spell.soul-pact.description",
     "id": "soul-pact",
@@ -126,7 +126,7 @@
     "level": 5
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.icy-touch.name",
     "description": "spell.icy-touch.description",
     "id": "icy-touch",
@@ -135,7 +135,7 @@
     "level": 4
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.vampire-kiss.name",
     "description": "spell.vampire-kiss.description",
     "id": "vampire-kiss",
@@ -144,7 +144,7 @@
     "level": 4
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.seduction.name",
     "description": "spell.seduction.description",
     "id": "seduction",
@@ -153,7 +153,7 @@
     "level": 5
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.black-death.name",
     "description": "spell.black-death.description",
     "id": "black-death",
@@ -162,7 +162,7 @@
     "level": 5
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.curse.name",
     "description": "spell.curse.description",
     "id": "curse",
@@ -171,7 +171,7 @@
     "level": 5
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.blood-ritual.name",
     "description": "spell.blood-ritual.description",
     "id": "blood-ritual",
@@ -180,7 +180,7 @@
     "level": 5
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.fireball.name",
     "description": "spell.fireball.description",
     "id": "fireball",
@@ -189,7 +189,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.battle-chant.name",
     "description": "spell.battle-chant.description",
     "id": "battle-chant",
@@ -198,7 +198,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-lizardman.name",
     "description": "spell.call-lizardman.description",
     "id": "call-lizardman",
@@ -207,7 +207,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-orc.name",
     "description": "spell.call-orc.description",
     "id": "call-orc",
@@ -216,7 +216,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.chain-lightning.name",
     "description": "spell.chain-lightning.description",
     "id": "chain-lightning",
@@ -225,7 +225,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "sorcery",
     "name": "spell.destroy-artifact.name",
     "description": "spell.destroy-artifact.description",
     "id": "destroy-artifact",
@@ -234,7 +234,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.inferno.name",
     "description": "spell.inferno.description",
     "id": "inferno",
@@ -243,7 +243,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.flame-shield.name",
     "description": "spell.flame-shield.description",
     "id": "flame-shield",
@@ -252,7 +252,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.flame-blade.name",
     "description": "spell.flame-blade.description",
     "id": "flame-blade",
@@ -261,7 +261,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.flame-arrow.name",
     "description": "spell.flame-arrow.description",
     "id": "flame-arrow",
@@ -270,7 +270,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.gravity.name",
     "description": "spell.gravity.description",
     "id": "gravity",
@@ -279,7 +279,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.meteor-storm.name",
     "description": "spell.meteor-storm.description",
     "id": "meteor-storm",
@@ -288,7 +288,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.stun.name",
     "description": "spell.stun.description",
     "id": "stun",
@@ -297,7 +297,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-demon.name",
     "description": "spell.summon-demon.description",
     "id": "summon-demon",
@@ -306,7 +306,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-ogre.name",
     "description": "spell.summon-ogre.description",
     "id": "summon-ogre",
@@ -315,7 +315,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-wendigo.name",
     "description": "spell.summon-wendigo.description",
     "id": "summon-wendigo",
@@ -324,7 +324,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-cyclop.name",
     "description": "spell.call-cyclop.description",
     "id": "call-cyclop",
@@ -333,7 +333,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.volcano.name",
     "description": "spell.volcano.description",
     "id": "volcano",
@@ -342,7 +342,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.fire-wall.name",
     "description": "spell.fire-wall.description",
     "id": "fire-wall",
@@ -351,7 +351,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.frenzy.name",
     "description": "spell.frenzy.description",
     "id": "frenzy",
@@ -360,7 +360,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-frost-giant.name",
     "description": "spell.call-frost-giant.description",
     "id": "call-frost-giant",
@@ -369,16 +369,16 @@
     "level": 1
   },
   {
-    "type": "spell",
-    "name": "spell.call-ice-troll.name",
-    "description": "spell.call-ice-troll.description",
-    "id": "call-ice-troll",
-    "image": "/assets/images/spells/blue/call-ice-troll.png",
+    "type": "summon",
+    "name": "spell.call-cave-troll.name",
+    "description": "spell.call-cave-troll.description",
+    "id": "call-cave-troll",
+    "image": "/assets/images/spells/blue/call-cave-troll.png",
     "faction": "blue",
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-yeti.name",
     "description": "spell.call-yeti.description",
     "id": "call-yeti",
@@ -387,7 +387,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-mage.name",
     "description": "spell.summon-mage.description",
     "id": "summon-mage",
@@ -396,7 +396,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-basilisk.name",
     "description": "spell.summon-basilisk.description",
     "id": "summon-basilisk",
@@ -405,7 +405,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-djinni.name",
     "description": "spell.summon-djinni.description",
     "id": "summon-djinni",
@@ -414,7 +414,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.concentration.name",
     "description": "spell.concentration.description",
     "id": "concentration",
@@ -423,7 +423,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.confuse.name",
     "description": "spell.confuse.description",
     "id": "confuse",
@@ -432,7 +432,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.conjure-elemental.name",
     "description": "spell.conjure-elemental.description",
     "id": "conjure-elemental",
@@ -441,7 +441,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.flight.name",
     "description": "spell.flight.description",
     "id": "flight",
@@ -450,7 +450,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.fog.name",
     "description": "spell.fog.description",
     "id": "fog",
@@ -459,7 +459,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "sorcery",
     "name": "spell.fools-gold.name",
     "description": "spell.fools-gold.description",
     "id": "fools-gold",
@@ -468,7 +468,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.hallucination.name",
     "description": "spell.hallucination.description",
     "id": "hallucination",
@@ -477,7 +477,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.ice-shock.name",
     "description": "spell.ice-shock.description",
     "id": "ice-shock",
@@ -486,7 +486,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.ice-wall.name",
     "description": "spell.ice-wall.description",
     "id": "ice-wall",
@@ -495,7 +495,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.invisibility.name",
     "description": "spell.invisibility.description",
     "id": "invisibility",
@@ -504,7 +504,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.laziness.name",
     "description": "spell.laziness.description",
     "id": "laziness",
@@ -513,7 +513,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.haste.name",
     "description": "spell.haste.description",
     "id": "haste",
@@ -522,7 +522,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "sorcery",
     "name": "spell.spy.name",
     "description": "spell.spy.description",
     "id": "spy",
@@ -531,7 +531,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "sorcery",
     "name": "spell.steal-artifact.name",
     "description": "spell.steal-artifact.description",
     "id": "steal-artifact",
@@ -540,7 +540,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.accuracy.name",
     "description": "spell.accuracy.description",
     "id": "accuracy",
@@ -549,7 +549,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.ambush.name",
     "description": "spell.ambush.description",
     "id": "ambush",
@@ -558,25 +558,25 @@
     "level": 1
   },
   {
-    "type": "spell",
-    "name": "spell.ancient-secret.name",
-    "description": "spell.ancient-secret.description",
-    "id": "ancient-secret",
-    "image": "/assets/images/spells/green/ancient-secret.png",
+    "type": "enchantment",
+    "name": "spell.druidism.name",
+    "description": "spell.druidism.description",
+    "id": "druidism",
+    "image": "/assets/images/spells/green/druidism.png",
     "faction": "green",
     "level": 1
   },
   {
-    "type": "spell",
-    "name": "spell.beast-council.name",
-    "description": "spell.beast-council.description",
-    "id": "beast-council",
-    "image": "/assets/images/spells/green/beast-council.png",
+    "type": "summon",
+    "name": "spell.council.name",
+    "description": "spell.council.description",
+    "id": "council",
+    "image": "/assets/images/spells/green/council.png",
     "faction": "green",
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-giant-snail.name",
     "description": "spell.call-giant-snail.description",
     "id": "call-giant-snail",
@@ -585,7 +585,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-giant-spider.name",
     "description": "spell.call-giant-spider.description",
     "id": "call-giant-spider",
@@ -594,7 +594,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-gnoll.name",
     "description": "spell.call-gnoll.description",
     "id": "call-gnoll",
@@ -603,7 +603,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.climate-control.name",
     "description": "spell.climate-control.description",
     "id": "climate-control",
@@ -612,7 +612,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.cure.name",
     "description": "spell.cure.description",
     "id": "cure",
@@ -621,7 +621,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.growth.name",
     "description": "spell.growth.description",
     "id": "growth",
@@ -630,7 +630,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.locust-swarm.name",
     "description": "spell.locust-swarm.description",
     "id": "locust-swarm",
@@ -639,7 +639,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.natures-favor.name",
     "description": "spell.natures-favor.description",
     "id": "natures-favor",
@@ -648,7 +648,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.regeneration.name",
     "description": "spell.regeneration.description",
     "id": "regeneration",
@@ -657,7 +657,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.rust-armor.name",
     "description": "spell.rust-armor.description",
     "id": "rust-armor",
@@ -666,7 +666,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "sorcery",
     "name": "spell.serenity.name",
     "description": "spell.serenity.description",
     "id": "serenity",
@@ -675,7 +675,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.slow.name",
     "description": "spell.slow.description",
     "id": "slow",
@@ -684,7 +684,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-goblin.name",
     "description": "spell.summon-goblin.description",
     "id": "summon-goblin",
@@ -693,7 +693,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-werebear.name",
     "description": "spell.summon-werebear.description",
     "id": "summon-werebear",
@@ -702,7 +702,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-wisp.name",
     "description": "spell.summon-wisp.description",
     "id": "summon-wisp",
@@ -711,7 +711,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.sunray.name",
     "description": "spell.sunray.description",
     "id": "sunray",
@@ -720,7 +720,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.double-strike.name",
     "description": "spell.double-strike.description",
     "id": "double-strike",
@@ -729,7 +729,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-crusader.name",
     "description": "spell.call-crusader.description",
     "id": "call-crusader",
@@ -738,7 +738,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-knight.name",
     "description": "spell.call-knight.description",
     "id": "call-knight",
@@ -747,7 +747,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.call-warrior.name",
     "description": "spell.call-warrior.description",
     "id": "call-warrior",
@@ -756,7 +756,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.flash.name",
     "description": "spell.flash.description",
     "id": "flash",
@@ -765,7 +765,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "sorcery",
     "name": "spell.gate.name",
     "description": "spell.gate.description",
     "id": "gate",
@@ -774,7 +774,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.healing-hand.name",
     "description": "spell.healing-hand.description",
     "id": "healing-hand",
@@ -783,7 +783,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.divine-protection.name",
     "description": "spell.divine-protection.description",
     "id": "divine-protection",
@@ -792,7 +792,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.holy-word.name",
     "description": "spell.holy-word.description",
     "id": "holy-word",
@@ -801,7 +801,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.scales.name",
     "description": "spell.scales.description",
     "id": "scales",
@@ -810,7 +810,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "sorcery",
     "name": "spell.locate-artifact.name",
     "description": "spell.locate-artifact.description",
     "id": "locate-artifact",
@@ -819,7 +819,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.miracle.name",
     "description": "spell.miracle.description",
     "id": "miracle",
@@ -828,7 +828,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "enchantment",
     "name": "spell.love-peace.name",
     "description": "spell.love-peace.description",
     "id": "love-peace",
@@ -837,7 +837,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.resurrection.name",
     "description": "spell.resurrection.description",
     "id": "resurrection",
@@ -846,7 +846,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.shield-light.name",
     "description": "spell.shield-light.description",
     "id": "shield-light",
@@ -855,7 +855,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-griffon.name",
     "description": "spell.summon-griffon.description",
     "id": "summon-griffon",
@@ -864,16 +864,16 @@
     "level": 1
   },
   {
-    "type": "spell",
-    "name": "spell.summon-living-armor.name",
-    "description": "spell.summon-living-armor.description",
-    "id": "summon-living-armor",
-    "image": "/assets/images/spells/white/summon-living-armor.png",
+    "type": "summon",
+    "name": "spell.summon-titan.name",
+    "description": "spell.summon-titan.description",
+    "id": "summon-titan",
+    "image": "/assets/images/spells/white/summon-titan.png",
     "faction": "white",
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "summon",
     "name": "spell.summon-monk.name",
     "description": "spell.summon-monk.description",
     "id": "summon-monk",
@@ -882,7 +882,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.sword-light.name",
     "description": "spell.sword-light.description",
     "id": "sword-light",
@@ -891,7 +891,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "instant",
     "name": "spell.tranquility.name",
     "description": "spell.tranquility.description",
     "id": "tranquility",
@@ -900,7 +900,7 @@
     "level": 1
   },
   {
-    "type": "spell",
+    "type": "sorcery",
     "name": "spell.armageddon.name",
     "description": "spell.armageddon.description",
     "id": "armageddon",

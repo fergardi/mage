@@ -29,9 +29,68 @@
       "description": "Adquiere el conocimiento"
     }
   },
+  "type": {
+    "sorcery": {
+      "name": "Conjuro",
+      "description": ""
+    },
+    "instant": {
+      "name": "Instantáneo",
+      "description": ""
+    },
+    "summon": {
+      "name": "Invocación",
+      "description": ""
+    },
+    "enchantment": {
+      "name": "Encantamiento",
+      "description": ""
+    },
+    "structure": {
+      "name": "Estructura",
+      "description": ""
+    },
+    "resource": {
+      "name": "Recurso",
+      "description": ""
+    },
+    "location": {
+      "name": "Lugar",
+      "description": ""
+    },
+    "skill": {
+      "name": "Habilidad",
+      "description": ""
+    },
+    "hero": {
+      "name": "Héroe",
+      "description": ""
+    },
+    "category": {
+      "name": "Categoría",
+      "description": ""
+    },
+    "family": {
+      "name": "Familia",
+      "description": ""
+    },
+    "unit": {
+      "name": "Unidad",
+      "description": ""
+    },
+    "god": {
+      "name": "Deidad",
+      "description": ""
+    },
+    "item": {
+      "name": "Objecto",
+      "description": ""
+    }
+  },
   "table": {
     "filter": {
-      "search": "Buscar"
+      "search": "Buscar",
+      "any": "Cualquiera"
     },
     "column": {
       "name": "Nombre",
@@ -261,12 +320,6 @@
       "buildings": "Edificios"
     }
   },
-  "category": {
-    "flying": {
-      "name": "Volador",
-      "description": "Las unidades Voladoras son fuertes contra las unidades Cuerpo a Cuerpo y débiles contra las unidades a Distancia"
-    }
-  },
   "location": {
     "graveyard": {
       "name": "Cementerio encantado",
@@ -276,6 +329,842 @@
   "quest": {
     "graveyard": {
       "text1": "Un grupo de NoMuertos está asolando nuestras casas... Se ocultan en el cementerio local. Por favor, ¡ayúdanos!"
+    }
+  },
+  "unit": {
+    "shadow-elemental": {
+      "name": "Elementales de sombra",
+      "description": ""
+    },
+    "wraith": {
+      "name": "Apariciones",
+      "description": ""
+    },
+    "bone-dragon": {
+      "name": "Dragones de hueso",
+      "description": ""
+    },
+    "mummy": {
+      "name": "Momias",
+      "description": ""
+    },
+    "ghoul": {
+      "name": "Necrófagos",
+      "description": ""
+    },
+    "lich": {
+      "name": "Liches",
+      "description": ""
+    },
+    "skeleton": {
+      "name": "Esqueletos",
+      "description": ""
+    },
+    "vampire": {
+      "name": "Vampiros",
+      "description": ""
+    },
+    "werewolf": {
+      "name": "Hombres lobo",
+      "description": ""
+    },
+    "zombie": {
+      "name": "Zombies",
+      "description": ""
+    },
+    "blue-dragon": {
+      "name": "Dragones azules",
+      "description": ""
+    },
+    "crystal-golem": {
+      "name": "Gólems de cristal",
+      "description": ""
+    },
+    "djinni": {
+      "name": "Genios",
+      "description": ""
+    },
+    "frost-giant": {
+      "name": "Gigantes de escarcha",
+      "description": ""
+    },
+    "ice-elemental": {
+      "name": "Elementales de hielo",
+      "description": ""
+    },
+    "cave-troll": {
+      "name": "Trolls de cueva",
+      "description": ""
+    },
+    "basilisk": {
+      "name": "Basiliscos",
+      "description": ""
+    },
+    "leviathan": {
+      "name": "Leviatanes",
+      "description": ""
+    },
+    "mage": {
+      "name": "Magos",
+      "description": ""
+    },
+    "yeti": {
+      "name": "Yetis",
+      "description": ""
+    },
+    "wood-golem": {
+      "name": "Gólems de madera",
+      "description": ""
+    },
+    "giant-snail": {
+      "name": "Caracoles monstruosos",
+      "description": ""
+    },
+    "gnoll": {
+      "name": "Gnolls",
+      "description": ""
+    },
+    "goblin": {
+      "name": "Goblins",
+      "description": ""
+    },
+    "golden-dragon": {
+      "name": "Dragones dorados",
+      "description": ""
+    },
+    "werebear": {
+      "name": "Hombres oso",
+      "description": ""
+    },
+    "wisp": {
+      "name": "Espíritus del bosque",
+      "description": ""
+    },
+    "giant-spider": {
+      "name": "Arañas descomunales",
+      "description": ""
+    },
+    "earth-elemental": {
+      "name": "Elementales de tierra",
+      "description": ""
+    },
+    "wyvern": {
+      "name": "Wyvernos",
+      "description": ""
+    },
+    "cyclop": {
+      "name": "Cíclopes",
+      "description": ""
+    },
+    "demon": {
+      "name": "Demonios",
+      "description": ""
+    },
+    "devil": {
+      "name": "Diablos",
+      "description": ""
+    },
+    "fire-elemental": {
+      "name": "Elementales de fuego",
+      "description": ""
+    },
+    "lizardman": {
+      "name": "Hombres lagarto",
+      "description": ""
+    },
+    "ogre": {
+      "name": "Ogros",
+      "description": ""
+    },
+    "orc": {
+      "name": "Orcos",
+      "description": ""
+    },
+    "phoenix": {
+      "name": "Fénixes",
+      "description": ""
+    },
+    "red-dragon": {
+      "name": "Dragones rojos",
+      "description": ""
+    },
+    "wendigo": {
+      "name": "Wéndigos",
+      "description": ""
+    },
+    "catapult": {
+      "name": "Catapultas",
+      "description": ""
+    },
+    "white-dragon": {
+      "name": "Dragones blancos",
+      "description": ""
+    },
+    "griffon": {
+      "name": "Grifos",
+      "description": ""
+    },
+    "knight": {
+      "name": "Caballeros",
+      "description": ""
+    },
+    "light-elemental": {
+      "name": "Elementales de luz",
+      "description": ""
+    },
+    "titan": {
+      "name": "Titanes",
+      "description": ""
+    },
+    "monk": {
+      "name": "Monjes",
+      "description": ""
+    },
+    "warrior": {
+      "name": "Guerreros",
+      "description": ""
+    },
+    "crusader": {
+      "name": "Cruzados",
+      "description": ""
+    },
+    "paladin": {
+      "name": "Paladines",
+      "description": ""
+    },
+    "cavalry": {
+      "name": "Caballería",
+      "description": ""
+    },
+    "fanatic": {
+      "name": "Fanáticos",
+      "description": ""
+    },
+    "pikeman": {
+      "name": "Piqueros",
+      "description": ""
+    },
+    "fighter": {
+      "name": "Luchadores",
+      "description": ""
+    },
+    "archer": {
+      "name": "Arqueros",
+      "description": ""
+    },
+    "frog": {
+      "name": "Ranas",
+      "description": ""
+    },
+    "sheep": {
+      "name": "Ovejas",
+      "description": ""
+    },
+    "bat": {
+      "name": "Murciélagos",
+      "description": ""
+    },
+    "rat": {
+      "name": "Ratas",
+      "description": ""
+    },
+    "imp": {
+      "name": "Diablillos",
+      "description": ""
+    },
+    "trained-elephant": {
+      "name": "Elefantes de guerra",
+      "description": ""
+    },
+    "wolf": {
+      "name": "Lobos",
+      "description": ""
+    },
+    "iron-golem": {
+      "name": "Gólems de acero",
+      "description": ""
+    },
+    "stone-golem": {
+      "name": "Gólems de piedra",
+      "description": ""
+    },
+    "baby-dragon": {
+      "name": "Bebés dragón",
+      "description": ""
+    }
+  },
+  "spell": {
+    "animate-skeleton": {
+      "name": "Animar esqueletos",
+      "description": ""
+    },
+    "animate-zombie": {
+      "name": "Animar zombies",
+      "description": ""
+    },
+    "animate-ghoul": {
+      "name": "Animar necrófagos",
+      "description": ""
+    },
+    "life-leech": {
+      "name": "Robar vida",
+      "description": ""
+    },
+    "fear": {
+      "name": "Miedo",
+      "description": ""
+    },
+    "night-living-dead": {
+      "name": "Noche de los muertos vivientes",
+      "description": ""
+    },
+    "necromancy-touch": {
+      "name": "Toque de nigromancia",
+      "description": ""
+    },
+    "summon-wraith": {
+      "name": "Invocar apariciones",
+      "description": ""
+    },
+    "summon-lich": {
+      "name": "Invocar liches",
+      "description": ""
+    },
+    "summon-vampire": {
+      "name": "Invocar vampiros",
+      "description": ""
+    },
+    "death-decay": {
+      "name": "Muerte y putrefacción",
+      "description": ""
+    },
+    "shroud-darkness": {
+      "name": "Manto de oscuridad",
+      "description": ""
+    },
+    "poison": {
+      "name": "Veneno ponzoñoso",
+      "description": ""
+    },
+    "soul-pact": {
+      "name": "Pacto del alma",
+      "description": ""
+    },
+    "icy-touch": {
+      "name": "Toque helado",
+      "description": ""
+    },
+    "vampire-kiss": {
+      "name": "Beso del vampiro",
+      "description": ""
+    },
+    "seduction": {
+      "name": "Seducción",
+      "description": ""
+    },
+    "black-death": {
+      "name": "Peste negra",
+      "description": ""
+    },
+    "curse": {
+      "name": "Maldición",
+      "description": ""
+    },
+    "blood-ritual": {
+      "name": "Ritual sangriento",
+      "description": ""
+    },
+    "fireball": {
+      "name": "Bola de fuego",
+      "description": ""
+    },
+    "battle-chant": {
+      "name": "Cántico de batalla",
+      "description": ""
+    },
+    "call-lizardman": {
+      "name": "Llamar hombres lagarto",
+      "description": ""
+    },
+    "call-orc": {
+      "name": "Llamar orcos",
+      "description": ""
+    },
+    "chain-lightning": {
+      "name": "Cadena de relámpagos",
+      "description": ""
+    },
+    "destroy-artifact": {
+      "name": "Destruir artefacto",
+      "description": ""
+    },
+    "inferno": {
+      "name": "Infierno",
+      "description": ""
+    },
+    "flame-shield": {
+      "name": "Escudos de llamas",
+      "description": ""
+    },
+    "flame-blade": {
+      "name": "Espadas flamígueras",
+      "description": ""
+    },
+    "flame-arrow": {
+      "name": "Flechas de fuego",
+      "description": ""
+    },
+    "gravity": {
+      "name": "Gravedad",
+      "description": ""
+    },
+    "meteor-storm": {
+      "name": "Tormenta de meteoros",
+      "description": ""
+    },
+    "stun": {
+      "name": "Aturdir",
+      "description": ""
+    },
+    "summon-demon": {
+      "name": "Invocar demonios",
+      "description": ""
+    },
+    "summon-ogre": {
+      "name": "Invocar ogros",
+      "description": ""
+    },
+    "summon-wendigo": {
+      "name": "Invocar wéndigos",
+      "description": ""
+    },
+    "call-cyclop": {
+      "name": "Llamar cíclopes",
+      "description": ""
+    },
+    "volcano": {
+      "name": "Volcán",
+      "description": ""
+    },
+    "fire-wall": {
+      "name": "Muro de fuego",
+      "description": ""
+    },
+    "frenzy": {
+      "name": "Locura",
+      "description": ""
+    },
+    "call-frost-giant": {
+      "name": "Llamar gigantes de escarcha",
+      "description": ""
+    },
+    "call-cave-troll": {
+      "name": "Llamar trolls de cueva",
+      "description": ""
+    },
+    "call-yeti": {
+      "name": "Llamar yetis",
+      "description": ""
+    },
+    "summon-mage": {
+      "name": "Invocar magos",
+      "description": ""
+    },
+    "summon-basilisk": {
+      "name": "Invocar basiliscos",
+      "description": ""
+    },
+    "summon-djinni": {
+      "name": "Invocar genios",
+      "description": ""
+    },
+    "concentration": {
+      "name": "Concentración",
+      "description": ""
+    },
+    "confuse": {
+      "name": "Confundir",
+      "description": ""
+    },
+    "conjure-elemental": {
+      "name": "Conjurar elementales",
+      "description": ""
+    },
+    "flight": {
+      "name": "Vuelo",
+      "description": ""
+    },
+    "fog": {
+      "name": "Niebla",
+      "description": ""
+    },
+    "fools-gold": {
+      "name": "Oros de los tontos",
+      "description": ""
+    },
+    "hallucination": {
+      "name": "Alucinación",
+      "description": ""
+    },
+    "ice-shock": {
+      "name": "Choque de hielo",
+      "description": ""
+    },
+    "ice-wall": {
+      "name": "Muro helado",
+      "description": ""
+    },
+    "invisibility": {
+      "name": "Invisibilidad",
+      "description": ""
+    },
+    "laziness": {
+      "name": "Pereza",
+      "description": ""
+    },
+    "haste": {
+      "name": "Prisa",
+      "description": ""
+    },
+    "spy": {
+      "name": "Espejo espía",
+      "description": ""
+    },
+    "steal-artifact": {
+      "name": "Robar artefacto",
+      "description": ""
+    },
+    "accuracy": {
+      "name": "Precisión",
+      "description": ""
+    },
+    "ambush": {
+      "name": "Emboscada",
+      "description": ""
+    },
+    "ancient-secret": {
+      "name": "Secreto antigüo",
+      "description": ""
+    },
+    "beast-council": {
+      "name": "Concilio de bestias",
+      "description": ""
+    },
+    "call-giant-snail": {
+      "name": "Llamar caracoles monstruosos",
+      "description": ""
+    },
+    "call-giant-spider": {
+      "name": "Llamar arañas descomunales",
+      "description": ""
+    },
+    "call-gnoll": {
+      "name": "Llamar gnolls",
+      "description": ""
+    },
+    "climate-control": {
+      "name": "Control del clima",
+      "description": ""
+    },
+    "cure": {
+      "name": "Curación",
+      "description": ""
+    },
+    "growth": {
+      "name": "Crecimiento",
+      "description": ""
+    },
+    "locust-swarm": {
+      "name": "Enjambre de langostas",
+      "description": ""
+    },
+    "natures-favor": {
+      "name": "Favor de la naturaleza",
+      "description": ""
+    },
+    "regeneration": {
+      "name": "Regeneración",
+      "description": ""
+    },
+    "rust-armor": {
+      "name": "Oxidar armadura",
+      "description": ""
+    },
+    "serenity": {
+      "name": "Serenidad",
+      "description": ""
+    },
+    "slow": {
+      "name": "Lentitud",
+      "description": ""
+    },
+    "summon-goblin": {
+      "name": "Invocar goblins",
+      "description": ""
+    },
+    "summon-werebear": {
+      "name": "Invocar hombres oso",
+      "description": ""
+    },
+    "summon-wisp": {
+      "name": "Invocar espíritus del bosque",
+      "description": ""
+    },
+    "sunray": {
+      "name": "Rayo de sol",
+      "description": ""
+    },
+    "double-strike": {
+      "name": "Ataque doble",
+      "description": ""
+    },
+    "call-crusader": {
+      "name": "Llamar cruzados",
+      "description": ""
+    },
+    "call-knight": {
+      "name": "Llamar caballeros",
+      "description": ""
+    },
+    "call-warrior": {
+      "name": "Llamar guerreros",
+      "description": ""
+    },
+    "flash": {
+      "name": "Destello",
+      "description": ""
+    },
+    "gate": {
+      "name": "Puerta celestial",
+      "description": ""
+    },
+    "healing-hand": {
+      "name": "Mano sanadora",
+      "description": ""
+    },
+    "divine-protection": {
+      "name": "Protección divina",
+      "description": ""
+    },
+    "holy-word": {
+      "name": "Palabra santa",
+      "description": ""
+    },
+    "scales": {
+      "name": "Placas",
+      "description": ""
+    },
+    "locate-artifact": {
+      "name": "Encontrar artefacto",
+      "description": ""
+    },
+    "miracle": {
+      "name": "Milagro",
+      "description": ""
+    },
+    "love-peace": {
+      "name": "Paz y amor",
+      "description": ""
+    },
+    "resurrection": {
+      "name": "Resurección",
+      "description": ""
+    },
+    "shield-light": {
+      "name": "Escudos de luz",
+      "description": ""
+    },
+    "summon-griffon": {
+      "name": "Invocar grifos",
+      "description": ""
+    },
+    "summon-titan": {
+      "name": "Invocar titanes",
+      "description": ""
+    },
+    "summon-monk": {
+      "name": "Invocar monjes",
+      "description": ""
+    },
+    "sword-light": {
+      "name": "Espadas de luz",
+      "description": ""
+    },
+    "tranquility": {
+      "name": "Tranquilidad",
+      "description": ""
+    },
+    "armageddon": {
+      "name": "Armagedón",
+      "description": ""
+    }
+  },
+  "family": {
+    "human": {
+      "name": "Humanos",
+      "description": ""
+    },
+    "demon": {
+      "name": "Demonios",
+      "description": ""
+    },
+    "giant": {
+      "name": "Giantes",
+      "description": ""
+    },
+    "reptile": {
+      "name": "Reptiles",
+      "description": ""
+    },
+    "animal": {
+      "name": "Animales",
+      "description": ""
+    },
+    "dragon": {
+      "name": "Dragones",
+      "description": ""
+    },
+    "elemental": {
+      "name": "Elementales",
+      "description": ""
+    },
+    "golem": {
+      "name": "Gólems",
+      "description": ""
+    },
+    "undead": {
+      "name": "NoMuertos",
+      "description": ""
+    },
+    "orc": {
+      "name": "Orcos",
+      "description": ""
+    }
+  },
+  "category": {
+    "melee": {
+      "name": "Físico",
+      "description": "Tipo de daño cuerpo a cuerpo"
+    },
+    "ranged": {
+      "name": "Distancia",
+      "description": "Tipo de daño de rango"
+    },
+    "magic": {
+      "name": "Magia",
+      "description": "Tipo de daño mágico"
+    },
+    "fire": {
+      "name": "Fuego",
+      "description": "Tipo de daño ígneo"
+    },
+    "poison": {
+      "name": "Veneno",
+      "description": "Tipo de daño venenoso"
+    },
+    "cold": {
+      "name": "Frío",
+      "description": "Tipo de daño helado"
+    },
+    "lightning": {
+      "name": "Rayo",
+      "description": "Tipo de daño eléctrico"
+    },
+    "holy": {
+      "name": "Luz",
+      "description": "Tipo de daño sagrado"
+    },
+    "psychic": {
+      "name": "Psíquico",
+      "description": "Tipo de daño mental"
+    },
+    "breath": {
+      "name": "Aliento",
+      "description": "Daño elemental aumentado"
+    }
+  },
+  "skill": {
+    "regeneration": {
+      "name": "Regeneración",
+      "description": "Recupera tropas al finalizar"
+    },
+    "life-leech": {
+      "name": "Robo de vida",
+      "description": "Recupera vida al atacar"
+    },
+    "scales": {
+      "name": "Placas",
+      "description": "Aumenta la defensa"
+    },
+    "double-strike": {
+      "name": "Ataque doble",
+      "description": "Ataca dos veces"
+    },
+    "haste": {
+      "name": "Prisa",
+      "description": "Aumenta la iniciativa"
+    },
+    "stun": {
+      "name": "Aturdir",
+      "description": "Paraliza al enemigo"
+    },
+    "seduction": {
+      "name": "Seducción",
+      "description": "Convierte unidades"
+    },
+    "slow": {
+      "name": "Lentitud",
+      "description": "Disminuye la iniciativa"
+    },
+    "flight": {
+      "name": "Vuelo",
+      "description": "Invulnerable al daño físico"
+    },
+    "fear": {
+      "name": "Miedo",
+      "description": "Disminuye la defensa"
+    }
+  },
+  "hero": {
+    "dragon-rider": {
+      "name": "Jinete de dragones",
+      "description": "Mejora el daño de dragones"
+    },
+    "demon-king": {
+      "name": "Rey de los demonios",
+      "description": "Mejora el daño de demonios"
+    },
+    "commander": {
+      "name": "Comandante",
+      "description": "Mejora el daño de humanos"
+    },
+    "trader": {
+      "name": "Comerciante",
+      "description": "Ganas más oro por turno"
+    },
+    "beast-master": {
+      "name": "Señor de las bestias",
+      "description": "Mejora el daño de animales"
+    },
+    "shaman": {
+      "name": "Chamán",
+      "description": "Ganas más maná por turno"
+    },
+    "elementalist": {
+      "name": "Elementalista",
+      "description": "Mejora el daño de elementales"
+    },
+    "sage": {
+      "name": "Sabio",
+      "description": "Incrementa tu poder mágico"
+    },
+    "necrophage": {
+      "name": "Necrófago jefe",
+      "description": "Mejora el daño de no muertos"
+    },
+    "necromancer": {
+      "name": "Nigromante",
+      "description": "Ganas más personas por turno"
     }
   }
 }

@@ -171,8 +171,8 @@
     "id": "cave-troll",
     "image": "/assets/images/units/blue/cave-troll.png",
     "faction": "blue",
-    "categories": ["melee"],
-    "skills": ["cold"],
+    "categories": ["melee", "cold"],
+    "skills": [],
     "families": ["orc"]
   },
   {
@@ -215,8 +215,8 @@
     "id": "yeti",
     "image": "/assets/images/units/blue/yeti.png",
     "faction": "blue",
-    "categories": ["melee"],
-    "skills": ["cold", "breath", "slow"],
+    "categories": ["melee", "cold", "breath"],
+    "skills": ["slow"],
     "families": ["giant"]
   },
   {
@@ -413,8 +413,8 @@
     "id": "phoenix",
     "image": "/assets/images/units/red/phoenix.png",
     "faction": "red",
-    "categories": ["magic", "ranged"],
-    "skills": ["fire", "flight", "regeneration"],
+    "categories": ["magic", "ranged", "fire"],
+    "skills": ["flight", "regeneration"],
     "families": ["elemental"]
   },
   {

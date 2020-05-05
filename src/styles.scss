@@ -270,5 +270,8 @@ body {
     .mat-cell, .mat-header-cell, .mat-footer-cell {
       justify-content: center;
     }
+    .mat-form-field-infix {
+      width: auto;
+    }
   }
 }
