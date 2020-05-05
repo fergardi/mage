@@ -39,6 +39,7 @@ export class FirebaseService {
                   ...collections[2 + subCollectionIndex].find(element => element['id'] === subElement)
                 }
               });
+              element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
             }
           });
         });
@@ -50,6 +51,7 @@ export class FirebaseService {
                   ...collections[2 + leftArray.length + subCollectionIndex].find(element => element['id'] === subElement)
                 }
               });
+              element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
             }
           });
         });

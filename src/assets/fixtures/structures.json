@@ -33,11 +33,11 @@
   },
   {
     "type": "structure",
-    "name": "structure.tower.name",
-    "description": "structure.tower.description",
-    "id": "tower",
+    "name": "structure.academy.name",
+    "description": "structure.academy.description",
+    "id": "academy",
     "faction": "grey",
-    "image": "/assets/images/structures/tower.png"
+    "image": "/assets/images/structures/academy.png"
   },
   {
     "type": "structure",

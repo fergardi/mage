@@ -15,17 +15,27 @@
 
       <table mat-table matSort [dataSource]="data">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
+
           <mat-header-cell class="table-header" *matHeaderCellDef>
             <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
-            <mat-form-field class="table-filter" *ngIf="filters[column]">
-              <input *ngIf="filters[column].type === 'text'" matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()"/>
-              <mat-select *ngIf="filters[column].type === 'select'" [(ngModel)]="filters[column].value" (selectionChange)="applyFilter()">
+
+            <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
+              <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()"/>
+              <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'select'">
+              <mat-select [(ngModel)]="filters[column].value" (selectionChange)="applyFilter()">
                 <mat-option [value]="''">{{ 'table.filter.any' | translate }}</mat-option>
                 <mat-option *ngFor="let option of filters[column].options" [value]="option.value">{{ option.name | translate }}</mat-option>
               </mat-select>
             </mat-form-field>
+
           </mat-header-cell>
           <mat-cell *matCellDef="let row" [attr.data-label]="'table.column.' + column | translate">
+
             <ng-template [ngIf]="column === 'type'">
               {{ 'type. ' + row[column] + '.name' | translate }}
             </ng-template>
@@ -40,6 +50,7 @@
                 </mat-list-item>
               </mat-list>
             </ng-template>
+
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item>
@@ -59,6 +70,7 @@
                 </mat-list-item>
               </mat-list>
             </ng-template>
+
           </mat-cell>
         </ng-container>
 

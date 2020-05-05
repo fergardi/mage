@@ -6,7 +6,7 @@
     "id": "shadow-elemental",
     "image": "/assets/images/units/black/shadow-elemental.png",
     "faction": "black",
-    "categories": ["magic"],
+    "categories": ["psychic"],
     "skills": ["life-leech", "flight"],
     "families": ["elemental", "undead"]
   },
@@ -28,8 +28,8 @@
     "id": "bone-dragon",
     "image": "/assets/images/units/black/bone-dragon.png",
     "faction": "black",
-    "categories": ["magic"],
-    "skills": ["flight"],
+    "categories": ["cold", "breath", "melee"],
+    "skills": ["flight", "scales", "life-leech"],
     "families": ["dragon", "undead"]
   },
   {
@@ -39,9 +39,9 @@
     "id": "mummy",
     "image": "/assets/images/units/black/mummy.png",
     "faction": "black",
-    "categories": ["ranged"],
-    "skills": [],
-    "families": ["undead", "humanoid"]
+    "categories": ["melee"],
+    "skills": ["slow"],
+    "families": ["undead"]
   },
   {
     "type": "unit",
@@ -51,8 +51,8 @@
     "image": "/assets/images/units/black/ghoul.png",
     "faction": "black",
     "categories": ["melee"],
-    "skills": [],
-    "families": ["undead", "animal"]
+    "skills": ["life-leech"],
+    "families": ["undead"]
   },
   {
     "type": "unit",
@@ -61,8 +61,8 @@
     "id": "lich",
     "image": "/assets/images/units/black/lich.png",
     "faction": "black",
-    "categories": ["ranged"],
-    "skills": [],
+    "categories": ["ranged", "cold", "magic"],
+    "skills": ["fear"],
     "families": ["undead"]
   },
   {
@@ -83,9 +83,9 @@
     "id": "vampire",
     "image": "/assets/images/units/black/vampire.png",
     "faction": "black",
-    "categories": ["magic"],
-    "skills": [],
-    "families": ["undead", "humanoid"]
+    "categories": ["magic", "ranged"],
+    "skills": ["life-leech", "flight", "fear", "seduction"],
+    "families": ["undead"]
   },
   {
     "type": "unit",
@@ -95,8 +95,8 @@
     "image": "/assets/images/units/black/werewolf.png",
     "faction": "black",
     "categories": ["melee"],
-    "skills": [],
-    "families": ["animal", "humanoid"]
+    "skills": ["double-strike", "regeneration"],
+    "families": ["animal", "human"]
   },
   {
     "type": "unit",
@@ -105,8 +105,8 @@
     "id": "zombie",
     "image": "/assets/images/units/black/zombie.png",
     "faction": "black",
-    "categories": ["magic"],
-    "skills": [],
+    "categories": ["melee"],
+    "skills": ["slow"],
     "families": ["undead"]
   },
   {
@@ -116,8 +116,8 @@
     "id": "blue-dragon",
     "image": "/assets/images/units/blue/blue-dragon.png",
     "faction": "blue",
-    "categories": ["magic"],
-    "skills": [],
+    "categories": ["breath", "melee", "lightning"],
+    "skills": ["flight", "scales", "haste"],
     "families": ["dragon"]
   },
   {
@@ -127,9 +127,9 @@
     "id": "crystal-golem",
     "image": "/assets/images/units/blue/crystal-golem.png",
     "faction": "blue",
-    "categories": ["ranged"],
-    "skills": [],
-    "families": ["elemental"]
+    "categories": ["magic"],
+    "skills": ["slow", "scales", "stun"],
+    "families": ["golem"]
   },
   {
     "type": "unit",
@@ -138,8 +138,8 @@
     "id": "djinni",
     "image": "/assets/images/units/blue/djinni.png",
     "faction": "blue",
-    "categories": ["ranged"],
-    "skills": [],
+    "categories": ["magic"],
+    "skills": ["flight", "haste"],
     "families": ["elemental"]
   },
   {
@@ -149,9 +149,9 @@
     "id": "frost-giant",
     "image": "/assets/images/units/blue/frost-giant.png",
     "faction": "blue",
-    "categories": ["melee"],
-    "skills": [],
-    "families": ["giant", "elemental"]
+    "categories": ["melee", "cold"],
+    "skills": ["stun"],
+    "families": ["giant"]
   },
   {
     "type": "unit",
@@ -160,20 +160,20 @@
     "id": "ice-elemental",
     "image": "/assets/images/units/blue/ice-elemental.png",
     "faction": "blue",
-    "categories": ["melee"],
-    "skills": [],
+    "categories": ["cold", "ranged"],
+    "skills": ["stun", "scales"],
     "families": ["elemental"]
   },
   {
     "type": "unit",
-    "name": "unit.ice-troll.name",
-    "description": "unit.ice-troll.description",
-    "id": "ice-troll",
-    "image": "/assets/images/units/blue/ice-troll.png",
+    "name": "unit.cave-troll.name",
+    "description": "unit.cave-troll.description",
+    "id": "cave-troll",
+    "image": "/assets/images/units/blue/cave-troll.png",
     "faction": "blue",
     "categories": ["melee"],
-    "skills": [],
-    "families": ["humanoid"]
+    "skills": ["cold"],
+    "families": ["orc"]
   },
   {
     "type": "unit",
@@ -182,9 +182,9 @@
     "id": "basilisk",
     "image": "/assets/images/units/blue/basilisk.png",
     "faction": "blue",
-    "categories": ["ranged"],
-    "skills": [],
-    "families": ["animal", "giant"]
+    "categories": ["melee", "poison"],
+    "skills": ["scales"],
+    "families": ["reptile"]
   },
   {
     "type": "unit",
@@ -193,9 +193,9 @@
     "id": "leviathan",
     "image": "/assets/images/units/blue/leviathan.png",
     "faction": "blue",
-    "categories": ["magic"],
-    "skills": [],
-    "families": ["giant", "dragon"]
+    "categories": ["melee"],
+    "skills": ["double-strike", "scales", "stun"],
+    "families": ["giant", "reptile"]
   },
   {
     "type": "unit",
@@ -204,9 +204,9 @@
     "id": "mage",
     "image": "/assets/images/units/blue/mage.png",
     "faction": "blue",
-    "categories": ["ranged"],
+    "categories": ["magic"],
     "skills": [],
-    "families": ["humanoid"]
+    "families": ["human"]
   },
   {
     "type": "unit",
@@ -216,7 +216,7 @@
     "image": "/assets/images/units/blue/yeti.png",
     "faction": "blue",
     "categories": ["melee"],
-    "skills": [],
+    "skills": ["cold", "breath", "slow"],
     "families": ["giant"]
   },
   {
@@ -227,7 +227,7 @@
     "image": "/assets/images/units/green/wood-golem.png",
     "faction": "green",
     "categories": ["melee"],
-    "skills": [],
+    "skills": ["double-strike"],
     "families": ["golem"]
   },
   {
@@ -238,7 +238,7 @@
     "image": "/assets/images/units/green/giant-snail.png",
     "faction": "green",
     "categories": ["melee"],
-    "skills": [],
+    "skills": ["regeneration"],
     "families": ["animal", "giant"]
   },
   {
@@ -249,8 +249,8 @@
     "image": "/assets/images/units/green/gnoll.png",
     "faction": "green",
     "categories": ["melee"],
-    "skills": [],
-    "families": ["humanoid"]
+    "skills": ["haste"],
+    "families": ["orc"]
   },
   {
     "type": "unit",
@@ -261,7 +261,7 @@
     "faction": "green",
     "categories": ["melee"],
     "skills": [],
-    "families": ["humanoid"]
+    "families": ["orc"]
   },
   {
     "type": "unit",
@@ -270,9 +270,9 @@
     "id": "golden-dragon",
     "image": "/assets/images/units/green/golden-dragon.png",
     "faction": "green",
-    "categories": ["magic"],
-    "skills": [],
-    "families": ["dragon", "animal"]
+    "categories": ["melee", "breath", "poison"],
+    "skills": ["flight", "scales", "regeneration"],
+    "families": ["dragon"]
   },
   {
     "type": "unit",
@@ -283,7 +283,7 @@
     "faction": "green",
     "categories": ["melee"],
     "skills": [],
-    "families": ["animal"]
+    "families": ["animal", "human"]
   },
   {
     "type": "unit",
@@ -292,7 +292,7 @@
     "id": "wisp",
     "image": "/assets/images/units/green/wisp.png",
     "faction": "green",
-    "categories": ["melee"],
+    "categories": ["magic"],
     "skills": [],
     "families": ["undead"]
   },
@@ -303,8 +303,8 @@
     "id": "giant-spider",
     "image": "/assets/images/units/green/giant-spider.png",
     "faction": "green",
-    "categories": ["ranged"],
-    "skills": [],
+    "categories": ["melee", "poison"],
+    "skills": ["scales"],
     "families": ["animal", "giant"]
   },
   {
@@ -314,8 +314,8 @@
     "id": "earth-elemental",
     "image": "/assets/images/units/green/earth-elemental.png",
     "faction": "green",
-    "categories": ["ranged"],
-    "skills": [],
+    "categories": ["melee", "ranged"],
+    "skills": ["scales"],
     "families": ["elemental"]
   },
   {
@@ -325,9 +325,9 @@
     "id": "wyvern",
     "image": "/assets/images/units/green/wyvern.png",
     "faction": "green",
-    "categories": ["melee"],
-    "skills": [],
-    "families": ["giant", "animal"]
+    "categories": ["melee", "poison", "breath"],
+    "skills": ["scales"],
+    "families": ["giant", "reptile"]
   },
   {
     "type": "unit",
@@ -337,8 +337,8 @@
     "image": "/assets/images/units/red/cyclop.png",
     "faction": "red",
     "categories": ["melee"],
-    "skills": [],
-    "families": ["giant"]
+    "skills": ["stun"],
+    "families": ["giant", "demon"]
   },
   {
     "type": "unit",
@@ -353,13 +353,13 @@
   },
   {
     "type": "unit",
-    "name": "unit.eye.name",
-    "description": "unit.eye.description",
-    "id": "eye",
-    "image": "/assets/images/units/red/eye.png",
+    "name": "unit.devil.name",
+    "description": "unit.devil.description",
+    "id": "devil",
+    "image": "/assets/images/units/red/devil.png",
     "faction": "red",
     "categories": ["magic"],
-    "skills": [],
+    "skills": ["seduction"],
     "families": ["demon"]
   },
   {
@@ -369,9 +369,9 @@
     "id": "fire-elemental",
     "image": "/assets/images/units/red/fire-elemental.png",
     "faction": "red",
-    "categories": ["ranged"],
+    "categories": ["ranged", "fire"],
     "skills": [],
-    "families": ["elemental", "giant", "demon"]
+    "families": ["elemental"]
   },
   {
     "type": "unit",
@@ -380,9 +380,9 @@
     "id": "lizardman",
     "image": "/assets/images/units/red/lizardman.png",
     "faction": "red",
-    "categories": ["ranged"],
-    "skills": [],
-    "families": ["animal"]
+    "categories": ["melee"],
+    "skills": ["scales"],
+    "families": ["reptile"]
   },
   {
     "type": "unit",
@@ -392,7 +392,7 @@
     "image": "/assets/images/units/red/ogre.png",
     "faction": "red",
     "categories": ["melee"],
-    "skills": [],
+    "skills": ["slow"],
     "families": ["demon", "giant"]
   },
   {
@@ -404,7 +404,7 @@
     "faction": "red",
     "categories": ["melee"],
     "skills": [],
-    "families": ["demon", "humanoid"]
+    "families": ["demon", "human"]
   },
   {
     "type": "unit",
@@ -413,9 +413,9 @@
     "id": "phoenix",
     "image": "/assets/images/units/red/phoenix.png",
     "faction": "red",
-    "categories": ["magic"],
-    "skills": [],
-    "families": ["animal", "giant"]
+    "categories": ["magic", "ranged"],
+    "skills": ["fire", "flight", "regeneration"],
+    "families": ["elemental"]
   },
   {
     "type": "unit",
@@ -424,8 +424,8 @@
     "id": "red-dragon",
     "image": "/assets/images/units/red/red-dragon.png",
     "faction": "red",
-    "categories": ["magic"],
-    "skills": [],
+    "categories": ["fire", "breath", "melee"],
+    "skills": ["flight", "scales", "fear"],
     "families": ["dragon"]
   },
   {
@@ -435,20 +435,20 @@
     "id": "wendigo",
     "image": "/assets/images/units/red/wendigo.png",
     "faction": "red",
-    "categories": ["melee"],
-    "skills": [],
-    "families": ["demon", "giant", "humanoid", "animal"]
+    "categories": ["poison"],
+    "skills": ["scales"],
+    "families": ["demon", "giant", "human", "animal"]
   },
   {
     "type": "unit",
-    "name": "unit.bear.name",
-    "description": "unit.bear.description",
-    "id": "bear",
-    "image": "/assets/images/units/white/bear.png",
+    "name": "unit.catapult.name",
+    "description": "unit.catapult.description",
+    "id": "catapult",
+    "image": "/assets/images/units/white/catapult.png",
     "faction": "white",
-    "categories": ["melee"],
-    "skills": [],
-    "families": ["animal", "humanoid"]
+    "categories": ["ranged"],
+    "skills": ["stun"],
+    "families": ["human"]
   },
   {
     "type": "unit",
@@ -457,19 +457,19 @@
     "id": "white-dragon",
     "image": "/assets/images/units/white/white-dragon.png",
     "faction": "white",
-    "categories": ["magic"],
-    "skills": [],
+    "categories": ["holy", "breath", "melee"],
+    "skills": ["regeneration", "flight", "scales"],
     "families": ["dragon"]
   },
   {
     "type": "unit",
-    "name": "unit.gryphon.name",
-    "description": "unit.gryphon.description",
-    "id": "gryphon",
-    "image": "/assets/images/units/white/gryphon.png",
+    "name": "unit.griffon.name",
+    "description": "unit.griffon.description",
+    "id": "griffon",
+    "image": "/assets/images/units/white/griffon.png",
     "faction": "white",
     "categories": ["magic"],
-    "skills": [],
+    "skills": ["flight", "scales"],
     "families": ["animal"]
   },
   {
@@ -480,8 +480,8 @@
     "image": "/assets/images/units/white/knight.png",
     "faction": "white",
     "categories": ["melee"],
-    "skills": [],
-    "families": ["humanoid"]
+    "skills": ["scales"],
+    "families": ["human"]
   },
   {
     "type": "unit",
@@ -490,9 +490,9 @@
     "id": "light-elemental",
     "image": "/assets/images/units/white/light-elemental.png",
     "faction": "white",
-    "categories": ["melee"],
-    "skills": [],
-    "families": ["elemental", "humanoid"]
+    "categories": ["holy"],
+    "skills": ["regeneration"],
+    "families": ["elemental"]
   },
   {
     "type": "unit",
@@ -502,8 +502,8 @@
     "image": "/assets/images/units/white/titan.png",
     "faction": "white",
     "categories": ["melee"],
-    "skills": [],
-    "families": ["giant", "humanoid"]
+    "skills": ["slow", "stun", "scales"],
+    "families": ["giant"]
   },
   {
     "type": "unit",
@@ -512,9 +512,9 @@
     "id": "monk",
     "image": "/assets/images/units/white/monk.png",
     "faction": "white",
-    "categories": ["ranged"],
-    "skills": [],
-    "families": ["humanoid"]
+    "categories": ["magic"],
+    "skills": ["regeneration"],
+    "families": ["human"]
   },
   {
     "type": "unit",
@@ -525,7 +525,7 @@
     "faction": "white",
     "categories": ["melee"],
     "skills": [],
-    "families": ["humanoid"]
+    "families": ["human"]
   },
   {
     "type": "unit",
@@ -535,8 +535,8 @@
     "image": "/assets/images/units/white/crusader.png",
     "faction": "white",
     "categories": ["melee"],
-    "skills": [],
-    "families": ["humanoid", "animal"]
+    "skills": ["scales", "haste"],
+    "families": ["human", "animal"]
   },
   {
     "type": "unit",
@@ -545,9 +545,9 @@
     "id": "paladin",
     "image": "/assets/images/units/white/paladin.png",
     "faction": "white",
-    "categories": ["melee"],
-    "skills": [],
-    "families": ["humanoid"]
+    "categories": ["holy"],
+    "skills": ["scales"],
+    "families": ["human"]
   },
   {
     "type": "unit",
@@ -557,8 +557,8 @@
     "image": "/assets/images/units/grey/cavalry.png",
     "faction": "grey",
     "categories": ["melee"],
-    "skills": [],
-    "families": ["humanoid"]
+    "skills": ["haste"],
+    "families": ["human", "animal"]
   },
   {
     "type": "unit",
@@ -567,9 +567,9 @@
     "id": "fanatic",
     "image": "/assets/images/units/grey/fanatic.png",
     "faction": "grey",
-    "categories": ["ranged"],
+    "categories": ["magic"],
     "skills": [],
-    "families": ["humanoid"]
+    "families": ["human"]
   },
   {
     "type": "unit",
@@ -579,8 +579,8 @@
     "image": "/assets/images/units/grey/pikeman.png",
     "faction": "grey",
     "categories": ["melee"],
-    "skills": [],
-    "families": ["humanoid"]
+    "skills": ["stun"],
+    "families": ["human"]
   },
   {
     "type": "unit",
@@ -591,7 +591,7 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": [],
-    "families": ["humanoid"]
+    "families": ["human"]
   },
   {
     "type": "unit",
@@ -602,7 +602,7 @@
     "faction": "grey",
     "categories": ["ranged"],
     "skills": [],
-    "families": ["humanoid"]
+    "families": ["human"]
   },
   {
     "type": "unit",
@@ -613,7 +613,7 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": [],
-    "families": ["animal", "giant"]
+    "families": ["animal"]
   },
   {
     "type": "unit",
@@ -624,7 +624,7 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": [],
-    "families": ["animal", "humanoid"]
+    "families": ["animal"]
   },
   {
     "type": "unit",
@@ -633,9 +633,9 @@
     "id": "bat",
     "image": "/assets/images/units/grey/bat.png",
     "faction": "grey",
-    "categories": ["magic"],
-    "skills": [],
-    "families": ["animal", "elemental"]
+    "categories": ["melee"],
+    "skills": ["flight"],
+    "families": ["animal"]
   },
   {
     "type": "unit",
@@ -646,17 +646,72 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": [],
-    "families": ["undead", "animal"]
+    "families": ["animal"]
   },
   {
     "type": "unit",
-    "name": "unit.eye.name",
-    "description": "unit.eye.description",
-    "id": "eye",
-    "image": "/assets/images/units/grey/eye.png",
+    "name": "unit.imp.name",
+    "description": "unit.imp.description",
+    "id": "imp",
+    "image": "/assets/images/units/grey/imp.png",
     "faction": "grey",
-    "categories": ["ranged"],
+    "categories": ["melee"],
     "skills": [],
     "families": ["demon"]
+  },
+  {
+    "type": "unit",
+    "name": "unit.trained-elephant.name",
+    "description": "unit.trained-elephant.description",
+    "id": "trained-elephant",
+    "image": "/assets/images/units/grey/trained-elephant.png",
+    "faction": "grey",
+    "categories": ["melee"],
+    "skills": ["slow"],
+    "families": ["animal"]
+  },
+  {
+    "type": "unit",
+    "name": "unit.wolf.name",
+    "description": "unit.wolf.description",
+    "id": "wolf",
+    "image": "/assets/images/units/grey/wolf.png",
+    "faction": "grey",
+    "categories": ["melee"],
+    "skills": ["haste"],
+    "families": ["animal"]
+  },
+  {
+    "type": "unit",
+    "name": "unit.iron-golem.name",
+    "description": "unit.iron-golem.description",
+    "id": "iron-golem",
+    "image": "/assets/images/units/grey/iron-golem.png",
+    "faction": "grey",
+    "categories": ["melee"],
+    "skills": ["scales", "slow"],
+    "families": ["golem"]
+  },
+  {
+    "type": "unit",
+    "name": "unit.stone-golem.name",
+    "description": "unit.stone-golem.description",
+    "id": "stone-golem",
+    "image": "/assets/images/units/grey/stone-golem.png",
+    "faction": "grey",
+    "categories": ["melee"],
+    "skills": ["scales", "slow"],
+    "families": ["golem"]
+  },
+  {
+    "type": "unit",
+    "name": "unit.baby-dragon.name",
+    "description": "unit.baby-dragon.description",
+    "id": "baby-dragon",
+    "image": "/assets/images/units/grey/baby-dragon.png",
+    "faction": "grey",
+    "categories": ["melee"],
+    "skills": ["flight"],
+    "families": ["dragon"]
   }
 ]

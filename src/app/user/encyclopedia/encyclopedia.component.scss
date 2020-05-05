@@ -10,6 +10,9 @@
   ::ng-deep .mat-header-cell {
     flex-wrap: wrap;
   }
+  .mat-cell {
+    font-size: 12px;
+  }
   .skill,
   .family,
   .category {

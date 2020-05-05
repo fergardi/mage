@@ -49,7 +49,7 @@
   },
   {
     "type": "skill",
-    "faction": "black",
+    "faction": "red",
     "id": "seduction",
     "name": "skill.seduction.name",
     "description": "skill.seduction.description",
@@ -73,10 +73,10 @@
   },
   {
     "type": "skill",
-    "faction": "red",
-    "id": "frenzy",
-    "name": "skill.frenzy.name",
-    "description": "skill.frenzy.description",
-    "image": "/assets/images/skills/frenzy.png"
+    "faction": "black",
+    "id": "fear",
+    "name": "skill.fear.name",
+    "description": "skill.fear.description",
+    "image": "/assets/images/skills/fear.png"
   }
 ]

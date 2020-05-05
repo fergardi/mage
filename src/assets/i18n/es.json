@@ -219,8 +219,8 @@
       "name": "Talleres",
       "description": "Aumentan la velocidad de construcción de edificios de tu reino"
     },
-    "tower": {
-      "name": "Torres",
+    "academy": {
+      "name": "Academias",
       "description": "Aumentan la velocidad de investigación de hechizos de tu reino"
     },
     "fortress": {

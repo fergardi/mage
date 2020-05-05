@@ -280,10 +280,10 @@
   },
   {
     "type": "spell",
-    "name": "spell.meteor-shower.name",
-    "description": "spell.meteor-shower.description",
-    "id": "meteor-shower",
-    "image": "/assets/images/spells/red/meteor-shower.png",
+    "name": "spell.meteor-storm.name",
+    "description": "spell.meteor-storm.description",
+    "id": "meteor-storm",
+    "image": "/assets/images/spells/red/meteor-storm.png",
     "faction": "red",
     "level": 1
   },
@@ -298,10 +298,10 @@
   },
   {
     "type": "spell",
-    "name": "spell.summon-eye.name",
-    "description": "spell.summon-eye.description",
-    "id": "summon-eye",
-    "image": "/assets/images/spells/red/summon-eye.png",
+    "name": "spell.summon-demon.name",
+    "description": "spell.summon-demon.description",
+    "id": "summon-demon",
+    "image": "/assets/images/spells/red/summon-demon.png",
     "faction": "red",
     "level": 1
   },
@@ -856,10 +856,10 @@
   },
   {
     "type": "spell",
-    "name": "spell.summon-gryphon.name",
-    "description": "spell.summon-gryphon.description",
-    "id": "summon-gryphon",
-    "image": "/assets/images/spells/white/summon-gryphon.png",
+    "name": "spell.summon-griffon.name",
+    "description": "spell.summon-griffon.description",
+    "id": "summon-griffon",
+    "image": "/assets/images/spells/white/summon-griffon.png",
     "faction": "white",
     "level": 1
   },
