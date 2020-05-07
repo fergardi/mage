@@ -23,5 +23,6 @@ export class AppComponent {
     // this.firebaseService.importCollectionFromJson('families');
     // this.firebaseService.importCollectionFromJson('categories');
     // this.firebaseService.loadCollectionIntoCollection('items', 'artifacts')
+    // this.firebaseService.loadCollectionIntoCollection('units', 'troops')
   }
 }

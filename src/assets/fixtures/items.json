@@ -91,14 +91,14 @@
     "name": "item.light-lantern.name",
     "description": "item.light-lantern.description",
     "id": "light-lantern",
-    "skills": [],
+    "skills": ["seduction"],
     "families": [],
     "categories": [],
     "units": [],
     "resources": [],
     "spells": [],
     "amount": [],
-    "battle": false,
+    "battle": true,
     "self": true
   },
   {
@@ -354,7 +354,7 @@
     "spells": [],
     "amount": [],
     "battle": true,
-    "self": true
+    "self": false
   },
   {
     "type": "item",
@@ -397,15 +397,15 @@
     "name": "item.crown-thorns.name",
     "description": "item.crown-thorns.description",
     "id": "crown-thorns",
-    "skills": [],
+    "skills": ["weakness"],
     "families": [],
     "categories": [],
     "units": [],
     "resources": [],
     "spells": [],
     "amount": [],
-    "battle": false,
-    "self": true
+    "battle": true,
+    "self": false
   },
   {
     "type": "item",
@@ -431,15 +431,15 @@
     "name": "item.cursed-skull.name",
     "description": "item.cursed-skull.description",
     "id": "cursed-skull",
-    "skills": [],
+    "skills": ["fear"],
     "families": [],
     "categories": [],
     "units": [],
     "resources": [],
     "spells": [],
     "amount": [],
-    "battle": false,
-    "self": true
+    "battle": true,
+    "self": false
   },
   {
     "type": "item",
@@ -840,12 +840,12 @@
     "description": "item.valhalla-horn.description",
     "id": "valhalla-horn",
     "skills": [],
-    "families": [],
+    "families": ["human"],
     "categories": [],
     "units": [],
-    "resources": ["population"],
+    "resources": [],
     "spells": [],
-    "amount": [10000, 100000],
+    "amount": [100, 1000],
     "battle": false,
     "self": true
   }

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { first, take } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 enum AssignmentType {
-  'none', 'attack', 'defense'
+  'troopNone', 'troopAttack', 'troopDefense'
 }
 
 @Component({
@@ -21,30 +21,31 @@ enum AssignmentType {
 @UntilDestroy()
 export class ArmyComponent implements OnInit {
 
+  uid: string = null;
+
   kingdomTroops: any[] = [];
   attackTroops: any[] = [];
   defenseTroops: any[] = [];
-  maximumTroops: number = 3;
+  maximumTroops: number = 5;
 
   constructor(
     private firebaseService: FirebaseService,
-    private angularFireAuth: AngularFireAuth,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
+    private store: Store,
   ) {}
 
   ngOnInit() {
-    this.angularFireAuth.authState.pipe(take(1)).subscribe(user => {
-      this.firebaseService.leftJoin(`kingdoms/${user.uid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
-        this.kingdomTroops = troops.filter(troop => troop.assignment === AssignmentType.none || !troop.assignment).sort((a, b) => a.sort - b.sort);
-        this.attackTroops = troops.filter(troop => troop.assignment === AssignmentType.attack).sort((a, b) => a.sort - b.sort);
-        this.defenseTroops = troops.filter(troop => troop.assignment === AssignmentType.defense).sort((a, b) => a.sort - b.sort);
-      });
+    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
+    this.firebaseService.leftJoin(`kingdoms/${this.uid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
+      this.kingdomTroops = troops.filter(troop => troop.assignment === AssignmentType.troopNone || !troop.assignment).sort((a, b) => a.sort - b.sort);
+      this.attackTroops = troops.filter(troop => troop.assignment === AssignmentType.troopAttack).sort((a, b) => a.sort - b.sort);
+      this.defenseTroops = troops.filter(troop => troop.assignment === AssignmentType.troopDefense).sort((a, b) => a.sort - b.sort);
     });
   }
 
   assignTroop($event: CdkDragDrop<any>) {
-    if ($event.container.data.length < this.maximumTroops) {
+    if (parseInt($event.container.id) === 0 || $event.previousContainer === $event.container || $event.container.data.length < this.maximumTroops) {
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
@@ -59,15 +60,15 @@ export class ArmyComponent implements OnInit {
   async updateTroops() {
     try {
       let refs = [];
-      const db = this.angularFirestore.collection(`kingdoms/wS6oK6Epj3XvavWFtngLZkgFx263/troops`);
+      const db = this.angularFirestore.collection(`kingdoms/${this.uid}/troops`);
       this.kingdomTroops.forEach(kingdomTroop => {
-        refs.push({ ref: db.doc(kingdomTroop.fid), assignment: AssignmentType.none });
+        refs.push({ ref: db.doc(kingdomTroop.fid), assignment: AssignmentType.troopNone });
       });
       this.attackTroops.forEach(attackTroop => {
-        refs.push({ ref: db.doc(attackTroop.fid), assignment: AssignmentType.attack });
+        refs.push({ ref: db.doc(attackTroop.fid), assignment: AssignmentType.troopAttack });
       });
       this.defenseTroops.forEach(defenseTroop => {
-        refs.push({ ref: db.doc(defenseTroop.fid), assignment: AssignmentType.defense });
+        refs.push({ ref: db.doc(defenseTroop.fid), assignment: AssignmentType.troopDefense });
       });
       const batch = this.angularFirestore.firestore.batch();
       refs.forEach((r, index) => batch.update(r.ref.ref, { sort: index, assignment: r.assignment }))

@@ -65,9 +65,7 @@ export class SorceryComponent implements OnInit {
         } else {
           transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
         }
-        await this.angularFirestore.collection(`kingdoms/${this.uid}/artifacts`)
-          .doc($event.item.element.nativeElement.id)
-          .update({ assignment: parseInt($event.container.id) });
+        await this.angularFirestore.collection(`kingdoms/${this.uid}/artifacts`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
         this.notificationService.success('kingdom.sorcery.success');
       } catch (error) {
         console.error(error);

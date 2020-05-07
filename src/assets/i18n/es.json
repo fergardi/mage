@@ -136,12 +136,12 @@
     "attack": {
       "name": "Ataque",
       "description": "Organiza tus fuerzas ofensivas",
-      "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar 3 al ataque, y su orden tiene mucha importancia en las batallas."
+      "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha importancia en las batallas."
     },
     "defense": {
       "name": "Defensa",
       "description": "Organiza tus fuerzas defensivas",
-      "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar 3 a la defensa, y su orden tiene mucha importancia en las batallas."
+      "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha importancia en las batallas."
     },
     "auction": {
       "name": "Subasta",
@@ -158,12 +158,12 @@
     "sorcery-attack": {
       "name": "Ataque mágico",
       "description": "Organiza tus artimañas ofensivas",
-      "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar 1 de cada tipo al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
+      "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
     },
     "sorcery-defense": {
       "name": "Defensa mágica",
       "description": "Organiza tus artimañas defensivas",
-      "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar 1 de cada tipo a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
+      "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
     },
     "charge": {
       "name": "Cargar maná",
@@ -975,7 +975,7 @@
     },
     "healing-hand": {
       "name": "Mano sanadora",
-      "description": "Recupera salud a cada tropa"
+      "description": "Recupera salud a cada tropa aliada"
     },
     "divine-protection": {
       "name": "Protección divina",
@@ -1225,7 +1225,7 @@
     },
     "light-lantern": {
       "name": "Linterna luminosa",
-      "description": ""
+      "description": "Aplica <seduction> a cada tropa aliada"
     },
     "wisdom-tome": {
       "name": "Tomo de sabiduría",
@@ -1249,11 +1249,11 @@
     },
     "agility-potion": {
       "name": "Poción de agilidad",
-      "description": "Aplica <haste> a cada tropa"
+      "description": "Aplica <haste> a cada tropa aliada"
     },
     "defense-potion": {
       "name": "Poción de defensa",
-      "description": "Aplica <scales> a cada tropa"
+      "description": "Aplica <scales> a cada tropa aliada"
     },
     "cold-orb": {
       "name": "Orbe de hielo",
@@ -1277,7 +1277,7 @@
     },
     "strength-potion": {
       "name": "Poción de fuerza",
-      "description": "Aplica <strength> a cada tropa"
+      "description": "Aplica <strength> a cada tropa aliada"
     },
     "love-potion": {
       "name": "Poción de amor",
@@ -1297,7 +1297,7 @@
     },
     "crown-thorns": {
       "name": "Corona de espinas",
-      "description": ""
+      "description": "Aplica <weakness> a cada tropa enemiga"
     },
     "voodoo-doll": {
       "name": "Muñeco voodoo",
@@ -1305,7 +1305,7 @@
     },
     "cursed-skull": {
       "name": "Calavera maldita",
-      "description": ""
+      "description": "Aplica <fear> a cada tropa enemiga"
     },
     "emmerald-ring": {
       "name": "Anillo esmeralda",
@@ -1329,7 +1329,7 @@
     },
     "vial-venom": {
       "name": "Vial de veneno",
-      "description": "Aplica <poison> a cada tropa"
+      "description": "Aplica <poison> a cada tropa aliada"
     },
     "lucky-coin": {
       "name": "Moneda de la suerte",
@@ -1402,6 +1402,28 @@
     "valhalla-horn": {
       "name": "Cuerno del valhalla",
       "description": "Convoca una tropa de <human>"
+    }
+  },
+  "god": {
+    "death": {
+      "name": "Jinete de la Muerte",
+      "description": "Uno de los cinco Jinetes del Armagedón"
+    },
+    "void": {
+      "name": "Jinete del Vacío",
+      "description": "Uno de los cinco Jinetes del Armagedón"
+    },
+    "famine": {
+      "name": "Jinete del Hambre",
+      "description": "Uno de los cinco Jinetes del Armagedón"
+    },
+    "war": {
+      "name": "Jinete de la Guerra",
+      "description": "Uno de los cinco Jinetes del Armagedón"
+    },
+    "pestilence": {
+      "name": "Jinete de la Peste",
+      "description": "Uno de los cinco Jinetes del Armagedón"
     }
   }
 }
