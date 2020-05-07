@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { take } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { BuildComponent } from './build.component';

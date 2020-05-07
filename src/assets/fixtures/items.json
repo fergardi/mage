@@ -12,7 +12,9 @@
     "units": [],
     "resources": ["gold"],
     "spells": [],
-    "amount": [2000000, 10000000]
+    "amount": [2000000, 10000000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -27,7 +29,9 @@
     "units": [],
     "resources": ["gold"],
     "spells": [],
-    "amount": [1000000, 2000000]
+    "amount": [1000000, 2000000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -42,7 +46,9 @@
     "units": [],
     "resources": ["gold"],
     "spells": [],
-    "amount": [100000, 1000000]
+    "amount": [100000, 1000000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -57,7 +63,9 @@
     "units": [],
     "resources": ["gold"],
     "spells": [],
-    "amount": [1000, 10000]
+    "amount": [1000, 10000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -72,7 +80,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": [10, 1000]
+    "amount": [10, 1000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -87,7 +97,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -102,7 +114,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -117,7 +131,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": [10, 1000]
+    "amount": [10, 1000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -132,7 +148,9 @@
     "units": ["lightning-elemental"],
     "resources": [],
     "spells": [],
-    "amount": [1, 10]
+    "amount": [1, 10],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -147,7 +165,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": [1, 2]
+    "amount": [1, 2],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -162,7 +182,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -177,7 +199,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": true,
+    "self": true
   },
   {
     "type": "item",
@@ -192,7 +216,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": true,
+    "self": true
   },
   {
     "type": "item",
@@ -207,7 +233,9 @@
     "units": ["ice-elemental"],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -222,7 +250,9 @@
     "units": ["earth-elemental"],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -237,7 +267,9 @@
     "units": ["fire-elemental"],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -252,7 +284,9 @@
     "units": [],
     "resources": ["mana"],
     "spells": [],
-    "amount": [10000, 1000000]
+    "amount": [10000, 1000000],
+    "battle": true,
+    "self": true
   },
   {
     "type": "item",
@@ -267,7 +301,9 @@
     "units": ["light-elemental"],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -282,7 +318,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": true,
+    "self": true
   },
   {
     "type": "item",
@@ -297,7 +335,9 @@
     "units": [],
     "resources": ["population"],
     "spells": [],
-    "amount": [10000, 100000]
+    "amount": [10000, 100000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -312,7 +352,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": true,
+    "self": true
   },
   {
     "type": "item",
@@ -327,7 +369,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": [10, 1000]
+    "amount": [10, 1000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -342,7 +386,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": [1000, 10000]
+    "amount": [1000, 10000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -357,7 +403,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -372,7 +420,9 @@
     "units": [],
     "resources": ["turn"],
     "spells": [],
-    "amount": [-25, -50]
+    "amount": [-25, -50],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -387,7 +437,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -402,7 +454,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -417,7 +471,9 @@
     "units": ["phoenix"],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -432,7 +488,9 @@
     "units": [],
     "resources": ["gold"],
     "spells": [],
-    "amount": [-100000, -1000000]
+    "amount": [-100000, -1000000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -447,7 +505,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": [1, 100]
+    "amount": [1, 100],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -462,7 +522,9 @@
     "units": [],
     "resources": ["gold"],
     "spells": [],
-    "amount": [-500000, -1000000]
+    "amount": [-500000, -1000000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -477,7 +539,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": true,
+    "self": true
   },
   {
     "type": "item",
@@ -492,7 +556,9 @@
     "units": [],
     "resources": [],
     "spells": ["love-peace", "climate-control", "natures-favor", "druidism"],
-    "amount": [150]
+    "amount": [150],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -507,7 +573,9 @@
     "units": [],
     "resources": [],
     "spells": ["divine-protection", "shroud-darkness", "fire-wall", "ice-wall", "sunray"],
-    "amount": [150]
+    "amount": [150],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -522,7 +590,9 @@
     "units": [],
     "resources": [],
     "spells": ["concentration", "hallucination", "battle-chant", "blood-ritual"],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -537,7 +607,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": [1000, 10000]
+    "amount": [1000, 10000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -552,7 +624,9 @@
     "units": [],
     "resources": ["land"],
     "spells": [],
-    "amount": [50, 100]
+    "amount": [50, 100],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -567,7 +641,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -582,7 +658,9 @@
     "units": [],
     "resources": ["mana"],
     "spells": [],
-    "amount": [-100000, -500000]
+    "amount": [-100000, -500000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -597,7 +675,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -612,7 +692,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -627,7 +709,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": [1000, 100000]
+    "amount": [1000, 100000],
+    "battle": true,
+    "self": true
   },
   {
     "type": "item",
@@ -642,7 +726,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -657,7 +743,9 @@
     "units": [],
     "resources": ["population"],
     "spells": [],
-    "amount": [-10000, -1000000]
+    "amount": [-10000, -1000000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -672,7 +760,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -687,7 +777,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -702,7 +794,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": [100, 1000]
+    "amount": [100, 1000],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -717,7 +811,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -732,7 +828,9 @@
     "units": [],
     "resources": [],
     "spells": [],
-    "amount": []
+    "amount": [],
+    "battle": false,
+    "self": true
   },
   {
     "type": "item",
@@ -747,6 +845,8 @@
     "units": [],
     "resources": ["population"],
     "spells": [],
-    "amount": [10000, 100000]
+    "amount": [10000, 100000],
+    "battle": false,
+    "self": true
   }
 ]

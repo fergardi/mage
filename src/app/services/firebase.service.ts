@@ -1,15 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
-import { map, first, take } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map, first } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
-
-export interface Query {
-  collection: string
-  id: string
-  function: QueryFn
-}
 
 @Injectable({
   providedIn: 'root'
@@ -23,20 +17,21 @@ export class FirebaseService {
   ) { }
 
   leftJoin(left: string, right: string, from: string = 'id', to: string = 'id', leftArray: string[] = [], rightArray: string[] = []) {
-    let collections = [
+    return combineLatest([
       this.angularFirestore.collection<any>(left).valueChanges({ idField: 'fid' }),
       this.angularFirestore.collection<any>(right).valueChanges(),
       ...leftArray.map(leftExtra => this.angularFirestore.collection<any>(leftExtra).valueChanges()),
       ...rightArray.map(rightExtra => this.angularFirestore.collection<any>(rightExtra).valueChanges()),
-    ];
-    return combineLatest(collections).pipe(
+    ]).pipe(
       map((collections) => {
         collections[0].forEach(element => {
           leftArray.forEach((subCollection, subCollectionIndex, subCollectionArray) => {
             if (element[subCollection] && element[subCollection].length) {
               element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
-                element[subCollection][subElementIndex] = {
-                  ...collections[2 + subCollectionIndex].find(element => element['id'] === subElement)
+                if (typeof subElement === 'string') {
+                  element[subCollection][subElementIndex] = {
+                    ...collections[2 + subCollectionIndex].find(el => el['id'] === subElement)
+                  }
                 }
               });
               element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
@@ -47,8 +42,10 @@ export class FirebaseService {
           rightArray.forEach((subCollection, subCollectionIndex, subCollectionArray) => {
             if (element[subCollection] && element[subCollection].length) {
               element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
-                element[subCollection][subElementIndex] = {
-                  ...collections[2 + leftArray.length + subCollectionIndex].find(element => element['id'] === subElement)
+                if (typeof subElement === 'string') {
+                  element[subCollection][subElementIndex] = {
+                    ...collections[2 + leftArray.length + subCollectionIndex].find(el => el['id'] === subElement)
+                  }
                 }
               });
               element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
@@ -97,6 +94,24 @@ export class FirebaseService {
           this.addElementsToCollection(collection, elements, true);
         });
       }
+    });
+  }
+
+  async loadCollectionIntoCollection(from: string, to: string) {
+    this.angularFireAuth.authState.subscribe(user => {
+      this.angularFirestore.collection<any>(`kingdoms/${user.uid}/${to}`).get().subscribe(collection => {
+        collection.forEach(element => {
+          element.ref.delete()
+        });
+      });
+      this.angularFirestore.collection<any>(from).get().subscribe(collection => {
+        collection.forEach(element => {
+          this.angularFirestore.collection<any>(`kingdoms/${user.uid}/${to}`).add({
+            id: element.data().id,
+            quantity: 99
+          })
+        });
+      });
     });
   }
 

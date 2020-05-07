@@ -8,7 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 
-export enum AssignmentType {
+enum AssignmentType {
   'none', 'attack', 'defense'
 }
 

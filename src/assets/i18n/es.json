@@ -1333,7 +1333,7 @@
     },
     "lucky-coin": {
       "name": "Moneda de la suerte",
-      "description": "Conjura <love-peace><climate-control><natures-favor> o <druidism>"
+      "description": "Conjura <love-peace>,<climate-control>,<natures-favor> o <druidism>"
     },
     "lucky-horseshoe": {
       "name": "Herradura de la suerte",

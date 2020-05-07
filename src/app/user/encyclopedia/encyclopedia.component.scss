@@ -22,15 +22,4 @@
   .mat-column-name {
     min-width: 25% !important;
   }
-  .mat-line.mat-card-subtitle {
-    display: flex;
-    align-items: center;
-  }
-  ::ng-deep .icon {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin: 2px;
-    border: 1px solid gray;
-  }
 }

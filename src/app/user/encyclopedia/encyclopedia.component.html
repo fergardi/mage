@@ -64,7 +64,9 @@
                     <img mat-list-avatar [src]="row.image" alt="{{ row.name | translate }}"/>
                   </div>
                   <div mat-line>{{ row.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(row.type)">{{ row.description | translate }}</div>
+                  <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(row.type)">
+                    {{ row.description | translate }}
+                  </div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(row.type)"
                     [innerHTML]="row.description | translate | icon:row.skills:row.categories:row.families:row.units:row.resources:row.spells">
                   </div>
