@@ -50,7 +50,7 @@ export class SorceryComponent implements OnInit {
       this.attackArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.artifactAttack);
       this.defenseArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.artifactDefense);
     });
-    this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(charms => {
+    this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id', [], ['skills', 'families', 'categories', 'units', 'resources', 'spells']).pipe(untilDestroyed(this)).subscribe(charms => {
       this.kingdomCharms = charms.filter(charm => charm.assignment === AssignmentType.charmNone || !charm.assignment).sort((a, b) => a.join.battle === b.join.battle ? 0 : a.join.battle ? -1 : 1);
       this.attackCharms = charms.filter(charm => charm.assignment === AssignmentType.charmAttack);
       this.defenseCharms = charms.filter(charm => charm.assignment === AssignmentType.charmDefense);
