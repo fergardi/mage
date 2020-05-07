@@ -18,7 +18,18 @@ import { map } from 'rxjs/operators';
 export class EncyclopediaComponent implements OnInit {
 
   search: string = '';
-  columns: string[] = ['name', 'type', 'faction'];
+  columns: string[] = [
+    'name',
+    'attack',
+    'defense',
+    'life',
+    'gold',
+    'mana',
+    'population',
+    'goldKeep',
+    'manaKeep',
+    'populationKeep'
+  ];
   filters: any = {
     name: {
       type: 'text',
@@ -46,15 +57,15 @@ export class EncyclopediaComponent implements OnInit {
 
   ngOnInit() {
     combineLatest([
-      this.firebaseService.leftJoin('spells', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('spells', 'factions', 'faction', 'id', ['skills', 'families', 'categories', 'units', 'resources']),
       this.firebaseService.leftJoin('units', 'factions', 'faction', 'id', ['skills', 'families', 'categories']),
       this.firebaseService.leftJoin('gods', 'factions', 'faction', 'id'),
-      this.firebaseService.leftJoin('items', 'factions', 'faction', 'id'),
-      this.firebaseService.leftJoin('structures', 'factions', 'faction', 'id'),
+      this.firebaseService.leftJoin('items', 'factions', 'faction', 'id', ['skills', 'families', 'categories', 'units', 'resources', 'spells']),
+      this.firebaseService.leftJoin('structures', 'factions', 'faction', 'id', ['resources']),
       this.firebaseService.leftJoin('resources', 'factions', 'faction', 'id'),
-      this.firebaseService.leftJoin('locations', 'factions', 'faction', 'id'),
+      //this.firebaseService.leftJoin('locations', 'factions', 'faction', 'id'),
       this.firebaseService.leftJoin('skills', 'factions', 'faction', 'id'),
-      this.firebaseService.leftJoin('heroes', 'factions', 'faction', 'id', ['skills', 'families', 'categories']),
+      this.firebaseService.leftJoin('heroes', 'factions', 'faction', 'id', ['skills', 'families', 'categories', 'resources']),
       this.firebaseService.leftJoin('categories', 'factions', 'faction', 'id'),
       this.firebaseService.leftJoin('families', 'factions', 'faction', 'id'),
     ])
@@ -66,7 +77,7 @@ export class EncyclopediaComponent implements OnInit {
         items,
         structures,
         resources,
-        locations,
+        //locations,
         skills,
         heroes,
         categories,
@@ -79,7 +90,7 @@ export class EncyclopediaComponent implements OnInit {
           ...items,
           ...structures,
           ...resources,
-          ...locations,
+          //...locations,
           ...skills,
           ...heroes,
           ...categories,
@@ -89,7 +100,20 @@ export class EncyclopediaComponent implements OnInit {
     ))
     .pipe(untilDestroyed(this))
     .subscribe(data => {
-      this.data = new MatTableDataSource(data);
+      this.data = new MatTableDataSource(data.map(row => {
+        return {
+          ...row,
+          attack: 0,
+          defense: 0,
+          life: 0,
+          gold: 0,
+          mana: 0,
+          population: 0,
+          goldKeep: 0,
+          manaKeep: 0,
+          populationKeep: 0,
+        }
+      }));
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
       this.filters.type.options = [...new Set(data.map(row => row.type))].map(type => { return { name: 'type.' + type + '.name', value: type } });

@@ -5,7 +5,8 @@
     "description": "structure.barrack.description",
     "id": "barrack",
     "faction": "grey",
-    "image": "/assets/images/structures/barrack.png"
+    "image": "/assets/images/structures/barrack.png",
+    "resources": []
   },
   {
     "type": "structure",
@@ -13,7 +14,8 @@
     "description": "structure.barrier.description",
     "id": "barrier",
     "faction": "grey",
-    "image": "/assets/images/structures/barrier.png"
+    "image": "/assets/images/structures/barrier.png",
+    "resources": []
   },
   {
     "type": "structure",
@@ -21,7 +23,8 @@
     "description": "structure.farm.description",
     "id": "farm",
     "faction": "grey",
-    "image": "/assets/images/structures/farm.png"
+    "image": "/assets/images/structures/farm.png",
+    "resources": []
   },
   {
     "type": "structure",
@@ -29,7 +32,8 @@
     "description": "structure.fortress.description",
     "id": "fortress",
     "faction": "grey",
-    "image": "/assets/images/structures/fortress.png"
+    "image": "/assets/images/structures/fortress.png",
+    "resources": []
   },
   {
     "type": "structure",
@@ -37,7 +41,8 @@
     "description": "structure.academy.description",
     "id": "academy",
     "faction": "grey",
-    "image": "/assets/images/structures/academy.png"
+    "image": "/assets/images/structures/academy.png",
+    "resources": []
   },
   {
     "type": "structure",
@@ -45,7 +50,8 @@
     "description": "structure.node.description",
     "id": "node",
     "faction": "grey",
-    "image": "/assets/images/structures/node.png"
+    "image": "/assets/images/structures/node.png",
+    "resources": ["mana"]
   },
   {
     "type": "structure",
@@ -53,7 +59,8 @@
     "description": "structure.village.description",
     "id": "village",
     "faction": "grey",
-    "image": "/assets/images/structures/village.png"
+    "image": "/assets/images/structures/village.png",
+    "resources": ["population", "gold"]
   },
   {
     "type": "structure",
@@ -61,6 +68,7 @@
     "description": "structure.workshop.description",
     "id": "workshop",
     "faction": "grey",
-    "image": "/assets/images/structures/workshop.png"
+    "image": "/assets/images/structures/workshop.png",
+    "resources": []
   }
 ]

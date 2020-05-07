@@ -26,10 +26,10 @@
   {
     "type": "skill",
     "faction": "white",
-    "id": "double-strike",
-    "name": "skill.double-strike.name",
-    "description": "skill.double-strike.description",
-    "image": "/assets/images/skills/double-strike.png"
+    "id": "strength",
+    "name": "skill.strength.name",
+    "description": "skill.strength.description",
+    "image": "/assets/images/skills/strength.png"
   },
   {
     "type": "skill",
@@ -42,10 +42,10 @@
   {
     "type": "skill",
     "faction": "red",
-    "id": "stun",
-    "name": "skill.stun.name",
-    "description": "skill.stun.description",
-    "image": "/assets/images/skills/stun.png"
+    "id": "weakness",
+    "name": "skill.weakness.name",
+    "description": "skill.weakness.description",
+    "image": "/assets/images/skills/weakness.png"
   },
   {
     "type": "skill",
@@ -58,10 +58,10 @@
   {
     "type": "skill",
     "faction": "green",
-    "id": "slow",
-    "name": "skill.slow.name",
-    "description": "skill.slow.description",
-    "image": "/assets/images/skills/slow.png"
+    "id": "slowness",
+    "name": "skill.slowness.name",
+    "description": "skill.slowness.description",
+    "image": "/assets/images/skills/slowness.png"
   },
   {
     "type": "skill",

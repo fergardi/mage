@@ -1,12 +1,12 @@
 [
   {
-    "id": "people",
+    "id": "population",
     "type": "resource",
     "faction": "grey",
-    "name": "resource.people.name",
-    "description": "resource.people.description",
+    "name": "resource.population.name",
+    "description": "resource.population.description",
     "sort": 3,
-    "image": "/assets/images/resources/people.png"
+    "image": "/assets/images/resources/population.png"
   },
   {
     "id": "gold",

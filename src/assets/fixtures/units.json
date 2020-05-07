@@ -1,14 +1,14 @@
 [
   {
     "type": "unit",
-    "name": "unit.shadow-elemental.name",
-    "description": "unit.shadow-elemental.description",
-    "id": "shadow-elemental",
-    "image": "/assets/images/units/black/shadow-elemental.png",
+    "name": "unit.lightning-elemental.name",
+    "description": "unit.lightning-elemental.description",
+    "id": "lightning-elemental",
+    "image": "/assets/images/units/black/lightning-elemental.png",
     "faction": "black",
-    "categories": ["psychic"],
+    "categories": ["lightning"],
     "skills": ["life-leech", "flight"],
-    "families": ["elemental", "undead"]
+    "families": ["elemental"]
   },
   {
     "type": "unit",
@@ -40,7 +40,7 @@
     "image": "/assets/images/units/black/mummy.png",
     "faction": "black",
     "categories": ["melee"],
-    "skills": ["slow"],
+    "skills": ["slowness"],
     "families": ["undead"]
   },
   {
@@ -62,7 +62,7 @@
     "image": "/assets/images/units/black/lich.png",
     "faction": "black",
     "categories": ["ranged", "cold", "magic"],
-    "skills": ["fear"],
+    "skills": [],
     "families": ["undead"]
   },
   {
@@ -84,7 +84,7 @@
     "image": "/assets/images/units/black/vampire.png",
     "faction": "black",
     "categories": ["magic", "ranged"],
-    "skills": ["life-leech", "flight", "fear", "seduction"],
+    "skills": ["life-leech", "flight", "seduction"],
     "families": ["undead"]
   },
   {
@@ -95,7 +95,7 @@
     "image": "/assets/images/units/black/werewolf.png",
     "faction": "black",
     "categories": ["melee"],
-    "skills": ["double-strike", "regeneration"],
+    "skills": ["strength", "regeneration"],
     "families": ["animal", "human"]
   },
   {
@@ -106,7 +106,7 @@
     "image": "/assets/images/units/black/zombie.png",
     "faction": "black",
     "categories": ["melee"],
-    "skills": ["slow"],
+    "skills": ["slowness"],
     "families": ["undead"]
   },
   {
@@ -128,7 +128,7 @@
     "image": "/assets/images/units/blue/crystal-golem.png",
     "faction": "blue",
     "categories": ["magic"],
-    "skills": ["slow", "scales", "stun"],
+    "skills": ["slowness", "scales", "weakness"],
     "families": ["golem"]
   },
   {
@@ -150,7 +150,7 @@
     "image": "/assets/images/units/blue/frost-giant.png",
     "faction": "blue",
     "categories": ["melee", "cold"],
-    "skills": ["stun"],
+    "skills": ["weakness"],
     "families": ["giant"]
   },
   {
@@ -161,7 +161,7 @@
     "image": "/assets/images/units/blue/ice-elemental.png",
     "faction": "blue",
     "categories": ["cold", "ranged"],
-    "skills": ["stun", "scales"],
+    "skills": ["weakness", "scales"],
     "families": ["elemental"]
   },
   {
@@ -194,7 +194,7 @@
     "image": "/assets/images/units/blue/leviathan.png",
     "faction": "blue",
     "categories": ["melee"],
-    "skills": ["double-strike", "scales", "stun"],
+    "skills": ["strength", "scales", "weakness"],
     "families": ["giant", "reptile"]
   },
   {
@@ -216,7 +216,7 @@
     "image": "/assets/images/units/blue/yeti.png",
     "faction": "blue",
     "categories": ["melee", "cold", "breath"],
-    "skills": ["slow"],
+    "skills": ["slowness"],
     "families": ["giant"]
   },
   {
@@ -227,7 +227,7 @@
     "image": "/assets/images/units/green/wood-golem.png",
     "faction": "green",
     "categories": ["melee"],
-    "skills": ["double-strike"],
+    "skills": ["strength"],
     "families": ["golem"]
   },
   {
@@ -337,7 +337,7 @@
     "image": "/assets/images/units/red/cyclop.png",
     "faction": "red",
     "categories": ["melee"],
-    "skills": ["stun"],
+    "skills": ["weakness"],
     "families": ["giant", "demon"]
   },
   {
@@ -392,7 +392,7 @@
     "image": "/assets/images/units/red/ogre.png",
     "faction": "red",
     "categories": ["melee"],
-    "skills": ["slow"],
+    "skills": ["slowness"],
     "families": ["demon", "giant"]
   },
   {
@@ -425,7 +425,7 @@
     "image": "/assets/images/units/red/red-dragon.png",
     "faction": "red",
     "categories": ["fire", "breath", "melee"],
-    "skills": ["flight", "scales", "fear"],
+    "skills": ["flight", "scales"],
     "families": ["dragon"]
   },
   {
@@ -447,7 +447,7 @@
     "image": "/assets/images/units/white/catapult.png",
     "faction": "white",
     "categories": ["ranged"],
-    "skills": ["stun"],
+    "skills": ["weakness"],
     "families": ["human"]
   },
   {
@@ -502,7 +502,7 @@
     "image": "/assets/images/units/white/titan.png",
     "faction": "white",
     "categories": ["melee"],
-    "skills": ["slow", "stun", "scales"],
+    "skills": ["slowness", "weakness", "scales"],
     "families": ["giant"]
   },
   {
@@ -579,7 +579,7 @@
     "image": "/assets/images/units/grey/pikeman.png",
     "faction": "grey",
     "categories": ["melee"],
-    "skills": ["stun"],
+    "skills": ["weakness"],
     "families": ["human"]
   },
   {
@@ -667,7 +667,7 @@
     "image": "/assets/images/units/grey/trained-elephant.png",
     "faction": "grey",
     "categories": ["melee"],
-    "skills": ["slow"],
+    "skills": ["slowness"],
     "families": ["animal"]
   },
   {
@@ -689,7 +689,7 @@
     "image": "/assets/images/units/grey/iron-golem.png",
     "faction": "grey",
     "categories": ["melee"],
-    "skills": ["scales", "slow"],
+    "skills": ["scales", "slowness"],
     "families": ["golem"]
   },
   {
@@ -700,7 +700,7 @@
     "image": "/assets/images/units/grey/stone-golem.png",
     "faction": "grey",
     "categories": ["melee"],
-    "skills": ["scales", "slow"],
+    "skills": ["scales", "slowness"],
     "families": ["golem"]
   },
   {

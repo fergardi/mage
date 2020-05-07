@@ -6,6 +6,11 @@
     "id": "animate-skeleton",
     "image": "/assets/images/spells/black/animate-skeleton.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["skeleton"],
+    "resources": [],
     "level": 1
   },
   {
@@ -15,6 +20,11 @@
     "id": "animate-zombie",
     "image": "/assets/images/spells/black/animate-zombie.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["zombie"],
+    "resources": [],
     "level": 1
   },
   {
@@ -24,6 +34,11 @@
     "id": "animate-ghoul",
     "image": "/assets/images/spells/black/animate-ghoul.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["ghoul"],
+    "resources": [],
     "level": 2
   },
   {
@@ -33,6 +48,11 @@
     "id": "life-leech",
     "image": "/assets/images/spells/black/life-leech.png",
     "faction": "black",
+    "skills": ["life-leech"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 3
   },
   {
@@ -42,6 +62,11 @@
     "id": "fear",
     "image": "/assets/images/spells/black/fear.png",
     "faction": "black",
+    "skills": ["fear"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -51,6 +76,11 @@
     "id": "night-living-dead",
     "image": "/assets/images/spells/black/night-living-dead.png",
     "faction": "black",
+    "skills": [],
+    "families": ["undead"],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 4
   },
   {
@@ -60,6 +90,11 @@
     "id": "necromancy-touch",
     "image": "/assets/images/spells/black/necromancy-touch.png",
     "faction": "black",
+    "skills": [],
+    "families": ["undead"],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 4
   },
   {
@@ -69,6 +104,11 @@
     "id": "summon-wraith",
     "image": "/assets/images/spells/black/summon-wraith.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["wraith"],
+    "resources": [],
     "level": 2
   },
   {
@@ -78,6 +118,11 @@
     "id": "summon-lich",
     "image": "/assets/images/spells/black/summon-lich.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["lich"],
+    "resources": [],
     "level": 3
   },
   {
@@ -87,6 +132,11 @@
     "id": "summon-vampire",
     "image": "/assets/images/spells/black/summon-vampire.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["vampire"],
+    "resources": [],
     "level": 3
   },
   {
@@ -96,6 +146,11 @@
     "id": "death-decay",
     "image": "/assets/images/spells/black/death-decay.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["population", "land"],
     "level": 4
   },
   {
@@ -105,6 +160,11 @@
     "id": "shroud-darkness",
     "image": "/assets/images/spells/black/shroud-darkness.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 2
   },
   {
@@ -114,6 +174,11 @@
     "id": "poison",
     "image": "/assets/images/spells/black/poison.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": ["poison"],
+    "units": [],
+    "resources": [],
     "level": 3
   },
   {
@@ -123,6 +188,11 @@
     "id": "soul-pact",
     "image": "/assets/images/spells/black/soul-pact.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["devil"],
+    "resources": ["population"],
     "level": 5
   },
   {
@@ -132,6 +202,11 @@
     "id": "icy-touch",
     "image": "/assets/images/spells/black/icy-touch.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 4
   },
   {
@@ -141,6 +216,11 @@
     "id": "vampire-kiss",
     "image": "/assets/images/spells/black/vampire-kiss.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 4
   },
   {
@@ -150,6 +230,11 @@
     "id": "seduction",
     "image": "/assets/images/spells/black/seduction.png",
     "faction": "black",
+    "skills": ["seduction"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 5
   },
   {
@@ -159,6 +244,11 @@
     "id": "black-death",
     "image": "/assets/images/spells/black/black-death.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["population"],
     "level": 5
   },
   {
@@ -168,6 +258,11 @@
     "id": "curse",
     "image": "/assets/images/spells/black/curse.png",
     "faction": "black",
+    "skills": ["weakness"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 5
   },
   {
@@ -177,6 +272,11 @@
     "id": "blood-ritual",
     "image": "/assets/images/spells/black/blood-ritual.png",
     "faction": "black",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["ghoul"],
+    "resources": ["population"],
     "level": 5
   },
   {
@@ -186,6 +286,11 @@
     "id": "fireball",
     "image": "/assets/images/spells/red/fireball.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -195,6 +300,11 @@
     "id": "battle-chant",
     "image": "/assets/images/spells/red/battle-chant.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -204,6 +314,11 @@
     "id": "call-lizardman",
     "image": "/assets/images/spells/red/call-lizardman.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["lizardman"],
+    "resources": [],
     "level": 1
   },
   {
@@ -213,6 +328,11 @@
     "id": "call-orc",
     "image": "/assets/images/spells/red/call-orc.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["orc"],
+    "resources": [],
     "level": 1
   },
   {
@@ -222,6 +342,11 @@
     "id": "chain-lightning",
     "image": "/assets/images/spells/red/chain-lightning.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -231,6 +356,11 @@
     "id": "destroy-artifact",
     "image": "/assets/images/spells/red/destroy-artifact.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -240,6 +370,11 @@
     "id": "inferno",
     "image": "/assets/images/spells/red/inferno.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -249,6 +384,11 @@
     "id": "flame-shield",
     "image": "/assets/images/spells/red/flame-shield.png",
     "faction": "red",
+    "skills": ["scales"],
+    "families": [],
+    "categories": ["melee"],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -258,6 +398,11 @@
     "id": "flame-blade",
     "image": "/assets/images/spells/red/flame-blade.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": ["melee", "fire"],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -267,6 +412,11 @@
     "id": "flame-arrow",
     "image": "/assets/images/spells/red/flame-arrow.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": ["fire", "ranged"],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -276,6 +426,11 @@
     "id": "gravity",
     "image": "/assets/images/spells/red/gravity.png",
     "faction": "red",
+    "skills": ["weakness", "flight"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -285,15 +440,25 @@
     "id": "meteor-storm",
     "image": "/assets/images/spells/red/meteor-storm.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["population", "land"],
     "level": 1
   },
   {
     "type": "instant",
-    "name": "spell.stun.name",
-    "description": "spell.stun.description",
-    "id": "stun",
-    "image": "/assets/images/spells/red/stun.png",
+    "name": "spell.weakness.name",
+    "description": "spell.weakness.description",
+    "id": "weakness",
+    "image": "/assets/images/spells/red/weakness.png",
     "faction": "red",
+    "skills": ["weakness"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -303,6 +468,11 @@
     "id": "summon-demon",
     "image": "/assets/images/spells/red/summon-demon.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["demon"],
+    "resources": [],
     "level": 1
   },
   {
@@ -312,6 +482,11 @@
     "id": "summon-ogre",
     "image": "/assets/images/spells/red/summon-ogre.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["ogre"],
+    "resources": [],
     "level": 1
   },
   {
@@ -321,6 +496,11 @@
     "id": "summon-wendigo",
     "image": "/assets/images/spells/red/summon-wendigo.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["wendigo"],
+    "resources": [],
     "level": 1
   },
   {
@@ -330,15 +510,25 @@
     "id": "call-cyclop",
     "image": "/assets/images/spells/red/call-cyclop.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["cyclop"],
+    "resources": [],
     "level": 1
   },
   {
-    "type": "enchantment",
+    "type": "sorcery",
     "name": "spell.volcano.name",
     "description": "spell.volcano.description",
     "id": "volcano",
     "image": "/assets/images/spells/red/volcano.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["population", "land"],
     "level": 1
   },
   {
@@ -348,6 +538,11 @@
     "id": "fire-wall",
     "image": "/assets/images/spells/red/fire-wall.png",
     "faction": "red",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -357,6 +552,11 @@
     "id": "frenzy",
     "image": "/assets/images/spells/red/frenzy.png",
     "faction": "red",
+    "skills": ["strength", "weakness"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -366,6 +566,11 @@
     "id": "call-frost-giant",
     "image": "/assets/images/spells/blue/call-frost-giant.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["frost-giant"],
+    "resources": [],
     "level": 1
   },
   {
@@ -375,6 +580,11 @@
     "id": "call-cave-troll",
     "image": "/assets/images/spells/blue/call-cave-troll.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["cave-troll"],
+    "resources": [],
     "level": 1
   },
   {
@@ -384,6 +594,11 @@
     "id": "call-yeti",
     "image": "/assets/images/spells/blue/call-yeti.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["yeti"],
+    "resources": [],
     "level": 1
   },
   {
@@ -393,6 +608,11 @@
     "id": "summon-mage",
     "image": "/assets/images/spells/blue/summon-mage.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["mage"],
+    "resources": [],
     "level": 1
   },
   {
@@ -402,6 +622,11 @@
     "id": "summon-basilisk",
     "image": "/assets/images/spells/blue/summon-basilisk.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["basilisk"],
+    "resources": [],
     "level": 1
   },
   {
@@ -411,6 +636,11 @@
     "id": "summon-djinni",
     "image": "/assets/images/spells/blue/summon-djinni.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["djinni"],
+    "resources": [],
     "level": 1
   },
   {
@@ -420,6 +650,11 @@
     "id": "concentration",
     "image": "/assets/images/spells/blue/concentration.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -429,6 +664,11 @@
     "id": "confuse",
     "image": "/assets/images/spells/blue/confuse.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -438,6 +678,11 @@
     "id": "conjure-elemental",
     "image": "/assets/images/spells/blue/conjure-elemental.png",
     "faction": "blue",
+    "skills": [],
+    "families": ["elemental"],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -447,6 +692,11 @@
     "id": "flight",
     "image": "/assets/images/spells/blue/flight.png",
     "faction": "blue",
+    "skills": ["flight"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -456,6 +706,11 @@
     "id": "fog",
     "image": "/assets/images/spells/blue/fog.png",
     "faction": "blue",
+    "skills": ["slowness"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -465,6 +720,11 @@
     "id": "fools-gold",
     "image": "/assets/images/spells/blue/fools-gold.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["gold"],
     "level": 1
   },
   {
@@ -474,6 +734,11 @@
     "id": "hallucination",
     "image": "/assets/images/spells/blue/hallucination.png",
     "faction": "blue",
+    "skills": ["seduction"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -483,6 +748,11 @@
     "id": "ice-shock",
     "image": "/assets/images/spells/blue/ice-shock.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -492,6 +762,11 @@
     "id": "ice-wall",
     "image": "/assets/images/spells/blue/ice-wall.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -501,6 +776,11 @@
     "id": "invisibility",
     "image": "/assets/images/spells/blue/invisibility.png",
     "faction": "blue",
+    "skills": ["strength"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -510,6 +790,11 @@
     "id": "laziness",
     "image": "/assets/images/spells/blue/laziness.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["population"],
     "level": 1
   },
   {
@@ -519,6 +804,11 @@
     "id": "haste",
     "image": "/assets/images/spells/blue/haste.png",
     "faction": "blue",
+    "skills": ["haste"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -528,6 +818,11 @@
     "id": "spy",
     "image": "/assets/images/spells/blue/spy.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -537,6 +832,11 @@
     "id": "steal-artifact",
     "image": "/assets/images/spells/blue/steal-artifact.png",
     "faction": "blue",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -546,6 +846,11 @@
     "id": "accuracy",
     "image": "/assets/images/spells/green/accuracy.png",
     "faction": "green",
+    "skills": ["strength"],
+    "families": [],
+    "categories": ["ranged"],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -555,6 +860,11 @@
     "id": "ambush",
     "image": "/assets/images/spells/green/ambush.png",
     "faction": "green",
+    "skills": ["haste"],
+    "families": [],
+    "categories": ["melee"],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -564,15 +874,25 @@
     "id": "druidism",
     "image": "/assets/images/spells/green/druidism.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["land", "gold", "mana"],
     "level": 1
   },
   {
     "type": "summon",
-    "name": "spell.council.name",
-    "description": "spell.council.description",
-    "id": "council",
-    "image": "/assets/images/spells/green/council.png",
+    "name": "spell.beast-council.name",
+    "description": "spell.beast-council.description",
+    "id": "beast-council",
+    "image": "/assets/images/spells/green/beast-council.png",
     "faction": "green",
+    "skills": [],
+    "families": ["animal"],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -582,6 +902,11 @@
     "id": "call-giant-snail",
     "image": "/assets/images/spells/green/call-giant-snail.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["giant-snail"],
+    "resources": [],
     "level": 1
   },
   {
@@ -591,6 +916,11 @@
     "id": "call-giant-spider",
     "image": "/assets/images/spells/green/call-giant-spider.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["giant-spider"],
+    "resources": [],
     "level": 1
   },
   {
@@ -600,6 +930,11 @@
     "id": "call-gnoll",
     "image": "/assets/images/spells/green/call-gnoll.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["gnoll"],
+    "resources": [],
     "level": 1
   },
   {
@@ -609,6 +944,11 @@
     "id": "climate-control",
     "image": "/assets/images/spells/green/climate-control.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["gold"],
     "level": 1
   },
   {
@@ -618,6 +958,11 @@
     "id": "cure",
     "image": "/assets/images/spells/green/cure.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -627,6 +972,11 @@
     "id": "growth",
     "image": "/assets/images/spells/green/growth.png",
     "faction": "green",
+    "skills": ["scales"],
+    "families": ["animal"],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -636,6 +986,11 @@
     "id": "locust-swarm",
     "image": "/assets/images/spells/green/locust-swarm.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["population"],
     "level": 1
   },
   {
@@ -645,6 +1000,11 @@
     "id": "natures-favor",
     "image": "/assets/images/spells/green/natures-favor.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["population"],
     "level": 1
   },
   {
@@ -654,6 +1014,11 @@
     "id": "regeneration",
     "image": "/assets/images/spells/green/regeneration.png",
     "faction": "green",
+    "skills": ["regeneration"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -663,6 +1028,11 @@
     "id": "rust-armor",
     "image": "/assets/images/spells/green/rust-armor.png",
     "faction": "green",
+    "skills": ["weakness"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -672,15 +1042,25 @@
     "id": "serenity",
     "image": "/assets/images/spells/green/serenity.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
     "type": "instant",
-    "name": "spell.slow.name",
-    "description": "spell.slow.description",
-    "id": "slow",
-    "image": "/assets/images/spells/green/slow.png",
+    "name": "spell.slowness.name",
+    "description": "spell.slowness.description",
+    "id": "slowness",
+    "image": "/assets/images/spells/green/slowness.png",
     "faction": "green",
+    "skills": ["slowness"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -690,6 +1070,11 @@
     "id": "summon-goblin",
     "image": "/assets/images/spells/green/summon-goblin.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["goblin"],
+    "resources": [],
     "level": 1
   },
   {
@@ -699,6 +1084,11 @@
     "id": "summon-werebear",
     "image": "/assets/images/spells/green/summon-werebear.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["werebear"],
+    "resources": [],
     "level": 1
   },
   {
@@ -708,6 +1098,11 @@
     "id": "summon-wisp",
     "image": "/assets/images/spells/green/summon-wisp.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["wisp"],
+    "resources": [],
     "level": 1
   },
   {
@@ -717,15 +1112,25 @@
     "id": "sunray",
     "image": "/assets/images/spells/green/sunray.png",
     "faction": "green",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
     "type": "instant",
-    "name": "spell.double-strike.name",
-    "description": "spell.double-strike.description",
-    "id": "double-strike",
-    "image": "/assets/images/spells/white/double-strike.png",
+    "name": "spell.strength.name",
+    "description": "spell.strength.description",
+    "id": "strength",
+    "image": "/assets/images/spells/white/strength.png",
     "faction": "white",
+    "skills": ["strength"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -735,6 +1140,11 @@
     "id": "call-crusader",
     "image": "/assets/images/spells/white/call-crusader.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["crusader"],
+    "resources": [],
     "level": 1
   },
   {
@@ -744,6 +1154,11 @@
     "id": "call-knight",
     "image": "/assets/images/spells/white/call-knight.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["knight"],
+    "resources": [],
     "level": 1
   },
   {
@@ -753,6 +1168,11 @@
     "id": "call-warrior",
     "image": "/assets/images/spells/white/call-warrior.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["warrior"],
+    "resources": [],
     "level": 1
   },
   {
@@ -762,6 +1182,11 @@
     "id": "flash",
     "image": "/assets/images/spells/white/flash.png",
     "faction": "white",
+    "skills": ["weakness", "fear"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -771,6 +1196,11 @@
     "id": "gate",
     "image": "/assets/images/spells/white/gate.png",
     "faction": "white",
+    "skills": [],
+    "families": ["giant"],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -780,6 +1210,11 @@
     "id": "healing-hand",
     "image": "/assets/images/spells/white/healing-hand.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -789,6 +1224,11 @@
     "id": "divine-protection",
     "image": "/assets/images/spells/white/divine-protection.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -798,6 +1238,11 @@
     "id": "holy-word",
     "image": "/assets/images/spells/white/holy-word.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -807,6 +1252,11 @@
     "id": "scales",
     "image": "/assets/images/spells/white/scales.png",
     "faction": "white",
+    "skills": ["scales"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -816,6 +1266,11 @@
     "id": "locate-artifact",
     "image": "/assets/images/spells/white/locate-artifact.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -825,6 +1280,11 @@
     "id": "miracle",
     "image": "/assets/images/spells/white/miracle.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -834,6 +1294,11 @@
     "id": "love-peace",
     "image": "/assets/images/spells/white/love-peace.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": ["gold", "mana"],
     "level": 1
   },
   {
@@ -843,6 +1308,11 @@
     "id": "resurrection",
     "image": "/assets/images/spells/white/resurrection.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -852,6 +1322,11 @@
     "id": "shield-light",
     "image": "/assets/images/spells/white/shield-light.png",
     "faction": "white",
+    "skills": ["scales"],
+    "families": [],
+    "categories": ["melee"],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -861,6 +1336,11 @@
     "id": "summon-griffon",
     "image": "/assets/images/spells/white/summon-griffon.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["griffon"],
+    "resources": [],
     "level": 1
   },
   {
@@ -870,6 +1350,11 @@
     "id": "summon-titan",
     "image": "/assets/images/spells/white/summon-titan.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["titan"],
+    "resources": [],
     "level": 1
   },
   {
@@ -879,6 +1364,11 @@
     "id": "summon-monk",
     "image": "/assets/images/spells/white/summon-monk.png",
     "faction": "white",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": ["monk"],
+    "resources": [],
     "level": 1
   },
   {
@@ -888,6 +1378,11 @@
     "id": "sword-light",
     "image": "/assets/images/spells/white/sword-light.png",
     "faction": "white",
+    "skills": ["strength"],
+    "families": [],
+    "categories": ["melee"],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -897,6 +1392,11 @@
     "id": "tranquility",
     "image": "/assets/images/spells/white/tranquility.png",
     "faction": "white",
+    "skills": ["slowness"],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 1
   },
   {
@@ -906,6 +1406,11 @@
     "id": "armageddon",
     "image": "/assets/images/spells/grey/armageddon.png",
     "faction": "grey",
+    "skills": [],
+    "families": [],
+    "categories": [],
+    "units": [],
+    "resources": [],
     "level": 6
   }
 ]
