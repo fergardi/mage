@@ -33,7 +33,7 @@
               <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
             </div>
             <div mat-line>{{ charm.join.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:[]"></div>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources.charm.join.spells"></div>
             <div mat-line class="progress" *ngIf="charm.turns < charm.join.research">
               <mat-progress-bar [value]="charm.turns * 100 / charm.join.research"></mat-progress-bar>
             </div>
@@ -80,7 +80,7 @@
                   <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
                 </div>
                 <div mat-line>{{ charm.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:[]"></div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources.charm.join.spells"></div>
                 <mat-icon>open_with</mat-icon>
               </mat-list-item>
             </mat-list>
@@ -120,7 +120,7 @@
                   <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
                 </div>
                 <div mat-line>{{ charm.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:[]"></div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources.charm.join.spells"></div>
                 <mat-icon>open_with</mat-icon>
               </mat-list-item>
             </mat-list>

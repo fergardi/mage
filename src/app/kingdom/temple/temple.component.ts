@@ -29,7 +29,7 @@ export class TempleComponent implements OnInit {
 
   ngOnInit() {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
-    this.firebaseService.leftJoin('gods', 'kingdoms', 'kingdom', 'id').pipe(untilDestroyed(this)).subscribe(gods => {
+    this.angularFirestore.collection<any>('gods').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(gods => {
       this.kingdomGods = gods;
     });
   }

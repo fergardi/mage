@@ -25,21 +25,16 @@
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
-            <!--
+
             <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'select'">
               <mat-select [(ngModel)]="filters[column].value" (selectionChange)="applyFilter()">
                 <mat-option [value]="''">{{ 'table.filter.any' | translate }}</mat-option>
                 <mat-option *ngFor="let option of filters[column].options" [value]="option.value">{{ option.name | translate }}</mat-option>
               </mat-select>
             </mat-form-field>
-            -->
 
           </mat-header-cell>
           <mat-cell *matCellDef="let row" [attr.data-label]="'table.column.' + column | translate">
-
-            <ng-template [ngIf]="['attack','defense','life','gold','mana','population','goldKeep','manaKeep','populationKeep'].includes(column)">
-              {{ row[column] | short }}
-            </ng-template>
 
             <ng-template [ngIf]="column === 'type'">
               {{ 'type.' + row[column] + '.name' | translate }}
@@ -60,7 +55,7 @@
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item>
-                  <div mat-list-avatar [matBadge]="(row.level ? (row.level | short) : '?')" matBadgePosition="above before">
+                  <div mat-list-avatar>
                     <img mat-list-avatar [src]="row.image" alt="{{ row.name | translate }}"/>
                   </div>
                   <div mat-line>{{ row.name | translate }}</div>
@@ -74,9 +69,6 @@
                     <img [matTooltip]="family.name | translate" class="icon" *ngFor="let family of row.families" [src]="family.image"/>
                     <img [matTooltip]="category.name | translate" class="icon" *ngFor="let category of row.categories" [src]="category.image"/>
                     <img [matTooltip]="skill.name | translate" class="icon" *ngFor="let skill of row.skills" [src]="skill.image"/>
-                  </div>
-                  <div mat-list-avatar>
-                    <img mat-list-avatar [src]="row.join.image" alt="{{ row.join.name | translate }}"/>
                   </div>
                 </mat-list-item>
               </mat-list>

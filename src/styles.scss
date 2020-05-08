@@ -246,6 +246,7 @@ body {
   .table-responsive {
     .mat-list-item-content {
       padding-right: 0 !important;
+      flex-direction: row-reverse !important;
     }
     .mat-table {
       border: 0;
@@ -280,6 +281,11 @@ body {
     }
     .mat-table .mat-cell:last-child {
       border-bottom: 0;
+    }
+    .mat-list-text {
+      width: auto !important;
+      align-items: flex-end !important;
+      padding: 0 16px 0 0 !important;
     }
     .mat-cell {
       padding: 0 12px !important;
