@@ -14,18 +14,17 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
-        <mat-list dense
-          id="0"
-          cdkDropList
-          cdkDropListOrientation="vertical"
-          (cdkDropListDropped)="assignTroop($event)"
-          [cdkDropListData]="kingdomTroops">
+        <mat-list dense id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="kingdomTroops">
           <mat-list-item *ngFor="let troop of kingdomTroops" cdkDrag class="handle" [id]="troop.fid">
             <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
             </div>
             <div mat-line>{{ troop.join.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
+            <div mat-line class="mat-card-subtitle">
+              <img [matTooltip]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
+              <img [matTooltip]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
+              <img [matTooltip]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
+            </div>
             <mat-icon>open_with</mat-icon>
           </mat-list-item>
         </mat-list>
@@ -47,18 +46,17 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
-        <mat-list dense
-          id="1"
-          cdkDropList
-          cdkDropListOrientation="vertical"
-          (cdkDropListDropped)="assignTroop($event)"
-          [cdkDropListData]="attackTroops">
+        <mat-list dense id="1" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="attackTroops">
           <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle" [id]="troop.fid">
             <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
             </div>
             <div mat-line>{{ troop.join.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
+            <div mat-line class="mat-card-subtitle">
+              <img [matTooltip]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
+              <img [matTooltip]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
+              <img [matTooltip]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
+            </div>
             <mat-icon>open_with</mat-icon>
           </mat-list-item>
         </mat-list>
@@ -80,18 +78,17 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
-        <mat-list dense
-          id="2"
-          cdkDropList
-          cdkDropListOrientation="vertical"
-          (cdkDropListDropped)="assignTroop($event)"
-          [cdkDropListData]="defenseTroops">
+        <mat-list dense id="2" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="defenseTroops">
           <mat-list-item *ngFor="let troop of defenseTroops" cdkDrag class="handle" [id]="troop.fid">
             <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
             </div>
             <div mat-line>{{ troop.join.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
+            <div mat-line class="mat-card-subtitle">
+              <img [matTooltip]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
+              <img [matTooltip]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
+              <img [matTooltip]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
+            </div>
             <mat-icon>open_with</mat-icon>
           </mat-list-item>
         </mat-list>
