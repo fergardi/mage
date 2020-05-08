@@ -31,8 +31,10 @@ export class FirebaseService {
 
   leftJoin(left: string, right: string, from: string = 'id', to: string = 'id') {
     return combineLatest([
-      this.angularFirestore.collection<any>(left).valueChanges({ idField: 'fid' }),
-      this.cacheService.get(right),
+      this.angularFirestore.collection<any>(left).valueChanges({ idField: 'fid' }), // select from firebase left join
+      CollectionType[right] === undefined
+        ? this.angularFirestore.collection<any>(right).valueChanges() // firebase
+        : this.cacheService.get(right) // localstorage
     ]).pipe(
       map(([
         leftCollection,

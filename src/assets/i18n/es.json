@@ -96,15 +96,9 @@
       "name": "Nombre",
       "type": "Tipo",
       "faction": "Facción",
-      "attack": "Ataque",
-      "defense": "Defensa",
-      "life": "Vida",
-      "gold": "Oro",
-      "mana": "Mana",
-      "population": "Pobl",
-      "goldKeep": "Oro/T",
-      "manaKeep": "Mana/T",
-      "populationKeep": "Pobl/T"
+      "from": "De",
+      "subject": "Asunto",
+      "timestamp": "Fecha"
     }
   },
   "world": {

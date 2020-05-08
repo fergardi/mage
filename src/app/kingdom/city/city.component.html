@@ -20,7 +20,7 @@
               <img mat-list-avatar [src]="building.join.image" alt="{{ building.join.name | translate }}"/>
             </div>
             <div mat-line>{{ building.join.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ building.join.description | translate }}</div>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join.skills:building.join.categories:building.join.families:building.join.units:building.join.resources:building.join.spells"></div>
           </button>
         </mat-action-list>
       </mat-card-content>

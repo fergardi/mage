@@ -14,29 +14,59 @@
       </mat-card-content>
 
       <mat-card-content>
-        <div fxLayout="row" fxLayoutAlign="flex-end">
-          <mat-form-field>
-            <mat-label>{{ "kingdom.archive.filter" | translate }}</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'kingdom.archive.filter' | translate }}" />
-          </mat-form-field>
-        </div>
-
         <table mat-table matSort [dataSource]="data">
+
           <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
+
             <ng-container *ngIf="column === 'select'; else noSelect">
-              <mat-header-cell *matHeaderCellDef>
+              <mat-header-cell class="table-header" *matHeaderCellDef>
                 <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
               </mat-header-cell>
+
               <mat-cell *matCellDef="let letter" [attr.data-label]="column">
                 <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(letter) : null" [checked]="selection.isSelected(letter)"></mat-checkbox>
               </mat-cell>
             </ng-container>
 
             <ng-template #noSelect>
-              <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
-              <mat-cell *matCellDef="let letter" [attr.data-label]="column">
-                {{ column === "from" ? letter["join"]["name"] : column === "timestamp" ? (letter[column]?.toMillis() | date) : letter[column] }}
+              <mat-header-cell class="table-header" *matHeaderCellDef>
+
+                <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
+
+                <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
+                  <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()"/>
+                  <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+
+                <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'timestamp'">
+                  <input matInput [(ngModel)]="filters[column].value" [matDatepicker]="timestamp" disabled (dateChange)="applyFilter()">
+                  <mat-datepicker-toggle matSuffix [for]="timestamp"></mat-datepicker-toggle>
+                  <mat-datepicker #timestamp disabled="false"></mat-datepicker>
+                  <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=null; applyFilter()">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+
+              </mat-header-cell>
+
+              <mat-cell *matCellDef="let row" [attr.data-label]="'table.column.' + column | translate">
+
+                <ng-template [ngIf]="column === 'from'">
+                  {{ row.join.name }}
+                </ng-template>
+
+                <ng-template [ngIf]="column === 'subject'">
+                  {{ row[column] }}
+                </ng-template>
+
+                <ng-template [ngIf]="column === 'timestamp'">
+                  {{ row[column]?.toMillis() | date }}
+                </ng-template>
+
               </mat-cell>
+
             </ng-template>
           </ng-container>
 

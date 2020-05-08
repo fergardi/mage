@@ -30,11 +30,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { ShellComponent } from './shell/shell.component';
 import { ShortPipe } from '../pipes/short.pipe';
 import { EnumPipe } from '../pipes/enum.pipe';
 import { IconPipe } from '../pipes/icon.pipe';
+import { MatNativeDateModule } from '@angular/material/core';
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
@@ -79,6 +81,8 @@ const modules = [
   MatCheckboxModule,
   MatFormFieldModule,
   ReactiveFormsModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
 
 @NgModule({

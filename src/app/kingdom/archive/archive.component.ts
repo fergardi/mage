@@ -14,6 +14,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-archive',
@@ -28,6 +29,20 @@ export class ArchiveComponent implements OnInit {
   kingdoms: any[] = [];
   form: FormGroup = null;
   columns = ['select', 'from', 'subject', 'timestamp'];
+  filters: any = {
+    from: {
+      type: 'text',
+      value: '',
+    },
+    subject: {
+      type: 'text',
+      value: '',
+    },
+    timestamp: {
+      type: 'timestamp',
+      value: null,
+    }
+  };
   selection: SelectionModel<any> = new SelectionModel<any>(true, []);
   data: MatTableDataSource<any> = new MatTableDataSource([]);
 
@@ -49,6 +64,8 @@ export class ArchiveComponent implements OnInit {
       this.data = new MatTableDataSource(letters);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
+      this.data.filterPredicate = this.createFilter();
+      this.applyFilter();
     });
     this.angularFirestore.collection('kingdoms').valueChanges().pipe(untilDestroyed(this)).subscribe(kingdoms => {
       this.kingdoms = kingdoms;
@@ -61,9 +78,22 @@ export class ArchiveComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.data.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    this.data.filter = JSON.stringify({
+      from: this.filters.from.value,
+      subject: this.filters.subject.value,
+      timestamp: this.filters.timestamp.value,
+    });
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data: any, filter: string): boolean {
+      let filters = JSON.parse(filter);
+      return data.join.name.toLowerCase().includes(filters.from)
+        && data.subject.toString().toLowerCase().includes(filters.subject)
+        && (!filters.timestamp || moment(data.timestamp.toMillis()).isBetween(moment(filters.timestamp).startOf('day'), moment(filters.timestamp).endOf('day'), 'days', '[]'));
+    }
+    return filterFunction;
   }
 
   isAllSelected() {
@@ -110,6 +140,7 @@ export class ArchiveComponent implements OnInit {
           message: this.form.value.message,
           timestamp: firestore.FieldValue.serverTimestamp(),
         });
+        this.form.reset();
         this.notificationService.success('kingdom.letter.success');
       } catch (error) {
         console.error(error);

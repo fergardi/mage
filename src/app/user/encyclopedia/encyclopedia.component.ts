@@ -34,7 +34,7 @@ export class EncyclopediaComponent implements OnInit {
       value: '',
       options: [],
     }
-  }
+  };
   data: MatTableDataSource<any> = null;
 
   constructor(

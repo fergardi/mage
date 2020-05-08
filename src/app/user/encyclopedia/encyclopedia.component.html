@@ -12,11 +12,12 @@
     </mat-card-content>
 
     <mat-card-content>
-
       <table mat-table matSort [dataSource]="data">
+
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
 
           <mat-header-cell class="table-header" *matHeaderCellDef>
+
             <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
 
             <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
@@ -28,7 +29,7 @@
 
             <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'select'">
               <mat-select [(ngModel)]="filters[column].value" (selectionChange)="applyFilter()">
-                <mat-option [value]="''">{{ 'table.filter.any' | translate }}</mat-option>
+                <mat-option value="">{{ 'table.filter.any' | translate }}</mat-option>
                 <mat-option *ngFor="let option of filters[column].options" [value]="option.value">{{ option.name | translate }}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -62,9 +63,7 @@
                   <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(row.type)">
                     {{ row.description | translate }}
                   </div>
-                  <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(row.type)"
-                    [innerHTML]="row.description | translate | icon:row.skills:row.categories:row.families:row.units:row.resources:row.spells">
-                  </div>
+                  <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(row.type)" [innerHTML]="row.description | translate | icon:row.skills:row.categories:row.families:row.units:row.resources:row.spells"></div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(row.type)">
                     <img [matTooltip]="family.name | translate" class="icon" *ngFor="let family of row.families" [src]="family.image"/>
                     <img [matTooltip]="category.name | translate" class="icon" *ngFor="let category of row.categories" [src]="category.image"/>
@@ -82,6 +81,7 @@
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
     </mat-card-content>
   </mat-card>
 </div>

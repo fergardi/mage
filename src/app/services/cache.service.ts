@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { of, Observable } from 'rxjs';
 
 export enum CollectionType {
   'skills' = 'skills',
