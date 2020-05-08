@@ -15,3 +15,8 @@ export class LogoutAction {
   constructor() {}
 }
 
+export class SetDBAction {
+  public static readonly type = '[DB] Set localstorage data';
+  constructor() {}
+}
+

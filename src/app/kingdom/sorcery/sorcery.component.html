@@ -14,51 +14,31 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
-        <mat-action-list dense
-          id="0"
-          #kngdmArtifacts="cdkDropList"
-          [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]"
-          cdkDropList
-          cdkDropListOrientation="vertical"
-          (cdkDropListDropped)="assignArtifact($event)"
-          [cdkDropListData]="kingdomArtifacts">
+        <mat-action-list dense id="0" #kngdmArtifacts="cdkDropList" [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="kingdomArtifacts">
           <button mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag [cdkDragDisabled]="!artifact.join.battle" [ngClass]="{ 'handle': artifact.join.battle }" [id]="artifact.fid">
             <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
               <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
             </div>
             <div mat-line>{{ artifact.join.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle"
-              [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells">
+            <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells">
             </div>
             <mat-icon *ngIf="artifact.join.battle">open_with</mat-icon>
           </button>
         </mat-action-list>
 
         <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
-        <mat-action-list dense
-          id="3"
-          #kngdmCharms="cdkDropList"
-          [cdkDropListConnectedTo]="[atckCharms, defCharms]"
-          cdkDropList
-          cdkDropListOrientation="vertical"
-          (cdkDropListDropped)="assignCharm($event)"
-          [cdkDropListData]="kingdomCharms">
-          <button
-            mat-list-item
-            *ngFor="let charm of kingdomCharms"
-            cdkDrag
-            [cdkDragDisabled]="!charm.join.battle"
-            [ngClass]="{ 'handle': charm.join.battle }"
-            (click)="openResearchDialog(charm)">
-            <div mat-list-avatar [matBadge]="charm.level | short" matBadgePosition="above before">
+        <mat-action-list dense id="3" #kngdmCharms="cdkDropList" [cdkDropListConnectedTo]="[atckCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="kingdomCharms">
+          <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.join.battle || charm.turns < charm.join.research" [ngClass]="{ 'handle': charm.join.battle && charm.turns >= charm.join.research }" (click)="openResearchDialog(charm)" [id]="charm.fid">
+            <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
             </div>
             <div mat-line>{{ charm.join.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ charm.join.description | translate }}</div>
-            <div mat-line class="progress">
-              <mat-progress-bar *ngIf="!charm.join.battle" [value]="charm.turns"></mat-progress-bar>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:[]"></div>
+            <div mat-line class="progress" *ngIf="charm.turns < charm.join.research">
+              <mat-progress-bar [value]="charm.turns * 100 / charm.join.research"></mat-progress-bar>
             </div>
-            <mat-icon *ngIf="charm.join.battle">open_with</mat-icon>
+            <mat-icon *ngIf="charm.join.battle && charm.turns >= charm.join.research">open_with</mat-icon>
+            <mat-icon *ngIf="charm.turns < charm.join.research">search</mat-icon>
           </button>
         </mat-action-list>
       </mat-card-content>
@@ -66,7 +46,6 @@
   </div>
 
   <div fxFlex.xl="66" fxFlex.lg="66" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-
     <div fxLayout="row wrap" fxLayoutGap="10px grid">
       <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
 
@@ -83,51 +62,33 @@
 
           <mat-card-content>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
-            <mat-list dense
-              id="1"
-              #atckArtifacts="cdkDropList"
-              [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]"
-              cdkDropList
-              cdkDropListOrientation="vertical"
-              (cdkDropListDropped)="assignArtifact($event)"
-              [cdkDropListData]="attackArtifacts">
+            <mat-list dense id="1" #atckArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="attackArtifacts">
               <mat-list-item *ngFor="let artifact of attackArtifacts" cdkDrag class="handle" [id]="artifact.fid">
                 <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
                   <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
                 </div>
                 <div mat-line>{{ artifact.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle"
-                  [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells">
-                </div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells"></div>
                 <mat-icon *ngIf="artifact.join.battle">open_with</mat-icon>
               </mat-list-item>
             </mat-list>
 
             <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
-            <mat-list dense
-              id="4"
-              #atckCharms="cdkDropList"
-              [cdkDropListConnectedTo]="[kngdmCharms, defCharms]"
-              cdkDropList
-              cdkDropListOrientation="vertical"
-              (cdkDropListDropped)="assignCharm($event)"
-              [cdkDropListData]="attackCharms">
-              <mat-list-item *ngFor="let charm of attackCharms" cdkDrag class="handle">
-                <div mat-list-avatar [matBadge]="charm.level | short" matBadgePosition="above before">
+            <mat-list dense id="4" #atckCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="attackCharms">
+              <mat-list-item *ngFor="let charm of attackCharms" cdkDrag class="handle" [id]="charm.fid">
+                <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
                 </div>
                 <div mat-line>{{ charm.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle">{{ charm.join.description | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:[]"></div>
                 <mat-icon>open_with</mat-icon>
               </mat-list-item>
             </mat-list>
           </mat-card-content>
         </mat-card>
-
       </div>
 
       <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
-
         <mat-card>
           <mat-card-header>
             <img mat-card-avatar src="/assets/images/icons/defense.png" alt="{{ 'kingdom.sorcery-defense.name' | translate }}">
@@ -141,41 +102,25 @@
 
           <mat-card-content>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
-            <mat-list dense
-              id="2"
-              #defArtifacts="cdkDropList"
-              [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]"
-              cdkDropList
-              cdkDropListOrientation="vertical"
-              (cdkDropListDropped)="assignArtifact($event)"
-              [cdkDropListData]="defenseArtifacts">
+            <mat-list dense id="2" #defArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="defenseArtifacts">
               <mat-list-item *ngFor="let artifact of defenseArtifacts" cdkDrag class="handle" [id]="artifact.fid">
                 <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
                   <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
                 </div>
                 <div mat-line>{{ artifact.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle"
-                  [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells">
-                </div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells"></div>
                 <mat-icon *ngIf="artifact.join.battle">open_with</mat-icon>
               </mat-list-item>
             </mat-list>
 
             <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
-            <mat-list dense
-              id="5"
-              #defCharms="cdkDropList"
-              [cdkDropListConnectedTo]="[kngdmCharms, atckCharms]"
-              cdkDropList
-              cdkDropListOrientation="vertical"
-              (cdkDropListDropped)="assignCharm($event)"
-              [cdkDropListData]="defenseCharms">
-              <mat-list-item *ngFor="let charm of defenseCharms" cdkDrag class="handle">
-                <div mat-list-avatar [matBadge]="charm.level | short" matBadgePosition="above before">
+            <mat-list dense id="5" #defCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, atckCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="defenseCharms">
+              <mat-list-item *ngFor="let charm of defenseCharms" cdkDrag class="handle" [id]="charm.fid">
+                <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
                 </div>
                 <div mat-line>{{ charm.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle">{{ charm.join.description | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:[]"></div>
                 <mat-icon>open_with</mat-icon>
               </mat-list-item>
             </mat-list>
@@ -184,6 +129,5 @@
 
       </div>
     </div>
-
   </div>
 </div>

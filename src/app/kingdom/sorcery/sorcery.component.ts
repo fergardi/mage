@@ -28,12 +28,12 @@ export class SorceryComponent implements OnInit {
   kingdomArtifacts: any[] = [];
   attackArtifacts: any[] = [];
   defenseArtifacts: any[] = [];
-  maximumArtifacts: number = 2;
+  maximumArtifacts: number = 1;
 
   kingdomCharms: any[] = [];
   attackCharms: any[] = [];
   defenseCharms: any[] = [];
-  maximumCharms: number = 2;
+  maximumCharms: number = 1;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -45,13 +45,13 @@ export class SorceryComponent implements OnInit {
 
   ngOnInit() {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
-    this.firebaseService.leftJoin(`kingdoms/${this.uid}/artifacts`, 'items', 'id', 'id', [], ['skills', 'families', 'categories', 'units', 'resources', 'spells']).pipe(untilDestroyed(this)).subscribe(artifacts => {
+    this.firebaseService.leftJoin(`kingdoms/${this.uid}/artifacts`, 'items', 'id', 'id').pipe(untilDestroyed(this)).subscribe(artifacts => {
       this.kingdomArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.artifactNone || !artifact.assignment).sort((a, b) => a.join.battle === b.join.battle ? 0 : a.join.battle ? -1 : 1);
       this.attackArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.artifactAttack);
       this.defenseArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.artifactDefense);
     });
-    this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id', [], ['skills', 'families', 'categories', 'units', 'resources', 'spells']).pipe(untilDestroyed(this)).subscribe(charms => {
-      this.kingdomCharms = charms.filter(charm => charm.assignment === AssignmentType.charmNone || !charm.assignment).sort((a, b) => a.join.battle === b.join.battle ? 0 : a.join.battle ? -1 : 1);
+    this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(charms => {
+      this.kingdomCharms = charms.filter(charm => charm.assignment === AssignmentType.charmNone || !charm.assignment).sort((a, b) => a.join.battle - b.join.battle || a.turns - b.turns);
       this.attackCharms = charms.filter(charm => charm.assignment === AssignmentType.charmAttack);
       this.defenseCharms = charms.filter(charm => charm.assignment === AssignmentType.charmDefense);
     });
@@ -59,18 +59,12 @@ export class SorceryComponent implements OnInit {
 
   async assignArtifact($event: CdkDragDrop<any>) {
     if ([0,3].includes(parseInt($event.container.id)) || $event.container.data.length < this.maximumArtifacts) {
-      try {
-        if ($event.previousContainer === $event.container) {
-          moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
-        } else {
-          transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
-        }
-        await this.angularFirestore.collection(`kingdoms/${this.uid}/artifacts`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
-        this.notificationService.success('kingdom.sorcery.success');
-      } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.sorcery.error');
+      if ($event.previousContainer === $event.container) {
+        moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
+      } else {
+        transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
+      await this.angularFirestore.collection(`kingdoms/${this.uid}/artifacts`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
     } else {
       this.notificationService.warning('kingdom.sorcery.maximum');
     }
@@ -78,20 +72,12 @@ export class SorceryComponent implements OnInit {
 
   async assignCharm($event: CdkDragDrop<any>) {
     if ([1,4].includes(parseInt($event.container.id)) || $event.container.data.length < this.maximumCharms) {
-      try {
-        if ($event.previousContainer === $event.container) {
-          moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
-        } else {
-          transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
-        }
-        await this.angularFirestore.collection(`kingdoms/${this.uid}/charms`)
-          .doc($event.item.element.nativeElement.id)
-          .update({ assignment: parseInt($event.container.id) });
-        this.notificationService.success('kingdom.sorcery.success');
-      } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.sorcery.error');
+      if ($event.previousContainer === $event.container) {
+        moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
+      } else {
+        transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
+      await this.angularFirestore.collection(`kingdoms/${this.uid}/charms`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
     } else {
       this.notificationService.warning('kingdom.sorcery.maximum')
     }

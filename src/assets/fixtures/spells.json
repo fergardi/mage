@@ -11,7 +11,11 @@
     "categories": [],
     "units": ["skeleton"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -25,7 +29,11 @@
     "categories": [],
     "units": ["zombie"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -39,7 +47,11 @@
     "categories": [],
     "units": ["ghoul"],
     "resources": [],
-    "level": 2
+    "level": 2,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -53,7 +65,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 3
+    "level": 3,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -67,7 +83,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "sorcery",
@@ -81,7 +101,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 4
+    "level": 4,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -95,7 +119,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 4
+    "level": 4,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -109,7 +137,11 @@
     "categories": [],
     "units": ["wraith"],
     "resources": [],
-    "level": 2
+    "level": 2,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -123,7 +155,11 @@
     "categories": [],
     "units": ["lich"],
     "resources": [],
-    "level": 3
+    "level": 3,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -137,7 +173,11 @@
     "categories": [],
     "units": ["vampire"],
     "resources": [],
-    "level": 3
+    "level": 3,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -151,7 +191,11 @@
     "categories": [],
     "units": [],
     "resources": ["population", "land"],
-    "level": 4
+    "level": 4,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -165,7 +209,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 2
+    "level": 2,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -179,7 +227,11 @@
     "categories": ["poison"],
     "units": [],
     "resources": [],
-    "level": 3
+    "level": 3,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -193,7 +245,11 @@
     "categories": [],
     "units": ["devil"],
     "resources": ["population"],
-    "level": 5
+    "level": 5,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -207,7 +263,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 4
+    "level": 4,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -221,7 +281,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 4
+    "level": 4,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -235,7 +299,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 5
+    "level": 5,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -249,7 +317,11 @@
     "categories": [],
     "units": [],
     "resources": ["population"],
-    "level": 5
+    "level": 5,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -263,7 +335,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 5
+    "level": 5,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -277,7 +353,11 @@
     "categories": [],
     "units": ["ghoul"],
     "resources": ["population"],
-    "level": 5
+    "level": 5,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -291,7 +371,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -305,7 +389,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -319,7 +407,11 @@
     "categories": [],
     "units": ["lizardman"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -333,7 +425,11 @@
     "categories": [],
     "units": ["orc"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -347,7 +443,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "sorcery",
@@ -361,7 +461,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -375,7 +479,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -389,7 +497,11 @@
     "categories": ["melee"],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -403,7 +515,11 @@
     "categories": ["melee", "fire"],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -417,7 +533,11 @@
     "categories": ["fire", "ranged"],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -431,7 +551,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -445,7 +569,11 @@
     "categories": [],
     "units": [],
     "resources": ["population", "land"],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -459,7 +587,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "summon",
@@ -473,7 +605,11 @@
     "categories": [],
     "units": ["demon"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -487,7 +623,11 @@
     "categories": [],
     "units": ["ogre"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -501,7 +641,11 @@
     "categories": [],
     "units": ["wendigo"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -515,7 +659,11 @@
     "categories": [],
     "units": ["cyclop"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "sorcery",
@@ -529,7 +677,11 @@
     "categories": [],
     "units": [],
     "resources": ["population", "land"],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -543,7 +695,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -557,7 +713,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "summon",
@@ -571,7 +731,11 @@
     "categories": [],
     "units": ["frost-giant"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -585,7 +749,11 @@
     "categories": [],
     "units": ["cave-troll"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -599,7 +767,11 @@
     "categories": [],
     "units": ["yeti"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -613,7 +785,11 @@
     "categories": [],
     "units": ["mage"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -627,7 +803,11 @@
     "categories": [],
     "units": ["basilisk"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -641,7 +821,11 @@
     "categories": [],
     "units": ["djinni"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -655,7 +839,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -669,7 +857,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -683,7 +875,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -697,7 +893,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -711,7 +911,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "sorcery",
@@ -725,7 +929,11 @@
     "categories": [],
     "units": [],
     "resources": ["gold"],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -739,7 +947,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -753,7 +965,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -767,7 +983,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -781,7 +1001,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -795,7 +1019,11 @@
     "categories": [],
     "units": [],
     "resources": ["population"],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -809,7 +1037,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "sorcery",
@@ -823,7 +1055,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "sorcery",
@@ -837,7 +1073,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -851,7 +1091,11 @@
     "categories": ["ranged"],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -865,7 +1109,11 @@
     "categories": ["melee"],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -879,7 +1127,11 @@
     "categories": [],
     "units": [],
     "resources": ["land", "gold", "mana"],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -893,7 +1145,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -907,7 +1163,11 @@
     "categories": [],
     "units": ["giant-snail"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -921,7 +1181,11 @@
     "categories": [],
     "units": ["giant-spider"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -935,7 +1199,11 @@
     "categories": [],
     "units": ["gnoll"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -949,7 +1217,11 @@
     "categories": [],
     "units": [],
     "resources": ["gold"],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -963,7 +1235,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -977,7 +1253,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -991,7 +1271,11 @@
     "categories": [],
     "units": [],
     "resources": ["population"],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1005,7 +1289,11 @@
     "categories": [],
     "units": [],
     "resources": ["population"],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -1019,7 +1307,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -1033,7 +1325,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "sorcery",
@@ -1047,7 +1343,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -1061,7 +1361,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "summon",
@@ -1075,7 +1379,11 @@
     "categories": [],
     "units": ["goblin"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -1089,7 +1397,11 @@
     "categories": [],
     "units": ["werebear"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -1103,7 +1415,11 @@
     "categories": [],
     "units": ["wisp"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1117,7 +1433,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -1131,7 +1451,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "summon",
@@ -1145,7 +1469,11 @@
     "categories": [],
     "units": ["crusader"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -1159,7 +1487,11 @@
     "categories": [],
     "units": ["knight"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -1173,7 +1505,11 @@
     "categories": [],
     "units": ["warrior"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -1187,7 +1523,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "sorcery",
@@ -1201,7 +1541,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -1215,7 +1559,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1229,7 +1577,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -1243,7 +1595,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -1257,7 +1613,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "sorcery",
@@ -1271,7 +1631,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -1285,7 +1649,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1299,7 +1667,11 @@
     "categories": [],
     "units": [],
     "resources": ["gold", "mana"],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -1313,7 +1685,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -1327,7 +1703,11 @@
     "categories": ["melee"],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "summon",
@@ -1341,7 +1721,11 @@
     "categories": [],
     "units": ["griffon"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -1355,7 +1739,11 @@
     "categories": [],
     "units": ["titan"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "summon",
@@ -1369,7 +1757,11 @@
     "categories": [],
     "units": ["monk"],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   },
   {
     "type": "instant",
@@ -1383,7 +1775,11 @@
     "categories": ["melee"],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "instant",
@@ -1397,7 +1793,11 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 1
+    "level": 1,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": true,
+    "self": true
   },
   {
     "type": "sorcery",
@@ -1411,6 +1811,10 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "level": 6
+    "level": 6,
+    "amount": [100, 1000],
+    "research": 500,
+    "battle": false,
+    "self": true
   }
 ]

@@ -23,7 +23,7 @@
     "name": "god.famine.name",
     "description": "god.famine.description",
     "image": "/assets/images/gods/famine.png",
-    "faction": "green",
+    "faction": "white",
     "gold": 0
   },
   {
@@ -41,7 +41,7 @@
     "name": "god.pestilence.name",
     "description": "god.pestilence.description",
     "image": "/assets/images/gods/pestilence.png",
-    "faction": "white",
+    "faction": "green",
     "gold": 0
   }
 ]

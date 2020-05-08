@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map, first } from 'rxjs/operators';
-import { combineLatest } from 'rxjs';
+import { combineLatest, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { CacheService, CollectionType } from './cache.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,50 +14,43 @@ export class FirebaseService {
   constructor(
     private angularFirestore: AngularFirestore,
     private angularFireAuth: AngularFireAuth,
+    private cacheService: CacheService,
     private httpClient: HttpClient,
   ) { }
 
-  leftJoin(left: string, right: string, from: string = 'id', to: string = 'id', leftArray: string[] = [], rightArray: string[] = []) {
+  joinObject(element: any, subCollection: string, collection: any[]) {
+    element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
+      if (typeof subElement === 'string') {
+        element[subCollection][subElementIndex] = {
+          ...collection.find(el => el['id'] === subElement)
+        }
+      }
+    });
+    element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
+  }
+
+  leftJoin(left: string, right: string, from: string = 'id', to: string = 'id') {
     return combineLatest([
       this.angularFirestore.collection<any>(left).valueChanges({ idField: 'fid' }),
-      this.angularFirestore.collection<any>(right).valueChanges(),
-      ...leftArray.map(leftExtra => this.angularFirestore.collection<any>(leftExtra).valueChanges()),
-      ...rightArray.map(rightExtra => this.angularFirestore.collection<any>(rightExtra).valueChanges()),
+      this.cacheService.get(right),
     ]).pipe(
-      map((collections) => {
-        collections[0].forEach(element => {
-          leftArray.forEach((subCollection, subCollectionIndex, subCollectionArray) => {
-            if (element[subCollection] && element[subCollection].length) {
-              element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
-                if (typeof subElement === 'string') {
-                  element[subCollection][subElementIndex] = {
-                    ...collections[2 + subCollectionIndex].find(el => el['id'] === subElement)
-                  }
-                }
-              });
-              element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
-            }
-          });
+      map(([
+        leftCollection,
+        rightCollection,
+      ]) => {
+        rightCollection.forEach(async element => {
+          if (element.skills) this.joinObject(element, 'skills', await this.cacheService.getSkills());
+          if (element.units) this.joinObject(element, 'units', await this.cacheService.getUnits());
+          if (element.categories) this.joinObject(element, 'categories', await this.cacheService.getCategories());
+          if (element.families) this.joinObject(element, 'families', await this.cacheService.getFamilies());
+          if (element.spells) this.joinObject(element, 'spells', await this.cacheService.getSpells());
+          if (element.resources) this.joinObject(element, 'resources', await this.cacheService.getResources());
         });
-        collections[1].forEach(element => {
-          rightArray.forEach((subCollection, subCollectionIndex, subCollectionArray) => {
-            if (element[subCollection] && element[subCollection].length) {
-              element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
-                if (typeof subElement === 'string') {
-                  element[subCollection][subElementIndex] = {
-                    ...collections[2 + leftArray.length + subCollectionIndex].find(el => el['id'] === subElement)
-                  }
-                }
-              });
-              element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
-            }
-          });
-        });
-        return collections[0].map(leftElement => {
+        return leftCollection.map(leftElement => {
           return {
             ...leftElement,
             join: {
-              ...collections[1].find(rightElement => leftElement[from] === rightElement[to])
+              ...rightCollection.find(rightElement => leftElement[from] === rightElement[to])
             }
           }
         })
@@ -108,7 +102,8 @@ export class FirebaseService {
         collection.forEach(element => {
           this.angularFirestore.collection<any>(`kingdoms/${user.uid}/${to}`).add({
             id: element.data().id,
-            quantity: 99
+            quantity: 99,
+            turns: 50,
           })
         });
       });

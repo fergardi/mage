@@ -13,13 +13,7 @@ export class IconPipe implements PipeTransform {
   ) {}
 
   transform(text: string, skills: any[], families: any[], categories: any[], units: any[], resources: any[], spells: any[]): SafeHtml {
-    let terms = [];
-    if (skills) terms = terms.concat(skills);
-    if (families) terms = terms.concat(families);
-    if (categories) terms = terms.concat(categories);
-    if (units) terms = terms.concat(units);
-    if (resources) terms = terms.concat(resources);
-    if (spells) terms = terms.concat(spells);
+    let terms = [skills, families, categories, units, resources, spells].reduce((a, b) => a.concat(b), []);
     terms.forEach(term => {
       text = text.replace(`<${term.id}>`, `&nbsp;<img class="icon" title="${this.translateService.instant(term.name)}" src="${term.image}"/>&nbsp;`);
     })

@@ -7,6 +7,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CacheService } from 'src/app/services/cache.service';
 
 @Component({
   selector: 'app-encyclopedia',
@@ -50,11 +51,30 @@ export class EncyclopediaComponent implements OnInit {
 
   constructor(
     private firebaseService: FirebaseService,
+    private cacheService: CacheService,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  async ngOnInit() {
+    let data = await Promise.all([
+      this.cacheService.getSkills(),
+      this.cacheService.getUnits(),
+      this.cacheService.getSpells(),
+      this.cacheService.getItems(),
+      this.cacheService.getGods(),
+      this.cacheService.getStructures(),
+      this.cacheService.getHeroes(),
+      this.cacheService.getResources(),
+    ]);
+    data = data.reduce((a, b) => a.concat(b), []);
+    this.data = new MatTableDataSource(data);
+    this.data.paginator = this.paginator;
+    this.data.sort = this.sort;
+  }
+
+  /*
   ngOnInit() {
     combineLatest([
       this.firebaseService.leftJoin('spells', 'factions', 'faction', 'id', ['skills', 'families', 'categories', 'units', 'resources']),
@@ -122,6 +142,7 @@ export class EncyclopediaComponent implements OnInit {
       this.applyFilter();
     });
   }
+  */
 
   applyFilter() {
     this.data.filter = JSON.stringify({
