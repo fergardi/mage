@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs/operators';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+
+enum AssignmentType {
+  'contractNone', 'contractAttack', 'contractDefense',
+}
 
 @Component({
   selector: 'app-tavern',
@@ -17,53 +21,38 @@ import { fadeInOnEnterAnimation } from 'angular-animations';
 @UntilDestroy()
 export class TavernComponent implements OnInit {
 
-  kingdomArtifacts: any[] = [];
+  uid: string = null;
   kingdomContracts: any[] = [];
-  maximumArtifacts: number = 1;
+  attackContracts: any[] = [];
+  defenseContracts: any[] = [];
+  maximumContracts: number = 5;
 
   constructor(
     private firebaseService: FirebaseService,
-    private angularFireAuth: AngularFireAuth,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
+    private store: Store,
   ) {}
 
   ngOnInit() {
-    this.angularFireAuth.authState.pipe(take(1), untilDestroyed(this)).subscribe(user => {
-      this.firebaseService.leftJoin(`kingdoms/${user.uid}/artifacts`, 'items', 'id', 'id').pipe(untilDestroyed(this)).subscribe(artifacts => {
-        this.kingdomArtifacts = artifacts.filter(artifact => artifact.join.hero && !artifact.contract);
-        this.firebaseService.leftJoin(`kingdoms/${user.uid}/contracts`, 'heroes', 'id', 'id').pipe(untilDestroyed(this)).subscribe(contracts => {
-          this.kingdomContracts = contracts.map(contract => {
-            return {
-              ...contract,
-              contractArtifacts: artifacts.filter(artifact => artifact.join.hero && artifact.contract === contract.fid)
-            }
-          });
-        });
-      });
+    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
+    this.firebaseService.leftJoin(`kingdoms/${this.uid}/contracts`, 'heroes', 'id', 'id').pipe(untilDestroyed(this)).subscribe(contracts => {
+      this.kingdomContracts = contracts.filter(contract => contract.assignment === AssignmentType.contractNone || !contract.assignment);
+      this.attackContracts = contracts.filter(contract => contract.assignment === AssignmentType.contractAttack);
+      this.defenseContracts = contracts.filter(contract => contract.assignment === AssignmentType.contractDefense);
     });
   }
 
-  assignArtifact($event: CdkDragDrop<any>) {
-    if ($event.previousContainer === $event.container) {
-      moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
-    } else {
-      if ($event.container.data.length < this.maximumArtifacts) {
-        transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
-        this.angularFireAuth.authState.pipe(take(1), untilDestroyed(this)).subscribe(async user => {
-          try {
-            await this.angularFirestore.collection(`kingdoms/${user.uid}/artifacts`)
-              .doc($event.item.element.nativeElement.id)
-              .update({ contract: $event.container.id === 'kingdom-tavern' ? null : $event.container.id });
-            this.notificationService.success('kingdom.tavern.success')
-          } catch(error) {
-            console.error(error);
-            this.notificationService.error('kingdom.tavern.error')
-          }
-        })
+  assignContract($event: CdkDragDrop<any>) {
+    if ([0,3].includes(parseInt($event.container.id)) || $event.container.data.length < this.maximumContracts) {
+      if ($event.previousContainer === $event.container) {
+        moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
-        this.notificationService.warning('kingdom.tavern.maximum')
+        transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
+      this.angularFirestore.collection(`kingdoms/${this.uid}/contracts`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
+    } else {
+      this.notificationService.warning('kingdom.tavern.maximum');
     }
   }
 

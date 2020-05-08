@@ -1,7 +1,7 @@
-<div class="kingdom-tavern" fxLayout="row wrap" fxLayoutGap="10px grid" cdkDropListGroup>
+<div class="kingdom-tavern" fxLayout="row wrap" fxLayoutGap="10px grid" cdkDropListGroup [@fadeInOnEnter]>
 
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-    <mat-card [@fadeInOnEnter]>
+    <mat-card>
       <mat-card-header>
         <img mat-card-avatar src="/assets/images/icons/tavern.png" alt="{{ 'kingdom.tavern.name' | translate }}">
         <mat-card-title >{{ 'kingdom.tavern.name' | translate }}</mat-card-title>
@@ -13,18 +13,14 @@
       </mat-card-content>
 
       <mat-card-content>
-        <mat-list dense
-          id="kingdom-tavern"
-          cdkDropList
-          cdkDropListOrientation="vertical"
-          (cdkDropListDropped)="assignArtifact($event)"
-          [cdkDropListData]="kingdomArtifacts">
-          <mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag class="handle" [id]="artifact.fid">
-            <div mat-list-avatar>
-              <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
+        <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
+        <mat-list dense id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="kingdomContracts">
+          <mat-list-item *ngFor="let contract of kingdomContracts" cdkDrag class="handle" [id]="contract.fid">
+            <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
             </div>
-            <div mat-line>{{ artifact.join.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
+            <div mat-line>{{ contract.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
             <mat-icon>open_with</mat-icon>
           </mat-list-item>
         </mat-list>
@@ -32,37 +28,60 @@
     </mat-card>
   </div>
 
-  <div fxFlex.xl="66" fxFlex.lg="66" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/icons/attack.png" alt="{{ 'kingdom.tavern-attack.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.tavern-attack.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.tavern-attack.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
 
-    <div fxLayout="row wrap" fxLayoutGap="10px grid">
-      <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" *ngFor="let contract of kingdomContracts">
+      <mat-card-content>
+        {{ 'kingdom.tavern-attack.help' | translate }}
+      </mat-card-content>
 
-        <mat-card [@fadeInOnEnter]>
-          <mat-card-header>
-            <img mat-card-avatar [matBadge]="contract.level" matBadgePosition="above before" [src]="contract.join.image" alt="{{ contract.join.name | translate }}">
-            <mat-card-title >{{ contract.join.name | translate }}</mat-card-title>
-            <mat-card-subtitle>{{ contract.join.description | translate }}</mat-card-subtitle>
-          </mat-card-header>
-
-          <mat-card-content>
-            <mat-list dense
-              [id]="contract.fid"
-              cdkDropList
-              cdkDropListOrientation="vertical"
-              (cdkDropListDropped)="assignArtifact($event)"
-              [cdkDropListData]="contract.contractArtifacts">
-              <mat-list-item *ngFor="let artifact of contract.contractArtifacts" cdkDrag class="handle" [id]="artifact.fid">
-                <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
-                <div mat-line>{{ artifact.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
-                <mat-icon>open_with</mat-icon>
-              </mat-list-item>
-            </mat-list>
-          </mat-card-content>
-        </mat-card>
-
-      </div>
-    </div>
-
+      <mat-card-content>
+        <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
+        <mat-list dense id="1" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="attackContracts">
+          <mat-list-item *ngFor="let contract of attackContracts" cdkDrag class="handle" [id]="contract.fid">
+            <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ contract.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
+            <mat-icon>open_with</mat-icon>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
   </div>
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/icons/defense.png" alt="{{ 'kingdom.tavern-defense.name' | translate }}">
+        <mat-card-title >{{ 'kingdom.tavern-defense.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.tavern-defense.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        {{ 'kingdom.tavern-defense.help' | translate }}
+      </mat-card-content>
+
+      <mat-card-content>
+        <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
+        <mat-list dense id="2" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="defenseContracts">
+          <mat-list-item *ngFor="let contract of defenseContracts" cdkDrag class="handle" [id]="contract.fid">
+            <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
+            </div>
+            <div mat-line>{{ contract.join.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
+            <mat-icon>open_with</mat-icon>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
 </div>

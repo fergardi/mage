@@ -57,27 +57,27 @@ export class SorceryComponent implements OnInit {
     });
   }
 
-  async assignArtifact($event: CdkDragDrop<any>) {
+  assignArtifact($event: CdkDragDrop<any>) {
     if ([0,3].includes(parseInt($event.container.id)) || $event.container.data.length < this.maximumArtifacts) {
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
-      await this.angularFirestore.collection(`kingdoms/${this.uid}/artifacts`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
+      this.angularFirestore.collection(`kingdoms/${this.uid}/artifacts`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
     } else {
       this.notificationService.warning('kingdom.sorcery.maximum');
     }
   }
 
-  async assignCharm($event: CdkDragDrop<any>) {
+  assignCharm($event: CdkDragDrop<any>) {
     if ([1,4].includes(parseInt($event.container.id)) || $event.container.data.length < this.maximumCharms) {
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
-      await this.angularFirestore.collection(`kingdoms/${this.uid}/charms`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
+      this.angularFirestore.collection(`kingdoms/${this.uid}/charms`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
     } else {
       this.notificationService.warning('kingdom.sorcery.maximum')
     }

@@ -229,13 +229,14 @@ body {
         padding: 0;
         font-weight: normal;
         font-size: inherit;
+        line-height: 1.25 !important;
       }
       .mat-line.mat-card-subtitle {
         display: flex;
         align-items: center;
       }
       .mat-line:nth-child(n+2) {
-        font-size: 14px;
+        font-size: 12px;
       }
     }
   }
