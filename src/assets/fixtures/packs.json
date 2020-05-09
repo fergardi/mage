@@ -1,0 +1,26 @@
+[
+  {
+    "id": "handful",
+    "name": "pack.handful.name",
+    "description": "pack.handful.description",
+    "image": "/assets/images/packs/handful.png",
+    "quantity": 20,
+    "money": 0.09
+  },
+  {
+    "id": "heap",
+    "name": "pack.heap.name",
+    "description": "pack.heap.description",
+    "image": "/assets/images/packs/heap.png",
+    "quantity": 50,
+    "money": 0.29
+  },
+  {
+    "id": "mountain",
+    "name": "pack.mountain.name",
+    "description": "pack.mountain.description",
+    "image": "/assets/images/packs/mountain.png",
+    "quantity": 100,
+    "money": 0.99
+  }
+]

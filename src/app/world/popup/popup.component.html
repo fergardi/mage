@@ -17,7 +17,7 @@
           </div>
           <div mat-line>{{ contract.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
-          <div mat-list-avatar [matBadge]="contract.gold | long" matBadgePosition="above before" >
+          <div mat-list-avatar [matBadge]="contract.gold | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
           </div>
         </button>
@@ -38,7 +38,7 @@
             <img [matTooltip]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
             <img [matTooltip]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
           </div>
-          <div mat-list-avatar [matBadge]="troop.gold | long" matBadgePosition="above before" >
+          <div mat-list-avatar [matBadge]="troop.gold | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
           </div>
         </button>
@@ -55,7 +55,7 @@
           </div>
           <div mat-line>{{ artifact.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells"></div>
-          <div mat-list-avatar [matBadge]="artifact.gold | long" matBadgePosition="above before" >
+          <div mat-list-avatar [matBadge]="artifact.gold | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
           </div>
         </button>
@@ -72,7 +72,7 @@
           </div>
           <div mat-line>{{ charm.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:charm.join.spells"></div>
-          <div mat-list-avatar [matBadge]="charm.gold | long" matBadgePosition="above before" >
+          <div mat-list-avatar [matBadge]="charm.gold | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
           </div>
         </button>

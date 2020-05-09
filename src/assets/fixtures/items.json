@@ -14,7 +14,8 @@
     "spells": [],
     "amount": [2000000, 10000000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -31,7 +32,8 @@
     "spells": [],
     "amount": [1000000, 2000000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -48,7 +50,8 @@
     "spells": [],
     "amount": [100000, 1000000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -65,7 +68,8 @@
     "spells": [],
     "amount": [1000, 10000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -82,7 +86,8 @@
     "spells": [],
     "amount": [10, 1000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -99,7 +104,8 @@
     "spells": [],
     "amount": [],
     "battle": true,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -116,7 +122,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -133,7 +140,8 @@
     "spells": [],
     "amount": [10, 1000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -150,7 +158,8 @@
     "spells": [],
     "amount": [1, 10],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -167,7 +176,8 @@
     "spells": [],
     "amount": [1, 2],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -184,7 +194,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -201,7 +212,8 @@
     "spells": [],
     "amount": [],
     "battle": true,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -218,7 +230,8 @@
     "spells": [],
     "amount": [],
     "battle": true,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -235,7 +248,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -252,7 +266,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -269,7 +284,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -286,7 +302,8 @@
     "spells": [],
     "amount": [10000, 1000000],
     "battle": true,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -303,7 +320,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -320,7 +338,8 @@
     "spells": [],
     "amount": [],
     "battle": true,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -337,7 +356,8 @@
     "spells": [],
     "amount": [10000, 100000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -354,7 +374,8 @@
     "spells": [],
     "amount": [],
     "battle": true,
-    "self": false
+    "self": false,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -371,7 +392,8 @@
     "spells": [],
     "amount": [10, 1000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -388,7 +410,8 @@
     "spells": [],
     "amount": [1000, 10000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -405,7 +428,8 @@
     "spells": [],
     "amount": [],
     "battle": true,
-    "self": false
+    "self": false,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -422,7 +446,8 @@
     "spells": [],
     "amount": [-25, -50],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 5
   },
   {
     "type": "item",
@@ -439,7 +464,8 @@
     "spells": [],
     "amount": [],
     "battle": true,
-    "self": false
+    "self": false,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -456,7 +482,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -473,7 +500,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -490,7 +518,8 @@
     "spells": [],
     "amount": [-100000, -1000000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -507,7 +536,8 @@
     "spells": [],
     "amount": [1, 100],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -524,7 +554,8 @@
     "spells": [],
     "amount": [-500000, -1000000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -541,7 +572,8 @@
     "spells": [],
     "amount": [],
     "battle": true,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -558,7 +590,8 @@
     "spells": ["love-peace", "climate-control", "natures-favor", "druidism"],
     "amount": [150],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -575,7 +608,8 @@
     "spells": ["divine-protection", "shroud-darkness", "fire-wall", "ice-wall", "sunray"],
     "amount": [150],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -592,7 +626,8 @@
     "spells": ["concentration", "hallucination", "battle-chant", "blood-ritual"],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -609,7 +644,8 @@
     "spells": [],
     "amount": [1000, 10000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -626,7 +662,8 @@
     "spells": [],
     "amount": [50, 100],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -643,7 +680,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -660,7 +698,8 @@
     "spells": [],
     "amount": [-100000, -500000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -677,7 +716,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -694,7 +734,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -711,7 +752,8 @@
     "spells": [],
     "amount": [1000, 100000],
     "battle": true,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -728,7 +770,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -745,7 +788,8 @@
     "spells": [],
     "amount": [-10000, -1000000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -762,7 +806,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -779,7 +824,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -796,7 +842,8 @@
     "spells": [],
     "amount": [100, 1000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -813,7 +860,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -830,7 +878,8 @@
     "spells": [],
     "amount": [],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   },
   {
     "type": "item",
@@ -847,6 +896,7 @@
     "spells": [],
     "amount": [100, 1000],
     "battle": false,
-    "self": true
+    "self": true,
+    "emporium": 0
   }
 ]

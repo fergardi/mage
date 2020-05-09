@@ -42,7 +42,6 @@ export class FirebaseService {
         leftCollection,
         rightCollection,
       ]) => {
-        console.log(leftCollection)
         rightCollection.forEach(async element => {
           if (element.skills) this.joinObject(element, 'skills', await this.cacheService.getSkills());
           if (element.units) this.joinObject(element, 'units', await this.cacheService.getUnits());
@@ -68,7 +67,7 @@ export class FirebaseService {
   }
 
   addElementToCollection(collection: string, element: any, id?: string) {
-    console.log(`Adding ${element.name} to ${collection}...`);
+    console.info(`Adding ${element.name} to ${collection}...`);
     return id
     ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
     : this.angularFirestore.collection<any>(collection).add(element);
@@ -88,7 +87,7 @@ export class FirebaseService {
   async importCollectionFromJson(collection: string) {
     this.angularFireAuth.authState.subscribe(user => {
       if (user) {
-        console.log(`Loading collection ${collection}...`)
+        console.info(`Loading collection ${collection}...`)
         this.httpClient.get<any[]>(`assets/fixtures/${collection}.json`).pipe(first()).subscribe(elements => {
           this.addElementsToCollection(collection, elements, true);
         });

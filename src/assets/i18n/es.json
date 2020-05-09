@@ -244,6 +244,11 @@
       "build": "Construir",
       "hint": "Necesitas tierras, oro, <population> y turnos",
       "error": "Insuficientes tierras, oro, <population> o turnos"
+    },
+    "gemology": {
+      "name": "Gemología",
+      "description": "TODO",
+      "help": "TODO"
     }
   },
   "faction": {
@@ -270,6 +275,20 @@
     "grey": {
       "name": "Neutral",
       "description": ""
+    }
+  },
+  "pack": {
+    "handful": {
+      "name": "Puñado de gemas",
+      "description": "Unas pocas gemas"
+    },
+    "heap": {
+      "name": "Montón de gemas",
+      "description": "Un buen montón de gemas"
+    },
+    "mountain": {
+      "name": "Montaña de gemas",
+      "description": "Una montaña de gemas"
     }
   },
   "structure": {
@@ -363,7 +382,7 @@
       "potions": "Pociones",
       "charms": "Hechizos",
       "buildings": "Edificios",
-      "turns": "Turnos"
+      "gems": "Paquetes de gemas"
     }
   },
   "location": {

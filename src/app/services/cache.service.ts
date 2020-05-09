@@ -15,6 +15,7 @@ export enum CollectionType {
   'items' = 'items',
   'stores' = 'stores',
   'locations' = 'locations',
+  'packs' = 'packs',
 }
 
 @Injectable({
@@ -26,6 +27,8 @@ export class CacheService {
 
   get(collection: string) {
     switch (collection) {
+      case CollectionType.packs:
+        return this.getPacks();
       case CollectionType.skills:
         return this.getSkills();
       case CollectionType.factions:
@@ -62,6 +65,15 @@ export class CacheService {
       localStorage.setItem(CollectionType.factions, JSON.stringify([...factions]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.factions));
+  }
+
+  async getPacks() {
+    if (!localStorage.getItem(CollectionType.packs)) {
+      let snapshot = await this.angularFirestore.collection('packs').get().toPromise();
+      let packs = snapshot.docs.map(faction => faction.data());
+      localStorage.setItem(CollectionType.packs, JSON.stringify([...packs]));
+    }
+    return JSON.parse(localStorage.getItem(CollectionType.packs));
   }
 
   async getStores() {
