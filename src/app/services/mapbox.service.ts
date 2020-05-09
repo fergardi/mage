@@ -310,7 +310,7 @@ export class MapboxService {
         closeOnMove: false,
         maxWidth: 'none',
       })
-      .setDOMContent(this.componentService.injectComponent(PopupComponent, component => component.data = data))
+      .setDOMContent(this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type }))
       .on('open', $event => {
         this.map.easeTo({
           center: $event.target.getLngLat(),

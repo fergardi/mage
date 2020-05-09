@@ -22,6 +22,7 @@ export enum ContractAssignmentType {
 export class TavernComponent implements OnInit {
 
   uid: string = null;
+
   kingdomContracts: any[] = [];
   attackContracts: any[] = [];
   defenseContracts: any[] = [];

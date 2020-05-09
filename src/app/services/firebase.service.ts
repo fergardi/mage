@@ -19,14 +19,34 @@ export class FirebaseService {
   ) { }
 
   joinObject(element: any, subCollection: string, collection: any[]) {
-    element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
-      if (typeof subElement === 'string') {
-        element[subCollection][subElementIndex] = {
-          ...collection.find(el => el['id'] === subElement)
+    if (element[subCollection] instanceof Array) {
+      element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
+        if (typeof subElement === 'string') {
+          element[subCollection][subElementIndex] = {
+            ...collection.find(el => el['id'] === subElement)
+          };
         }
-      }
-    });
-    element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
+      });
+      element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
+    }
+    if (typeof element[subCollection] === 'string') {
+      element.join = {
+        ...collection.find(el => el['id'] === element[subCollection])
+      };
+    }
+  }
+
+  async selfJoin(element: any) {
+    if (element.store) this.joinObject(element, 'store', await this.cacheService.getStores());
+    if (element.faction) this.joinObject(element, 'faction', await this.cacheService.getFactions());
+    if (element.location) this.joinObject(element, 'location', await this.cacheService.getLocations());
+    // if (element.skills) this.joinObject(element, 'skills', await this.cacheService.getSkills());
+    // if (element.units) this.joinObject(element, 'units', await this.cacheService.getUnits());
+    // if (element.categories) this.joinObject(element, 'categories', await this.cacheService.getCategories());
+    // if (element.families) this.joinObject(element, 'families', await this.cacheService.getFamilies());
+    // if (element.spells) this.joinObject(element, 'spells', await this.cacheService.getSpells());
+    // if (element.resources) this.joinObject(element, 'resources', await this.cacheService.getResources());
+    return element;
   }
 
   leftJoin(left: string, right: string, from: string = 'id', to: string = 'id', query: QueryFn = undefined) {
@@ -67,7 +87,6 @@ export class FirebaseService {
   }
 
   addElementToCollection(collection: string, element: any, id?: string) {
-    console.info(`Adding ${element.name} to ${collection}...`);
     return id
     ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
     : this.angularFirestore.collection<any>(collection).add(element);

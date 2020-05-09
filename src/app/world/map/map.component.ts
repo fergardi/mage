@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MapboxService, MarkerType } from 'src/app/services/mapbox.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { take } from 'rxjs/operators';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { Store } from '@ngxs/store';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-map',
@@ -13,41 +15,53 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 @UntilDestroy()
 export class MapComponent implements OnInit {
 
+  uid: string = null;
   container = 'map';
 
   constructor(
     private mapboxService: MapboxService,
     private firebaseService: FirebaseService,
     private angularFireAuth: AngularFireAuth,
+    private angularFirestore: AngularFirestore,
+    private store: Store,
   ) { }
 
   ngOnInit(): void {
+    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.on('load', () => {
       this.mapboxService.resize();
-      this.angularFireAuth.authState.pipe(take(1), untilDestroyed(this)).subscribe(user => {
-        if (user) {
-          this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id').pipe(untilDestroyed(this)).subscribe(kingdoms => {
-            this.mapboxService.clearMarkers(MarkerType.kingdom);
-            kingdoms.forEach(kingdom => {
-              this.mapboxService.addMarker(kingdom, MarkerType.kingdom, true, kingdom.id === user.uid, false);
-            })
-          });
-          this.firebaseService.leftJoin('shops', 'stores', 'store', 'id').pipe(untilDestroyed(this)).subscribe(shops => {
-            this.mapboxService.clearMarkers(MarkerType.shop);
-            shops.forEach(shop => {
-              this.mapboxService.addMarker(shop, MarkerType.shop, true, false, false);
-            })
-          });
-          this.firebaseService.leftJoin('quests', 'locations', 'location', 'id').pipe(untilDestroyed(this)).subscribe(quests => {
-            this.mapboxService.clearMarkers(MarkerType.quest);
-            quests.forEach(quest => {
-              this.mapboxService.addMarker(quest, MarkerType.quest, true, false, false);
-            })
-          });
-        }
+      this.angularFirestore.collection<any>('quests').stateChanges().subscribe(snapshotChanges => {
+        snapshotChanges.forEach(async change => {
+          if (change.type === 'added') {
+            let quest = await this.firebaseService.selfJoin({ ...change.payload.doc.data(), fid: change.payload.doc.id });
+            this.mapboxService.addMarker(quest, MarkerType.quest, true, false, false);
+          }
+          if (change.type === 'removed') {
+            this.mapboxService.removeMarker(change.payload.doc.id);
+          }
+        })
       });
-    })
+      this.angularFirestore.collection<any>('kingdoms').stateChanges().subscribe(snapshotChanges => {
+        snapshotChanges.forEach(async change => {
+          if (change.type === 'added') {
+            let kingdom = await this.firebaseService.selfJoin({ ...change.payload.doc.data(), fid: change.payload.doc.id });
+            this.mapboxService.addMarker(kingdom, MarkerType.kingdom, true, kingdom.id === this.uid, false);
+          }
+        })
+      });
+      this.angularFirestore.collection<any>('shops').stateChanges().subscribe(snapshotChanges => {
+        snapshotChanges.forEach(async change => {
+          if (change.type === 'added') {
+            let shop = await this.firebaseService.selfJoin({ ...change.payload.doc.data(), fid: change.payload.doc.id });
+            this.mapboxService.addMarker(shop, MarkerType.shop, true, false, false);
+          }
+          if (change.type === 'removed') {
+            this.mapboxService.removeMarker(change.payload.doc.id);
+          }
+        })
+      });
+    });
   }
 
 }

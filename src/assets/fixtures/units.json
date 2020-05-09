@@ -173,7 +173,7 @@
     "faction": "blue",
     "categories": ["melee", "cold"],
     "skills": [],
-    "families": ["orc"]
+    "families": ["orkish"]
   },
   {
     "type": "unit",
@@ -250,7 +250,7 @@
     "faction": "green",
     "categories": ["melee"],
     "skills": ["haste"],
-    "families": ["orc"]
+    "families": ["orkish"]
   },
   {
     "type": "unit",
@@ -261,7 +261,7 @@
     "faction": "green",
     "categories": ["melee"],
     "skills": [],
-    "families": ["orc"]
+    "families": ["orkish"]
   },
   {
     "type": "unit",
@@ -393,7 +393,7 @@
     "faction": "red",
     "categories": ["melee"],
     "skills": ["slowness"],
-    "families": ["demon", "giant"]
+    "families": ["demon", "giant", "orkish"]
   },
   {
     "type": "unit",
@@ -404,7 +404,7 @@
     "faction": "red",
     "categories": ["melee"],
     "skills": [],
-    "families": ["demon", "human"]
+    "families": ["demon", "orkish"]
   },
   {
     "type": "unit",
@@ -437,7 +437,7 @@
     "faction": "red",
     "categories": ["poison"],
     "skills": ["scales"],
-    "families": ["demon", "giant", "human", "animal"]
+    "families": ["demon", "giant", "orkish", "animal"]
   },
   {
     "type": "unit",
