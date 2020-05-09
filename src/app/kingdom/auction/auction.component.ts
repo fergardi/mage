@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-auction',
@@ -15,7 +16,17 @@ import { fadeInOnEnterAnimation } from 'angular-animations';
 @UntilDestroy()
 export class AuctionComponent implements OnInit {
 
-  columns = ['name', 'gold'];
+  columns = ['name', 'bid', 'timestamp'];
+  filters: any = {
+    name: {
+      type: 'text',
+      value: '',
+    },
+    timestamp: {
+      type: 'timestamp',
+      value: null,
+    }
+  };
   data: MatTableDataSource<any> = null;
 
   constructor(
@@ -30,12 +41,25 @@ export class AuctionComponent implements OnInit {
       this.data = new MatTableDataSource(auctions);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
+      this.data.filterPredicate = this.createFilter();
+      this.applyFilter();
     })
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.data.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    this.data.filter = JSON.stringify({
+      name: this.filters.name.value,
+      timestamp: this.filters.timestamp.value,
+    });
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data: any, filter: string): boolean {
+      let filters = JSON.parse(filter);
+      return data.join.name.toLowerCase().includes(filters.name)
+      && (!filters.timestamp || moment(data.timestamp.toMillis()).isBetween(moment(filters.timestamp).startOf('day'), moment(filters.timestamp).endOf('day'), 'days', '[]'));
+    }
+    return filterFunction;
   }
 
 }

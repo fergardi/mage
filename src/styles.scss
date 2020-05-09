@@ -116,6 +116,23 @@ body {
   .mat-row::after, .mat-header-row::after, .mat-footer-row::after {
     display: none;
   }
+  .table-header {
+    padding: 5px;
+  }
+  .table-filter {
+    display: block;
+    width: 100%;
+  }
+  .mat-header-cell {
+    flex-wrap: wrap;
+  }
+  .mat-cell {
+    font-size: 12px !important;
+    padding: 0px !important;
+  }
+  .mat-list-base {
+    width: 100%;
+  }
 }
 
 .flag-menu {
@@ -182,7 +199,9 @@ body {
   transition: transform .3s ease;
 }
 .cdk-drag-preview {
-  @extend .cdk-drag-placeholder;
+  opacity: 0.5;
+  box-sizing: border-box;
+  border: 2px dashed rgba(255, 255, 255, 0.12);
   display: block;
   height: 60px;
   width: 100%;

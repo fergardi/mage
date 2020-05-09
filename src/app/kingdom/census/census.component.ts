@@ -15,7 +15,13 @@ import { fadeInOnEnterAnimation } from 'angular-animations';
 @UntilDestroy()
 export class CensusComponent implements OnInit {
 
-  columns = ['name', 'radius'];
+  columns = ['position', 'name', 'radius'];
+  filters: any = {
+    name: {
+      type: 'text',
+      value: '',
+    }
+  };
   data: MatTableDataSource<any> = null;
 
   constructor(
@@ -30,12 +36,23 @@ export class CensusComponent implements OnInit {
       this.data = new MatTableDataSource(kingdoms.map((kingdom, index) => { return { ...kingdom, position: index + 1 } }));
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
+      this.data.filterPredicate = this.createFilter();
+      this.applyFilter();
     })
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.data.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    this.data.filter = JSON.stringify({
+      name: this.filters.name.value
+    });
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data: any, filter: string): boolean {
+      let filters = JSON.parse(filter);
+      return data.name.toLowerCase().includes(filters.name)
+    }
+    return filterFunction;
   }
 
 }

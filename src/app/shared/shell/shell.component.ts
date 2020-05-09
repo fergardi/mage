@@ -91,4 +91,8 @@ export class ShellComponent implements OnInit {
     this.store.dispatch(new LogoutAction());
   }
 
+  getFlag() {
+    return this.langs.find(l => l.lang === this.translateService.currentLang)?.image;
+  }
+
 }

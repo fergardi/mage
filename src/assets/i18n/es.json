@@ -98,7 +98,10 @@
       "faction": "Facción",
       "from": "De",
       "subject": "Asunto",
-      "timestamp": "Fecha"
+      "timestamp": "Fecha",
+      "bid": "Puja",
+      "radius": "Poder",
+      "position": "Posición"
     }
   },
   "world": {
@@ -138,7 +141,7 @@
       "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha importancia en las batallas."
     },
     "auction": {
-      "name": "Subasta",
+      "name": "Mercado Negro",
       "description": "Comercia con otros reinos"
     },
     "sorcery": {

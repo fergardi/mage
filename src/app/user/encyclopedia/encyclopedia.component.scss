@@ -1,24 +1,5 @@
 .user-encyclopedia {
   padding: 10px;
-  .table-header {
-    padding: 5px;
-  }
-  .table-filter {
-    display: block;
-    width: 100%;
-  }
-  ::ng-deep .mat-header-cell {
-    flex-wrap: wrap;
-  }
-  .mat-cell {
-    font-size: 12px;
-  }
-  .mat-list-base {
-    width: 100%;
-  }
-  .mat-cell {
-    padding: 0 !important;
-  }
   .mat-column-name {
     min-width: 25% !important;
   }

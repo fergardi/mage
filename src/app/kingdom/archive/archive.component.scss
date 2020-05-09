@@ -9,22 +9,8 @@
       padding: 0px;
     }
   }
-  .table-header {
-    padding: 5px;
-  }
-  .table-filter {
-    display: block;
-    width: 100%;
-  }
   .mat-checkbox {
     margin-left: 7px;
-  }
-  ::ng-deep .mat-header-cell {
-    flex-wrap: wrap;
-  }
-  .mat-cell {
-    font-size: 12px;
-    padding: 5px !important;
   }
   .letter-form {
     .mat-form-field {

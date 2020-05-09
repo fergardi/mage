@@ -12,24 +12,32 @@
     </mat-card-content>
 
     <mat-card-content>
-      <div fxLayout="row" fxLayoutAlign="flex-end">
-        <mat-form-field>
-          <mat-label>{{ 'table.filter.search' | translate }}</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'table.filter.search' | translate }}">
-        </mat-form-field>
-      </div>
 
       <table mat-table matSort [dataSource]="data">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
-          <mat-cell *matCellDef="let kingdom" [attr.data-label]="column">
-            <span *ngIf="column !== 'name'; else name">
+          <mat-header-cell class="table-header" *matHeaderCellDef>
+
+            <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
+
+            <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
+              <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off"/>
+              <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let kingdom" [attr.data-label]="'table.column.' + column | translate">
+
+            <span *ngIf="column !== 'name'">
               {{ kingdom[column] }}
             </span>
-            <ng-template #name>
+
+            <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item>
-                  <div mat-list-avatar [matBadge]="kingdom.position | short" matBadgePosition="above before">
+                  <div mat-list-avatar>
                     <img mat-list-avatar [src]="kingdom.join.image" alt="{{ kingdom.join.name | translate }}"/>
                   </div>
                   <div mat-line>{{ kingdom.name | translate }}</div>
@@ -37,11 +45,12 @@
                 </mat-list-item>
               </mat-list>
             </ng-template>
+
           </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: columns;" class="item-row"></mat-row>
+        <mat-row *matRowDef="let kingdom; columns: columns" class="item-row"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

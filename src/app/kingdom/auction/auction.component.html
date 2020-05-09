@@ -12,21 +12,38 @@
     </mat-card-content>
 
     <mat-card-content>
-      <div fxLayout="row" fxLayoutAlign="flex-end">
-        <mat-form-field>
-          <mat-label>{{ 'table.filter.search' | translate }}</mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="{{ 'table.filter.search' | translate }}">
-        </mat-form-field>
-      </div>
 
       <table mat-table matSort [dataSource]="data">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</mat-header-cell>
-          <mat-cell *matCellDef="let auction" [attr.data-label]="column">
-            <span *ngIf="column !== 'name'; else name">
+          <mat-header-cell class="table-header" *matHeaderCellDef>
+
+            <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
+
+            <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
+              <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off"/>
+              <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'timestamp'">
+              <input matInput [(ngModel)]="filters[column].value" [matDatepicker]="timestamp" disabled (dateChange)="applyFilter()">
+              <mat-datepicker-toggle matSuffix [for]="timestamp"></mat-datepicker-toggle>
+              <mat-datepicker #timestamp disabled="false"></mat-datepicker>
+              <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=null; applyFilter()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let auction" [attr.data-label]="'table.column.' + column | translate">
+
+            <span *ngIf="column === 'bid'">
               {{ auction[column] }}
             </span>
-            <ng-template #name>
+
+            <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item>
                   <div mat-list-avatar [matBadge]="auction.quantity | short" matBadgePosition="above before">
@@ -37,11 +54,16 @@
                 </mat-list-item>
               </mat-list>
             </ng-template>
+
+            <ng-template [ngIf]="column === 'timestamp'">
+              {{ auction[column]?.toMillis() | date }}
+            </ng-template>
+
           </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: columns;" class="item-row"></mat-row>
+        <mat-row *matRowDef="let letter; columns: columns" class="item-row"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

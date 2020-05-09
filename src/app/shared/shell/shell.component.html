@@ -18,12 +18,12 @@
       <span class="fill-space"></span>
       <!-- language -->
       <button mat-icon-button [matMenuTriggerFor]="language">
-        {{ translateService.currentLang }}
+        <img [src]="getFlag()"/>
       </button>
       <mat-menu #language="matMenu">
         <a mat-menu-item *ngFor="let l of langs" [ngClass]="{ 'active': translateService.currentLang === l.lang }" (click)="translateService.use(l.lang)" class="flag-menu">
           <img [src]="l.image"/>
-          <span>{{ l.lang }}</span>
+          <span>{{ l.lang.toString().toUpperCase() }}</span>
         </a>
       </mat-menu>
     </mat-toolbar>
