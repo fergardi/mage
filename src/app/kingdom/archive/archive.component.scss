@@ -17,6 +17,9 @@
       width: 100%;
     }
   }
+  .mat-card-content + .mat-card-content {
+    margin-top: 16px;
+  }
 }
 
 // responsive custom table

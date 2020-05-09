@@ -64,4 +64,16 @@ export class CityComponent implements OnInit {
     })
   }
 
+  openTaxDialog() {
+
+  }
+
+  openChargeDialog() {
+
+  }
+
+  openExploreDialog() {
+
+  }
+
 }

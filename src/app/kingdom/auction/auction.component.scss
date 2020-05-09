@@ -1,3 +1,6 @@
 .kingdom-auction {
   padding: 10px;
+  .mat-card-content + .mat-card-content {
+    margin-top: 16px;
+  }
 }

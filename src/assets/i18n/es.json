@@ -118,9 +118,20 @@
       "success": "Edificios construidos correctamente",
       "error": "Ha ocurrido un error al construir edificios"
     },
+    "leadership": {
+      "name": "Liderazgo",
+      "description": "TODO",
+      "help": "TODO"
+    },
+    "guard": {
+      "name": "Guardia",
+      "description": "TODO",
+      "help": "TODO"
+    },
     "census": {
       "name": "Censo",
-      "description": "Conoce a tus enemigos"
+      "description": "Conoce a tus enemigos",
+      "help": "TODO"
     },
     "army": {
       "name": "Ejército",
@@ -142,7 +153,8 @@
     },
     "auction": {
       "name": "Mercado Negro",
-      "description": "Comercia con otros reinos"
+      "description": "Comercia con otros reinos",
+      "help": "TODO"
     },
     "sorcery": {
       "name": "Magia",
@@ -152,13 +164,13 @@
       "success": "Los cambios de tus hechizos se han guardado.",
       "error": "Ha ocurrido un problema al gestionar tus hechizos."
     },
-    "sorcery-attack": {
-      "name": "Ataque mágico",
+    "arcanism": {
+      "name": "Arcanismo",
       "description": "Organiza tus artimañas ofensivas",
       "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
     },
-    "sorcery-defense": {
-      "name": "Defensa mágica",
+    "protection": {
+      "name": "Protección",
       "description": "Organiza tus artimañas defensivas",
       "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
     },
@@ -184,7 +196,7 @@
     },
     "tavern": {
       "name": "Taberna",
-      "description": "Entrena a tus héroes",
+      "description": "Asigna a tus héroes",
       "help": "TODO"
     },
     "archive": {
@@ -222,7 +234,8 @@
     },
     "emporium": {
       "name": "Emporio",
-      "description": "Invierte tus gemas"
+      "description": "Invierte tus gemas",
+      "help": "TODO"
     },
     "build": {
       "name": "Construcción",
@@ -349,7 +362,8 @@
       "troops": "Tropas",
       "potions": "Pociones",
       "charms": "Hechizos",
-      "buildings": "Edificios"
+      "buildings": "Edificios",
+      "turns": "Turnos"
     }
   },
   "location": {
