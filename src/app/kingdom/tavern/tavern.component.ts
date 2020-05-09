@@ -8,7 +8,7 @@ import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 
-enum AssignmentType {
+export enum ContractAssignmentType {
   'contractNone', 'contractAttack', 'contractDefense',
 }
 
@@ -37,9 +37,9 @@ export class TavernComponent implements OnInit {
   ngOnInit() {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/contracts`, 'heroes', 'id', 'id').pipe(untilDestroyed(this)).subscribe(contracts => {
-      this.kingdomContracts = contracts.filter(contract => contract.assignment === AssignmentType.contractNone || !contract.assignment);
-      this.attackContracts = contracts.filter(contract => contract.assignment === AssignmentType.contractAttack);
-      this.defenseContracts = contracts.filter(contract => contract.assignment === AssignmentType.contractDefense);
+      this.kingdomContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.contractNone || !contract.assignment);
+      this.attackContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.contractAttack);
+      this.defenseContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.contractDefense);
     });
   }
 

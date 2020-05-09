@@ -54,6 +54,7 @@ export class EncyclopediaComponent implements OnInit {
       this.cacheService.getStructures(),
       this.cacheService.getHeroes(),
       this.cacheService.getResources(),
+      this.cacheService.getFamilies(),
     ]);
     data = data.reduce((a, b) => a.concat(b), []);
     this.data = new MatTableDataSource(data);

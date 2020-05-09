@@ -74,9 +74,9 @@
   {
     "type": "family",
     "faction": "grey",
-    "id": "orc",
-    "name": "family.orc.name",
-    "description": "family.orc.description",
-    "image": "/assets/images/families/orc.png"
+    "id": "orkish",
+    "name": "family.orkish.name",
+    "description": "family.orkish.description",
+    "image": "/assets/images/families/orkish.png"
   }
 ]

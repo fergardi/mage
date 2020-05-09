@@ -2,14 +2,7 @@
   {
     "type": "location",
     "faction": "grey",
-    "id": "witch",
-    "name": "location.witch.name",
-    "description": "location.witch.description",
-    "image": "/assets/images/locations/witch.png"
-  },
-  {
-    "type": "location",
-    "faction": "grey",
+    "families": ["orkish"],
     "id": "cave",
     "name": "location.cave.name",
     "description": "location.cave.description",
@@ -18,14 +11,7 @@
   {
     "type": "location",
     "faction": "grey",
-    "id": "stronghold",
-    "name": "location.stronghold.name",
-    "description": "location.stronghold.description",
-    "image": "/assets/images/locations/stronghold.png"
-  },
-  {
-    "type": "location",
-    "faction": "grey",
+    "families": ["undead"],
     "id": "graveyard",
     "name": "location.graveyard.name",
     "description": "location.graveyard.description",
@@ -34,6 +20,7 @@
   {
     "type": "location",
     "faction": "grey",
+    "families": ["golem"],
     "id": "dungeon",
     "name": "location.dungeon.name",
     "description": "location.dungeon.description",
@@ -42,46 +29,7 @@
   {
     "type": "location",
     "faction": "grey",
-    "id": "sawmill",
-    "name": "location.sawmill.name",
-    "description": "location.sawmill.description",
-    "image": "/assets/images/locations/sawmill.png"
-  },
-  {
-    "type": "location",
-    "faction": "grey",
-    "id": "treasure-map",
-    "name": "location.treasure-map.name",
-    "description": "location.treasure-map.description",
-    "image": "/assets/images/locations/treasure.png"
-  },
-  {
-    "type": "location",
-    "faction": "grey",
-    "id": "battle",
-    "name": "location.battle.name",
-    "description": "location.battle.description",
-    "image": "/assets/images/locations/battle.png"
-  },
-  {
-    "type": "location",
-    "faction": "grey",
-    "id": "tower",
-    "name": "location.tower.name",
-    "description": "location.tower.description",
-    "image": "/assets/images/locations/tower.png"
-  },
-  {
-    "type": "location",
-    "faction": "grey",
-    "id": "lumberjack",
-    "name": "location.lumberjack.name",
-    "description": "location.lumberjack.description",
-    "image": "/assets/images/locations/lumberjack.png"
-  },
-  {
-    "type": "location",
-    "faction": "grey",
+    "families": ["elemental"],
     "id": "mine",
     "name": "location.mine.name",
     "description": "location.mine.description",
@@ -90,25 +38,55 @@
   {
     "type": "location",
     "faction": "grey",
-    "id": "blacksmith",
-    "name": "location.blacksmith.name",
-    "description": "location.blacksmith.description",
-    "image": "/assets/images/locations/blacksmith.png"
-  },
-  {
-    "type": "location",
-    "faction": "grey",
-    "id": "shipwreck",
-    "name": "location.shipwreck.name",
-    "description": "location.shipwreck.description",
-    "image": "/assets/images/locations/shipwreck.png"
-  },
-  {
-    "type": "location",
-    "faction": "grey",
+    "families": ["animal"],
     "id": "forest",
     "name": "location.forest.name",
     "description": "location.forest.description",
     "image": "/assets/images/locations/forest.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["human"],
+    "id": "cathedral",
+    "name": "location.cathedral.name",
+    "description": "location.cathedral.description",
+    "image": "/assets/images/locations/cathedral.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["giant"],
+    "id": "mountain",
+    "name": "location.mountain.name",
+    "description": "location.mountain.description",
+    "image": "/assets/images/locations/mountain.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["demon"],
+    "id": "volcano",
+    "name": "location.volcano.name",
+    "description": "location.volcano.description",
+    "image": "/assets/images/locations/volcano.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["reptile"],
+    "id": "lake",
+    "name": "location.lake.name",
+    "description": "location.lake.description",
+    "image": "/assets/images/locations/lake.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["dragon"],
+    "id": "nest",
+    "name": "location.nest.name",
+    "description": "location.nest.description",
+    "image": "/assets/images/locations/nest.png"
   }
 ]

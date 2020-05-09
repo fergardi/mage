@@ -13,6 +13,8 @@ export enum CollectionType {
   'heroes' = 'heroes',
   'resources' = 'resources',
   'items' = 'items',
+  'stores' = 'stores',
+  'locations' = 'locations',
 }
 
 @Injectable({
@@ -46,6 +48,10 @@ export class CacheService {
         return this.getResources();
       case CollectionType.items:
         return this.getItems();
+      case CollectionType.stores:
+        return this.getStores();
+      case CollectionType.locations:
+        return this.getLocations();
     }
   }
 
@@ -56,6 +62,15 @@ export class CacheService {
       localStorage.setItem(CollectionType.factions, JSON.stringify([...factions]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.factions));
+  }
+
+  async getStores() {
+    if (!localStorage.getItem(CollectionType.stores)) {
+      let snapshot = await this.angularFirestore.collection('stores').get().toPromise();
+      let stores = snapshot.docs.map(faction => faction.data());
+      localStorage.setItem(CollectionType.stores, JSON.stringify([...stores]));
+    }
+    return JSON.parse(localStorage.getItem(CollectionType.stores));
   }
 
   async getResources() {
@@ -153,6 +168,19 @@ export class CacheService {
       localStorage.setItem(CollectionType.families, JSON.stringify([...families]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.families));
+  }
+
+  async getLocations() {
+    if (!localStorage.getItem(CollectionType.locations)) {
+      let families = await this.getFamilies();
+      let snapshot = await this.angularFirestore.collection('locations').get().toPromise();
+      let locations = snapshot.docs.map(location => location.data());
+      locations.forEach(location => {
+        location.families = location.families.map(family => families.find(f => f.id === family));
+      });
+      localStorage.setItem(CollectionType.locations, JSON.stringify([...locations]));
+    }
+    return JSON.parse(localStorage.getItem(CollectionType.locations));
   }
 
   async getUnits() {

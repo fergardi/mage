@@ -6,22 +6,16 @@
     "id": "inn"
   },
   {
-    "image": "/assets/images/stores/stable.png",
-    "name": "store.stable.name",
-    "description": "store.stable.description",
-    "id": "stable"
-  },
-  {
     "image": "/assets/images/stores/alchemist.png",
     "name": "store.alchemist.name",
     "description": "store.alchemist.description",
     "id": "alchemist"
   },
   {
-    "image": "/assets/images/stores/camp.png",
-    "name": "store.camp.name",
-    "description": "store.camp.description",
-    "id": "camp"
+    "image": "/assets/images/stores/mercenary.png",
+    "name": "store.mercenary.name",
+    "description": "store.mercenary.description",
+    "id": "mercenary"
   },
   {
     "image": "/assets/images/stores/merchant.png",

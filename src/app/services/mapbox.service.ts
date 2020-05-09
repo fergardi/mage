@@ -9,16 +9,16 @@ import { take } from 'rxjs/operators';
 import { MarkerComponent } from '../world/marker/marker.component';
 import { PopupComponent } from '../world/popup/popup.component';
 
-export const enum MarkerType {
-  'kingdom', 'artifact', 'shop', 'quest'
+export enum MarkerType {
+  'kingdom', 'shop', 'quest',
 }
 
 export enum StoreType {
-  'inn', 'stable', 'camp', 'alchemist', 'sorcerer', 'merchant',
+  'inn', 'mercenary', 'alchemist', 'sorcerer', 'merchant',
 }
 
 export enum LocationType {
-  'graveyard'
+  'cathedral', 'cave', 'dungeon', 'forest', 'graveyard', 'lake', 'mine', 'mountain', 'nest', 'volcano'
 }
 
 interface Marker {
@@ -56,8 +56,7 @@ export class MapboxService {
       attributionControl: false,
       // interactive: false
     });
-    // this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'bottom-right');
-    // this.map.addControl(new MapboxGLButtonControl('scroll-unfurled', 'Artifact', this.addArtifact.bind(this)), 'bottom-right');
+    this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('book', 'Shop', this.addShop.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('capitol', 'Quest', this.addQuest.bind(this)), 'bottom-right');
     // this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addUser.bind(this)), 'bottom-right');
@@ -116,37 +115,15 @@ export class MapboxService {
         lng: $event.lngLat.lng,
         name: 'Bot'
       })
-      this.firebaseService.addElementsToCollection(`kingdoms/${ref['id']}/troops`, [{
-        quantity: 20000,
-        id: 'skeleton'
-      }]);
-    });
-  }
-
-  addArtifact(): void {
-    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      let items = ['wooden-chest', 'golden-chest', 'magical-chest', 'stone-chest'];
-      let ref = await this.firebaseService.addElementToCollection('artifacts', {
-        item: items[Math.floor(Math.random() * items.length)],
-        lat: $event.lngLat.lat,
-        lng: $event.lngLat.lng
-      });
-      this.firebaseService.addElementsToCollection(`artifacts/${ref['id']}/rewards`, [{
-        id: 'gold',
-        quantity: [1000, 100000]
-      }, {
-        id: 'people',
-        quantity: [100, 1000]
-      }, {
-        id: 'mana',
-        quantity: [1000, 100000]
-      }]);
+      this.firebaseService.addElementsToCollection(`kingdoms/${ref['id']}/troops`, [
+        { id: 'skeleton', quantity: 20000 },
+      ]);
     });
   }
 
   addShop(): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      let stores: StoreType[] = [StoreType.sorcerer];
+      let stores: StoreType[] = [StoreType.inn, StoreType.mercenary, StoreType.alchemist, StoreType.sorcerer, StoreType.merchant];
       let store = stores[Math.floor(Math.random() * stores.length)];
       let ref = await this.firebaseService.addElementToCollection('shops', {
         store: StoreType[store],
@@ -155,51 +132,32 @@ export class MapboxService {
       });
       switch (store) {
         case StoreType.inn:
-          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/contracts`, [{
-            gold: 23000,
-            level: 2,
-            id: 'dragon-rider'
-          }]);
+          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/contracts`, [
+            { id: 'dragon-rider', gold: 23000,level: 2 },
+          ]);
           break;
-        case StoreType.camp:
-          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/troops`, [{
-            gold: 1,
-            quantity: 20000,
-            id: 'skeleton'
-          }]);
+        case StoreType.mercenary:
+          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/troops`, [
+            { id: 'skeleton', gold: 1, quantity: 20000 },
+          ]);
           break;
         case StoreType.merchant:
-          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [{
-            gold: 1000000,
-            quantity: 1,
-            id: 'magical-chest'
-          }, {
-            gold: 1000000,
-            quantity: 2,
-            id: 'stone-chest'
-          }]);
+          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [
+            { id: 'magical-chest', gold: 1000000, quantity: 1 },
+            { id: 'stone-chest', gold: 1000000, quantity: 2 },
+          ]);
           break;
         case StoreType.alchemist:
-          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [{
-            gold: 1000000,
-            quantity: 1,
-            id: 'love-potion'
-          }, {
-            gold: 1000000,
-            quantity: 2,
-            id: 'mana-potion'
-          }, {
-            gold: 1000000,
-            quantity: 2,
-            id: 'strength-potion'
-          }]);
+          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [
+            { id: 'love-potion', gold: 1000000, quantity: 1 },
+            { id: 'mana-potion', gold: 1000000, quantity: 2 },
+            { id: 'strength-potion', gold: 1000000, quantity: 2 },
+          ]);
           break;
         case StoreType.sorcerer:
-          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/charms`, [{
-            gold: 1000000,
-            level: 1,
-            id: 'summon-golden-dragon'
-          }]);
+          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/charms`, [
+            { id: 'summon-golden-dragon', gold: 1000000, level: 1 },
+          ]);
           break;
       }
     });
@@ -207,7 +165,7 @@ export class MapboxService {
 
   addQuest(): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      let locations: LocationType[] = [LocationType.graveyard];
+      let locations: LocationType[] = [LocationType.cathedral, LocationType.cave, LocationType.dungeon, LocationType.forest, LocationType.graveyard, LocationType.lake, LocationType.mine, LocationType.mountain, LocationType.nest, LocationType.volcano];
       let location = locations[Math.floor(Math.random() * locations.length)];
       let ref = await this.firebaseService.addElementToCollection('quests', {
         description: '',
@@ -217,25 +175,119 @@ export class MapboxService {
       });
       switch (location) {
         case LocationType.graveyard:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [{
-            id: 'skeleton',
-            quantity: 2432576
-          }, {
-            id: 'lich',
-            quantity: 543267
-          }]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/rewards`, [{
-            id: 'gold',
-            quantity: 1
-          }]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/contracts`, [{
-            id: 'dragon-rider',
-            level: 12
-          }]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [{
-            id: 'magical-chest',
-            quantity: 1
-          }]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+            { id: 'skeleton', quantity: 123123 },
+            { id: 'zombie', quantity: 123132 },
+            { id: 'lich', quantity: 123132 },
+            { id: 'bone-dragon', quantity: 3 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/contracts`, [
+            { id: 'necrophage', level: 1 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
+            { id: 'magical-chest', quantity: 1 },
+          ]);
+          break;
+        case LocationType.cathedral:
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+            { id: 'griffon', quantity: 123123 },
+            { id: 'knight', quantity: 123132 },
+            { id: 'paladin', quantity: 123132 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/contracts`, [
+            { id: 'commander', level: 1 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
+            { id: 'golden-chest', quantity: 1 },
+          ]);
+          break;
+        case LocationType.cave:
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+            { id: 'gnoll', quantity: 123123 },
+            { id: 'orc', quantity: 123132 },
+            { id: 'goblin', quantity: 123132 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
+            { id: 'rattle', quantity: 2 },
+          ]);
+          break;
+        case LocationType.dungeon:
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+            { id: 'wood-golem', quantity: 123123 },
+            { id: 'stone-golem', quantity: 123132 },
+            { id: 'crystal-golem', quantity: 123132 },
+            { id: 'iron-golem', quantity: 123132 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
+            { id: 'animal-fang', quantity: 2 },
+          ]);
+          break;
+        case LocationType.forest:
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+            { id: 'bat', quantity: 123123 },
+            { id: 'frog', quantity: 123132 },
+            { id: 'rat', quantity: 123132 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
+            { id: 'voodoo-doll', quantity: 2 },
+          ]);
+          break;
+        case LocationType.lake:
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+            { id: 'basilisk', quantity: 123123 },
+            { id: 'wyvern', quantity: 123132 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
+            { id: 'golden-idol', quantity: 1 },
+          ]);
+          break;
+        case LocationType.mine:
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+            { id: 'lightning-elemental', quantity: 123123 },
+            { id: 'ice-elemental', quantity: 123132 },
+            { id: 'fire-elemental', quantity: 123132 },
+            { id: 'earth-elemental', quantity: 123132 },
+            { id: 'light-elemental', quantity: 123132 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/contracts`, [
+            { id: 'elementalist', level: 6 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
+            { id: 'earth-orb', quantity: 1 },
+            { id: 'fire-orb', quantity: 1 },
+          ]);
+          break;
+        case LocationType.mountain:
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+            { id: 'yeti', quantity: 123123 },
+            { id: 'cyclop', quantity: 123132 },
+            { id: 'ogre', quantity: 123132 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
+            { id: 'powder-barrel', quantity: 1 },
+          ]);
+          break;
+        case LocationType.nest:
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+            { id: 'blue-dragon', quantity: 1 },
+            { id: 'red-dragon', quantity: 1 },
+            { id: 'golden-dragon', quantity: 1 },
+            { id: 'white-dragon', quantity: 1 },
+            { id: 'baby-dragon', quantity: 1 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
+            { id: 'dragon-egg', quantity: 1 },
+          ]);
+          break;
+        case LocationType.volcano:
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+            { id: 'demon', quantity: 666 },
+            { id: 'devil', quantity: 666 },
+            { id: 'wendigo', quantity: 666 },
+          ]);
+          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
+            { id: 'valhalla-horn', quantity: 1 },
+          ]);
           break;
       }
     });

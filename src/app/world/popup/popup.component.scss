@@ -10,6 +10,10 @@
   .mat-list-item {
     height: 64px;
   }
+  .mat-card-subtitle {
+    display: flex;
+    align-items: center;
+  }
   ::ng-deep .mat-list-text {
     line-height: 1.25;
   }

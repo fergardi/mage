@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TroopAssignmentType } from '../../kingdom/army/army.component';
+import { ContractAssignmentType } from 'src/app/kingdom/tavern/tavern.component';
 
 @Component({
   selector: 'app-popup',
@@ -42,7 +43,7 @@ export class PopupComponent implements OnInit {
     this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/troops`, 'units', 'id', 'id', ref => ref.where('assignment', '==', TroopAssignmentType.troopDefense)).pipe(untilDestroyed(this)).subscribe(troops => {
       this.kingdomTroops = troops.sort((a, b) => a.sort - b.sort);
     });
-    this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/contracts`, 'heroes', 'id', 'id').pipe(untilDestroyed(this)).subscribe(contracts => {
+    this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/contracts`, 'heroes', 'id', 'id', ref => ref.where('assignment', '==', ContractAssignmentType.contractDefense)).pipe(untilDestroyed(this)).subscribe(contracts => {
       this.kingdomContracts = contracts;
     });
     // quest

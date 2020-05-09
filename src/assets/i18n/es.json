@@ -353,14 +353,45 @@
     }
   },
   "location": {
+    "cave": {
+      "name": "Cueva húmeda",
+      "description": "Habitada por <orkish>"
+    },
     "graveyard": {
-      "name": "Cementerio encantado",
-      "description": "Misión"
-    }
-  },
-  "quest": {
-    "graveyard": {
-      "text1": "Un grupo de NoMuertos está asolando nuestras casas... Se ocultan en el cementerio local. Por favor, ¡ayúdanos!"
+      "name": "Cementerio terrorífico",
+      "description": "Infestada de <undead>"
+    },
+    "dungeon": {
+      "name": "Mazmorra olvidada",
+      "description": "Protegida por <golem>"
+    },
+    "mine": {
+      "name": "Mina profunda",
+      "description": "Hospedado por <elemental>"
+    },
+    "forest": {
+      "name": "Bosque salvaje",
+      "description": "Arraigado de <animal>"
+    },
+    "cathedral": {
+      "name": "Catedral antigua",
+      "description": "Defendida por <human>"
+    },
+    "mountain": {
+      "name": "Montaña lejana",
+      "description": "Ocupada por <giant>"
+    },
+    "volcano": {
+      "name": "Volcán ardiente",
+      "description": "Corrompida por <demon>"
+    },
+    "lake": {
+      "name": "Lago misterioso",
+      "description": "Infestado de <reptile>"
+    },
+    "nest": {
+      "name": "Nido dracónido",
+      "description": "Alojado de <dragon>"
     }
   },
   "unit": {
