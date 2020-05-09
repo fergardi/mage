@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { take } from 'rxjs/operators';
 import { MarkerComponent } from '../world/marker/marker.component';
 import { PopupComponent } from '../world/popup/popup.component';
+import { TroopAssignmentType } from '../kingdom/army/army.component';
 
 export enum MarkerType {
   'kingdom', 'shop', 'quest',
@@ -113,10 +114,11 @@ export class MapboxService {
         faction: factions[Math.floor(Math.random() * factions.length)],
         lat: $event.lngLat.lat,
         lng: $event.lngLat.lng,
-        name: 'Bot'
+        name: 'Bot',
+        radius: 1500,
       })
       this.firebaseService.addElementsToCollection(`kingdoms/${ref['id']}/troops`, [
-        { id: 'skeleton', quantity: 20000 },
+        { id: 'skeleton', quantity: 20000, assignment: TroopAssignmentType.troopDefense },
       ]);
     });
   }

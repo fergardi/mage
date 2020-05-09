@@ -33,31 +33,44 @@ export class MapComponent implements OnInit {
       this.mapboxService.resize();
       this.angularFirestore.collection<any>('quests').stateChanges().subscribe(snapshotChanges => {
         snapshotChanges.forEach(async change => {
-          if (change.type === 'added') {
-            let quest = await this.firebaseService.selfJoin({ ...change.payload.doc.data(), fid: change.payload.doc.id });
-            this.mapboxService.addMarker(quest, MarkerType.quest, true, false, false);
-          }
-          if (change.type === 'removed') {
-            this.mapboxService.removeMarker(change.payload.doc.id);
+          switch (change.type) {
+            case 'added':
+              let quest = await this.firebaseService.selfJoin({ ...change.payload.doc.data(), fid: change.payload.doc.id });
+              this.mapboxService.addMarker(quest, MarkerType.quest, true, false, false);
+              break;
+            case 'removed':
+              this.mapboxService.removeMarker(change.payload.doc.id);
+              break;
           }
         })
       });
       this.angularFirestore.collection<any>('kingdoms').stateChanges().subscribe(snapshotChanges => {
         snapshotChanges.forEach(async change => {
-          if (change.type === 'added') {
-            let kingdom = await this.firebaseService.selfJoin({ ...change.payload.doc.data(), fid: change.payload.doc.id });
-            this.mapboxService.addMarker(kingdom, MarkerType.kingdom, true, kingdom.id === this.uid, false);
+          let kingdom = await this.firebaseService.selfJoin({ ...change.payload.doc.data(), fid: change.payload.doc.id });
+          switch (change.type) {
+            case 'added':
+              this.mapboxService.addMarker(kingdom, MarkerType.kingdom, true, kingdom.id === this.uid, false);
+              break;
+            case 'modified':
+              this.mapboxService.removeMarker(change.payload.doc.id);
+              this.mapboxService.addMarker(kingdom, MarkerType.kingdom, true, kingdom.id === this.uid, false);
+              break;
+            case 'removed':
+              this.mapboxService.removeMarker(change.payload.doc.id);
+              break;
           }
         })
       });
       this.angularFirestore.collection<any>('shops').stateChanges().subscribe(snapshotChanges => {
         snapshotChanges.forEach(async change => {
-          if (change.type === 'added') {
-            let shop = await this.firebaseService.selfJoin({ ...change.payload.doc.data(), fid: change.payload.doc.id });
-            this.mapboxService.addMarker(shop, MarkerType.shop, true, false, false);
-          }
-          if (change.type === 'removed') {
-            this.mapboxService.removeMarker(change.payload.doc.id);
+          switch (change.type) {
+            case 'added':
+              let shop = await this.firebaseService.selfJoin({ ...change.payload.doc.data(), fid: change.payload.doc.id });
+              this.mapboxService.addMarker(shop, MarkerType.shop, true, false, false);
+              break;
+            case 'removed':
+              this.mapboxService.removeMarker(change.payload.doc.id);
+              break;
           }
         })
       });

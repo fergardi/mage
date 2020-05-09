@@ -403,7 +403,7 @@
     "description": "item.bone-necklace.description",
     "id": "bone-necklace",
     "skills": [],
-    "families": ["orc"],
+    "families": ["orkish"],
     "categories": [],
     "units": [],
     "resources": [],

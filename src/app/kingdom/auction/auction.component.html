@@ -40,7 +40,7 @@
           <mat-cell *matCellDef="let auction" [attr.data-label]="'table.column.' + column | translate">
 
             <span *ngIf="column === 'bid'">
-              {{ auction[column] }}
+              {{ auction[column] | long }}
             </span>
 
             <ng-template [ngIf]="column === 'name'">
