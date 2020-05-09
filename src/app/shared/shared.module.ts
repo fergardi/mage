@@ -34,9 +34,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { ShellComponent } from './shell/shell.component';
 import { ShortPipe } from '../pipes/short.pipe';
-import { EnumPipe } from '../pipes/enum.pipe';
 import { IconPipe } from '../pipes/icon.pipe';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LongPipe } from '../pipes/long.pipe';
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
@@ -46,8 +46,8 @@ export function httpTranslateLoader(http: HttpClient) {
 const components = [
   ShellComponent,
   ShortPipe,
-  EnumPipe,
   IconPipe,
+  LongPipe,
 ];
 const modules = [
   CommonModule,

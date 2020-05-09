@@ -50,7 +50,7 @@
                     <img mat-list-avatar [src]="auction.join.image" alt="{{ auction.join.name | translate }}"/>
                   </div>
                   <div mat-line>{{ auction.join.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle">{{ auction.join.description | translate }}</div>
+                  <div mat-line class="mat-card-subtitle" [innerHTML]="auction.join.description | translate | icon:auction.join.skills:auction.join.categories:auction.join.families:auction.join.units:auction.join.resources:auction.join.spells"></div>
                 </mat-list-item>
               </mat-list>
             </ng-template>

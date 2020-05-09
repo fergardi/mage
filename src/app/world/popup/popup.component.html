@@ -15,12 +15,12 @@
       <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let contract of shopContracts">
-          <div mat-list-avatar [matBadge]="contract.level | number" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
           </div>
           <div mat-line>{{ contract.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ contract.join.description | translate }}</div>
-          <div mat-list-avatar [matBadge]="contract.gold" matBadgePosition="above before" >
+          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
+          <div mat-list-avatar [matBadge]="contract.gold | long" matBadgePosition="above before" >
             <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
           </div>
         </button>
@@ -32,13 +32,16 @@
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let troop of shopTroops">
-          <div mat-list-avatar [matBadge]="troop.quantity | number" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
           </div>
           <div mat-line>{{ troop.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ troop.join.category | translate }}</div>
-          <div mat-list-avatar [matBadge]="troop.gold" matBadgePosition="above before" >
+          <div mat-line class="mat-card-subtitle">
+            <img [matTooltip]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
+            <img [matTooltip]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
+            <img [matTooltip]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
+          </div>
+          <div mat-list-avatar [matBadge]="troop.gold | long" matBadgePosition="above before" >
             <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
           </div>
         </button>
@@ -50,12 +53,12 @@
       <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of shopArtifacts">
-          <div mat-list-avatar [matBadge]="artifact.quantity | number" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
             <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
           </div>
           <div mat-line>{{ artifact.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
-          <div mat-list-avatar [matBadge]="artifact.gold" matBadgePosition="above before" >
+          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells"></div>
+          <div mat-list-avatar [matBadge]="artifact.gold | long" matBadgePosition="above before" >
             <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
           </div>
         </button>
@@ -67,57 +70,60 @@
       <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let charm of shopCharms">
-          <div mat-list-avatar [matBadge]="charm.level | number" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="charm.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="charm.join.image" alt="{{ charm.join.name | translate }}"/>
           </div>
           <div mat-line>{{ charm.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ charm.join.description | translate }}</div>
-          <div mat-list-avatar [matBadge]="charm.gold" matBadgePosition="above before" >
+          <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:charm.join.spells"></div>
+          <div mat-list-avatar [matBadge]="charm.gold | long" matBadgePosition="above before" >
             <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
           </div>
         </button>
       </mat-action-list>
     </ng-template>
 
-    <!-- artifact rewards -->
-    <ng-template [ngIf]="artifactRewards.length">
-      <div matSubheader>{{ 'card.list.resources' | translate }}:</div>
-      <mat-action-list dense>
-        <button mat-list-item *ngFor="let resource of artifactRewards">
-          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
-            <img mat-list-avatar [src]="resource.join.image" alt="{{ resource.join.name | translate }}"/>
+    <!-- kingdom contracts -->
+    <ng-template [ngIf]="kingdomContracts.length">
+      <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
+      <mat-list dense>
+        <mat-list-item *ngFor="let contract of kingdomContracts">
+          <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
+            <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
           </div>
-          <div mat-line>{{ resource.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ resource.join.description | translate }}</div>
-        </button>
-      </mat-action-list>
+          <div mat-line>{{ contract.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
+        </mat-list-item>
+      </mat-list>
     </ng-template>
 
-    <!-- quest troops -->
+    <!-- kingdom troops -->
     <ng-template [ngIf]="kingdomTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
         <mat-list-item *ngFor="let troop of kingdomTroops">
-          <div mat-list-avatar [matBadge]="troop.quantity | number" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
           </div>
           <div mat-line>{{ troop.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ troop.join.category | translate }}</div>
+          <div mat-line class="mat-card-subtitle">
+            <img [matTooltip]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
+            <img [matTooltip]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
+            <img [matTooltip]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
+          </div>
         </mat-list-item>
       </mat-list>
     </ng-template>
 
     <!-- quest contracts -->
     <ng-template [ngIf]="questContracts.length">
-      <div matSubheader>{{ 'card.list.heroes' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
       <mat-list dense>
         <mat-list-item *ngFor="let contract of questContracts">
-          <div mat-list-avatar [matBadge]="contract.level | number" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
           </div>
           <div mat-line>{{ contract.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ contract.join.description | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
         </mat-list-item>
       </mat-list>
     </ng-template>
@@ -127,28 +133,17 @@
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
         <mat-list-item *ngFor="let troop of questTroops">
-          <div mat-list-avatar [matBadge]="troop.quantity | number" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
           </div>
           <div mat-line>{{ troop.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ troop.join.description | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ troop.join.category | translate }}</div>
+          <div mat-line class="mat-card-subtitle">
+            <img [matTooltip]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
+            <img [matTooltip]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
+            <img [matTooltip]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
+          </div>
         </mat-list-item>
       </mat-list>
-    </ng-template>
-
-    <!-- quest rewards -->
-    <ng-template [ngIf]="questRewards.length">
-      <div matSubheader>{{ 'card.list.resources' | translate }}:</div>
-      <mat-action-list dense>
-        <button mat-list-item *ngFor="let resource of questRewards">
-          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
-            <img mat-list-avatar [src]="resource.join.image" alt="{{ resource.join.name | translate }}"/>
-          </div>
-          <div mat-line>{{ resource.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ resource.join.description | translate }}</div>
-        </button>
-      </mat-action-list>
     </ng-template>
 
     <!-- quest artifacts -->
@@ -156,11 +151,11 @@
       <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of questArtifacts">
-          <div mat-list-avatar [matBadge]="artifact.quantity | number" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="artifact.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="artifact.join.image" alt="{{ artifact.join.name | translate }}"/>
           </div>
           <div mat-line>{{ artifact.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ artifact.join.description | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells"></div>
         </button>
       </mat-action-list>
     </ng-template>

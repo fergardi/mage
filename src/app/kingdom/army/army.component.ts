@@ -8,7 +8,7 @@ import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 
-enum AssignmentType {
+export enum TroopAssignmentType {
   'troopNone', 'troopAttack', 'troopDefense'
 }
 
@@ -38,9 +38,9 @@ export class ArmyComponent implements OnInit {
   ngOnInit() {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
-      this.kingdomTroops = troops.filter(troop => troop.assignment === AssignmentType.troopNone || !troop.assignment).sort((a, b) => a.sort - b.sort);
-      this.attackTroops = troops.filter(troop => troop.assignment === AssignmentType.troopAttack).sort((a, b) => a.sort - b.sort);
-      this.defenseTroops = troops.filter(troop => troop.assignment === AssignmentType.troopDefense).sort((a, b) => a.sort - b.sort);
+      this.kingdomTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopNone || !troop.assignment).sort((a, b) => a.sort - b.sort);
+      this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopAttack).sort((a, b) => a.sort - b.sort);
+      this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopDefense).sort((a, b) => a.sort - b.sort);
     });
   }
 
@@ -62,13 +62,13 @@ export class ArmyComponent implements OnInit {
       let refs = [];
       const db = this.angularFirestore.collection(`kingdoms/${this.uid}/troops`);
       this.kingdomTroops.forEach(kingdomTroop => {
-        refs.push({ ref: db.doc(kingdomTroop.fid), assignment: AssignmentType.troopNone });
+        refs.push({ ref: db.doc(kingdomTroop.fid), assignment: TroopAssignmentType.troopNone });
       });
       this.attackTroops.forEach(attackTroop => {
-        refs.push({ ref: db.doc(attackTroop.fid), assignment: AssignmentType.troopAttack });
+        refs.push({ ref: db.doc(attackTroop.fid), assignment: TroopAssignmentType.troopAttack });
       });
       this.defenseTroops.forEach(defenseTroop => {
-        refs.push({ ref: db.doc(defenseTroop.fid), assignment: AssignmentType.troopDefense });
+        refs.push({ ref: db.doc(defenseTroop.fid), assignment: TroopAssignmentType.troopDefense });
       });
       const batch = this.angularFirestore.firestore.batch();
       refs.forEach((r, index) => batch.update(r.ref.ref, { sort: index, assignment: r.assignment }))

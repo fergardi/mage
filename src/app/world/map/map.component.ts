@@ -33,12 +33,6 @@ export class MapComponent implements OnInit {
               this.mapboxService.addMarker(kingdom, MarkerType.kingdom, true, kingdom.id === user.uid, false);
             })
           });
-          this.firebaseService.leftJoin('artifacts', 'items', 'item', 'id').pipe(untilDestroyed(this)).subscribe(artifacts => {
-            this.mapboxService.clearMarkers(MarkerType.artifact);
-            artifacts.forEach(artifact => {
-              this.mapboxService.addMarker(artifact, MarkerType.artifact, true, false, false);
-            })
-          });
           this.firebaseService.leftJoin('shops', 'stores', 'store', 'id').pipe(untilDestroyed(this)).subscribe(shops => {
             this.mapboxService.clearMarkers(MarkerType.shop);
             shops.forEach(shop => {

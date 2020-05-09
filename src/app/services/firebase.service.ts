@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { map, first } from 'rxjs/operators';
 import { combineLatest, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -29,17 +29,20 @@ export class FirebaseService {
     element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
   }
 
-  leftJoin(left: string, right: string, from: string = 'id', to: string = 'id') {
+  leftJoin(left: string, right: string, from: string = 'id', to: string = 'id', query: QueryFn = undefined) {
     return combineLatest([
-      this.angularFirestore.collection<any>(left).valueChanges({ idField: 'fid' }), // select from firebase left join
+      query === undefined
+        ? this.angularFirestore.collection<any>(left).valueChanges({ idField: 'fid' }) // select * from left
+        : this.angularFirestore.collection<any>(left, query).valueChanges({ idField: 'fid' }), // select * from left where query
       CollectionType[right] === undefined
-        ? this.angularFirestore.collection<any>(right).valueChanges() // firebase
-        : this.cacheService.get(right) // localstorage
+        ? this.angularFirestore.collection<any>(right).valueChanges() // left join right on left.from = right.to
+        : this.cacheService.get(right) // left join cached right on left.from = right.to
     ]).pipe(
       map(([
         leftCollection,
         rightCollection,
       ]) => {
+        console.log(leftCollection)
         rightCollection.forEach(async element => {
           if (element.skills) this.joinObject(element, 'skills', await this.cacheService.getSkills());
           if (element.units) this.joinObject(element, 'units', await this.cacheService.getUnits());

@@ -56,11 +56,11 @@ export class MapboxService {
       attributionControl: false,
       // interactive: false
     });
-    this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'bottom-right');
-    this.map.addControl(new MapboxGLButtonControl('scroll-unfurled', 'Artifact', this.addArtifact.bind(this)), 'bottom-right');
+    // this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'bottom-right');
+    // this.map.addControl(new MapboxGLButtonControl('scroll-unfurled', 'Artifact', this.addArtifact.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('book', 'Shop', this.addShop.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('capitol', 'Quest', this.addQuest.bind(this)), 'bottom-right');
-    this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addUser.bind(this)), 'bottom-right');
+    // this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addUser.bind(this)), 'bottom-right');
   }
 
   addUser(): void {

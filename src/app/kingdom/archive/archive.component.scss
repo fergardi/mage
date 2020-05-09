@@ -9,8 +9,8 @@
       padding: 0px;
     }
   }
-  .mat-checkbox {
-    margin-left: 7px;
+  .mat-cell:first-of-type {
+    padding-left: 6px !important;
   }
   .letter-form {
     .mat-form-field {

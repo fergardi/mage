@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { TroopAssignmentType } from '../../kingdom/army/army.component';
 
 @Component({
   selector: 'app-popup',
@@ -15,11 +16,10 @@ export class PopupComponent implements OnInit {
   shopArtifacts: any[] = [];
   shopTroops: any[] = [];
   kingdomTroops: any[] = [];
-  artifactRewards: any[] = [];
+  kingdomContracts: any[] = [];
   shopCharms: any[] = [];
   questContracts: any[] = [];
   questTroops: any[] = [];
-  questRewards: any[] = [];
   questArtifacts: any[] = [];
 
   constructor(private firebaseService: FirebaseService) { }
@@ -39,19 +39,15 @@ export class PopupComponent implements OnInit {
       this.shopCharms = charms;
     });
     // kingdom
-    this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
-      this.kingdomTroops = troops;
+    this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/troops`, 'units', 'id', 'id', ref => ref.where('assignment', '==', TroopAssignmentType.troopDefense)).pipe(untilDestroyed(this)).subscribe(troops => {
+      this.kingdomTroops = troops.sort((a, b) => a.sort - b.sort);
     });
-    // artifact
-    this.firebaseService.leftJoin(`artifacts/${this.data.fid}/rewards`, 'resources', 'id', 'id').pipe(untilDestroyed(this)).subscribe(rewards => {
-      this.artifactRewards = rewards;
+    this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/contracts`, 'heroes', 'id', 'id').pipe(untilDestroyed(this)).subscribe(contracts => {
+      this.kingdomContracts = contracts;
     });
     // quest
     this.firebaseService.leftJoin(`quests/${this.data.fid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
       this.questTroops = troops;
-    });
-    this.firebaseService.leftJoin(`quests/${this.data.fid}/rewards`, 'resources', 'id', 'id').pipe(untilDestroyed(this)).subscribe(rewards => {
-      this.questRewards = rewards;
     });
     this.firebaseService.leftJoin(`quests/${this.data.fid}/contracts`, 'heroes', 'id', 'id').pipe(untilDestroyed(this)).subscribe(contracts => {
       this.questContracts = contracts;
