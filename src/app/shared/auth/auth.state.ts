@@ -33,7 +33,7 @@ export class AuthState implements NgxsOnInit {
     this.angularFireAuth.authState.subscribe(async user => {
       if (user) {
         await ctx.dispatch(new SetUserAction({ uid: user.uid })).toPromise();
-        this.router.navigate(['/world/map']);
+        // this.router.navigate(['/world/map']);
       }
     });
   }

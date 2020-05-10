@@ -101,21 +101,24 @@ export class SorceryComponent implements OnInit {
 
   openResearchDialog(charm: any): void {
     const dialogRef = this.dialog.open(ResearchComponent, {
-      width: '300px',
+      minWidth: '20%',
+      maxWidth: '80%',
       data: charm
     });
   }
 
   openConjureDialog(charm: any): void {
     const dialogRef = this.dialog.open(ConjureComponent, {
-      width: '300px',
+      minWidth: '20%',
+      maxWidth: '80%',
       data: charm
     });
   }
 
   openActivateDialog(artifact: any): void {
     const dialogRef = this.dialog.open(ActivateComponent, {
-      width: '300px',
+      minWidth: '20%',
+      maxWidth: '80%',
       data: artifact
     });
   }

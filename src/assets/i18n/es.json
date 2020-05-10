@@ -85,6 +85,18 @@
     "item": {
       "name": "Objecto",
       "description": ""
+    },
+    "attack": {
+      "name": "Ataque",
+      "description": ""
+    },
+    "pillage": {
+      "name": "Pillaje",
+      "description": ""
+    },
+    "siege": {
+      "name": "Asedio",
+      "description": ""
     }
   },
   "table": {
@@ -131,7 +143,16 @@
     "census": {
       "name": "Censo",
       "description": "Conoce a tus enemigos",
-      "help": "TODO"
+      "help": "TODO",
+      "protection": "Protegido",
+      "report": "Se ha enviado el reporte de batalla"
+    },
+    "battle": {
+      "name": "Batalla",
+      "description": "TODO",
+      "attack": "Atacar",
+      "cancel": "Cancelar",
+      "type": "Tipo de batalla"
     },
     "army": {
       "name": "Ejército",

@@ -20,6 +20,7 @@ import { RecruitComponent } from './army/recruit.component';
 import { DispelComponent } from './temple/dispel.component';
 import { ActivateComponent } from './sorcery/activate.component';
 import { ConjureComponent } from './sorcery/conjure.component';
+import { BattleComponent } from './census/battle.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { ConjureComponent } from './sorcery/conjure.component';
     DispelComponent,
     ActivateComponent,
     ConjureComponent,
+    BattleComponent,
   ],
   imports: [
     CommonModule,

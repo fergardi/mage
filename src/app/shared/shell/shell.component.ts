@@ -9,7 +9,6 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
 
@@ -62,7 +61,6 @@ export class ShellComponent implements OnInit {
     private router: Router,
     private firebaseService: FirebaseService,
     private mapboxService: MapboxService,
-    private notificationService: NotificationService,
     private store: Store,
   ) {
     // i18n

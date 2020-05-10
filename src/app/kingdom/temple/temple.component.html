@@ -17,7 +17,7 @@
       <mat-card-content>
         <div matSubheader>{{ 'card.list.gods' | translate }}:</div>
         <mat-action-list dense>
-          <button mat-list-item *ngFor="let god of kingdomGods" (click)="openOfferDialog(god)">
+          <button mat-list-item *ngFor="let god of kingdomGods" [disabled]="god.kingdom === uid" (click)="openOfferDialog(god)">
             <div mat-list-avatar matBadge="?" matBadgePosition="above before">
               <img mat-list-avatar [src]="god.image">
             </div>

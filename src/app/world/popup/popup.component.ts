@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TroopAssignmentType } from '../../kingdom/army/army.component';
-import { ContractAssignmentType } from 'src/app/kingdom/tavern/tavern.component';
 
 export enum PopupType {
   'kingdom', 'shop', 'quest',

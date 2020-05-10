@@ -13,7 +13,7 @@
 
     <mat-card-content>
 
-      <table mat-table matSort [dataSource]="data" matSortActive="radius" matSortDirection="asc" matSortDisableClear>
+      <table mat-table matSort [dataSource]="data" matSortActive="position" matSortDirection="asc" matSortDisableClear>
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>
 
@@ -30,11 +30,7 @@
 
           <mat-cell *matCellDef="let kingdom" [attr.data-label]="'table.column.' + column | translate">
 
-            <span *ngIf="column === 'position'">
-              {{ kingdom[column] | long }}
-            </span>
-
-            <span *ngIf="column === 'radius'">
+            <span *ngIf="column !== 'name'">
               {{ kingdom[column] | long }}
             </span>
 
@@ -46,6 +42,9 @@
                   </div>
                   <div mat-line>{{ kingdom.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle">{{ kingdom.join.name | translate }}</div>
+                  <div mat-list-avatar *ngIf="!canBeAttacked(kingdom)" [@fadeInOnEnter] [@fadeOutOnLeave]>
+                    <img mat-list-avatar src="/assets/images/resources/turn.png" [title]="'kingdom.census.protection' | translate">
+                  </div>
                 </mat-list-item>
               </mat-list>
             </ng-template>
@@ -53,8 +52,8 @@
           </mat-cell>
         </ng-container>
 
-        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-        <mat-row *matRowDef="let kingdom; columns: columns" class="item-row"></mat-row>
+        <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let kingdom; columns: columns" (click)="kingdom.fid !== uid && canBeAttacked(kingdom) ? openAttackDialog(kingdom) : null"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

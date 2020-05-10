@@ -70,8 +70,8 @@
             </ng-template>
           </ng-container>
 
-          <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-          <mat-row *matRowDef="let letter; columns: columns" class="item-row" (click)="openLetterDialog(letter)"></mat-row>
+          <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let letter; columns: columns" (click)="openLetterDialog(letter)"></mat-row>
         </table>
 
         <mat-toolbar>
