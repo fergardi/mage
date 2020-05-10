@@ -129,10 +129,12 @@ export class FirebaseService {
           let data = element.data();
           this.angularFirestore.collection<any>(`kingdoms/${user.uid}/${to}`).add({
             id: data.id,
-            quantity: 99,
-            turns: 50,
-            level: 3,
-            from: data.self ? user.uid : 'test'
+            quantity: 99, // artifacts
+            turns: 50, // charms
+            level: 3, // enchantments and contracts
+            from: data.self ? user.uid : 'test', // enchantments
+            max: 1000, // resources
+            balance: 123 // resources
           })
         });
       });

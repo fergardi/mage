@@ -18,6 +18,8 @@ import { BuildComponent } from './city/build.component';
 import { EmporiumComponent } from './emporium/emporium.component';
 import { RecruitComponent } from './army/recruit.component';
 import { DispelComponent } from './temple/dispel.component';
+import { ActivateComponent } from './sorcery/activate.component';
+import { ConjureComponent } from './sorcery/conjure.component';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import { DispelComponent } from './temple/dispel.component';
     EmporiumComponent,
     RecruitComponent,
     DispelComponent,
+    ActivateComponent,
+    ConjureComponent,
   ],
   imports: [
     CommonModule,

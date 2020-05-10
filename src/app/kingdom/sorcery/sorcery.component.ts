@@ -9,6 +9,8 @@ import { ResearchComponent } from './research.component';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { ConjureComponent } from './conjure.component';
+import { ActivateComponent } from './activate.component';
 
 enum AssignmentType {
   'artifactNone', 'artifactAttack', 'artifactDefense', 'charmNone', 'charmAttack', 'charmDefense'
@@ -46,12 +48,24 @@ export class SorceryComponent implements OnInit {
   ngOnInit() {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/artifacts`, 'items', 'id', 'id').pipe(untilDestroyed(this)).subscribe(artifacts => {
-      this.kingdomArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.artifactNone || !artifact.assignment).sort((a, b) => a.join.battle === b.join.battle ? 0 : a.join.battle ? -1 : 1);
+      this.kingdomArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.artifactNone || !artifact.assignment).sort((a, b) => {
+        return a.join.battle === b.join.battle
+          ? 0
+          : a.join.battle
+            ? -1
+            : 1
+      });
       this.attackArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.artifactAttack);
       this.defenseArtifacts = artifacts.filter(artifact => artifact.assignment === AssignmentType.artifactDefense);
     });
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(charms => {
-      this.kingdomCharms = charms.filter(charm => charm.assignment === AssignmentType.charmNone || !charm.assignment).sort((a, b) => a.join.battle - b.join.battle || a.turns - b.turns);
+      this.kingdomCharms = charms.filter(charm => charm.assignment === AssignmentType.charmNone || !charm.assignment).sort((a, b) => {
+        return (a.turns >= a.join.research) === (b.turns >= b.join.research)
+          ? 0
+          : (a.turns >= a.join.research)
+            ? -1
+            : 1
+      });
       this.attackCharms = charms.filter(charm => charm.assignment === AssignmentType.charmAttack);
       this.defenseCharms = charms.filter(charm => charm.assignment === AssignmentType.charmDefense);
     });
@@ -65,6 +79,7 @@ export class SorceryComponent implements OnInit {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
       this.angularFirestore.collection(`kingdoms/${this.uid}/artifacts`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
+      this.notificationService.success('kingdom.sorcery.success');
     } else {
       this.notificationService.warning('kingdom.sorcery.maximum');
     }
@@ -78,6 +93,7 @@ export class SorceryComponent implements OnInit {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
       this.angularFirestore.collection(`kingdoms/${this.uid}/charms`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
+      this.notificationService.success('kingdom.sorcery.success');
     } else {
       this.notificationService.warning('kingdom.sorcery.maximum')
     }
@@ -88,11 +104,20 @@ export class SorceryComponent implements OnInit {
       width: '300px',
       data: charm
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.angularFirestore.collection(`kingdoms/${this.uid}/charms/`).doc(charm.fid).update({ turns: result });
-      }
-    })
+  }
+
+  openConjureDialog(charm: any): void {
+    const dialogRef = this.dialog.open(ConjureComponent, {
+      width: '300px',
+      data: charm
+    });
+  }
+
+  openActivateDialog(artifact: any): void {
+    const dialogRef = this.dialog.open(ActivateComponent, {
+      width: '300px',
+      data: artifact
+    });
   }
 
 }

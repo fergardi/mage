@@ -52,6 +52,7 @@ export class TavernComponent implements OnInit {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
       this.angularFirestore.collection(`kingdoms/${this.uid}/contracts`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
+      this.notificationService.success('kingdom.tavern.success');
     } else {
       this.notificationService.warning('kingdom.tavern.maximum');
     }

@@ -123,7 +123,7 @@ export class ArchiveComponent implements OnInit {
         });
         await batch.commit();
         this.selection.clear();
-        this.notificationService.success('kingdom.letter.success');
+        this.notificationService.success('kingdom.letter.deleted');
       } catch (error) {
         this.notificationService.error('kingdom.letter.error');
       }
@@ -141,7 +141,7 @@ export class ArchiveComponent implements OnInit {
           timestamp: firestore.FieldValue.serverTimestamp(),
         });
         this.form.reset();
-        this.notificationService.success('kingdom.letter.success');
+        this.notificationService.success('kingdom.letter.sent');
       } catch (error) {
         console.error(error);
         this.notificationService.error('kingdom.letter.error');

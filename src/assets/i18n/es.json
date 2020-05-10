@@ -137,9 +137,9 @@
       "name": "Ejército",
       "description": "Gestiona tus tropas",
       "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente.",
-      "maximum": "No puedes superar el máximo permitido.",
-      "success": "Los cambios de tus tropas se han guardado.",
-      "error": "Ha ocurrido un problema al gestionar tus tropas."
+      "maximum": "No puedes superar el máximo permitido",
+      "success": "Los cambios de tus tropas se han guardado",
+      "error": "Ha ocurrido un problema al gestionar tus tropas"
     },
     "attack": {
       "name": "Ataque",
@@ -165,9 +165,8 @@
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
       "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás subir de nivel a tus hechizos, invirtiendo turnos en su investigación.",
-      "maximum": "No puedes superar el máximo permitido.",
-      "success": "Los cambios de tus hechizos se han guardado.",
-      "error": "Ha ocurrido un problema al gestionar tus hechizos."
+      "maximum": "No puedes superar el máximo permitido",
+      "success": "Tus hechizos y artefactos han sido asignados"
     },
     "arcanism": {
       "name": "Arcanismo",
@@ -202,7 +201,8 @@
     "tavern": {
       "name": "Taberna",
       "description": "Asigna a tus héroes",
-      "help": "TODO"
+      "help": "TODO",
+      "success": "Tus héroes han sido asignados"
     },
     "archive": {
       "name": "Archivo",
@@ -220,7 +220,8 @@
       "to": "Destinatario",
       "message": "Mensaje",
       "send": "Enviar",
-      "success": "Mensaje enviado o borrado correctamente",
+      "sent": "Mensaje enviado",
+      "deleted": "Mensajes borrados",
       "error": "Ha ocurrido un error al enviar o borrar el mensaje"
     },
     "temple": {
@@ -723,7 +724,7 @@
     },
     "necromancy-touch": {
       "name": "Toque de nigromancia",
-      "description": "Resucita tropas en <undead>"
+      "description": "Revive tropas caídas en <undead>"
     },
     "summon-wraith": {
       "name": "Invocar apariciones",

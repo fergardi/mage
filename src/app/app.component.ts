@@ -27,5 +27,6 @@ export class AppComponent {
     // this.firebaseService.loadCollectionIntoCollection('units', 'troops');
     // this.firebaseService.loadCollectionIntoCollection('spells', 'charms');
     // this.firebaseService.loadCollectionIntoCollection('spells', 'enchantments', ref => ref.where('type', '==', 'enchantment'));
+    // this.firebaseService.loadCollectionIntoCollection('resources', 'supplies');
   }
 }

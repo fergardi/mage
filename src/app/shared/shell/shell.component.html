@@ -63,7 +63,8 @@
           <div
             mat-list-avatar
             [title]="supply.join.name | translate"
-            [matBadge]="supply.quantity | short"
+            [matBadge]="(supply.quantity | short) + '/' + (supply.max | short)"
+            [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
             [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
             matBadgeOverlap="true">
             <img mat-list-avatar [src]="supply.join.image">
