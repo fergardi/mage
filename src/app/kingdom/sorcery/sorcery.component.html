@@ -3,7 +3,7 @@
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/magic.png" alt="{{ 'kingdom.sorcery.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/icons/sorcery.png" alt="{{ 'kingdom.sorcery.name' | translate }}">
         <mat-card-title >{{ 'kingdom.sorcery.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.sorcery.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -23,6 +23,9 @@
             <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells">
             </div>
             <mat-icon *ngIf="artifact.join.battle">open_with</mat-icon>
+            <div mat-list-avatar *ngIf="!artifact.join.battle" [matBadge]="1" matBadgePosition="above after">
+              <img mat-list-avatar src="/assets/images/resources/turn.png" alt="{{ 'resources.turn.name' | translate }}"/>
+            </div>
           </button>
         </mat-action-list>
 
@@ -38,7 +41,9 @@
               <mat-progress-bar [value]="charm.turns * 100 / charm.join.research"></mat-progress-bar>
             </div>
             <mat-icon *ngIf="charm.join.battle && charm.turns >= charm.join.research">open_with</mat-icon>
-            <mat-icon *ngIf="charm.turns < charm.join.research">search</mat-icon>
+            <div mat-list-avatar *ngIf="charm.turns < charm.join.research" [matBadge]="charm.turns" matBadgePosition="above after">
+              <img mat-list-avatar src="/assets/images/resources/turn.png" alt="{{ 'resources.turn.name' | translate }}"/>
+            </div>
           </button>
         </mat-action-list>
       </mat-card-content>

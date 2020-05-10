@@ -4,7 +4,7 @@
 
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/gift.png" alt="{{ 'kingdom.emporium.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/icons/emporium.png" alt="{{ 'kingdom.emporium.name' | translate }}">
         <mat-card-title >{{ 'kingdom.emporium.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.emporium.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -46,7 +46,7 @@
       </mat-card-content>
 
       <mat-card-content>
-        <div matSubheader>{{ 'card.list.gems' | translate }}:</div>
+        <div matSubheader>{{ 'card.list.packs' | translate }}:</div>
         <mat-action-list dense>
           <button mat-list-item *ngFor="let pack of emporiumPacks">
             <div mat-list-avatar [matBadge]="pack.quantity" matBadgePosition="above before">

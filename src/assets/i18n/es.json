@@ -157,7 +157,7 @@
       "help": "TODO"
     },
     "auction": {
-      "name": "Mercado Negro",
+      "name": "Subasta",
       "description": "Comercia con otros reinos",
       "help": "TODO"
     },
@@ -211,8 +211,8 @@
       "filter": "Filtrar cartas"
     },
     "letter": {
-      "name": "Redactar carta",
-      "description": "Envía un mensajes a otro reino",
+      "name": "Redactar",
+      "description": "Envía mensajes a otros reinos",
       "help": "TODO",
       "close": "Cerrar",
       "create": "Redactar",
@@ -239,7 +239,7 @@
     },
     "emporium": {
       "name": "Emporio",
-      "description": "Invierte tus gemas",
+      "description": "Contrabando del mercado negro",
       "help": "TODO"
     },
     "build": {
@@ -387,7 +387,7 @@
       "potions": "Pociones",
       "charms": "Hechizos",
       "buildings": "Edificios",
-      "gems": "Paquetes de gemas",
+      "packs": "Paquetes",
       "gods": "Dioses",
       "enchantments": "Encantamientos"
     }

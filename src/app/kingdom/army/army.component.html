@@ -3,7 +3,7 @@
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/troops.png" alt="{{ 'kingdom.army.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/icons/army.png" alt="{{ 'kingdom.army.name' | translate }}">
         <mat-card-title >{{ 'kingdom.army.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.army.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -127,7 +127,7 @@
                   <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.categories" [src]="category.image"/>
                   <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.skills" [src]="skill.image"/>
                 </div>
-                <div mat-list-avatar [matBadge]="troop.gold | long" matBadgePosition="above before">
+                <div mat-list-avatar [matBadge]="troop.gold | long" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resources.gold.name' | translate }}"/>
                 </div>
               </button>
