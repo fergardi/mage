@@ -1390,7 +1390,7 @@
       "description": "Aplica <weakness> a cada tropa enemiga"
     },
     "voodoo-doll": {
-      "name": "Muñeco voodoo",
+      "name": "Muñeca voodoo",
       "description": "Destruye <turn> del enemigo"
     },
     "cursed-skull": {

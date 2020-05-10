@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { CacheService } from 'src/app/services/cache.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-encyclopedia',
@@ -39,6 +40,7 @@ export class EncyclopediaComponent implements OnInit {
 
   constructor(
     private cacheService: CacheService,
+    private translateService: TranslateService,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -75,9 +77,9 @@ export class EncyclopediaComponent implements OnInit {
   }
 
   createFilter(): (data: any, filter: string) => boolean {
-    let filterFunction = function(data: any, filter: string): boolean {
+    let filterFunction = (data: any, filter: string): boolean => {
       let filters = JSON.parse(filter);
-      return data.name.toLowerCase().includes(filters.name)
+      return this.translateService.instant(data.name).toLowerCase().includes(filters.name)
         && data.type.toString().toLowerCase().includes(filters.type)
         && data.faction.toLowerCase().includes(filters.faction)
     }

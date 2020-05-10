@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -24,9 +24,12 @@ import { NotificationService } from 'src/app/services/notification.service';
   ],
 })
 @UntilDestroy()
-export class CensusComponent implements OnInit {
+export class CensusComponent implements OnInit, OnDestroy {
 
   uid: string = null;
+  protection: number = 8;
+  clock: Date = new Date();
+  interval: NodeJS.Timeout = null;
   columns = ['position', 'name', 'radius'];
   filters: any = {
     name: {
@@ -42,7 +45,9 @@ export class CensusComponent implements OnInit {
     private notificationService: NotificationService,
     public dialog: MatDialog,
     private store: Store,
-  ) { }
+  ) {
+    this.interval = setInterval(() => this.clock = new Date(), 1000);
+  }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -88,8 +93,12 @@ export class CensusComponent implements OnInit {
 
   canBeAttacked(kingdom: any): boolean {
     return kingdom.lastAttacked
-      ? moment().subtract(30, 'seconds').isAfter(moment(kingdom.lastAttacked.toMillis()))
+      ? moment(this.clock).subtract(30, 'seconds').isAfter(moment(kingdom.lastAttacked.toMillis()))
       : true;
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
   }
 
 }

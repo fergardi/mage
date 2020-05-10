@@ -39,10 +39,6 @@
 
           <mat-cell *matCellDef="let auction" [attr.data-label]="'table.column.' + column | translate">
 
-            <span *ngIf="column === 'bid'">
-              {{ auction[column] | long }}
-            </span>
-
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item>
@@ -51,6 +47,9 @@
                   </div>
                   <div mat-line>{{ auction.join.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" [innerHTML]="auction.join.description | translate | icon:auction.join.skills:auction.join.categories:auction.join.families:auction.join.units:auction.join.resources:auction.join.spells"></div>
+                  <div mat-list-avatar [matBadge]="auction.bid | long" matBadgePosition="above after">
+                    <img mat-list-avatar src="/assets/images/resources/gold.png">
+                  </div>
                 </mat-list-item>
               </mat-list>
             </ng-template>
@@ -63,7 +62,7 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let letter; columns: columns"></mat-row>
+        <mat-row *matRowDef="let auction; columns: columns" (click)="openBidDialog(auction)"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

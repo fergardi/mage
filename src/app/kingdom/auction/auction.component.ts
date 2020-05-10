@@ -6,6 +6,9 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import * as moment from 'moment';
+import { BidComponent } from './bid.component';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-auction',
@@ -16,7 +19,7 @@ import * as moment from 'moment';
 @UntilDestroy()
 export class AuctionComponent implements OnInit {
 
-  columns = ['name', 'bid', 'timestamp'];
+  columns = ['name', 'timestamp'];
   filters: any = {
     name: {
       type: 'text',
@@ -31,6 +34,8 @@ export class AuctionComponent implements OnInit {
 
   constructor(
     private firebaseService: FirebaseService,
+    private translateService: TranslateService,
+    private dialog: MatDialog,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -54,12 +59,20 @@ export class AuctionComponent implements OnInit {
   }
 
   createFilter(): (data: any, filter: string) => boolean {
-    let filterFunction = function(data: any, filter: string): boolean {
+    let filterFunction = (data: any, filter: string): boolean => {
       let filters = JSON.parse(filter);
-      return data.join.name.toLowerCase().includes(filters.name)
+      return this.translateService.instant(data.join.name).toLowerCase().includes(filters.name)
       && (!filters.timestamp || moment(data.timestamp.toMillis()).isBetween(moment(filters.timestamp).startOf('day'), moment(filters.timestamp).endOf('day'), 'days', '[]'));
     }
     return filterFunction;
+  }
+
+  openBidDialog(auction: any): void {
+    const dialogRef = this.dialog.open(BidComponent, {
+      minWidth: '20%',
+      maxWidth: '80%',
+      data: auction,
+    });
   }
 
 }

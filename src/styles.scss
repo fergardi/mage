@@ -120,7 +120,7 @@ body {
   }
   .mat-cell {
     font-size: 12px !important;
-    padding: 5px !important;
+    padding: 0 5px !important;
   }
   .mat-list-base {
     width: 100%;
@@ -151,6 +151,10 @@ body {
 
 .mat-card-content {
   margin-bottom: 0px !important;
+}
+
+.mat-list-base {
+  padding-top: 0px !important;
 }
 
 .mat-list-base:not(.supply-list) {

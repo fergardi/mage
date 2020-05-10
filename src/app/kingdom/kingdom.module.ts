@@ -21,6 +21,7 @@ import { DispelComponent } from './temple/dispel.component';
 import { ActivateComponent } from './sorcery/activate.component';
 import { ConjureComponent } from './sorcery/conjure.component';
 import { BattleComponent } from './census/battle.component';
+import { BidComponent } from './auction/bid.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { BattleComponent } from './census/battle.component';
     ActivateComponent,
     ConjureComponent,
     BattleComponent,
+    BidComponent,
   ],
   imports: [
     CommonModule,
