@@ -12,12 +12,14 @@ export class AuthGuard implements CanActivate {
   constructor(
     private notificationService: NotificationService,
     private store: Store,
+    private router: Router,
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const logged = this.store.selectSnapshot(AuthState.getUserLoggedIn);
     if (!logged) {
       this.notificationService.error('user.auth.unauthorized');
+      this.router.navigate(['/user/login']);
     }
     return logged;
   }

@@ -9,7 +9,7 @@
       "unauthorized": "Debes autenticarte para continuar"
     },
     "login": {
-      "name": "¡Bienvenid@ a Archimago!",
+      "name": "Acceder",
       "description": "Inicia sesión o regístrate para continuar",
       "login": "Iniciar sesión",
       "signup": "Nuevo jugador",
