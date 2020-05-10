@@ -35,7 +35,6 @@ export class TempleComponent implements OnInit {
       this.kingdomGods = gods;
     });
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/enchantments`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(enchantments => {
-      console.log(enchantments)
       this.kingdomEnchantments = enchantments.sort((a, b) => a.turns - b.turns);
     });
   }

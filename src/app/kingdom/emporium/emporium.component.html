@@ -4,7 +4,7 @@
 
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/emporium.png" alt="{{ 'kingdom.emporium.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/icons/emporium.png">
         <mat-card-title >{{ 'kingdom.emporium.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.emporium.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -18,12 +18,12 @@
         <mat-action-list dense>
           <button mat-list-item *ngFor="let artifact of emporiumArtifacts">
             <div mat-list-avatar [matBadge]="1" matBadgePosition="above before">
-              <img mat-list-avatar [src]="artifact.image" alt="{{ artifact.name | translate }}"/>
+              <img mat-list-avatar [src]="artifact.image">
             </div>
             <div mat-line>{{ artifact.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.description | translate | icon:artifact.skills:artifact.categories:artifact.families:artifact.units:artifact.resources:artifact.spells"></div>
             <div mat-list-avatar [matBadge]="artifact.emporium" matBadgePosition="above before">
-              <img mat-list-avatar src="/assets/images/resources/gem.png" alt="{{ 'resource.gem.name' | translate }}"/>
+              <img mat-list-avatar src="/assets/images/resources/gem.png">
             </div>
           </button>
         </mat-action-list>
@@ -36,7 +36,7 @@
 
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/resources/gem.png" alt="{{ 'kingdom.gemology.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/resources/gem.png">
         <mat-card-title >{{ 'kingdom.gemology.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.gemology.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -50,12 +50,12 @@
         <mat-action-list dense>
           <button mat-list-item *ngFor="let pack of emporiumPacks">
             <div mat-list-avatar [matBadge]="pack.quantity" matBadgePosition="above before">
-              <img mat-list-avatar [src]="pack.image" alt="{{ pack.name | translate }}"/>
+              <img mat-list-avatar [src]="pack.image">
             </div>
             <div mat-line>{{ pack.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ pack.description | translate }}</div>
             <div mat-list-avatar [matBadge]="pack.money" matBadgePosition="above before">
-              <img mat-list-avatar src="/assets/images/stores/merchant.png" alt="{{ 'resource.money.name' | translate }}"/>
+              <img mat-list-avatar src="/assets/images/stores/merchant.png">
             </div>
           </button>
         </mat-action-list>

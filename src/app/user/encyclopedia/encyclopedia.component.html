@@ -2,7 +2,7 @@
   <mat-card>
 
     <mat-card-header>
-      <img mat-card-avatar src="/assets/images/icons/encyclopedia.png" alt="{{ 'user.encyclopedia.name' | translate }}">
+      <img mat-card-avatar src="/assets/images/icons/encyclopedia.png">
       <mat-card-title >{{ 'user.encyclopedia.name' | translate }}</mat-card-title>
       <mat-card-subtitle>{{ 'user.encyclopedia.description' | translate }}</mat-card-subtitle>
     </mat-card-header>
@@ -45,7 +45,7 @@
               <mat-list dense>
                 <mat-list-item>
                   <div mat-list-avatar>
-                    <img mat-list-avatar [src]="row.join.image" alt="{{ row.join.name | translate }}"/>
+                    <img mat-list-avatar [src]="row.join.image">
                   </div>
                   <div mat-line>{{ row.join.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle">{{ row.join.description | translate }}</div>
@@ -57,7 +57,7 @@
               <mat-list dense>
                 <mat-list-item>
                   <div mat-list-avatar>
-                    <img mat-list-avatar [src]="row.image" alt="{{ row.name | translate }}"/>
+                    <img mat-list-avatar [src]="row.image">
                   </div>
                   <div mat-line>{{ row.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(row.type)">

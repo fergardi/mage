@@ -4,7 +4,7 @@
 
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/city.png" alt="{{ 'kingdom.city.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/icons/city.png">
         <mat-card-title >{{ 'kingdom.city.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.city.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -18,7 +18,7 @@
         <mat-action-list dense>
           <button mat-list-item *ngFor="let building of kingdomBuildings" (click)="openBuildDialog(building)">
             <div mat-list-avatar [matBadge]="building.quantity | short" matBadgePosition="above before">
-              <img mat-list-avatar [src]="building.join.image" alt="{{ building.join.name | translate }}"/>
+              <img mat-list-avatar [src]="building.join.image">
             </div>
             <div mat-line>{{ building.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join.skills:building.join.categories:building.join.families:building.join.units:building.join.resources:building.join.spells"></div>
@@ -37,7 +37,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/resources/gold.png" alt="{{ 'kingdom.tax.name' | translate }}">
+            <img mat-card-avatar src="/assets/images/resources/gold.png">
             <mat-card-title >{{ 'kingdom.tax.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.tax.description' | translate }}</mat-card-subtitle>
           </mat-card-header>
@@ -50,7 +50,7 @@
             <mat-action-list dense>
               <button mat-list-item (click)="openTaxDialog()">
                 <div mat-list-avatar>
-                  <img mat-list-avatar src="/assets/images/resources/turn.png" alt="{{ 'resource.turn.name' | translate }}"/>
+                  <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
                 <div mat-line>{{ 'resource.turn.name' | translate }}</div>
                 <div mat-line class="mat-card-subtitle">{{ 'resource.turn.description' | translate }}</div>
@@ -65,7 +65,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/resources/mana.png" alt="{{ 'kingdom.charge.name' | translate }}">
+            <img mat-card-avatar src="/assets/images/resources/mana.png">
             <mat-card-title >{{ 'kingdom.charge.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.charge.description' | translate }}</mat-card-subtitle>
           </mat-card-header>
@@ -78,7 +78,7 @@
             <mat-action-list dense>
               <button mat-list-item (click)="openChargeDialog()">
                 <div mat-list-avatar>
-                  <img mat-list-avatar src="/assets/images/resources/turn.png" alt="{{ 'resource.turn.name' | translate }}"/>
+                  <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
                 <div mat-line>{{ 'resource.turn.name' | translate }}</div>
                 <div mat-line class="mat-card-subtitle">{{ 'resource.turn.description' | translate }}</div>
@@ -93,7 +93,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/resources/land.png" alt="{{ 'kingdom.explore.name' | translate }}">
+            <img mat-card-avatar src="/assets/images/resources/land.png">
             <mat-card-title >{{ 'kingdom.explore.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.explore.description' | translate }}</mat-card-subtitle>
           </mat-card-header>
@@ -106,7 +106,7 @@
             <mat-action-list dense>
               <button mat-list-item (click)="openExploreDialog()">
                 <div mat-list-avatar>
-                  <img mat-list-avatar src="/assets/images/resources/turn.png" alt="{{ 'resource.turn.name' | translate }}"/>
+                  <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
                 <div mat-line>{{ 'resource.turn.name' | translate }}</div>
                 <div mat-line class="mat-card-subtitle">{{ 'resource.turn.description' | translate }}</div>

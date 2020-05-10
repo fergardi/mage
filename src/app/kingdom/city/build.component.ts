@@ -12,7 +12,7 @@ import { NotificationService } from 'src/app/services/notification.service';
       <mat-list dense>
         <mat-list-item>
           <div mat-list-avatar [matBadge]="data.building.quantity + ' + ?'" matBadgePosition="above before">
-            <img mat-list-avatar [src]="data.building.join.image" alt="{{ data.building.join.name | translate }}"/>
+            <img mat-list-avatar [src]="data.building.join.image">
           </div>
           <div mat-line>{{ data.building.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ data.building.join.description | translate }}</div>

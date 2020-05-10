@@ -2,7 +2,7 @@
   <mat-card>
 
     <mat-card-header>
-      <img mat-card-avatar src="/assets/images/icons/auction.png" alt="{{ 'kingdom.auction.name' | translate }}">
+      <img mat-card-avatar src="/assets/images/icons/auction.png">
       <mat-card-title >{{ 'kingdom.auction.name' | translate }}</mat-card-title>
       <mat-card-subtitle>{{ 'kingdom.auction.description' | translate }}</mat-card-subtitle>
     </mat-card-header>
@@ -47,7 +47,7 @@
               <mat-list dense>
                 <mat-list-item>
                   <div mat-list-avatar [matBadge]="auction.quantity | short" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="auction.join.image" alt="{{ auction.join.name | translate }}"/>
+                    <img mat-list-avatar [src]="auction.join.image">
                   </div>
                   <div mat-line>{{ auction.join.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" [innerHTML]="auction.join.description | translate | icon:auction.join.skills:auction.join.categories:auction.join.families:auction.join.units:auction.join.resources:auction.join.spells"></div>

@@ -3,7 +3,7 @@
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/tavern.png" alt="{{ 'kingdom.tavern.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/icons/tavern.png">
         <mat-card-title >{{ 'kingdom.tavern.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.tavern.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -17,7 +17,7 @@
         <mat-list dense id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="kingdomContracts">
           <mat-list-item *ngFor="let contract of kingdomContracts" cdkDrag class="handle" [id]="contract.fid">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
-              <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
+              <img mat-list-avatar [src]="contract.join.image">
             </div>
             <div mat-line>{{ contract.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
@@ -31,7 +31,7 @@
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/leadership.png" alt="{{ 'kingdom.leadership.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/icons/leadership.png">
         <mat-card-title >{{ 'kingdom.leadership.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.leadership.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -45,7 +45,7 @@
         <mat-list dense id="1" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="attackContracts">
           <mat-list-item *ngFor="let contract of attackContracts" cdkDrag class="handle" [id]="contract.fid">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
-              <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
+              <img mat-list-avatar [src]="contract.join.image">
             </div>
             <div mat-line>{{ contract.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
@@ -59,7 +59,7 @@
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/guardian.png" alt="{{ 'kingdom.guard.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/icons/guardian.png">
         <mat-card-title >{{ 'kingdom.guard.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.guard.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -73,7 +73,7 @@
         <mat-list dense id="2" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="defenseContracts">
           <mat-list-item *ngFor="let contract of defenseContracts" cdkDrag class="handle" [id]="contract.fid">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
-              <img mat-list-avatar [src]="contract.join.image" alt="{{ contract.join.name | translate }}"/>
+              <img mat-list-avatar [src]="contract.join.image">
             </div>
             <div mat-line>{{ contract.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>

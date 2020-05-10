@@ -31,14 +31,14 @@
     <div class="scroll-container" [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100% - 64px)' : 'calc(100% - 56px)' }">
       <!-- image -->
       <div class="sidenav-logo-container">
-        <img class="sidenav-logo" [src]="(link$ | async)?.image" alt="icon"/>
+        <img class="sidenav-logo" [src]="(link$ | async)?.image">
       </div>
       <!-- links -->
       <mat-nav-list dense>
         <ng-container *ngFor="let link of links">
           <a mat-list-item [routerLink]="link.url ? link.url : null" [routerLinkActive]="link.url ? ['active'] : []" [routerLinkActiveOptions]="{ exact: true }" *ngIf="link.visible">
             <div mat-list-avatar>
-              <img mat-list-avatar [src]="link.image" alt="{{ link.name | translate }}"/>
+              <img mat-list-avatar [src]="link.image">
             </div>
             <div mat-line>{{ link.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ link.description | translate }}</div>
@@ -66,7 +66,7 @@
             [matBadge]="supply.quantity | short"
             [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
             matBadgeOverlap="true">
-            <img mat-list-avatar [src]="supply.join.image" alt="{{ supply.join.name | translate }}"/>
+            <img mat-list-avatar [src]="supply.join.image">
           </div>
         </mat-list-item>
       </mat-list>

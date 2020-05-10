@@ -12,7 +12,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
       <mat-list dense>
         <mat-list-item>
           <div mat-list-avatar>
-            <img mat-list-avatar [src]="data.god.image" alt="{{ data.god.name | translate }}"/>
+            <img mat-list-avatar [src]="data.god.image">
           </div>
           <div mat-line>{{ data.god.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ data.god.description | translate }}</div>

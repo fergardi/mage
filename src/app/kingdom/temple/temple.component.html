@@ -5,7 +5,7 @@
     <mat-card>
 
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/temple.png" alt="{{ 'kingdom.temple.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/icons/temple.png">
         <mat-card-title >{{ 'kingdom.temple.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.temple.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -19,12 +19,12 @@
         <mat-action-list dense>
           <button mat-list-item *ngFor="let god of kingdomGods" (click)="openOfferDialog(god)">
             <div mat-list-avatar matBadge="?" matBadgePosition="above before">
-              <img mat-list-avatar [src]="god.image" alt="{{ god.name | translate }}"/>
+              <img mat-list-avatar [src]="god.image">
             </div>
             <div mat-line>{{ god.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
             <div mat-list-avatar [matBadge]="god.gold | short" matBadgePosition="above after">
-              <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resource.gold.name' | translate }}"/>
+              <img mat-list-avatar src="/assets/images/resources/gold.png">
             </div>
           </button>
         </mat-action-list>
@@ -41,7 +41,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/icons/dispell.png" alt="{{ 'kingdom.dispell.name' | translate }}">
+            <img mat-card-avatar src="/assets/images/icons/dispell.png">
             <mat-card-title >{{ 'kingdom.dispell.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.dispell.description' | translate }}</mat-card-subtitle>
           </mat-card-header>
@@ -55,7 +55,7 @@
             <mat-action-list dense>
               <button mat-list-item *ngFor="let enchantment of kingdomEnchantments" (click)="openDispelDialog(enchantment)">
                 <div mat-list-avatar [matBadge]="enchantment.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'primary' : 'accent'">
-                  <img mat-list-avatar [src]="enchantment.join.image" alt="{{ enchantment.join.name | translate }}"/>
+                  <img mat-list-avatar [src]="enchantment.join.image">
                 </div>
                 <div mat-line>{{ enchantment.join.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.join.description | translate | icon:enchantment.join.skills:enchantment.join.categories:enchantment.join.families:enchantment.join.units:enchantment.join.resources:enchantment.join.spells"></div>
@@ -63,7 +63,7 @@
                   <mat-progress-bar [value]="enchantment.turns * 100 / enchantment.join.duration"></mat-progress-bar>
                 </div>
                 <div mat-list-avatar [matBadge]="enchantment.turns" matBadgePosition="above after" [matBadgeColor]="enchantment.from === uid ? 'primary' : 'accent'">
-                  <img mat-list-avatar src="/assets/images/resources/turn.png" alt="{{ 'resources.turn.name' | translate }}"/>
+                  <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
               </button>
             </mat-action-list>

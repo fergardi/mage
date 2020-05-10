@@ -3,7 +3,7 @@
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/army.png" alt="{{ 'kingdom.army.name' | translate }}">
+        <img mat-card-avatar src="/assets/images/icons/army.png">
         <mat-card-title >{{ 'kingdom.army.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.army.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -17,7 +17,7 @@
         <mat-list dense class="dotted" id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="kingdomTroops">
           <mat-list-item *ngFor="let troop of kingdomTroops" cdkDrag class="handle" [id]="troop.fid">
             <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
-              <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
+              <img mat-list-avatar [src]="troop.join.image">
             </div>
             <div mat-line>{{ troop.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">
@@ -38,7 +38,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/icons/attack.png" alt="{{ 'kingdom.attack.name' | translate }}">
+            <img mat-card-avatar src="/assets/images/icons/attack.png">
             <mat-card-title >{{ 'kingdom.attack.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.attack.description' | translate }}</mat-card-subtitle>
           </mat-card-header>
@@ -52,7 +52,7 @@
             <mat-list dense class="dotted" id="1" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="attackTroops">
               <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle" [id]="troop.fid">
                 <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
-                  <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
+                  <img mat-list-avatar [src]="troop.join.image">
                 </div>
                 <div mat-line>{{ troop.join.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle">
@@ -72,7 +72,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/icons/defense.png" alt="{{ 'kingdom.defense.name' | translate }}">
+            <img mat-card-avatar src="/assets/images/icons/defense.png">
             <mat-card-title >{{ 'kingdom.defense.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.defense.description' | translate }}</mat-card-subtitle>
           </mat-card-header>
@@ -86,7 +86,7 @@
             <mat-list dense class="dotted" id="2" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="defenseTroops">
               <mat-list-item *ngFor="let troop of defenseTroops" cdkDrag class="handle" [id]="troop.fid">
                 <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
-                  <img mat-list-avatar [src]="troop.join.image" alt="{{ troop.join.name | translate }}"/>
+                  <img mat-list-avatar [src]="troop.join.image">
                 </div>
                 <div mat-line>{{ troop.join.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle">
@@ -105,7 +105,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/icons/recruit.png" alt="{{ 'kingdom.recruit.name' | translate }}">
+            <img mat-card-avatar src="/assets/images/icons/recruit.png">
             <mat-card-title >{{ 'kingdom.recruit.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.recruit.description' | translate }}</mat-card-subtitle>
           </mat-card-header>
@@ -119,7 +119,7 @@
             <mat-action-list dense>
               <button mat-list-item *ngFor="let troop of recruitTroops" (click)="openRecruitDialog(troop)">
                 <div mat-list-avatar>
-                  <img mat-list-avatar [src]="troop.image" alt="{{ troop.name | translate }}"/>
+                  <img mat-list-avatar [src]="troop.image">
                 </div>
                 <div mat-line>{{ troop.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle">
@@ -128,7 +128,7 @@
                   <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.skills" [src]="skill.image"/>
                 </div>
                 <div mat-list-avatar [matBadge]="troop.gold | long" matBadgePosition="above after">
-                  <img mat-list-avatar src="/assets/images/resources/gold.png" alt="{{ 'resources.gold.name' | translate }}"/>
+                  <img mat-list-avatar src="/assets/images/resources/gold.png">
                 </div>
               </button>
             </mat-action-list>
