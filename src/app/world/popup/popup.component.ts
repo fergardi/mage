@@ -21,7 +21,6 @@ export class PopupComponent implements OnInit {
   shopArtifacts: any[] = [];
   shopTroops: any[] = [];
   kingdomTroops: any[] = [];
-  kingdomContracts: any[] = [];
   shopCharms: any[] = [];
   questContracts: any[] = [];
   questTroops: any[] = [];
@@ -48,10 +47,7 @@ export class PopupComponent implements OnInit {
     // kingdom
     if (this.data.type === PopupType.kingdom) {
       this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/troops`, 'units', 'id', 'id', ref => ref.where('assignment', '==', TroopAssignmentType.troopDefense)).pipe(untilDestroyed(this)).subscribe(troops => {
-        this.kingdomTroops = troops.sort((a, b) => a.sort - b.sort);
-      });
-      this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/contracts`, 'heroes', 'id', 'id', ref => ref.where('assignment', '==', ContractAssignmentType.contractDefense)).pipe(untilDestroyed(this)).subscribe(contracts => {
-        this.kingdomContracts = contracts;
+        this.kingdomTroops = troops.sort((a, b) => a.join.name - b.join.name);
       });
     }
     // quest

@@ -79,26 +79,12 @@
       </mat-action-list>
     </ng-template>
 
-    <!-- kingdom contracts -->
-    <ng-template [ngIf]="kingdomContracts.length">
-      <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
-      <mat-list dense>
-        <mat-list-item *ngFor="let contract of kingdomContracts">
-          <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
-            <img mat-list-avatar [src]="contract.join.image">
-          </div>
-          <div mat-line>{{ contract.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
-        </mat-list-item>
-      </mat-list>
-    </ng-template>
-
     <!-- kingdom troops -->
     <ng-template [ngIf]="kingdomTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
         <mat-list-item *ngFor="let troop of kingdomTroops">
-          <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image">
           </div>
           <div mat-line>{{ troop.join.name | translate }}</div>
