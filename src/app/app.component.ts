@@ -23,8 +23,9 @@ export class AppComponent {
     // this.firebaseService.importCollectionFromJson('families');
     // this.firebaseService.importCollectionFromJson('categories');
     // this.firebaseService.importCollectionFromJson('packs');
-    // this.firebaseService.loadCollectionIntoCollection('items', 'artifacts')
-    // this.firebaseService.loadCollectionIntoCollection('units', 'troops')
-    // this.firebaseService.loadCollectionIntoCollection('spells', 'charms')
+    // this.firebaseService.loadCollectionIntoCollection('items', 'artifacts');
+    // this.firebaseService.loadCollectionIntoCollection('units', 'troops');
+    // this.firebaseService.loadCollectionIntoCollection('spells', 'charms');
+    // this.firebaseService.loadCollectionIntoCollection('spells', 'enchantments', ref => ref.where('type', '==', 'enchantment'));
   }
 }

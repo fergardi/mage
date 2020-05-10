@@ -62,7 +62,7 @@
         <mat-list-item *ngFor="let supply of kingdomSupplies; let i = index" role="listitem">
           <div
             mat-list-avatar
-            [matTooltip]="supply.join.name | translate"
+            [title]="supply.join.name | translate"
             [matBadge]="supply.quantity | short"
             [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
             matBadgeOverlap="true">

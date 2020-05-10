@@ -14,6 +14,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -32,6 +33,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -50,6 +52,7 @@
     "level": 2,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -68,6 +71,7 @@
     "level": 3,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -86,6 +90,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -104,6 +109,7 @@
     "level": 4,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -122,6 +128,7 @@
     "level": 4,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -140,6 +147,7 @@
     "level": 2,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -158,6 +166,7 @@
     "level": 3,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -176,6 +185,7 @@
     "level": 3,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -190,12 +200,13 @@
     "families": [],
     "categories": [],
     "units": [],
-    "resources": ["population", "land"],
+    "resources": ["population", "land", "turn"],
     "level": 4,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
-    "self": true
+    "self": false
   },
   {
     "type": "enchantment",
@@ -212,6 +223,7 @@
     "level": 2,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -230,6 +242,7 @@
     "level": 3,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -244,10 +257,11 @@
     "families": [],
     "categories": [],
     "units": ["devil"],
-    "resources": ["population"],
+    "resources": ["population", "turn"],
     "level": 5,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -266,6 +280,7 @@
     "level": 4,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -284,6 +299,7 @@
     "level": 4,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -302,6 +318,7 @@
     "level": 5,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -316,12 +333,13 @@
     "families": [],
     "categories": [],
     "units": [],
-    "resources": ["population"],
+    "resources": ["population", "turn"],
     "level": 5,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
-    "self": true
+    "self": false
   },
   {
     "type": "instant",
@@ -338,6 +356,7 @@
     "level": 5,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -352,10 +371,11 @@
     "families": [],
     "categories": [],
     "units": ["ghoul"],
-    "resources": ["population"],
+    "resources": ["population", "turn"],
     "level": 5,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -374,6 +394,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -392,6 +413,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -410,6 +432,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -428,6 +451,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -446,6 +470,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -464,6 +489,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -482,6 +508,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -500,6 +527,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -518,6 +546,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -536,6 +565,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -554,6 +584,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -568,12 +599,13 @@
     "families": [],
     "categories": [],
     "units": [],
-    "resources": ["population", "land"],
+    "resources": ["population", "land", "turn"],
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
-    "self": true
+    "self": false
   },
   {
     "type": "instant",
@@ -590,6 +622,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -608,6 +641,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -626,6 +660,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -644,6 +679,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -662,6 +698,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -680,6 +717,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -698,6 +736,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -716,6 +755,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -734,6 +774,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -752,6 +793,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -770,6 +812,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -788,6 +831,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -806,6 +850,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -824,6 +869,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -842,6 +888,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -860,8 +907,9 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
-    "self": true
+    "self": false
   },
   {
     "type": "summon",
@@ -878,6 +926,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -896,6 +945,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -914,6 +964,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -932,6 +983,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -950,6 +1002,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -968,6 +1021,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -986,6 +1040,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -1004,6 +1059,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1018,12 +1074,13 @@
     "families": [],
     "categories": [],
     "units": [],
-    "resources": ["population"],
+    "resources": ["population", "turn"],
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
-    "self": true
+    "self": false
   },
   {
     "type": "instant",
@@ -1040,6 +1097,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1058,6 +1116,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1076,6 +1135,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1094,6 +1154,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1112,6 +1173,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1126,10 +1188,11 @@
     "families": [],
     "categories": [],
     "units": [],
-    "resources": ["land", "gold", "mana"],
+    "resources": ["land", "gold", "mana", "turn"],
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -1148,6 +1211,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1166,6 +1230,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1184,6 +1249,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1202,6 +1268,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1216,10 +1283,11 @@
     "families": [],
     "categories": [],
     "units": [],
-    "resources": ["gold"],
+    "resources": ["gold", "turn"],
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -1238,6 +1306,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1256,6 +1325,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1270,12 +1340,13 @@
     "families": [],
     "categories": [],
     "units": [],
-    "resources": ["population"],
+    "resources": ["population", "turn"],
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
-    "self": true
+    "self": false
   },
   {
     "type": "enchantment",
@@ -1288,10 +1359,11 @@
     "families": [],
     "categories": [],
     "units": [],
-    "resources": ["population"],
+    "resources": ["population", "turn"],
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -1310,6 +1382,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1328,6 +1401,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1346,6 +1420,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1364,6 +1439,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1382,6 +1458,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1400,6 +1477,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1418,6 +1496,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1436,6 +1515,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -1454,6 +1534,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1472,6 +1553,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1490,6 +1572,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1508,6 +1591,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1526,6 +1610,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1544,6 +1629,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1562,6 +1648,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1580,6 +1667,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -1598,6 +1686,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1616,6 +1705,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1634,6 +1724,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1652,6 +1743,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1666,10 +1758,11 @@
     "families": [],
     "categories": [],
     "units": [],
-    "resources": ["gold", "mana"],
+    "resources": ["gold", "mana", "turn"],
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 300,
     "battle": false,
     "self": true
   },
@@ -1688,6 +1781,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1706,6 +1800,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1724,6 +1819,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1742,6 +1838,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1760,6 +1857,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": false,
     "self": true
   },
@@ -1778,6 +1876,7 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
@@ -1796,11 +1895,12 @@
     "level": 1,
     "amount": [100, 1000],
     "research": 500,
+    "duration": 0,
     "battle": true,
     "self": true
   },
   {
-    "type": "sorcery",
+    "type": "enchantment",
     "name": "spell.armageddon.name",
     "description": "spell.armageddon.description",
     "id": "armageddon",
@@ -1812,8 +1912,9 @@
     "units": [],
     "resources": [],
     "level": 6,
-    "amount": [100, 1000],
+    "amount": [],
     "research": 500,
+    "duration": 1000,
     "battle": false,
     "self": true
   }

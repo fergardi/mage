@@ -7,6 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { DispelComponent } from './dispel.component';
 
 @Component({
   selector: 'app-temple',
@@ -19,6 +20,7 @@ export class TempleComponent implements OnInit {
 
   uid: string = null;
   kingdomGods: any[] = [];
+  kingdomEnchantments: any[] = [];
 
   constructor(
     private firebaseService: FirebaseService,
@@ -31,6 +33,10 @@ export class TempleComponent implements OnInit {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.angularFirestore.collection<any>('gods').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(gods => {
       this.kingdomGods = gods;
+    });
+    this.firebaseService.leftJoin(`kingdoms/${this.uid}/enchantments`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(enchantments => {
+      console.log(enchantments)
+      this.kingdomEnchantments = enchantments.sort((a, b) => a.turns - b.turns);
     });
   }
 
@@ -48,6 +54,14 @@ export class TempleComponent implements OnInit {
         this.angularFirestore.collection('gods').doc(god.fid).update({ gold: result, kingdom: this.uid });
       }
     })
+  }
+
+  openDispelDialog(enchantment: any): void {
+    const dialogRef = this.dialog.open(DispelComponent, {
+      minWidth: '20%',
+      maxWidth: '80%',
+      data: enchantment,
+    });
   }
 
 }

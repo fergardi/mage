@@ -7,6 +7,9 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { CacheService } from 'src/app/services/cache.service';
+import { RecruitComponent } from './recruit.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export enum TroopAssignmentType {
   'troopNone', 'troopAttack', 'troopDefense'
@@ -26,22 +29,27 @@ export class ArmyComponent implements OnInit {
   kingdomTroops: any[] = [];
   attackTroops: any[] = [];
   defenseTroops: any[] = [];
+  recruitTroops: any[] = [];
   maximumTroops: number = 5;
 
   constructor(
     private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
+    private cacheService: CacheService,
     private store: Store,
+    private dialog: MatDialog,
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
       this.kingdomTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopNone || !troop.assignment).sort((a, b) => a.sort - b.sort);
       this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopAttack).sort((a, b) => a.sort - b.sort);
       this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopDefense).sort((a, b) => a.sort - b.sort);
     });
+    let recruitUnits = await this.cacheService.getUnits();
+    this.recruitTroops = recruitUnits.filter(unit => unit.recruit === true);
   }
 
   assignTroop($event: CdkDragDrop<any>) {
@@ -78,6 +86,14 @@ export class ArmyComponent implements OnInit {
       console.error(error);
       this.notificationService.error('kingdom.army.error')
     }
+  }
+
+  openRecruitDialog(unit: any): void {
+    const dialogRef = this.dialog.open(RecruitComponent, {
+      minWidth: '20%',
+      maxWidth: '80%',
+      data: unit,
+    });
   }
 
 }

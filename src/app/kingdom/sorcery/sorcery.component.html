@@ -34,7 +34,7 @@
             </div>
             <div mat-line>{{ charm.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:charm.join.spells"></div>
-            <div mat-line class="progress" *ngIf="charm.turns < charm.join.research">
+            <div mat-line *ngIf="charm.turns < charm.join.research">
               <mat-progress-bar [value]="charm.turns * 100 / charm.join.research"></mat-progress-bar>
             </div>
             <mat-icon *ngIf="charm.join.battle && charm.turns >= charm.join.research">open_with</mat-icon>

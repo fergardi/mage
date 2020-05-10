@@ -8,7 +8,9 @@
     "faction": "black",
     "categories": ["lightning"],
     "skills": ["life-leech", "flight"],
-    "families": ["elemental"]
+    "families": ["elemental"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -19,7 +21,9 @@
     "faction": "black",
     "categories": ["ranged"],
     "skills": ["flight", "life-leech"],
-    "families": ["undead"]
+    "families": ["undead"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -30,7 +34,9 @@
     "faction": "black",
     "categories": ["cold", "breath", "melee"],
     "skills": ["flight", "scales", "life-leech"],
-    "families": ["dragon", "undead"]
+    "families": ["dragon", "undead"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -41,7 +47,9 @@
     "faction": "black",
     "categories": ["melee"],
     "skills": ["slowness"],
-    "families": ["undead"]
+    "families": ["undead"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -52,7 +60,9 @@
     "faction": "black",
     "categories": ["melee"],
     "skills": ["life-leech"],
-    "families": ["undead"]
+    "families": ["undead"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -63,7 +73,9 @@
     "faction": "black",
     "categories": ["ranged", "cold", "magic"],
     "skills": [],
-    "families": ["undead"]
+    "families": ["undead"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -74,7 +86,9 @@
     "faction": "black",
     "categories": ["melee"],
     "skills": [],
-    "families": ["undead"]
+    "families": ["undead"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -85,7 +99,9 @@
     "faction": "black",
     "categories": ["magic", "ranged"],
     "skills": ["life-leech", "flight", "seduction"],
-    "families": ["undead"]
+    "families": ["undead"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -96,7 +112,9 @@
     "faction": "black",
     "categories": ["melee"],
     "skills": ["strength", "regeneration"],
-    "families": ["animal", "human"]
+    "families": ["animal", "human"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -107,7 +125,9 @@
     "faction": "black",
     "categories": ["melee"],
     "skills": ["slowness"],
-    "families": ["undead"]
+    "families": ["undead"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -118,7 +138,9 @@
     "faction": "blue",
     "categories": ["breath", "melee", "lightning"],
     "skills": ["flight", "scales", "haste"],
-    "families": ["dragon"]
+    "families": ["dragon"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -129,7 +151,9 @@
     "faction": "blue",
     "categories": ["magic"],
     "skills": ["slowness", "scales", "weakness"],
-    "families": ["golem"]
+    "families": ["golem"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -140,7 +164,9 @@
     "faction": "blue",
     "categories": ["magic"],
     "skills": ["flight", "haste"],
-    "families": ["elemental"]
+    "families": ["elemental"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -151,7 +177,9 @@
     "faction": "blue",
     "categories": ["melee", "cold"],
     "skills": ["weakness"],
-    "families": ["giant"]
+    "families": ["giant"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -162,7 +190,9 @@
     "faction": "blue",
     "categories": ["cold", "ranged"],
     "skills": ["weakness", "scales"],
-    "families": ["elemental"]
+    "families": ["elemental"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -173,7 +203,9 @@
     "faction": "blue",
     "categories": ["melee", "cold"],
     "skills": [],
-    "families": ["orkish"]
+    "families": ["orkish"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -184,7 +216,9 @@
     "faction": "blue",
     "categories": ["melee", "poison"],
     "skills": ["scales"],
-    "families": ["reptile"]
+    "families": ["reptile"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -195,7 +229,9 @@
     "faction": "blue",
     "categories": ["melee"],
     "skills": ["strength", "scales", "weakness"],
-    "families": ["giant", "reptile"]
+    "families": ["giant", "reptile"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -206,7 +242,9 @@
     "faction": "blue",
     "categories": ["magic"],
     "skills": [],
-    "families": ["human"]
+    "families": ["human"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -217,7 +255,9 @@
     "faction": "blue",
     "categories": ["melee", "cold", "breath"],
     "skills": ["slowness"],
-    "families": ["giant"]
+    "families": ["giant"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -228,7 +268,9 @@
     "faction": "green",
     "categories": ["melee"],
     "skills": ["strength"],
-    "families": ["golem"]
+    "families": ["golem"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -239,7 +281,9 @@
     "faction": "green",
     "categories": ["melee"],
     "skills": ["regeneration"],
-    "families": ["animal", "giant"]
+    "families": ["animal", "giant"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -250,7 +294,9 @@
     "faction": "green",
     "categories": ["melee"],
     "skills": ["haste"],
-    "families": ["orkish"]
+    "families": ["orkish"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -261,7 +307,9 @@
     "faction": "green",
     "categories": ["melee"],
     "skills": [],
-    "families": ["orkish"]
+    "families": ["orkish"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -272,7 +320,9 @@
     "faction": "green",
     "categories": ["melee", "breath", "poison"],
     "skills": ["flight", "scales", "regeneration"],
-    "families": ["dragon"]
+    "families": ["dragon"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -283,7 +333,9 @@
     "faction": "green",
     "categories": ["melee"],
     "skills": [],
-    "families": ["animal", "human"]
+    "families": ["animal", "human"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -294,7 +346,9 @@
     "faction": "green",
     "categories": ["magic"],
     "skills": [],
-    "families": ["undead"]
+    "families": ["undead"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -305,7 +359,9 @@
     "faction": "green",
     "categories": ["melee", "poison"],
     "skills": ["scales"],
-    "families": ["animal", "giant"]
+    "families": ["animal", "giant"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -316,7 +372,9 @@
     "faction": "green",
     "categories": ["melee", "ranged"],
     "skills": ["scales"],
-    "families": ["elemental"]
+    "families": ["elemental"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -327,7 +385,9 @@
     "faction": "green",
     "categories": ["melee", "poison", "breath"],
     "skills": ["scales"],
-    "families": ["giant", "reptile"]
+    "families": ["giant", "reptile"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -338,7 +398,9 @@
     "faction": "red",
     "categories": ["melee"],
     "skills": ["weakness"],
-    "families": ["giant", "demon"]
+    "families": ["giant", "demon"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -349,7 +411,9 @@
     "faction": "red",
     "categories": ["melee"],
     "skills": [],
-    "families": ["demon"]
+    "families": ["demon"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -360,7 +424,9 @@
     "faction": "red",
     "categories": ["magic"],
     "skills": ["seduction"],
-    "families": ["demon"]
+    "families": ["demon"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -371,7 +437,9 @@
     "faction": "red",
     "categories": ["ranged", "fire"],
     "skills": [],
-    "families": ["elemental"]
+    "families": ["elemental"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -382,7 +450,9 @@
     "faction": "red",
     "categories": ["melee"],
     "skills": ["scales"],
-    "families": ["reptile"]
+    "families": ["reptile"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -393,7 +463,9 @@
     "faction": "red",
     "categories": ["melee"],
     "skills": ["slowness"],
-    "families": ["demon", "giant", "orkish"]
+    "families": ["demon", "giant", "orkish"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -404,7 +476,9 @@
     "faction": "red",
     "categories": ["melee"],
     "skills": [],
-    "families": ["demon", "orkish"]
+    "families": ["demon", "orkish"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -415,7 +489,9 @@
     "faction": "red",
     "categories": ["magic", "ranged", "fire"],
     "skills": ["flight", "regeneration"],
-    "families": ["elemental"]
+    "families": ["elemental"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -426,7 +502,9 @@
     "faction": "red",
     "categories": ["fire", "breath", "melee"],
     "skills": ["flight", "scales"],
-    "families": ["dragon"]
+    "families": ["dragon"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -437,7 +515,9 @@
     "faction": "red",
     "categories": ["poison"],
     "skills": ["scales"],
-    "families": ["demon", "giant", "orkish", "animal"]
+    "families": ["demon", "giant", "orkish", "animal"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -448,7 +528,9 @@
     "faction": "white",
     "categories": ["ranged"],
     "skills": ["weakness"],
-    "families": ["human"]
+    "families": ["human"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -459,7 +541,9 @@
     "faction": "white",
     "categories": ["holy", "breath", "melee"],
     "skills": ["regeneration", "flight", "scales"],
-    "families": ["dragon"]
+    "families": ["dragon"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -470,7 +554,9 @@
     "faction": "white",
     "categories": ["magic"],
     "skills": ["flight", "scales"],
-    "families": ["animal"]
+    "families": ["animal"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -481,7 +567,9 @@
     "faction": "white",
     "categories": ["melee"],
     "skills": ["scales"],
-    "families": ["human"]
+    "families": ["human"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -492,7 +580,9 @@
     "faction": "white",
     "categories": ["holy"],
     "skills": ["regeneration"],
-    "families": ["elemental"]
+    "families": ["elemental"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -503,7 +593,9 @@
     "faction": "white",
     "categories": ["melee"],
     "skills": ["slowness", "weakness", "scales"],
-    "families": ["giant"]
+    "families": ["giant"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -514,7 +606,9 @@
     "faction": "white",
     "categories": ["magic"],
     "skills": ["regeneration"],
-    "families": ["human"]
+    "families": ["human"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -525,7 +619,9 @@
     "faction": "white",
     "categories": ["melee"],
     "skills": [],
-    "families": ["human"]
+    "families": ["human"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -536,7 +632,9 @@
     "faction": "white",
     "categories": ["melee"],
     "skills": ["scales", "haste"],
-    "families": ["human", "animal"]
+    "families": ["human", "animal"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -547,7 +645,9 @@
     "faction": "white",
     "categories": ["holy"],
     "skills": ["scales"],
-    "families": ["human"]
+    "families": ["human"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -558,7 +658,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": ["haste"],
-    "families": ["human", "animal"]
+    "families": ["human", "animal"],
+    "recruit": true,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -569,7 +671,9 @@
     "faction": "grey",
     "categories": ["magic"],
     "skills": [],
-    "families": ["human"]
+    "families": ["human"],
+    "recruit": true,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -580,7 +684,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": ["weakness"],
-    "families": ["human"]
+    "families": ["human"],
+    "recruit": true,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -591,7 +697,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": [],
-    "families": ["human"]
+    "families": ["human"],
+    "recruit": true,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -602,7 +710,9 @@
     "faction": "grey",
     "categories": ["ranged"],
     "skills": [],
-    "families": ["human"]
+    "families": ["human"],
+    "recruit": true,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -613,7 +723,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": [],
-    "families": ["animal"]
+    "families": ["animal"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -624,7 +736,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": [],
-    "families": ["animal"]
+    "families": ["animal"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -635,7 +749,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": ["flight"],
-    "families": ["animal"]
+    "families": ["animal"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -646,7 +762,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": [],
-    "families": ["animal"]
+    "families": ["animal"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -657,7 +775,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": [],
-    "families": ["demon"]
+    "families": ["demon"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -668,7 +788,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": ["slowness"],
-    "families": ["animal"]
+    "families": ["animal"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -679,7 +801,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": ["haste"],
-    "families": ["animal"]
+    "families": ["animal"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -690,7 +814,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": ["scales", "slowness"],
-    "families": ["golem"]
+    "families": ["golem"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -701,7 +827,9 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": ["scales", "slowness"],
-    "families": ["golem"]
+    "families": ["golem"],
+    "recruit": false,
+    "gold": 100
   },
   {
     "type": "unit",
@@ -712,6 +840,8 @@
     "faction": "grey",
     "categories": ["melee"],
     "skills": ["flight"],
-    "families": ["dragon"]
+    "families": ["dragon"],
+    "recruit": false,
+    "gold": 100
   }
 ]

@@ -24,7 +24,6 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -73,7 +72,6 @@ const modules = [
   MatSelectModule,
   MatTabsModule,
   MatBadgeModule,
-  MatTooltipModule,
   DragDropModule,
   MatProgressBarModule,
   MatDialogModule,

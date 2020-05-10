@@ -151,6 +151,11 @@
       "description": "Organiza tus fuerzas defensivas",
       "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha importancia en las batallas."
     },
+    "recruit": {
+      "name": "Reclutar",
+      "description": "Compra tropas básicas",
+      "help": "TODO"
+    },
     "auction": {
       "name": "Mercado Negro",
       "description": "Comercia con otros reinos",
@@ -382,7 +387,9 @@
       "potions": "Pociones",
       "charms": "Hechizos",
       "buildings": "Edificios",
-      "gems": "Paquetes de gemas"
+      "gems": "Paquetes de gemas",
+      "gods": "Dioses",
+      "enchantments": "Encantamientos"
     }
   },
   "location": {
@@ -732,7 +739,7 @@
     },
     "death-decay": {
       "name": "Muerte y putrefacción",
-      "description": "Destruye <population> y <land>"
+      "description": "Destruye <population> y <land> al <turn>"
     },
     "shroud-darkness": {
       "name": "Manto de oscuridad",
@@ -744,7 +751,7 @@
     },
     "soul-pact": {
       "name": "Pacto con el diablo",
-      "description": "Invoca <devil> por <population>"
+      "description": "Invoca <devil> al <turn> por <population>"
     },
     "icy-touch": {
       "name": "Toque helado",
@@ -760,7 +767,7 @@
     },
     "black-death": {
       "name": "Peste negra",
-      "description": "Mata <population> y se puede contagiar"
+      "description": "Mata <population> al <turn> y se contagia"
     },
     "curse": {
       "name": "Maldición",
@@ -768,7 +775,7 @@
     },
     "blood-ritual": {
       "name": "Ritual sangriento",
-      "description": "Transforma <population> en <ghoul>"
+      "description": "Transforma <population> en <ghoul> cada <turn>"
     },
     "fireball": {
       "name": "Bola de fuego",
@@ -816,7 +823,7 @@
     },
     "meteor-storm": {
       "name": "Tormenta de meteoros",
-      "description": "Destruye <population> y <land>"
+      "description": "Destruye <population> y <land> al <turn>"
     },
     "weakness": {
       "name": "Debilidad",
@@ -916,7 +923,7 @@
     },
     "laziness": {
       "name": "Pereza",
-      "description": "Destruye <population>"
+      "description": "Destruye <population> al <turn>"
     },
     "haste": {
       "name": "Prisa",
@@ -940,7 +947,7 @@
     },
     "druidism": {
       "name": "Druidismo",
-      "description": "Gana <land> por <gold> y <mana>"
+      "description": "Gana <land> al <turn> por <gold> y <mana>"
     },
     "beast-council": {
       "name": "Concilio de bestias",
@@ -960,7 +967,7 @@
     },
     "climate-control": {
       "name": "Control del clima",
-      "description": "Aumenta la producción de <gold>"
+      "description": "Aumenta la producción de <gold> al <turn>"
     },
     "cure": {
       "name": "Curación",
@@ -972,11 +979,11 @@
     },
     "locust-swarm": {
       "name": "Enjambre de langostas",
-      "description": "Destruye <population>"
+      "description": "Destruye <population> al <turn>"
     },
     "natures-favor": {
       "name": "Favor de la naturaleza",
-      "description": "Aumenta la producción de <population>"
+      "description": "Aumenta la producción de <population> al <turn>"
     },
     "regeneration": {
       "name": "Regeneración",
@@ -1060,7 +1067,7 @@
     },
     "love-peace": {
       "name": "Paz y amor",
-      "description": "Aumenta producción de <gold> y <mana>"
+      "description": "Aumenta producción de <gold> y <mana> por <turn>"
     },
     "resurrection": {
       "name": "Resurección",

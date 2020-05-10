@@ -114,19 +114,25 @@ export class FirebaseService {
     });
   }
 
-  async loadCollectionIntoCollection(from: string, to: string) {
+  async loadCollectionIntoCollection(from: string, to: string, query: QueryFn = undefined) {
     this.angularFireAuth.authState.subscribe(user => {
       this.angularFirestore.collection<any>(`kingdoms/${user.uid}/${to}`).get().subscribe(collection => {
         collection.forEach(element => {
           element.ref.delete()
         });
       });
-      this.angularFirestore.collection<any>(from).get().subscribe(collection => {
+      let collection = query === undefined
+        ? this.angularFirestore.collection<any>(from).get()
+        : this.angularFirestore.collection<any>(from, query).get();
+      collection.subscribe(collection => {
         collection.forEach(element => {
+          let data = element.data();
           this.angularFirestore.collection<any>(`kingdoms/${user.uid}/${to}`).add({
-            id: element.data().id,
+            id: data.id,
             quantity: 99,
             turns: 50,
+            level: 3,
+            from: data.self ? user.uid : 'test'
           })
         });
       });
