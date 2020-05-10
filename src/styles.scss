@@ -15,52 +15,44 @@ $custom-typography: mat-typography-config($font-family: '"Manrope", sans-serif;'
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 
-$md-green: (
-  50 : #e7efe4,
-  100 : #c3d6bb,
-  200 : #9cbb8e,
-  300 : #749f61,
-  400 : #568b3f,
-  500 : #38761d,
-  600 : #326e1a,
-  700 : #2b6315,
-  800 : #245911,
-  900 : #17460a,
-  A100 : #94ff7d,
-  A200 : #6aff4a,
-  A400 : #40ff17,
-  A700 : #2dfc00,
-  contrast: (
-    50 : #000000,
-    100 : #000000,
-    200 : #000000,
-    300 : #000000,
-    400 : #ffffff,
-    500 : #ffffff,
-    600 : #ffffff,
-    700 : #ffffff,
-    800 : #ffffff,
-    900 : #ffffff,
-    A100 : #000000,
-    A200 : #000000,
-    A400 : #000000,
-    A700 : #000000,
-  )
+$md-palette: (
+  50 : #f3e0f3,
+    100 : #e0b3e1,
+    200 : #cc80ce,
+    300 : #b84dba,
+    400 : #a826ab,
+    500 : #99009c,
+    600 : #910094,
+    700 : #86008a,
+    800 : #7c0080,
+    900 : #6b006e,
+    A100 : #fb9dff,
+    A200 : #f96aff,
+    A400 : #f737ff,
+    A700 : #f61eff,
+    contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #ffffff,
+    )
 );
 
-$mage-primary: mat-palette($md-green);
-$mage-accent: mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$mage-warn: mat-palette($mat-red);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$mage-theme: mat-dark-theme($mage-primary, $mage-accent, $mage-warn);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($mage-theme);
+$theme-primary: mat-palette($md-palette);
+$theme-accent: mat-palette($mat-green, 600);
+$theme-warn: mat-palette($mat-red, 600);
+$theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+@include angular-material-theme($theme);
 
 /* You can add global styles to this file, and also import other style files */
 
