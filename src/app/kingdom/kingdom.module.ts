@@ -22,6 +22,9 @@ import { ActivateComponent } from './sorcery/activate.component';
 import { ConjureComponent } from './sorcery/conjure.component';
 import { BattleComponent } from './census/battle.component';
 import { BidComponent } from './auction/bid.component';
+import { TaxComponent } from './city/tax.component';
+import { ChargeComponent } from './city/charge.component';
+import { ExploreComponent } from './city/explore.component';
 
 
 @NgModule({
@@ -45,6 +48,9 @@ import { BidComponent } from './auction/bid.component';
     ConjureComponent,
     BattleComponent,
     BidComponent,
+    TaxComponent,
+    ChargeComponent,
+    ExploreComponent,
   ],
   imports: [
     CommonModule,

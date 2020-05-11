@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { CacheService } from 'src/app/services/cache.service';
+import { RandomService } from 'src/app/services/random.service';
 
 @Component({
   selector: 'app-emporium',
@@ -16,7 +17,12 @@ export class EmporiumComponent implements OnInit {
 
   constructor(
     private cacheService: CacheService,
-  ) {}
+    public randomService: RandomService,
+  ) {
+    for (let i = 0; i < 100; i++) {
+      console.log(this.randomService.kingdom());
+    }
+  }
 
   async ngOnInit() {
     let items = await this.cacheService.getItems();

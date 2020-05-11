@@ -9,6 +9,9 @@ import { firestore } from 'firebase/app';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { TaxComponent } from './tax.component';
+import { ChargeComponent } from './charge.component';
+import { ExploreComponent } from './explore.component';
 
 @Component({
   selector: 'app-city',
@@ -65,15 +68,27 @@ export class CityComponent implements OnInit {
   }
 
   openTaxDialog() {
-
+    const dialogRef = this.dialog.open(TaxComponent, {
+      minWidth: '20%',
+      maxWidth: '80%',
+      data: null,
+    });
   }
 
   openChargeDialog() {
-
+    const dialogRef = this.dialog.open(ChargeComponent, {
+      minWidth: '20%',
+      maxWidth: '80%',
+      data: null,
+    });
   }
 
   openExploreDialog() {
-
+    const dialogRef = this.dialog.open(ExploreComponent, {
+      minWidth: '20%',
+      maxWidth: '80%',
+      data: null,
+    });
   }
 
 }

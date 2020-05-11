@@ -1089,7 +1089,7 @@
     },
     "love-peace": {
       "name": "Paz y amor",
-      "description": "Aumenta producción de <gold> y <mana> por <turn>"
+      "description": "Aumenta <gold> y <mana> por <turn>"
     },
     "resurrection": {
       "name": "Resurección",
@@ -1496,24 +1496,24 @@
   },
   "god": {
     "death": {
-      "name": "Jinete de la Muerte",
-      "description": "Uno de los cinco Jinetes del Armagedón"
+      "name": "Hanem, personificación de la Muerte",
+      "description": "Los cinco sellos del Armagedón"
     },
     "void": {
-      "name": "Jinete del Vacío",
-      "description": "Uno de los cinco Jinetes del Armagedón"
+      "name": "Tanarfin, efigie del Vacío",
+      "description": "Los cinco sellos del Armagedón"
     },
     "famine": {
-      "name": "Jinete del Hambre",
-      "description": "Uno de los cinco Jinetes del Armagedón"
+      "name": "Arienel, alegoría del Hambre",
+      "description": "Los cinco sellos del Armagedón"
     },
     "war": {
-      "name": "Jinete de la Guerra",
-      "description": "Uno de los cinco Jinetes del Armagedón"
+      "name": "Banur, divinidad de la Guerra",
+      "description": "Los cinco sellos del Armagedón"
     },
     "pestilence": {
-      "name": "Jinete de la Peste",
-      "description": "Uno de los cinco Jinetes del Armagedón"
+      "name": "Feanore, encarnación de la Peste",
+      "description": "Los cinco sellos del Armagedón"
     }
   }
 }
