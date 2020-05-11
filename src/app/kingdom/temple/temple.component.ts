@@ -41,24 +41,21 @@ export class TempleComponent implements OnInit {
 
   openOfferDialog(god: any): void {
     const dialogRef = this.dialog.open(OfferComponent, {
-      minWidth: '20%',
-      maxWidth: '80%',
-      data: {
-        god: god,
-        offer: 0,
-      }
+      minWidth: '30%',
+      maxWidth: '30%',
+      data: god
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.angularFirestore.collection('gods').doc(god.fid).update({ gold: result, kingdom: this.uid });
+        this.angularFirestore.collection('gods').doc(god.fid).update({ gold: result.gold, kingdom: this.uid });
       }
     })
   }
 
   openDispelDialog(enchantment: any): void {
     const dialogRef = this.dialog.open(DispelComponent, {
-      minWidth: '20%',
-      maxWidth: '80%',
+      minWidth: '30%',
+      maxWidth: '30%',
       data: enchantment,
     });
   }

@@ -173,9 +173,23 @@
       "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha importancia en las batallas."
     },
     "recruit": {
-      "name": "Reclutar",
-      "description": "Compra tropas básicas",
-      "help": "TODO"
+      "name": "Reclutamiento",
+      "description": "Recluta tropas básicas",
+      "help": "Aqui puedes gastar turnos y oro para adquirir tropas básicas para tus ejércitos. Cuantos más Barracones tengas, menos turnos necesitarás.",
+      "hint": "Debes tener suficientes turnos y oro",
+      "error": "No tienes turnos y/o oro suficiente",
+      "recruit": "Reclutar",
+      "cancel": "Cancelar",
+      "quantity": "Cantidad"
+    },
+    "dispel": {
+      "name": "Desencanto",
+      "description": "Romper encntamientos",
+      "help": "Aqui puedes gastar maná para tratar de romper un encantamiento de tu reino. Si el encantamiento es de un enemigo, el éxito dependerá de su protección mágica.",
+      "hint": "Debes tener suficiente maná",
+      "error": "No tienes maná suficiente",
+      "dispel": "Desencantar",
+      "cancel": "Cancelar"
     },
     "auction": {
       "name": "Subasta",
@@ -188,6 +202,32 @@
       "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás subir de nivel a tus hechizos, invirtiendo turnos en su investigación.",
       "maximum": "No puedes superar el máximo permitido",
       "success": "Tus hechizos y artefactos han sido asignados"
+    },
+    "research": {
+      "name": "Investigación",
+      "description": "Aqui puedes gastar turnos para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos turnos necesitarás.",
+      "hint": "Invierte turnos en investigar",
+      "error": "No tienes turnos suficientes",
+      "research": "Investigar",
+      "cancel": "Cancelar"
+    },
+    "conjure": {
+      "name": "Conjuración",
+      "description": "Aqui puedes gastar turnos y maná para conjurar tus hechizos investigados. Conjurar hechizos sobre otros reinos no siempre funciona debido a la protección mágica.",
+      "hint": "Debes tener suficientes turnos y maná",
+      "error": "No tienes turnos y/o maná suficiente",
+      "conjure": "Conjurar",
+      "cancel": "Cancelar",
+      "to": "Objetivo"
+    },
+    "activate": {
+      "name": "Activación",
+      "description": "Activa artefactos sobre tu reino o sobre otros reinos. Cada activación consume el artefacto y turnos. Activar artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
+      "hint": "Selecciona el objetivo",
+      "error": "No tienes turnos suficientes",
+      "activate": "Activar",
+      "cancel": "Cancelar",
+      "to": "Objetivo"
     },
     "arcanism": {
       "name": "Arcanismo",
@@ -213,11 +253,6 @@
       "name": "Explorar tierras",
       "description": "Anexiona nuevos territorios a tu reino",
       "help": "Aquí podrás invertir turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas tierras libres. Las tierras libres sirven como espacio para construir nuevos edificios en tu reino."
-    },
-    "dispell": {
-      "name": "Desencantar",
-      "description": "Rompe encantamientos",
-      "help": "Aquí podrás invertir turnos en romper encantamientos que afectan a tu reino. Los encantamientos pueden ser beneficiosos o perjudiciales, dependiendo de su función. Tus propios encantamientos deberás mantenerlos tu mismo pagando su coste de mantenimiento al turno, pero otros reinos también podrán encantar el tuyo, auque serán ellos los que paguen sus mantenimientos."
     },
     "tavern": {
       "name": "Taberna",

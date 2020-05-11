@@ -11,7 +11,7 @@ import { NotificationService } from 'src/app/services/notification.service';
       <p>{{ 'kingdom.build.description' | translate }}</p>
       <mat-list dense>
         <mat-list-item>
-          <div mat-list-avatar [matBadge]="data.building.quantity + ' + ?'" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="data.building.quantity" matBadgePosition="above before">
             <img mat-list-avatar [src]="data.building.join.image">
           </div>
           <div mat-line>{{ data.building.join.name | translate }}</div>

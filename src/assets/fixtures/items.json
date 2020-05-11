@@ -1,5 +1,6 @@
 [
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/golden-chest.png",
     "faction": "grey",
@@ -18,6 +19,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/magical-chest.png",
     "faction": "grey",
@@ -36,6 +38,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/stone-chest.png",
     "faction": "grey",
@@ -54,6 +57,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/wooden-chest.png",
     "faction": "grey",
@@ -72,6 +76,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/necronomicon.png",
     "faction": "grey",
@@ -90,6 +95,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/light-lantern.png",
     "faction": "grey",
@@ -108,6 +114,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/wisdom-tome.png",
     "faction": "grey",
@@ -126,6 +133,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/demon-horn.png",
     "faction": "grey",
@@ -144,6 +152,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/lightning-orb.png",
     "faction": "grey",
@@ -162,6 +171,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/dragon-egg.png",
     "faction": "grey",
@@ -180,6 +190,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/crystal-ball.png",
     "faction": "grey",
@@ -198,6 +209,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/agility-potion.png",
     "faction": "grey",
@@ -216,6 +228,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/defense-potion.png",
     "faction": "grey",
@@ -234,6 +247,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/cold-orb.png",
     "faction": "grey",
@@ -252,6 +266,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/earth-orb.png",
     "faction": "grey",
@@ -270,6 +285,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/fire-orb.png",
     "faction": "grey",
@@ -288,6 +304,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/mana-potion.png",
     "faction": "grey",
@@ -306,6 +323,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/light-orb.png",
     "faction": "grey",
@@ -324,6 +342,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/strength-potion.png",
     "faction": "grey",
@@ -342,6 +361,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/love-potion.png",
     "faction": "grey",
@@ -360,6 +380,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/spider-web.png",
     "faction": "grey",
@@ -378,6 +399,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/animal-fang.png",
     "faction": "grey",
@@ -396,6 +418,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/bone-necklace.png",
     "faction": "grey",
@@ -414,6 +437,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/crown-thorns.png",
     "faction": "grey",
@@ -432,6 +456,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/voodoo-doll.png",
     "faction": "grey",
@@ -450,6 +475,7 @@
     "emporium": 5
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/cursed-skull.png",
     "faction": "grey",
@@ -468,6 +494,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/emmerald-ring.png",
     "faction": "grey",
@@ -486,6 +513,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/golden-feather.png",
     "faction": "grey",
@@ -504,6 +532,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/golden-idol.png",
     "faction": "grey",
@@ -522,6 +551,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/golem-book.png",
     "faction": "grey",
@@ -540,6 +570,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/letter-thieves.png",
     "faction": "grey",
@@ -558,6 +589,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/vial-venom.png",
     "faction": "grey",
@@ -576,6 +608,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/lucky-coin.png",
     "faction": "grey",
@@ -594,6 +627,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/lucky-horseshoe.png",
     "faction": "grey",
@@ -612,6 +646,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/lucky-paw.png",
     "faction": "grey",
@@ -630,6 +665,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/magic-beans.png",
     "faction": "grey",
@@ -648,6 +684,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/magic-compass.png",
     "faction": "grey",
@@ -666,6 +703,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/magic-scroll.png",
     "faction": "grey",
@@ -684,6 +722,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/mana-vortex.png",
     "faction": "grey",
@@ -698,10 +737,11 @@
     "spells": [],
     "amount": [-100000, -500000],
     "battle": false,
-    "self": true,
+    "self": false,
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/monkey-hand.png",
     "faction": "grey",
@@ -720,6 +760,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/opal-ring.png",
     "faction": "grey",
@@ -738,6 +779,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/powder-barrel.png",
     "faction": "grey",
@@ -756,6 +798,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/rattle.png",
     "faction": "grey",
@@ -774,6 +817,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/rotten-food.png",
     "faction": "grey",
@@ -792,6 +836,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/rubi-ring.png",
     "faction": "grey",
@@ -810,6 +855,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/sapphire-ring.png",
     "faction": "grey",
@@ -828,6 +874,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/snake-eye.png",
     "faction": "grey",
@@ -846,6 +893,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/topaz-ring.png",
     "faction": "grey",
@@ -864,6 +912,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/treasure-map.png",
     "faction": "grey",
@@ -882,6 +931,7 @@
     "emporium": 0
   },
   {
+    "turns": 1,
     "type": "item",
     "image": "/assets/images/items/valhalla-horn.png",
     "faction": "grey",

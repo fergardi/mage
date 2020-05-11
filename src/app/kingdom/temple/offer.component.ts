@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-offer',
@@ -11,17 +11,20 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
       <p>{{ 'kingdom.offer.description' | translate }}</p>
       <mat-list dense>
         <mat-list-item>
-          <div mat-list-avatar>
-            <img mat-list-avatar [src]="data.god.image">
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
+            <img mat-list-avatar [src]="god.image">
           </div>
-          <div mat-line>{{ data.god.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ data.god.description | translate }}</div>
+          <div mat-line>{{ god.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
+          <div mat-list-avatar [matBadge]="god.gold" matBadgePosition="above after">
+            <img mat-list-avatar src="/assets/images/resources/gold.png">
+          </div>
         </mat-list-item>
       </mat-list>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.gold.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="offer" />
+          <input type="number" placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="gold" />
           <mat-hint>{{ 'kingdom.offer.hint' | translate }}</mat-hint>
           <mat-error>{{ 'kingdom.offer.error' | translate }}</mat-error>
         </mat-form-field>
@@ -29,7 +32,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.offer.cancel' | translate }}</button>
-      <button mat-button (click)="offer()" cdkFocusInitial>{{ 'kingdom.offer.offer' | translate }}</button>
+      <button mat-raised-button color="primary" (click)="offer()" cdkFocusInitial>{{ 'kingdom.offer.offer' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -44,14 +47,14 @@ export class OfferComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<OfferComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private notificationService: NotificationService,
+    @Inject(MAT_DIALOG_DATA) public god: any,
     private formBuilder: FormBuilder,
+    private notificationService: NotificationService,
   ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      offer: ['', [Validators.required, Validators.min(this.data.gold + 1)]]
+      gold: [0, [Validators.required, Validators.min(this.god.gold + 1)]]
     });
   }
 
@@ -61,7 +64,7 @@ export class OfferComponent implements OnInit {
 
   offer(): void {
     if (this.form.valid) {
-      this.dialogRef.close(this.form.value.offer);
+      this.dialogRef.close(this.form.value.gold);
     } else {
       this.notificationService.error('kingdom.offer.error');
     }

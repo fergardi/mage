@@ -108,8 +108,8 @@ export class ArchiveComponent implements OnInit {
 
   openLetterDialog(letter: any): void {
     const dialogRef = this.dialog.open(LetterComponent, {
-      minWidth: '60%',
-      maxWidth: '80%',
+      minWidth: '30%',
+      maxWidth: '30%',
       data: letter,
     });
   }

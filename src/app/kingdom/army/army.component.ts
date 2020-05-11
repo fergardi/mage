@@ -90,8 +90,8 @@ export class ArmyComponent implements OnInit {
 
   openRecruitDialog(unit: any): void {
     const dialogRef = this.dialog.open(RecruitComponent, {
-      minWidth: '20%',
-      maxWidth: '80%',
+      minWidth: '30%',
+      maxWidth: '30%',
       data: unit,
     });
   }

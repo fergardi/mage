@@ -1,20 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 @Component({
   selector: 'app-dispel',
   template: `
-    <p>
-      dispel works!
-    </p>
+    <h1 mat-dialog-title>{{ 'kingdom.dispel.name' | translate }}</h1>
+    <div mat-dialog-content>
+      <p>{{ 'kingdom.dispel.help' | translate }}</p>
+      <mat-list dense>
+        <mat-list-item (click)="dispel()">
+          <div mat-list-avatar [matBadge]="enchantment.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
+            <img mat-list-avatar [src]="enchantment.join.image">
+          </div>
+          <div mat-line>{{ enchantment.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.join.description | translate | icon:enchantment.join.skills:enchantment.join.categories:enchantment.join.families:enchantment.join.units:enchantment.join.resources:enchantment.join.spells"></div>
+          <div mat-line>
+            <mat-progress-bar [color]="enchantment.from === uid ? 'accent' : 'warn'" [value]="enchantment.turns * 100 / enchantment.join.duration"></mat-progress-bar>
+          </div>
+          <div mat-list-avatar [matBadge]="enchantment.turns" matBadgePosition="above after" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
+            <img mat-list-avatar src="/assets/images/resources/turn.png">
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="close()">{{ 'kingdom.dispel.cancel' | translate }}</button>
+      <button mat-raised-button color="primary" (click)="dispel()" cdkFocusInitial>{{ 'kingdom.dispel.dispel' | translate }}</button>
+    </div>
   `,
-  styles: [
-  ]
+  styles: [`
+    .mat-form-field {
+      width: 100%;
+    }
+  `]
 })
 export class DispelComponent implements OnInit {
 
-  constructor() { }
+  uid: string = null;
 
-  ngOnInit(): void {
+  constructor(
+    public dialogRef: MatDialogRef<DispelComponent>,
+    @Inject(MAT_DIALOG_DATA) public enchantment: any,
+    private notificationService: NotificationService,
+    private store: Store,
+  ) { }
+
+  ngOnInit() {
+    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
+  }
+
+  close(): void {
+    this.dialogRef.close();
+  }
+
+  dispel(): void {
+    this.dialogRef.close();
   }
 
 }

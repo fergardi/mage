@@ -41,7 +41,7 @@
               <mat-progress-bar [value]="charm.turns * 100 / charm.join.research"></mat-progress-bar>
             </div>
             <mat-icon *ngIf="charm.join.battle && charm.turns >= charm.join.research">open_with</mat-icon>
-            <div mat-list-avatar *ngIf="charm.turns < charm.join.research" [matBadge]="charm.turns" matBadgePosition="above after">
+            <div mat-list-avatar *ngIf="charm.turns < charm.join.research" [matBadge]="charm.join.research - charm.turns" matBadgePosition="above after">
               <img mat-list-avatar src="/assets/images/resources/turn.png">
             </div>
           </button>
