@@ -6,7 +6,8 @@
     "id": "barrack",
     "faction": "grey",
     "image": "/assets/images/structures/barrack.png",
-    "resources": []
+    "resources": [],
+    "turns": 1
   },
   {
     "type": "structure",
@@ -15,7 +16,8 @@
     "id": "barrier",
     "faction": "grey",
     "image": "/assets/images/structures/barrier.png",
-    "resources": []
+    "resources": [],
+    "turns": 1
   },
   {
     "type": "structure",
@@ -24,7 +26,8 @@
     "id": "farm",
     "faction": "grey",
     "image": "/assets/images/structures/farm.png",
-    "resources": []
+    "resources": [],
+    "turns": 1
   },
   {
     "type": "structure",
@@ -33,7 +36,8 @@
     "id": "fortress",
     "faction": "grey",
     "image": "/assets/images/structures/fortress.png",
-    "resources": []
+    "resources": [],
+    "turns": 1
   },
   {
     "type": "structure",
@@ -42,7 +46,8 @@
     "id": "academy",
     "faction": "grey",
     "image": "/assets/images/structures/academy.png",
-    "resources": []
+    "resources": [],
+    "turns": 1
   },
   {
     "type": "structure",
@@ -51,7 +56,8 @@
     "id": "node",
     "faction": "grey",
     "image": "/assets/images/structures/node.png",
-    "resources": ["mana"]
+    "resources": ["mana"],
+    "turns": 1
   },
   {
     "type": "structure",
@@ -60,7 +66,8 @@
     "id": "village",
     "faction": "grey",
     "image": "/assets/images/structures/village.png",
-    "resources": ["population", "gold"]
+    "resources": ["population", "gold"],
+    "turns": 1
   },
   {
     "type": "structure",
@@ -69,6 +76,7 @@
     "id": "workshop",
     "faction": "grey",
     "image": "/assets/images/structures/workshop.png",
-    "resources": []
+    "resources": [],
+    "turns": 1
   }
 ]

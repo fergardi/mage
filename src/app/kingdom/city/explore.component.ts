@@ -9,6 +9,18 @@ import { NotificationService } from 'src/app/services/notification.service';
     <h1 mat-dialog-title>{{ 'kingdom.explore.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.explore.help' | translate }}</p>
+      <mat-list dense>
+        <mat-list-item>
+          <div mat-list-avatar [matBadge]="lands | long" matBadgePosition="above before">
+            <img mat-list-avatar src="/assets/images/resources/land.png">
+          </div>
+          <div mat-line>{{ 'resource.land.name' | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ 'resource.land.description' | translate }}</div>
+          <div mat-list-avatar matBadge="?" matBadgePosition="above after">
+            <img mat-list-avatar src="/assets/images/resources/turn.png">
+          </div>
+        </mat-list-item>
+      </mat-list>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>
@@ -36,6 +48,7 @@ export class ExploreComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ExploreComponent>,
     private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public lands: number,
     private notificationService: NotificationService,
   ) { }
 

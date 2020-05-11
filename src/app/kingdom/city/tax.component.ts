@@ -9,6 +9,18 @@ import { NotificationService } from 'src/app/services/notification.service';
     <h1 mat-dialog-title>{{ 'kingdom.tax.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.tax.help' | translate }}</p>
+      <mat-list dense>
+        <mat-list-item>
+          <div mat-list-avatar [matBadge]="village.quantity | long" matBadgePosition="above before">
+            <img mat-list-avatar [src]="village.join.image">
+          </div>
+          <div mat-line>{{ village.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="village.join.description | translate | icon:village.join.skills:village.join.categories:village.join.families:village.join.units:village.join.resources:village.join.spells"></div>
+          <div mat-list-avatar matBadge="?" matBadgePosition="above after">
+            <img mat-list-avatar src="/assets/images/resources/turn.png">
+          </div>
+        </mat-list-item>
+      </mat-list>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>
@@ -36,6 +48,7 @@ export class TaxComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<TaxComponent>,
     private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public village: any,
     private notificationService: NotificationService,
   ) { }
 

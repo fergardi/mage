@@ -17,11 +17,14 @@
         <div matSubheader>{{ 'card.list.buildings' | translate }}:</div>
         <mat-action-list dense>
           <button mat-list-item *ngFor="let building of kingdomBuildings" (click)="openBuildDialog(building)">
-            <div mat-list-avatar [matBadge]="building.quantity | short" matBadgePosition="above before">
+            <div mat-list-avatar [matBadge]="building.quantity | long" matBadgePosition="above before">
               <img mat-list-avatar [src]="building.join.image">
             </div>
             <div mat-line>{{ building.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join.skills:building.join.categories:building.join.families:building.join.units:building.join.resources:building.join.spells"></div>
+            <div mat-list-avatar [matBadge]="building.join.turns" matBadgePosition="above after">
+              <img mat-list-avatar src="/assets/images/resources/turn.png">
+            </div>
           </button>
         </mat-action-list>
       </mat-card-content>
@@ -47,13 +50,17 @@
           </mat-card-content>
 
           <mat-card-content>
+            <div matSubheader>{{ 'kingdom.tax.tax' | translate }}:</div>
             <mat-action-list dense>
-              <button mat-list-item (click)="openTaxDialog()">
-                <div mat-list-avatar>
+              <button mat-list-item *ngIf="village" (click)="openTaxDialog(village)">
+                <div mat-list-avatar [matBadge]="village.quantity | long" matBadgePosition="above before">
+                  <img mat-list-avatar [src]="village.join.image">
+                </div>
+                <div mat-line>{{ village.join.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="village.join.description | translate | icon:village.join.skills:village.join.categories:village.join.families:village.join.units:village.join.resources:village.join.spells"></div>
+                <div mat-list-avatar matBadge="?" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
-                <div mat-line>{{ 'resource.turn.name' | translate }}</div>
-                <div mat-line class="mat-card-subtitle">{{ 'resource.turn.description' | translate }}</div>
               </button>
             </mat-action-list>
           </mat-card-content>
@@ -75,13 +82,17 @@
           </mat-card-content>
 
           <mat-card-content>
+            <div matSubheader>{{ 'kingdom.charge.charge' | translate }}:</div>
             <mat-action-list dense>
-              <button mat-list-item (click)="openChargeDialog()">
-                <div mat-list-avatar>
+              <button mat-list-item *ngIf="node" (click)="openChargeDialog(node)">
+                <div mat-list-avatar [matBadge]="node.quantity | long" matBadgePosition="above before">
+                  <img mat-list-avatar [src]="node.join.image">
+                </div>
+                <div mat-line>{{ node.join.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="node.join.description | translate | icon:node.join.skills:node.join.categories:node.join.families:node.join.units:node.join.resources:node.join.spells"></div>
+                <div mat-list-avatar matBadge="?" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
-                <div mat-line>{{ 'resource.turn.name' | translate }}</div>
-                <div mat-line class="mat-card-subtitle">{{ 'resource.turn.description' | translate }}</div>
               </button>
             </mat-action-list>
           </mat-card-content>
@@ -103,13 +114,17 @@
           </mat-card-content>
 
           <mat-card-content>
+            <div matSubheader>{{ 'kingdom.explore.explore' | translate }}:</div>
             <mat-action-list dense>
               <button mat-list-item (click)="openExploreDialog()">
-                <div mat-list-avatar>
+                <div mat-list-avatar [matBadge]="lands | long" matBadgePosition="above before">
+                  <img mat-list-avatar src="/assets/images/resources/land.png">
+                </div>
+                <div mat-line>{{ 'resource.land.name' | translate }}</div>
+                <div mat-line class="mat-card-subtitle">{{ 'resource.land.description' | translate }}</div>
+                <div mat-list-avatar matBadge="?" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
-                <div mat-line>{{ 'resource.turn.name' | translate }}</div>
-                <div mat-line class="mat-card-subtitle">{{ 'resource.turn.description' | translate }}</div>
               </button>
             </mat-action-list>
           </mat-card-content>

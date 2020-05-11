@@ -24,6 +24,9 @@ export class CityComponent implements OnInit {
 
   uid: string = null;
   kingdomBuildings: any[] = [];
+  village: any = null;
+  node: any = null;
+  lands: number = 0;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -37,6 +40,8 @@ export class CityComponent implements OnInit {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/buildings`, 'structures', 'id', 'id').pipe(untilDestroyed(this)).subscribe(buildings => {
       this.kingdomBuildings = buildings;
+      this.village = buildings.find(building => building.join.id === 'village');
+      this.node = buildings.find(building => building.join.id === 'node');
     });
   }
 
@@ -71,7 +76,7 @@ export class CityComponent implements OnInit {
     const dialogRef = this.dialog.open(TaxComponent, {
       minWidth: '30%',
       maxWidth: '30%',
-      data: null,
+      data: this.village,
     });
   }
 
@@ -79,7 +84,7 @@ export class CityComponent implements OnInit {
     const dialogRef = this.dialog.open(ChargeComponent, {
       minWidth: '30%',
       maxWidth: '30%',
-      data: null,
+      data: this.node,
     });
   }
 
@@ -87,7 +92,7 @@ export class CityComponent implements OnInit {
     const dialogRef = this.dialog.open(ExploreComponent, {
       minWidth: '30%',
       maxWidth: '30%',
-      data: null,
+      data: this.lands,
     });
   }
 
