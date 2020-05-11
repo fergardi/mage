@@ -240,19 +240,31 @@
       "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
     },
     "charge": {
-      "name": "Cargar maná",
+      "name": "Meditación",
       "description": "Recarga tus reservas mágicas",
-      "help": "Aquí podrás invertir turnos en reponer los depósitos de maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas."
+      "help": "Aquí podrás invertir turnos en reponer los depósitos de maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
+      "cancel": "Cancelar",
+      "hint": "Debes tener suficientes turnos",
+      "error": "No tienes turnos suficientes",
+      "charge": "Meditar"
     },
     "tax": {
-      "name": "Cobrar impuestos",
+      "name": "Tributo",
       "description": "Engrosa tus arcas",
-      "help": "Aquí podrás invertir turnos en cobrar impuestos a los súbditos de tu reino. El oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas."
+      "help": "Aquí podrás invertir turnos en cobrar impuestos a los súbditos de tu reino. El oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
+      "cancel": "Cancelar",
+      "hint": "Debes tener suficientes turnos",
+      "error": "No tienes turnos suficientes",
+      "tax": "Tributar"
     },
     "explore": {
-      "name": "Explorar tierras",
+      "name": "Exploración",
       "description": "Anexiona nuevos territorios a tu reino",
-      "help": "Aquí podrás invertir turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas tierras libres. Las tierras libres sirven como espacio para construir nuevos edificios en tu reino."
+      "help": "Aquí podrás invertir turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas tierras libres. Las tierras libres sirven como espacio para construir nuevos edificios en tu reino.",
+      "cancel": "Cancelar",
+      "hint": "Debes tener suficientes turnos",
+      "error": "No tienes turnos suficientes",
+      "explore": "Explorar"
     },
     "tavern": {
       "name": "Taberna",

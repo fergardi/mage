@@ -42,8 +42,8 @@ export class CityComponent implements OnInit {
 
   openBuildDialog(building: any): void {
     const dialogRef = this.dialog.open(BuildComponent, {
-      minWidth: '20%',
-      maxWidth: '80%',
+      minWidth: '30%',
+      maxWidth: '30%',
       data: {
         building: building,
         lands: 0,
@@ -69,24 +69,24 @@ export class CityComponent implements OnInit {
 
   openTaxDialog() {
     const dialogRef = this.dialog.open(TaxComponent, {
-      minWidth: '20%',
-      maxWidth: '80%',
+      minWidth: '30%',
+      maxWidth: '30%',
       data: null,
     });
   }
 
   openChargeDialog() {
     const dialogRef = this.dialog.open(ChargeComponent, {
-      minWidth: '20%',
-      maxWidth: '80%',
+      minWidth: '30%',
+      maxWidth: '30%',
       data: null,
     });
   }
 
   openExploreDialog() {
     const dialogRef = this.dialog.open(ExploreComponent, {
-      minWidth: '20%',
-      maxWidth: '80%',
+      minWidth: '30%',
+      maxWidth: '30%',
       data: null,
     });
   }
