@@ -79,8 +79,7 @@ export class CensusComponent implements OnInit, OnDestroy {
 
   openAttackDialog(kingdom: any): void {
     const dialogRef = this.dialog.open(BattleComponent, {
-      minWidth: '20%',
-      maxWidth: '80%',
+      panelClass: 'dialog-responsive',
       data: kingdom,
     });
     dialogRef.afterClosed().subscribe(async data => {

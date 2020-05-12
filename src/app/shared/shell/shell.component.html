@@ -59,7 +59,7 @@
       <span class="fill-space"></span>
       <!-- supply list -->
       <mat-list dense class="supply-list" role="list" *ngIf="(angularFireAuth.authState | async)">
-        <mat-list-item *ngFor="let supply of kingdomSupplies; let i = index" role="listitem">
+        <mat-list-item *ngFor="let supply of kingdomSupplies$ | async; let i = index" role="listitem">
           <div
             mat-list-avatar
             [title]="supply.join.name | translate"

@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-explore',
@@ -11,7 +12,7 @@ import { NotificationService } from 'src/app/services/notification.service';
       <p>{{ 'kingdom.explore.help' | translate }}</p>
       <mat-list dense>
         <mat-list-item>
-          <div mat-list-avatar [matBadge]="lands | long" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="(land$ | async)?.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/land.png">
           </div>
           <div mat-line>{{ 'resource.land.name' | translate }}</div>
@@ -48,7 +49,7 @@ export class ExploreComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ExploreComponent>,
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public lands: number,
+    @Inject(MAT_DIALOG_DATA) public land$: Observable<any>,
     private notificationService: NotificationService,
   ) { }
 

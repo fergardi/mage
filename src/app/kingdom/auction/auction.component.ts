@@ -69,8 +69,7 @@ export class AuctionComponent implements OnInit {
 
   openBidDialog(auction: any): void {
     const dialogRef = this.dialog.open(BidComponent, {
-      minWidth: '20%',
-      maxWidth: '80%',
+      panelClass: 'dialog-responsive',
       data: auction,
     });
   }

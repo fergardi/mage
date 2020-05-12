@@ -4,35 +4,39 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
-export interface User {
-  uid: string
-}
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 export interface AuthStateModel {
-  user: User | null;
-  logged: boolean;
+  uid: string | null
+  supplies: any[]
+  logged: boolean
 }
 
 @State<AuthStateModel>({
   name: 'auth',
   defaults: {
-    user: null,
-    logged: false
+    uid: null,
+    supplies: [],
+    logged: false,
   }
 })
 @Injectable()
 export class AuthState implements NgxsOnInit {
 
+  subscription: Subscription = null;
+
   constructor(
     private angularFireAuth: AngularFireAuth,
+    private firebaseService: FirebaseService,
     private router: Router,
   ) { }
 
   ngxsOnInit(ctx: StateContext<AuthStateModel>) {
-    this.angularFireAuth.authState.subscribe(async user => {
+    this.angularFireAuth.authState.subscribe(user => {
       if (user) {
-        await ctx.dispatch(new SetUserAction({ uid: user.uid })).toPromise();
+        ctx.dispatch(new SetUserAction(user.uid));
         // this.router.navigate(['/world/map']);
       }
     });
@@ -49,25 +53,38 @@ export class AuthState implements NgxsOnInit {
     await this.angularFireAuth.signOut();
     ctx.setState({
       ...state,
-      user: null,
+      uid: null,
+      supplies: [],
       logged: false,
     });
+    this.subscription.unsubscribe();
     this.router.navigate(['/user/login']);
   }
 
   @Action(SetUserAction)
-  setUser(ctx: StateContext<AuthStateModel>, action: SetUserAction) {
-    const state = ctx.getState();
-    ctx.setState({
-      ...state,
-      user: action.payload,
-      logged: true,
-    });
+  setUser(ctx: StateContext<AuthStateModel>, payload: SetUserAction) {
+    return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/supplies`, 'resources', 'id', 'id').pipe(
+      tap(supplies => {
+        console.log('Updating supplies...');
+        const state = ctx.getState();
+        ctx.setState({
+          ...state,
+          uid: payload.uid,
+          supplies: supplies.sort((a, b) => a.join.sort - b.join.sort),
+          logged: true,
+        });
+      })
+    );
   }
 
   @Selector()
   public static getUserUID(state: AuthStateModel): string {
-    return state && state.user && state.user.uid;
+    return state && state.uid;
+  }
+
+  @Selector()
+  public static getKingdomSupplies(state: AuthStateModel): any[] {
+    return state && state.supplies;
   }
 
   @Selector()

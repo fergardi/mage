@@ -41,8 +41,7 @@ export class TempleComponent implements OnInit {
 
   openOfferDialog(god: any): void {
     const dialogRef = this.dialog.open(OfferComponent, {
-      minWidth: '30%',
-      maxWidth: '30%',
+      panelClass: 'dialog-responsive',
       data: god
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -54,8 +53,7 @@ export class TempleComponent implements OnInit {
 
   openDispelDialog(enchantment: any): void {
     const dialogRef = this.dialog.open(DispelComponent, {
-      minWidth: '30%',
-      maxWidth: '30%',
+      panelClass: 'dialog-responsive',
       data: enchantment,
     });
   }

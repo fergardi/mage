@@ -7,11 +7,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { NotificationService } from 'src/app/services/notification.service';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { TaxComponent } from './tax.component';
 import { ChargeComponent } from './charge.component';
 import { ExploreComponent } from './explore.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-city',
@@ -26,7 +27,7 @@ export class CityComponent implements OnInit {
   kingdomBuildings: any[] = [];
   village: any = null;
   node: any = null;
-  lands: number = 0;
+  @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'land')) land$: Observable<any>;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -47,12 +48,8 @@ export class CityComponent implements OnInit {
 
   openBuildDialog(building: any): void {
     const dialogRef = this.dialog.open(BuildComponent, {
-      minWidth: '30%',
-      maxWidth: '30%',
-      data: {
-        building: building,
-        lands: 0,
-      }
+      panelClass: 'dialog-responsive',
+      data: building,
     });
     dialogRef.afterClosed().subscribe(async result => {
       if (result) {
@@ -74,25 +71,22 @@ export class CityComponent implements OnInit {
 
   openTaxDialog() {
     const dialogRef = this.dialog.open(TaxComponent, {
-      minWidth: '30%',
-      maxWidth: '30%',
+      panelClass: 'dialog-responsive',
       data: this.village,
     });
   }
 
   openChargeDialog() {
     const dialogRef = this.dialog.open(ChargeComponent, {
-      minWidth: '30%',
-      maxWidth: '30%',
+      panelClass: 'dialog-responsive',
       data: this.node,
     });
   }
 
   openExploreDialog() {
     const dialogRef = this.dialog.open(ExploreComponent, {
-      minWidth: '30%',
-      maxWidth: '30%',
-      data: this.lands,
+      panelClass: 'dialog-responsive',
+      data: this.land$,
     });
   }
 

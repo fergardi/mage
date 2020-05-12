@@ -116,8 +116,8 @@
           <mat-card-content>
             <div matSubheader>{{ 'kingdom.explore.explore' | translate }}:</div>
             <mat-action-list dense>
-              <button mat-list-item (click)="openExploreDialog()">
-                <div mat-list-avatar [matBadge]="lands | long" matBadgePosition="above before">
+              <button mat-list-item *ngIf="land$ | async" (click)="openExploreDialog()">
+                <div mat-list-avatar [matBadge]="(land$ | async)?.quantity | long" matBadgePosition="above before">
                   <img mat-list-avatar src="/assets/images/resources/land.png">
                 </div>
                 <div mat-line>{{ 'resource.land.name' | translate }}</div>

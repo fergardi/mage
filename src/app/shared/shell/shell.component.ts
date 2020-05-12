@@ -1,15 +1,14 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay, filter } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router, NavigationEnd } from '@angular/router';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MapboxService } from 'src/app/services/mapbox.service';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Store } from '@ngxs/store';
+import { UntilDestroy } from '@ngneat/until-destroy';
+import { Store, Select } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
 
 @Component({
@@ -18,13 +17,14 @@ import { LogoutAction } from '../auth/auth.actions';
   styleUrls: ['./shell.component.scss']
 })
 @UntilDestroy()
-export class ShellComponent implements OnInit {
+export class ShellComponent {
 
+  uid: string = null;
   langs: Array<any> = [
     { lang: 'es', image: '/assets/images/languages/es.png' },
     { lang: 'en', image: '/assets/images/languages/en.png' },
     { lang: 'fr', image: '/assets/images/languages/fr.png' },
-  ]
+  ];
   links: Array<any> = [
     { url: '/user/login', name: 'user.login.name', description: 'user.login.description', image: '/assets/images/icons/login.png', visible: false },
     { url: '/world/map', name: 'world.map.name', description: 'world.map.description', image: '/assets/images/icons/map.png', visible: true },
@@ -39,8 +39,7 @@ export class ShellComponent implements OnInit {
     { url: '/kingdom/emporium', name: 'kingdom.emporium.name', description: 'kingdom.emporium.description', image: '/assets/images/icons/emporium.png', visible: true },
     { url: '/user/encyclopedia', name: 'user.encyclopedia.name', description: 'user.encyclopedia.description', image: '/assets/images/icons/encyclopedia.png', visible: true },
   ];
-  kingdomSupplies: any[] = [];
-
+  @Select((state: any) => state.auth.supplies) kingdomSupplies$: Observable<any[]>;
   link$: Observable<any> = this.router.events
   .pipe(
     filter((event): event is NavigationEnd => event instanceof NavigationEnd),
@@ -59,7 +58,6 @@ export class ShellComponent implements OnInit {
     public translateService: TranslateService,
     public angularFireAuth: AngularFireAuth,
     private router: Router,
-    private firebaseService: FirebaseService,
     private mapboxService: MapboxService,
     private store: Store,
   ) {
@@ -68,16 +66,6 @@ export class ShellComponent implements OnInit {
     this.translateService.setDefaultLang(this.langs[0].lang);
     let browser = this.translateService.getBrowserLang();
     this.translateService.use(this.langs.map(l => l.lang).includes(browser) ? browser : this.langs[0].lang);
-  }
-
-  ngOnInit() {
-    this.angularFireAuth.authState.pipe(untilDestroyed(this)).subscribe(user => {
-      if (user && user.uid) {
-        this.firebaseService.leftJoin(`kingdoms/${user.uid}/supplies`, 'resources', 'id', 'id').pipe(untilDestroyed(this)).subscribe(supplies => {
-          this.kingdomSupplies = supplies.sort((a, b) => a.join.sort - b.join.sort);
-        });
-      }
-    });
   }
 
   async toggle() {

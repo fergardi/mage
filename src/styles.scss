@@ -264,8 +264,28 @@ body {
   }
 }
 
+.dialog-responsive {
+  min-width: 30vw !important;
+  width: 30vw !important;
+  max-width: 30vw !important;
+}
+
+// responsive custom table
+@media screen and (max-width: 1280px) {
+  .dialog-responsive {
+    min-width: 60vw !important;
+    width: 60vw !important;
+    max-width: 60vw !important;
+  }
+}
+
 // responsive custom table
 @media screen and (max-width: 960px) {
+  .dialog-responsive {
+    min-width: 95vw !important;
+    width: 95vw !important;
+    max-width: 95vw !important;
+  }
   .table-responsive {
     .mat-list-item-content {
       padding-right: 0 !important;

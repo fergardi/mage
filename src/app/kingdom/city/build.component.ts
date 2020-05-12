@@ -11,11 +11,11 @@ import { NotificationService } from 'src/app/services/notification.service';
       <p>{{ 'kingdom.build.description' | translate }}</p>
       <mat-list dense>
         <mat-list-item>
-          <div mat-list-avatar [matBadge]="data.building.quantity" matBadgePosition="above before">
-            <img mat-list-avatar [src]="data.building.join.image">
+          <div mat-list-avatar [matBadge]="building.quantity" matBadgePosition="above before">
+            <img mat-list-avatar [src]="building.join.image">
           </div>
-          <div mat-line>{{ data.building.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ data.building.join.description | translate }}</div>
+          <div mat-line>{{ building.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join.skills:building.join.categories:building.join.families:building.join.units:building.join.resources:building.join.spells"></div>
         </mat-list-item>
       </mat-list>
       <form [formGroup]="form">
@@ -44,7 +44,7 @@ export class BuildComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<BuildComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public building: any,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
   ) { }

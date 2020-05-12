@@ -1,8 +1,6 @@
-import { User } from './auth.state';
-
 export class SetUserAction {
   public static readonly type = '[User] Set user from firebase';
-  constructor(public payload: User) {}
+  constructor(public uid: string) {}
 }
 
 export class LoginWithGoogleAction {
