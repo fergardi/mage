@@ -55,22 +55,23 @@
         <mat-icon aria-label="menu">{{ drawer.opened ? 'first_page' : 'last_page' }}</mat-icon>
       </button>
       <!-- title -->
-      <!--<span class="logo" [hidden]="(isHandset$ | async) || drawer.opened">{{ (link$ | async)?.name | translate }}</span>-->
       <span class="fill-space"></span>
       <!-- supply list -->
-      <mat-list dense class="supply-list" role="list" *ngIf="(angularFireAuth.authState | async)">
-        <mat-list-item *ngFor="let supply of kingdomSupplies$ | async; let i = index" role="listitem">
-          <div
-            mat-list-avatar
-            [title]="supply.join.name | translate"
-            [matBadge]="(supply.quantity | short) + '/' + (supply.max | short)"
-            [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
-            [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
-            matBadgeOverlap="true">
-            <img mat-list-avatar [src]="supply.join.image">
-          </div>
-        </mat-list-item>
-      </mat-list>
+      <mat-nav-list dense class="supply-list" role="navigation" *ngIf="(angularFireAuth.authState | async)">
+        <ng-container *ngFor="let supply of kingdomSupplies$ | async; let i = index">
+          <a mat-list-item [routerLink]="supply.join.name.includes('gem') ? '/kingdom/emporium' : supply.join.name.includes('turn') ? '/kingdom/city' : '/kingdom/city'">
+            <div
+              mat-list-avatar
+              [title]="supply.join.name | translate"
+              [matBadge]="(supply.quantity | short) + '/' + (supply.max | short)"
+              [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
+              [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
+              matBadgeOverlap="true">
+              <img mat-list-avatar [src]="supply.join.image">
+            </div>
+          </a>
+        </ng-container>
+      </mat-nav-list>
       <!-- auth -->
       <span class="fill-space"></span>
       <button mat-icon-button [matMenuTriggerFor]="auth">

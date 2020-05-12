@@ -38,7 +38,7 @@ export enum BattleType {
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.battle.cancel' | translate }}</button>
-      <button mat-raised-button color="accent" [mat-dialog-close]="attackType" cdkFocusInitial>{{ 'kingdom.battle.attack' | translate }}</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="attackType" cdkFocusInitial>{{ 'kingdom.battle.attack' | translate }}</button>
     </div>
   `,
   styles: [`

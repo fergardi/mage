@@ -25,8 +25,6 @@ export interface AuthStateModel {
 @Injectable()
 export class AuthState implements NgxsOnInit {
 
-  subscription: Subscription = null;
-
   constructor(
     private angularFireAuth: AngularFireAuth,
     private firebaseService: FirebaseService,
@@ -57,7 +55,6 @@ export class AuthState implements NgxsOnInit {
       supplies: [],
       logged: false,
     });
-    this.subscription.unsubscribe();
     this.router.navigate(['/user/login']);
   }
 
@@ -65,7 +62,7 @@ export class AuthState implements NgxsOnInit {
   setUser(ctx: StateContext<AuthStateModel>, payload: SetUserAction) {
     return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/supplies`, 'resources', 'id', 'id').pipe(
       tap(supplies => {
-        console.log('Updating supplies...');
+        console.log('Updating supplies...', supplies);
         const state = ctx.getState();
         ctx.setState({
           ...state,
