@@ -7,6 +7,8 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { DischargeComponent } from './discharge.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export enum ContractAssignmentType {
   'contractNone', 'contractAttack', 'contractDefense',
@@ -32,6 +34,7 @@ export class TavernComponent implements OnInit {
     private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
+    private dialog: MatDialog,
     private store: Store,
   ) {}
 
@@ -56,6 +59,13 @@ export class TavernComponent implements OnInit {
     } else {
       this.notificationService.warning('kingdom.tavern.maximum');
     }
+  }
+
+  openDischargeDialog(troop: any): void {
+    const dialogRef = this.dialog.open(DischargeComponent, {
+      panelClass: 'dialog-responsive',
+      data: troop,
+    });
   }
 
 }

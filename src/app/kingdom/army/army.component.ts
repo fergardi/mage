@@ -9,6 +9,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { CacheService } from 'src/app/services/cache.service';
 import { RecruitComponent } from './recruit.component';
+import { DisbandComponent } from './disband.component';
 import { MatDialog } from '@angular/material/dialog';
 
 export enum TroopAssignmentType {
@@ -29,7 +30,7 @@ export class ArmyComponent implements OnInit {
   kingdomTroops: any[] = [];
   attackTroops: any[] = [];
   defenseTroops: any[] = [];
-  recruitTroops: any[] = [];
+  recruitUnits: any[] = [];
   maximumTroops: number = 5;
 
   constructor(
@@ -49,7 +50,7 @@ export class ArmyComponent implements OnInit {
       this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopDefense).sort((a, b) => a.sort - b.sort);
     });
     let recruitUnits = await this.cacheService.getUnits();
-    this.recruitTroops = recruitUnits.filter(unit => unit.recruit === true);
+    this.recruitUnits = recruitUnits.filter((unit: any) => unit.recruit === true);
   }
 
   assignTroop($event: CdkDragDrop<any>) {
@@ -92,6 +93,13 @@ export class ArmyComponent implements OnInit {
     const dialogRef = this.dialog.open(RecruitComponent, {
       panelClass: 'dialog-responsive',
       data: unit,
+    });
+  }
+
+  openDisbandDialog(troop: any): void {
+    const dialogRef = this.dialog.open(DisbandComponent, {
+      panelClass: 'dialog-responsive',
+      data: troop,
     });
   }
 

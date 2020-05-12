@@ -25,6 +25,7 @@ export class AppComponent {
     // this.firebaseService.importCollectionFromJson('packs');
     // this.firebaseService.loadCollectionIntoCollection('items', 'artifacts');
     // this.firebaseService.loadCollectionIntoCollection('units', 'troops');
+    // this.firebaseService.loadCollectionIntoCollection('heroes', 'contracts');
     // this.firebaseService.loadCollectionIntoCollection('spells', 'charms');
     // this.firebaseService.loadCollectionIntoCollection('spells', 'enchantments', ref => ref.where('type', '==', 'enchantment'));
     // this.firebaseService.loadCollectionIntoCollection('resources', 'supplies');

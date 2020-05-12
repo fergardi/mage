@@ -26,6 +26,8 @@ import { TaxComponent } from './city/tax.component';
 import { ChargeComponent } from './city/charge.component';
 import { ExploreComponent } from './city/explore.component';
 import { BuyComponent } from './emporium/buy.component';
+import { DisbandComponent } from './army/disband.component';
+import { DischargeComponent } from './tavern/discharge.component';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { BuyComponent } from './emporium/buy.component';
     ChargeComponent,
     ExploreComponent,
     BuyComponent,
+    DisbandComponent,
+    DischargeComponent,
   ],
   imports: [
     CommonModule,

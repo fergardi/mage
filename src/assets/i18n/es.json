@@ -162,6 +162,21 @@
       "success": "Los cambios de tus tropas se han guardado",
       "error": "Ha ocurrido un problema al gestionar tus tropas"
     },
+    "disband": {
+      "name": "Desbande",
+      "description": "TODO",
+      "quantity": "Cantidad",
+      "cancel": "Cancelar",
+      "disband": "Desbandar",
+      "hint": "No puedes desbandar unidades que consuman población",
+      "error": "No cumples los requisitos"
+    },
+    "discharge": {
+      "name": "Licencia",
+      "description": "TODO",
+      "cancel": "Cancelar",
+      "discharge": "Licenciar"
+    },
     "attack": {
       "name": "Ataque",
       "description": "Organiza tus fuerzas ofensivas",

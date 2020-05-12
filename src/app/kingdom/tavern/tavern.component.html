@@ -14,16 +14,16 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
-        <mat-list dense id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="kingdomContracts">
-          <mat-list-item *ngFor="let contract of kingdomContracts" cdkDrag class="handle" [id]="contract.fid">
+        <mat-action-list dense id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="kingdomContracts">
+          <button mat-list-item *ngFor="let contract of kingdomContracts" cdkDrag class="handle" [id]="contract.fid" (click)="openDischargeDialog(contract)">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="contract.join.image">
             </div>
             <div mat-line>{{ contract.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
             <mat-icon>open_with</mat-icon>
-          </mat-list-item>
-        </mat-list>
+          </button>
+        </mat-action-list>
       </mat-card-content>
     </mat-card>
   </div>
