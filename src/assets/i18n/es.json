@@ -311,6 +311,12 @@
       "description": "Contrabando del mercado negro",
       "help": "TODO"
     },
+    "buy": {
+      "name": "Compra",
+      "help": "Vas a adquirir un Artefacto a cambio de varias gemas.",
+      "cancel": "Cancelar",
+      "buy": "Comprar"
+    },
     "build": {
       "name": "Construcción",
       "description": "TODO",

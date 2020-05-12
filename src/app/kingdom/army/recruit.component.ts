@@ -11,7 +11,7 @@ import { NotificationService } from 'src/app/services/notification.service';
       <p>{{ 'kingdom.recruit.help' | translate }}</p>
       <mat-list dense>
         <mat-list-item>
-          <div mat-list-avatar>
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="unit.image">
           </div>
           <div mat-line>{{ unit.name | translate }}</div>

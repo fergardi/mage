@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { CacheService } from 'src/app/services/cache.service';
 import { RandomService } from 'src/app/services/random.service';
+import { MatDialog } from '@angular/material/dialog';
+import { BuyComponent } from './buy.component';
 
 @Component({
   selector: 'app-emporium',
@@ -12,12 +14,13 @@ import { RandomService } from 'src/app/services/random.service';
 export class EmporiumComponent implements OnInit {
 
   uid: string = null;
-  emporiumArtifacts: any[] = [];
+  emporiumItems: any[] = [];
   emporiumPacks: any[] = [];
 
   constructor(
     private cacheService: CacheService,
     public randomService: RandomService,
+    public dialog: MatDialog,
   ) {
     for (let i = 0; i < 100; i++) {
       console.log(this.randomService.kingdom());
@@ -26,9 +29,16 @@ export class EmporiumComponent implements OnInit {
 
   async ngOnInit() {
     let items = await this.cacheService.getItems();
-    this.emporiumArtifacts = items.filter(item => item.emporium > 0);
+    this.emporiumItems = items.filter((item: any) => item.gems > 0);
     let packs = await this.cacheService.getPacks();
     this.emporiumPacks = packs;
+  }
+
+  openBuyDialog(item: any) {
+    const dialogRef = this.dialog.open(BuyComponent, {
+      panelClass: 'dialog-responsive',
+      data: item,
+    });
   }
 
 }

@@ -25,6 +25,7 @@ import { BidComponent } from './auction/bid.component';
 import { TaxComponent } from './city/tax.component';
 import { ChargeComponent } from './city/charge.component';
 import { ExploreComponent } from './city/explore.component';
+import { BuyComponent } from './emporium/buy.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { ExploreComponent } from './city/explore.component';
     TaxComponent,
     ChargeComponent,
     ExploreComponent,
+    BuyComponent,
   ],
   imports: [
     CommonModule,

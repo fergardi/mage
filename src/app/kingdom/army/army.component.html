@@ -118,7 +118,7 @@
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
             <mat-action-list dense>
               <button mat-list-item *ngFor="let troop of recruitTroops" (click)="openRecruitDialog(troop)">
-                <div mat-list-avatar>
+                <div mat-list-avatar matBadge="?" matBadgePosition="above before">
                   <img mat-list-avatar [src]="troop.image">
                 </div>
                 <div mat-line>{{ troop.name | translate }}</div>

@@ -16,13 +16,13 @@
       <mat-card-content>
         <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
         <mat-action-list dense>
-          <button mat-list-item *ngFor="let artifact of emporiumArtifacts">
+          <button mat-list-item *ngFor="let item of emporiumItems" (click)="openBuyDialog(item)">
             <div mat-list-avatar [matBadge]="1" matBadgePosition="above before">
-              <img mat-list-avatar [src]="artifact.image">
+              <img mat-list-avatar [src]="item.image">
             </div>
-            <div mat-line>{{ artifact.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.description | translate | icon:artifact.skills:artifact.categories:artifact.families:artifact.units:artifact.resources:artifact.spells"></div>
-            <div mat-list-avatar [matBadge]="artifact.emporium" matBadgePosition="above before">
+            <div mat-line>{{ item.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="item.description | translate | icon:item.skills:item.categories:item.families:item.units:item.resources:item.spells"></div>
+            <div mat-list-avatar [matBadge]="item.emporium" matBadgePosition="above before">
               <img mat-list-avatar src="/assets/images/resources/gem.png">
             </div>
           </button>

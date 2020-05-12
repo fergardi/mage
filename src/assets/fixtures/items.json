@@ -16,7 +16,7 @@
     "amount": [2000000, 10000000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -35,7 +35,7 @@
     "amount": [1000000, 2000000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -54,7 +54,7 @@
     "amount": [100000, 1000000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -73,7 +73,7 @@
     "amount": [1000, 10000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -92,7 +92,7 @@
     "amount": [10, 1000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -111,7 +111,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -130,7 +130,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -149,7 +149,7 @@
     "amount": [10, 1000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -168,7 +168,7 @@
     "amount": [1, 10],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -187,7 +187,7 @@
     "amount": [1, 2],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -206,7 +206,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -225,7 +225,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -244,7 +244,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -263,7 +263,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -282,7 +282,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -301,7 +301,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -320,7 +320,7 @@
     "amount": [10000, 1000000],
     "battle": true,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -339,7 +339,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -358,7 +358,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -377,7 +377,7 @@
     "amount": [10000, 100000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -396,7 +396,7 @@
     "amount": [],
     "battle": true,
     "self": false,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -415,7 +415,7 @@
     "amount": [10, 1000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -434,7 +434,7 @@
     "amount": [1000, 10000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -453,7 +453,7 @@
     "amount": [],
     "battle": true,
     "self": false,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -472,7 +472,7 @@
     "amount": [-25, -50],
     "battle": false,
     "self": true,
-    "emporium": 5
+    "gems": 5
   },
   {
     "turns": 1,
@@ -491,7 +491,7 @@
     "amount": [],
     "battle": true,
     "self": false,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -510,7 +510,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -529,7 +529,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -548,7 +548,7 @@
     "amount": [-100000, -1000000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -567,7 +567,7 @@
     "amount": [1, 100],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -586,7 +586,7 @@
     "amount": [-500000, -1000000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -605,7 +605,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -624,7 +624,7 @@
     "amount": [150],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -643,7 +643,7 @@
     "amount": [150],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -662,7 +662,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -681,7 +681,7 @@
     "amount": [1000, 10000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -700,7 +700,7 @@
     "amount": [50, 100],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -719,7 +719,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -738,7 +738,7 @@
     "amount": [-100000, -500000],
     "battle": false,
     "self": false,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -757,7 +757,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -776,7 +776,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -795,7 +795,7 @@
     "amount": [1000, 100000],
     "battle": true,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -814,7 +814,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -833,7 +833,7 @@
     "amount": [-10000, -1000000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -852,7 +852,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -871,7 +871,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -890,7 +890,7 @@
     "amount": [100, 1000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -909,7 +909,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -928,7 +928,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   },
   {
     "turns": 1,
@@ -947,6 +947,6 @@
     "amount": [100, 1000],
     "battle": false,
     "self": true,
-    "emporium": 0
+    "gems": 0
   }
 ]
