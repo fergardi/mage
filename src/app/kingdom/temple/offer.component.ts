@@ -24,7 +24,7 @@ import { NotificationService } from 'src/app/services/notification.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.gold.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="gold" />
+          <input type="number" placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="gold">
           <mat-hint>{{ 'kingdom.offer.hint' | translate }}</mat-hint>
           <mat-error>{{ 'kingdom.offer.error' | translate }}</mat-error>
         </mat-form-field>

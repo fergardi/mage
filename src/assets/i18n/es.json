@@ -196,6 +196,15 @@
       "description": "Comercia con otros reinos",
       "help": "TODO"
     },
+    "bid": {
+      "name": "Puja",
+      "description": "Comercia con otros reinos",
+      "help": "TODO",
+      "cancel": "Cancelar",
+      "bid": "Pujar",
+      "hint": "Ofrece más oro que la puja anterior",
+      "error": "No tienes turnos y/o oro suficiente"
+    },
     "sorcery": {
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",

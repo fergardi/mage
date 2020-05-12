@@ -25,7 +25,7 @@ import { Observable } from 'rxjs';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'resource.turn.name' | translate }}" matInput formControlName="turns" />
+          <input type="number" placeholder="{{ 'resource.turn.name' | translate }}" matInput formControlName="turns">
           <mat-hint>{{ 'kingdom.explore.hint' | translate }}</mat-hint>
           <mat-error>{{ 'kingdom.explore.error' | translate }}</mat-error>
         </mat-form-field>

@@ -24,7 +24,7 @@ import { NotificationService } from 'src/app/services/notification.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'resource.turn.name' | translate }}" matInput formControlName="turns" />
+          <input type="number" placeholder="{{ 'resource.turn.name' | translate }}" matInput formControlName="turns">
           <mat-hint>{{ 'kingdom.charge.hint' | translate }}</mat-hint>
           <mat-error>{{ 'kingdom.charge.error' | translate }}</mat-error>
         </mat-form-field>
