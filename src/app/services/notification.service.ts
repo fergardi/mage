@@ -22,8 +22,8 @@ export class NotificationService {
     private translateService: TranslateService,
   ) {}
 
-  success(text: string) {
-    this.snackBar.open(this.translateService.instant(text), '', {...this.options, panelClass: ['mat-toolbar', 'mat-accent']} );
+  success(text: string, variable?: any) {
+    this.snackBar.open(this.translateService.instant(text, variable), '', {...this.options, panelClass: ['mat-toolbar', 'mat-accent']} );
   }
 
   warning(text: string) {

@@ -44,11 +44,11 @@ export class EmporiumComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((id: string) => {
       if (id) {
-        let gem = this.store.selectSnapshot(AuthState.getKingdomGem);
-        if (item.gems <= gem.quantity) {
+        let kingdomGem = this.store.selectSnapshot(AuthState.getKingdomGem);
+        if (item.gems <= kingdomGem.quantity) {
           this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`, ref => ref.where('id', '==', id)).get().subscribe(async snapshot => {
             const batch = this.angularFirestore.firestore.batch();
-            batch.update(this.angularFirestore.doc<any>(`kingdoms/${this.uid}/supplies/${gem.fid}`).ref, { quantity: firestore.FieldValue.increment(-item.gems) });
+            batch.update(this.angularFirestore.doc<any>(`kingdoms/${this.uid}/supplies/${kingdomGem.fid}`).ref, { quantity: firestore.FieldValue.increment(-item.gems) });
             if (snapshot.docs && snapshot.docs.length) {
               batch.update(this.angularFirestore.doc<any>(`kingdoms/${this.uid}/artifacts/${snapshot.docs[0].id}`).ref, { quantity: firestore.FieldValue.increment(1) });
             } else {

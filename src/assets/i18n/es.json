@@ -290,9 +290,10 @@
       "description": "Anexiona nuevos territorios a tu reino",
       "help": "Aquí podrás invertir turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas tierras libres. Las tierras libres sirven como espacio para construir nuevos edificios en tu reino.",
       "cancel": "Cancelar",
-      "hint": "Debes tener suficientes turnos",
+      "hint": "Cuantas más tierras tengas, menos encontrarás explorando",
       "error": "No tienes turnos suficientes",
-      "explore": "Explorar"
+      "explore": "Explorar",
+      "success": "Has encontrado {{ lands }} tierra(s) fértiles"
     },
     "tavern": {
       "name": "Taberna",

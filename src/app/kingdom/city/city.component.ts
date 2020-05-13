@@ -27,7 +27,9 @@ export class CityComponent implements OnInit {
   kingdomBuildings: any[] = [];
   village: any = null;
   node: any = null;
+  maximumLands: number = 3500;
   @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'land')) land$: Observable<any>;
+  @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'turn')) turn$: Observable<any>;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -87,6 +89,25 @@ export class CityComponent implements OnInit {
     const dialogRef = this.dialog.open(ExploreComponent, {
       panelClass: 'dialog-responsive',
       data: land$,
+    });
+    dialogRef.afterClosed().subscribe(async turns => {
+      if (turns) {
+        let kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
+        let kingdomLand = this.store.selectSnapshot(AuthState.getKingdomLand);
+        if (turns <= kingdomTurn.quantity) {
+          let lands = 1;
+          for (let i = 0; i < turns; i++) {
+            lands += Math.floor((this.maximumLands - (kingdomLand.max + kingdomLand.balance + lands)) / 100);
+          }
+          const batch = this.angularFirestore.firestore.batch();
+          batch.update(this.angularFirestore.doc<any>(`kingdoms/${this.uid}/supplies/${kingdomTurn.fid}`).ref, { quantity: firestore.FieldValue.increment(-turns) });
+          batch.update(this.angularFirestore.doc<any>(`kingdoms/${this.uid}/supplies/${kingdomLand.fid}`).ref, { quantity: firestore.FieldValue.increment(lands), max: firestore.FieldValue.increment(lands) });
+          await batch.commit();
+          this.notificationService.success('kingdom.explore.success', { lands: lands });
+        } else {
+          this.notificationService.error('kingdom.explore.error');
+        }
+      }
     });
   }
 
