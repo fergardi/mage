@@ -148,6 +148,9 @@
       "protection": "Protegido",
       "report": "Se ha enviado el reporte de batalla"
     },
+    "report": {
+      "close": "Cerrar"
+    },
     "battle": {
       "name": "Batalla",
       "description": "TODO",
@@ -300,7 +303,7 @@
     "archive": {
       "name": "Archivo",
       "description": "Revisa tu correspondencia",
-      "help": "Aqui puedes ver un listado de las cartas, informes, avisos y cualquier otro tipo de información referente a tu reino. También puedes enviar cartas a otros reinos.",
+      "help": "Aqui puedes ver un listado de las cartas, informes, avisos y cualquier otro tipo de información referente a tu reino.",
       "filter": "Filtrar cartas"
     },
     "letter": {
@@ -336,7 +339,9 @@
     "emporium": {
       "name": "Emporio",
       "description": "Contrabando del mercado negro",
-      "help": "TODO"
+      "help": "TODO",
+      "success": "Compra satisfactoria",
+      "error": "No tienes suficientes gemas"
     },
     "buy": {
       "name": "Compra",

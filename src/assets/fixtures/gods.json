@@ -6,6 +6,9 @@
     "description": "god.death.description",
     "image": "/assets/images/gods/death.png",
     "faction": "black",
+    "units": [],
+    "items": [],
+    "spells": [],
     "gold": 0
   },
   {
@@ -15,6 +18,9 @@
     "description": "god.void.description",
     "image": "/assets/images/gods/void.png",
     "faction": "blue",
+    "units": [],
+    "items": [],
+    "spells": [],
     "gold": 0
   },
   {
@@ -24,6 +30,9 @@
     "description": "god.famine.description",
     "image": "/assets/images/gods/famine.png",
     "faction": "white",
+    "units": [],
+    "items": [],
+    "spells": [],
     "gold": 0
   },
   {
@@ -33,6 +42,9 @@
     "description": "god.war.description",
     "image": "/assets/images/gods/war.png",
     "faction": "red",
+    "units": [],
+    "items": [],
+    "spells": [],
     "gold": 0
   },
   {
@@ -42,6 +54,9 @@
     "description": "god.pestilence.description",
     "image": "/assets/images/gods/pestilence.png",
     "faction": "green",
+    "units": [],
+    "items": [],
+    "spells": [],
     "gold": 0
   }
 ]

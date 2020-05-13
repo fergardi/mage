@@ -32,7 +32,7 @@ import { NotificationService } from 'src/app/services/notification.service';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.recruit.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="recruit()">{{ 'kingdom.recruit.recruit' | translate }}</button>
+      <button mat-raised-button color="primary" (click)="recruit()" cdkFocusInitial>{{ 'kingdom.recruit.recruit' | translate }}</button>
     </div>
   `,
   styles: [`

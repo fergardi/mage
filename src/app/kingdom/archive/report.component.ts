@@ -10,7 +10,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       <p>{{ data.message }}</p>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="close()">{{ 'kingdom.report.close' | translate }}</button>
+      <button mat-raised-button color="primary" (click)="close()" cdkFocusInitial>{{ 'kingdom.report.close' | translate }}</button>
     </div>
   `,
   styles: [`

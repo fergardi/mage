@@ -31,7 +31,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.letter.close' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="sendLetter()">{{ 'kingdom.letter.send' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="sendLetter()" cdkFocusInitial>{{ 'kingdom.letter.send' | translate }}</button>
     </div>
   `,
   styles: [`

@@ -33,7 +33,7 @@ import { Observable } from 'rxjs';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.explore.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="explore()">{{ 'kingdom.explore.explore' | translate }}</button>
+      <button mat-raised-button color="primary" (click)="explore()" cdkFocusInitial>{{ 'kingdom.explore.explore' | translate }}</button>
     </div>
   `,
   styles: [`

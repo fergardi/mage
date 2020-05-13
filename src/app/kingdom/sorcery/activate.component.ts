@@ -40,7 +40,7 @@ export enum ArtifactAssignmentType {
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.activate.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="!selectedArtifact" (click)="activate()">{{ 'kingdom.activate.activate' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="!selectedArtifact" (click)="activate()" cdkFocusInitial>{{ 'kingdom.activate.activate' | translate }}</button>
     </div>
   `,
   styles: [`

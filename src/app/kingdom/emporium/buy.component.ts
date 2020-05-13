@@ -22,7 +22,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.buy.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="buy()">{{ 'kingdom.buy.buy' | translate }}</button>
+      <button mat-raised-button color="primary" (click)="buy()" cdkFocusInitial>{{ 'kingdom.buy.buy' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -43,7 +43,7 @@ export class BuyComponent {
   }
 
   buy(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(this.item.id);
   }
 
 }

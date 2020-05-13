@@ -40,7 +40,7 @@ export enum CharmAssignmentType {
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.conjure.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="!selectedCharm" (click)="conjure()">{{ 'kingdom.conjure.conjure' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="!selectedCharm" (click)="conjure()" cdkFocusInitial>{{ 'kingdom.conjure.conjure' | translate }}</button>
     </div>
   `,
   styles: [`

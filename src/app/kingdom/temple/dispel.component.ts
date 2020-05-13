@@ -29,7 +29,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.dispel.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="dispel()">{{ 'kingdom.dispel.dispel' | translate }}</button>
+      <button mat-raised-button color="primary" (click)="dispel()" cdkFocusInitial>{{ 'kingdom.dispel.dispel' | translate }}</button>
     </div>
   `,
   styles: [`
