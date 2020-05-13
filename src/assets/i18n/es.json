@@ -113,7 +113,8 @@
       "timestamp": "Fecha",
       "bid": "Puja",
       "radius": "Poder",
-      "position": "Posición"
+      "position": "Posición",
+      "actions": "Acciones"
     }
   },
   "world": {
@@ -172,10 +173,10 @@
       "error": "No cumples los requisitos"
     },
     "discharge": {
-      "name": "Licencia",
+      "name": "Despido",
       "description": "TODO",
       "cancel": "Cancelar",
-      "discharge": "Licenciar"
+      "discharge": "Despedir"
     },
     "attack": {
       "name": "Ataque",
@@ -242,7 +243,7 @@
       "error": "No tienes turnos y/o maná suficiente",
       "conjure": "Conjurar",
       "cancel": "Cancelar",
-      "to": "Objetivo"
+      "select": "Escoge un hechizo"
     },
     "activate": {
       "name": "Activación",
@@ -251,7 +252,7 @@
       "error": "No tienes turnos suficientes",
       "activate": "Activar",
       "cancel": "Cancelar",
-      "to": "Objetivo"
+      "select": "Escoge un artefacto"
     },
     "arcanism": {
       "name": "Arcanismo",
@@ -314,7 +315,9 @@
       "send": "Enviar",
       "sent": "Mensaje enviado",
       "deleted": "Mensajes borrados",
-      "error": "Ha ocurrido un error al enviar o borrar el mensaje"
+      "error": "Ha ocurrido un problema",
+      "invalid": "Campo no válido",
+      "reset": "Limpiar"
     },
     "temple": {
       "name": "Templo",
@@ -842,7 +845,7 @@
     },
     "shroud-darkness": {
       "name": "Manto de oscuridad",
-      "description": "Aumenta la protección mágica"
+      "description": "Aumenta protección mágica"
     },
     "poison": {
       "name": "Veneno ponzoñoso",
@@ -882,7 +885,7 @@
     },
     "battle-chant": {
       "name": "Cántico de batalla",
-      "description": "Aumenta el ataque pero disminuye la salud"
+      "description": "Aumenta ataque pero disminuye salud"
     },
     "call-lizardman": {
       "name": "Llamar hombres lagarto",
@@ -950,7 +953,7 @@
     },
     "fire-wall": {
       "name": "Muro de fuego",
-      "description": "Aumenta la protección física"
+      "description": "Aumenta protección física"
     },
     "frenzy": {
       "name": "Locura",
@@ -982,11 +985,11 @@
     },
     "concentration": {
       "name": "Concentración",
-      "description": "Reduce tiempos de investigación"
+      "description": "Acelera investigaciones"
     },
     "confuse": {
       "name": "Confundir",
-      "description": "Aumenta tiempos de investigación"
+      "description": "Retasa investigaciones y se contagia"
     },
     "conjure-elemental": {
       "name": "Conjurar elementales",
@@ -1014,7 +1017,7 @@
     },
     "ice-wall": {
       "name": "Muro helado",
-      "description": "Aumenta la protección física y mágica"
+      "description": "Aumenta protección física y mágica"
     },
     "invisibility": {
       "name": "Invisibilidad",
@@ -1022,7 +1025,7 @@
     },
     "laziness": {
       "name": "Pereza",
-      "description": "Destruye <population> al <turn>"
+      "description": "Destruye <population> al <turn> y se contagia"
     },
     "haste": {
       "name": "Prisa",
@@ -1066,7 +1069,7 @@
     },
     "climate-control": {
       "name": "Control del clima",
-      "description": "Aumenta la producción de <gold> al <turn>"
+      "description": "Aumenta producción de <gold> al <turn>"
     },
     "cure": {
       "name": "Curación",
@@ -1078,11 +1081,11 @@
     },
     "locust-swarm": {
       "name": "Enjambre de langostas",
-      "description": "Destruye <population> al <turn>"
+      "description": "Destruye <population> al <turn> y se contagia"
     },
     "natures-favor": {
       "name": "Favor de la naturaleza",
-      "description": "Aumenta la producción de <population> al <turn>"
+      "description": "Aumenta producción de <population> al <turn>"
     },
     "regeneration": {
       "name": "Regeneración",
@@ -1114,7 +1117,7 @@
     },
     "sunray": {
       "name": "Rayo de sol",
-      "description": "Aumenta la protección mágica"
+      "description": "Aumenta protección mágica"
     },
     "strength": {
       "name": "Fuerza",
@@ -1146,7 +1149,7 @@
     },
     "divine-protection": {
       "name": "Protección divina",
-      "description": "Aumenta la protección física"
+      "description": "Aumenta protección física"
     },
     "holy-word": {
       "name": "Palabra santa",
@@ -1296,15 +1299,15 @@
     },
     "scales": {
       "name": "Placas",
-      "description": "Aumenta la defensa"
+      "description": "Aumenta defensa"
     },
     "strength": {
       "name": "Fuerza",
-      "description": "Aumenta el ataque"
+      "description": "Aumenta ataque"
     },
     "haste": {
       "name": "Prisa",
-      "description": "Aumenta la iniciativa"
+      "description": "Aumenta iniciativa"
     },
     "weakness": {
       "name": "Debilidad",

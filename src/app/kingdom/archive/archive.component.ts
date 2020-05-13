@@ -6,7 +6,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
-import { LetterComponent } from './letter.component';
+import { ReportComponent } from './report.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { fadeInOnEnterAnimation } from 'angular-animations';
@@ -27,7 +27,6 @@ export class ArchiveComponent implements OnInit {
 
   uid: string = null;
   kingdoms: any[] = [];
-  form: FormGroup = null;
   columns = ['select', 'from', 'subject', 'timestamp'];
   filters: any = {
     from: {
@@ -51,14 +50,13 @@ export class ArchiveComponent implements OnInit {
     private angularFirestore: AngularFirestore,
     public dialog: MatDialog,
     private store: Store,
-    private formBuilder: FormBuilder,
     private notificationService: NotificationService,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/letters`, 'kingdoms', 'from', 'id').pipe(untilDestroyed(this)).subscribe(letters => {
       this.data = new MatTableDataSource(letters);
@@ -70,15 +68,9 @@ export class ArchiveComponent implements OnInit {
     this.angularFirestore.collection('kingdoms').valueChanges().pipe(untilDestroyed(this)).subscribe(kingdoms => {
       this.kingdoms = kingdoms;
     });
-    this.form = this.formBuilder.group({
-      from: [this.uid, [Validators.required]],
-      to: ['', [Validators.required]],
-      subject: ['', [Validators.required]],
-      message: ['', [Validators.required]],
-    });
   }
 
-  applyFilter() {
+  applyFilter(): void {
     this.data.filter = JSON.stringify({
       from: this.filters.from.value,
       subject: this.filters.subject.value,
@@ -96,24 +88,24 @@ export class ArchiveComponent implements OnInit {
     return filterFunction;
   }
 
-  isAllSelected() {
+  isAllSelected(): boolean {
     return this.data.data.length === this.selection.selected.length;
   }
 
-  masterToggle() {
+  masterToggle(): void {
     this.isAllSelected()
       ? this.selection.clear()
       : this.data.data.forEach(row => this.selection.select(row));
   }
 
-  openLetterDialog(letter: any): void {
-    const dialogRef = this.dialog.open(LetterComponent, {
+  openReportDialog(letter: any): void {
+    const dialogRef = this.dialog.open(ReportComponent, {
       panelClass: 'dialog-responsive',
       data: letter,
     });
   }
 
-  async deleteLetters() {
+  async deleteReports() {
     if (this.selection.selected.length) {
       try {
         const batch = this.angularFirestore.firestore.batch();
@@ -126,28 +118,6 @@ export class ArchiveComponent implements OnInit {
       } catch (error) {
         this.notificationService.error('kingdom.letter.error');
       }
-    }
-  }
-
-  async sendLetter() {
-    if (this.form.valid) {
-      try {
-        await this.angularFirestore.collection(`kingdoms/${this.form.value.to}/letters`).add({
-          from: this.form.value.from,
-          to: this.form.value.to,
-          subject: this.form.value.subject,
-          message: this.form.value.message,
-          timestamp: firestore.FieldValue.serverTimestamp(),
-        });
-        this.form.reset();
-        this.notificationService.success('kingdom.letter.sent');
-      } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.letter.error');
-      }
-    } else {
-      console.error(this.form.errors);
-      this.notificationService.error('kingdom.letter.error');
     }
   }
 

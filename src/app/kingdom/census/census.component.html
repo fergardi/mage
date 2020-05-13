@@ -30,7 +30,7 @@
 
           <mat-cell *matCellDef="let kingdom" [attr.data-label]="'table.column.' + column | translate">
 
-            <span *ngIf="column !== 'name'">
+            <span *ngIf="['radius', 'position'].includes(column)">
               {{ kingdom[column] | long }}
             </span>
 
@@ -42,18 +42,31 @@
                   </div>
                   <div mat-line>{{ kingdom.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle">{{ kingdom.join.name | translate }}</div>
-                  <div mat-list-avatar *ngIf="!canBeAttacked(kingdom)" [@fadeInOnEnter] [@fadeOutOnLeave]>
-                    <img mat-list-avatar src="/assets/images/resources/turn.png" [title]="'kingdom.census.protection' | translate">
-                  </div>
+                  <mat-icon *ngIf="!canBeAttacked(kingdom)" [@fadeInOnEnter] [@fadeOutOnLeave] title="{{ 'kingdom.census.protection' | translate }}">security</mat-icon>
                 </mat-list-item>
               </mat-list>
+            </ng-template>
+
+            <ng-template [ngIf]="column === 'actions' && kingdom.fid !== uid">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.battle.attack' | translate }}" [disabled]="!canBeAttacked(kingdom)" (click)="openAttackDialog(kingdom)">
+                <mat-icon>flag</mat-icon>
+              </button>
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.activate.activate' | translate }}" (click)="openActivateDialog(kingdom)">
+                <mat-icon>control_camera</mat-icon>
+              </button>
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.conjure.conjure' | translate }}" (click)="openConjureDialog(kingdom)">
+                <mat-icon>whatshot</mat-icon>
+              </button>
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.letter.name' | translate }}" (click)="openLetterDialog(kingdom)">
+                <mat-icon>mail</mat-icon>
+              </button>
             </ng-template>
 
           </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let kingdom; columns: columns" (click)="kingdom.fid !== uid && canBeAttacked(kingdom) ? openAttackDialog(kingdom) : null"></mat-row>
+        <mat-row *matRowDef="let kingdom; columns: columns"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

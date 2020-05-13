@@ -134,7 +134,8 @@ export class FirebaseService {
             level: 3, // enchantments and contracts
             from: data.self ? user.uid : 'test', // enchantments
             max: 1000, // resources
-            balance: 123 // resources
+            balance: 123, // resources
+            assignment: 0, // troops, artifacts, heroes
           })
         });
       });

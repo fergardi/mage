@@ -22,7 +22,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.discharge.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="discharge()" cdkFocusInitial>{{ 'kingdom.discharge.discharge' | translate }}</button>
+      <button mat-raised-button color="primary" (click)="discharge()">{{ 'kingdom.discharge.discharge' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -43,7 +43,7 @@ export class DischargeComponent {
   }
 
   discharge(): void {
-    this.dialogRef.close(this.form.value.quantity);
+    this.dialogRef.close();
   }
 
 }

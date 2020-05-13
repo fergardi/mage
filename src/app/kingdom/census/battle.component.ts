@@ -15,7 +15,18 @@ export enum BattleType {
   template: `
     <h1 mat-dialog-title>{{ 'kingdom.battle.name' | translate }}</h1>
     <div mat-dialog-content>
-      <p>{{ 'kingdom.battle.description' | translate }}</p>
+      <mat-list dense>
+        <mat-list-item>
+          <div mat-list-avatar [matBadge]="kingdom.position | long" matBadgePosition="above before">
+            <img mat-list-avatar [src]="kingdom.join.image">
+          </div>
+          <div mat-line>{{ kingdom.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ kingdom.join.name | translate }}</div>
+          <div mat-list-avatar [matBadge]="1" matBadgePosition="above after">
+            <img mat-list-avatar src="/assets/images/resources/turn.png">
+          </div>
+        </mat-list-item>
+      </mat-list>
       <mat-form-field>
         <mat-label>{{ 'kingdom.battle.type' | translate }}</mat-label>
         <mat-select [(ngModel)]="attackType">
@@ -38,7 +49,7 @@ export enum BattleType {
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.battle.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [mat-dialog-close]="attackType" cdkFocusInitial>{{ 'kingdom.battle.attack' | translate }}</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="attackType">{{ 'kingdom.battle.attack' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -61,11 +72,11 @@ export class BattleComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<BattleComponent>,
     private firebaseService: FirebaseService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public kingdom: any,
   ) { }
 
   ngOnInit(): void {
-    this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/troops`, 'units', 'id', 'id', ref => ref.where('assignment', '==', TroopAssignmentType.troopDefense)).pipe(untilDestroyed(this)).subscribe(troops => {
+    this.firebaseService.leftJoin(`kingdoms/${this.kingdom.fid}/troops`, 'units', 'id', 'id', ref => ref.where('assignment', '==', TroopAssignmentType.troopDefense)).pipe(untilDestroyed(this)).subscribe(troops => {
       this.kingdomTroops = troops.sort((a, b) => a.join.name - b.join.name);
     });
   }

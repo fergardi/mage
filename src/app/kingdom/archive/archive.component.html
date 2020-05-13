@@ -1,6 +1,4 @@
-<div class="kingdom-archive table-no-responsive" fxLayout="row wrap" fxLayoutGap="10px grid" [@fadeInOnEnter]>
-
-  <div fxFlex.xl="66" fxFlex.lg="66" fxFlex.md="66" fxFlex.sm="100" fxFlex.xs="100">
+<div class="kingdom-archive table-responsive" [@fadeInOnEnter]>
 
     <mat-card>
       <mat-card-header>
@@ -71,12 +69,12 @@
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
-          <mat-row *matRowDef="let letter; columns: columns" (click)="openLetterDialog(letter)"></mat-row>
+          <mat-row *matRowDef="let letter; columns: columns" (click)="openReportDialog(letter)"></mat-row>
         </table>
 
         <mat-toolbar>
           <mat-toolbar-row>
-            <button mat-icon-button [disabled]="!selection.selected.length" (click)="deleteLetters()"><mat-icon>delete</mat-icon></button>
+            <button mat-icon-button [disabled]="!selection.selected.length" (click)="deleteReports()"><mat-icon>delete</mat-icon></button>
             <span class="fill-space"></span>
             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
           </mat-toolbar-row>
@@ -84,49 +82,5 @@
 
       </mat-card-content>
     </mat-card>
-
-  </div>
-
-  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="33" fxFlex.sm="100" fxFlex.xs="100">
-
-    <mat-card>
-      <mat-card-header>
-        <img mat-card-avatar src="/assets/images/icons/letter.png"/>
-        <mat-card-title >{{ 'kingdom.letter.name' | translate }}</mat-card-title>
-        <mat-card-subtitle>{{ 'kingdom.letter.description' | translate }}</mat-card-subtitle>
-      </mat-card-header>
-
-      <mat-card-content>
-        {{ 'kingdom.letter.help' | translate }}
-      </mat-card-content>
-
-      <mat-card-content>
-
-        <form [formGroup]="form" class="letter-form" autocomplete="off">
-          <mat-form-field>
-            <mat-label>{{ 'kingdom.letter.subject' | translate }}</mat-label>
-            <input placeholder="{{ 'kingdom.letter.subject' | translate }}" matInput formControlName="subject">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>{{ 'kingdom.letter.to' | translate }}</mat-label>
-            <mat-select formControlName="to">
-              <mat-option *ngFor="let kingdom of kingdoms" [value]="kingdom.id">{{ kingdom.name }}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>{{ 'kingdom.letter.message' | translate }}</mat-label>
-            <textarea placeholder="{{ 'kingdom.letter.message' | translate }}" matInput rows="5" formControlName="message"></textarea>
-          </mat-form-field>
-        </form>
-
-      </mat-card-content>
-
-      <mat-card-actions fxLayoutAlign="flex-end">
-        <button mat-raised-button (click)="sendLetter()" cdkFocusInitial>{{ 'kingdom.letter.send' | translate }}</button>
-      </mat-card-actions>
-
-    </mat-card>
-
-  </div>
 
 </div>

@@ -1,11 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NotificationService } from 'src/app/services/notification.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+
+export enum ArtifactAssignmentType {
+  'none' = 0,
+  'attack' = 1,
+  'defense' = 2,
+}
 
 @Component({
   selector: 'app-activate',
@@ -13,30 +17,30 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     <h1 mat-dialog-title>{{ 'kingdom.activate.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.activate.description' | translate }}</p>
-      <mat-list dense>
-        <mat-list-item>
-          <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
-            <img mat-list-avatar [src]="artifact.join.image">
-          </div>
-          <div mat-line>{{ artifact.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells"></div>
-          <div mat-list-avatar [matBadge]="artifact.join.turns" matBadgePosition="above after">
-            <img mat-list-avatar src="/assets/images/resources/turn.png">
-          </div>
-        </mat-list-item>
-      </mat-list>
-      <form [formGroup]="form">
-        <mat-form-field>
-          <mat-label>{{ 'kingdom.activate.to' | translate }}</mat-label>
-          <mat-select formControlName="to">
-            <mat-option *ngFor="let kingdom of kingdoms" [value]="kingdom.id">{{ kingdom.name }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </form>
+      <mat-form-field>
+        <mat-label>{{ 'kingdom.activate.select' | translate }}</mat-label>
+        <mat-select [(ngModel)]="selectedArtifact">
+          <mat-select-trigger *ngIf="selectedArtifact">
+            <mat-list dense>
+              <mat-list-item>
+                <div mat-list-avatar [matBadge]="selectedArtifact.quantity" matBadgePosition="above before">
+                  <img mat-list-avatar [src]="selectedArtifact.join.image">
+                </div>
+                <div mat-line>{{ selectedArtifact.join.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="selectedArtifact.join.description | translate | icon:selectedArtifact.join.skills:selectedArtifact.join.categories:selectedArtifact.join.families:selectedArtifact.join.units:selectedArtifact.join.resources:selectedArtifact.join.spells"></div>
+                <div mat-list-avatar [matBadge]="selectedArtifact.join.turns" matBadgePosition="above after">
+                  <img mat-list-avatar src="/assets/images/resources/turn.png">
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-select-trigger>
+          <mat-option *ngFor="let artifact of kingdomArtifacts" [value]="artifact">{{ artifact.join.name | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.activate.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="activate()" cdkFocusInitial>{{ 'kingdom.activate.activate' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="!selectedArtifact" (click)="activate()">{{ 'kingdom.activate.activate' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -49,30 +53,24 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 export class ActivateComponent implements OnInit {
 
   uid: string = null;
-  form: FormGroup = null;
-  kingdoms: any[] = [];
+  kingdomArtifacts: any[] = [];
+  selectedArtifact: any = null;
 
   constructor(
     public dialogRef: MatDialogRef<ActivateComponent>,
-    @Inject(MAT_DIALOG_DATA) public artifact: any,
-    private formBuilder: FormBuilder,
-    private notificationService: NotificationService,
-    private angularFirestore: AngularFirestore,
+    private firebaseService: FirebaseService,
     private store: Store,
+    @Inject(MAT_DIALOG_DATA) public artifact: any,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
-    this.form = this.formBuilder.group({
-      to: [0, [Validators.required]]
-    });
-    if (this.artifact.join.self) {
-      this.angularFirestore.collection('kingdoms', ref => ref.where('id', '==', this.uid)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(kingdoms => {
-        this.kingdoms = kingdoms;
-      });
+    if (this.artifact) {
+      this.kingdomArtifacts = [this.artifact];
+      this.selectedArtifact = this.artifact;
     } else {
-      this.angularFirestore.collection('kingdoms').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(kingdoms => {
-        this.kingdoms = kingdoms.filter(kingdom => kingdom.fid !== this.uid);
+      this.firebaseService.leftJoin(`kingdoms/${this.uid}/artifacts`, 'items', 'id', 'id', ref => ref.where('assignment', '==', ArtifactAssignmentType.none)).pipe(untilDestroyed(this)).subscribe(artifacts => {
+        this.kingdomArtifacts = artifacts.filter(artifact => !artifact.join.battle && !artifact.join.self);
       });
     }
   }
@@ -82,11 +80,7 @@ export class ActivateComponent implements OnInit {
   }
 
   activate(): void {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value.to);
-    } else {
-      this.notificationService.error('kingdom.activate.error');
-    }
+    this.dialogRef.close(this.selectedArtifact.fid);
   }
 
 }

@@ -13,6 +13,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import * as moment from 'moment';
 import { NotificationService } from 'src/app/services/notification.service';
+import { LetterComponent } from './letter.component';
+import { ActivateComponent } from '../sorcery/activate.component';
+import { ConjureComponent } from '../sorcery/conjure.component';
 
 @Component({
   selector: 'app-census',
@@ -29,8 +32,8 @@ export class CensusComponent implements OnInit, OnDestroy {
   uid: string = null;
   protection: number = 8;
   clock: Date = new Date();
-  interval: NodeJS.Timeout = null;
-  columns = ['position', 'name', 'radius'];
+  interval: any = null;
+  columns = ['position', 'name', 'radius', 'actions'];
   filters: any = {
     name: {
       type: 'text',
@@ -86,6 +89,49 @@ export class CensusComponent implements OnInit, OnDestroy {
       if (data) {
         await this.angularFirestore.doc<any>(`kingdoms/${kingdom.fid}`).update({ lastAttacked: firestore.FieldValue.serverTimestamp() });
         this.notificationService.success('kingdom.census.report');
+      }
+    })
+  }
+
+  openLetterDialog(kingdom: any): void {
+    const dialogRef = this.dialog.open(LetterComponent, {
+      panelClass: 'dialog-responsive',
+      data: kingdom,
+    });
+    dialogRef.afterClosed().subscribe(async form => {
+      if (form) {
+        await this.angularFirestore.collection(`kingdoms/${kingdom.fid}/letters`).add({
+          from: this.uid,
+          to: kingdom.fid,
+          subject: form.subject,
+          message: form.message,
+          timestamp: firestore.FieldValue.serverTimestamp(),
+        });
+        this.notificationService.success('kingdom.letter.sent');
+      }
+    })
+  }
+
+  openActivateDialog(kingdom: any): void {
+    const dialogRef = this.dialog.open(ActivateComponent, {
+      panelClass: 'dialog-responsive',
+      data: null,
+    });
+    dialogRef.afterClosed().subscribe(artifact => {
+      if (artifact) {
+        // TODO
+      }
+    })
+  }
+
+  openConjureDialog(kingdom: any): void {
+    const dialogRef = this.dialog.open(ConjureComponent, {
+      panelClass: 'dialog-responsive',
+      data: null,
+    });
+    dialogRef.afterClosed().subscribe(async data => {
+      if (data) {
+        // TODO
       }
     })
   }

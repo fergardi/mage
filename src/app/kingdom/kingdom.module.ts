@@ -9,7 +9,7 @@ import { ArmyComponent } from './army/army.component';
 import { SorceryComponent } from './sorcery/sorcery.component';
 import { ResearchComponent } from './sorcery/research.component';
 import { ArchiveComponent } from './archive/archive.component';
-import { LetterComponent } from './archive/letter.component';
+import { ReportComponent } from './archive/report.component';
 import { TempleComponent } from './temple/temple.component';
 import { OfferComponent } from './temple/offer.component';
 import { TavernComponent } from './tavern/tavern.component';
@@ -28,6 +28,7 @@ import { ExploreComponent } from './city/explore.component';
 import { BuyComponent } from './emporium/buy.component';
 import { DisbandComponent } from './army/disband.component';
 import { DischargeComponent } from './tavern/discharge.component';
+import { LetterComponent } from './census/letter.component';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { DischargeComponent } from './tavern/discharge.component';
     SorceryComponent,
     ResearchComponent,
     ArchiveComponent,
-    LetterComponent,
+    ReportComponent,
     TempleComponent,
     OfferComponent,
     TavernComponent,
@@ -57,6 +58,7 @@ import { DischargeComponent } from './tavern/discharge.component';
     BuyComponent,
     DisbandComponent,
     DischargeComponent,
+    LetterComponent,
   ],
   imports: [
     CommonModule,

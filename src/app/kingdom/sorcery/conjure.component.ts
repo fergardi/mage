@@ -1,11 +1,15 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NotificationService } from 'src/app/services/notification.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+
+export enum CharmAssignmentType {
+  'none' = 3,
+  'attack' = 4,
+  'defense' = 5,
+}
 
 @Component({
   selector: 'app-conjure',
@@ -13,30 +17,30 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     <h1 mat-dialog-title>{{ 'kingdom.conjure.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.conjure.description' | translate }}</p>
-      <mat-list dense>
-        <mat-list-item>
-          <div mat-list-avatar [matBadge]="charm.quantity" matBadgePosition="above before">
-            <img mat-list-avatar [src]="charm.join.image">
-          </div>
-          <div mat-line>{{ charm.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:charm.join.spells"></div>
-          <div mat-list-avatar [matBadge]="charm.join.turns" matBadgePosition="above after">
-            <img mat-list-avatar src="/assets/images/resources/turn.png">
-          </div>
-        </mat-list-item>
-      </mat-list>
-      <form [formGroup]="form">
-        <mat-form-field>
-          <mat-label>{{ 'kingdom.conjure.to' | translate }}</mat-label>
-          <mat-select formControlName="to">
-            <mat-option *ngFor="let kingdom of kingdoms" [value]="kingdom.id">{{ kingdom.name }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </form>
+      <mat-form-field>
+        <mat-label>{{ 'kingdom.conjure.select' | translate }}</mat-label>
+        <mat-select [(ngModel)]="selectedCharm">
+          <mat-select-trigger *ngIf="selectedCharm">
+            <mat-list dense>
+              <mat-list-item>
+                <div mat-list-avatar [matBadge]="selectedCharm.level" matBadgePosition="above before">
+                  <img mat-list-avatar [src]="selectedCharm.join.image">
+                </div>
+                <div mat-line>{{ selectedCharm.join.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="selectedCharm.join.description | translate | icon:selectedCharm.join.skills:selectedCharm.join.categories:selectedCharm.join.families:selectedCharm.join.units:selectedCharm.join.resources:selectedCharm.join.spells"></div>
+                <div mat-list-avatar [matBadge]="selectedCharm.join.turns" matBadgePosition="above after">
+                  <img mat-list-avatar src="/assets/images/resources/turn.png">
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-select-trigger>
+          <mat-option *ngFor="let charm of kingdomCharms" [value]="charm">{{ charm.join.name | translate }}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.conjure.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="conjure()" cdkFocusInitial>{{ 'kingdom.conjure.conjure' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="!selectedCharm" (click)="conjure()">{{ 'kingdom.conjure.conjure' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -46,35 +50,29 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
   `]
 })
 @UntilDestroy()
-export class ConjureComponent implements OnInit {
+export class ConjureComponent {
 
   uid: string = null;
-  form: FormGroup = null;
-  kingdoms: any[] = [];
+  kingdomCharms: any[] = [];
+  selectedCharm: any = null;
 
   constructor(
     public dialogRef: MatDialogRef<ConjureComponent>,
     @Inject(MAT_DIALOG_DATA) public charm: any,
-    private formBuilder: FormBuilder,
-    private notificationService: NotificationService,
-    private angularFirestore: AngularFirestore,
     private store: Store,
+    private firebaseService: FirebaseService,
   ) { }
 
   ngOnInit(): void {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
-    if (this.charm.join.self) {
-      this.angularFirestore.collection('kingdoms', ref => ref.where('id', '==', this.uid)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(kingdoms => {
-        this.kingdoms = kingdoms;
-      });
+    if (this.charm) {
+      this.kingdomCharms = [this.charm];
+      this.selectedCharm = this.charm;
     } else {
-      this.angularFirestore.collection('kingdoms').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(kingdoms => {
-        this.kingdoms = kingdoms.filter(kingdom => kingdom.fid !== this.uid);
+      this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(charms => {
+        this.kingdomCharms = charms.filter(charm => !charm.join.battle && !charm.join.self);
       });
     }
-    this.form = this.formBuilder.group({
-      to: [0, [Validators.required]]
-    });
   }
 
   close(): void {
@@ -82,11 +80,7 @@ export class ConjureComponent implements OnInit {
   }
 
   conjure(): void {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value.to);
-    } else {
-      this.notificationService.error('kingdom.conjure.error');
-    }
+    this.dialogRef.close(this.selectedCharm.fid);
   }
 
 }
