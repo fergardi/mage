@@ -27,6 +27,9 @@
     "encyclopedia": {
       "name": "Enciclopedia",
       "description": "Adquiere el conocimiento"
+    },
+    "tome": {
+      "close": "Cerrar"
     }
   },
   "type": {
@@ -1247,7 +1250,7 @@
       "name": "NoMuerto",
       "description": ""
     },
-    "orc": {
+    "orkish": {
       "name": "Orco",
       "description": ""
     }

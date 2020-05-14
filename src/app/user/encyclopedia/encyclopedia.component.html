@@ -17,7 +17,6 @@
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
 
           <mat-header-cell class="table-header" *matHeaderCellDef>
-
             <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
 
             <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
@@ -77,7 +76,7 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+        <mat-row *matRowDef="let tome; columns: columns;" (click)="openTomeDialog(tome)"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

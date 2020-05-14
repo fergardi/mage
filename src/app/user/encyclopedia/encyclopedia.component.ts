@@ -5,6 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { CacheService } from 'src/app/services/cache.service';
 import { TranslateService } from '@ngx-translate/core';
+import { TomeComponent } from './tome.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-encyclopedia',
@@ -41,6 +43,7 @@ export class EncyclopediaComponent implements OnInit {
   constructor(
     private cacheService: CacheService,
     private translateService: TranslateService,
+    public dialog: MatDialog,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -84,6 +87,13 @@ export class EncyclopediaComponent implements OnInit {
         && data.faction.toLowerCase().includes(filters.faction)
     }
     return filterFunction;
+  }
+
+  openTomeDialog(tome: any) {
+    const dialogRef = this.dialog.open(TomeComponent, {
+      panelClass: 'dialog-responsive',
+      data: tome,
+    });
   }
 
 }

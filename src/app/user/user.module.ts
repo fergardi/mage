@@ -7,12 +7,14 @@ import { LoginComponent } from './login/login.component';
 import { GoogloginDirective } from './googlogin.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EncyclopediaComponent } from './encyclopedia/encyclopedia.component';
+import { TomeComponent } from './encyclopedia/tome.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     GoogloginDirective,
-    EncyclopediaComponent
+    EncyclopediaComponent,
+    TomeComponent
   ],
   imports: [
     CommonModule,
