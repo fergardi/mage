@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
 admin.initializeApp({
-  credential: admin.credential.cert(require('../mage-c4259-firebase-adminsdk-ah05o-b65a21f567.json'))
+  credential: admin.credential.cert(require('../credentials/mage-c4259-firebase-adminsdk-ah05o-b65a21f567.json'))
 });
 const angularFirestore = admin.firestore();
 
