@@ -9,6 +9,10 @@ import { take } from 'rxjs/operators';
 import { MarkerComponent } from '../world/marker/marker.component';
 import { PopupComponent } from '../world/popup/popup.component';
 import { TroopAssignmentType } from '../kingdom/army/army.component';
+import { Store } from '@ngxs/store';
+import { AuthState } from '../shared/auth/auth.state';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { RandomService } from './random.service';
 
 export enum MarkerType {
   'kingdom', 'shop', 'quest',
@@ -34,6 +38,7 @@ interface Marker {
 })
 export class MapboxService {
 
+  uid: string = null;
   mapbox = (mapboxgl as typeof mapboxgl);
   map: mapboxgl.Map = null;
   markers: Marker[] = [];
@@ -43,6 +48,9 @@ export class MapboxService {
     private componentService: ComponentService,
     private firebaseService: FirebaseService,
     private angularFireAuth: AngularFireAuth,
+    private angularFirestore: AngularFirestore,
+    private store: Store,
+    private randomService: RandomService,
   ) {
     this.mapbox.accessToken = environment.mapbox.token;
   }
@@ -57,71 +65,64 @@ export class MapboxService {
       attributionControl: false,
       // interactive: false
     });
-    this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'bottom-right');
+    /*
+    this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addBot.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('book', 'Shop', this.addShop.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('capitol', 'Quest', this.addQuest.bind(this)), 'bottom-right');
-    this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addUser.bind(this)), 'bottom-right');
+    this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addMe.bind(this)), 'bottom-right');
+    */
   }
 
-  addUser(): void {
-    this.angularFireAuth.authState.pipe(take(1)).subscribe(user => {
-      if (user) {
-        navigator.geolocation.getCurrentPosition(async position => {
-          await this.firebaseService.addElementToCollection('kingdoms', {
-            id: user.uid,
-            faction: 'black',
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-            radius: 1500,
-            name: 'Fergardi'
-          }, user.uid);
-          this.firebaseService.addElementsToCollection(`kingdoms/${user.uid}/troops`, [
-            { id: 'skeleton', quantity: 20000 },
-          ]);
-          this.firebaseService.addElementsToCollection(`kingdoms/${user.uid}/supplies`, [
-            { id: 'gold', quantity: 20000, max: null, balance: 0 },
-            { id: 'mana', quantity: 20000, max: 20000, balance: 0 },
-            { id: 'population', quantity: 20000, max: 20000, balance: 0 },
-            { id: 'gem', quantity: 10, max: null, balance: 0 },
-            { id: 'turn', quantity: 300, max: 300, balance: 0 },
-            { id: 'land', quantity: 300, max: null, balance: 0 },
-          ]);
-          this.firebaseService.addElementsToCollection(`kingdoms/${user.uid}/buildings`, [
-            { id: 'barrack', quantity: 100 },
-            { id: 'barrier', quantity: 100 },
-            { id: 'farm', quantity: 100 },
-            { id: 'fortress', quantity: 100 },
-            { id: 'guild', quantity: 100 },
-            { id: 'node', quantity: 100 },
-            { id: 'temple', quantity: 100 },
-            { id: 'terrain', quantity: 100 },
-            { id: 'village', quantity: 100 },
-            { id: 'workshop', quantity: 100 },
-          ]);
-          this.goTo(position.coords.latitude, position.coords.longitude, true);
-        }, null, {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0
-        });
-      }
+  addMe(): void {
+    navigator.geolocation.getCurrentPosition(async position => {
+      this.uid = this.store.selectSnapshot(AuthState.getUserUID);
+      this.addKingdom(this.uid, 'Fergardi', 'black', position.coords.latitude, position.coords.longitude);
+      this.goTo(position.coords.latitude, position.coords.longitude, true);
+    }, null, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
     });
   }
 
-  addKingdom(): void {
+  addBot(): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
       let factions = ['red', 'white', 'green', 'blue', 'black'];
-      let ref = await this.firebaseService.addElementToCollection('kingdoms', {
-        faction: factions[Math.floor(Math.random() * factions.length)],
-        lat: $event.lngLat.lat,
-        lng: $event.lngLat.lng,
-        name: 'Bot',
-        radius: 1500,
-      })
-      this.firebaseService.addElementsToCollection(`kingdoms/${ref['id']}/troops`, [
-        { id: 'skeleton', quantity: 20000, assignment: TroopAssignmentType.troopDefense },
-      ]);
+      let uid = this.angularFirestore.collection<any>('kingdoms').ref.doc().id;
+      this.addKingdom(uid, this.randomService.kingdom(), factions[Math.floor(Math.random() * factions.length)], $event.lngLat.lat, $event.lngLat.lng);
     });
+  }
+
+  async addKingdom(id: string, name: string, faction: string, latitude: number, longitude: number) {
+    await this.firebaseService.addElementToCollection('kingdoms', {
+      id: id,
+      faction: faction,
+      lat: latitude,
+      lng: longitude,
+      name: name,
+      radius: 1500,
+    }, id);
+    this.firebaseService.addElementsToCollection(`kingdoms/${id}/troops`, [
+      { id: 'skeleton', quantity: 20000, assignment: 2 },
+    ]);
+    this.firebaseService.addElementsToCollection(`kingdoms/${id}/supplies`, [
+      { id: 'gold', quantity: 20000, max: null, balance: 0 },
+      { id: 'mana', quantity: 20000, max: 20000, balance: 0 },
+      { id: 'population', quantity: 20000, max: 20000, balance: 0 },
+      { id: 'gem', quantity: 10, max: null, balance: 0 },
+      { id: 'turn', quantity: 300, max: 300, balance: 0 },
+      { id: 'land', quantity: 300, max: null, balance: 0 },
+    ]);
+    this.firebaseService.addElementsToCollection(`kingdoms/${id}/buildings`, [
+      { id: 'barrack', quantity: 100 },
+      { id: 'barrier', quantity: 100 },
+      { id: 'farm', quantity: 100 },
+      { id: 'fortress', quantity: 100 },
+      { id: 'academy', quantity: 100 },
+      { id: 'node', quantity: 100 },
+      { id: 'village', quantity: 100 },
+      { id: 'workshop', quantity: 100 },
+    ]);
   }
 
   addShop(): void {

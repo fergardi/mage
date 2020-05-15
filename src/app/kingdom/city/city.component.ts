@@ -13,6 +13,7 @@ import { TaxComponent } from './tax.component';
 import { ChargeComponent } from './charge.component';
 import { ExploreComponent } from './explore.component';
 import { Observable } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-city',
@@ -35,7 +36,8 @@ export class CityComponent implements OnInit {
     private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
+    private apiService: ApiService,
     private store: Store,
   ) {}
 
@@ -93,17 +95,14 @@ export class CityComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async turns => {
       if (turns) {
         let kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
-        let kingdomLand = this.store.selectSnapshot(AuthState.getKingdomLand);
         if (turns <= kingdomTurn.quantity) {
-          let lands = 1;
-          for (let i = 0; i < turns; i++) {
-            lands += Math.floor((this.maximumLands - (kingdomLand.max + kingdomLand.balance + lands)) / 100);
+          try {
+            let exploration = await this.apiService.explore(this.uid, turns);
+            this.notificationService.success('kingdom.explore.success', { lands: 0 });
+          } catch (error) {
+            console.error(error);
+            this.notificationService.error('kingdom.explore.error');
           }
-          const batch = this.angularFirestore.firestore.batch();
-          batch.update(this.angularFirestore.doc<any>(`kingdoms/${this.uid}/supplies/${kingdomTurn.fid}`).ref, { quantity: firestore.FieldValue.increment(-turns) });
-          batch.update(this.angularFirestore.doc<any>(`kingdoms/${this.uid}/supplies/${kingdomLand.fid}`).ref, { quantity: firestore.FieldValue.increment(lands), max: firestore.FieldValue.increment(lands) });
-          await batch.commit();
-          this.notificationService.success('kingdom.explore.success', { lands: lands });
         } else {
           this.notificationService.error('kingdom.explore.error');
         }

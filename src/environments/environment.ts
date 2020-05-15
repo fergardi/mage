@@ -20,6 +20,9 @@ export const environment = {
     lng: -5.5508992,
     zoom: 12,
     pitch: 60,
+  },
+  functions: {
+    url: 'http://localhost:5001/mage-c4259/europe-west1/api',
   }
 };
 

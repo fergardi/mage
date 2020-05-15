@@ -28,3 +28,15 @@
 ::ng-deep .mapboxgl-popup-tip {
   display: none;
 }
+
+.map-admin {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  .mat-mini-fab + .mat-mini-fab {
+    margin-top: 5px;
+  }
+}

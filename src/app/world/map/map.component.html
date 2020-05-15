@@ -1,1 +1,16 @@
 <div id="map" class="map-container"></div>
+
+<div class="map-admin">
+  <button mat-mini-fab color="primary" (click)="mapboxService.addBot()">
+    <mat-icon>android</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary" (click)="mapboxService.addMe()">
+    <mat-icon>face</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary" (click)="mapboxService.addShop()">
+    <mat-icon>shopping_basket</mat-icon>
+  </button>
+  <button mat-mini-fab color="primary" (click)="mapboxService.addQuest()">
+    <mat-icon>explore</mat-icon>
+  </button>
+</div>

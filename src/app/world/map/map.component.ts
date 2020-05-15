@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapboxService, MarkerType } from 'src/app/services/mapbox.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Store } from '@ngxs/store';
@@ -19,9 +18,8 @@ export class MapComponent implements OnInit {
   container = 'map';
 
   constructor(
-    private mapboxService: MapboxService,
+    public mapboxService: MapboxService,
     private firebaseService: FirebaseService,
-    private angularFireAuth: AngularFireAuth,
     private angularFirestore: AngularFirestore,
     private store: Store,
   ) { }
@@ -31,7 +29,7 @@ export class MapComponent implements OnInit {
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.on('load', () => {
       this.mapboxService.resize();
-      this.angularFirestore.collection<any>('quests').stateChanges().subscribe(snapshotChanges => {
+      this.angularFirestore.collection<any>('quests').stateChanges().pipe(untilDestroyed(this)).subscribe(snapshotChanges => {
         snapshotChanges.forEach(async change => {
           switch (change.type) {
             case 'added':
@@ -44,7 +42,7 @@ export class MapComponent implements OnInit {
           }
         })
       });
-      this.angularFirestore.collection<any>('kingdoms').stateChanges().subscribe(snapshotChanges => {
+      this.angularFirestore.collection<any>('kingdoms').stateChanges().pipe(untilDestroyed(this)).subscribe(snapshotChanges => {
         snapshotChanges.forEach(async change => {
           let kingdom = await this.firebaseService.selfJoin({ ...change.payload.doc.data(), fid: change.payload.doc.id });
           switch (change.type) {
@@ -61,7 +59,7 @@ export class MapComponent implements OnInit {
           }
         })
       });
-      this.angularFirestore.collection<any>('shops').stateChanges().subscribe(snapshotChanges => {
+      this.angularFirestore.collection<any>('shops').stateChanges().pipe(untilDestroyed(this)).subscribe(snapshotChanges => {
         snapshotChanges.forEach(async change => {
           switch (change.type) {
             case 'added':
