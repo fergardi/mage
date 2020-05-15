@@ -7,5 +7,8 @@
         ]
       }
     }
+  },
+  "projects": {
+    "default": "mage-c4259"
   }
 }

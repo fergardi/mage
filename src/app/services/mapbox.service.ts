@@ -60,7 +60,7 @@ export class MapboxService {
     this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addKingdom.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('book', 'Shop', this.addShop.bind(this)), 'bottom-right');
     this.map.addControl(new MapboxGLButtonControl('capitol', 'Quest', this.addQuest.bind(this)), 'bottom-right');
-    // this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addUser.bind(this)), 'bottom-right');
+    this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addUser.bind(this)), 'bottom-right');
   }
 
   addUser(): void {
@@ -79,23 +79,24 @@ export class MapboxService {
             { id: 'skeleton', quantity: 20000 },
           ]);
           this.firebaseService.addElementsToCollection(`kingdoms/${user.uid}/supplies`, [
-            { id: 'gold', quantity: 20000 },
-            { id: 'mana', quantity: 20000 },
-            { id: 'people', quantity: 20000 },
-            { id: 'gem', quantity: 10 },
-            { id: 'turn', quantity: 300 },
+            { id: 'gold', quantity: 20000, max: null, balance: 0 },
+            { id: 'mana', quantity: 20000, max: 20000, balance: 0 },
+            { id: 'population', quantity: 20000, max: 20000, balance: 0 },
+            { id: 'gem', quantity: 10, max: null, balance: 0 },
+            { id: 'turn', quantity: 300, max: 300, balance: 0 },
+            { id: 'land', quantity: 300, max: null, balance: 0 },
           ]);
           this.firebaseService.addElementsToCollection(`kingdoms/${user.uid}/buildings`, [
-            { id: 'barrack', quantity: 0 },
-            { id: 'barrier', quantity: 0 },
-            { id: 'farm', quantity: 0 },
-            { id: 'fortress', quantity: 0 },
-            { id: 'guild', quantity: 0 },
-            { id: 'node', quantity: 0 },
-            { id: 'temple', quantity: 0 },
-            { id: 'terrain', quantity: 0 },
-            { id: 'village', quantity: 0 },
-            { id: 'workshop', quantity: 0 },
+            { id: 'barrack', quantity: 100 },
+            { id: 'barrier', quantity: 100 },
+            { id: 'farm', quantity: 100 },
+            { id: 'fortress', quantity: 100 },
+            { id: 'guild', quantity: 100 },
+            { id: 'node', quantity: 100 },
+            { id: 'temple', quantity: 100 },
+            { id: 'terrain', quantity: 100 },
+            { id: 'village', quantity: 100 },
+            { id: 'workshop', quantity: 100 },
           ]);
           this.goTo(position.coords.latitude, position.coords.longitude, true);
         }, null, {

@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve --port 7777 --open",
     "build": "ng build",
+    "functions": "npm --prefix functions run build",
+    "emulator": "firebase emulators:start --only functions",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
