@@ -202,7 +202,8 @@
       "error": "No tienes turnos y/o oro suficiente",
       "recruit": "Reclutar",
       "cancel": "Cancelar",
-      "quantity": "Cantidad"
+      "quantity": "Cantidad",
+      "success": "Has reclutado nuevas tropas"
     },
     "dispel": {
       "name": "Desencanto",
@@ -277,7 +278,8 @@
       "cancel": "Cancelar",
       "hint": "Debes tener suficientes turnos",
       "error": "No tienes turnos suficientes",
-      "charge": "Meditar"
+      "charge": "Meditar",
+      "success": "Has recargado {{ mana }} maná"
     },
     "tax": {
       "name": "Tributo",
@@ -286,7 +288,8 @@
       "cancel": "Cancelar",
       "hint": "Debes tener suficientes turnos",
       "error": "No tienes turnos suficientes",
-      "tax": "Tributar"
+      "tax": "Tributar",
+      "success": "Has obtenido {{ gold }} oro"
     },
     "explore": {
       "name": "Exploración",
@@ -296,7 +299,7 @@
       "hint": "Cuantas más tierras tengas, menos encontrarás explorando",
       "error": "No tienes turnos suficientes",
       "explore": "Explorar",
-      "success": "Has encontrado {{ lands }} tierra(s) fértiles"
+      "success": "Has encontrado {{ lands }} tierras"
     },
     "tavern": {
       "name": "Taberna",
@@ -370,23 +373,23 @@
   "faction": {
     "blue": {
       "name": "Fantasmal",
-      "description": ""
+      "description": "Comulga con los espíritus"
     },
     "white": {
       "name": "Ascendente",
-      "description": ""
+      "description": "La luz eterna nos guía"
     },
     "red": {
       "name": "Erradicación",
-      "description": ""
+      "description": "Fuego y sangre"
     },
     "green": {
       "name": "Naturaleza",
-      "description": ""
+      "description": "blabla"
     },
     "black": {
       "name": "Oscuridad",
-      "description": ""
+      "description": "La muerte solo es el principio"
     },
     "grey": {
       "name": "Neutral",
@@ -1422,9 +1425,9 @@
       "name": "Libro de los muertos",
       "description": "Convoca una tropa de <undead>"
     },
-    "light-lantern": {
-      "name": "Linterna luminosa",
-      "description": "Aplica <seduction> a cada tropa aliada"
+    "enchanted-lamp": {
+      "name": "Lámpara maravillosa",
+      "description": "Convoca una tropa de <djinni>"
     },
     "wisdom-tome": {
       "name": "Tomo de sabiduría",
@@ -1506,10 +1509,6 @@
       "name": "Calavera maldita",
       "description": "Aplica <fear> a cada tropa enemiga"
     },
-    "emmerald-ring": {
-      "name": "Anillo esmeralda",
-      "description": ""
-    },
     "golden-feather": {
       "name": "Pluma dorada",
       "description": "Convoca una tropa de <phoenix>"
@@ -1562,10 +1561,6 @@
       "name": "Mano del mono",
       "description": "Conjura un encantamiento al azar"
     },
-    "opal-ring": {
-      "name": "Anillo ópalo",
-      "description": ""
-    },
     "powder-barrel": {
       "name": "Barril de pólvora",
       "description": "Mata unidades de cada tropa enemiga"
@@ -1578,21 +1573,9 @@
       "name": "Comida putrefacta",
       "description": "Destruye <population> del enemigo"
     },
-    "rubi-ring": {
-      "name": "Anillo rubí",
-      "description": ""
-    },
-    "sapphire-ring": {
-      "name": "Anillo zafiro",
-      "description": ""
-    },
     "snake-eye": {
       "name": "Ojo de serpiente",
       "description": "Convoca una tropa de <reptile>"
-    },
-    "topaz-ring": {
-      "name": "Anillo topacio",
-      "description": ""
     },
     "treasure-map": {
       "name": "Mapa del tesoro",
@@ -1601,27 +1584,47 @@
     "valhalla-horn": {
       "name": "Cuerno del valhalla",
       "description": "Convoca una tropa de <human>"
+    },
+    "bottomless-carcaj": {
+      "name": "Carcaj sin fondo",
+      "description": "Aplica <ranged> a tus tropas"
+    },
+    "fairy-wings": {
+      "name": "Alas de hada",
+      "description": "Aplica <flight> a una tropa"
+    },
+    "holy-grenade": {
+      "name": "Santa granada",
+      "description": "Mata unidades de una tropa enemiga"
+    },
+    "magic-ashes": {
+      "name": "Cenizas mágicas",
+      "description": "Aplica <magic> a tus tropas"
+    },
+    "vampire-teeth": {
+      "name": "Colmillo de vampiro",
+      "description": "Aplica <life-leech> a una tropa"
     }
   },
   "god": {
     "death": {
-      "name": "Hanem, personificación de la Muerte",
+      "name": "Muerte",
       "description": "Los cinco sellos del Armagedón"
     },
     "void": {
-      "name": "Tanarfin, efigie del Vacío",
+      "name": "Vacío",
       "description": "Los cinco sellos del Armagedón"
     },
     "famine": {
-      "name": "Arienel, alegoría del Hambre",
+      "name": "Hambruna",
       "description": "Los cinco sellos del Armagedón"
     },
     "war": {
-      "name": "Banur, divinidad de la Guerra",
+      "name": "Guerra",
       "description": "Los cinco sellos del Armagedón"
     },
     "pestilence": {
-      "name": "Feanore, encarnación de la Peste",
+      "name": "Enfermedad",
       "description": "Los cinco sellos del Armagedón"
     }
   }

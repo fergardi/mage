@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-recruit',
@@ -15,7 +18,11 @@ import { NotificationService } from 'src/app/services/notification.service';
             <img mat-list-avatar [src]="unit.image">
           </div>
           <div mat-line>{{ unit.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="unit.description | translate | icon:unit.skills:unit.categories:unit.families:unit.units:unit.resources:unit.spells"></div>
+          <div mat-line class="mat-card-subtitle">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of unit.families" [src]="family.image"/>
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of unit.categories" [src]="category.image"/>
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of unit.skills" [src]="skill.image"/>
+          </div>
           <div mat-list-avatar [matBadge]="unit.gold | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
           </div>
@@ -24,7 +31,7 @@ import { NotificationService } from 'src/app/services/notification.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'kingdom.recruit.quantity' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'kingdom.recruit.quantity' | translate }}" matInput formControlName="turns">
+          <input type="number" placeholder="{{ 'kingdom.recruit.quantity' | translate }}" matInput formControlName="quantity">
           <mat-hint>{{ 'kingdom.recruit.hint' | translate }}</mat-hint>
           <mat-error>{{ 'kingdom.recruit.error' | translate }}</mat-error>
         </mat-form-field>
@@ -44,17 +51,21 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class RecruitComponent implements OnInit {
 
   form: FormGroup = null;
+  kingdomGold: any = null;
 
   constructor(
     public dialogRef: MatDialogRef<RecruitComponent>,
     @Inject(MAT_DIALOG_DATA) public unit: any,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
+    private store: Store,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit() {
+    this.kingdomGold = this.store.selectSnapshot(AuthState.getKingdomGold);
     this.form = this.formBuilder.group({
-      turns: [0, [Validators.required, Validators.min(1)]]
+      quantity: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomGold.quantity / this.unit.gold)]]
     });
   }
 
@@ -62,9 +73,17 @@ export class RecruitComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  recruit(): void {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value.turns);
+  async recruit() {
+    let uid = this.store.selectSnapshot(AuthState.getUserUID);
+    // let kingdomBarrack = this.store.selectSnapshot(AuthState.getKingdomBarrack);
+    if (this.form.valid && this.form.value.quantity * this.unit.gold <= this.kingdomGold.quantity) {
+      try {
+        let recruited = await this.apiService.recruit(uid, this.unit.id, this.form.value.quantity);
+        this.notificationService.success('kingdom.recruit.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+      }
     } else {
       this.notificationService.error('kingdom.recruit.error');
     }

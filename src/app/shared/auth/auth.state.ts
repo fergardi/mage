@@ -99,6 +99,21 @@ export class AuthState implements NgxsOnInit {
   }
 
   @Selector()
+  public static getKingdomGold(state: AuthStateModel): any {
+    return state && state.supplies.find(supply => supply.id === 'gold');
+  }
+
+  @Selector()
+  public static getKingdomMana(state: AuthStateModel): any {
+    return state && state.supplies.find(supply => supply.id === 'mana');
+  }
+
+  @Selector()
+  public static getKingdomPopulation(state: AuthStateModel): any {
+    return state && state.supplies.find(supply => supply.id === 'population');
+  }
+
+  @Selector()
   public static getUserLoggedIn(state: AuthStateModel): boolean {
     return state && state.logged;
   }

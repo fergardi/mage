@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngxs/store';
+import { ApiService } from 'src/app/services/api.service';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 @Component({
   selector: 'app-tax',
@@ -43,6 +46,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class TaxComponent implements OnInit {
 
+  kingdomTurn: any = null;
   form: FormGroup = null;
 
   constructor(
@@ -50,11 +54,14 @@ export class TaxComponent implements OnInit {
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public village: any,
     private notificationService: NotificationService,
+    private store: Store,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit() {
+    this.kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
     this.form = this.formBuilder.group({
-      turns: [0, [Validators.required, Validators.min(1)]]
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]]
     });
   }
 
@@ -62,11 +69,18 @@ export class TaxComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  tax(): void {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value.turns);
+  async tax() {
+    let uid = this.store.selectSnapshot(AuthState.getUserUID);
+    if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
+      try {
+        let taxed = await this.apiService.tax(uid, this.form.value.turns);
+        this.notificationService.success('kingdom.tax.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+      }
     } else {
-      this.notificationService.error('kingdom.offer.error');
+      this.notificationService.error('kingdom.tax.error');
     }
   }
 

@@ -4,11 +4,8 @@ import * as mapboxgl from 'mapbox-gl';
 import { ComponentService } from '../services/component.service';
 import MapboxCircle from 'mapbox-gl-circle';
 import { FirebaseService } from './firebase.service';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { take } from 'rxjs/operators';
 import { MarkerComponent } from '../world/marker/marker.component';
 import { PopupComponent } from '../world/popup/popup.component';
-import { TroopAssignmentType } from '../kingdom/army/army.component';
 import { Store } from '@ngxs/store';
 import { AuthState } from '../shared/auth/auth.state';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -47,7 +44,6 @@ export class MapboxService {
   constructor(
     private componentService: ComponentService,
     private firebaseService: FirebaseService,
-    private angularFireAuth: AngularFireAuth,
     private angularFirestore: AngularFirestore,
     private store: Store,
     private randomService: RandomService,
@@ -299,7 +295,7 @@ export class MapboxService {
 
   addMarker(data: any, type: MarkerType, popup: boolean = false, radius: boolean = false, fly: boolean = false): mapboxgl.Marker {
     // html
-    let size = type === MarkerType.kingdom ? 64 : 32;
+    let size = type === MarkerType.kingdom ? 64 : 38;
     // marker
     let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = { ...data, size: size }), { anchor: 'bottom' })
     .setLngLat({ lat: data.lat, lng: data.lng })
@@ -327,9 +323,12 @@ export class MapboxService {
     if (radius) {
       circle = new MapboxCircle({lat: data.lat, lng: data.lng}, data.radius, {
         editable: false,
-        fillColor: '#424242',
-        fillOpacity: 0.1,
-        strokeColor: '#424242'
+        fillColor: '#99009c',
+        fillOpacity: 0.2,
+        strokeColor: '#99009c',
+        strokeWeight: 1,
+        strokeOpacity: 1,
+        refineStroke : false,
       })
       .addTo(this.map);
     }

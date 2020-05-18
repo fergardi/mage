@@ -1,5 +1,14 @@
 .map-marker {
   .marker {
-    background-size: 100% 100%;
+    ::ng-deep .mat-button-wrapper {
+      padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }

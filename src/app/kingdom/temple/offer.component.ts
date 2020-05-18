@@ -54,7 +54,7 @@ export class OfferComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      gold: [0, [Validators.required, Validators.min(this.god.gold + 1)]]
+      gold: [null, [Validators.required, Validators.min(this.god.gold + 1)]]
     });
   }
 

@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-disband',
@@ -15,7 +18,11 @@ import { NotificationService } from 'src/app/services/notification.service';
             <img mat-list-avatar [src]="troop.join.image">
           </div>
           <div mat-line>{{ troop.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="troop.join.description | translate | icon:troop.join.skills:troop.join.categories:troop.join.families:troop.join.units:troop.join.resources:troop.join.spells"></div>
+          <div mat-line class="mat-card-subtitle">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
+          </div>
           <div mat-list-avatar [matBadge]="0" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
@@ -50,11 +57,13 @@ export class DisbandComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public troop: any,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
+    private store: Store,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      quantity: [0, [Validators.required, Validators.min(1), Validators.max(this.troop.quantity)]]
+      quantity: [null, [Validators.required, Validators.min(1), Validators.max(this.troop.quantity)]]
     });
   }
 
@@ -62,9 +71,17 @@ export class DisbandComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  disband(): void {
+  async disband() {
+    let uid = this.store.selectSnapshot(AuthState.getUserUID);
+    // let kingdomBarrack = this.store.selectSnapshot(AuthState.getKingdomBarrack);
     if (this.form.valid) {
-      this.dialogRef.close(this.form.value.quantity);
+      try {
+        let disbanded = await this.apiService.disband(uid, this.troop.fid, this.form.value.quantity);
+        this.notificationService.success('kingdom.disband.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+      }
     } else {
       this.notificationService.error('kingdom.disband.error');
     }

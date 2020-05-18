@@ -57,7 +57,7 @@ export class ResearchComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [0, [Validators.required, Validators.min(1), Validators.max(300)]]
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(300)]]
     });
   }
 

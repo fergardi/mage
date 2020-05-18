@@ -1,8 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Observable } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-explore',
@@ -17,7 +20,7 @@ import { Observable } from 'rxjs';
           </div>
           <div mat-line>{{ 'resource.land.name' | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ 'resource.land.description' | translate }}</div>
-          <div mat-list-avatar matBadge="?" matBadgePosition="above after">
+          <div mat-list-avatar [matBadge]="(turn$ | async)?.quantity | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>
@@ -45,17 +48,21 @@ import { Observable } from 'rxjs';
 export class ExploreComponent implements OnInit {
 
   form: FormGroup = null;
+  @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'land')) land$: Observable<any>;
+  @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'turn')) turn$: Observable<any>;
 
   constructor(
     public dialogRef: MatDialogRef<ExploreComponent>,
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public land$: Observable<any>,
     private notificationService: NotificationService,
+    private store: Store,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit() {
+    let kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
     this.form = this.formBuilder.group({
-      turns: [0, [Validators.required, Validators.min(1), Validators.max(300)]]
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(kingdomTurn.quantity)]]
     });
   }
 
@@ -63,9 +70,17 @@ export class ExploreComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  explore(): void {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value.turns);
+  async explore() {
+    let uid = this.store.selectSnapshot(AuthState.getUserUID);
+    let kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
+    if (this.form.valid && this.form.value.turns <= kingdomTurn.quantity) {
+      try {
+        let explored = await this.apiService.explore(uid, this.form.value.turns);
+        this.notificationService.success('kingdom.explore.success', { lands: 0 });
+        this.close();
+      } catch (error) {
+        console.error(error);
+      }
     } else {
       this.notificationService.error('kingdom.explore.error');
     }

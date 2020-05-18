@@ -11,8 +11,24 @@ export class ApiService {
     private httpClient: HttpClient,
   ) { }
 
-  explore(id: string, turns: number) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${id}/explore/${turns}`).toPromise();
+  explore(kingdom: string, turns: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/explore/${turns}`).toPromise();
+  }
+
+  charge(kingdom: string, turns: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/charge/${turns}`).toPromise();
+  }
+
+  tax(kingdom: string, turns: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/tax/${turns}`).toPromise();
+  }
+
+  recruit(kingdom: string, unit: string, quantity: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/army/${unit}/recruit/${quantity}`).toPromise();
+  }
+
+  disband(kingdom: string, troop: string, quantity: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/army/${troop}/disband/${quantity}`).toPromise();
   }
 
 }

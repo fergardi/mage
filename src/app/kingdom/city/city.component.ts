@@ -90,23 +90,7 @@ export class CityComponent implements OnInit {
   openExploreDialog(land$: Observable<any>) {
     const dialogRef = this.dialog.open(ExploreComponent, {
       panelClass: 'dialog-responsive',
-      data: land$,
-    });
-    dialogRef.afterClosed().subscribe(async turns => {
-      if (turns) {
-        let kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
-        if (turns <= kingdomTurn.quantity) {
-          try {
-            let exploration = await this.apiService.explore(this.uid, turns);
-            this.notificationService.success('kingdom.explore.success', { lands: 0 });
-          } catch (error) {
-            console.error(error);
-            this.notificationService.error('kingdom.explore.error');
-          }
-        } else {
-          this.notificationService.error('kingdom.explore.error');
-        }
-      }
+      data: null,
     });
   }
 

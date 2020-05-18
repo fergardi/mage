@@ -2,13 +2,13 @@
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 @import url("https://use.typekit.net/jnq3uxd.css");
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Uncial+Antiqua&display=swap');
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-$custom-typography: mat-typography-config($font-family: '"Manrope", sans-serif;');
+$custom-typography: mat-typography-config($font-family: "'Roboto', sans-serif");
 @include mat-core($custom-typography);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
@@ -61,6 +61,15 @@ html, body {
 }
 body {
   margin: 0;
+}
+
+// font headings
+.mat-card-header .mat-card-title,
+.mat-list-text .mat-line:first-of-type,
+.mat-toolbar .logo,
+.mat-dialog-title,
+.mat-button-base {
+  font-family: 'Uncial Antiqua', cursive !important;
 }
 
 .mat-standard-chip {
@@ -191,8 +200,9 @@ body {
   border: 1px solid gray;
 }
 
-.mat-card {
-  opacity: 0.95;
+.mat-card,
+.mat-dialog-container {
+  opacity: 0.975;
 }
 
 // DRAG AND DROP

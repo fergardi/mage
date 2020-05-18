@@ -54,7 +54,7 @@ export class BuildComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      lands: [0, [Validators.required]]
+      lands: [null, [Validators.required]]
     });
   }
 
