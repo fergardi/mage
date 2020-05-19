@@ -8,10 +8,8 @@ import { Component } from '@angular/core';
 export class MarkerComponent {
 
   data: any = null;
-  animationDelay: number = 0;
 
   constructor() {
-    this.animationDelay = Math.random() + 1;
   }
 
 }

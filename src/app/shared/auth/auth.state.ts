@@ -1,14 +1,15 @@
 import { State, Action, Selector, StateContext, NgxsOnInit } from '@ngxs/store';
-import { SetUserAction, LoginWithGoogleAction, LogoutAction } from './auth.actions';
+import { SetKingdomAction, SetKingdomSuppliesAction, LoginWithGoogleAction, LogoutAction } from './auth.actions';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 export interface AuthStateModel {
+  kingdom: any
   uid: string | null
   supplies: any[]
   logged: boolean
@@ -18,6 +19,7 @@ export interface AuthStateModel {
   name: 'auth',
   defaults: {
     uid: null,
+    kingdom: null,
     supplies: [],
     logged: false,
   }
@@ -28,13 +30,15 @@ export class AuthState implements NgxsOnInit {
   constructor(
     private angularFireAuth: AngularFireAuth,
     private firebaseService: FirebaseService,
+    private angularFirestore: AngularFirestore,
     private router: Router,
   ) { }
 
   ngxsOnInit(ctx: StateContext<AuthStateModel>) {
     this.angularFireAuth.authState.subscribe(user => {
       if (user) {
-        ctx.dispatch(new SetUserAction(user.uid));
+        ctx.dispatch(new SetKingdomAction(user.uid));
+        ctx.dispatch(new SetKingdomSuppliesAction(user.uid));
         // this.router.navigate(['/world/map']);
       }
     });
@@ -52,14 +56,30 @@ export class AuthState implements NgxsOnInit {
     ctx.setState({
       ...state,
       uid: null,
+      kingdom: null,
       supplies: [],
       logged: false,
     });
     this.router.navigate(['/user/login']);
   }
 
-  @Action(SetUserAction)
-  setUser(ctx: StateContext<AuthStateModel>, payload: SetUserAction) {
+  @Action(SetKingdomAction)
+  setKingdom(ctx: StateContext<AuthStateModel>, payload: SetKingdomAction) {
+    return this.angularFirestore.doc<any>(`kingdoms/${payload.uid}`).valueChanges().pipe(
+      tap(kingdom => {
+        const state = ctx.getState();
+        ctx.setState({
+          ...state,
+          uid: payload.uid,
+          kingdom: kingdom,
+          logged: true,
+        });
+      })
+    );
+  }
+
+  @Action(SetKingdomSuppliesAction)
+  setKingdomSupplies(ctx: StateContext<AuthStateModel>, payload: SetKingdomSuppliesAction) {
     return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/supplies`, 'resources', 'id', 'id').pipe(
       tap(supplies => {
         const state = ctx.getState();
@@ -111,6 +131,11 @@ export class AuthState implements NgxsOnInit {
   @Selector()
   public static getKingdomPopulation(state: AuthStateModel): any {
     return state && state.supplies.find(supply => supply.id === 'population');
+  }
+
+  @Selector()
+  public static getKingdom(state: AuthStateModel): any {
+    return state && state.kingdom;
   }
 
   @Selector()

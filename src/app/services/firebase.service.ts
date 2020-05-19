@@ -62,7 +62,7 @@ export class FirebaseService {
         leftCollection,
         rightCollection,
       ]) => {
-        rightCollection.forEach(async element => {
+        rightCollection.forEach(async (element: any) => {
           if (element.skills) this.joinObject(element, 'skills', await this.cacheService.getSkills());
           if (element.units) this.joinObject(element, 'units', await this.cacheService.getUnits());
           if (element.categories) this.joinObject(element, 'categories', await this.cacheService.getCategories());

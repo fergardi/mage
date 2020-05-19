@@ -1,21 +1,12 @@
 <div class="map-marker">
   <ng-template [ngIf]="data.size === 64" [ngIfElse]="small">
-    <button mat-fab color="primary" class="marker" [ngStyle]="{ height: data.size + 'px', width: data.size + 'px' }">
+    <button mat-fab color="primary" class="marker animated bounceIn" [ngStyle]="{ height: data.size + 'px', width: data.size + 'px' }">
       <img [src]="data.image || data.join.image">
     </button>
   </ng-template>
   <ng-template #small>
-    <button mat-mini-fab color="primary" class="marker" [ngStyle]="{ height: data.size + 'px', width: data.size + 'px' }">
+    <button mat-mini-fab color="primary" class="marker animated bounceIn" [ngStyle]="{ height: data.size + 'px', width: data.size + 'px' }">
       <img [src]="data.image || data.join.image">
     </button>
   </ng-template>
-  <!--
-  <div class="marker animated bounce" [ngStyle]="{
-    animationDelay: animationDelay + 's',
-    backgroundImage: 'url(' + (data.image || data.join.image) + ')',
-    height: data.size + 'px',
-    width: data.size + 'px'
-  }"></div>
-  <div class="marker-shadow"></div>
-  -->
 </div>

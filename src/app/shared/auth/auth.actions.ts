@@ -1,5 +1,10 @@
-export class SetUserAction {
-  public static readonly type = '[User] Set user from firebase';
+export class SetKingdomAction {
+  public static readonly type = '[User] Set Kingdom';
+  constructor(public uid: string) {}
+}
+
+export class SetKingdomSuppliesAction {
+  public static readonly type = '[User] Set Kingdom supplies';
   constructor(public uid: string) {}
 }
 

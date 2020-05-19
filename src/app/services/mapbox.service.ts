@@ -10,6 +10,8 @@ import { Store } from '@ngxs/store';
 import { AuthState } from '../shared/auth/auth.state';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { RandomService } from './random.service';
+import * as geofirex from 'geofirex';
+import * as firebase from 'firebase/app';
 
 export enum MarkerType {
   'kingdom', 'shop', 'quest',
@@ -35,7 +37,7 @@ interface Marker {
 })
 export class MapboxService {
 
-  uid: string = null;
+  geofirex: any = geofirex.init(firebase);
   mapbox = (mapboxgl as typeof mapboxgl);
   map: mapboxgl.Map = null;
   markers: Marker[] = [];
@@ -59,20 +61,14 @@ export class MapboxService {
       center: [environment.mapbox.lng, environment.mapbox.lat],
       pitch: environment.mapbox.pitch,
       attributionControl: false,
-      // interactive: false
+      interactive: true
     });
-    /*
-    this.map.addControl(new MapboxGLButtonControl('crown', 'Kingdom', this.addBot.bind(this)), 'bottom-right');
-    this.map.addControl(new MapboxGLButtonControl('book', 'Shop', this.addShop.bind(this)), 'bottom-right');
-    this.map.addControl(new MapboxGLButtonControl('capitol', 'Quest', this.addQuest.bind(this)), 'bottom-right');
-    this.map.addControl(new MapboxGLButtonControl('capitol', 'User', this.addMe.bind(this)), 'bottom-right');
-    */
   }
 
   addMe(): void {
     navigator.geolocation.getCurrentPosition(async position => {
-      this.uid = this.store.selectSnapshot(AuthState.getUserUID);
-      this.addKingdom(this.uid, 'Fergardi', 'black', position.coords.latitude, position.coords.longitude);
+      let uid = this.store.selectSnapshot(AuthState.getUserUID);
+      this.addKingdom(uid, 'Fergardi', 'black', position.coords.latitude, position.coords.longitude);
       this.goTo(position.coords.latitude, position.coords.longitude, true);
     }, null, {
       enableHighAccuracy: true,
@@ -93,10 +89,13 @@ export class MapboxService {
     await this.firebaseService.addElementToCollection('kingdoms', {
       id: id,
       faction: faction,
-      lat: latitude,
-      lng: longitude,
+      position: this.geofirex.point(latitude, longitude),
+      coordinates: {
+        latitude: latitude,
+        longitude: longitude,
+      },
       name: name,
-      radius: 1500,
+      power: 1500,
     }, id);
     this.firebaseService.addElementsToCollection(`kingdoms/${id}/troops`, [
       { id: 'skeleton', quantity: 20000, assignment: 2 },
@@ -127,8 +126,11 @@ export class MapboxService {
       let store = stores[Math.floor(Math.random() * stores.length)];
       let ref = await this.firebaseService.addElementToCollection('shops', {
         store: StoreType[store],
-        lat: $event.lngLat.lat,
-        lng: $event.lngLat.lng
+        position: this.geofirex.point($event.lngLat.lat, $event.lngLat.lng),
+        coordinates: {
+          latitude: $event.lngLat.lat,
+          longitude: $event.lngLat.lng,
+        },
       });
       switch (store) {
         case StoreType.inn:
@@ -168,10 +170,12 @@ export class MapboxService {
       let locations: LocationType[] = [LocationType.cathedral, LocationType.cave, LocationType.dungeon, LocationType.forest, LocationType.graveyard, LocationType.lake, LocationType.mine, LocationType.mountain, LocationType.nest, LocationType.volcano];
       let location = locations[Math.floor(Math.random() * locations.length)];
       let ref = await this.firebaseService.addElementToCollection('quests', {
-        description: '',
         location: LocationType[location],
-        lat: $event.lngLat.lat,
-        lng: $event.lngLat.lng
+        position: this.geofirex.point($event.lngLat.lat, $event.lngLat.lng),
+        coordinates: {
+          latitude: $event.lngLat.lat,
+          longitude: $event.lngLat.lng,
+        },
       });
       switch (location) {
         case LocationType.graveyard:
@@ -294,11 +298,13 @@ export class MapboxService {
   }
 
   addMarker(data: any, type: MarkerType, popup: boolean = false, radius: boolean = false, fly: boolean = false): mapboxgl.Marker {
-    // html
+    // remove the old one
+    this.removeMarker(data.fid);
+    // size
     let size = type === MarkerType.kingdom ? 64 : 38;
     // marker
     let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = { ...data, size: size }), { anchor: 'bottom' })
-    .setLngLat({ lat: data.lat, lng: data.lng })
+    .setLngLat({ lat: data.coordinates.latitude, lng: data.coordinates.longitude })
     .addTo(this.map);
     // popup
     if (popup) {
@@ -311,7 +317,7 @@ export class MapboxService {
         maxWidth: 'none',
       })
       .setDOMContent(this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type }))
-      .on('open', $event => {
+      .on('open', ($event: any) => {
         this.map.easeTo({
           center: $event.target.getLngLat(),
           offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],
@@ -321,10 +327,10 @@ export class MapboxService {
     // radius
     let circle = null;
     if (radius) {
-      circle = new MapboxCircle({lat: data.lat, lng: data.lng}, data.radius, {
+      circle = new MapboxCircle({lat: data.coordinates.latitude, lng: data.coordinates.longitude}, data.power, {
         editable: false,
         fillColor: '#99009c',
-        fillOpacity: 0.2,
+        fillOpacity: 0.1,
         strokeColor: '#99009c',
         strokeWeight: 1,
         strokeOpacity: 1,
@@ -333,7 +339,7 @@ export class MapboxService {
       .addTo(this.map);
     }
     // center
-    if (fly) this.goTo(data.lat, data.lng, true);
+    if (fly) this.goTo(data.coordinates.latitude, data.coordinates.longitude, true);
     // add to list for future disposal
     this.markers.push({ id: data.fid, marker: marker, circle: circle, type: type });
     // return
@@ -344,19 +350,19 @@ export class MapboxService {
     if (fly) {
       this.map.flyTo({
         center: [lng, lat],
-        essential: true
+        essential: true,
       });
     } else {
       this.map.easeTo({
         center: [lng, lat],
-        essential: true
-      })
+        essential: true,
+      });
     }
   }
 
   removeMarker(id: string): void {
     let index = this.markers.findIndex(item => item.id === id);
-    if (index) {
+    if (index !== -1) {
       let found = this.markers[index];
       if (found.marker) found.marker.remove();
       if (found.circle) found.circle.remove();
@@ -370,41 +376,5 @@ export class MapboxService {
 
   resize() {
     if (this.map) this.map.resize();
-  }
-}
-
-class MapboxGLButtonControl {
-
-  private map: mapboxgl.Map;
-  private container: HTMLElement;
-  private icon: string;
-  private title: string;
-  private event: any;
-
-  constructor(icon: string, title: string, event: any) {
-    this.icon = icon;
-    this.title = title;
-    this.event = event;
-  }
-
-  onAdd(map: mapboxgl.Map) {
-    this.container = document.getElementById('custom-controls');
-    if (!this.container) {
-      this.container = document.createElement('div');
-      this.container.className = 'mapboxgl-ctrl-group mapboxgl-ctrl';
-      this.container.id = 'custom-controls';
-    }
-    let button = document.createElement("button");
-    button.type = "button";
-    button.title = this.title;
-    button.onclick = this.event;
-    button.innerHTML = `<i class="ra ra-${this.icon} ra-lg"></i>`;
-    this.container.appendChild(button);
-    return this.container;
-  }
-
-  onRemove() {
-    this.container.parentNode.removeChild(this.container);
-    this.map = undefined;
   }
 }
