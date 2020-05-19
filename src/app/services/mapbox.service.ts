@@ -330,7 +330,7 @@ export class MapboxService {
       circle = new MapboxCircle({lat: data.coordinates.latitude, lng: data.coordinates.longitude}, data.power, {
         editable: false,
         fillColor: '#99009c',
-        fillOpacity: 0.1,
+        fillOpacity: 0.2,
         strokeColor: '#99009c',
         strokeWeight: 1,
         strokeOpacity: 1,

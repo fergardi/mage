@@ -40,7 +40,7 @@ const addTurns = async (turns: number) => {
   await Promise.all(kingdoms.docs.map(async kingdom => {
     let kingdomTurn = await angularFirestore.collection(`kingdoms/${kingdom.id}/supplies`).where('id', '==', 'turn').where('quantity', '<', MAX_TURNS).get();
     batch.update(angularFirestore.doc(`kingdoms/${kingdom.id}/supplies/${kingdomTurn.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(turns) });
-  }))
+  }));
   batch.commit();
 }
 

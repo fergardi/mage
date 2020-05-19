@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     <div mat-dialog-content>
       <mat-list dense>
         <mat-list-item>
-          <div mat-list-avatar [matBadge]="kingdom.position | long" matBadgePosition="above before">
+          <div mat-list-avatar matBadgePosition="above before">
             <img mat-list-avatar [src]="kingdom.join.image">
           </div>
           <div mat-line>{{ kingdom.name | translate }}</div>

@@ -33,7 +33,7 @@ export class CensusComponent implements OnInit, OnDestroy {
   protection: number = 8;
   clock: Date = new Date();
   interval: any = null;
-  columns = ['position', 'name', 'radius', 'actions'];
+  columns = ['name', 'power', 'actions'];
   filters: any = {
     name: {
       type: 'text',
@@ -57,7 +57,7 @@ export class CensusComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
-    this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id').pipe(untilDestroyed(this)).subscribe(kingdoms => {
+    this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id', ref => ref.orderBy('power', 'desc')).pipe(untilDestroyed(this)).subscribe(kingdoms => {
       this.data = new MatTableDataSource(kingdoms.sort((a, b) => b.radius - a.radius).map((kingdom, index) => { return { ...kingdom, position: index + 1 } }));
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;

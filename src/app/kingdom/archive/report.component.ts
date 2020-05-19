@@ -4,10 +4,31 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-report',
   template: `
-    <h1 mat-dialog-title>{{ data.subject }}</h1>
-    <h3 mat-dialog-title>{{ data.join ? data.join.name : data.from }}</h3>
+    <h1 mat-dialog-title>{{ letter.subject }}</h1>
     <div mat-dialog-content>
-      <p>{{ data.message }}</p>
+      <mat-list dense>
+        <mat-list-item>
+          <div mat-list-avatar>
+            <img mat-list-avatar [src]="letter.join.join.image">
+          </div>
+          <div mat-line>{{ letter.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ letter.join.join.name | translate }}</div>
+        </mat-list-item>
+      </mat-list>
+      <p>{{ letter.message }}</p>
+      <mat-list dense *ngIf="letter.log">
+        <mat-list-item *ngFor="let log of letter.log" [ngClass]="'log-' + log.side">
+          <div mat-list-avatar [matBadge]="log.quantity | long" [matBadgePosition]="log.side === 'left' ? 'above before' : 'above after'">
+            <img mat-list-avatar [src]="log.join.image">
+          </div>
+          <div mat-line>{{ log.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of log.join.families" [src]="family.image"/>
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of log.join.categories" [src]="category.image"/>
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of log.join.skills" [src]="skill.image"/>
+          </div>
+        </mat-list-item>
+      </mat-list>
     </div>
     <div mat-dialog-actions>
       <button mat-raised-button color="primary" (click)="close()" cdkFocusInitial>{{ 'kingdom.report.close' | translate }}</button>
@@ -17,13 +38,27 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     .mat-form-field {
       width: 100%;
     }
+    ::ng-deep .log-right .mat-list-item-content {
+      flex-direction: row-reverse !important;
+    }
+    ::ng-deep .log-right .mat-list-text {
+      padding: 0 16px 0 0 !important;
+    }
+    ::ng-deep .log-right .mat-line,
+    ::ng-deep .log-right .mat-line.mat-card-subtitle {
+      text-align: right;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
   `]
 })
 export class ReportComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ReportComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public letter: any,
   ) { }
 
   close() {

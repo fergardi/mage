@@ -13,7 +13,7 @@
 
     <mat-card-content>
 
-      <table mat-table matSort [dataSource]="data" matSortActive="position" matSortDirection="asc" matSortDisableClear>
+      <table mat-table matSort [dataSource]="data" matSortActive="power" matSortDirection="desc" matSortDisableClear>
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>
 
@@ -30,14 +30,14 @@
 
           <mat-cell *matCellDef="let kingdom" [attr.data-label]="'table.column.' + column | translate">
 
-            <span *ngIf="['radius', 'position'].includes(column)">
-              {{ kingdom[column] | long }}
+            <span *ngIf="['power'].includes(column)">
+              <mat-chip-list><mat-chip>{{ kingdom[column] | long }}</mat-chip></mat-chip-list>
             </span>
 
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item>
-                  <div mat-list-avatar>
+                  <div mat-list-avatar [matBadge]="kingdom.position | short" matBadgePosition="above before">
                     <img mat-list-avatar [src]="kingdom.join.image">
                   </div>
                   <div mat-line>{{ kingdom.name | translate }}</div>
@@ -47,14 +47,14 @@
               </mat-list>
             </ng-template>
 
-            <ng-template [ngIf]="column === 'actions' && kingdom.fid !== uid">
-              <button mat-mini-fab color="primary" title="{{ 'kingdom.battle.attack' | translate }}" [disabled]="!canBeAttacked(kingdom)" (click)="openAttackDialog(kingdom)">
+            <ng-template [ngIf]="column === 'actions'">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.battle.attack' | translate }}" [disabled]="!canBeAttacked(kingdom) || kingdom.fid === uid" (click)="openAttackDialog(kingdom)">
                 <mat-icon>flag</mat-icon>
               </button>
-              <button mat-mini-fab color="primary" title="{{ 'kingdom.activate.activate' | translate }}" (click)="openActivateDialog(kingdom)">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.activate.activate' | translate }}" [disabled]="kingdom.fid === uid" (click)="openActivateDialog(kingdom)">
                 <mat-icon>control_camera</mat-icon>
               </button>
-              <button mat-mini-fab color="primary" title="{{ 'kingdom.conjure.conjure' | translate }}" (click)="openConjureDialog(kingdom)">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.conjure.conjure' | translate }}" [disabled]="kingdom.fid === uid" (click)="openConjureDialog(kingdom)">
                 <mat-icon>whatshot</mat-icon>
               </button>
               <button mat-mini-fab color="primary" title="{{ 'kingdom.letter.name' | translate }}" (click)="openLetterDialog(kingdom)">

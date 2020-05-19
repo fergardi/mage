@@ -40,12 +40,13 @@ export class FirebaseService {
     if (element.store) this.joinObject(element, 'store', await this.cacheService.getStores());
     if (element.faction) this.joinObject(element, 'faction', await this.cacheService.getFactions());
     if (element.location) this.joinObject(element, 'location', await this.cacheService.getLocations());
-    // if (element.skills) this.joinObject(element, 'skills', await this.cacheService.getSkills());
-    // if (element.units) this.joinObject(element, 'units', await this.cacheService.getUnits());
-    // if (element.categories) this.joinObject(element, 'categories', await this.cacheService.getCategories());
-    // if (element.families) this.joinObject(element, 'families', await this.cacheService.getFamilies());
-    // if (element.spells) this.joinObject(element, 'spells', await this.cacheService.getSpells());
-    // if (element.resources) this.joinObject(element, 'resources', await this.cacheService.getResources());
+    if (element.skills) this.joinObject(element, 'skills', await this.cacheService.getSkills());
+    if (element.unit) this.joinObject(element, 'unit', await this.cacheService.getUnits());
+    if (element.units) this.joinObject(element, 'units', await this.cacheService.getUnits());
+    if (element.categories) this.joinObject(element, 'categories', await this.cacheService.getCategories());
+    if (element.families) this.joinObject(element, 'families', await this.cacheService.getFamilies());
+    if (element.spells) this.joinObject(element, 'spells', await this.cacheService.getSpells());
+    if (element.resources) this.joinObject(element, 'resources', await this.cacheService.getResources());
     return element;
   }
 

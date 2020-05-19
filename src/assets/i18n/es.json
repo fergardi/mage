@@ -115,7 +115,7 @@
       "subject": "Asunto",
       "timestamp": "Fecha",
       "bid": "Puja",
-      "radius": "Poder",
+      "power": "Poder",
       "position": "Posición",
       "actions": "Acciones"
     }

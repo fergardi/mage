@@ -58,7 +58,13 @@ export class ArchiveComponent implements OnInit {
 
   ngOnInit(): void {
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
-    this.firebaseService.leftJoin(`kingdoms/${this.uid}/letters`, 'kingdoms', 'from', 'id').pipe(untilDestroyed(this)).subscribe(letters => {
+    this.firebaseService.leftJoin(`kingdoms/${this.uid}/letters`, 'kingdoms', 'from', 'id').pipe(untilDestroyed(this)).subscribe(async letters => {
+      letters = await Promise.all(letters.map(async letter => {
+        return {
+          ...letter,
+          join: await this.firebaseService.selfJoin(letter.join),
+        }
+      }));
       this.data = new MatTableDataSource(letters);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
@@ -98,7 +104,10 @@ export class ArchiveComponent implements OnInit {
       : this.data.data.forEach(row => this.selection.select(row));
   }
 
-  openReportDialog(letter: any): void {
+  async openReportDialog(letter: any) {
+    letter.log = await Promise.all(letter.log.sort((a, b) => a.sort - b.sort).map(async (log: any) => {
+      return await this.firebaseService.selfJoin(log);
+    }));
     const dialogRef = this.dialog.open(ReportComponent, {
       panelClass: 'dialog-responsive',
       data: letter,

@@ -52,7 +52,15 @@
               <mat-cell *matCellDef="let letter" [attr.data-label]="'table.column.' + column | translate">
 
                 <ng-template [ngIf]="column === 'from'">
-                  {{ letter.join.name }}
+                  <mat-list dense>
+                    <mat-list-item>
+                      <div mat-list-avatar>
+                        <img mat-list-avatar [src]="letter['join'].join.image">
+                      </div>
+                      <div mat-line>{{ letter['join'].name }}</div>
+                      <div mat-line class="mat-card-subtitle">{{ letter['join'].join.name | translate }}</div>
+                    </mat-list-item>
+                  </mat-list>
                 </ng-template>
 
                 <ng-template [ngIf]="column === 'subject'">
