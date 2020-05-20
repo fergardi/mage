@@ -1,9 +1,12 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { take } from 'rxjs/operators';
+import { ApiService } from 'src/app/services/api.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 export enum CharmAssignmentType {
   'none' = 3,
@@ -50,10 +53,11 @@ export enum CharmAssignmentType {
   `]
 })
 @UntilDestroy()
-export class ConjureComponent {
+export class ConjureComponent implements OnInit {
 
-  uid: string = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomCharms: any[] = [];
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
   selectedCharm: any = null;
 
   constructor(
@@ -61,15 +65,16 @@ export class ConjureComponent {
     @Inject(MAT_DIALOG_DATA) public charm: any,
     private store: Store,
     private firebaseService: FirebaseService,
+    private apiService: ApiService,
+    private notificationService: NotificationService,
   ) { }
 
   ngOnInit(): void {
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     if (this.charm) {
       this.kingdomCharms = [this.charm];
       this.selectedCharm = this.charm;
     } else {
-      this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(charms => {
+      this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id').pipe(take(1), untilDestroyed(this)).subscribe(charms => {
         this.kingdomCharms = charms.filter(charm => !charm.join.battle && !charm.join.self);
       });
     }
@@ -79,8 +84,19 @@ export class ConjureComponent {
     this.dialogRef.close();
   }
 
-  conjure(): void {
-    this.dialogRef.close(this.selectedCharm.fid);
+  async conjure() {
+    if (this.charm.join.turns <= this.kingdomTurn.quantity) {
+      try {
+        let conjured = await this.apiService.conjure(this.uid, this.selectedCharm.fid, this.uid);
+        this.notificationService.success('kingdom.conjure.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.conjure.error');
+      }
+    } else {
+      this.notificationService.error('kingdom.conjure.error');
+    }
   }
 
 }

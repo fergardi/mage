@@ -176,7 +176,8 @@
       "cancel": "Cancelar",
       "disband": "Desbandar",
       "hint": "No puedes desbandar unidades que consuman población",
-      "error": "No cumples los requisitos"
+      "error": "Ha ocurrido un problema",
+      "success": "Has desbandado tropas"
     },
     "discharge": {
       "name": "Despido",
@@ -239,7 +240,7 @@
       "name": "Investigación",
       "description": "Aqui puedes gastar turnos para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos turnos necesitarás.",
       "hint": "Invierte turnos en investigar",
-      "error": "No tienes turnos suficientes",
+      "error": "Ha ocurrido un problema",
       "research": "Investigar",
       "cancel": "Cancelar",
       "success": "Has avanzado la investigación del hechizo"
@@ -248,16 +249,17 @@
       "name": "Conjuración",
       "description": "Aqui puedes gastar turnos y maná para conjurar tus hechizos investigados. Conjurar hechizos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Debes tener suficientes turnos y maná",
-      "error": "No tienes turnos y/o maná suficiente",
+      "error": "Ha ocurrido un problema",
       "conjure": "Conjurar",
       "cancel": "Cancelar",
-      "select": "Escoge un hechizo"
+      "select": "Escoge un hechizo",
+      "success": "Conjuro completado"
     },
     "activate": {
       "name": "Activación",
       "description": "Activa artefactos sobre tu reino o sobre otros reinos. Cada activación consume el artefacto y turnos. Activar artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Selecciona el objetivo",
-      "error": "No tienes turnos suficientes",
+      "error": "Ha ocurrido un problema",
       "activate": "Activar",
       "cancel": "Cancelar",
       "select": "Escoge un artefacto"
@@ -278,9 +280,9 @@
       "help": "Aquí podrás invertir turnos en reponer los depósitos de maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Debes tener suficientes turnos",
-      "error": "No tienes turnos suficientes",
+      "error": "Ha ocurrido un problema",
       "charge": "Meditar",
-      "success": "Has recargado {{ mana }} maná"
+      "success": "Has recargado maná"
     },
     "tax": {
       "name": "Tributo",
@@ -288,9 +290,9 @@
       "help": "Aquí podrás invertir turnos en cobrar impuestos a los súbditos de tu reino. El oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Debes tener suficientes turnos",
-      "error": "No tienes turnos suficientes",
+      "error": "Ha ocurrido un problema",
       "tax": "Tributar",
-      "success": "Has obtenido {{ gold }} oro"
+      "success": "Has obtenido oro"
     },
     "explore": {
       "name": "Exploración",
@@ -298,7 +300,7 @@
       "help": "Aquí podrás invertir turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas tierras libres. Las tierras libres sirven como espacio para construir nuevos edificios en tu reino.",
       "cancel": "Cancelar",
       "hint": "Cuantas más tierras tengas, menos encontrarás explorando",
-      "error": "No tienes turnos suficientes",
+      "error": "Ha ocurrido un problema",
       "explore": "Explorar",
       "success": "Has encontrado {{ lands }} tierras"
     },
@@ -342,14 +344,14 @@
       "offer": "Ofrecer",
       "success": "Tu ofrenda satisface a los dioses",
       "hint": "Ofrece más oro que la ofrenda anterior",
-      "error": "Debes ofrecer más oro que la ofrenda anterior"
+      "error": "Ha ocurrido un problema"
     },
     "emporium": {
       "name": "Emporio",
       "description": "Contrabando del mercado negro",
       "help": "TODO",
       "success": "Compra satisfactoria",
-      "error": "No tienes suficientes gemas"
+      "error": "Ha ocurrido un problema"
     },
     "buy": {
       "name": "Compra",
@@ -362,8 +364,8 @@
       "description": "TODO",
       "cancel": "Cancelar",
       "build": "Construir",
-      "hint": "Necesitas tierras, oro, <population> y turnos",
-      "error": "Insuficientes tierras, oro, <population> o turnos"
+      "hint": "Necesitas tierras, oro y turnos",
+      "error": "Ha ocurrido un problema"
     },
     "gemology": {
       "name": "Gemología",

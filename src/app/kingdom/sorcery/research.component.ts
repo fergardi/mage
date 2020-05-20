@@ -80,6 +80,7 @@ export class ResearchComponent implements OnInit {
         this.close();
       } catch (error) {
         console.error(error);
+        this.notificationService.error('kingdom.research.error');
       }
     } else {
       this.notificationService.error('kingdom.research.error');

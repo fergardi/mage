@@ -39,7 +39,7 @@ import { ApiService } from 'src/app/services/api.service';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.disband.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="disband()" cdkFocusInitial>{{ 'kingdom.disband.disband' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid || !troop.join.disbandable" (click)="disband()" cdkFocusInitial>{{ 'kingdom.disband.disband' | translate }}</button>
     </div>
   `,
   styles: [`

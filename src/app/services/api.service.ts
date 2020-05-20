@@ -35,4 +35,8 @@ export class ApiService {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/sorcery/${charm}/research/${turns}`).toPromise();
   }
 
+  conjure(kingdom: string, charm: string, target: string) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/sorcery/${charm}/target/${target}`).toPromise();
+  }
+
 }

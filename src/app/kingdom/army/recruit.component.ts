@@ -83,6 +83,7 @@ export class RecruitComponent implements OnInit {
         this.close();
       } catch (error) {
         console.error(error);
+        this.notificationService.error('kingdom.recruit.error');
       }
     } else {
       this.notificationService.error('kingdom.recruit.error');

@@ -31,17 +31,17 @@
 
         <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
         <mat-action-list dense id="3" #kngdmCharms="cdkDropList" [cdkDropListConnectedTo]="[atckCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="kingdomCharms">
-          <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.join.battle || charm.turns < charm.join.research" [ngClass]="{ 'handle': charm.join.battle && charm.turns >= charm.join.research }" (click)="charm.turns < charm.join.research ? openResearchDialog(charm) : !charm.join.battle ? openConjureDialog(charm) : null" [id]="charm.fid">
+          <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.join.battle || !charm.completed" [ngClass]="{ 'handle': charm.join.battle && charm.completed }" (click)="!charm.completed ? openResearchDialog(charm) : !charm.join.battle ? openConjureDialog(charm) : null" [id]="charm.fid">
             <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="charm.join.image">
             </div>
             <div mat-line>{{ charm.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:charm.join.spells"></div>
-            <div mat-line *ngIf="charm.turns < charm.join.research">
+            <div mat-line *ngIf="!charm.completed">
               <mat-progress-bar [value]="charm.turns * 100 / charm.join.research"></mat-progress-bar>
             </div>
-            <mat-icon *ngIf="charm.join.battle && charm.turns >= charm.join.research">open_with</mat-icon>
-            <div mat-list-avatar *ngIf="charm.turns < charm.join.research" [matBadge]="charm.join.research - charm.turns" matBadgePosition="above after">
+            <mat-icon *ngIf="charm.join.battle && charm.completed">open_with</mat-icon>
+            <div mat-list-avatar *ngIf="!charm.completed" [matBadge]="charm.join.research - charm.turns" matBadgePosition="above after">
               <img mat-list-avatar src="/assets/images/resources/turn.png">
             </div>
           </button>
