@@ -118,6 +118,10 @@ export class MapboxService {
       { id: 'village', quantity: 100 },
       { id: 'workshop', quantity: 100 },
     ]);
+    this.firebaseService.addElementsToCollection(`kingdoms/${id}/charms`, [
+      { id: 'animate-skeleton', turns: 0, completed: false, total: 200 },
+      { id: 'fear', turns: 0, completed: false, total: 200 },
+    ]);
   }
 
   addShop(): void {

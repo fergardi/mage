@@ -9,7 +9,8 @@
     "categories": ["lightning"],
     "skills": ["life-leech", "flight"],
     "families": ["elemental"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -22,7 +23,8 @@
     "categories": ["ranged"],
     "skills": ["flight", "life-leech"],
     "families": ["undead"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -35,7 +37,8 @@
     "categories": ["cold", "breath", "melee"],
     "skills": ["flight", "scales", "life-leech"],
     "families": ["dragon", "undead"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -48,7 +51,8 @@
     "categories": ["melee"],
     "skills": ["slowness"],
     "families": ["undead"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -61,7 +65,8 @@
     "categories": ["melee"],
     "skills": ["life-leech"],
     "families": ["undead"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -74,7 +79,8 @@
     "categories": ["ranged", "cold", "magic"],
     "skills": [],
     "families": ["undead"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -87,7 +93,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["undead"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": false,
     "gold": 100
   },
   {
@@ -100,7 +107,8 @@
     "categories": ["magic", "ranged"],
     "skills": ["life-leech", "flight", "seduction"],
     "families": ["undead"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -113,7 +121,8 @@
     "categories": ["melee"],
     "skills": ["strength", "regeneration"],
     "families": ["animal", "human"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -126,7 +135,8 @@
     "categories": ["melee"],
     "skills": ["slowness"],
     "families": ["undead"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -139,7 +149,8 @@
     "categories": ["breath", "melee", "lightning"],
     "skills": ["flight", "scales", "haste"],
     "families": ["dragon"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -152,7 +163,8 @@
     "categories": ["magic"],
     "skills": ["slowness", "scales", "weakness"],
     "families": ["golem"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -165,7 +177,8 @@
     "categories": ["magic"],
     "skills": ["flight", "haste"],
     "families": ["elemental"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -178,7 +191,8 @@
     "categories": ["melee", "cold"],
     "skills": ["weakness"],
     "families": ["giant"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -191,7 +205,8 @@
     "categories": ["cold", "ranged"],
     "skills": ["weakness", "scales"],
     "families": ["elemental"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -204,7 +219,8 @@
     "categories": ["melee", "cold"],
     "skills": [],
     "families": ["orkish"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -217,7 +233,8 @@
     "categories": ["melee", "poison"],
     "skills": ["scales"],
     "families": ["reptile"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -230,7 +247,8 @@
     "categories": ["melee"],
     "skills": ["strength", "scales", "weakness"],
     "families": ["giant", "reptile"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -243,7 +261,8 @@
     "categories": ["magic"],
     "skills": [],
     "families": ["human"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -256,7 +275,8 @@
     "categories": ["melee", "cold", "breath"],
     "skills": ["slowness"],
     "families": ["giant"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -269,7 +289,8 @@
     "categories": ["melee"],
     "skills": ["strength"],
     "families": ["golem"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -282,7 +303,8 @@
     "categories": ["melee"],
     "skills": ["regeneration"],
     "families": ["animal", "giant"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -295,7 +317,8 @@
     "categories": ["melee"],
     "skills": ["haste"],
     "families": ["orkish"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -308,7 +331,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["orkish"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -321,7 +345,8 @@
     "categories": ["melee", "breath", "poison"],
     "skills": ["flight", "scales", "regeneration"],
     "families": ["dragon"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -334,7 +359,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["animal", "human"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -347,7 +373,8 @@
     "categories": ["magic"],
     "skills": [],
     "families": ["undead"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -360,7 +387,8 @@
     "categories": ["melee", "poison"],
     "skills": ["scales"],
     "families": ["animal", "giant"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -373,7 +401,8 @@
     "categories": ["melee", "ranged"],
     "skills": ["scales"],
     "families": ["elemental"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -386,7 +415,8 @@
     "categories": ["melee", "poison", "breath"],
     "skills": ["scales"],
     "families": ["giant", "reptile"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -399,7 +429,8 @@
     "categories": ["melee"],
     "skills": ["weakness"],
     "families": ["giant", "demon"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -412,7 +443,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["demon"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -425,7 +457,8 @@
     "categories": ["magic"],
     "skills": ["seduction"],
     "families": ["demon"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -438,7 +471,8 @@
     "categories": ["ranged", "fire"],
     "skills": [],
     "families": ["elemental"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -451,7 +485,8 @@
     "categories": ["melee"],
     "skills": ["scales"],
     "families": ["reptile"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -464,7 +499,8 @@
     "categories": ["melee"],
     "skills": ["slowness"],
     "families": ["demon", "giant", "orkish"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -477,7 +513,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["demon", "orkish"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -490,7 +527,8 @@
     "categories": ["magic", "ranged", "fire"],
     "skills": ["flight", "regeneration"],
     "families": ["elemental"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -503,7 +541,8 @@
     "categories": ["fire", "breath", "melee"],
     "skills": ["flight", "scales"],
     "families": ["dragon"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -516,7 +555,8 @@
     "categories": ["poison"],
     "skills": ["scales"],
     "families": ["demon", "giant", "orkish", "animal"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -529,7 +569,8 @@
     "categories": ["ranged"],
     "skills": ["weakness"],
     "families": ["human"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -542,7 +583,8 @@
     "categories": ["holy", "breath", "melee"],
     "skills": ["regeneration", "flight", "scales"],
     "families": ["dragon"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -555,7 +597,8 @@
     "categories": ["magic"],
     "skills": ["flight", "scales"],
     "families": ["animal"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -568,7 +611,8 @@
     "categories": ["melee"],
     "skills": ["scales"],
     "families": ["human"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -581,7 +625,8 @@
     "categories": ["holy"],
     "skills": ["regeneration"],
     "families": ["elemental"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -594,7 +639,8 @@
     "categories": ["melee"],
     "skills": ["slowness", "weakness", "scales"],
     "families": ["giant"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -607,7 +653,8 @@
     "categories": ["magic"],
     "skills": ["regeneration"],
     "families": ["human"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -620,7 +667,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["human"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -633,7 +681,8 @@
     "categories": ["melee"],
     "skills": ["scales", "haste"],
     "families": ["human", "animal"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -646,7 +695,8 @@
     "categories": ["holy"],
     "skills": ["scales"],
     "families": ["human"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -659,7 +709,8 @@
     "categories": ["melee"],
     "skills": ["haste"],
     "families": ["human", "animal"],
-    "recruit": true,
+    "recruitable": true,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -672,7 +723,8 @@
     "categories": ["magic"],
     "skills": [],
     "families": ["human"],
-    "recruit": true,
+    "recruitable": true,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -685,7 +737,8 @@
     "categories": ["melee"],
     "skills": ["weakness"],
     "families": ["human"],
-    "recruit": true,
+    "recruitable": true,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -698,7 +751,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["human"],
-    "recruit": true,
+    "recruitable": true,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -711,7 +765,8 @@
     "categories": ["ranged"],
     "skills": [],
     "families": ["human"],
-    "recruit": true,
+    "recruitable": true,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -724,7 +779,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["animal"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -737,7 +793,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["animal"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -750,7 +807,8 @@
     "categories": ["melee"],
     "skills": ["flight"],
     "families": ["animal"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -763,7 +821,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["animal"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -776,7 +835,8 @@
     "categories": ["melee"],
     "skills": [],
     "families": ["demon"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -789,7 +849,8 @@
     "categories": ["melee"],
     "skills": ["slowness"],
     "families": ["animal"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -802,7 +863,8 @@
     "categories": ["melee"],
     "skills": ["haste"],
     "families": ["animal"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -815,7 +877,8 @@
     "categories": ["melee"],
     "skills": ["scales", "slowness"],
     "families": ["golem"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -828,7 +891,8 @@
     "categories": ["melee"],
     "skills": ["scales", "slowness"],
     "families": ["golem"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   },
   {
@@ -841,7 +905,8 @@
     "categories": ["melee"],
     "skills": ["flight"],
     "families": ["dragon"],
-    "recruit": false,
+    "recruitable": false,
+    "disbandable": true,
     "gold": 100
   }
 ]

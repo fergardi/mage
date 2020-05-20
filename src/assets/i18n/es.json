@@ -241,7 +241,8 @@
       "hint": "Invierte turnos en investigar",
       "error": "No tienes turnos suficientes",
       "research": "Investigar",
-      "cancel": "Cancelar"
+      "cancel": "Cancelar",
+      "success": "Has avanzado la investigación del hechizo"
     },
     "conjure": {
       "name": "Conjuración",

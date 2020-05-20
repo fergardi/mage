@@ -22,11 +22,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
             <img mat-list-avatar [src]="log.join.image">
           </div>
           <div mat-line>{{ log.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">
-            <img [title]="family.name | translate" class="icon" *ngFor="let family of log.join.families" [src]="family.image"/>
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of log.join.categories" [src]="category.image"/>
-            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of log.join.skills" [src]="skill.image"/>
-          </div>
+          <div mat-line class="mat-card-subtitle">texto de prueba</div>
         </mat-list-item>
       </mat-list>
     </div>

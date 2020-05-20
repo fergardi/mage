@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngxs/store';
+import { ApiService } from 'src/app/services/api.service';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 @Component({
   selector: 'app-research',
@@ -35,7 +38,7 @@ import { NotificationService } from 'src/app/services/notification.service';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.research.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="research()" cdkFocusInitial>{{ 'kingdom.research.research' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="research()" cdkFocusInitial>{{ 'kingdom.research.research' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -47,17 +50,21 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class ResearchComponent implements OnInit {
 
   form: FormGroup = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
 
   constructor(
     public dialogRef: MatDialogRef<ResearchComponent>,
     @Inject(MAT_DIALOG_DATA) public charm: any,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
+    private store: Store,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(300)]]
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]]
     });
   }
 
@@ -65,9 +72,15 @@ export class ResearchComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  research(): void {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value.turns);
+  async research() {
+    if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
+      try {
+        let researched = await this.apiService.research(this.uid, this.charm.fid, this.form.value.turns);
+        this.notificationService.success('kingdom.research.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+      }
     } else {
       this.notificationService.error('kingdom.research.error');
     }

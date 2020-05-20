@@ -45,7 +45,10 @@ export class FirebaseService {
     if (element.units) this.joinObject(element, 'units', await this.cacheService.getUnits());
     if (element.categories) this.joinObject(element, 'categories', await this.cacheService.getCategories());
     if (element.families) this.joinObject(element, 'families', await this.cacheService.getFamilies());
+    if (element.spell) this.joinObject(element, 'spell', await this.cacheService.getSpells());
     if (element.spells) this.joinObject(element, 'spells', await this.cacheService.getSpells());
+    if (element.item) this.joinObject(element, 'item', await this.cacheService.getItems());
+    if (element.items) this.joinObject(element, 'items', await this.cacheService.getItems());
     if (element.resources) this.joinObject(element, 'resources', await this.cacheService.getResources());
     return element;
   }
