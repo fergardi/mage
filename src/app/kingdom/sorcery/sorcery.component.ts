@@ -37,7 +37,7 @@ export class SorceryComponent implements OnInit {
     private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private store: Store,
   ) { }
 

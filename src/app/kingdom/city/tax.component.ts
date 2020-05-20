@@ -50,9 +50,9 @@ export class TaxComponent implements OnInit {
   form: FormGroup = null;
 
   constructor(
-    public dialogRef: MatDialogRef<TaxComponent>,
-    private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public village: any,
+    private dialogRef: MatDialogRef<TaxComponent>,
+    private formBuilder: FormBuilder,
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,

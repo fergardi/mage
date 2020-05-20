@@ -43,7 +43,7 @@ export class EncyclopediaComponent implements OnInit {
   constructor(
     private cacheService: CacheService,
     private translateService: TranslateService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

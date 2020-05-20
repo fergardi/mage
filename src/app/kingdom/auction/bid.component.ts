@@ -46,8 +46,8 @@ export class BidComponent implements OnInit {
   form: FormGroup = null;
 
   constructor(
-    public dialogRef: MatDialogRef<BidComponent>,
     @Inject(MAT_DIALOG_DATA) public auction: any,
+    private dialogRef: MatDialogRef<BidComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
   ) { }

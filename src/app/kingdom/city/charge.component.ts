@@ -50,9 +50,9 @@ export class ChargeComponent implements OnInit {
   form: FormGroup = null;
 
   constructor(
-    public dialogRef: MatDialogRef<ChargeComponent>,
-    private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public node: any,
+    private dialogRef: MatDialogRef<ChargeComponent>,
+    private formBuilder: FormBuilder,
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,

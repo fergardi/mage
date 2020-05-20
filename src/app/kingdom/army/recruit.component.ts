@@ -54,8 +54,8 @@ export class RecruitComponent implements OnInit {
   kingdomGold: any = null;
 
   constructor(
-    public dialogRef: MatDialogRef<RecruitComponent>,
     @Inject(MAT_DIALOG_DATA) public unit: any,
+    private dialogRef: MatDialogRef<RecruitComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
     private store: Store,

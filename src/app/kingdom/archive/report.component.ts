@@ -53,8 +53,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ReportComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<ReportComponent>,
     @Inject(MAT_DIALOG_DATA) public letter: any,
+    private dialogRef: MatDialogRef<ReportComponent>,
   ) { }
 
   close() {

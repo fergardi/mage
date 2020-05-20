@@ -34,8 +34,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class DischargeComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<DischargeComponent>,
     @Inject(MAT_DIALOG_DATA) public contract: any,
+    private dialogRef: MatDialogRef<DischargeComponent>,
   ) { }
 
   close(): void {

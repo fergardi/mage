@@ -46,8 +46,8 @@ export class OfferComponent implements OnInit {
   form: FormGroup = null;
 
   constructor(
-    public dialogRef: MatDialogRef<OfferComponent>,
     @Inject(MAT_DIALOG_DATA) public god: any,
+    private dialogRef: MatDialogRef<OfferComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
   ) { }

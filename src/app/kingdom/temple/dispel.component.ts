@@ -43,8 +43,8 @@ export class DispelComponent implements OnInit {
   uid: string = null;
 
   constructor(
-    public dialogRef: MatDialogRef<DispelComponent>,
     @Inject(MAT_DIALOG_DATA) public enchantment: any,
+    private dialogRef: MatDialogRef<DispelComponent>,
     private notificationService: NotificationService,
     private store: Store,
   ) { }

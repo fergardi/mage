@@ -27,8 +27,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           </div>
         </mat-list-item>
       </mat-list>
-    </div>
-    <div mat-dialog-content>
       <p>{{ tome.help | translate }}</p>
       <mat-chip-list>
         <mat-chip *ngFor="let family of tome.families"><img class="icon" [src]="family.image">{{ family.name | translate }}</mat-chip>
@@ -49,9 +47,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class TomeComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<TomeComponent>,
     @Inject(MAT_DIALOG_DATA) public tome: any,
-  ) { console.log(tome)}
+    private dialogRef: MatDialogRef<TomeComponent>,
+  ) { }
 
   close(): void {
     this.dialogRef.close();

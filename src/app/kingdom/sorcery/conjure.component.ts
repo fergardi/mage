@@ -56,13 +56,13 @@ export enum CharmAssignmentType {
 export class ConjureComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomCharms: any[] = [];
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomCharms: any[] = [];
   selectedCharm: any = null;
 
   constructor(
-    public dialogRef: MatDialogRef<ConjureComponent>,
     @Inject(MAT_DIALOG_DATA) public charm: any,
+    private dialogRef: MatDialogRef<ConjureComponent>,
     private store: Store,
     private firebaseService: FirebaseService,
     private apiService: ApiService,
@@ -85,7 +85,7 @@ export class ConjureComponent implements OnInit {
   }
 
   async conjure() {
-    if (this.charm.join.turns <= this.kingdomTurn.quantity) {
+    if (this.selectedCharm.join.turns <= this.kingdomTurn.quantity) {
       try {
         let conjured = await this.apiService.conjure(this.uid, this.selectedCharm.fid, this.uid);
         this.notificationService.success('kingdom.conjure.success');

@@ -86,7 +86,7 @@
       "description": ""
     },
     "item": {
-      "name": "Objecto",
+      "name": "Objeto",
       "description": ""
     },
     "attack": {
@@ -553,7 +553,7 @@
   },
   "unit": {
     "lightning-elemental": {
-      "name": "Elementales de sombra",
+      "name": "Elementales de rayo",
       "description": ""
     },
     "wraith": {

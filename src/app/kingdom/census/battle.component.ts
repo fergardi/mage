@@ -70,9 +70,9 @@ export class BattleComponent implements OnInit {
   kingdomTroops: any[] = [];
 
   constructor(
-    public dialogRef: MatDialogRef<BattleComponent>,
-    private firebaseService: FirebaseService,
     @Inject(MAT_DIALOG_DATA) public kingdom: any,
+    private dialogRef: MatDialogRef<BattleComponent>,
+    private firebaseService: FirebaseService,
   ) { }
 
   ngOnInit(): void {

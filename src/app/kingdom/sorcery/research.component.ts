@@ -54,8 +54,8 @@ export class ResearchComponent implements OnInit {
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
 
   constructor(
-    public dialogRef: MatDialogRef<ResearchComponent>,
     @Inject(MAT_DIALOG_DATA) public charm: any,
+    private dialogRef: MatDialogRef<ResearchComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
     private store: Store,

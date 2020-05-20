@@ -52,7 +52,7 @@ export class ExploreComponent implements OnInit {
   @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'turn')) turn$: Observable<any>;
 
   constructor(
-    public dialogRef: MatDialogRef<ExploreComponent>,
+    private dialogRef: MatDialogRef<ExploreComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
     private store: Store,

@@ -77,7 +77,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/necronomicon.png",
     "faction": "grey",
     "name": "item.necronomicon.name",
@@ -96,7 +96,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/enchanted-lamp.png",
     "faction": "grey",
     "name": "item.enchanted-lamp.name",
@@ -134,7 +134,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/demon-horn.png",
     "faction": "grey",
     "name": "item.demon-horn.name",
@@ -153,7 +153,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/lightning-orb.png",
     "faction": "grey",
     "name": "item.lightning-orb.name",
@@ -172,7 +172,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/dragon-egg.png",
     "faction": "grey",
     "name": "item.dragon-egg.name",
@@ -248,7 +248,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/cold-orb.png",
     "faction": "grey",
     "name": "item.cold-orb.name",
@@ -267,7 +267,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/earth-orb.png",
     "faction": "grey",
     "name": "item.earth-orb.name",
@@ -286,7 +286,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/fire-orb.png",
     "faction": "grey",
     "name": "item.fire-orb.name",
@@ -324,7 +324,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/light-orb.png",
     "faction": "grey",
     "name": "item.light-orb.name",
@@ -400,7 +400,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/animal-fang.png",
     "faction": "grey",
     "name": "item.animal-fang.name",
@@ -533,7 +533,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/golem-book.png",
     "faction": "grey",
     "name": "item.golem-book.name",
@@ -647,7 +647,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/magic-beans.png",
     "faction": "grey",
     "name": "item.magic-beans.name",
@@ -799,7 +799,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/snake-eye.png",
     "faction": "grey",
     "name": "item.snake-eye.name",
@@ -837,7 +837,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "summon",
     "image": "/assets/images/items/valhalla-horn.png",
     "faction": "grey",
     "name": "item.valhalla-horn.name",

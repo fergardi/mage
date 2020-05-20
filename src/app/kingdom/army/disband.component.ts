@@ -53,8 +53,8 @@ export class DisbandComponent implements OnInit {
   form: FormGroup = null;
 
   constructor(
-    public dialogRef: MatDialogRef<DisbandComponent>,
     @Inject(MAT_DIALOG_DATA) public troop: any,
+    private dialogRef: MatDialogRef<DisbandComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
     private store: Store,

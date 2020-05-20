@@ -46,8 +46,8 @@ export class BuildComponent implements OnInit {
   form: FormGroup = null;
 
   constructor(
-    public dialogRef: MatDialogRef<BuildComponent>,
     @Inject(MAT_DIALOG_DATA) public building: any,
+    private dialogRef: MatDialogRef<BuildComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
   ) { }

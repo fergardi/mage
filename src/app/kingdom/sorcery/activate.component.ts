@@ -4,6 +4,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { ApiService } from 'src/app/services/api.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 export enum ArtifactAssignmentType {
   'none' = 0,
@@ -52,19 +54,21 @@ export enum ArtifactAssignmentType {
 @UntilDestroy()
 export class ActivateComponent implements OnInit {
 
-  uid: string = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
   kingdomArtifacts: any[] = [];
   selectedArtifact: any = null;
 
   constructor(
-    public dialogRef: MatDialogRef<ActivateComponent>,
+    private dialogRef: MatDialogRef<ActivateComponent>,
     private firebaseService: FirebaseService,
     private store: Store,
     @Inject(MAT_DIALOG_DATA) public artifact: any,
+    private apiService: ApiService,
+    private notificationService: NotificationService,
   ) { }
 
   ngOnInit(): void {
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     if (this.artifact) {
       this.kingdomArtifacts = [this.artifact];
       this.selectedArtifact = this.artifact;
@@ -79,8 +83,19 @@ export class ActivateComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  activate(): void {
-    this.dialogRef.close(this.selectedArtifact.fid);
+  async activate() {
+    if (this.selectedArtifact.join.turns <= this.kingdomTurn.quantity) {
+      try {
+        let activated = await this.apiService.activate(this.uid, this.selectedArtifact.fid, this.uid);
+        this.notificationService.success('kingdom.activate.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.activate.error');
+      }
+    } else {
+      this.notificationService.error('kingdom.activate.error');
+    }
   }
 
 }

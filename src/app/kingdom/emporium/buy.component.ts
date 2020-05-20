@@ -34,8 +34,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class BuyComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<BuyComponent>,
     @Inject(MAT_DIALOG_DATA) public item: any,
+    private dialogRef: MatDialogRef<BuyComponent>,
   ) { }
 
   close(): void {

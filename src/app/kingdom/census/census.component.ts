@@ -46,7 +46,7 @@ export class CensusComponent implements OnInit, OnDestroy {
     private angularFirestore: AngularFirestore,
     private firebaseService: FirebaseService,
     private notificationService: NotificationService,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private store: Store,
   ) {
     this.interval = setInterval(() => this.clock = new Date(), 1000);

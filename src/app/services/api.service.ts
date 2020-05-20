@@ -36,7 +36,11 @@ export class ApiService {
   }
 
   conjure(kingdom: string, charm: string, target: string) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/sorcery/${charm}/target/${target}`).toPromise();
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/sorcery/${charm}/conjure/${target}`).toPromise();
+  }
+
+  activate(kingdom: string, charm: string, target: string) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/sorcery/${charm}/activate/${target}`).toPromise();
   }
 
 }

@@ -25,7 +25,7 @@ export class TempleComponent implements OnInit {
   constructor(
     private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
-    public dialog: MatDialog,
+    private dialog: MatDialog,
     private store: Store,
   ) {}
 

@@ -46,9 +46,9 @@ export class LetterComponent implements OnInit {
   form: FormGroup = null;
 
   constructor(
-    private formBuilder: FormBuilder,
-    public dialogRef: MatDialogRef<LetterComponent>,
     @Inject(MAT_DIALOG_DATA) public kingdom: any,
+    private formBuilder: FormBuilder,
+    private dialogRef: MatDialogRef<LetterComponent>,
   ) { }
 
   ngOnInit(): void {
