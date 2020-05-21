@@ -101,17 +101,21 @@ body {
   justify-content: flex-end;
 }
 
+.mat-list-item-disabled {
+  opacity: 0.5;
+}
+
 .table-responsive,
 .table-no-responsive {
   table {
     width: 100%;
   }
   .mat-row:hover {
-    background: #303030;
+    background-color: #303030;
     cursor: pointer;
   }
   .mat-row.disabled {
-    background: black !important;
+    background-color: black !important;
     cursor: not-allowed !important;
   }
   .mat-row td {

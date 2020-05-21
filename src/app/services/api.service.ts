@@ -47,4 +47,8 @@ export class ApiService {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/auction/${auction}/bid/${gold}`).toPromise();
   }
 
+  offer(kingdom: string, god: string, gold: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/temple/${god}/offer/${gold}`).toPromise();
+  }
+
 }

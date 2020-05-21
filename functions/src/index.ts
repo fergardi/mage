@@ -27,7 +27,8 @@ app.get('/kingdom/:kingdom/army/:troop/disband/:quantity', ash(async (req: any, 
 app.get('/kingdom/:kingdom/sorcery/:charm/research/:turns', ash(async (req: any, res: any) => res.json(await researchCharm(req.params.kingdom, req.params.charm, parseInt(req.params.turns)))));
 app.get('/kingdom/:kingdom/sorcery/:charm/conjure/:target', ash(async (req: any, res: any) => res.json(await conjureCharm(req.params.kingdom, req.params.charm, req.params.target))));
 app.get('/kingdom/:kingdom/sorcery/:artifact/activate/:target', ash(async (req: any, res: any) => res.json(await activateArtifact(req.params.kingdom, req.params.artifact, req.params.target))));
-app.get('/kingdom/:kingdom/auction/:auction/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdom, req.params.auction, req.params.gold))));
+app.get('/kingdom/:kingdom/auction/:auction/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdom, req.params.auction, parseInt(req.params.gold)))));
+app.get('/kingdom/:kingdom/temple/:god/offer/:gold', ash(async (req: any, res: any) => res.json(await offerGod(req.params.kingdom, req.params.god, parseInt(req.params.gold)))));
 app.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));
 
 exports.api = functions
@@ -229,6 +230,21 @@ const bidAuction = async (kingdomId: string, auctionId: string, gold: number) =>
         batch.update(angularFirestore.doc(`kingdoms/${auction?.from}/supplies/${kingdomFromGold.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(Math.floor(auction?.gold * 0.90)) });
       }
       batch.update(angularFirestore.doc(`auctions/${auctionId}`), { from: kingdomId, gold: gold });
+      batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomGold.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(-gold) });
+      batch.commit();
+    }
+  }
+  return { gold: gold };
+}
+
+const offerGod = async (kingdomId: string, godId: string, gold: number) => {
+  let kingdomGod = await angularFirestore.doc(`gods/${godId}`).get();
+  if (kingdomGod.exists) {
+    let god = kingdomGod.data();
+    let kingdomGold = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').get();
+    if (gold <= kingdomGold.docs[0].data().quantity && gold >= Math.floor(god?.gold * 1.10) && kingdomId !== god?.kingdom) {
+      const batch = angularFirestore.batch();
+      batch.update(angularFirestore.doc(`gods/${godId}`), { kingdom: kingdomId, gold: gold });
       batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomGold.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(-gold) });
       batch.commit();
     }

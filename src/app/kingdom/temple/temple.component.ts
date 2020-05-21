@@ -18,7 +18,7 @@ import { DispelComponent } from './dispel.component';
 @UntilDestroy()
 export class TempleComponent implements OnInit {
 
-  uid: string = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomGods: any[] = [];
   kingdomEnchantments: any[] = [];
 
@@ -30,7 +30,6 @@ export class TempleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.angularFirestore.collection<any>('gods').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(gods => {
       this.kingdomGods = gods;
     });
@@ -44,11 +43,6 @@ export class TempleComponent implements OnInit {
       panelClass: 'dialog-responsive',
       data: god
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.angularFirestore.collection('gods').doc(god.fid).update({ gold: result.gold, kingdom: this.uid });
-      }
-    })
   }
 
   openDispelDialog(enchantment: any): void {

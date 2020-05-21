@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-offer',
@@ -32,7 +35,7 @@ import { NotificationService } from 'src/app/services/notification.service';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.offer.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="offer()" cdkFocusInitial>{{ 'kingdom.offer.offer' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="offer()" cdkFocusInitial>{{ 'kingdom.offer.offer' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -43,18 +46,23 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class OfferComponent implements OnInit {
 
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   form: FormGroup = null;
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public god: any,
     private dialogRef: MatDialogRef<OfferComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
+    private store: Store,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      gold: [null, [Validators.required, Validators.min(this.god.gold + 1)]]
+      gold: [null, [Validators.required, Validators.min(Math.floor(this.god.gold * 1.10)), Validators.max(this.kingdomGold.quantity)]]
     });
   }
 
@@ -62,9 +70,16 @@ export class OfferComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  offer(): void {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value.gold);
+  async offer() {
+    if (this.form.valid && this.form.value.gold <= this.kingdomGold.quantity) {
+      try {
+        let offered = await this.apiService.offer(this.uid, this.god.fid, this.form.value.gold);
+        this.notificationService.success('kingdom.offer.success', offered);
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.offer.error');
+      }
     } else {
       this.notificationService.error('kingdom.offer.error');
     }

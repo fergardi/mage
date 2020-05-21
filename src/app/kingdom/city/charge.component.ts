@@ -46,8 +46,9 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class ChargeComponent implements OnInit {
 
-  kingdomTurn: any = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   form: FormGroup = null;
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public node: any,
@@ -59,7 +60,6 @@ export class ChargeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
     this.form = this.formBuilder.group({
       turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]]
     });
@@ -70,14 +70,14 @@ export class ChargeComponent implements OnInit {
   }
 
   async charge() {
-    let uid = this.store.selectSnapshot(AuthState.getUserUID);
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       try {
-        let charged = await this.apiService.charge(uid, this.form.value.turns);
+        let charged = await this.apiService.charge(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.charge.success', charged);
         this.close();
       } catch (error) {
         console.error(error);
+        this.notificationService.error('kingdom.charge.error');
       }
     } else {
       this.notificationService.error('kingdom.charge.error');
