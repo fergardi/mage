@@ -228,7 +228,7 @@
       "help": "TODO",
       "cancel": "Cancelar",
       "bid": "Pujar",
-      "hint": "Ofrece como mínimo 10% más de oro que la puja anterior",
+      "hint": "Ofrece +10% oro que la puja anterior",
       "error": "Ha ocurrido un problema",
       "success": "Puja aceptada"
     },
@@ -285,7 +285,7 @@
       "hint": "Debes tener suficientes turnos",
       "error": "Ha ocurrido un problema",
       "charge": "Meditar",
-      "success": "Has recargado maná"
+      "success": "Has recargado {{ mana }} maná"
     },
     "tax": {
       "name": "Tributo",
@@ -295,7 +295,7 @@
       "hint": "Debes tener suficientes turnos",
       "error": "Ha ocurrido un problema",
       "tax": "Tributar",
-      "success": "Has obtenido oro"
+      "success": "Has recaudado {{ gold }} oro"
     },
     "explore": {
       "name": "Exploración",
@@ -305,7 +305,7 @@
       "hint": "Cuantas más tierras tengas, menos encontrarás explorando",
       "error": "Ha ocurrido un problema",
       "explore": "Explorar",
-      "success": "Has encontrado {{ lands }} tierras"
+      "success": "Has encontrado {{ lands }} tierra(s)"
     },
     "tavern": {
       "name": "Taberna",
@@ -346,7 +346,7 @@
       "cancel": "Cancelar",
       "offer": "Ofrecer",
       "success": "Tu ofrenda satisface a los dioses",
-      "hint": "Ofrece más oro que la ofrenda anterior",
+      "hint": "Ofrece +10% oro que la ofrenda anterior",
       "error": "Ha ocurrido un problema"
     },
     "emporium": {

@@ -76,10 +76,11 @@ export class ExploreComponent implements OnInit {
     if (this.form.valid && this.form.value.turns <= kingdomTurn.quantity) {
       try {
         let explored = await this.apiService.explore(uid, this.form.value.turns);
-        this.notificationService.success('kingdom.explore.success', { lands: 0 });
+        this.notificationService.success('kingdom.explore.success', explored);
         this.close();
       } catch (error) {
         console.error(error);
+        this.notificationService.error('kingdom.explore.error');
       }
     } else {
       this.notificationService.error('kingdom.explore.error');

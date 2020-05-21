@@ -110,9 +110,9 @@ const chargeMana = async (kingdomId: string, turns: number) => {
     const batch = angularFirestore.batch();
     let kingdomMana = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').get();
     let kingdomNode = await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'node').get();
-    mana = kingdomNode.docs[0].data().quantity * 10
+    mana = kingdomNode.docs[0].data().quantity * 10 * turns;
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomTurn.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(-turns) });
-    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomMana.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(mana) });
+    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomMana.docs[0].id}`), { quantity: kingdomMana.docs[0].data().quantity + mana > kingdomMana.docs[0].data().max ? kingdomMana.docs[0].data().max : admin.firestore.FieldValue.increment(mana) });
     batch.commit();
   }
   return { mana: mana };
@@ -125,7 +125,7 @@ const taxGold = async (kingdomId: string, turns: number) => {
     const batch = angularFirestore.batch();
     let kingdomGold = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').get();
     let kingdomVillage = await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'village').get();
-    let gold = kingdomVillage.docs[0].data().quantity * 10
+    gold = kingdomVillage.docs[0].data().quantity * 10 * turns;
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomTurn.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(-turns) });
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomGold.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(gold) });
     batch.commit();

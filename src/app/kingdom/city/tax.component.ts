@@ -74,10 +74,11 @@ export class TaxComponent implements OnInit {
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       try {
         let taxed = await this.apiService.tax(uid, this.form.value.turns);
-        this.notificationService.success('kingdom.tax.success');
+        this.notificationService.success('kingdom.tax.success', taxed);
         this.close();
       } catch (error) {
         console.error(error);
+        this.notificationService.error('kingdom.tax.error');
       }
     } else {
       this.notificationService.error('kingdom.tax.error');

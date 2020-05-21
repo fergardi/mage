@@ -23,15 +23,15 @@ export class NotificationService {
   ) {}
 
   success(text: string, variable?: any) {
-    this.snackBar.open(this.translateService.instant(text, variable), '', {...this.options, panelClass: ['mat-toolbar', 'mat-accent']} );
+    this.snackBar.open(this.translateService.instant(text, variable), '✓', {...this.options, panelClass: ['mat-toolbar', 'mat-accent']} );
   }
 
   warning(text: string) {
-    this.snackBar.open(this.translateService.instant(text), '', {...this.options, panelClass: ['mat-toolbar', 'mat-primary']} );
+    this.snackBar.open(this.translateService.instant(text), '‼', {...this.options, panelClass: ['mat-toolbar', 'mat-primary']} );
   }
 
   error(text: string) {
-    this.snackBar.open(this.translateService.instant(text), '', {...this.options, panelClass: ['mat-toolbar', 'mat-warn']} );
+    this.snackBar.open(this.translateService.instant(text), '✗', {...this.options, panelClass: ['mat-toolbar', 'mat-warn']} );
   }
 
 }

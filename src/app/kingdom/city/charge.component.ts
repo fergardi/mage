@@ -35,7 +35,7 @@ import { ApiService } from 'src/app/services/api.service';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.charge.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="charge()" cdkFocusInitial>{{ 'kingdom.charge.charge' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="charge()" cdkFocusInitial>{{ 'kingdom.charge.charge' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -74,7 +74,7 @@ export class ChargeComponent implements OnInit {
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       try {
         let charged = await this.apiService.charge(uid, this.form.value.turns);
-        this.notificationService.success('kingdom.charge.success');
+        this.notificationService.success('kingdom.charge.success', charged);
         this.close();
       } catch (error) {
         console.error(error);
