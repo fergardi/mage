@@ -43,4 +43,8 @@ export class ApiService {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/sorcery/${charm}/activate/${target}`).toPromise();
   }
 
+  bid(kingdom: string, auction: string, gold: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/auction/${auction}/bid/${gold}`).toPromise();
+  }
+
 }

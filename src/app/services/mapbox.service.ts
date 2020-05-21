@@ -374,11 +374,17 @@ export class MapboxService {
     }
   }
 
-  clearMarkers(type: MarkerType): void {
-    this.markers.filter((marker: Marker) => marker.type === type).forEach((marker: Marker) => this.removeMarker(marker.id));
+  clearMarkers(type: MarkerType = null): void {
+    if (type) {
+      this.markers.filter((marker: Marker) => marker.type === type).forEach((marker: Marker) => this.removeMarker(marker.id));
+    } else {
+      this.markers.forEach((marker: Marker) => this.removeMarker(marker.id));
+      this.markers = [];
+    }
   }
 
   resize() {
     if (this.map) this.map.resize();
   }
+
 }

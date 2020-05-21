@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MapboxService, MarkerType } from 'src/app/services/mapbox.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -16,7 +16,7 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./map.component.scss']
 })
 @UntilDestroy()
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
 
   geofirex: any = geofirex.init(firebase);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
@@ -65,6 +65,10 @@ export class MapComponent implements OnInit {
         })
       });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.mapboxService.clearMarkers();
   }
 
 }

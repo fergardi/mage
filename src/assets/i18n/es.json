@@ -26,7 +26,8 @@
     },
     "encyclopedia": {
       "name": "Enciclopedia",
-      "description": "Adquiere el conocimiento"
+      "description": "Adquiere el conocimiento",
+      "help": "TODO"
     },
     "tome": {
       "close": "Cerrar"
@@ -200,7 +201,7 @@
       "description": "Recluta tropas básicas",
       "help": "Aqui puedes gastar turnos y oro para adquirir tropas básicas para tus ejércitos. Cuantos más Barracones tengas, menos turnos necesitarás.",
       "hint": "Debes tener suficientes turnos y oro",
-      "error": "No tienes turnos y/o oro suficiente",
+      "error": "Ha ocurrido un problema",
       "recruit": "Reclutar",
       "cancel": "Cancelar",
       "quantity": "Cantidad",
@@ -218,7 +219,8 @@
     "auction": {
       "name": "Subasta",
       "description": "Comercia con otros reinos",
-      "help": "TODO"
+      "help": "TODO",
+      "bid": "Pujar"
     },
     "bid": {
       "name": "Puja",
@@ -226,8 +228,9 @@
       "help": "TODO",
       "cancel": "Cancelar",
       "bid": "Pujar",
-      "hint": "Ofrece más oro que la puja anterior",
-      "error": "No tienes turnos y/o oro suficiente"
+      "hint": "Ofrece como mínimo 10% más de oro que la puja anterior",
+      "error": "Ha ocurrido un problema",
+      "success": "Puja aceptada"
     },
     "sorcery": {
       "name": "Magia",
@@ -456,7 +459,7 @@
       "name": "Mercader ambulante",
       "description": "Adquiere artefactos peculiares"
     },
-    "camp": {
+    "mercenary": {
       "name": "Campamento de mercenarios",
       "description": "Incorpora tropas para tu ejército"
     },

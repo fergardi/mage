@@ -9,6 +9,8 @@ import * as moment from 'moment';
 import { BidComponent } from './bid.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-auction',
@@ -19,7 +21,7 @@ import { TranslateService } from '@ngx-translate/core';
 @UntilDestroy()
 export class AuctionComponent implements OnInit {
 
-  columns = ['name', 'timestamp'];
+  columns = ['name', 'timestamp', 'actions'];
   filters: any = {
     name: {
       type: 'text',
@@ -31,11 +33,13 @@ export class AuctionComponent implements OnInit {
     }
   };
   data: MatTableDataSource<any> = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
     private firebaseService: FirebaseService,
     private translateService: TranslateService,
     private dialog: MatDialog,
+    private store: Store,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

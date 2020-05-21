@@ -58,11 +58,17 @@
               {{ auction[column]?.toMillis() | date }}
             </ng-template>
 
+            <ng-template [ngIf]="column === 'actions'">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.auction.bid' | translate }}" [disabled]="auction.from === uid" (click)="openBidDialog(auction)">
+                <mat-icon>gavel</mat-icon>
+              </button>
+            </ng-template>
+
           </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let auction; columns: columns" (click)="openBidDialog(auction)"></mat-row>
+        <mat-row *matRowDef="let auction; columns: columns"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

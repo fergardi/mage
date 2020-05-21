@@ -110,6 +110,10 @@ body {
     background: #303030;
     cursor: pointer;
   }
+  .mat-row.disabled {
+    background: black !important;
+    cursor: not-allowed !important;
+  }
   .mat-row td {
     border-bottom-width: 0;
   }

@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { Store } from '@ngxs/store';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-bid',
@@ -24,7 +27,7 @@ import { NotificationService } from 'src/app/services/notification.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.gold.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'kingdom.bid.quantity' | translate }}" matInput formControlName="gold">
+          <input type="number" placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="gold">
           <mat-hint>{{ 'kingdom.bid.hint' | translate }}</mat-hint>
           <mat-error>{{ 'kingdom.bid.error' | translate }}</mat-error>
         </mat-form-field>
@@ -32,7 +35,7 @@ import { NotificationService } from 'src/app/services/notification.service';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.bid.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="bid()" cdkFocusInitial>{{ 'kingdom.bid.bid' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="bid()" cdkFocusInitial>{{ 'kingdom.bid.bid' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -44,17 +47,21 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class BidComponent implements OnInit {
 
   form: FormGroup = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public auction: any,
     private dialogRef: MatDialogRef<BidComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
+    private store: Store,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      gold: [null, [Validators.required, Validators.min(1)]]
+      gold: [null, [Validators.required, Validators.min(Math.floor(this.auction.gold * 1.10)), Validators.max(this.kingdomGold.quantity)]]
     });
   }
 
@@ -62,9 +69,16 @@ export class BidComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  bid(): void {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value.gold);
+  async bid() {
+    if (this.form.valid && this.form.value.gold <= this.kingdomGold.quantity) {
+      try {
+        let bidded = await this.apiService.bid(this.uid, this.auction.fid, this.form.value.gold);
+        this.notificationService.success('kingdom.bid.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.bid.error');
+      }
     } else {
       this.notificationService.error('kingdom.bid.error');
     }
