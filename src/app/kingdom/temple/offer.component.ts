@@ -5,6 +5,8 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
+import { TranslateService } from '@ngx-translate/core';
+import { LongPipe } from 'src/app/pipes/long.pipe';
 
 @Component({
   selector: 'app-offer',
@@ -42,7 +44,10 @@ import { ApiService } from 'src/app/services/api.service';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
+  providers: [
+    LongPipe
+  ],
 })
 export class OfferComponent implements OnInit {
 
@@ -58,6 +63,8 @@ export class OfferComponent implements OnInit {
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,
+    private translateService: TranslateService,
+    private longPipe: LongPipe,
   ) { }
 
   ngOnInit() {
@@ -74,7 +81,14 @@ export class OfferComponent implements OnInit {
     if (this.form.valid && this.form.value.gold <= this.kingdomGold.quantity) {
       try {
         let offered = await this.apiService.offer(this.uid, this.god.fid, this.form.value.gold);
-        this.notificationService.success('kingdom.offer.success', offered);
+        if (offered.hasOwnProperty('hero')) this.notificationService.success('kingdom.temple.hero', { hero: this.translateService.instant(offered['hero']), level: this.longPipe.transform(offered['level']) });
+        if (offered.hasOwnProperty('item')) this.notificationService.success('kingdom.temple.item', { item: this.translateService.instant(offered['item']) });
+        if (offered.hasOwnProperty('enchantment')) this.notificationService.success('kingdom.temple.enchantment', { enchantment: this.translateService.instant(offered['enchantment']), turns: this.longPipe.transform(offered['turns']) });
+        if (offered.hasOwnProperty('unit')) this.notificationService.success('kingdom.temple.unit', { unit: this.translateService.instant(offered['unit']), quantity: this.longPipe.transform(offered['quantity']) });
+        if (offered.hasOwnProperty('gold')) this.notificationService.success('kingdom.temple.gold', { gold: this.longPipe.transform(offered['gold']) });
+        if (offered.hasOwnProperty('mana')) this.notificationService.success('kingdom.temple.mana', { mana: this.longPipe.transform(offered['mana']) });
+        if (offered.hasOwnProperty('population')) this.notificationService.success('kingdom.temple.population', { population: this.longPipe.transform(offered['population']) });
+        if (offered.hasOwnProperty('land')) this.notificationService.success('kingdom.temple.land', { land: this.longPipe.transform(offered['land']) });
         this.close();
       } catch (error) {
         console.error(error);

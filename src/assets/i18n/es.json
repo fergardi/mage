@@ -337,14 +337,21 @@
     "temple": {
       "name": "Templo",
       "description": "Complace a los dioses",
-      "help": "En el templo puedes ofrecer oro a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino. Debes ofrecer más del 10% que la ofrenda anterior y, a diferencia de la casa de subastas, no recuperarás nada de tu oro original si alguien te supera. Pero cuidado, los dioses son caprichosos..."
+      "help": "En el templo puedes ofrecer oro a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino. Debes ofrecer más del 10% que la ofrenda anterior y, a diferencia de la casa de subastas, no recuperarás nada de tu oro original si alguien te supera. Pero cuidado, los dioses son caprichosos...",
+      "hero": "Te han otorgado el héroe '{{ hero }}' de nivel {{ level }}",
+      "unit": "Te han otorgado una tropa de {{ quantity }} '{{ unit }}'",
+      "enchantment": "Te han otorgado el encantamiento '{{ enchantment }}' durante {{ turns }} turnos",
+      "item": "Te han otorgado el artefacto '{{ item }}'",
+      "gold": "Te han otorgado {{ gold }} oro",
+      "mana": "Te han otorgado {{ mana }} maná",
+      "population": "Te han otorgado {{ population }} población",
+      "land": "Te han otorgado {{ land }} tierra(s)"
     },
     "offer": {
       "name": "Ofrenda",
       "description": "Ofrece oro a tu dios como sacrificio",
       "cancel": "Cancelar",
       "offer": "Ofrecer",
-      "success": "Tu ofrenda satisface a los dioses",
       "hint": "Ofrece +10% oro que la ofrenda anterior",
       "error": "Ha ocurrido un problema"
     },
@@ -714,8 +721,8 @@
       "name": "Wéndigos",
       "description": ""
     },
-    "catapult": {
-      "name": "Catapultas",
+    "behemoth": {
+      "name": "Behemots",
       "description": ""
     },
     "white-dragon": {
