@@ -59,7 +59,7 @@
             </ng-template>
 
             <ng-template [ngIf]="column === 'actions'">
-              <button mat-mini-fab color="primary" title="{{ 'kingdom.auction.bid' | translate }}" [disabled]="auction.from === uid" (click)="openBidDialog(auction)">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.auction.bid' | translate }}" [disabled]="auction.kingdom === uid" (click)="openBidDialog(auction)">
                 <mat-icon>gavel</mat-icon>
               </button>
             </ng-template>

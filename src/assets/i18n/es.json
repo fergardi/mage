@@ -26,8 +26,8 @@
     },
     "encyclopedia": {
       "name": "Enciclopedia",
-      "description": "Adquiere el conocimiento",
-      "help": "TODO"
+      "description": "Conocimiento ilimitado",
+      "help": "En esta enciclopedia encontrarás todos los elementos que conforman este plano de la realidad junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc."
     },
     "tome": {
       "close": "Cerrar"
@@ -131,24 +131,24 @@
     "city": {
       "name": "Ciudad",
       "description": "Administra tu capital",
-      "help": "TODO",
+      "help": "En la ciudad puedes invertir turnos, oro, y tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino.",
       "success": "Edificios construidos correctamente",
       "error": "Ha ocurrido un error al construir edificios"
     },
     "leadership": {
       "name": "Liderazgo",
-      "description": "TODO",
-      "help": "TODO"
+      "description": "Comanda tus tropas",
+      "help": "Los héroes que tengas asignados al Liderazo entrarán en batalla contra cualquier reino al que ataques, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden morir en batalla."
     },
     "guard": {
       "name": "Guardia",
-      "description": "TODO",
-      "help": "TODO"
+      "description": "Vigila tus dominios",
+      "help": "Los héroes que tengas asignados a la Guardia entrarán en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden morir en batalla."
     },
     "census": {
       "name": "Censo",
       "description": "Conoce a tus enemigos",
-      "help": "TODO",
+      "help": "En el censo puedes ver una lista completa de todos los reinos que comparten este plano de la realidad, ordenados por poder. Desde aquí puedes realizar la mayoría de acciones ofensivas, como activar artefactos o lanzar hechizos, o iniciar batallas. También puedes mandar mensajes a otros reinos.",
       "protection": "Protegido",
       "report": "Se ha enviado el reporte de batalla"
     },
@@ -219,7 +219,7 @@
     "auction": {
       "name": "Subasta",
       "description": "Comercia con otros reinos",
-      "help": "TODO",
+      "help": "Aquí puedes pujar oro contra otros reinos para adquirir artefactos, contratos o hechizos. Las subastas se renuevan diariamente, y debes pujar como mínimo un 10% más de oro que la puja anterior. Si alguien te sobrepuja, se te devolverá solamente el 90% del oro original, así que puja con inteligencia.",
       "bid": "Pujar"
     },
     "bid": {
@@ -310,14 +310,13 @@
     "tavern": {
       "name": "Taberna",
       "description": "Asigna a tus héroes",
-      "help": "TODO",
+      "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna. Puedes asignarlos a Liderazo para que entren en batalla o a Guardia para que defiendan tu ciudad. También puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos.",
       "success": "Tus héroes han sido asignados"
     },
     "archive": {
       "name": "Archivo",
       "description": "Revisa tu correspondencia",
-      "help": "Aqui puedes ver un listado de las cartas, informes, avisos y cualquier otro tipo de información referente a tu reino.",
-      "filter": "Filtrar cartas"
+      "help": "Aqui puedes ver un listado de los mensajes directos, informes de batalla, pujas ganadas o superadas, hechizos, artefactos y encantamientos lanzados contra tu reino."
     },
     "letter": {
       "name": "Redactar",
@@ -338,7 +337,7 @@
     "temple": {
       "name": "Templo",
       "description": "Complace a los dioses",
-      "help": "TODO"
+      "help": "En el templo puedes ofrecer oro a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino. Debes ofrecer más del 10% que la ofrenda anterior y, a diferencia de la casa de subastas, no recuperarás nada de tu oro original si alguien te supera. Pero cuidado, los dioses son caprichosos..."
     },
     "offer": {
       "name": "Ofrenda",
@@ -352,7 +351,7 @@
     "emporium": {
       "name": "Emporio",
       "description": "Contrabando del mercado negro",
-      "help": "TODO",
+      "help": "Puedes gastar tus gemas adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un impulso económico, potenciando el status de tu reino en el ránking.",
       "success": "Compra satisfactoria",
       "error": "Ha ocurrido un problema"
     },
@@ -372,8 +371,8 @@
     },
     "gemology": {
       "name": "Gemología",
-      "description": "TODO",
-      "help": "TODO"
+      "description": "Extraer gemas de la tierra",
+      "help": "Puedes pagar a unos amables gnomos para que extraigan gemas de las profundas minas bajo tu reino a cambio de dinero real."
     }
   },
   "faction": {

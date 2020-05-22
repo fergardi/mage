@@ -62,7 +62,7 @@ export class OfferComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      gold: [null, [Validators.required, Validators.min(Math.floor(this.god.gold * 1.10)), Validators.max(this.kingdomGold.quantity)]]
+      gold: [null, [Validators.required, Validators.min(Math.ceil(this.god.gold * 1.10)), Validators.max(this.kingdomGold.quantity)]]
     });
   }
 

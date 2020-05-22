@@ -39,7 +39,7 @@ import { ApiService } from 'src/app/services/api.service';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.recruit.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="recruit()" cdkFocusInitial>{{ 'kingdom.recruit.recruit' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="recruit()" cdkFocusInitial>{{ 'kingdom.recruit.recruit' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -65,7 +65,7 @@ export class RecruitComponent implements OnInit {
   ngOnInit() {
     this.kingdomGold = this.store.selectSnapshot(AuthState.getKingdomGold);
     this.form = this.formBuilder.group({
-      quantity: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomGold.quantity / this.unit.gold)]]
+      quantity: [null, [Validators.required, Validators.min(1), Validators.max(Math.floor(this.kingdomGold.quantity / this.unit.gold))]]
     });
   }
 
@@ -79,7 +79,7 @@ export class RecruitComponent implements OnInit {
     if (this.form.valid && this.form.value.quantity * this.unit.gold <= this.kingdomGold.quantity) {
       try {
         let recruited = await this.apiService.recruit(uid, this.unit.id, this.form.value.quantity);
-        this.notificationService.success('kingdom.recruit.success');
+        this.notificationService.success('kingdom.recruit.success', recruited);
         this.close();
       } catch (error) {
         console.error(error);
