@@ -72,15 +72,6 @@ export class ShellComponent {
     this.translateService.setDefaultLang(this.langs[0].lang);
     let browser = this.translateService.getBrowserLang();
     this.translateService.use(this.langs.map(l => l.lang).includes(browser) ? browser : this.langs[0].lang);
-    // tour
-    this.tourService.initialize([
-      {
-        anchorId: 'some.anchor.id',
-        content: 'Welcome to the Ngx-Tour tour!',
-        placement: 'below',
-        title: 'Welcome',
-      }
-    ]);
   }
 
   async toggle() {
@@ -96,7 +87,8 @@ export class ShellComponent {
     return this.langs.find(l => l.lang === this.translateService.currentLang)?.image;
   }
 
-  tour(): void {
+  async tour() {
+    // if (!this.drawer.opened) await this.drawer.open();
     this.tourService.start();
   }
 

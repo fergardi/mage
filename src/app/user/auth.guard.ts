@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
     const logged = this.store.selectSnapshot(AuthState.getUserLoggedIn);
     if (!logged) {
       this.notificationService.error('user.auth.unauthorized');
-      // this.router.navigate(['/user/login']);
+      this.router.navigate(['/user/login']);
     }
     return logged;
   }

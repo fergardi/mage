@@ -82,7 +82,6 @@ const modules = [
   ReactiveFormsModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  TourMatMenuModule,
 ];
 
 @NgModule({

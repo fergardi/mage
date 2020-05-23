@@ -1,4 +1,65 @@
 {
+  "tour": {
+    "end": "Terminar",
+    "supplies": {
+      "name": "Recursos",
+      "description": "En verde si tienes superávit. En rojo si tienes déficit. En morado si no hay cambios."
+    },
+    "city": {
+      "name": "",
+      "description": ""
+    },
+    "tax": {
+      "name": "",
+      "description": ""
+    },
+    "charge": {
+      "name": "",
+      "description": ""
+    },
+    "explore": {
+      "name": "",
+      "description": ""
+    }
+  },
+  "landing": {
+    "title": {
+      "name": "Archimago",
+      "description": "Otro plano de la realidad"
+    },
+    "choose": {
+      "name": "Escoge una facción",
+      "description": "En este plano de la realidad, existen 5 escuelas de magia a las que puedes pertenecer. Cada una tiene sus propios hechizos y unidades, cada uno con sus ventajas y desventajas, sus fortalezas y debilidades."
+    },
+    "conjure": {
+      "name": "Conjura poderosos hechizos",
+      "description": ""
+    },
+    "army": {
+      "name": "Comanda grandes ejércitos",
+      "description": ""
+    },
+    "map": {
+      "name": "Explora nuevos territorios",
+      "description": ""
+    },
+    "tavern": {
+      "name": "Contrata héroes únicos",
+      "description": ""
+    },
+    "auction": {
+      "name": "Comercia con artefactos",
+      "description": ""
+    },
+    "census": {
+      "name": "Acumula poder",
+      "description": ""
+    },
+    "win": {
+      "name": "Sé el Archimago definitivo",
+      "play": "Jugar"
+    }
+  },
   "user": {
     "landing": {
       "name": "Archimago",

@@ -29,6 +29,7 @@ import { BuyComponent } from './emporium/buy.component';
 import { DisbandComponent } from './army/disband.component';
 import { DischargeComponent } from './tavern/discharge.component';
 import { LetterComponent } from './census/letter.component';
+import { TourMatMenuModule } from 'ngx-tour-md-menu';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { LetterComponent } from './census/letter.component';
     CommonModule,
     KingdomRoutingModule,
     SharedModule,
+    TourMatMenuModule,
   ]
 })
 export class KingdomModule { }

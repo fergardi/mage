@@ -39,7 +39,7 @@ export class AuthState implements NgxsOnInit {
       if (user) {
         ctx.dispatch(new SetKingdomAction(user.uid));
         ctx.dispatch(new SetKingdomSuppliesAction(user.uid));
-        // this.router.navigate(['/world/map']);
+        this.router.navigate(['/kingdom/city']);
       }
     });
   }

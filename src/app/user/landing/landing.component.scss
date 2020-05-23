@@ -61,9 +61,24 @@
   #content {
     overflow: hidden;
     background-color: #150d23;
+    .image-responsive {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 100%;
+        height: auto;
+        max-width: 256px;
+      }
+    }
+    .image-map {
+      width: 100%;
+      border-radius: 4px;
+    }
     .wrapper {
       padding: 20px;
-      max-width: 900px;
+      max-width: 1080px;
       margin: 0 auto 0 auto;
     }
     .center {

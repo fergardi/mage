@@ -1,7 +1,6 @@
 <mat-sidenav-container class="app-shell sidenav-container" autosize [hasBackdrop]="(isHandset$ | async)">
   <!-- sidenav -->
   <mat-sidenav
-    tourAnchor="some.anchor.id"
     #drawer
     class="sidenav"
     fixedInViewport
@@ -38,10 +37,10 @@
       <mat-nav-list dense>
         <ng-container *ngFor="let link of links">
           <a mat-list-item
+            *ngIf="(!link.guarded && !(angularFireAuth.authState | async)) || link.logged && (angularFireAuth.authState | async)"
             [routerLink]="link.url ? link.url : null"
             [routerLinkActive]="link.url ? ['active'] : []"
-            [routerLinkActiveOptions]="{ exact: true }"
-            *ngIf="(!link.guarded && !(angularFireAuth.authState | async)) || link.logged && (angularFireAuth.authState | async)">
+            [routerLinkActiveOptions]="{ exact: true }">
             <div mat-list-avatar>
               <img mat-list-avatar [src]="link.image">
             </div>
@@ -62,7 +61,7 @@
       <!-- title -->
       <span class="fill-space"></span>
       <!-- supply list -->
-      <mat-nav-list dense class="supply-list" role="navigation" *ngIf="(angularFireAuth.authState | async)">
+      <mat-nav-list dense class="supply-list" role="navigation" *ngIf="(angularFireAuth.authState | async)" tourAnchor="tour.supplies">
         <ng-container *ngFor="let supply of kingdomSupplies$ | async; let i = index">
           <a mat-list-item [routerLink]="supply.join.name.includes('gem') ? '/kingdom/emporium' : supply.join.name.includes('turn') ? '/kingdom/city' : '/kingdom/city'">
             <div

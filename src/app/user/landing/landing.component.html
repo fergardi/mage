@@ -1,49 +1,96 @@
 <div class="app-landing" (scroll)="parallax($event)">
   <section id="parallax">
-    <div id="parallax-layer1" class="parallax-layer" data-type="parallax" data-depth="0.05"></div>
-    <div id="parallax-layer2" class="parallax-layer" data-type="parallax" data-depth="0.10"></div>
-    <div id="parallax-layer3" class="parallax-layer" data-type="parallax" data-depth="0.15"></div>
-    <div id="parallax-layer4" class="parallax-layer" data-type="parallax" data-depth="0.20">
+    <div id="parallax-layer1" class="parallax-layer" data-type="parallax" data-depth="0.02"></div>
+    <div id="parallax-layer2" class="parallax-layer" data-type="parallax" data-depth="0.05"></div>
+    <div id="parallax-layer3" class="parallax-layer" data-type="parallax" data-depth="0.11"></div>
+    <div id="parallax-layer4" class="parallax-layer" data-type="parallax" data-depth="0.11">
       <div class="landing-title">
-        <h1 class="mat-display-4">{{ 'user.landing.name' | translate }}</h1>
-        <h3 class="mat-subheading-2">{{ 'user.landing.description' | translate }}</h3>
+        <h1 class="mat-display-4">{{ 'landing.title.name' | translate }}</h1>
+        <h3 class="mat-subheading-2">{{ 'landing.title.description' | translate }}</h3>
       </div>
     </div>
-    <div id="parallax-layer5" class="parallax-layer" data-type="parallax" data-depth="0.25"></div>
-    <div id="parallax-layer6" class="parallax-layer" data-type="parallax" data-depth="0.40"></div>
-    <div id="parallax-layer7" class="parallax-layer" data-type="parallax" data-depth="0.55"></div>
-    <div id="parallax-layer8" class="parallax-layer" data-type="parallax" data-depth="0.70"></div>
-    <div id="parallax-layer9" class="parallax-layer" data-type="parallax" data-depth="0.85"></div>
+    <div id="parallax-layer5" class="parallax-layer" data-type="parallax" data-depth="0.16"></div>
+    <div id="parallax-layer6" class="parallax-layer" data-type="parallax" data-depth="0.26"></div>
+    <div id="parallax-layer7" class="parallax-layer" data-type="parallax" data-depth="0.36"></div>
+    <div id="parallax-layer8" class="parallax-layer" data-type="parallax" data-depth="0.49"></div>
+    <div id="parallax-layer9" class="parallax-layer" data-type="parallax" data-depth="0.69"></div>
     <div id="parallax-layer10" class="parallax-layer" data-type="parallax" data-depth="1.00"></div>
   </section>
   <section id="content">
     <div class="wrapper">
       <div class="content" fxLayout="row wrap" fxLayoutGap="50px grid">
-        <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center">
-          <h1 class="mat-display-3">Title</h1>
+        <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center" fxFlexOrder.xs="1">
+          <h1 class="mat-display-3">{{ 'landing.choose.name' | translate }}</h1>
+          <p>{{ 'landing.choose.description' | translate }}</p>
         </div>
-        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-          <h1 class="mat-h1">Title</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="center" class="image-responsive">
+          <img src="/assets/images/factions/black.png">
+          <h1 class="mat-h1">{{ 'faction.black.name' | translate }}</h1>
         </div>
-        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-          <h1 class="mat-h1">Title</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="center" class="image-responsive">
+          <img src="/assets/images/factions/green.png">
+          <h1 class="mat-h1">{{ 'faction.green.name' | translate }}</h1>
         </div>
-        <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
-          <img style="width: 100%" src="/assets/images/background/world.jpg">
+        <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="center" class="image-responsive">
+          <img src="/assets/images/factions/blue.png">
+          <h1 class="mat-h1">{{ 'faction.blue.name' | translate }}</h1>
         </div>
-        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-          <h1 class="mat-h1">Title</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="center" class="image-responsive">
+          <img src="/assets/images/factions/red.png">
+          <h1 class="mat-h1">{{ 'faction.red.name' | translate }}</h1>
         </div>
-        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
-          <h1 class="mat-h1">Title</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="center" class="image-responsive">
+          <img src="/assets/images/factions/white.png">
+          <h1 class="mat-h1">{{ 'faction.white.name' | translate }}</h1>
         </div>
-        <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center">
-          <h1 class="mat-display-3">Title</h1>
-          <a mat-raised-button color="primary" routerLink="/user/login">Jugar</a>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="4">
+          <img src="/assets/images/icons/sorcery.png">
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxFlexOrder.xs="5">
+          <h1 class="mat-h1">{{ 'landing.conjure.name' | translate }}</h1>
+          <p>{{ 'landing.conjure.description' | translate }}</p>
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxFlexOrder.xs="7">
+          <h1 class="mat-h1">{{ 'landing.army.name' | translate }}</h1>
+          <p>{{ 'landing.army.description' | translate }}</p>
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="6">
+          <img src="/assets/images/icons/army.png">
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="8">
+          <img src="/assets/images/icons/map.png">
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxFlexOrder.xs="9">
+          <h1 class="mat-h1">{{ 'landing.map.name' | translate }}</h1>
+          <p>{{ 'landing.map.description' | translate }}</p>
+        </div>
+        <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxFlexOrder.xs="10">
+          <img class="image-map" src="/assets/images/background/world.jpg">
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxFlexOrder.xs="12">
+          <h1 class="mat-h1">{{ 'landing.tavern.name' | translate }}</h1>
+          <p>{{ 'landing.tavern.description' | translate }}</p>
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="11">
+          <img src="/assets/images/icons/tavern.png">
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="13">
+          <img src="/assets/images/icons/auction.png">
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxFlexOrder.xs="14">
+          <h1 class="mat-h1">{{ 'landing.auction.name' | translate }}</h1>
+          <p>{{ 'landing.auction.description' | translate }}</p>
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxFlexOrder.xs="15">
+          <h1 class="mat-h1">{{ 'landing.census.name' | translate }}</h1>
+          <p>{{ 'landing.census.description' | translate }}</p>
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="16">
+          <img src="/assets/images/icons/census.png">
+        </div>
+        <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center" fxFlexOrder.xs="99">
+          <h1 class="mat-display-3">{{ 'landing.win.name' | translate }}</h1>
+          <a mat-raised-button color="primary" routerLink="/user/login">{{ 'landing.win.play' | translate }}</a>
         </div>
       </div>
     </div>
