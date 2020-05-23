@@ -7,7 +7,7 @@ import { Store, Select } from '@ngxs/store';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as geofirex from 'geofirex';
 import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -42,8 +42,12 @@ export class MapComponent implements OnInit, OnDestroy {
       });
       this.kingdom$.pipe(
         switchMap(kingdom => {
-          let quests = this.angularFirestore.collection('quests');
-          return this.geofirex.query(quests.ref).within(kingdom.position, kingdom.power / 1000, 'position');
+          if (kingdom) {
+            let quests = this.angularFirestore.collection('quests');
+            return this.geofirex.query(quests.ref).within(kingdom.position, kingdom.power / 1000, 'position');
+          } else {
+            return of([]);
+          }
         })
       ).subscribe((quests: Array<any>) => {
         this.mapboxService.clearMarkers(MarkerType.quest);
@@ -54,8 +58,12 @@ export class MapComponent implements OnInit, OnDestroy {
       });
       this.kingdom$.pipe(
         switchMap(kingdom => {
-          let shops = this.angularFirestore.collection('shops');
-          return this.geofirex.query(shops.ref).within(kingdom.position, kingdom.power / 1000, 'position');
+          if (kingdom) {
+            let shops = this.angularFirestore.collection('shops');
+            return this.geofirex.query(shops.ref).within(kingdom.position, kingdom.power / 1000, 'position');
+          } else {
+            return of([]);
+          }
         })
       ).subscribe((shops: Array<any>) => {
         this.mapboxService.clearMarkers(MarkerType.shop);

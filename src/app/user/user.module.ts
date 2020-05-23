@@ -8,13 +8,15 @@ import { GoogloginDirective } from './googlogin.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EncyclopediaComponent } from './encyclopedia/encyclopedia.component';
 import { TomeComponent } from './encyclopedia/tome.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     GoogloginDirective,
     EncyclopediaComponent,
-    TomeComponent
+    TomeComponent,
+    LandingComponent
   ],
   imports: [
     CommonModule,

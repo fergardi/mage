@@ -8,7 +8,9 @@ import { FirebaseService } from './services/firebase.service';
 })
 export class AppComponent {
 
-  constructor(private firebaseService: FirebaseService) {
+  constructor(
+    private firebaseService: FirebaseService,
+  ) {
     // this.firebaseService.importCollectionFromJson('factions');
     // this.firebaseService.importCollectionFromJson('structures');
     // this.firebaseService.importCollectionFromJson('items');

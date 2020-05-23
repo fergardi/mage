@@ -1,16 +1,21 @@
 {
   "user": {
+    "landing": {
+      "name": "Archimago",
+      "description": "Otro plano de la realidad"
+    },
     "auth": {
       "login": "Iniciar sesión",
       "logout": "Cerrar sesión",
       "loggedin": "Bienvenido de nuevo!",
       "loggedout": "Hasta pronto!",
       "error": "Ha ocurrido un error con el servicio de autenticación",
-      "unauthorized": "Debes autenticarte para continuar"
+      "unauthorized": "Debes autenticarte para continuar",
+      "tour": "Tutorial"
     },
     "login": {
       "name": "Acceder",
-      "description": "Inicia sesión o regístrate para continuar",
+      "description": "Iniciar sesión",
       "login": "Iniciar sesión",
       "signup": "Nuevo jugador",
       "reset": "Recuperar contraseña",

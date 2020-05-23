@@ -39,6 +39,8 @@
     "mapbox-gl": "^1.9.1",
     "mapbox-gl-circle": "^1.6.5",
     "moment": "^2.25.3",
+    "ngx-tour-core": "^4.1.1",
+    "ngx-tour-md-menu": "^4.1.1",
     "rpg-awesome": "^0.2.0",
     "rxjs": "^6.5.5",
     "tslib": "^1.10.0",

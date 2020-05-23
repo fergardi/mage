@@ -1,12 +1,13 @@
 <mat-sidenav-container class="app-shell sidenav-container" autosize [hasBackdrop]="(isHandset$ | async)">
   <!-- sidenav -->
   <mat-sidenav
+    tourAnchor="some.anchor.id"
     #drawer
     class="sidenav"
     fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async)">
+    [opened]="(angularFireAuth.authState | async)">
     <mat-toolbar>
       <!-- toggler -->
       <button type="button" aria-label="toggle" mat-icon-button (click)="toggle()">
@@ -36,7 +37,11 @@
       <!-- links -->
       <mat-nav-list dense>
         <ng-container *ngFor="let link of links">
-          <a mat-list-item [routerLink]="link.url ? link.url : null" [routerLinkActive]="link.url ? ['active'] : []" [routerLinkActiveOptions]="{ exact: true }" *ngIf="link.visible">
+          <a mat-list-item
+            [routerLink]="link.url ? link.url : null"
+            [routerLinkActive]="link.url ? ['active'] : []"
+            [routerLinkActiveOptions]="{ exact: true }"
+            *ngIf="(!link.guarded && !(angularFireAuth.authState | async)) || link.logged && (angularFireAuth.authState | async)">
             <div mat-list-avatar>
               <img mat-list-avatar [src]="link.image">
             </div>
@@ -80,6 +85,7 @@
       <mat-menu #auth="matMenu">
         <a mat-menu-item routerLink="/user/login" *ngIf="!(angularFireAuth.authState | async)"><mat-icon>lock_open</mat-icon>{{ 'user.auth.login' | translate }}</a>
         <a mat-menu-item (click)="logout()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>lock</mat-icon>{{ 'user.auth.logout' | translate }}</a>
+        <a mat-menu-item (click)="tour()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>live_help</mat-icon>{{ 'user.auth.tour' | translate }}</a>
       </mat-menu>
     </mat-toolbar>
     <!-- main content -->

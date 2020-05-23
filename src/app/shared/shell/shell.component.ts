@@ -10,6 +10,7 @@ import { MapboxService } from 'src/app/services/mapbox.service';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { Store, Select } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
+import { TourService } from 'ngx-tour-md-menu';
 
 @Component({
   selector: 'app-shell',
@@ -26,25 +27,29 @@ export class ShellComponent {
     { lang: 'fr', image: '/assets/images/languages/fr.png' },
   ];
   links: Array<any> = [
-    { url: '/user/login', name: 'user.login.name', description: 'user.login.description', image: '/assets/images/icons/login.png', visible: false },
-    { url: '/world/map', name: 'world.map.name', description: 'world.map.description', image: '/assets/images/icons/map.png', visible: true },
-    { url: '/kingdom/city', name: 'kingdom.city.name', description: 'kingdom.city.description', image: '/assets/images/icons/city.png', visible: true },
-    { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/icons/army.png', visible: true },
-    { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/icons/auction.png', visible: true },
-    { url: '/kingdom/census', name: 'kingdom.census.name', description: 'kingdom.census.description', image: '/assets/images/icons/census.png', visible: true },
-    { url: '/kingdom/sorcery', name: 'kingdom.sorcery.name', description: 'kingdom.sorcery.description', image: '/assets/images/icons/sorcery.png', visible: true },
-    { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/icons/tavern.png', visible: true },
-    { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/icons/archive.png', visible: true },
-    { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/icons/temple.png', visible: true },
-    { url: '/kingdom/emporium', name: 'kingdom.emporium.name', description: 'kingdom.emporium.description', image: '/assets/images/icons/emporium.png', visible: true },
-    { url: '/user/encyclopedia', name: 'user.encyclopedia.name', description: 'user.encyclopedia.description', image: '/assets/images/icons/encyclopedia.png', visible: true },
+    { url: '/user/landing', name: 'user.landing.name', description: 'user.landing.description', image: '/assets/images/icons/landing.png', guarded: false, logged: false },
+    { url: '/user/login', name: 'user.login.name', description: 'user.login.description', image: '/assets/images/icons/login.png', guarded: false, logged: false },
+    { url: '/world/map', name: 'world.map.name', description: 'world.map.description', image: '/assets/images/icons/map.png', guarded: true, logged: true },
+    { url: '/kingdom/city', name: 'kingdom.city.name', description: 'kingdom.city.description', image: '/assets/images/icons/city.png', guarded: true, logged: true },
+    { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/icons/army.png', guarded: true, logged: true },
+    { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/icons/auction.png', guarded: true, logged: true },
+    { url: '/kingdom/census', name: 'kingdom.census.name', description: 'kingdom.census.description', image: '/assets/images/icons/census.png', guarded: true, logged: true },
+    { url: '/kingdom/sorcery', name: 'kingdom.sorcery.name', description: 'kingdom.sorcery.description', image: '/assets/images/icons/sorcery.png', guarded: true, logged: true },
+    { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/icons/tavern.png', guarded: true, logged: true },
+    { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/icons/archive.png', guarded: true, logged: true },
+    { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/icons/temple.png', guarded: true, logged: true },
+    { url: '/kingdom/emporium', name: 'kingdom.emporium.name', description: 'kingdom.emporium.description', image: '/assets/images/icons/emporium.png', guarded: true, logged: true },
+    { url: '/user/encyclopedia', name: 'user.encyclopedia.name', description: 'user.encyclopedia.description', image: '/assets/images/icons/encyclopedia.png', guarded: false, logged: true },
   ];
   @Select((state: any) => state.auth.supplies) kingdomSupplies$: Observable<any[]>;
   link$: Observable<any> = this.router.events
   .pipe(
     filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-    map(event => this.links.find(link => link.url === event.url))
-  )
+    map(event => {
+      let route = this.links.find(link => link.url === event.url);
+      return route;
+    })
+  );
   isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset])
   .pipe(
     map(result => result.matches),
@@ -60,16 +65,26 @@ export class ShellComponent {
     private router: Router,
     private mapboxService: MapboxService,
     private store: Store,
+    private tourService: TourService,
   ) {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));
     this.translateService.setDefaultLang(this.langs[0].lang);
     let browser = this.translateService.getBrowserLang();
     this.translateService.use(this.langs.map(l => l.lang).includes(browser) ? browser : this.langs[0].lang);
+    // tour
+    this.tourService.initialize([
+      {
+        anchorId: 'some.anchor.id',
+        content: 'Welcome to the Ngx-Tour tour!',
+        placement: 'below',
+        title: 'Welcome',
+      }
+    ]);
   }
 
   async toggle() {
-    await this.drawer.toggle()
+    await this.drawer.toggle();
     this.mapboxService.resize();
   }
 
@@ -77,8 +92,12 @@ export class ShellComponent {
     this.store.dispatch(new LogoutAction());
   }
 
-  getFlag() {
+  getFlag(): string {
     return this.langs.find(l => l.lang === this.translateService.currentLang)?.image;
+  }
+
+  tour(): void {
+    this.tourService.start();
   }
 
 }

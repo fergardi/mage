@@ -30,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { TourMatMenuModule } from 'ngx-tour-md-menu';
 
 import { ShellComponent } from './shell/shell.component';
 import { ShortPipe } from '../pipes/short.pipe';
@@ -81,6 +82,7 @@ const modules = [
   ReactiveFormsModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  TourMatMenuModule,
 ];
 
 @NgModule({
@@ -97,6 +99,7 @@ const modules = [
       },
       isolate: false,
     }),
+    TourMatMenuModule,
   ],
   exports: [
     ...components,

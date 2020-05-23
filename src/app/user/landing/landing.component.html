@@ -1,0 +1,59 @@
+<div class="app-landing" (scroll)="parallax($event)">
+  <section id="parallax">
+    <div id="parallax-layer1" class="parallax-layer" data-type="parallax" data-depth="0.05"></div>
+    <div id="parallax-layer2" class="parallax-layer" data-type="parallax" data-depth="0.10"></div>
+    <div id="parallax-layer3" class="parallax-layer" data-type="parallax" data-depth="0.15"></div>
+    <div id="parallax-layer4" class="parallax-layer" data-type="parallax" data-depth="0.20">
+      <div class="landing-title">
+        <h1 class="mat-display-4">{{ 'user.landing.name' | translate }}</h1>
+        <h3 class="mat-subheading-2">{{ 'user.landing.description' | translate }}</h3>
+      </div>
+    </div>
+    <div id="parallax-layer5" class="parallax-layer" data-type="parallax" data-depth="0.25"></div>
+    <div id="parallax-layer6" class="parallax-layer" data-type="parallax" data-depth="0.40"></div>
+    <div id="parallax-layer7" class="parallax-layer" data-type="parallax" data-depth="0.55"></div>
+    <div id="parallax-layer8" class="parallax-layer" data-type="parallax" data-depth="0.70"></div>
+    <div id="parallax-layer9" class="parallax-layer" data-type="parallax" data-depth="0.85"></div>
+    <div id="parallax-layer10" class="parallax-layer" data-type="parallax" data-depth="1.00"></div>
+  </section>
+  <section id="content">
+    <div class="wrapper">
+      <div class="content" fxLayout="row wrap" fxLayoutGap="50px grid">
+        <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center">
+          <h1 class="mat-display-3">Title</h1>
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+          <h1 class="mat-h1">Title</h1>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+          <h1 class="mat-h1">Title</h1>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+          <img style="width: 100%" src="/assets/images/background/world.jpg">
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+          <h1 class="mat-h1">Title</h1>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+          <h1 class="mat-h1">Title</h1>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center">
+          <h1 class="mat-display-3">Title</h1>
+          <a mat-raised-button color="primary" routerLink="/user/login">Jugar</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="social" fxLayout="row" fxLayoutAlign="center center">
+        <button mat-icon-button>
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </div>
+      <svg style="margin-bottom: -5px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#99009c" fill-opacity="0.4" d="M0,128L48,106.7C96,85,192,43,288,26.7C384,11,480,21,576,64C672,107,768,181,864,197.3C960,213,1056,171,1152,154.7C1248,139,1344,149,1392,154.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    </div>
+  </section>
+</div>

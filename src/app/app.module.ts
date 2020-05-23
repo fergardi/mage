@@ -15,6 +15,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AuthState } from './shared/auth/auth.state';
+import { TourMatMenuModule } from 'ngx-tour-md-menu';
 
 // AOT compilation support
 export function HttpLoaderFactory(http: HttpClient) {
@@ -46,9 +47,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       { developmentMode: !environment.production },
     ),
     NgxsReduxDevtoolsPluginModule.forRoot({
-      name: 'NGXS store',
+      name: 'Mage',
       disabled: environment.production
     }),
+    TourMatMenuModule.forRoot(),
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
