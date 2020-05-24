@@ -13,7 +13,7 @@
 
     <mat-card-content>
 
-      <table mat-table matSort [dataSource]="data">
+      <table mat-table matSort [dataSource]="data" tourAnchor="tour.auction">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>
 
@@ -68,7 +68,7 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let auction; columns: columns"></mat-row>
+        <mat-row *matRowDef="let auction; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.bid' : null"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

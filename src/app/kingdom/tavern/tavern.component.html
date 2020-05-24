@@ -14,7 +14,7 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
-        <mat-action-list dense id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="kingdomContracts">
+        <mat-action-list dense tourAnchor="tour.tavern" id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="kingdomContracts">
           <button mat-list-item *ngFor="let contract of kingdomContracts" cdkDrag class="handle" [id]="contract.fid" (click)="openDischargeDialog(contract)">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="contract.join.image">
@@ -42,7 +42,7 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
-        <mat-list dense id="1" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="attackContracts">
+        <mat-list dense id="1" tourAnchor="tour.leadership" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="attackContracts">
           <mat-list-item *ngFor="let contract of attackContracts" cdkDrag class="handle" [id]="contract.fid">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="contract.join.image">
@@ -70,7 +70,7 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
-        <mat-list dense id="2" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="defenseContracts">
+        <mat-list dense id="2" tourAnchor="tour.guard" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="defenseContracts">
           <mat-list-item *ngFor="let contract of defenseContracts" cdkDrag class="handle" [id]="contract.fid">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="contract.join.image">

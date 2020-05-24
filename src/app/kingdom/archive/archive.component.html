@@ -12,7 +12,7 @@
       </mat-card-content>
 
       <mat-card-content>
-        <table mat-table matSort [dataSource]="data">
+        <table mat-table matSort [dataSource]="data" tourAnchor="tour.archive">
 
           <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
 

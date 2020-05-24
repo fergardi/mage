@@ -14,7 +14,7 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
-        <mat-action-list dense class="dotted" id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="kingdomTroops">
+        <mat-action-list dense class="dotted" id="0" tourAnchor="tour.army" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="kingdomTroops">
           <button mat-list-item *ngFor="let troop of kingdomTroops" cdkDrag class="handle" [id]="troop.fid" (click)="openDisbandDialog(troop)">
             <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="troop.join.image">
@@ -49,8 +49,7 @@
 
           <mat-card-content>
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
-            <mat-list dense class="dotted" id="1" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="attackTroops">
-              <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle" [id]="troop.fid">
+            <mat-list dense class="dotted" id="1" tourAnchor="tour.attack" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="attackTroops"> <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle" [id]="troop.fid">
                 <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="troop.join.image">
                 </div>
@@ -83,7 +82,7 @@
 
           <mat-card-content>
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
-            <mat-list dense class="dotted" id="2" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="defenseTroops">
+            <mat-list dense class="dotted" id="2" tourAnchor="tour.defense" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="defenseTroops">
               <mat-list-item *ngFor="let troop of defenseTroops" cdkDrag class="handle" [id]="troop.fid">
                 <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="troop.join.image">
@@ -116,7 +115,7 @@
 
           <mat-card-content>
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
-            <mat-action-list dense>
+            <mat-action-list dense tourAnchor="tour.recruit">
               <button mat-list-item *ngFor="let unit of recruitUnits" (click)="openRecruitDialog(unit)">
                 <div mat-list-avatar matBadge="?" matBadgePosition="above before">
                   <img mat-list-avatar [src]="unit.image">

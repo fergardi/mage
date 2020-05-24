@@ -14,13 +14,13 @@ import { LandingComponent } from './landing/landing.component';
     LoginComponent,
     EncyclopediaComponent,
     TomeComponent,
-    LandingComponent
+    LandingComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class UserModule { }
