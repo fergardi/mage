@@ -58,9 +58,12 @@
       background-image: url("/assets/images/parallax/layer10.png");
     }
   }
-  #content {
+  #content,
+  #footer {
     overflow: hidden;
     background-color: #150d23;
+  }
+  #content {
     .image-responsive {
       display: flex;
       flex-direction: column;
@@ -75,6 +78,20 @@
     .image-map {
       width: 100%;
       border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .image-icons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #99009c;
+        margin: 10px;
+      }
     }
     .wrapper {
       padding: 20px;
@@ -84,14 +101,32 @@
     .center {
       text-align: center;
     }
-    .footer {
-      position: relative;
-      .social {
-        width: 100%;
-        position: absolute;
-        bottom: 0px;
-        padding: 20px;
-      }
+    .mat-display-3::after {
+      content: '';
+      border-bottom: 8px solid #99009c;
+      width: 200px;
+      display: block;
+      margin: 20px auto auto auto;
+    }
+    .play-button {
+      margin-top: 50px;
+    }
+  }
+  #footer {
+    .retribution {
+      background-color: #99009c;
+      width: 100%;
+      padding: 20px;
+    }
+  }
+}
+
+// responsive
+@media screen and (max-width: 960px) {
+  .app-landing {
+    .mat-display-4 {
+      font-size: 4rem !important;
+      line-height: 1 !important;
     }
   }
 }

@@ -60,7 +60,7 @@ export class MapboxService {
       zoom: environment.mapbox.zoom,
       center: [environment.mapbox.lng, environment.mapbox.lat],
       pitch: environment.mapbox.pitch,
-      attributionControl: false,
+      attributionControl: true,
       interactive: true
     });
   }

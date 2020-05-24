@@ -28,35 +28,37 @@
       "description": "Otro plano de la realidad"
     },
     "choose": {
-      "name": "Escoge una facción",
-      "description": "En este plano de la realidad, existen 5 escuelas de magia a las que puedes pertenecer. Cada una tiene sus propios hechizos y unidades, cada uno con sus ventajas y desventajas, sus fortalezas y debilidades."
+      "name": "Escoge una facción"
+    },
+    "destiny": {
+      "name": "Construye tu destino"
     },
     "conjure": {
       "name": "Conjura poderosos hechizos",
-      "description": ""
+      "description": "Investiga, compra, encuentra y lanza conjuros, invocaciones, encantamientos, maldiciones y artefactos, ya sea a ti mismo o reinos enemigos."
     },
     "army": {
       "name": "Comanda grandes ejércitos",
-      "description": ""
+      "description": "Amasa cientos de miles de unidades y llévalas a batallas épicas donde la táctica cobra una gran importancia. Defiéndete de los demás reinos mientras destruyes a aquellos que osen oponerse a tu liderazgo."
     },
     "map": {
       "name": "Explora nuevos territorios",
-      "description": ""
+      "description": "Conforme tu poder crece, tus radio de acción territorial crecerá también. Accede a nuevos lugares, tiendas y misiones en este gigantesco plano de la realidad"
     },
     "tavern": {
       "name": "Contrata héroes únicos",
-      "description": ""
+      "description": "Los héroes vagabundean por los reinos en busca de trabajo. Otorgan bonificaciones únicas a tus tropas, tus recursos o tus edificios, y te asistirán en las batallas."
     },
     "auction": {
-      "name": "Comercia con artefactos",
-      "description": ""
+      "name": "Comercia con otros reinos",
+      "description": "Compra y vende artefactos, hechizos y héroes en el mercado negro, pujando con otros reinos en una casa de subastas en tiempo real."
     },
-    "census": {
-      "name": "Acumula poder",
-      "description": ""
+    "city": {
+      "name": "Gestiona tu capital",
+      "description": "Construye y demole edificios como los nodos, academias, granjas, pueblos... Explora (o roba) más tierras libres para ampliar tu economía y poder permitirte más poder ofensivo."
     },
     "win": {
-      "name": "Sé el Archimago definitivo",
+      "name": "Álzate con la victoria",
       "play": "Jugar"
     }
   },

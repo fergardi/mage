@@ -17,7 +17,7 @@
   height: 1px;
 }
 ::ng-deep a.mapboxgl-ctrl-logo {
-  display: none !important;
+  // display: none !important;
 }
 ::ng-deep .mapboxgl-popup-content {
   background: transparent;
@@ -30,6 +30,7 @@
 }
 
 .map-admin {
+  z-index: 9999;
   position: absolute;
   bottom: 0;
   right: 0;
