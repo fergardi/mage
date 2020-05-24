@@ -1,3 +1,8 @@
+export class SetUserAction {
+  public static readonly type = '[User] Set User';
+  constructor(public uid: string) {}
+}
+
 export class SetKingdomAction {
   public static readonly type = '[User] Set Kingdom';
   constructor(public uid: string) {}
@@ -15,11 +20,6 @@ export class LoginWithGoogleAction {
 
 export class LogoutAction {
   public static readonly type = '[User] Logout user';
-  constructor() {}
-}
-
-export class SetDBAction {
-  public static readonly type = '[DB] Set localstorage data';
   constructor() {}
 }
 

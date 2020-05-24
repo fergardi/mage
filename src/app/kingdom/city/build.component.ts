@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
+import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 @Component({
   selector: 'app-build',
@@ -24,7 +27,7 @@ import { NotificationService } from 'src/app/services/notification.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.land.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'resource.land.name' | translate }}" matInput formControlName="lands">
+          <input type="number" placeholder="{{ 'resource.land.name' | translate }}" matInput formControlName="quantity">
           <mat-hint>{{ 'kingdom.build.hint' | translate }}</mat-hint>
           <mat-error>{{ 'kingdom.build.error' | translate }}</mat-error>
         </mat-form-field>
@@ -32,7 +35,7 @@ import { NotificationService } from 'src/app/services/notification.service';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.build.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="build()" cdkFocusInitial>{{ 'kingdom.build.build' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="build()" cdkFocusInitial>{{ 'kingdom.build.build' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -44,17 +47,23 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class BuildComponent implements OnInit {
 
   form: FormGroup = null;
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
+  kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public building: any,
     private dialogRef: MatDialogRef<BuildComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
+    private store: Store,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      lands: [null, [Validators.required]]
+      quantity: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomLand.quantity)]],
     });
   }
 
@@ -62,9 +71,16 @@ export class BuildComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  build(): void {
-    if (this.form.valid) {
-      this.dialogRef.close(this.form.value.lands);
+  async build() {
+    if (this.form.valid && this.form.value.quantity <= this.kingdomLand.quantity && (this.form.value.quantity * this.building.join.gold) <= this.kingdomGold.quantity) {
+      try {
+        let built = await this.apiService.build(this.uid, this.building.fid, this.form.value.quantity);
+        this.notificationService.success('kingdom.build.success', built);
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.build.error');
+      }
     } else {
       this.notificationService.error('kingdom.build.error');
     }

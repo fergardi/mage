@@ -442,7 +442,8 @@
       "cancel": "Cancelar",
       "build": "Construir",
       "hint": "Necesitas tierras, oro y turnos",
-      "error": "Ha ocurrido un problema"
+      "error": "Ha ocurrido un problema",
+      "success": "Has construido {{ quantity }} edificio(s)"
     },
     "gemology": {
       "name": "Gemología",

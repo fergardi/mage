@@ -11,44 +11,48 @@ export class ApiService {
     private httpClient: HttpClient,
   ) { }
 
-  explore(kingdom: string, turns: number) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/explore/${turns}`).toPromise();
+  explore(kingdomId: string, turns: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/explore/${turns}`).toPromise();
   }
 
-  charge(kingdom: string, turns: number) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/charge/${turns}`).toPromise();
+  charge(kingdomId: string, turns: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/charge/${turns}`).toPromise();
   }
 
-  tax(kingdom: string, turns: number) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/tax/${turns}`).toPromise();
+  tax(kingdomId: string, turns: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/tax/${turns}`).toPromise();
   }
 
-  recruit(kingdom: string, unit: string, quantity: number) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/army/${unit}/recruit/${quantity}`).toPromise();
+  recruit(kingdomId: string, unitId: string, quantity: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/army/${unitId}/recruit/${quantity}`).toPromise();
   }
 
-  disband(kingdom: string, troop: string, quantity: number) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/army/${troop}/disband/${quantity}`).toPromise();
+  disband(kingdomId: string, troopId: string, quantity: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/army/${troopId}/disband/${quantity}`).toPromise();
   }
 
-  research(kingdom: string, charm: string, turns: number) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/sorcery/${charm}/research/${turns}`).toPromise();
+  research(kingdomId: string, charmId: string, turns: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/sorcery/${charmId}/research/${turns}`).toPromise();
   }
 
-  conjure(kingdom: string, charm: string, target: string) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/sorcery/${charm}/conjure/${target}`).toPromise();
+  conjure(kingdomId: string, charmId: string, targetId: string) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/sorcery/${charmId}/conjure/${targetId}`).toPromise();
   }
 
-  activate(kingdom: string, charm: string, target: string) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/sorcery/${charm}/activate/${target}`).toPromise();
+  activate(kingdomId: string, artifactId: string, targetId: string) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/sorcery/${artifactId}/activate/${targetId}`).toPromise();
   }
 
-  bid(kingdom: string, auction: string, gold: number) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/auction/${auction}/bid/${gold}`).toPromise();
+  bid(kingdomId: string, auctionId: string, gold: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/auction/${auctionId}/bid/${gold}`).toPromise();
   }
 
-  offer(kingdom: string, god: string, gold: number) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdom}/temple/${god}/offer/${gold}`).toPromise();
+  offer(kingdomId: string, godId: string, gold: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/temple/${godId}/offer/${gold}`).toPromise();
+  }
+
+  build(kingdomId: string, buildingId: string, quantity: number) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/city/${buildingId}/build/${quantity}`).toPromise();
   }
 
 }

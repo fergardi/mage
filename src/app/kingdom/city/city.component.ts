@@ -55,22 +55,6 @@ export class CityComponent implements OnInit {
       panelClass: 'dialog-responsive',
       data: building,
     });
-    dialogRef.afterClosed().subscribe(async result => {
-      if (result) {
-        try {
-          const batch = this.angularFirestore.firestore.batch();
-          const buildingRef = this.angularFirestore.collection(`kingdoms/${this.uid}/buildings/`).doc(building.fid);
-          const landsRef = this.angularFirestore.collection(`kingdoms/${this.uid}/supplies/`).doc('iH6DURLEckp4wffrzryK');
-          batch.update(buildingRef.ref, { quantity: firestore.FieldValue.increment(result) });
-          batch.update(landsRef.ref, { quantity: firestore.FieldValue.increment(-result) });
-          await batch.commit();
-          this.notificationService.success('kingdom.city.success');
-        } catch(error) {
-          console.error(error);
-          this.notificationService.error('kingdom.city.error');
-        }
-      }
-    })
   }
 
   openTaxDialog(village: any) {

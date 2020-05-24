@@ -46,8 +46,9 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 })
 export class TaxComponent implements OnInit {
 
-  kingdomTurn: any = null;
   form: FormGroup = null;
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public village: any,
@@ -59,7 +60,6 @@ export class TaxComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
     this.form = this.formBuilder.group({
       turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]]
     });
@@ -70,10 +70,9 @@ export class TaxComponent implements OnInit {
   }
 
   async tax() {
-    let uid = this.store.selectSnapshot(AuthState.getUserUID);
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       try {
-        let taxed = await this.apiService.tax(uid, this.form.value.turns);
+        let taxed = await this.apiService.tax(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.tax.success', taxed);
         this.close();
       } catch (error) {

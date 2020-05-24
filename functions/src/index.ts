@@ -31,6 +31,7 @@ app.get('/kingdom/:kingdomId/sorcery/:charmId/conjure/:target', ash(async (req: 
 app.get('/kingdom/:kingdomId/sorcery/:artifactId/activate/:target', ash(async (req: any, res: any) => res.json(await activateArtifact(req.params.kingdomId, req.params.artifactId, req.params.target))));
 app.get('/kingdom/:kingdomId/auction/:auctionId/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdomId, req.params.auctionId, parseInt(req.params.gold)))));
 app.get('/kingdom/:kingdomId/temple/:godId/offer/:gold', ash(async (req: any, res: any) => res.json(await offerGod(req.params.kingdomId, req.params.godId, parseInt(req.params.gold)))));
+app.get('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
 app.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));
 
 exports.api = functions
@@ -131,6 +132,22 @@ const addCharm = async (kingdomId: string, spellId: string, turns: number, batch
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/charms/${kingdomCharm.docs[0].id}`), { turns: admin.firestore.FieldValue.increment(turns), completed: charm?.turns + turns >= charm?.total });
   } else {
     batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: spellId, turns: 0 });
+  }
+}
+
+/**
+ * add buildings to a kingdom
+ * @param kingdomId
+ * @param buildingId
+ * @param quantity
+ * @param batch
+ */
+const addBuilding = async (kingdomId: string, buildingId: string, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
+  let kingdomLand = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'land').get();
+  let land = kingdomLand.docs[0].data();
+  if (quantity <= land.quantity) {
+    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomLand.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(-quantity) });
+    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${buildingId}`), { quantity: admin.firestore.FieldValue.increment(quantity) });
   }
 }
 
@@ -379,6 +396,39 @@ const bidAuction = async (kingdomId: string, auctionId: string, gold: number) =>
     }
   }
   return { gold: gold };
+}
+
+/**
+ * kingdom builds structures
+ * @param kingdomId
+ * @param buildingId
+ * @param quantity
+ */
+const buildStructure = async (kingdomId: string, buildingId: string, quantity: number) => {
+  let kingdomBuilding = await angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${buildingId}`).get();
+  if (kingdomBuilding.exists) {
+    let kingdomGold = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').get();
+    let kingdomLand = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'land').get();
+    let kingdomTurn = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').get();
+    let kingdomStructure = await angularFirestore.doc(`structures/${kingdomBuilding.data()?.id}`).get();
+    let structure = kingdomStructure.data();
+    let turn = kingdomTurn.docs[0].data();
+    let land = kingdomLand.docs[0].data();
+    let gold = structure?.gold * quantity;
+    if (quantity <= land.quantity && gold <= kingdomGold.docs[0].data().quantity && quantity <= turn.quantity) {
+      const batch = angularFirestore.batch();
+      await addSupply(kingdomId, 'gold', -gold, batch);
+      await addSupply(kingdomId, 'turn', -quantity, batch);
+      await addSupply(kingdomId, 'land', -quantity, batch);
+      await addBuilding(kingdomId, buildingId, quantity, batch);
+      await batch.commit();
+      return { quantity: quantity };
+    } else {
+      throw new Error('api.error.build');
+    }
+  } else {
+    throw new Error('api.error.build');
+  }
 }
 
 /**
