@@ -75,16 +75,29 @@
         max-width: 256px;
       }
     }
-    .image-map {
-      width: 100%;
-      border-radius: 4px;
-      box-sizing: border-box;
+    .map-wrapper {
+      position: relative;
+      svg {
+        position: relative;
+      }
+      .image-map {
+        width: 100%;
+        border-radius: 4px;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto -20px;
+      }
     }
-    .image-icons {
+    .image-icons,
+    .faction-icons {
       margin-top: 20px;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       img {
         width: 40px;
         height: 40px;
@@ -93,6 +106,10 @@
         margin: 10px;
       }
     }
+    .faction-icons {
+      flex-wrap: wrap;
+      margin-top: auto !important;
+    }
     .wrapper {
       padding: 20px;
       max-width: 1080px;
@@ -100,6 +117,12 @@
     }
     .center {
       text-align: center;
+    }
+    h1.mat-h1 {
+      margin: 16px 0 !important;
+    }
+    h1.mat-display-3.margened {
+      margin: 64px 0 !important;
     }
     .mat-display-3::after {
       content: '';

@@ -43,7 +43,7 @@
     },
     "map": {
       "name": "Explora nuevos territorios",
-      "description": "Conforme tu poder crece, tus radio de acción territorial crecerá también. Accede a nuevos lugares, tiendas y misiones en este gigantesco plano de la realidad"
+      "description": "Conforme tu poder crece, tu radio de acción territorial crecerá también. Accede a nuevos lugares, tiendas y misiones en este gigantesco plano de la realidad."
     },
     "tavern": {
       "name": "Contrata héroes únicos",
@@ -453,24 +453,29 @@
   },
   "faction": {
     "blue": {
-      "name": "Fantasmal",
-      "description": "Comulga con los espíritus"
+      "name": "Mental",
+      "description": "Comulga con los espíritus",
+      "help": "Centrados en la investigación, esta escuela de magos basa su estrategia en el dominio de hechizos de todos los colores"
     },
     "white": {
       "name": "Ascendente",
-      "description": "La luz eterna nos guía"
+      "description": "La luz eterna nos guía",
+      "help": "Con su fe ciega como arma, el credo de los ascendidos utiliza milagros y divinidades a su favor para purgar la tierra de infieles"
     },
     "red": {
       "name": "Erradicación",
-      "description": "Fuego y sangre"
+      "description": "Fuego y sangre",
+      "help": "Valiéndose de la fuerza bruta y el dominio del fuego, la secta de erradicadores reduce a cenizas todo a su paso en su camino a la victoria"
     },
     "green": {
       "name": "Naturaleza",
-      "description": "blabla"
+      "description": "blabla",
+      "help": "Protegidos por la madre tierra, estos antiguos druidas controlan el clima, el agua, el bosque y sus criaturas para obtener ventaja sobre sus enemigos"
     },
     "black": {
       "name": "Oscuridad",
-      "description": "La muerte solo es el principio"
+      "description": "La muerte solo es el principio",
+      "help": "Gracias a que cada enemigo vivo puede ser un futuro aliado muerto, este culto macabro basa su potencial en una absoluta superioridad numérica"
     },
     "grey": {
       "name": "Neutral",
