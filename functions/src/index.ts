@@ -14,7 +14,7 @@ type RewardType = 'enchantment' | 'contract' | 'artifact' | 'summon' | 'resource
 type ResourceType = 'gold' | 'population' | 'land' | 'gem' | 'mana' | 'turn';
 
 admin.initializeApp({
-  credential: admin.credential.cert(require('../credentials/mage-c4259-firebase-adminsdk-ah05o-b65a21f567.json'))
+  credential: admin.credential.cert(require('../credentials/key.json'))
 });
 const angularFirestore = admin.firestore();
 
