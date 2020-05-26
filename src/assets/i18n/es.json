@@ -70,8 +70,7 @@
     "auth": {
       "login": "Iniciar sesión",
       "logout": "Cerrar sesión",
-      "loggedin": "Bienvenido de nuevo!",
-      "loggedout": "Hasta pronto!",
+      "authorized": "Bienvenido de nuevo!",
       "error": "Ha ocurrido un error con el servicio de autenticación",
       "unauthorized": "Debes autenticarte para continuar",
       "tour": "Tutorial",

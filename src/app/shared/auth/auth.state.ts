@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { tap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NotificationService } from 'src/app/services/notification.service';
 
 export interface AuthStateModel {
   kingdom: any
@@ -32,6 +33,7 @@ export class AuthState implements NgxsOnInit {
     private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private router: Router,
+    private notificationService: NotificationService,
   ) { }
 
   ngxsOnInit(ctx: StateContext<AuthStateModel>) {
@@ -40,6 +42,7 @@ export class AuthState implements NgxsOnInit {
         ctx.dispatch(new SetUserAction(user.uid));
         ctx.dispatch(new SetKingdomAction(user.uid));
         ctx.dispatch(new SetKingdomSuppliesAction(user.uid));
+        this.notificationService.success('user.auth.authorized');
         this.router.navigate(['/kingdom/city']);
       } else {
         this.router.navigate(['/user/login']);

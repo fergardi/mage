@@ -7,7 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router, NavigationEnd } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MapboxService } from 'src/app/services/mapbox.service';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store, Select } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
 import { TourService } from 'ngx-tour-md-menu';
@@ -79,7 +79,13 @@ export class ShellComponent {
     this.mapboxService.resize();
   }
 
-  async logout() {
+  close() {
+    this.isHandset$.pipe(untilDestroyed(this)).subscribe(isHandset => {
+      if (isHandset) this.drawer.close();
+    })
+  }
+
+  logout() {
     this.store.dispatch(new LogoutAction());
   }
 
@@ -87,7 +93,7 @@ export class ShellComponent {
     return this.langs.find(l => l.lang === this.translateService.currentLang)?.image;
   }
 
-  async tour() {
+  tour() {
     // if (!this.drawer.opened) await this.drawer.open();
     this.tourService.start();
   }
