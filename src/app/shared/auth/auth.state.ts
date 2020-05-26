@@ -41,6 +41,8 @@ export class AuthState implements NgxsOnInit {
         ctx.dispatch(new SetKingdomAction(user.uid));
         ctx.dispatch(new SetKingdomSuppliesAction(user.uid));
         this.router.navigate(['/kingdom/city']);
+      } else {
+        this.router.navigate(['/user/login']);
       }
     });
   }
@@ -52,8 +54,8 @@ export class AuthState implements NgxsOnInit {
 
   @Action(LogoutAction)
   async logout(ctx: StateContext<AuthStateModel>) {
-    const state = ctx.getState();
     await this.angularFireAuth.signOut();
+    const state = ctx.getState();
     ctx.setState({
       ...state,
       uid: null,
@@ -61,7 +63,6 @@ export class AuthState implements NgxsOnInit {
       supplies: [],
       logged: false,
     });
-    this.router.navigate(['/user/login']);
   }
 
   @Action(SetUserAction)

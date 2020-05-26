@@ -81,7 +81,7 @@
         position: relative;
       }
       .image-map {
-        width: 100%;
+        width: calc(100% - 50px);
         border-radius: 4px;
         box-sizing: border-box;
         position: absolute;
@@ -89,7 +89,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        margin: auto -20px;
+        margin: auto 0;
       }
     }
     .image-icons,

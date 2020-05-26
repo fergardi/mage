@@ -38,6 +38,7 @@
         <ng-container *ngFor="let link of links">
           <a mat-list-item
             *ngIf="(!link.guarded && !(angularFireAuth.authState | async)) || link.logged && (angularFireAuth.authState | async)"
+            (click)="drawer.close()"
             [routerLink]="link.url ? link.url : null"
             [routerLinkActive]="link.url ? ['active'] : []"
             [routerLinkActiveOptions]="{ exact: true }">
@@ -66,6 +67,7 @@
           <a mat-list-item [routerLink]="supply.join.name.includes('gem') ? '/kingdom/emporium' : supply.join.name.includes('turn') ? '/kingdom/city' : '/kingdom/city'">
             <div
               mat-list-avatar
+              (click)="drawer.close()"
               [title]="supply.join.name | translate"
               [matBadge]="supply.max ? (supply.quantity | short) + '/' + (supply.max | short) : supply.quantity | short"
               [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"

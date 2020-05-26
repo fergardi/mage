@@ -74,7 +74,8 @@
       "loggedout": "Hasta pronto!",
       "error": "Ha ocurrido un error con el servicio de autenticación",
       "unauthorized": "Debes autenticarte para continuar",
-      "tour": "Tutorial"
+      "tour": "Tutorial",
+      "auth/email-already-in-use": "Ese correo electrónico ya está en uso"
     },
     "login": {
       "name": "Acceder",
@@ -90,7 +91,9 @@
       "invalid": "Debe ser un correo electrónico válido",
       "accept": "Aceptar",
       "check": "Comprueba tu correo",
-      "error": "Ha ocurrido un error en el proceso autenticación"
+      "error": "Ha ocurrido un error en el proceso autenticación",
+      "faction": "Facción",
+      "unfactioned": "Debes escoger una facción"
     },
     "encyclopedia": {
       "name": "Enciclopedia",

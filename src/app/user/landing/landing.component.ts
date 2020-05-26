@@ -10,7 +10,6 @@ export class LandingComponent {
   constructor() { }
 
   parallax($event: Event) {
-    console.log($event);
     let top = ($event.target as HTMLDivElement).scrollTop;
     let layers: Element[] = [...Array.from(document.querySelectorAll("[data-type='parallax']"))];
     for (let layer of layers) {
@@ -22,7 +21,6 @@ export class LandingComponent {
       layer.setAttribute('style', `['-ms-transform']: ${translate3d}`);
       layer.setAttribute('style', `['-o-transform']: ${translate3d}`);
       layer.setAttribute('style', `transform: ${translate3d}`);
-      console.log('setting ' + layer + ' as ' + translate3d);
     }
   }
 

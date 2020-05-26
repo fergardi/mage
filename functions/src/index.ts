@@ -1,5 +1,4 @@
 'use strict';
-
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import * as cors from 'cors';
@@ -13,31 +12,166 @@ const MAX_LANDS: number = 3500;
 type RewardType = 'enchantment' | 'contract' | 'artifact' | 'summon' | 'resource';
 type ResourceType = 'gold' | 'population' | 'land' | 'gem' | 'mana' | 'turn';
 
-admin.initializeApp({
-  credential: admin.credential.cert(require('../credentials/key.json'))
-});
-const angularFirestore = admin.firestore();
+admin.initializeApp({ credential: admin.credential.cert(require('../credentials/key.json')) });
+const angularFirestore: FirebaseFirestore.Firestore = admin.firestore();
+const geo = require('geofirex');
+const geofirex = geo.init(admin);
 
-const app = express();
-app.use(cors({ origin: true }));
-app.get('/advance', ash(async (req: any, res: any) => res.json(await advanceTime(TURNS))));
-app.get('/kingdom/:kingdomId/explore/:turns', ash(async (req: any, res: any) => res.json(await exploreLands(req.params.kingdomId, parseInt(req.params.turns)))));
-app.get('/kingdom/:kingdomId/charge/:turns', ash(async (req: any, res: any) => res.json(await chargeMana(req.params.kingdomId, parseInt(req.params.turns)))));
-app.get('/kingdom/:kingdomId/tax/:turns', ash(async (req: any, res: any) => res.json(await taxGold(req.params.kingdomId, parseInt(req.params.turns)))));
-app.get('/kingdom/:kingdomId/army/:unitId/recruit/:quantity', ash(async (req: any, res: any) => res.json(await recruitUnits(req.params.kingdomId, req.params.unitId, parseInt(req.params.quantity)))));
-app.get('/kingdom/:kingdomId/army/:troopId/disband/:quantity', ash(async (req: any, res: any) => res.json(await disbandTroops(req.params.kingdomId, req.params.troopId, parseInt(req.params.quantity)))));
-app.get('/kingdom/:kingdomId/sorcery/:charmId/research/:turns', ash(async (req: any, res: any) => res.json(await researchCharm(req.params.kingdomId, req.params.charmId, parseInt(req.params.turns)))));
-app.get('/kingdom/:kingdomId/sorcery/:charmId/conjure/:target', ash(async (req: any, res: any) => res.json(await conjureCharm(req.params.kingdomId, req.params.charmId, req.params.target))));
-app.get('/kingdom/:kingdomId/sorcery/:artifactId/activate/:target', ash(async (req: any, res: any) => res.json(await activateArtifact(req.params.kingdomId, req.params.artifactId, req.params.target))));
-app.get('/kingdom/:kingdomId/auction/:auctionId/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdomId, req.params.auctionId, parseInt(req.params.gold)))));
-app.get('/kingdom/:kingdomId/temple/:godId/offer/:gold', ash(async (req: any, res: any) => res.json(await offerGod(req.params.kingdomId, req.params.godId, parseInt(req.params.gold)))));
-app.get('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
-app.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));
+const api = express();
+api.use(cors({ origin: true }));
+api.use(express.json());
+api.get('/advance', ash(async (req: any, res: any) => res.json(await advanceTime(TURNS))));
+api.post('/kingdom', ash(async (req: any, res: any) => res.json(await createKingdom(req.body.kingdomId, req.body.factionId, req.body.name, parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
+api.get('/kingdom/:kingdomId/explore/:turns', ash(async (req: any, res: any) => res.json(await exploreLands(req.params.kingdomId, parseInt(req.params.turns)))));
+api.get('/kingdom/:kingdomId/charge/:turns', ash(async (req: any, res: any) => res.json(await chargeMana(req.params.kingdomId, parseInt(req.params.turns)))));
+api.get('/kingdom/:kingdomId/tax/:turns', ash(async (req: any, res: any) => res.json(await taxGold(req.params.kingdomId, parseInt(req.params.turns)))));
+api.get('/kingdom/:kingdomId/army/:unitId/recruit/:quantity', ash(async (req: any, res: any) => res.json(await recruitUnits(req.params.kingdomId, req.params.unitId, parseInt(req.params.quantity)))));
+api.get('/kingdom/:kingdomId/army/:troopId/disband/:quantity', ash(async (req: any, res: any) => res.json(await disbandTroops(req.params.kingdomId, req.params.troopId, parseInt(req.params.quantity)))));
+api.get('/kingdom/:kingdomId/sorcery/:charmId/research/:turns', ash(async (req: any, res: any) => res.json(await researchCharm(req.params.kingdomId, req.params.charmId, parseInt(req.params.turns)))));
+api.get('/kingdom/:kingdomId/sorcery/:charmId/conjure/:target', ash(async (req: any, res: any) => res.json(await conjureCharm(req.params.kingdomId, req.params.charmId, req.params.target))));
+api.get('/kingdom/:kingdomId/sorcery/:artifactId/activate/:target', ash(async (req: any, res: any) => res.json(await activateArtifact(req.params.kingdomId, req.params.artifactId, req.params.target))));
+api.get('/kingdom/:kingdomId/auction/:auctionId/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdomId, req.params.auctionId, parseInt(req.params.gold)))));
+api.get('/kingdom/:kingdomId/temple/:godId/offer/:gold', ash(async (req: any, res: any) => res.json(await offerGod(req.params.kingdomId, req.params.godId, parseInt(req.params.gold)))));
+api.get('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
+api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));
 
 exports.api = functions
 .region('europe-west1')
 .https
-.onRequest(app);
+.onRequest(api);
+
+let factions: any[] = [
+  {
+    faction: 'black',
+    units: [
+      'vampire',
+    ],
+    enchantments: [
+      'necromancy-touch',
+      'death-decay',
+      'shroud-darkness',
+      'soul-pact',
+      'black-death',
+      'blood-ritual',
+    ],
+    heroes: [
+      'necrophage',
+      'necromancer',
+      'dark-knight',
+    ],
+  }, {
+    faction: 'white',
+    units: [
+      'behemoth',
+    ],
+    enchantments: [
+      'divine-protection',
+      'love-peace',
+    ],
+    heroes: [
+      'commander',
+      'trader',
+      'silver-knight',
+    ],
+  }, {
+    faction: 'red',
+    units: [
+      'phoenix',
+    ],
+    enchantments: [
+      'battle-chant',
+      'meteor-storm',
+      'fire-wall',
+    ],
+    heroes: [
+      'dragon-rider',
+      'demon-prince',
+      'engineer',
+    ],
+  }, {
+    faction: 'blue',
+    units: [
+      'leviathan',
+    ],
+    enchantments: [
+      'concentration',
+      'confuse',
+      'hallucination',
+      'ice-wall',
+      'laziness',
+    ],
+    heroes: [
+      'shaman',
+      'elementalist',
+      'sage',
+    ],
+  }, {
+    faction: 'green',
+    units: [
+      'wyvern',
+    ],
+    enchantments: [
+      'druidism',
+      'climate-control',
+      'locust-swarm',
+      'natures-favor',
+      'sunray',
+    ],
+  }
+];
+
+let items = [
+  'golden-chest',
+  'magical-chest',
+  'stone-chest',
+  'wooden-chest',
+  'necronomicon',
+  'enchanted-lamp',
+  'wisdom-tome',
+  'demon-horn',
+  'lightning-orb',
+  'dragon-egg',
+  'crystal-ball',
+  'agility-potion',
+  'defense-potion',
+  'cold-orb',
+  'earth-orb',
+  'fire-orb',
+  'mana-potion',
+  'light-orb',
+  'strength-potion',
+  'love-potion',
+  'spider-web',
+  'animal-fang',
+  'bone-necklace',
+  'crown-thorns',
+  'voodoo-doll',
+  'cursed-skull',
+  'golden-feather',
+  'golden-idol',
+  'golem-book',
+  'letter-thieves',
+  'vial-venom',
+  'lucky-coin',
+  'lucky-horseshoe',
+  'lucky-paw',
+  'magic-beans',
+  'magic-compass',
+  'magic-scroll',
+  'mana-vortex',
+  'monkey-hand',
+  'powder-barrel',
+  'rattle',
+  'rotten-food',
+  'snake-eye',
+  'treasure-map',
+  'valhalla-horn',
+  'bottomless-carcaj',
+  'fairy-wings',
+  'holy-grenade',
+  'magic-ashes',
+  'vampire-teeth',
+];
 
 /**
  * add supply to a kingdom
@@ -163,6 +297,79 @@ const advanceTime = async (turns: number) => {
   }));
   await batch.commit();
   return { turns: turns };
+}
+
+/**
+ * create a new kingdom of a specific faction
+ * @param kingdomId
+ * @param factionId
+ */
+const createKingdom = async (kingdomId: string, factionId: string, name: string, latitude: number, longitude: number) => {
+  const batch = angularFirestore.batch();
+  batch.create(angularFirestore.doc(`kingdoms/${kingdomId}`), { id: kingdomId, faction: factionId, position: geofirex.point(latitude, longitude), coordinates: { latitude: latitude, longitude: longitude }, name: name, power: 1500 });
+  switch (factionId) {
+    case 'black': {
+      // troops
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: 'skeleton', quantity: 20000, assignment: 2 });
+      // charms
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'animate-skeleton', turns: 0, completed: false, total: 200 });
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'fear', turns: 0, completed: false, total: 200 });
+      break;
+    }
+    case 'green': {
+      // troops
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: 'goblin', quantity: 20000, assignment: 2 });
+      // charms
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'summon-goblin', turns: 0, completed: false, total: 200 });
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'cure', turns: 0, completed: false, total: 200 });
+      break;
+    }
+    case 'red': {
+      // troops
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: 'orc', quantity: 20000, assignment: 2 });
+      // charms
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'fireball', turns: 0, completed: false, total: 200 });
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'call-orc', turns: 0, completed: false, total: 200 });
+      break;
+    }
+    case 'blue': {
+      // troops
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: 'mage', quantity: 20000, assignment: 2 });
+      // charms
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'summon-mage', turns: 0, completed: false, total: 200 });
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'ice-shock', turns: 0, completed: false, total: 200 });
+      break;
+    }
+    case 'white': {
+      // troops
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: 'crusader', quantity: 20000, assignment: 2 });
+      // charms
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'call-crusader', turns: 0, completed: false, total: 200 });
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'healing-hand', turns: 0, completed: false, total: 200 });
+      break;
+    }
+  }
+  // artifacts
+  let itemId = items[Math.floor(Math.random() * items.length)];
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).doc(), { id: itemId, quantity: 1 });
+  // supplies
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'gold', quantity: 20000, max: null, balance: 0 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'mana', quantity: 20000, max: 20000, balance: 0 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'population', quantity: 20000, max: 20000, balance: 0 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'gem', quantity: 10, max: null, balance: 0 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'turn', quantity: 300, max: 300, balance: 0 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'land', quantity: 300, max: null, balance: 0 });
+  // buildings
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'barrack', quantity: 100 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'barrier', quantity: 100 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'farm', quantity: 100 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'fortress', quantity: 100 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'academy', quantity: 100 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'node', quantity: 100 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'village', quantity: 100 });
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'workshop', quantity: 100 });
+  // commit
+  return batch.commit();
 }
 
 /**
@@ -451,187 +658,25 @@ const offerGod = async (kingdomId: string, godId: string, gold: number) => {
       let reward: RewardType = rewards[Math.floor(Math.random() * rewards.length)];
       switch (reward) {
         case 'enchantment':
-          let enchantmentsByFaction: any[] = [
-            {
-              faction: 'black',
-              enchantments: [
-                'necromancy-touch',
-                'death-decay',
-                'shroud-darkness',
-                'soul-pact',
-                'black-death',
-                'blood-ritual',
-              ],
-            }, {
-              faction: 'red',
-              enchantments: [
-                'battle-chant',
-                'meteor-storm',
-                'fire-wall',
-              ],
-            }, {
-              faction: 'blue',
-              enchantments: [
-                'concentration',
-                'confuse',
-                'hallucination',
-                'ice-wall',
-                'laziness',
-              ],
-            }, {
-              faction: 'green',
-              enchantments: [
-                'druidism',
-                'climate-control',
-                'locust-swarm',
-                'natures-favor',
-                'sunray',
-              ],
-            }, {
-              faction: 'white',
-              enchantments: [
-                'divine-protection',
-                'love-peace',
-              ],
-            }
-          ];
-          let enchantments = enchantmentsByFaction.find((e: any)  => e.faction === god?.faction).enchantments;
+          let enchantments = factions.find((e: any)  => e.faction === god?.faction).enchantments;
           let enchantmentId = enchantments[Math.floor(Math.random() * enchantments.length)];
           await addEnchantment(kingdomId, enchantmentId, 10, null, 300, batch);
           result = { enchantment: `spell.${enchantmentId}.name`, turns: 300, level: 10 };
           break;
         case 'contract':
-          let heroesByFaction: any[] = [
-            {
-              faction: 'red',
-              heroes: [
-                'dragon-rider',
-                'demon-prince',
-                'engineer',
-              ],
-            }, {
-              faction: 'white',
-              heroes: [
-                'commander',
-                'trader',
-                'silver-knight',
-              ],
-            }, {
-              faction: 'green',
-              heroes: [
-                'beast-master',
-                'orc-king',
-                'leprechaunt',
-              ],
-            }, {
-              faction: 'black',
-              heroes: [
-                'necrophage',
-                'necromancer',
-                'dark-knight',
-              ],
-            }, {
-              faction: 'blue',
-              heroes: [
-                'shaman',
-                'elementalist',
-                'sage',
-              ],
-            },
-          ];
-          let heroes = heroesByFaction.find((e: any)  => e.faction === god?.faction).heroes;
+          let heroes = factions.find((e: any)  => e.faction === god?.faction).heroes;
           let heroId = heroes[Math.floor(Math.random() * heroes.length)];
           let level = Math.floor(Math.random() * 9) + 1;
           await addContract(kingdomId, heroId, level, batch);
           result = { hero: `hero.${heroId}.name`, level: level };
           break;
         case 'artifact':
-          let items = [
-            'golden-chest',
-            'magical-chest',
-            'stone-chest',
-            'wooden-chest',
-            'necronomicon',
-            'enchanted-lamp',
-            'wisdom-tome',
-            'demon-horn',
-            'lightning-orb',
-            'dragon-egg',
-            'crystal-ball',
-            'agility-potion',
-            'defense-potion',
-            'cold-orb',
-            'earth-orb',
-            'fire-orb',
-            'mana-potion',
-            'light-orb',
-            'strength-potion',
-            'love-potion',
-            'spider-web',
-            'animal-fang',
-            'bone-necklace',
-            'crown-thorns',
-            'voodoo-doll',
-            'cursed-skull',
-            'golden-feather',
-            'golden-idol',
-            'golem-book',
-            'letter-thieves',
-            'vial-venom',
-            'lucky-coin',
-            'lucky-horseshoe',
-            'lucky-paw',
-            'magic-beans',
-            'magic-compass',
-            'magic-scroll',
-            'mana-vortex',
-            'monkey-hand',
-            'powder-barrel',
-            'rattle',
-            'rotten-food',
-            'snake-eye',
-            'treasure-map',
-            'valhalla-horn',
-            'bottomless-carcaj',
-            'fairy-wings',
-            'holy-grenade',
-            'magic-ashes',
-            'vampire-teeth',
-          ];
           let itemId = items[Math.floor(Math.random() * items.length)];
           await addArtifact(kingdomId, itemId, 1, batch);
           result = { item: `item.${itemId}.name`, quantity: 1 };
           break;
         case 'summon':
-          let unitsByFaction: any[] = [
-            {
-              faction: 'black',
-              units: [
-                'vampire',
-              ],
-            }, {
-              faction: 'white',
-              units: [
-                'behemoth',
-              ],
-            }, {
-              faction: 'red',
-              units: [
-                'phoenix',
-              ],
-            }, {
-              faction: 'blue',
-              units: [
-                'leviathan',
-              ],
-            }, {
-              faction: 'green',
-              units: [
-                'wyvern',
-              ],
-            }
-          ];
-          let units = unitsByFaction.find((u: any) => u.faction === god?.faction).units;
+          let units = factions.find((u: any) => u.faction === god?.faction).units;
           let unitId = units[Math.floor(Math.random() * units.length)];
           let quantity = Math.floor(Math.random() * 100);
           await addTroop(kingdomId, unitId, quantity, batch);

@@ -11,6 +11,16 @@ export class ApiService {
     private httpClient: HttpClient,
   ) { }
 
+  create(kingdomId: string, factionId: string, name:string, latitude: number, longitude: number) {
+    return this.httpClient.post(environment.functions.url + `/kingdom`, {
+      kingdomId: kingdomId,
+      name: name,
+      factionId: factionId,
+      latitude: latitude,
+      longitude: longitude,
+    }).toPromise();
+  }
+
   explore(kingdomId: string, turns: number) {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/explore/${turns}`).toPromise();
   }

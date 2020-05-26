@@ -13,29 +13,48 @@
           <mat-tab *ngFor="let type of types" [label]="'user.login.' + type | translate"></mat-tab>
         </mat-tab-group>
 
-        <mat-form-field [color]="email.valid && 'accent'">
-          <input matInput formControlName="email" placeholder="{{ 'user.login.email' | translate }}" autocomplete="off"/>
-          <mat-error *ngIf="email.invalid && email.dirty">{{ 'user.login.invalid' | translate }}</mat-error>
+        <mat-form-field *ngIf="type === 'signup'">
+          <mat-label>{{ 'user.login.faction' | translate }}</mat-label>
+          <mat-select formControlName="faction">
+            <mat-select-trigger *ngIf="form.value.faction">
+              <mat-list dense>
+                <mat-list-item>
+                  <div mat-list-avatar>
+                    <img mat-list-avatar [src]="form.value.faction.image">
+                  </div>
+                  <div mat-line>{{ form.value.faction.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ form.value.faction.description | translate }}</div>
+                </mat-list-item>
+              </mat-list>
+            </mat-select-trigger>
+            <mat-option *ngFor="let faction of factions" [value]="faction">{{ faction.name | translate }}</mat-option>
+          </mat-select>
+          <mat-error>{{ 'user.login.unfactioned' | translate }}</mat-error>
         </mat-form-field>
 
-        <mat-form-field [color]="password.valid && 'accent'" *ngIf="type !== 'reset'">
+        <mat-form-field>
+          <input matInput type="text" formControlName="email" placeholder="{{ 'user.login.email' | translate }}" autocomplete="off"/>
+          <mat-error>{{ 'user.login.invalid' | translate }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="type !== 'reset'">
           <input matInput type="password" formControlName="password" placeholder="{{ 'user.login.password' | translate }}" autocomplete="off"/>
-          <mat-error *ngIf="password.invalid && password.dirty">{{ 'user.login.insecure' | translate }}</mat-error>
+          <mat-error>{{ 'user.login.insecure' | translate }}</mat-error>
         </mat-form-field>
 
-        <mat-form-field [color]="match ? 'accent' : 'warn'" *ngIf="type === 'signup'">
+        <mat-form-field *ngIf="type === 'signup'">
           <input matInput type="password" formControlName="password2" placeholder="{{ 'user.login.password2' | translate }}" autocomplete="off"/>
-          <mat-error *ngIf="password2.dirty && !match">{{ 'user.login.mismatch' | translate }}</mat-error>
+          <mat-error>{{ 'user.login.mismatch' | translate }}</mat-error>
         </mat-form-field>
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-button type="button" (click)="google()" class="flag-menu">
+        <button mat-stroked-button type="button" (click)="google()" class="flag-menu">
           <img src="/assets/images/brands/google.png"/>
           <span>Google</span>
         </button>
         <span class="fill-space"></span>
-        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || !match || loading" cdkFocusInitial>{{ 'user.login.accept' | translate }}</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid || loading" cdkFocusInitial>{{ 'user.login.accept' | translate }}</button>
       </mat-card-actions>
     </mat-card>
 
