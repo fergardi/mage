@@ -75,7 +75,7 @@ export class ExploreComponent implements OnInit {
     let kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
     if (this.form.valid && this.form.value.turns <= kingdomTurn.quantity) {
       try {
-        let explored = await this.apiService.explore(uid, this.form.value.turns);
+        let explored = await this.apiService.exploreLand(uid, this.form.value.turns);
         this.notificationService.success('kingdom.explore.success', explored);
         this.close();
       } catch (error) {

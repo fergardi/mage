@@ -175,6 +175,20 @@ body {
   padding-top: 0px !important;
 }
 
+.mat-list-base {
+  .mat-list-avatar {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+.mat-list-base:not(.mat-nav-list) {
+  img.mat-list-avatar {
+    box-sizing: content-box;
+    border: 2px solid #99009c;
+  }
+}
+
 .mat-list-base:not(.supply-list) {
   .mat-list-item + .mat-list-item {
     border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -207,7 +221,7 @@ body {
   height: 16px;
   border-radius: 50%;
   margin: 2px;
-  border: 1px solid gray;
+  border: 1px solid #99009c;
 }
 
 .mat-card,
@@ -247,10 +261,14 @@ body {
     height: inherit;
     .mat-list-avatar {
       flex-shrink: 0;
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       object-fit: cover;
+      img.mat-list-avatar {
+        box-sizing: content-box;
+        border: 2px solid #99009c;
+      }
     }
     .mat-list-text {
       display: flex;
@@ -267,6 +285,7 @@ body {
         text-overflow: ellipsis;
         display: block;
         box-sizing: border-box;
+        text-align: start;
         margin: 0;
         padding: 0;
         font-weight: normal;

@@ -72,7 +72,7 @@ export class BidComponent implements OnInit {
   async bid() {
     if (this.form.valid && this.form.value.gold <= this.kingdomGold.quantity) {
       try {
-        let bidded = await this.apiService.bid(this.uid, this.auction.fid, this.form.value.gold);
+        let bidded = await this.apiService.bidAuction(this.uid, this.auction.fid, this.form.value.gold);
         this.notificationService.success('kingdom.bid.success');
         this.close();
       } catch (error) {

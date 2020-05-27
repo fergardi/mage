@@ -11,10 +11,13 @@ import { CacheService } from 'src/app/services/cache.service';
 import { RecruitComponent } from './recruit.component';
 import { DisbandComponent } from './disband.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ApiService } from 'src/app/services/api.service';
 
 export enum TroopAssignmentType {
   'troopNone', 'troopAttack', 'troopDefense'
 }
+
+const MAXIMUM_TROOPS = 5;
 
 @Component({
   selector: 'app-army',
@@ -31,7 +34,6 @@ export class ArmyComponent implements OnInit {
   attackTroops: any[] = [];
   defenseTroops: any[] = [];
   recruitUnits: any[] = [];
-  maximumTroops: number = 5;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -40,6 +42,7 @@ export class ArmyComponent implements OnInit {
     private cacheService: CacheService,
     private store: Store,
     private dialog: MatDialog,
+    private apiService: ApiService,
   ) {}
 
   async ngOnInit() {
@@ -54,34 +57,31 @@ export class ArmyComponent implements OnInit {
   }
 
   assignTroop($event: CdkDragDrop<any>) {
-    if (parseInt($event.container.id) === 0 || $event.previousContainer === $event.container || $event.container.data.length < this.maximumTroops) {
+    if (parseInt($event.container.id) === 0 || $event.previousContainer === $event.container || $event.container.data.length < MAXIMUM_TROOPS) {
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
-      this.updateTroops();
+      this.updateArmy();
     } else {
       this.notificationService.warning('kingdom.army.maximum')
     }
   }
 
-  async updateTroops() {
+  async updateArmy() {
     try {
-      let refs = [];
-      const db = this.angularFirestore.collection(`kingdoms/${this.uid}/troops`);
-      this.kingdomTroops.forEach(kingdomTroop => {
-        refs.push({ ref: db.doc(kingdomTroop.fid), assignment: TroopAssignmentType.troopNone });
+      let army = [];
+      this.kingdomTroops.forEach((kingdomTroop, index) => {
+        army.push({ troopId: kingdomTroop.fid, sort: 1000 + index, assignment: TroopAssignmentType.troopNone });
       });
-      this.attackTroops.forEach(attackTroop => {
-        refs.push({ ref: db.doc(attackTroop.fid), assignment: TroopAssignmentType.troopAttack });
+      this.attackTroops.forEach((attackTroop, index) => {
+        army.push({ troopId: attackTroop.fid, sort: 2000 + index, assignment: TroopAssignmentType.troopAttack });
       });
-      this.defenseTroops.forEach(defenseTroop => {
-        refs.push({ ref: db.doc(defenseTroop.fid), assignment: TroopAssignmentType.troopDefense });
+      this.defenseTroops.forEach((defenseTroop, index) => {
+        army.push({ troopId: defenseTroop.fid, sort: 3000 + index, assignment: TroopAssignmentType.troopDefense });
       });
-      const batch = this.angularFirestore.firestore.batch();
-      refs.forEach((r, index) => batch.update(r.ref.ref, { sort: index, assignment: r.assignment }))
-      await batch.commit();
+      let assigned = await this.apiService.assignArmy(this.uid, army);
       this.notificationService.success('kingdom.army.success')
     } catch (error) {
       console.error(error);

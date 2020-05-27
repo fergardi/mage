@@ -25,14 +25,16 @@ api.post('/kingdom', ash(async (req: any, res: any) => res.json(await createKing
 api.get('/kingdom/:kingdomId/explore/:turns', ash(async (req: any, res: any) => res.json(await exploreLands(req.params.kingdomId, parseInt(req.params.turns)))));
 api.get('/kingdom/:kingdomId/charge/:turns', ash(async (req: any, res: any) => res.json(await chargeMana(req.params.kingdomId, parseInt(req.params.turns)))));
 api.get('/kingdom/:kingdomId/tax/:turns', ash(async (req: any, res: any) => res.json(await taxGold(req.params.kingdomId, parseInt(req.params.turns)))));
-api.get('/kingdom/:kingdomId/army/:unitId/recruit/:quantity', ash(async (req: any, res: any) => res.json(await recruitUnits(req.params.kingdomId, req.params.unitId, parseInt(req.params.quantity)))));
-api.get('/kingdom/:kingdomId/army/:troopId/disband/:quantity', ash(async (req: any, res: any) => res.json(await disbandTroops(req.params.kingdomId, req.params.troopId, parseInt(req.params.quantity)))));
+api.get('/kingdom/:kingdomId/army/:unitId/recruit/:quantity', ash(async (req: any, res: any) => res.json(await recruitUnit(req.params.kingdomId, req.params.unitId, parseInt(req.params.quantity)))));
+api.get('/kingdom/:kingdomId/army/:troopId/disband/:quantity', ash(async (req: any, res: any) => res.json(await disbandTroop(req.params.kingdomId, req.params.troopId, parseInt(req.params.quantity)))));
+api.post('/kingdom/:kingdomId/army', ash(async (req: any, res: any) => res.json(await assignArmy(req.params.kingdomId, req.body.army))));
 api.get('/kingdom/:kingdomId/sorcery/:charmId/research/:turns', ash(async (req: any, res: any) => res.json(await researchCharm(req.params.kingdomId, req.params.charmId, parseInt(req.params.turns)))));
-api.get('/kingdom/:kingdomId/sorcery/:charmId/conjure/:target', ash(async (req: any, res: any) => res.json(await conjureCharm(req.params.kingdomId, req.params.charmId, req.params.target))));
-api.get('/kingdom/:kingdomId/sorcery/:artifactId/activate/:target', ash(async (req: any, res: any) => res.json(await activateArtifact(req.params.kingdomId, req.params.artifactId, req.params.target))));
+api.get('/kingdom/:kingdomId/sorcery/:charmId/conjure/:targetId', ash(async (req: any, res: any) => res.json(await conjureCharm(req.params.kingdomId, req.params.charmId, req.params.targetId))));
+api.get('/kingdom/:kingdomId/sorcery/:artifactId/activate/:targetId', ash(async (req: any, res: any) => res.json(await activateArtifact(req.params.kingdomId, req.params.artifactId, req.params.targetId))));
 api.get('/kingdom/:kingdomId/auction/:auctionId/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdomId, req.params.auctionId, parseInt(req.params.gold)))));
 api.get('/kingdom/:kingdomId/temple/:godId/offer/:gold', ash(async (req: any, res: any) => res.json(await offerGod(req.params.kingdomId, req.params.godId, parseInt(req.params.gold)))));
 api.get('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
+api.get('/kingdom/:kingdomId/tavern/:contractId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignContract(req.params.kingdomId, req.params.contractId, parseInt(req.params.assignmentId)))));
 api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));
 
 exports.api = functions
@@ -402,7 +404,7 @@ const exploreLands = async (kingdomId: string, turns: number) => {
  * @param unitId
  * @param quantity
  */
-const recruitUnits = async (kingdomId: string, unitId: string, quantity: number) => {
+const recruitUnit = async (kingdomId: string, unitId: string, quantity: number) => {
   let kingdomUnit = await angularFirestore.doc(`units/${unitId}`).get();
   if (kingdomUnit.data()?.recruitable) {
     let kingdomTurn = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').get();
@@ -430,18 +432,18 @@ const recruitUnits = async (kingdomId: string, unitId: string, quantity: number)
 /**
  * kingdom disbands troops on a given number
  * @param kingdomId
- * @param troop
+ * @param troopId
  * @param quantity
  */
-const disbandTroops = async (kingdomId: string, troop: string, quantity: number) => {
-  let kingdomTroop = await angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troop}`).get();
+const disbandTroop = async (kingdomId: string, troopId: string, quantity: number) => {
+  let kingdomTroop = await angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`).get();
   if (kingdomTroop.exists) {
     let kingdomUnit = await angularFirestore.doc(`units/${kingdomTroop.id}`).get();
     if (kingdomUnit.exists && kingdomUnit.data()?.disbandable) {
       if (quantity >= kingdomTroop.data()?.quantity) {
-        angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troop}`).delete();
+        angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`).delete();
       } else {
-        angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troop}`).update({ quantity: admin.firestore.FieldValue.increment(-quantity) });
+        angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`).update({ quantity: admin.firestore.FieldValue.increment(-quantity) });
       }
     } else {
       if (!kingdomUnit.exists) throw new Error('api.error.unit');
@@ -698,4 +700,27 @@ const offerGod = async (kingdomId: string, godId: string, gold: number) => {
     throw new Error('api.error.god');
   }
   return result;
+}
+
+/**
+ * kingdom assigns contract to an assignment
+ * @param kingdomId
+ * @param contractId
+ * @param assignmentId
+ */
+const assignContract = async (kingdomId: string, contractId: string, assignmentId: number) => {
+  const batch = angularFirestore.batch();
+  batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${contractId}`), { assignment: assignmentId });
+  await batch.commit();
+}
+
+/**
+ * kingdom assigns troops to their assignments with proper sorting
+ * @param kingdomId
+ * @param army
+ */
+const assignArmy = async (kingdomId: string, army: any[]) => {
+  const batch = angularFirestore.batch();
+  army.forEach(troop => batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troop.troopId}`), { sort: troop.sort, assignment: troop.assignment }));
+  await batch.commit();
 }

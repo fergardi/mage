@@ -78,7 +78,7 @@ export class RecruitComponent implements OnInit {
     // let kingdomBarrack = this.store.selectSnapshot(AuthState.getKingdomBarrack);
     if (this.form.valid && this.form.value.quantity * this.unit.gold <= this.kingdomGold.quantity) {
       try {
-        let recruited = await this.apiService.recruit(uid, this.unit.id, this.form.value.quantity);
+        let recruited = await this.apiService.recruitUnit(uid, this.unit.id, this.form.value.quantity);
         this.notificationService.success('kingdom.recruit.success', recruited);
         this.close();
       } catch (error) {

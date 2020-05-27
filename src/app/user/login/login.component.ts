@@ -73,7 +73,7 @@ export class LoginComponent {
         case 'signup':
           let position: any = await this.getCurrentPosition();
           let credentials = await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
-          await this.apiService.create(credentials.user.uid, this.form.value.faction.id, credentials.user.email, position.coords.latitude, position.coords.longitude);
+          await this.apiService.createKingdom(credentials.user.uid, this.form.value.faction.id, credentials.user.email, position.coords.latitude, position.coords.longitude);
           break;
         case 'reset':
           await this.angularFireAuth.sendPasswordResetEmail(email);

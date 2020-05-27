@@ -80,7 +80,7 @@ export class ShellComponent {
   }
 
   close() {
-    this.isHandset$.pipe(untilDestroyed(this)).subscribe(isHandset => {
+    this.isHandset$.subscribe(isHandset => {
       if (isHandset) this.drawer.close();
     })
   }
@@ -96,6 +96,16 @@ export class ShellComponent {
   tour() {
     // if (!this.drawer.opened) await this.drawer.open();
     this.tourService.start();
+  }
+
+  getSupplyLink(supply: any): string {
+    if (supply.join.name.includes('gem')) return '/kingdom/emporium';
+    if (supply.join.name.includes('gold')) return '/kingdom/auction';
+    if (supply.join.name.includes('mana')) return '/kingdom/sorcery';
+    if (supply.join.name.includes('population')) return '/kingdom/army';
+    if (supply.join.name.includes('land')) return '/kingdom/city';
+    if (supply.join.name.includes('turn')) return '/kingdom/city';
+    return null;
   }
 
 }

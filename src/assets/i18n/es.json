@@ -381,7 +381,8 @@
       "name": "Taberna",
       "description": "Asigna a tus héroes",
       "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna. Puedes asignarlos a Liderazo para que entren en batalla o a Guardia para que defiendan tu ciudad. También puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos.",
-      "success": "Tus héroes han sido asignados"
+      "success": "Tus héroes han sido asignados",
+      "error": "Ha ocurrido un problema al gestionar tus héroes"
     },
     "archive": {
       "name": "Archivo",

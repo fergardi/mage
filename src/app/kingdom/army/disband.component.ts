@@ -76,7 +76,7 @@ export class DisbandComponent implements OnInit {
     // let kingdomBarrack = this.store.selectSnapshot(AuthState.getKingdomBarrack);
     if (this.form.valid) {
       try {
-        let disbanded = await this.apiService.disband(uid, this.troop.fid, this.form.value.quantity);
+        let disbanded = await this.apiService.disbandTroop(uid, this.troop.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.disband.success');
         this.close();
       } catch (error) {

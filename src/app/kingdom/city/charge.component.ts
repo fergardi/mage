@@ -72,7 +72,7 @@ export class ChargeComponent implements OnInit {
   async charge() {
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       try {
-        let charged = await this.apiService.charge(this.uid, this.form.value.turns);
+        let charged = await this.apiService.chargeMana(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.charge.success', charged);
         this.close();
       } catch (error) {

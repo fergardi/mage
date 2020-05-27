@@ -75,7 +75,7 @@ export class ResearchComponent implements OnInit {
   async research() {
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       try {
-        let researched = await this.apiService.research(this.uid, this.charm.fid, this.form.value.turns);
+        let researched = await this.apiService.researchCharm(this.uid, this.charm.fid, this.form.value.turns);
         this.notificationService.success('kingdom.research.success');
         this.close();
       } catch (error) {

@@ -9,10 +9,13 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { DischargeComponent } from './discharge.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ApiService } from 'src/app/services/api.service';
 
 export enum ContractAssignmentType {
   'contractNone', 'contractAttack', 'contractDefense',
 }
+
+const MAXIMUM_CONTRACTS = 5;
 
 @Component({
   selector: 'app-tavern',
@@ -28,14 +31,13 @@ export class TavernComponent implements OnInit {
   kingdomContracts: any[] = [];
   attackContracts: any[] = [];
   defenseContracts: any[] = [];
-  maximumContracts: number = 5;
 
   constructor(
     private firebaseService: FirebaseService,
-    private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
     private dialog: MatDialog,
     private store: Store,
+    private apiService: ApiService,
   ) {}
 
   ngOnInit() {
@@ -47,15 +49,20 @@ export class TavernComponent implements OnInit {
     });
   }
 
-  assignContract($event: CdkDragDrop<any>) {
-    if ([0,3].includes(parseInt($event.container.id)) || $event.container.data.length < this.maximumContracts) {
+  async assignContract($event: CdkDragDrop<any>) {
+    if ([0,3].includes(parseInt($event.container.id)) || $event.container.data.length < MAXIMUM_CONTRACTS) {
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
-      this.angularFirestore.collection(`kingdoms/${this.uid}/contracts`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
-      this.notificationService.success('kingdom.tavern.success');
+      try {
+        let assigned = await this.apiService.assignContract(this.uid, $event.item.element.nativeElement.id, parseInt($event.container.id));
+        this.notificationService.success('kingdom.tavern.success');
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.tavern.error');
+      }
     } else {
       this.notificationService.warning('kingdom.tavern.maximum');
     }

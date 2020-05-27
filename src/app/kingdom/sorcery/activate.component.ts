@@ -86,7 +86,7 @@ export class ActivateComponent implements OnInit {
   async activate() {
     if (this.selectedArtifact.join.turns <= this.kingdomTurn.quantity) {
       try {
-        let activated = await this.apiService.activate(this.uid, this.selectedArtifact.fid, this.uid);
+        let activated = await this.apiService.activateArtifact(this.uid, this.selectedArtifact.fid, this.uid);
         this.notificationService.success('kingdom.activate.success');
         this.close();
       } catch (error) {

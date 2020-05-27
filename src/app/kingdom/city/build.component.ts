@@ -74,7 +74,7 @@ export class BuildComponent implements OnInit {
   async build() {
     if (this.form.valid && this.form.value.quantity <= this.kingdomLand.quantity && (this.form.value.quantity * this.building.join.gold) <= this.kingdomGold.quantity) {
       try {
-        let built = await this.apiService.build(this.uid, this.building.fid, this.form.value.quantity);
+        let built = await this.apiService.buildStructure(this.uid, this.building.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.build.success', built);
         this.close();
       } catch (error) {
