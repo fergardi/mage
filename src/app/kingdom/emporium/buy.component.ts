@@ -1,5 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { ApiService } from 'src/app/services/api.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-buy',
@@ -22,7 +26,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.buy.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="buy()" cdkFocusInitial>{{ 'kingdom.buy.buy' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="item.gems > kingdomGem.quantity" (click)="buy()" cdkFocusInitial>{{ 'kingdom.buy.buy' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -33,17 +37,34 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class BuyComponent {
 
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomGem: any = this.store.selectSnapshot(AuthState.getKingdomGem);
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public item: any,
     private dialogRef: MatDialogRef<BuyComponent>,
+    private store: Store,
+    private apiService: ApiService,
+    private notificationService: NotificationService,
   ) { }
 
   close(): void {
     this.dialogRef.close();
   }
 
-  buy(): void {
-    this.dialogRef.close(this.item.id);
+  async buy() {
+    if (this.item.gems <= this.kingdomGem.quantity) {
+      try {
+        let bought = await this.apiService.buyEmporium(this.uid, this.item.id);
+        this.notificationService.success('kingdom.emporium.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.emporium.error');
+      }
+    } else {
+      this.notificationService.error('kingdom.emporium.error');
+    }
   }
 
 }

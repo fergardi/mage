@@ -69,10 +69,15 @@ export class ApiService {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/tavern/${contractId}/assign/${assignmentId}`).toPromise();
   }
 
+
   assignArmy(kingdomId: string, army: any[]) {
     return this.httpClient.post(environment.functions.url + `/kingdom/${kingdomId}/army`, {
       army: army
     }).toPromise();
+  }
+
+  buyEmporium(kingdomId: string, itemId: string) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/emporium/${itemId}`).toPromise();
   }
 
 }
