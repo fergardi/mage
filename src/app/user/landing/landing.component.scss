@@ -1,3 +1,5 @@
+@import "../../../colors.scss";
+
 .app-landing {
   overflow-x: hidden;
   overflow-y: auto;
@@ -102,8 +104,9 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        border: 2px solid #99009c;
+        border: 2px solid $primary-color;
         margin: 10px;
+        box-sizing: content-box;
       }
     }
     .faction-icons {
@@ -126,7 +129,7 @@
     }
     .mat-display-3::after {
       content: '';
-      border-bottom: 8px solid #99009c;
+      border-bottom: 8px solid $primary-color;
       width: 200px;
       display: block;
       margin: 20px auto auto auto;
@@ -137,7 +140,7 @@
   }
   #footer {
     .retribution {
-      background-color: #99009c;
+      background-color: $primary-color;
       width: 100%;
       padding: 20px;
     }

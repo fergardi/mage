@@ -14,7 +14,7 @@
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
-        <mat-action-list dense id="0" tourAnchor="tour.artifacts" #kngdmArtifacts="cdkDropList" [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="kingdomArtifacts">
+        <mat-action-list dense class="dotted" id="0" tourAnchor="tour.artifacts" #kngdmArtifacts="cdkDropList" [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="kingdomArtifacts">
           <button mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag [cdkDragDisabled]="!artifact.join.battle" [ngClass]="{ 'handle': artifact.join.battle }" [id]="artifact.fid" (click)="!artifact.join.battle ? openActivateDialog(artifact) : null">
             <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
               <img mat-list-avatar [src]="artifact.join.image">
@@ -30,7 +30,7 @@
         </mat-action-list>
 
         <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
-        <mat-action-list dense id="3" tourAnchor="tour.spells" #kngdmCharms="cdkDropList" [cdkDropListConnectedTo]="[atckCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="kingdomCharms">
+        <mat-action-list dense class="dotted" id="3" tourAnchor="tour.spells" #kngdmCharms="cdkDropList" [cdkDropListConnectedTo]="[atckCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="kingdomCharms">
           <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.join.battle || !charm.completed" [ngClass]="{ 'handle': charm.join.battle && charm.completed }" (click)="!charm.completed ? openResearchDialog(charm) : !charm.join.battle ? openConjureDialog(charm) : null" [id]="charm.fid">
             <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="charm.join.image">
@@ -67,7 +67,7 @@
 
           <mat-card-content>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
-            <mat-list dense id="1" #atckArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="attackArtifacts">
+            <mat-list dense class="dotted" id="1" #atckArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="attackArtifacts">
               <mat-list-item *ngFor="let artifact of attackArtifacts" cdkDrag class="handle" [id]="artifact.fid">
                 <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
                   <img mat-list-avatar [src]="artifact.join.image">
@@ -79,7 +79,7 @@
             </mat-list>
 
             <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
-            <mat-list dense id="4" #atckCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="attackCharms">
+            <mat-list dense class="dotted" id="4" #atckCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="attackCharms">
               <mat-list-item *ngFor="let charm of attackCharms" cdkDrag class="handle" [id]="charm.fid">
                 <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="charm.join.image">
@@ -107,7 +107,7 @@
 
           <mat-card-content>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
-            <mat-list dense id="2" #defArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="defenseArtifacts">
+            <mat-list dense class="dotted" id="2" #defArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="defenseArtifacts">
               <mat-list-item *ngFor="let artifact of defenseArtifacts" cdkDrag class="handle" [id]="artifact.fid">
                 <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
                   <img mat-list-avatar [src]="artifact.join.image">
@@ -119,7 +119,7 @@
             </mat-list>
 
             <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
-            <mat-list dense id="5" #defCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, atckCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="defenseCharms">
+            <mat-list dense class="dotted" id="5" #defCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, atckCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="defenseCharms">
               <mat-list-item *ngFor="let charm of defenseCharms" cdkDrag class="handle" [id]="charm.fid">
                 <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="charm.join.image">

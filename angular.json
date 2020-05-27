@@ -31,7 +31,8 @@
               "node_modules/rpg-awesome/css/rpg-awesome.min.css",
               "node_modules/animate.css/animate.min.css",
               "node_modules/mapbox-gl/dist/mapbox-gl.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/colors.scss"
             ],
             "scripts": []
           },

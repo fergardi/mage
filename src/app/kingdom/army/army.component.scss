@@ -9,9 +9,5 @@
       cursor: grabbing;
     }
   }
-  ::ng-deep .mat-list-base.dotted {
-    padding-top: 0;
-    min-height: 60px;
-    border: 2px dashed rgba(255, 255, 255, 0.12);
-  }
+
 }
