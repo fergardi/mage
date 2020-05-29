@@ -60,7 +60,10 @@ const BATTLE_TURNS = 2;
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.battle.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="battle()" cdkFocusInitial>{{ 'kingdom.battle.attack' | translate }}</button>
+      <div class="button-container">
+        <div class="spinner-container" *ngIf="loading"><mat-spinner color="primary" diameter="24"></mat-spinner></div>
+        <button mat-raised-button color="primary" [disabled]="form.invalid || loading" (click)="battle()" cdkFocusInitial>{{ 'kingdom.battle.attack' | translate }}</button>
+      </div>
     </div>
   `,
   styles: [`
@@ -85,6 +88,7 @@ export class BattleComponent implements OnInit {
   kingdomTroops: any[] = [];
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  loading: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public kingdom: any,
@@ -110,6 +114,7 @@ export class BattleComponent implements OnInit {
   }
 
   async battle() {
+    this.loading = true;
     if (this.form.valid && this.BATTLE_TURNS <= this.kingdomTurn.quantity) {
       try {
         let battled = await this.apiService.battleKingdom(this.uid, this.kingdom.fid, this.form.value.type);
@@ -122,6 +127,7 @@ export class BattleComponent implements OnInit {
     } else {
       this.notificationService.error('kingdom.battle.error');
     }
+    this.loading = false;
   }
 
 }

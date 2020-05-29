@@ -1,10 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-report',
   template: `
-    <h1 mat-dialog-title>{{ letter.subject }}</h1>
+    <h1 mat-dialog-title>{{ letter.subject | translate }}</h1>
     <div mat-dialog-content>
       <mat-list dense>
         <mat-list-item>
@@ -15,14 +16,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           <div mat-line class="mat-card-subtitle">{{ letter.join.join.name | translate }}</div>
         </mat-list-item>
       </mat-list>
-      <p>{{ letter.message }}</p>
+      <p>{{ letter.message | translate }}</p>
       <mat-list dense *ngIf="letter.log">
         <mat-list-item *ngFor="let log of letter.log" [ngClass]="'log-' + log.side">
           <div mat-list-avatar [matBadge]="log.quantity | long" [matBadgePosition]="log.side === 'left' ? 'above before' : 'above after'">
-            <img mat-list-avatar [src]="log.join.image">
+            <img mat-list-avatar *ngIf="log.join" [src]="log.join.image">
           </div>
-          <div mat-line>{{ log.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">texto de prueba</div>
+          <div mat-line *ngIf="log.join">{{ log.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ log.text | translate }}</div>
         </mat-list-item>
       </mat-list>
     </div>
@@ -50,15 +51,22 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     }
   `]
 })
-export class ReportComponent {
+export class ReportComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public letter: any,
     private dialogRef: MatDialogRef<ReportComponent>,
+    private firebaseService: FirebaseService,
   ) { }
 
   close() {
     this.dialogRef.close();
+  }
+
+  async ngOnInit() {
+    this.letter.log = await Promise.all(this.letter.log.sort((a: any, b: any) => a.sort - b.sort).map(async (log: any) => {
+      return await this.firebaseService.selfJoin(log);
+    }));
   }
 
 }

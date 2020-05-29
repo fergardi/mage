@@ -9,10 +9,7 @@ import { BattleComponent } from './battle.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase/app';
 import * as moment from 'moment';
-import { NotificationService } from 'src/app/services/notification.service';
 import { LetterComponent } from './letter.component';
 import { ActivateComponent } from '../sorcery/activate.component';
 import { ConjureComponent } from '../sorcery/conjure.component';
@@ -43,9 +40,7 @@ export class CensusComponent implements OnInit, OnDestroy {
   data: MatTableDataSource<any> = null;
 
   constructor(
-    private angularFirestore: AngularFirestore,
     private firebaseService: FirebaseService,
-    private notificationService: NotificationService,
     private dialog: MatDialog,
     private store: Store,
   ) {
@@ -63,7 +58,7 @@ export class CensusComponent implements OnInit, OnDestroy {
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
-    })
+    });
   }
 
   applyFilter() {
@@ -85,12 +80,6 @@ export class CensusComponent implements OnInit, OnDestroy {
       panelClass: 'dialog-responsive',
       data: kingdom,
     });
-    dialogRef.afterClosed().subscribe(async data => {
-      if (data) {
-        await this.angularFirestore.doc<any>(`kingdoms/${kingdom.fid}`).update({ lastAttacked: firestore.FieldValue.serverTimestamp() });
-        this.notificationService.success('kingdom.census.report');
-      }
-    })
   }
 
   openLetterDialog(kingdom: any): void {
@@ -98,18 +87,6 @@ export class CensusComponent implements OnInit, OnDestroy {
       panelClass: 'dialog-responsive',
       data: kingdom,
     });
-    dialogRef.afterClosed().subscribe(async form => {
-      if (form) {
-        await this.angularFirestore.collection(`kingdoms/${kingdom.fid}/letters`).add({
-          from: this.uid,
-          to: kingdom.fid,
-          subject: form.subject,
-          message: form.message,
-          timestamp: firestore.FieldValue.serverTimestamp(),
-        });
-        this.notificationService.success('kingdom.letter.sent');
-      }
-    })
   }
 
   openActivateDialog(kingdom: any): void {
@@ -117,11 +94,6 @@ export class CensusComponent implements OnInit, OnDestroy {
       panelClass: 'dialog-responsive',
       data: null,
     });
-    dialogRef.afterClosed().subscribe(artifact => {
-      if (artifact) {
-        // TODO
-      }
-    })
   }
 
   openConjureDialog(kingdom: any): void {
@@ -129,16 +101,11 @@ export class CensusComponent implements OnInit, OnDestroy {
       panelClass: 'dialog-responsive',
       data: null,
     });
-    dialogRef.afterClosed().subscribe(async data => {
-      if (data) {
-        // TODO
-      }
-    })
   }
 
   canBeAttacked(kingdom: any): boolean {
     return kingdom.lastAttacked
-      ? moment(this.clock).subtract(30, 'seconds').isAfter(moment(kingdom.lastAttacked.toMillis()))
+      ? moment(this.clock).isAfter(moment(kingdom.lastAttacked.toMillis()))
       : true;
   }
 

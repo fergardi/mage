@@ -4,12 +4,14 @@ import * as admin from 'firebase-admin';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as ash from 'express-async-handler';
+import * as moment from 'moment';
 
 const MIN_TURNS: number = 5;
-const MAX_TURNS: number = 300;
+// const MAX_TURNS: number = 300;
 const MIN_LANDS: number = 1;
 const MAX_LANDS: number = 3500;
 const BATTLE_TURNS: number = 2;
+const PROTECTION_TIME: number = 60;
 
 type RewardType = 'enchantment' | 'contract' | 'artifact' | 'summon' | 'resource';
 type ResourceType = 'gold' | 'population' | 'land' | 'gem' | 'mana' | 'turn';
@@ -759,9 +761,30 @@ const battleKingdom = async (kingdomId: string, battleId: BattleType, targetId: 
         case 'siege':
           break;
       }
-      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/letters`).doc(), {  });
-      batch.update(angularFirestore.doc(`kingdoms/${targetId}`), { lastAttacked: firestore.FieldValue.serverTimestamp() });
-      await addSupply(kingdomId, 'turn', BATTLE_TURNS, batch);
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/letters`).doc(), {
+        from: kingdomId,
+        to: targetId,
+        subject: 'kingdom.report.battle',
+        message: 'kingdom.report.description',
+        timestamp: admin.firestore.Timestamp.now(),
+        log: [
+          { side: 'left', sort: 1, spell: 'fireball', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 2, item: 'mana-vortex', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 3, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'right', sort: 4, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 5, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'right', sort: 6, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 7, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'right', sort: 8, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 9, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'right', sort: 10, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 11, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+        ],
+      });
+      batch.update(angularFirestore.doc(`kingdoms/${targetId}`), {
+        lastAttacked: moment(admin.firestore.Timestamp.now()).add(PROTECTION_TIME, 'seconds')
+      });
+      await addSupply(kingdomId, 'turn', -BATTLE_TURNS, batch);
       await batch.commit();
     } else throw new Error('api.error.battle');
   } else throw new Error('api.error.battle');

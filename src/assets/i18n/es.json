@@ -223,6 +223,8 @@
       "report": "Se ha enviado el reporte de batalla"
     },
     "report": {
+      "battle": "Reporte de batalla",
+      "description": "Este reporte contiene la siguiente información relevante:",
       "close": "Cerrar"
     },
     "battle": {

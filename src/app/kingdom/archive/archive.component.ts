@@ -105,22 +105,6 @@ export class ArchiveComponent implements OnInit {
   }
 
   async openReportDialog(letter: any) {
-    letter.log = [
-      { side: 'left', sort: 1, spell: 'fireball', quantity: 123 },
-      { side: 'left', sort: 2, item: 'mana-vortex', quantity: 123 },
-      { side: 'left', sort: 3, unit: 'skeleton', quantity: 123 },
-      { side: 'right', sort: 4, unit: 'skeleton', quantity: 123 },
-      { side: 'left', sort: 5, unit: 'skeleton', quantity: 123 },
-      { side: 'right', sort: 6, unit: 'skeleton', quantity: 123 },
-      { side: 'left', sort: 7, unit: 'skeleton', quantity: 123 },
-      { side: 'right', sort: 8, unit: 'skeleton', quantity: 123 },
-      { side: 'left', sort: 9, unit: 'skeleton', quantity: 123 },
-      { side: 'right', sort: 10, unit: 'skeleton', quantity: 123 },
-      { side: 'left', sort: 11, unit: 'skeleton', quantity: 123 },
-    ]
-    letter.log = await Promise.all(letter.log.sort((a, b) => a.sort - b.sort).map(async (log: any) => {
-      return await this.firebaseService.selfJoin(log);
-    }));
     const dialogRef = this.dialog.open(ReportComponent, {
       panelClass: 'dialog-responsive',
       data: letter,
