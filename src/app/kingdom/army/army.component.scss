@@ -1,13 +1,3 @@
 .kingdom-army {
   padding: 10px;
-  .handle {
-    &:hover {
-      cursor: move;
-      background-color: #303030;
-    }
-    &:active {
-      cursor: grabbing;
-    }
-  }
-
 }

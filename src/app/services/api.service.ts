@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { BattleType } from '../kingdom/census/battle.component';
 
 @Injectable({
   providedIn: 'root'
@@ -69,7 +70,6 @@ export class ApiService {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/tavern/${contractId}/assign/${assignmentId}`).toPromise();
   }
 
-
   assignArmy(kingdomId: string, army: any[]) {
     return this.httpClient.post(environment.functions.url + `/kingdom/${kingdomId}/army`, {
       army: army
@@ -78,6 +78,10 @@ export class ApiService {
 
   buyEmporium(kingdomId: string, itemId: string) {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/emporium/${itemId}`).toPromise();
+  }
+
+  battleKingdom(kingdomId: string, targetId: string, battleId: number ) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/battle/${battleId}/target/${targetId}`).toPromise();
   }
 
 }

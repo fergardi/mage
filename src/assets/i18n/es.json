@@ -200,7 +200,7 @@
   "kingdom": {
     "city": {
       "name": "Ciudad",
-      "description": "Administra tu capital",
+      "description": "Administra tu reino",
       "help": "En la ciudad puedes invertir turnos, oro, y tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino.",
       "success": "Edificios construidos correctamente",
       "error": "Ha ocurrido un error al construir edificios"
@@ -230,7 +230,10 @@
       "description": "TODO",
       "attack": "Atacar",
       "cancel": "Cancelar",
-      "type": "Tipo de batalla"
+      "type": "Tipo de batalla",
+      "hint": "Selecciona el objetivo",
+      "success": "Has recibido un mensaje",
+      "error": "Ha ocurrido un problema"
     },
     "army": {
       "name": "Ejército",

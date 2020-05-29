@@ -162,7 +162,7 @@ body {
 
 .mat-menu-item.active,
 .mat-list-item.active {
-  background-color: #303030;
+  background-color: rgba(255, 255, 255, 0.04);
 }
 
 .mat-badge-content {
@@ -248,7 +248,7 @@ body {
   box-sizing: border-box;
   border: 2px dashed $primary-color;
   display: block;
-  height: 60px;
+  height: 76px;
   width: 100%;
   padding: 0;
   position: relative;
@@ -309,18 +309,22 @@ body {
 
 .mat-list-base.dotted {
   padding-top: 0;
-  min-height: 60px;
+  min-height: 76px;
   border: 2px dashed $primary-color;
 }
-.mat-list-item:hover {
-  background-color: #303030;
-}
-.handle {
-  &:hover {
-    cursor: move;
-  }
-  &:active {
-    cursor: grabbing;
+.mat-list {
+  .mat-list-item {
+    min-height: 76px !important;
+    height: 76px !important;
+    &.handle {
+      &:hover {
+        cursor: move;
+        background-color: rgba(255, 255, 255, 0.04);
+      }
+      &:active {
+        cursor: grabbing;
+      }
+    }
   }
 }
 

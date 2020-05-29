@@ -3,12 +3,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { TroopAssignmentType } from '../army/army.component';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/services/api.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 export enum BattleType {
   'siege' = 'siege',
   'pillage' = 'pillage',
   'attack' = 'attack',
 }
+
+const BATTLE_TURNS = 2;
 
 @Component({
   selector: 'app-battle',
@@ -22,18 +29,22 @@ export enum BattleType {
           </div>
           <div mat-line>{{ kingdom.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ kingdom.join.name | translate }}</div>
-          <div mat-list-avatar [matBadge]="1" matBadgePosition="above after">
+          <div mat-list-avatar [matBadge]="BATTLE_TURNS" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>
       </mat-list>
-      <mat-form-field>
-        <mat-label>{{ 'kingdom.battle.type' | translate }}</mat-label>
-        <mat-select [(ngModel)]="attackType">
-          <mat-option *ngFor="let type of attackTypes" [value]="type">{{ 'type.' + type + '.name' | translate }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-list dense>
+      <form [formGroup]="form">
+        <mat-form-field>
+          <mat-label>{{ 'kingdom.battle.type' | translate }}</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let type of battleTypes" [value]="type">{{ 'type.' + type + '.name' | translate }}</mat-option>
+          </mat-select>
+          <mat-hint>{{ 'kingdom.battle.hint' | translate }}</mat-hint>
+          <mat-error>{{ 'kingdom.battle.error' | translate }}</mat-error>
+        </mat-form-field>
+      </form>
+      <mat-list dense class="list-margened">
         <mat-list-item *ngFor="let troop of kingdomTroops">
           <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image">
@@ -49,33 +60,46 @@ export enum BattleType {
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.battle.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [mat-dialog-close]="attackType" cdkFocusInitial>{{ 'kingdom.battle.attack' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="battle()" cdkFocusInitial>{{ 'kingdom.battle.attack' | translate }}</button>
     </div>
   `,
   styles: [`
     .mat-form-field {
       width: 100%;
     }
+    .list-margened {
+      margin-top: 15px;
+    }
   `]
 })
 @UntilDestroy()
 export class BattleComponent implements OnInit {
 
-  attackTypes: BattleType[] = [
+  readonly BATTLE_TURNS = BATTLE_TURNS;
+  form: FormGroup = null;
+  battleTypes: BattleType[] = [
     BattleType.attack,
     BattleType.pillage,
     BattleType.siege,
   ];
-  attackType: BattleType = BattleType.attack;
   kingdomTroops: any[] = [];
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public kingdom: any,
     private dialogRef: MatDialogRef<BattleComponent>,
     private firebaseService: FirebaseService,
+    private store: Store,
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
+    private notificationService: NotificationService,
   ) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      type: [null, [Validators.required]]
+    });
     this.firebaseService.leftJoin(`kingdoms/${this.kingdom.fid}/troops`, 'units', 'id', 'id', ref => ref.where('assignment', '==', TroopAssignmentType.troopDefense)).pipe(untilDestroyed(this)).subscribe(troops => {
       this.kingdomTroops = troops.sort((a, b) => a.join.name - b.join.name);
     });
@@ -83,6 +107,21 @@ export class BattleComponent implements OnInit {
 
   close(): void {
     this.dialogRef.close();
+  }
+
+  async battle() {
+    if (this.form.valid && this.BATTLE_TURNS <= this.kingdomTurn.quantity) {
+      try {
+        let battled = await this.apiService.battleKingdom(this.uid, this.kingdom.fid, this.form.value.type);
+        this.notificationService.success('kingdom.battle.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.battle.error');
+      }
+    } else {
+      this.notificationService.error('kingdom.battle.error');
+    }
   }
 
 }
