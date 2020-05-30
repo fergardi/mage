@@ -203,6 +203,17 @@ body {
   margin-top: 0 !important;
 }
 
+.mat-subheader {
+  display: flex;
+  box-sizing: border-box;
+  padding: 16px;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  height: 40px;
+  line-height: 8px;
+}
+
 .mat-list-base:not(.mat-nav-list) {
   img.mat-list-avatar {
     box-sizing: content-box;
