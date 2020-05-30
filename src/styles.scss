@@ -199,6 +199,10 @@ body {
   }
 }
 
+.mat-list-base .mat-subheader:first-child {
+  margin-top: 0 !important;
+}
+
 .mat-list-base:not(.mat-nav-list) {
   img.mat-list-avatar {
     box-sizing: content-box;

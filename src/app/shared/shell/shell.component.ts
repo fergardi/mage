@@ -21,33 +21,48 @@ import { TourService } from 'ngx-tour-md-menu';
 export class ShellComponent {
 
   uid: string = null;
-  langs: Array<any> = [
+  langs: any[] = [
     { lang: 'es', image: '/assets/images/languages/es.png' },
     { lang: 'en', image: '/assets/images/languages/en.png' },
     { lang: 'fr', image: '/assets/images/languages/fr.png' },
   ];
-  links: Array<any> = [
-    { url: '/user/landing', name: 'user.landing.name', description: 'user.landing.description', image: '/assets/images/icons/landing.png', guarded: false, logged: false },
-    { url: '/user/login', name: 'user.login.name', description: 'user.login.description', image: '/assets/images/icons/login.png', guarded: false, logged: false },
-    { url: '/world/map', name: 'world.map.name', description: 'world.map.description', image: '/assets/images/icons/map.png', guarded: true, logged: true },
-    { url: '/kingdom/city', name: 'kingdom.city.name', description: 'kingdom.city.description', image: '/assets/images/icons/city.png', guarded: true, logged: true },
-    { url: '/kingdom/sorcery', name: 'kingdom.sorcery.name', description: 'kingdom.sorcery.description', image: '/assets/images/icons/sorcery.png', guarded: true, logged: true },
-    { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/icons/army.png', guarded: true, logged: true },
-    { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/icons/tavern.png', guarded: true, logged: true },
-    { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/icons/temple.png', guarded: true, logged: true },
-    { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/icons/auction.png', guarded: true, logged: true },
-    { url: '/kingdom/census', name: 'kingdom.census.name', description: 'kingdom.census.description', image: '/assets/images/icons/census.png', guarded: true, logged: true },
-    { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/icons/archive.png', guarded: true, logged: true },
-    { url: '/kingdom/emporium', name: 'kingdom.emporium.name', description: 'kingdom.emporium.description', image: '/assets/images/icons/emporium.png', guarded: true, logged: true },
-    { url: '/user/encyclopedia', name: 'user.encyclopedia.name', description: 'user.encyclopedia.description', image: '/assets/images/icons/encyclopedia.png', guarded: false, logged: true },
+  groups: any[] = [
+    {
+      name: 'shell.group.interior', links: [
+        { url: '/kingdom/city', name: 'kingdom.city.name', description: 'kingdom.city.description', image: '/assets/images/cards/city.png', show: true },
+        { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/cards/army.png', show: true },
+        { url: '/kingdom/sorcery', name: 'kingdom.sorcery.name', description: 'kingdom.sorcery.description', image: '/assets/images/cards/sorcery.png', show: true },
+        { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/cards/tavern.png', show: true },
+        { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/cards/temple.png', show: true },
+      ],
+    },
+    {
+      name: 'shell.group.exterior', links: [
+        { url: '/world/map', name: 'world.map.name', description: 'world.map.description', image: '/assets/images/cards/map.png', show: true },
+        { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/cards/auction.png', show: true },
+        { url: '/kingdom/census', name: 'kingdom.census.name', description: 'kingdom.census.description', image: '/assets/images/cards/census.png', show: true },
+      ]
+    },
+    {
+      name: 'shell.group.diplomacy', links: [
+        { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/cards/archive.png', show: true },
+        { url: '/kingdom/emporium', name: 'kingdom.emporium.name', description: 'kingdom.emporium.description', image: '/assets/images/cards/emporium.png', show: true },
+      ],
+    },
+    {
+      name: 'shell.group.council', links: [
+        { url: '/user/landing', name: 'user.landing.name', description: 'user.landing.description', image: '/assets/images/cards/landing.png', show: false },
+        { url: '/user/login', name: 'user.login.name', description: 'user.login.description', image: '/assets/images/cards/login.png', show: false },
+        { url: '/user/encyclopedia', name: 'user.encyclopedia.name', description: 'user.encyclopedia.description', image: '/assets/images/cards/encyclopedia.png', show: true },
+      ],
+    },
   ];
   @Select((state: any) => state.auth.supplies) kingdomSupplies$: Observable<any[]>;
   link$: Observable<any> = this.router.events
   .pipe(
     filter((event): event is NavigationEnd => event instanceof NavigationEnd),
     map(event => {
-      let route = this.links.find(link => link.url === event.url);
-      return route;
+      return this.groups.reduce((a, b) => a.concat(b.links), []).find((link: any) => link.url === event.url);
     })
   );
   isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset])

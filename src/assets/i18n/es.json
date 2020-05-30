@@ -77,7 +77,7 @@
       "auth/email-already-in-use": "Ese correo electrónico ya está en uso"
     },
     "login": {
-      "name": "Acceder",
+      "name": "Acceso",
       "description": "Iniciar sesión",
       "login": "Iniciar sesión",
       "signup": "Nuevo jugador",
@@ -101,6 +101,15 @@
     },
     "tome": {
       "close": "Cerrar"
+    }
+  },
+  "shell": {
+    "group": {
+      "arcano": "Arcano",
+      "interior": "Interior",
+      "exterior": "Exterior",
+      "diplomacy": "Diplomacia",
+      "council": "Concilio"
     }
   },
   "type": {

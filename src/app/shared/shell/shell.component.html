@@ -30,24 +30,30 @@
     <!-- scroll container -->
     <div class="scroll-container" [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100% - 64px)' : 'calc(100% - 56px)' }">
       <!-- image -->
+      <!--
       <div class="sidenav-logo-container">
         <img class="sidenav-logo" [src]="(link$ | async)?.image">
       </div>
+      -->
       <!-- links -->
-      <mat-nav-list dense>
-        <ng-container *ngFor="let link of links">
-          <a mat-list-item
-            *ngIf="(!link.guarded && !(angularFireAuth.authState | async)) || link.logged && (angularFireAuth.authState | async)"
-            (click)="close()"
-            [routerLink]="link.url ? link.url : null"
-            [routerLinkActive]="link.url ? ['active'] : []"
-            [routerLinkActiveOptions]="{ exact: true }">
-            <div mat-list-avatar>
-              <img mat-list-avatar [src]="link.image">
-            </div>
-            <div mat-line>{{ link.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ link.description | translate }}</div>
-          </a>
+      <mat-nav-list dense class="router-list">
+        <ng-container *ngFor="let group of groups">
+          <div matSubheader>{{ group.name | translate }}:</div>
+          <ng-container *ngFor="let link of group.links">
+            <a mat-list-item
+              *ngIf="link.show"
+              [disabled]="!(angularFireAuth.authState | async)"
+              (click)="close()"
+              [routerLink]="link.url ? link.url : null"
+              [routerLinkActive]="link.url ? ['active'] : []"
+              [routerLinkActiveOptions]="{ exact: true }">
+              <div mat-list-avatar>
+                <img mat-list-avatar [src]="link.image">
+              </div>
+              <div mat-line>{{ link.name | translate }}</div>
+              <div mat-line class="mat-card-subtitle">{{ link.description | translate }}</div>
+            </a>
+          </ng-container>
         </ng-container>
       </mat-nav-list>
     </div>
