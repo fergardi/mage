@@ -15,6 +15,7 @@
     },
     "charge": {
       "name": "",
+
       "description": ""
     },
     "explore": {
@@ -105,11 +106,10 @@
   },
   "shell": {
     "group": {
-      "arcano": "Arcano",
-      "interior": "Interior",
-      "exterior": "Exterior",
-      "diplomacy": "Diplomacia",
-      "council": "Concilio"
+      "interior": "Interior del Reino",
+      "exterior": "Exterior del Reino",
+      "diplomacy": "Diplomacia del Reino",
+      "wisdom": "Sabiduría del Reino"
     }
   },
   "type": {
@@ -209,7 +209,7 @@
   "kingdom": {
     "city": {
       "name": "Ciudad",
-      "description": "Administra tu reino",
+      "description": "Administra tu capital",
       "help": "En la ciudad puedes invertir turnos, oro, y tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino.",
       "success": "Edificios construidos correctamente",
       "error": "Ha ocurrido un error al construir edificios"
