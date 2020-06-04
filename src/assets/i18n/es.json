@@ -106,10 +106,11 @@
   },
   "shell": {
     "group": {
-      "interior": "Interior del Reino",
-      "exterior": "Exterior del Reino",
-      "diplomacy": "Diplomacia del Reino",
-      "wisdom": "Sabiduría del Reino"
+      "coin": "Consejo de la Moneda",
+      "sword": "Consejo de la Espada",
+      "wispers": "Consejo de Susurros",
+      "priest": "Consejo del Clero",
+      "wisdom": "Consejo de Eruditos"
     }
   },
   "type": {

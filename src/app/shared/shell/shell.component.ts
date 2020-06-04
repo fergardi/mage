@@ -28,24 +28,28 @@ export class ShellComponent {
   ];
   groups: any[] = [
     {
-      name: 'shell.group.interior', image: '/assets/images/cards/interior.png', links: [
+      name: 'shell.group.coin', image: '/assets/images/cards/coin.png', links: [
         { url: '/kingdom/city', name: 'kingdom.city.name', description: 'kingdom.city.description', image: '/assets/images/cards/city.png', show: true },
-        { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/cards/army.png', show: true },
-        { url: '/kingdom/sorcery', name: 'kingdom.sorcery.name', description: 'kingdom.sorcery.description', image: '/assets/images/cards/sorcery.png', show: true },
-        { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/cards/tavern.png', show: true },
-        { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/cards/temple.png', show: true },
+        { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/cards/auction.png', show: true },
       ],
     },
     {
-      name: 'shell.group.exterior', image: '/assets/images/cards/exterior.png', links: [
+      name: 'shell.group.sword', image: '/assets/images/cards/sword.png', links: [
         { url: '/world/map', name: 'world.map.name', description: 'world.map.description', image: '/assets/images/cards/map.png', show: true },
-        { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/cards/auction.png', show: true },
+        { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/cards/army.png', show: true },
+        { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/cards/tavern.png', show: true },
       ]
     },
     {
-      name: 'shell.group.diplomacy', image: '/assets/images/cards/diplomacy.png', links: [
+      name: 'shell.group.wispers', image: '/assets/images/cards/wispers.png', links: [
         { url: '/kingdom/census', name: 'kingdom.census.name', description: 'kingdom.census.description', image: '/assets/images/cards/census.png', show: true },
         { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/cards/archive.png', show: true },
+      ]
+    },
+    {
+      name: 'shell.group.priest', image: '/assets/images/cards/priest.png', links: [
+        { url: '/kingdom/sorcery', name: 'kingdom.sorcery.name', description: 'kingdom.sorcery.description', image: '/assets/images/cards/sorcery.png', show: true },
+        { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/cards/temple.png', show: true },
       ],
     },
     {
