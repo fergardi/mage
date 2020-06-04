@@ -42,6 +42,7 @@ export class MapboxService {
   map: mapboxgl.Map = null;
   markers: Marker[] = [];
   offset: number = 10;
+  kingdom: string = null;
 
   constructor(
     private componentService: ComponentService,
@@ -343,7 +344,10 @@ export class MapboxService {
       .addTo(this.map);
     }
     // center
-    if (fly) this.goTo(data.coordinates.latitude, data.coordinates.longitude, true);
+    if (fly) {
+      this.goTo(data.coordinates.latitude, data.coordinates.longitude, true);
+      marker.togglePopup();
+    }
     // add to list for future disposal
     this.markers.push({ id: data.fid, marker: marker, circle: circle, type: type });
     // return

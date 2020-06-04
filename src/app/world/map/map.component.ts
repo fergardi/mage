@@ -9,6 +9,7 @@ import * as geofirex from 'geofirex';
 import * as firebase from 'firebase/app';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -28,18 +29,25 @@ export class MapComponent implements OnInit, OnDestroy {
     private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private store: Store,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.on('load', () => {
+      // resize map in case drawer has changed
       this.mapboxService.resize();
       this.angularFirestore.collection<any>('kingdoms').valueChanges().pipe(untilDestroyed(this)).subscribe(kingdoms => {
         kingdoms.forEach(async (data: any) => {
           let kingdom = await this.firebaseService.selfJoin({ ...data, fid: data.id });
-          this.mapboxService.addMarker(kingdom, MarkerType.kingdom, true, kingdom.id === this.uid, false);
+          this.mapboxService.addMarker(kingdom, MarkerType.kingdom, true, kingdom.id === this.uid,
+            this.activatedRoute.snapshot.params.kingdom
+              ? this.activatedRoute.snapshot.params.kingdom === kingdom.id
+              : kingdom.id === this.uid
+            );
         })
       });
+      // print kingdoms
       this.kingdom$.pipe(
         switchMap(kingdom => {
           if (kingdom) {
@@ -56,6 +64,7 @@ export class MapComponent implements OnInit, OnDestroy {
           this.mapboxService.addMarker(quest, MarkerType.quest, true, false, false);
         })
       });
+      // print kingdom surroundings based on power radius km
       this.kingdom$.pipe(
         switchMap(kingdom => {
           if (kingdom) {

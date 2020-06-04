@@ -13,6 +13,7 @@ import * as moment from 'moment';
 import { LetterComponent } from './letter.component';
 import { ActivateComponent } from '../sorcery/activate.component';
 import { ConjureComponent } from '../sorcery/conjure.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-census',
@@ -43,6 +44,7 @@ export class CensusComponent implements OnInit, OnDestroy {
     private firebaseService: FirebaseService,
     private dialog: MatDialog,
     private store: Store,
+    private router: Router,
   ) {
     this.interval = setInterval(() => this.clock = new Date(), 1000);
   }
@@ -107,6 +109,10 @@ export class CensusComponent implements OnInit, OnDestroy {
     return kingdom.lastAttacked
       ? moment(this.clock).isAfter(moment(kingdom.lastAttacked.toMillis()))
       : true;
+  }
+
+  async showInMap(kingdom: any) {
+    await this.router.navigate([`/world/map/${kingdom.fid}`]);
   }
 
   ngOnDestroy() {

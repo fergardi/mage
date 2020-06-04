@@ -106,11 +106,11 @@
   },
   "shell": {
     "group": {
-      "coin": "Consejo de la Moneda",
-      "sword": "Consejo de la Espada",
-      "wispers": "Consejo de Susurros",
-      "priest": "Consejo del Clero",
-      "wisdom": "Consejo de Eruditos"
+      "coin": "Gremio de la Moneda",
+      "sword": "Gremio de la Espada",
+      "wispers": "Gremio de los Susurros",
+      "priest": "Gremio del Clero",
+      "wisdom": "Gremio de Eruditos"
     }
   },
   "type": {
@@ -204,7 +204,8 @@
   "world": {
     "map": {
       "name": "Mapa",
-      "description": "Planifica tu estrategia"
+      "description": "Planifica tu estrategia",
+      "localize": "Localizar"
     }
   },
   "kingdom": {
