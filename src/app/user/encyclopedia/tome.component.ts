@@ -16,7 +16,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(tome.type)">
             {{ tome.description | translate }}
           </div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(tome.type)" [innerHTML]="tome.description | translate | icon:tome.skills:tome.categories:tome.families:tome.units:tome.resources:tome.spells"></div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(tome.type)" [innerHTML]="tome.description | translate | icon:tome.skills:tome.categories:tome.families:tome.units:tome.resources:tome.spells:tome.adjacents:tome.opposites"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(tome.type)">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of tome.families" [src]="family.image">
             <img [title]="category.name | translate" class="icon" *ngFor="let category of tome.categories" [src]="category.image">

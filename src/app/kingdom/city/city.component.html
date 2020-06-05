@@ -21,7 +21,7 @@
               <img mat-list-avatar [src]="building.join.image">
             </div>
             <div mat-line>{{ building.join.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join.skills:building.join.categories:building.join.families:building.join.units:building.join.resources:building.join.spells"></div>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join.skills:building.join.categories:building.join.families:building.join.units:building.join.resources:building.join.spells:building.join.adjacents:building.join.opposites"></div>
             <div mat-list-avatar [matBadge]="building.join.gold | long" matBadgePosition="above after">
               <img mat-list-avatar src="/assets/images/resources/gold.png">
             </div>
@@ -57,7 +57,7 @@
                   <img mat-list-avatar [src]="village.join.image">
                 </div>
                 <div mat-line>{{ village.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="village.join.description | translate | icon:village.join.skills:village.join.categories:village.join.families:village.join.units:village.join.resources:village.join.spells"></div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="village.join.description | translate | icon:village.join.skills:village.join.categories:village.join.families:village.join.units:village.join.resources:village.join.spells:village.join.adjacents:village.join.opposites"></div>
                 <div mat-list-avatar matBadge="?" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
@@ -89,7 +89,7 @@
                   <img mat-list-avatar [src]="node.join.image">
                 </div>
                 <div mat-line>{{ node.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="node.join.description | translate | icon:node.join.skills:node.join.categories:node.join.families:node.join.units:node.join.resources:node.join.spells"></div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="node.join.description | translate | icon:node.join.skills:node.join.categories:node.join.families:node.join.units:node.join.resources:node.join.spells:node.join.adjacents:node.join.opposites"></div>
                 <div mat-list-avatar matBadge="?" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>

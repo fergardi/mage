@@ -123,7 +123,7 @@ export class ShellComponent {
     if (supply.join.name.includes('mana')) return '/kingdom/sorcery';
     if (supply.join.name.includes('population')) return '/kingdom/army';
     if (supply.join.name.includes('land')) return '/kingdom/city';
-    if (supply.join.name.includes('turn')) return '/kingdom/city';
+    if (supply.join.name.includes('turn')) return '/kingdom/temple';
     return null;
   }
 

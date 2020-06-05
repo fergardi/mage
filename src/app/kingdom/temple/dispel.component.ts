@@ -17,7 +17,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
             <img mat-list-avatar [src]="enchantment.join.image">
           </div>
           <div mat-line>{{ enchantment.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.join.description | translate | icon:enchantment.join.skills:enchantment.join.categories:enchantment.join.families:enchantment.join.units:enchantment.join.resources:enchantment.join.spells"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.join.description | translate | icon:enchantment.join.skills:enchantment.join.categories:enchantment.join.families:enchantment.join.units:enchantment.join.resources:enchantment.join.spells:enchantment.join.adjacents:enchantment.join.opposites"></div>
           <div mat-line>
             <mat-progress-bar [color]="enchantment.from === uid ? 'accent' : 'warn'" [value]="enchantment.turns * 100 / enchantment.join.duration"></mat-progress-bar>
           </div>

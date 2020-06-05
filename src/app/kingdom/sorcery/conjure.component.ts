@@ -30,7 +30,7 @@ export enum CharmAssignmentType {
                   <img mat-list-avatar [src]="selectedCharm.join.image">
                 </div>
                 <div mat-line>{{ selectedCharm.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="selectedCharm.join.description | translate | icon:selectedCharm.join.skills:selectedCharm.join.categories:selectedCharm.join.families:selectedCharm.join.units:selectedCharm.join.resources:selectedCharm.join.spells"></div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="selectedCharm.join.description | translate | icon:selectedCharm.join.skills:selectedCharm.join.categories:selectedCharm.join.families:selectedCharm.join.units:selectedCharm.join.resources:selectedCharm.join.spells:selectedCharm.join.adjacents:selectedCharm.join.opposites"></div>
                 <div mat-list-avatar [matBadge]="selectedCharm.join.turns" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>

@@ -3,7 +3,7 @@
     <img mat-card-avatar [src]="data.join.image">
     <mat-card-title>{{ (data.faction ? data.name : data.join.name) | translate }}</mat-card-title>
     <mat-card-subtitle *ngIf="data.faction">{{ data.join.name | translate }}</mat-card-subtitle>
-    <mat-card-subtitle *ngIf="!data.faction" [innerHTML]="data.join.description | translate | icon:data.join.skills:data.join.categories:data.join.families:data.join.units:data.join.resources:data.join.spells"></mat-card-subtitle>
+    <mat-card-subtitle *ngIf="!data.faction" [innerHTML]="data.join.description | translate | icon:data.join.skills:data.join.categories:data.join.families:data.join.units:data.join.resources:data.join.spells:data.join.adjacents:data.join.opposites"></mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
@@ -16,7 +16,7 @@
             <img mat-list-avatar [src]="contract.join.image">
           </div>
           <div mat-line>{{ contract.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells:contract.join.adjacents:contract.join.opposites"></div>
           <div mat-list-avatar [matBadge]="contract.gold | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
           </div>
@@ -54,7 +54,7 @@
             <img mat-list-avatar [src]="artifact.join.image">
           </div>
           <div mat-line>{{ artifact.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells:artifact.join.adjacents:artifact.join.opposites"></div>
           <div mat-list-avatar [matBadge]="artifact.gold | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
           </div>
@@ -71,7 +71,7 @@
             <img mat-list-avatar [src]="charm.join.image">
           </div>
           <div mat-line>{{ charm.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:charm.join.spells"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:charm.join.spells:charm.join.adjacents:charm.join.opposites"></div>
           <div mat-list-avatar [matBadge]="charm.gold | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
           </div>
@@ -106,7 +106,7 @@
             <img mat-list-avatar [src]="contract.join.image">
           </div>
           <div mat-line>{{ contract.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells:contract.join.adjacents:contract.join.opposites"></div>
         </mat-list-item>
       </mat-list>
     </ng-template>
@@ -138,7 +138,7 @@
             <img mat-list-avatar [src]="artifact.join.image">
           </div>
           <div mat-line>{{ artifact.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join.skills:artifact.join.categories:artifact.join.families:artifact.join.units:artifact.join.resources:artifact.join.spells:artifact.join.adjacents:artifact.join.opposites"></div>
         </button>
       </mat-action-list>
     </ng-template>

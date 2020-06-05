@@ -18,7 +18,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
             <img mat-list-avatar [src]="charm.join.image">
           </div>
           <div mat-line>{{ charm.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:charm.join.spells"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join.skills:charm.join.categories:charm.join.families:charm.join.units:charm.join.resources:charm.join.spells:charm.join.adjacents:charm.join.opposites"></div>
           <div mat-line *ngIf="charm.turns < charm.join.research">
             <mat-progress-bar [value]="charm.turns * 100 / charm.join.research"></mat-progress-bar>
           </div>

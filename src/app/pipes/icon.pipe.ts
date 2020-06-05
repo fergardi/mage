@@ -12,10 +12,10 @@ export class IconPipe implements PipeTransform {
     private translateService: TranslateService,
   ) {}
 
-  transform(text: string, skills: any[], families: any[], categories: any[], units: any[], resources: any[], spells: any[]): SafeHtml {
-    let terms = [skills || [], families || [], categories || [], units || [], resources || [], spells || []].reduce((a, b) => a.concat(b), []);
+  transform(text: string, skills: any[], families: any[], categories: any[], units: any[], resources: any[], spells: any[], adjacents: any[], opposites: []): SafeHtml {
+    let terms = [skills || [], families || [], categories || [], units || [], resources || [], spells || [], adjacents || [], opposites || []].reduce((a, b) => a.concat(b), []);
     terms.forEach(term => {
-      text = text.replace(`<${term.id}>`, `&nbsp;<img class="icon" title="${this.translateService.instant(term.name)}" src="${term.image}"/>&nbsp;`);
+      text = text.replace(`<${term.id}>`, `<img class="icon" title="${this.translateService.instant(term.name)}" src="${term.image}"/>`);
     })
     return this.domSanitizer.bypassSecurityTrustHtml(text);
   }

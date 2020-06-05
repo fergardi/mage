@@ -17,7 +17,7 @@ import { NotificationService } from 'src/app/services/notification.service';
             <img mat-list-avatar [src]="item.image">
           </div>
           <div mat-line>{{ item.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="item.description | translate | icon:item.skills:item.categories:item.families:item.items:item.resources:item.spells"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="item.description | translate | icon:item.skills:item.categories:item.families:item.items:item.resources:item.spells:item.adjacents:item.opposites"></div>
           <div mat-list-avatar [matBadge]="item.gems" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/gem.png">
           </div>

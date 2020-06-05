@@ -98,7 +98,7 @@
     "encyclopedia": {
       "name": "Enciclopedia",
       "description": "Conocimiento ilimitado",
-      "help": "En esta enciclopedia encontrarás todos los elementos que conforman este plano de la realidad junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc."
+      "help": "En esta enciclopedia encontrarás todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc."
     },
     "tome": {
       "close": "Cerrar"
@@ -473,32 +473,32 @@
   "faction": {
     "blue": {
       "name": "Mental",
-      "description": "Comulga con los espíritus",
+      "description": "Fuerte vs <white><black> y débil vs <green><red>",
       "help": "Centrados en la investigación, esta escuela de magos basa su estrategia en el dominio de hechizos de todos los colores"
     },
     "white": {
       "name": "Ascendente",
-      "description": "La luz eterna nos guía",
+      "description": "Fuerte vs <green><blue> y débil vs <black><red>",
       "help": "Con su fe ciega como arma, el credo de los ascendidos utiliza milagros y divinidades a su favor para purgar la tierra de infieles"
     },
     "red": {
       "name": "Erradicación",
-      "description": "Fuego y sangre",
+      "description": "Fuerte vs <green><black> y débil vs <white><blue>",
       "help": "Valiéndose de la fuerza bruta y el dominio del fuego, la secta de erradicadores reduce a cenizas todo a su paso en su camino a la victoria"
     },
     "green": {
       "name": "Naturaleza",
-      "description": "blabla",
+      "description": "Fuerte vs <white><red> y débil vs <blue><black>",
       "help": "Protegidos por la madre tierra, estos antiguos druidas controlan el clima, el agua, el bosque y sus criaturas para obtener ventaja sobre sus enemigos"
     },
     "black": {
       "name": "Oscuridad",
-      "description": "La muerte solo es el principio",
+      "description": "Fuerte vs <red><blue> y débil vs <white><green>",
       "help": "Gracias a que cada enemigo vivo puede ser un futuro aliado muerto, este culto macabro basa su potencial en una absoluta superioridad numérica"
     },
     "grey": {
       "name": "Neutral",
-      "description": ""
+      "description": "Débil vs <white><red><blue><green><black>"
     }
   },
   "pack": {

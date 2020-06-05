@@ -18,7 +18,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
             <img mat-list-avatar [src]="building.join.image">
           </div>
           <div mat-line>{{ building.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join.skills:building.join.categories:building.join.families:building.join.units:building.join.resources:building.join.spells"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join.skills:building.join.categories:building.join.families:building.join.units:building.join.resources:building.join.spells:building.join.adjacents:building.join.opposites"></div>
           <div mat-list-avatar [matBadge]="building.join.turns" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>

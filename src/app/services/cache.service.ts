@@ -62,6 +62,28 @@ export class CacheService {
     if (!localStorage.getItem(CollectionType.factions)) {
       let snapshot = await this.angularFirestore.collection('factions').get().toPromise();
       let factions = snapshot.docs.map(faction => faction.data());
+      factions.forEach(faction => {
+        faction.adjacents = faction.adjacents.map((adjacent: string) => {
+          let f = factions.find(f => f.id === adjacent);
+          return f
+            ? {
+              ...f,
+              adjacents: [],
+              opposites: [],
+            }
+            : null;
+        });
+        faction.opposites = faction.opposites.map((opposite: string) => {
+          let f = factions.find(f => f.id === opposite);
+          return f
+            ? {
+              ...f,
+              adjacents: [],
+              opposites: [],
+            }
+            : null;
+        });
+      });
       localStorage.setItem(CollectionType.factions, JSON.stringify([...factions]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.factions));

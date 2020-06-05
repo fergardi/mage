@@ -64,7 +64,7 @@
                 </ng-template>
 
                 <ng-template [ngIf]="column === 'subject'">
-                  {{ letter[column] }}
+                  {{ letter[column] | translate }}
                 </ng-template>
 
                 <ng-template [ngIf]="column === 'timestamp'">
