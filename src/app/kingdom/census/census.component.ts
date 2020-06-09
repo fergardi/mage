@@ -31,7 +31,7 @@ export class CensusComponent implements OnInit, OnDestroy {
   protection: number = 8;
   clock: Date = new Date();
   interval: any = null;
-  columns = ['name', 'power', 'actions'];
+  columns = ['name', 'actions'];
   filters: any = {
     name: {
       type: 'text',
@@ -57,6 +57,7 @@ export class CensusComponent implements OnInit, OnDestroy {
     this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id', ref => ref.orderBy('power', 'desc')).pipe(untilDestroyed(this)).subscribe(kingdoms => {
       this.data = new MatTableDataSource(kingdoms.sort((a, b) => b.radius - a.radius).map((kingdom, index) => { return { ...kingdom, position: index + 1 } }));
       this.data.paginator = this.paginator;
+      this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();

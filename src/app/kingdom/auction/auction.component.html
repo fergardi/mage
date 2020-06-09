@@ -13,7 +13,7 @@
 
     <mat-card-content>
 
-      <table mat-table matSort [dataSource]="data" tourAnchor="tour.auction">
+      <table mat-table matSort [dataSource]="data" matSortDisableClear tourAnchor="tour.auction">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>
 
@@ -25,7 +25,7 @@
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
-
+<!--
             <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'timestamp'">
               <input matInput [(ngModel)]="filters[column].value" [matDatepicker]="timestamp" disabled (dateChange)="applyFilter()">
               <mat-datepicker-toggle matSuffix [for]="timestamp"></mat-datepicker-toggle>
@@ -34,7 +34,7 @@
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
-
+-->
           </mat-header-cell>
 
           <mat-cell *matCellDef="let auction" [attr.data-label]="'table.column.' + column | translate">
@@ -58,11 +58,11 @@
                 </mat-list-item>
               </mat-list>
             </ng-template>
-
+<!--
             <ng-template [ngIf]="column === 'timestamp'">
               {{ auction[column]?.toMillis() | date }}
             </ng-template>
-
+-->
             <ng-template [ngIf]="column === 'actions'">
               <button mat-mini-fab color="primary" title="{{ 'kingdom.auction.bid' | translate }}" [disabled]="auction.kingdom === uid" (click)="openBidDialog(auction)">
                 <mat-icon>gavel</mat-icon>

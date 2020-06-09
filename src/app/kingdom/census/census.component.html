@@ -13,7 +13,7 @@
 
     <mat-card-content>
 
-      <table mat-table matSort [dataSource]="data" matSortActive="power" matSortDirection="desc" matSortDisableClear tourAnchor="tour.census">
+      <table mat-table matSort [dataSource]="data" matSortDisableClear tourAnchor="tour.census">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>
 
@@ -30,26 +30,24 @@
 
           <mat-cell *matCellDef="let kingdom" [attr.data-label]="'table.column.' + column | translate">
 
-            <span *ngIf="['power'].includes(column)">
-              <mat-chip-list><mat-chip>{{ kingdom[column] | long }}</mat-chip></mat-chip-list>
-            </span>
-
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item [ngClass]="{ 'legendary': kingdom.fid === uid }">
-                  <div mat-list-avatar [matBadge]="kingdom.position | short" matBadgePosition="above before">
+                  <div mat-list-avatar [matBadge]="kingdom.position | long" matBadgePosition="above before">
                     <img mat-list-avatar [src]="kingdom.join.image">
                   </div>
                   <div mat-line>{{ kingdom.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle">{{ kingdom.join.name | translate }}</div>
-                  <mat-icon *ngIf="!canBeAttacked(kingdom)" [@fadeInOnEnter] [@fadeOutOnLeave] title="{{ 'kingdom.census.protection' | translate }}">security</mat-icon>
+                  <div mat-list-avatar [matBadge]="kingdom.power | short" matBadgePosition="above after">
+                    <img mat-list-avatar src="/assets/images/resources/power.png">
+                  </div>
                 </mat-list-item>
               </mat-list>
             </ng-template>
 
             <ng-template [ngIf]="column === 'actions'">
               <button mat-mini-fab color="primary" title="{{ 'kingdom.battle.attack' | translate }}" [disabled]="!canBeAttacked(kingdom) || kingdom.fid === uid" (click)="openAttackDialog(kingdom)">
-                <mat-icon>flag</mat-icon>
+                <mat-icon>{{ canBeAttacked(kingdom) ? 'flag' : 'security' }}</mat-icon>
               </button>
               <button mat-mini-fab color="primary" title="{{ 'kingdom.activate.activate' | translate }}" [disabled]="kingdom.fid === uid" (click)="openActivateDialog(kingdom)">
                 <mat-icon>api</mat-icon>

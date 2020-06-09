@@ -59,7 +59,7 @@ export class AuctionComponent implements OnInit {
     .subscribe(([artifacts,  contracts, troops]) => {
       let data = [artifacts,  contracts, troops];
       data = data.reduce((a, b) => a.concat(b), []);
-      this.data = new MatTableDataSource(data);+
+      this.data = new MatTableDataSource(data);
       this.data.paginator = this.paginator;
       this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['gold'] : obj[property];
       this.data.sort = this.sort;
