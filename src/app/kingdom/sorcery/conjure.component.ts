@@ -25,7 +25,7 @@ export enum CharmAssignmentType {
         <mat-select [(ngModel)]="selectedCharm">
           <mat-select-trigger *ngIf="selectedCharm">
             <mat-list dense>
-              <mat-list-item>
+              <mat-list-item [ngClass]="{ 'legendary': selectedCharm.join.legendary }">
                 <div mat-list-avatar [matBadge]="selectedCharm.level" matBadgePosition="above before">
                   <img mat-list-avatar [src]="selectedCharm.join.image">
                 </div>

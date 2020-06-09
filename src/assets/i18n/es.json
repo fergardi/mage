@@ -618,7 +618,7 @@
     },
     "graveyard": {
       "name": "Cementerio terrorífico",
-      "description": "Infestada de <undead>"
+      "description": "Defendido por <undead>"
     },
     "dungeon": {
       "name": "Mazmorra olvidada",
@@ -626,11 +626,11 @@
     },
     "mine": {
       "name": "Mina profunda",
-      "description": "Hospedado por <elemental>"
+      "description": "Custodiada por <elemental>"
     },
     "forest": {
       "name": "Bosque salvaje",
-      "description": "Arraigado de <animal>"
+      "description": "Preservado por <animal>"
     },
     "cathedral": {
       "name": "Catedral antigua",
@@ -650,7 +650,7 @@
     },
     "nest": {
       "name": "Nido dracónido",
-      "description": "Alojado de <dragon>"
+      "description": "Alojado por <dragon>"
     }
   },
   "unit": {
@@ -1478,7 +1478,7 @@
     },
     "sage": {
       "name": "Sabio",
-      "description": "Reduce tiempos de investigación"
+      "description": "Aumenta la velocidad de investigación de hechizos de tu reino"
     },
     "necrophage": {
       "name": "Necrófago jefe",

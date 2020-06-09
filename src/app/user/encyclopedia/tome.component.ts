@@ -8,14 +8,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     <div mat-dialog-content>
       <p>{{ 'type.' + tome.type + '.name'  | translate }}</p>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item [ngClass]="{ 'legendary': tome.legendary }">
           <div mat-list-avatar>
             <img mat-list-avatar [src]="tome.image">
           </div>
           <div mat-line>{{ tome.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(tome.type)">
-            {{ tome.description | translate }}
-          </div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(tome.type)">{{ tome.description | translate }}</div>
           <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(tome.type)" [innerHTML]="tome.description | translate | icon:tome.skills:tome.categories:tome.families:tome.units:tome.resources:tome.spells:tome.adjacents:tome.opposites"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(tome.type)">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of tome.families" [src]="family.image">

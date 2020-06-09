@@ -11,7 +11,7 @@
     <ng-template [ngIf]="shopContracts.length">
       <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let contract of shopContracts">
+        <button mat-list-item *ngFor="let contract of shopContracts" [ngClass]="{ 'legendary': contract.join.legendary}">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.join.image">
           </div>
@@ -28,7 +28,7 @@
     <ng-template [ngIf]="shopTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let troop of shopTroops">
+        <button mat-list-item *ngFor="let troop of shopTroops" [ngClass]="{ 'legendary': troop.join.legendary}">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image">
           </div>
@@ -49,7 +49,7 @@
     <ng-template [ngIf]="shopArtifacts.length">
       <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let artifact of shopArtifacts">
+        <button mat-list-item *ngFor="let artifact of shopArtifacts" [ngClass]="{ 'legendary': artifact.join.legendary}">
           <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
             <img mat-list-avatar [src]="artifact.join.image">
           </div>
@@ -66,7 +66,7 @@
     <ng-template [ngIf]="shopCharms.length">
       <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let charm of shopCharms">
+        <button mat-list-item *ngFor="let charm of shopCharms" [ngClass]="{ 'legendary': charm.join.legendary}">
           <div mat-list-avatar [matBadge]="charm.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="charm.join.image">
           </div>
@@ -83,7 +83,7 @@
     <ng-template [ngIf]="kingdomTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item *ngFor="let troop of kingdomTroops">
+        <mat-list-item *ngFor="let troop of kingdomTroops" [ngClass]="{ 'legendary': troop.join.legendary}">
           <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image">
           </div>
@@ -101,7 +101,7 @@
     <ng-template [ngIf]="questContracts.length">
       <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item *ngFor="let contract of questContracts">
+        <mat-list-item *ngFor="let contract of questContracts" [ngClass]="{ 'legendary': contract.join.legendary}">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.join.image">
           </div>
@@ -115,7 +115,7 @@
     <ng-template [ngIf]="questTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item *ngFor="let troop of questTroops">
+        <mat-list-item *ngFor="let troop of questTroops" [ngClass]="{ 'legendary': troop.join.legendary}">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image">
           </div>
@@ -133,7 +133,7 @@
     <ng-template [ngIf]="questArtifacts.length">
       <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let artifact of questArtifacts">
+        <button mat-list-item *ngFor="let artifact of questArtifacts" [ngClass]="{ 'legendary': artifact.join.legendary}">
           <div mat-list-avatar [matBadge]="artifact.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="artifact.join.image">
           </div>

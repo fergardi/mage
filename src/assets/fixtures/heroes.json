@@ -11,7 +11,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -25,7 +26,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -39,7 +41,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -53,7 +56,8 @@
     "categories": [],
     "units": [],
     "resources": ["gold", "turn"],
-    "spells": []
+    "spells": [],
+    "legendary": true
   },
   {
     "type": "hero",
@@ -67,7 +71,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -81,7 +86,8 @@
     "categories": [],
     "units": [],
     "resources": ["mana", "turn"],
-    "spells": []
+    "spells": [],
+    "legendary": true
   },
   {
     "type": "hero",
@@ -95,7 +101,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -109,7 +116,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": true
   },
   {
     "type": "hero",
@@ -123,7 +131,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -137,7 +146,8 @@
     "categories": [],
     "units": [],
     "resources": ["population", "turn"],
-    "spells": []
+    "spells": [],
+    "legendary": true
   },
   {
     "type": "hero",
@@ -151,7 +161,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -165,7 +176,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -179,7 +191,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -193,7 +206,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -207,6 +221,7 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": true
   }
 ]

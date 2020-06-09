@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
@@ -12,7 +11,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     <div mat-dialog-content>
       <p>{{ 'kingdom.dispel.help' | translate }}</p>
       <mat-list dense>
-        <mat-list-item (click)="dispel()">
+        <mat-list-item (click)="dispel()" [ngClass]="{ 'legendary': enchantment.join.legendary }">
           <div mat-list-avatar [matBadge]="enchantment.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
             <img mat-list-avatar [src]="enchantment.join.image">
           </div>

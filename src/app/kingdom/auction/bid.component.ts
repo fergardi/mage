@@ -13,7 +13,7 @@ import { ApiService } from 'src/app/services/api.service';
     <div mat-dialog-content>
       <p>{{ 'kingdom.bid.help' | translate }}</p>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item [ngClass]="{ 'legendary': auction.join.legendary }">
           <div mat-list-avatar [matBadge]="auction.quantity" matBadgePosition="above before">
             <img mat-list-avatar [src]="auction.join.image">
           </div>

@@ -13,7 +13,7 @@ import { ApiService } from 'src/app/services/api.service';
     <div mat-dialog-content>
       <p>{{ 'kingdom.disband.description' | translate }}</p>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item [ngClass]="{ 'legendary': troop.join.legendary }">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image">
           </div>

@@ -13,7 +13,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     <div mat-dialog-content>
       <p>{{ 'kingdom.research.description' | translate }}</p>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item [ngClass]="{ 'legendary': charm.join.legendary }">
           <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
             <img mat-list-avatar [src]="charm.join.image">
           </div>

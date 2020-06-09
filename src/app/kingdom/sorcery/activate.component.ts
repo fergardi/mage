@@ -24,7 +24,7 @@ export enum ArtifactAssignmentType {
         <mat-select [(ngModel)]="selectedArtifact">
           <mat-select-trigger *ngIf="selectedArtifact">
             <mat-list dense>
-              <mat-list-item>
+              <mat-list-item [ngClass]="{ 'legendary': selectedArtifact.join.legendary }">
                 <div mat-list-avatar [matBadge]="selectedArtifact.quantity" matBadgePosition="above before">
                   <img mat-list-avatar [src]="selectedArtifact.join.image">
                 </div>

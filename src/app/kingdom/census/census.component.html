@@ -36,7 +36,7 @@
 
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
-                <mat-list-item>
+                <mat-list-item [ngClass]="{ 'legendary': kingdom.fid === uid }">
                   <div mat-list-avatar [matBadge]="kingdom.position | short" matBadgePosition="above before">
                     <img mat-list-avatar [src]="kingdom.join.image">
                   </div>

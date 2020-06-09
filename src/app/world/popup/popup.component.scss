@@ -1,11 +1,11 @@
 .map-popup {
-  min-width: 250px;
-  max-width: 350px;
+  width: 350px;
   ::ng-deep .mat-card-header-text {
     overflow: hidden !important;
   }
   .mat-list-item {
-    height: 64px;
+    min-height: 64px !important;
+    height: 64px !important;
   }
   .mat-card-subtitle {
     display: flex;

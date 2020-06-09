@@ -54,7 +54,7 @@
 
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
-                <mat-list-item>
+                <mat-list-item [ngClass]="{ 'legendary': row.legendary }">
                   <div mat-list-avatar>
                     <img mat-list-avatar [src]="row.image">
                   </div>

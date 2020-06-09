@@ -41,7 +41,7 @@
 
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
-                <mat-list-item>
+                <mat-list-item [ngClass]="{ 'legendary': auction.join.legendary }">
                   <div mat-list-avatar [matBadge]="auction.quantity | short" matBadgePosition="above before">
                     <img mat-list-avatar [src]="auction.join.image">
                   </div>

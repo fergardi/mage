@@ -59,12 +59,15 @@ $accent-color: mat-color($theme-accent);
 $warn-color: mat-color($theme-warn);
 
 /* You can add global styles to this file, and also import other style files */
-
 html, body {
   height: 100%;
 }
 body {
   margin: 0;
+}
+
+.mat-list-item.legendary .mat-list-item-content {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, darkgoldenrod 50%, rgba(255,255,255,0) 100%) !important;
 }
 
 // font headings
