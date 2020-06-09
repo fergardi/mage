@@ -305,7 +305,7 @@
     "auction": {
       "name": "Subasta",
       "description": "Comercia con otros reinos",
-      "help": "Aquí puedes pujar oro contra otros reinos para adquirir artefactos, contratos o hechizos. Las subastas se renuevan diariamente, y debes pujar como mínimo un 10% más de oro que la puja anterior. Si alguien te sobrepuja, se te devolverá solamente el 90% del oro original, así que puja con inteligencia.",
+      "help": "Aquí puedes pujar oro contra otros reinos para adquirir artefactos, contratos o hechizos. Las subastas se renuevan diariamente, y debes pujar como mínimo un 10% más de oro que la puja anterior. Si alguien te sobrepuja, se te devolverá solo el 90% de tu puja original, así que puja con inteligencia.",
       "bid": "Pujar"
     },
     "bid": {

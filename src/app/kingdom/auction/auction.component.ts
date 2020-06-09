@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Store } from '@ngxs/store';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-auction',
@@ -35,6 +36,9 @@ export class AuctionComponent implements OnInit {
   data: MatTableDataSource<any> = null;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   constructor(
     private firebaseService: FirebaseService,
     private translateService: TranslateService,
@@ -42,12 +46,17 @@ export class AuctionComponent implements OnInit {
     private store: Store,
   ) { }
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-
   ngOnInit() {
-    this.firebaseService.leftJoin('auctions', 'items', 'item', 'id').pipe(untilDestroyed(this)).subscribe(auctions => {
-      this.data = new MatTableDataSource(auctions);
+    combineLatest([
+      this.firebaseService.leftJoin('auctions', 'items', 'item', 'id', x => x.where('type', '==', 'artifact')),
+      this.firebaseService.leftJoin('auctions', 'heroes', 'hero', 'id', x => x.where('type', '==', 'contract')),
+      this.firebaseService.leftJoin('auctions', 'units', 'unit', 'id', x => x.where('type', '==', 'troop')),
+    ])
+    .pipe(untilDestroyed(this))
+    .subscribe(([artifacts,  contracts, troops]) => {
+      let data = [artifacts,  contracts, troops];
+      data = data.reduce((a, b) => a.concat(b), []);
+      this.data = new MatTableDataSource(data);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
