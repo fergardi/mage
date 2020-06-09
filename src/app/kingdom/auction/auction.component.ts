@@ -22,16 +22,19 @@ import { combineLatest } from 'rxjs';
 @UntilDestroy()
 export class AuctionComponent implements OnInit {
 
-  columns = ['name', 'timestamp', 'actions'];
+  // columns = ['name', 'timestamp', 'actions'];
+  columns = ['name', 'actions'];
   filters: any = {
     name: {
       type: 'text',
       value: '',
     },
+    /*
     timestamp: {
       type: 'timestamp',
       value: null,
-    }
+    },
+    */
   };
   data: MatTableDataSource<any> = null;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
@@ -56,8 +59,9 @@ export class AuctionComponent implements OnInit {
     .subscribe(([artifacts,  contracts, troops]) => {
       let data = [artifacts,  contracts, troops];
       data = data.reduce((a, b) => a.concat(b), []);
-      this.data = new MatTableDataSource(data);
+      this.data = new MatTableDataSource(data);+
       this.data.paginator = this.paginator;
+      this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['gold'] : obj[property];
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
@@ -67,7 +71,7 @@ export class AuctionComponent implements OnInit {
   applyFilter() {
     this.data.filter = JSON.stringify({
       name: this.filters.name.value,
-      timestamp: this.filters.timestamp.value,
+      // timestamp: this.filters.timestamp.value,
     });
   }
 
@@ -75,7 +79,7 @@ export class AuctionComponent implements OnInit {
     let filterFunction = (data: any, filter: string): boolean => {
       let filters = JSON.parse(filter);
       return this.translateService.instant(data.join.name).toLowerCase().includes(filters.name)
-      && (!filters.timestamp || moment(data.timestamp.toMillis()).isBetween(moment(filters.timestamp).startOf('day'), moment(filters.timestamp).endOf('day'), 'days', '[]'));
+      // && (!filters.timestamp || moment(data.timestamp.toMillis()).isBetween(moment(filters.timestamp).startOf('day'), moment(filters.timestamp).endOf('day'), 'days', '[]'));
     }
     return filterFunction;
   }
