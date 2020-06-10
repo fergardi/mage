@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-confirm',
@@ -36,6 +37,7 @@ export class ConfirmComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ConfirmComponent>,
+    private notificationService: NotificationService,
   ) { }
 
   ngOnInit(): void {
@@ -46,8 +48,18 @@ export class ConfirmComponent implements OnInit {
   }
 
   confirm(): void {
-    // TODO
-    this.close();
+    if (true) {
+      try {
+        // TODO
+        this.notificationService.success('world.confirm.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('world.confirm.error');
+      }
+    } else {
+      this.notificationService.error('world.confirm.error');
+    }
   }
 
 }
