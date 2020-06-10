@@ -614,43 +614,43 @@
   "location": {
     "cave": {
       "name": "Cueva húmeda",
-      "description": "Habitada por <orkish>"
+      "description": "Habitada por Orcos"
     },
     "graveyard": {
       "name": "Cementerio terrorífico",
-      "description": "Defendido por <undead>"
+      "description": "Defendido por NoMuertos"
     },
     "dungeon": {
       "name": "Mazmorra olvidada",
-      "description": "Protegida por <golem>"
+      "description": "Protegida por Gólems"
     },
     "mine": {
       "name": "Mina profunda",
-      "description": "Custodiada por <elemental>"
+      "description": "Custodiada por Elementales"
     },
     "forest": {
       "name": "Bosque salvaje",
-      "description": "Preservado por <animal>"
+      "description": "Preservado por Animales"
     },
     "cathedral": {
       "name": "Catedral antigua",
-      "description": "Defendida por <human>"
+      "description": "Alabada por Humanos"
     },
     "mountain": {
       "name": "Montaña lejana",
-      "description": "Ocupada por <giant>"
+      "description": "Ocupada por Gigantes"
     },
     "volcano": {
       "name": "Volcán ardiente",
-      "description": "Corrompido por <demon>"
+      "description": "Corrompido por Demonios"
     },
     "lake": {
       "name": "Lago misterioso",
-      "description": "Infestado de <reptile>"
+      "description": "Infestado de Reptiles"
     },
     "nest": {
       "name": "Nido dracónido",
-      "description": "Alojado por <dragon>"
+      "description": "Alojado por Dragones"
     }
   },
   "unit": {

@@ -16,7 +16,7 @@
       <mat-card-content>
         <div matSubheader>{{ 'card.list.buildings' | translate }}:</div>
         <mat-action-list dense tourAnchor="tour.city">
-          <button mat-list-item *ngFor="let building of kingdomBuildings" (click)="openBuildDialog(building)">
+          <button mat-list-item *ngFor="let building of kingdomBuildings" (click)="openBuildDialog(building)" class="common">
             <div mat-list-avatar [matBadge]="building.quantity | long" matBadgePosition="above before">
               <img mat-list-avatar [src]="building.join.image">
             </div>
@@ -52,7 +52,7 @@
           <mat-card-content>
             <div matSubheader>{{ 'kingdom.tax.tax' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.tax">
-              <button mat-list-item *ngIf="village" (click)="openTaxDialog(village)">
+              <button mat-list-item *ngIf="village" (click)="openTaxDialog(village)" class="common">
                 <div mat-list-avatar [matBadge]="village.quantity | long" matBadgePosition="above before">
                   <img mat-list-avatar [src]="village.join.image">
                 </div>
@@ -84,7 +84,7 @@
           <mat-card-content>
             <div matSubheader>{{ 'kingdom.charge.charge' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.charge">
-              <button mat-list-item *ngIf="node" (click)="openChargeDialog(node)">
+              <button mat-list-item *ngIf="node" (click)="openChargeDialog(node)" class="common">
                 <div mat-list-avatar [matBadge]="node.quantity | long" matBadgePosition="above before">
                   <img mat-list-avatar [src]="node.join.image">
                 </div>
@@ -116,7 +116,7 @@
           <mat-card-content>
             <div matSubheader>{{ 'kingdom.explore.explore' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.explore">
-              <button mat-list-item *ngIf="land$ | async" (click)="openExploreDialog(land$)">
+              <button mat-list-item *ngIf="land$ | async" (click)="openExploreDialog(land$)" class="common">
                 <div mat-list-avatar [matBadge]="(land$ | async)?.quantity | long" matBadgePosition="above before">
                   <img mat-list-avatar src="/assets/images/resources/land.png">
                 </div>

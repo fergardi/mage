@@ -18,7 +18,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
       </mat-list>
       <p>{{ letter.message | translate }}</p>
       <mat-list dense *ngIf="letter.log">
-        <mat-list-item *ngFor="let log of letter.log" [ngClass]="'log-' + log.side">
+        <mat-list-item *ngFor="let log of letter.log" [ngClass]="['log-' + log.side, log.join.legendary ? 'legendary' : '']">
           <div mat-list-avatar [matBadge]="log.quantity | long" [matBadgePosition]="log.side === 'left' ? 'above before' : 'above after'">
             <img mat-list-avatar *ngIf="log.join" [src]="log.join.image">
           </div>

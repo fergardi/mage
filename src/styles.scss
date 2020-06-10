@@ -59,6 +59,8 @@ $accent-color: mat-color($theme-accent);
 $warn-color: mat-color($theme-warn);
 
 /* You can add global styles to this file, and also import other style files */
+$list-item-height: 60px;
+
 html, body {
   height: 100%;
 }
@@ -66,9 +68,15 @@ body {
   margin: 0;
 }
 
-.mat-list-item.legendary .mat-list-item-content {
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, darkgoldenrod 50%, rgba(255,255,255,0) 100%) !important;
+.mat-list {
+  .mat-list-item.common .mat-list-item-content {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, #373638 50%, rgba(255,255,255,0) 100%);
+  }
+  .mat-list-item.legendary .mat-list-item-content {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, darkgoldenrod 50%, rgba(255,255,255,0) 100%);
+  }
 }
+
 
 // font headings
 .mat-card-header .mat-card-title,
@@ -279,7 +287,7 @@ body {
   box-sizing: border-box;
   border: 2px dashed $primary-color;
   display: block;
-  height: 76px;
+  height: $list-item-height;
   width: 100%;
   padding: 0;
   position: relative;
@@ -340,13 +348,13 @@ body {
 
 .mat-list-base.dotted {
   padding-top: 0;
-  min-height: 76px;
+  min-height: $list-item-height;
   border: 2px dashed $primary-color;
 }
 .mat-list {
   .mat-list-item {
-    min-height: 76px !important;
-    height: 76px !important;
+    min-height: $list-item-height !important;
+    height: $list-item-height !important;
     &.handle {
       &:hover {
         cursor: move;
