@@ -1,0 +1,53 @@
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+@Component({
+  selector: 'app-confirm',
+  template: `
+    <h1 mat-dialog-title>{{ 'world.confirm.name' | translate }}</h1>
+    <div mat-dialog-content>
+      <p>{{ 'world.confirm.description' | translate }}</p>
+      <mat-list dense *ngIf="data && data.object && data.object.join">
+        <mat-list-item [ngClass]="{ 'legendary': data.object.join.legendary }">
+          <div mat-list-avatar [matBadge]="data.object.quantity | long" matBadgePosition="above before">
+            <img mat-list-avatar [src]="data.object.join.image">
+          </div>
+          <div mat-line>{{ data.object.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="data.object.join.description | translate | icon:data.object.join.skills:data.object.join.categories:data.object.join.families:data.object.join.units:data.object.join.resources:data.object.join.spells:data.object.join.adjacents:data.object.join.opposites"></div>
+          <div mat-list-avatar *ngIf="data.object.gold > 0" [matBadge]="data.object.gold | long" matBadgePosition="above after">
+            <img mat-list-avatar src="/assets/images/resources/gold.png">
+          </div>
+          <div mat-list-avatar *ngIf="data.object.turns > 0" [matBadge]="data.object.turns | long" matBadgePosition="above after">
+            <img mat-list-avatar src="/assets/images/resources/turn.png">
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="close()">{{ 'world.confirm.cancel' | translate }}</button>
+      <button mat-raised-button color="primary" (click)="confirm()" cdkFocusInitial>{{ 'world.confirm.confirm' | translate }}</button>
+    </div>
+  `,
+  styles: [
+  ]
+})
+export class ConfirmComponent implements OnInit {
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<ConfirmComponent>,
+  ) { }
+
+  ngOnInit(): void {
+  }
+
+  close(): void {
+    this.dialogRef.close();
+  }
+
+  confirm(): void {
+    // TODO
+    this.close();
+  }
+
+}

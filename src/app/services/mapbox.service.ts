@@ -194,7 +194,7 @@ export class MapboxService {
             { id: 'necrophage', level: 1 },
           ]);
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'magical-chest', quantity: 1 },
+            { id: 'magical-chest', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
         case LocationType.cathedral:
@@ -207,7 +207,7 @@ export class MapboxService {
             { id: 'commander', level: 1 },
           ]);
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'golden-chest', quantity: 1 },
+            { id: 'golden-chest', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
         case LocationType.cave:
@@ -217,7 +217,7 @@ export class MapboxService {
             { id: 'goblin', quantity: 123132 },
           ]);
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'rattle', quantity: 2 },
+            { id: 'rattle', quantity: 2, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
         case LocationType.dungeon:
@@ -228,7 +228,7 @@ export class MapboxService {
             { id: 'iron-golem', quantity: 123132 },
           ]);
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'animal-fang', quantity: 2 },
+            { id: 'animal-fang', quantity: 2, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
         case LocationType.forest:
@@ -238,7 +238,7 @@ export class MapboxService {
             { id: 'rat', quantity: 123132 },
           ]);
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'voodoo-doll', quantity: 2 },
+            { id: 'voodoo-doll', quantity: 2, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
         case LocationType.lake:
@@ -247,7 +247,7 @@ export class MapboxService {
             { id: 'wyvern', quantity: 123132 },
           ]);
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'golden-idol', quantity: 1 },
+            { id: 'golden-idol', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
         case LocationType.mine:
@@ -262,8 +262,7 @@ export class MapboxService {
             { id: 'elementalist', level: 6 },
           ]);
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'earth-orb', quantity: 1 },
-            { id: 'fire-orb', quantity: 1 },
+            { id: 'earth-orb', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
         case LocationType.mountain:
@@ -273,7 +272,7 @@ export class MapboxService {
             { id: 'ogre', quantity: 123132 },
           ]);
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'powder-barrel', quantity: 1 },
+            { id: 'powder-barrel', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
         case LocationType.nest:
@@ -285,7 +284,7 @@ export class MapboxService {
             { id: 'baby-dragon', quantity: 1 },
           ]);
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'dragon-egg', quantity: 1 },
+            { id: 'dragon-egg', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
         case LocationType.volcano:
@@ -295,7 +294,7 @@ export class MapboxService {
             { id: 'wendigo', quantity: 666 },
           ]);
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'valhalla-horn', quantity: 1 },
+            { id: 'valhalla-horn', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
       }

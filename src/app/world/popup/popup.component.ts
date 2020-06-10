@@ -2,9 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TroopAssignmentType } from '../../kingdom/army/army.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmComponent } from './confirm.component';
 
 export enum PopupType {
   'kingdom', 'shop', 'quest',
+}
+
+export enum ConfirmType {
+  'charm', 'contract', 'artifact', 'battle', 'troop',
 }
 
 @Component({
@@ -25,7 +31,10 @@ export class PopupComponent implements OnInit {
   questTroops: any[] = [];
   questArtifacts: any[] = [];
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(
+    private firebaseService: FirebaseService,
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
     // shop
@@ -61,6 +70,16 @@ export class PopupComponent implements OnInit {
         this.questArtifacts = artifacts;
       });
     }
+  }
+
+  openConfirmDialog(object: any, type: ConfirmType): void {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      panelClass: 'dialog-responsive',
+      data: {
+        object: object,
+        type: type,
+      }
+    });
   }
 
 }

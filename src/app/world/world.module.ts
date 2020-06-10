@@ -6,6 +6,7 @@ import { MapComponent } from './map/map.component';
 import { SharedModule } from '../shared/shared.module';
 import { MarkerComponent } from './marker/marker.component';
 import { PopupComponent } from './popup/popup.component';
+import { ConfirmComponent } from './popup/confirm.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { PopupComponent } from './popup/popup.component';
     MarkerComponent,
     MarkerComponent,
     PopupComponent,
+    ConfirmComponent,
   ],
   imports: [
     CommonModule,
