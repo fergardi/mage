@@ -398,6 +398,7 @@ body {
       justify-content: center;
       .mat-card-subtitle {
         margin-bottom: 0;
+        white-space: pre-wrap !important;
       }
     }
   }

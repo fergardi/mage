@@ -3,7 +3,7 @@
     <img mat-card-avatar [src]="data.join.image">
     <mat-card-title>{{ (data.faction ? data.name : data.join.name) | translate }}</mat-card-title>
     <mat-card-subtitle *ngIf="data.faction">{{ data.join.name | translate }}</mat-card-subtitle>
-    <mat-card-subtitle *ngIf="!data.faction">{{ data.join.description | translate }}</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="!data.faction" [innerHTML]="data.join.description | translate | icon:data.join.skills:data.join.categories:data.join.families:data.join.units:data.join.resources:data.join.spells:data.join.adjacents:data.join.opposites"></mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
