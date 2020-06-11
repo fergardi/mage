@@ -109,7 +109,18 @@
     },
     "tome": {
       "close": "Cerrar",
-      "legendary": "Legendario"
+      "goldCost": "Coste {{ quantity }}",
+      "goldMaintenance": "Mantenimiento {{ quantity }}",
+      "goldProduction": "Producción {{ quantity }}",
+      "goldCapacity": "Capacidad {{ quantity }}",
+      "manaCost": "Coste {{ quantity }}",
+      "manaMaintenance": "Mantenimiento {{ quantity }}",
+      "manaProduction": "Producción {{ quantity }}",
+      "manaCapacity": "Capacidad {{ quantity }}",
+      "populationCost": "Coste {{ quantity }}",
+      "populationMaintenance": "Mantenimiento {{ quantity }}",
+      "populationProduction": "Producción {{ quantity }}",
+      "populationCapacity": "Capacidad {{ quantity }}"
     }
   },
   "shell": {
@@ -1389,8 +1400,8 @@
   },
   "category": {
     "melee": {
-      "name": "Melee",
-      "description": "Tipo de daño físico"
+      "name": "Físico",
+      "description": "Tipo de daño cuerpo a cuerpo"
     },
     "ranged": {
       "name": "Distancia",
@@ -1417,8 +1428,8 @@
       "description": "Tipo de daño eléctrico"
     },
     "holy": {
-      "name": "Luz",
-      "description": "Tipo de daño sagrado"
+      "name": "Sagrado",
+      "description": "Tipo de daño santo"
     },
     "psychic": {
       "name": "Psíquico",

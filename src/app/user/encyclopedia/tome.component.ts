@@ -25,11 +25,22 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           </div>
         </mat-list-item>
       </mat-list>
-      <p>{{ tome.help | translate }}</p>
-      <mat-chip-list>
+      <mat-chip-list class="attributes" *ngIf="['unit'].includes(tome.type)">
         <mat-chip color="primary" selected *ngFor="let family of tome.families"><img class="icon" [src]="family.image">{{ family.name | translate }}</mat-chip>
         <mat-chip color="primary" selected *ngFor="let skill of tome.skills"><img class="icon" [src]="skill.image">{{ skill.name | translate }}</mat-chip>
-        <mat-chip color="primary" [ngClass]="{ 'legendary' : category.id === 'legendary' }" selected *ngFor="let category of tome.categories"><img class="icon" [src]="category.image">{{ category.name | translate }}</mat-chip>
+        <mat-chip color="primary" selected *ngFor="let category of tome.categories" [ngClass]="{ 'legendary' : category.id === 'legendary' }"><img class="icon" [src]="category.image">{{ category.name | translate }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldCost' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldMaintenance' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldProduction' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldCapacity' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaCost' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaMaintenance' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaProduction' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaCapacity' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationCost' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationMaintenance' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationProduction' | translate:{ quantity: 12345 | long } }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationCapacity' | translate:{ quantity: 12345 | long } }}</mat-chip>
       </mat-chip-list>
     </div>
     <div mat-dialog-actions>
@@ -39,6 +50,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styles: [`
     .mat-dialog-content + .mat-dialog-content {
       margin-top: 10px;
+    }
+    ::ng-deep .mat-chip-list-wrapper {
+      margin: 0 !important;
+    }
+    .attributes {
+      margin-top: 10px;
+      display: block;
     }
   `]
 })

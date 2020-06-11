@@ -290,6 +290,18 @@ body {
   opacity: 0.975;
 }
 
+.mat-card-title {
+  line-height: 1.25 !important;
+}
+
+.mat-card-title::after,
+.mat-dialog-container .mat-dialog-title::after {
+  content: '';
+  border-bottom: 8px solid $primary-color;
+  width: 100px;
+  display: block;
+}
+
 // DRAG AND DROP
 .cdk-drag-placeholder {
   opacity: 0.5;

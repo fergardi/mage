@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { TroopAssignmentType } from '../../kingdom/army/army.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from './confirm.component';
 

@@ -2,6 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
+export enum ReportType {
+  'battle', 'auction', 'message',
+}
+
 @Component({
   selector: 'app-report',
   template: `
@@ -52,6 +56,8 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   `]
 })
 export class ReportComponent implements OnInit {
+
+  reportType: typeof ReportType = ReportType;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public letter: any,
