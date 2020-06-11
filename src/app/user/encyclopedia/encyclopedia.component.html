@@ -54,7 +54,7 @@
 
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
-                <mat-list-item [ngClass]="{ 'legendary': row.legendary }">
+                <mat-list-item [ngClass]="{ 'legendary': row | legendary }">
                   <div mat-list-avatar>
                     <img mat-list-avatar [src]="row.image">
                   </div>
@@ -63,8 +63,8 @@
                   <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(row.type)" [innerHTML]="row.description | translate | icon:row.skills:row.categories:row.families:row.units:row.resources:row.spells:row.adjacents:row.opposites"></div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(row.type)">
                     <img [title]="family.name | translate" class="icon" *ngFor="let family of row.families" [src]="family.image"/>
-                    <img [title]="category.name | translate" class="icon" *ngFor="let category of row.categories" [src]="category.image"/>
                     <img [title]="skill.name | translate" class="icon" *ngFor="let skill of row.skills" [src]="skill.image"/>
+                    <img [title]="category.name | translate" class="icon" *ngFor="let category of row.categories" [src]="category.image"/>
                   </div>
                 </mat-list-item>
               </mat-list>

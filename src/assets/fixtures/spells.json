@@ -20,8 +20,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -44,8 +43,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -68,8 +66,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -92,8 +89,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -116,8 +112,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "sorcery",
@@ -140,8 +135,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -164,8 +158,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -188,8 +181,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -212,8 +204,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -236,8 +227,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -260,8 +250,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": false,
-    "legendary": false
+    "self": false
   },
   {
     "type": "enchantment",
@@ -284,8 +273,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -308,8 +296,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -332,8 +319,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -356,8 +342,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -380,8 +365,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -404,8 +388,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -416,7 +399,7 @@
     "faction": "black",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": ["population", "turn"],
     "level": 5,
@@ -428,8 +411,7 @@
     "epidemic": true,
     "dispellable": true,
     "battle": false,
-    "self": false,
-    "legendary": true
+    "self": false
   },
   {
     "type": "instant",
@@ -452,8 +434,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -476,8 +457,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -500,8 +480,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -524,8 +503,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -548,8 +526,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -572,8 +549,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -596,8 +572,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "sorcery",
@@ -620,8 +595,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -644,8 +618,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -668,8 +641,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -692,8 +664,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -716,8 +687,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -740,8 +710,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -752,7 +721,7 @@
     "faction": "red",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": ["population", "land", "turn"],
     "level": 1,
@@ -764,8 +733,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": false,
-    "legendary": true
+    "self": false
   },
   {
     "type": "instant",
@@ -788,8 +756,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -812,8 +779,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -836,8 +802,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -860,8 +825,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -884,8 +848,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "sorcery",
@@ -908,8 +871,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -932,8 +894,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -956,8 +917,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -980,8 +940,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1004,8 +963,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1028,8 +986,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1052,8 +1009,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1076,8 +1032,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1100,8 +1055,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1112,7 +1066,7 @@
     "faction": "blue",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": [],
     "level": 1,
@@ -1124,8 +1078,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": true
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1148,8 +1101,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": false,
-    "legendary": false
+    "self": false
   },
   {
     "type": "summon",
@@ -1172,8 +1124,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1196,8 +1147,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1220,8 +1170,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "sorcery",
@@ -1244,8 +1193,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1268,8 +1216,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1292,8 +1239,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1316,8 +1262,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1340,8 +1285,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1364,8 +1308,7 @@
     "epidemic": true,
     "dispellable": true,
     "battle": false,
-    "self": false,
-    "legendary": false
+    "self": false
   },
   {
     "type": "instant",
@@ -1388,8 +1331,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "sorcery",
@@ -1412,8 +1354,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "sorcery",
@@ -1436,8 +1377,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1460,8 +1400,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1484,8 +1423,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1496,7 +1434,7 @@
     "faction": "green",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": ["land", "gold", "mana", "turn"],
     "level": 1,
@@ -1508,8 +1446,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": true
+    "self": true
   },
   {
     "type": "summon",
@@ -1532,8 +1469,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1556,8 +1492,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1580,8 +1515,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1604,8 +1538,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1628,8 +1561,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1652,8 +1584,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1676,8 +1607,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1700,8 +1630,7 @@
     "epidemic": true,
     "dispellable": true,
     "battle": false,
-    "self": false,
-    "legendary": false
+    "self": false
   },
   {
     "type": "enchantment",
@@ -1724,8 +1653,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1748,8 +1676,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1772,8 +1699,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "sorcery",
@@ -1796,8 +1722,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1820,8 +1745,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1844,8 +1768,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1868,8 +1791,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1892,8 +1814,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -1916,8 +1837,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -1940,8 +1860,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1964,8 +1883,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -1988,8 +1906,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -2012,8 +1929,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -2036,8 +1952,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "sorcery",
@@ -2060,8 +1975,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -2084,8 +1998,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -2108,8 +2021,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -2132,8 +2044,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -2156,8 +2067,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "sorcery",
@@ -2180,8 +2090,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -2204,8 +2113,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -2216,7 +2124,7 @@
     "faction": "white",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": ["gold", "mana", "turn"],
     "level": 1,
@@ -2228,8 +2136,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": true
+    "self": true
   },
   {
     "type": "instant",
@@ -2252,8 +2159,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -2276,8 +2182,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -2300,8 +2205,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -2324,8 +2228,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "summon",
@@ -2348,8 +2251,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -2372,8 +2274,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "instant",
@@ -2396,8 +2297,7 @@
     "epidemic": false,
     "dispellable": true,
     "battle": true,
-    "self": true,
-    "legendary": false
+    "self": true
   },
   {
     "type": "enchantment",
@@ -2408,7 +2308,7 @@
     "faction": "grey",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": [],
     "level": 6,
@@ -2420,7 +2320,6 @@
     "epidemic": false,
     "dispellable": true,
     "battle": false,
-    "self": true,
-    "legendary": true
+    "self": true
   }
 ]

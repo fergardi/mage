@@ -6,6 +6,7 @@
         <img mat-card-avatar src="/assets/images/cards/tavern.png">
         <mat-card-title >{{ 'kingdom.tavern.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.tavern.description' | translate }}</mat-card-subtitle>
+        <mat-chip-list><mat-chip color="primary" selected><mat-icon>filter_9_plus</mat-icon>{{ 'kingdom.tavern.max' | translate }}</mat-chip></mat-chip-list>
       </mat-card-header>
 
       <mat-card-content>
@@ -15,7 +16,7 @@
       <mat-card-content>
         <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
         <mat-action-list dense class="dotted" tourAnchor="tour.tavern" id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="kingdomContracts">
-          <button mat-list-item *ngFor="let contract of kingdomContracts" cdkDrag class="handle" [id]="contract.fid" (click)="openDischargeDialog(contract)" [ngClass]="contract.join.legendary ? 'legendary' : 'common'">
+          <button mat-list-item *ngFor="let contract of kingdomContracts" cdkDrag class="handle" [id]="contract.fid" (click)="openDischargeDialog(contract)" [ngClass]="(contract.join | legendary) ? 'legendary' : 'common'">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="contract.join.image">
             </div>
@@ -34,6 +35,7 @@
         <img mat-card-avatar src="/assets/images/cards/leadership.png">
         <mat-card-title >{{ 'kingdom.leadership.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.leadership.description' | translate }}</mat-card-subtitle>
+        <mat-chip-list><mat-chip color="primary" selected><mat-icon>filter_9_plus</mat-icon>{{ 'kingdom.leadership.max' | translate }}</mat-chip></mat-chip-list>
       </mat-card-header>
 
       <mat-card-content>
@@ -43,7 +45,7 @@
       <mat-card-content>
         <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
         <mat-list dense class="dotted" id="1" tourAnchor="tour.leadership" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="attackContracts">
-          <mat-list-item *ngFor="let contract of attackContracts" cdkDrag class="handle" [id]="contract.fid" [ngClass]="{ 'legendary': contract.join.legendary }">
+          <mat-list-item *ngFor="let contract of attackContracts" cdkDrag class="handle" [id]="contract.fid" [ngClass]="{ 'legendary': contract.join | legendary }">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="contract.join.image">
             </div>
@@ -62,6 +64,7 @@
         <img mat-card-avatar src="/assets/images/cards/guardian.png">
         <mat-card-title >{{ 'kingdom.guard.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.guard.description' | translate }}</mat-card-subtitle>
+        <mat-chip-list><mat-chip color="primary" selected><mat-icon>filter_9_plus</mat-icon>{{ 'kingdom.guard.max' | translate }}</mat-chip></mat-chip-list>
       </mat-card-header>
 
       <mat-card-content>
@@ -71,7 +74,7 @@
       <mat-card-content>
         <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
         <mat-list dense class="dotted" id="2" tourAnchor="tour.guard" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="defenseContracts">
-          <mat-list-item *ngFor="let contract of defenseContracts" cdkDrag class="handle" [id]="contract.fid" [ngClass]="{ 'legendary': contract.join.legendary }">
+          <mat-list-item *ngFor="let contract of defenseContracts" cdkDrag class="handle" [id]="contract.fid" [ngClass]="{ 'legendary': contract.join | legendary }">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="contract.join.image">
             </div>

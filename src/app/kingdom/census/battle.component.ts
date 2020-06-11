@@ -22,6 +22,7 @@ const BATTLE_TURNS = 2;
   template: `
     <h1 mat-dialog-title>{{ 'kingdom.battle.name' | translate }}</h1>
     <div mat-dialog-content>
+      <p>{{ 'kingdom.battle.description' | translate }}</p>
       <mat-list dense>
         <mat-list-item>
           <div mat-list-avatar [matBadge]="kingdom.position | long" matBadgePosition="above before">
@@ -44,19 +45,6 @@ const BATTLE_TURNS = 2;
           <mat-error>{{ 'kingdom.battle.error' | translate }}</mat-error>
         </mat-form-field>
       </form>
-      <mat-list dense class="list-margened">
-        <mat-list-item *ngFor="let troop of kingdomTroops">
-          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
-            <img mat-list-avatar [src]="troop.join.image">
-          </div>
-          <div mat-line>{{ troop.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">
-            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
-            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
-          </div>
-        </mat-list-item>
-      </mat-list>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.battle.cancel' | translate }}</button>

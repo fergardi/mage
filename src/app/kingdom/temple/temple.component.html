@@ -53,7 +53,7 @@
           <mat-card-content>
             <div matSubheader>{{ 'card.list.enchantments' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.dispel">
-              <button mat-list-item *ngFor="let enchantment of kingdomEnchantments" (click)="openDispelDialog(enchantment)" [ngClass]="enchantment.join.legendary ? 'legendary' : 'common'">
+              <button mat-list-item *ngFor="let enchantment of kingdomEnchantments" (click)="openDispelDialog(enchantment)" [ngClass]="(enchantment.join | legendary) ? 'legendary' : 'common'">
                 <div mat-list-avatar [matBadge]="enchantment.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
                   <img mat-list-avatar [src]="enchantment.join.image">
                 </div>

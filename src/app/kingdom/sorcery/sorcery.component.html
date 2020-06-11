@@ -6,6 +6,10 @@
         <img mat-card-avatar src="/assets/images/cards/sorcery.png">
         <mat-card-title >{{ 'kingdom.sorcery.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.sorcery.description' | translate }}</mat-card-subtitle>
+        <mat-chip-list>
+          <mat-chip color="primary" selected><mat-icon>filter_9_plus</mat-icon>{{ 'kingdom.sorcery.max' | translate }}</mat-chip>
+          <mat-chip color="primary" selected><mat-icon>filter_9_plus</mat-icon>{{ 'kingdom.sorcery.max' | translate }}</mat-chip>
+        </mat-chip-list>
       </mat-card-header>
 
       <mat-card-content>
@@ -15,7 +19,7 @@
       <mat-card-content>
         <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
         <mat-action-list dense class="dotted" id="0" tourAnchor="tour.artifacts" #kngdmArtifacts="cdkDropList" [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="kingdomArtifacts">
-          <button mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag [cdkDragDisabled]="!artifact.join.battle" [ngClass]="{ 'handle': artifact.join.battle, 'legendary': artifact.join.legendary, 'common': !artifact.join.legendary }" [id]="artifact.fid" (click)="!artifact.join.battle ? openActivateDialog(artifact) : null">
+          <button mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag [cdkDragDisabled]="!artifact.join.battle" [ngClass]="{ 'handle': artifact.join.battle, 'legendary': artifact.join | legendary, 'common': !(artifact.join | legendary) }" [id]="artifact.fid" (click)="!artifact.join.battle ? openActivateDialog(artifact) : null">
             <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
               <img mat-list-avatar [src]="artifact.join.image">
             </div>
@@ -31,7 +35,7 @@
 
         <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
         <mat-action-list dense class="dotted" id="3" tourAnchor="tour.spells" #kngdmCharms="cdkDropList" [cdkDropListConnectedTo]="[atckCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="kingdomCharms">
-          <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.join.battle || !charm.completed" [ngClass]="{ 'handle': charm.join.battle && charm.completed, 'legendary': charm.join.legendary, 'common': !charm.join.legendary }" (click)="!charm.completed ? openResearchDialog(charm) : !charm.join.battle ? openConjureDialog(charm) : null" [id]="charm.fid">
+          <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.join.battle || !charm.completed" [ngClass]="{ 'handle': charm.join.battle && charm.completed, 'legendary': charm.join | legendary, 'common': !(charm.join | legendary) }" (click)="!charm.completed ? openResearchDialog(charm) : !charm.join.battle ? openConjureDialog(charm) : null" [id]="charm.fid">
             <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="charm.join.image">
             </div>
@@ -59,6 +63,10 @@
             <img mat-card-avatar src="/assets/images/cards/arcanism.png">
             <mat-card-title >{{ 'kingdom.arcanism.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.arcanism.description' | translate }}</mat-card-subtitle>
+            <mat-chip-list>
+              <mat-chip color="primary" selected><mat-icon>filter_1</mat-icon>{{ 'kingdom.arcanism.max' | translate }}</mat-chip>
+              <mat-chip color="primary" selected><mat-icon>filter_1</mat-icon>{{ 'kingdom.arcanism.max' | translate }}</mat-chip>
+            </mat-chip-list>
           </mat-card-header>
 
           <mat-card-content>
@@ -68,7 +76,7 @@
           <mat-card-content>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
             <mat-list dense class="dotted" id="1" #atckArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="attackArtifacts">
-              <mat-list-item *ngFor="let artifact of attackArtifacts" cdkDrag class="handle" [id]="artifact.fid" [ngClass]="{ 'legendary': artifact.join.legendary }">
+              <mat-list-item *ngFor="let artifact of attackArtifacts" cdkDrag class="handle" [id]="artifact.fid" [ngClass]="{ 'legendary': artifact.join | legendary }">
                 <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
                   <img mat-list-avatar [src]="artifact.join.image">
                 </div>
@@ -80,7 +88,7 @@
 
             <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
             <mat-list dense class="dotted" id="4" #atckCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="attackCharms">
-              <mat-list-item *ngFor="let charm of attackCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="{ 'legendary': charm.join.legendary }">
+              <mat-list-item *ngFor="let charm of attackCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="{ 'legendary': charm.join | legendary }">
                 <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="charm.join.image">
                 </div>
@@ -99,6 +107,10 @@
             <img mat-card-avatar src="/assets/images/cards/protection.png">
             <mat-card-title >{{ 'kingdom.protection.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.protection.description' | translate }}</mat-card-subtitle>
+            <mat-chip-list>
+              <mat-chip color="primary" selected><mat-icon>filter_1</mat-icon>{{ 'kingdom.protection.max' | translate }}</mat-chip>
+              <mat-chip color="primary" selected><mat-icon>filter_1</mat-icon>{{ 'kingdom.protection.max' | translate }}</mat-chip>
+            </mat-chip-list>
           </mat-card-header>
 
           <mat-card-content>
@@ -108,7 +120,7 @@
           <mat-card-content>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
             <mat-list dense class="dotted" id="2" #defArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="defenseArtifacts">
-              <mat-list-item *ngFor="let artifact of defenseArtifacts" cdkDrag class="handle" [id]="artifact.fid" [ngClass]="{ 'legendary': artifact.join.legendary }">
+              <mat-list-item *ngFor="let artifact of defenseArtifacts" cdkDrag class="handle" [id]="artifact.fid" [ngClass]="{ 'legendary': artifact.join | legendary }">
                 <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
                   <img mat-list-avatar [src]="artifact.join.image">
                 </div>
@@ -120,7 +132,7 @@
 
             <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
             <mat-list dense class="dotted" id="5" #defCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, atckCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="defenseCharms">
-              <mat-list-item *ngFor="let charm of defenseCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="{ 'legendary': charm.join.legendary }">
+              <mat-list-item *ngFor="let charm of defenseCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="{ 'legendary': charm.join | legendary }">
                 <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="charm.join.image">
                 </div>

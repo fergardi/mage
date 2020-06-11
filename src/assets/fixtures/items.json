@@ -16,8 +16,7 @@
     "amount": [2000000, 10000000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -36,8 +35,7 @@
     "amount": [1000000, 2000000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -56,8 +54,7 @@
     "amount": [100000, 1000000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -76,8 +73,7 @@
     "amount": [1000, 10000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -96,8 +92,7 @@
     "amount": [10, 1000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -116,8 +111,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -129,15 +123,14 @@
     "id": "wisdom-tome",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": [],
     "spells": [],
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": true
+    "gems": 1
   },
   {
     "turns": 1,
@@ -156,8 +149,7 @@
     "amount": [10, 1000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -176,8 +168,7 @@
     "amount": [1, 10],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -189,15 +180,14 @@
     "id": "dragon-egg",
     "skills": [],
     "families": ["dragon"],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": [],
     "spells": [],
     "amount": [1, 2],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": true
+    "gems": 1
   },
   {
     "turns": 1,
@@ -216,8 +206,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -236,8 +225,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -256,8 +244,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -276,8 +263,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -296,8 +282,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -316,8 +301,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -336,8 +320,7 @@
     "amount": [10000, 1000000],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -356,8 +339,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -376,8 +358,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -396,8 +377,7 @@
     "amount": [10000, 100000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -416,8 +396,7 @@
     "amount": [],
     "battle": true,
     "self": false,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -436,8 +415,7 @@
     "amount": [10, 1000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -456,8 +434,7 @@
     "amount": [1000, 10000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -476,8 +453,7 @@
     "amount": [],
     "battle": true,
     "self": false,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -489,15 +465,14 @@
     "id": "voodoo-doll",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": ["turn"],
     "spells": [],
     "amount": [-25, -50],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": true
+    "gems": 1
   },
   {
     "turns": 1,
@@ -516,8 +491,7 @@
     "amount": [],
     "battle": true,
     "self": false,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -529,15 +503,14 @@
     "id": "golden-feather",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": ["phoenix"],
     "resources": [],
     "spells": [],
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": true
+    "gems": 1
   },
   {
     "turns": 1,
@@ -556,8 +529,7 @@
     "amount": [-100000, -1000000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -576,8 +548,7 @@
     "amount": [1, 100],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -596,8 +567,7 @@
     "amount": [-500000, -1000000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -616,8 +586,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -629,15 +598,14 @@
     "id": "lucky-coin",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": [],
     "spells": ["love-peace", "climate-control", "natures-favor", "druidism"],
     "amount": [150],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": true
+    "gems": 1
   },
   {
     "turns": 1,
@@ -649,15 +617,14 @@
     "id": "lucky-horseshoe",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": [],
     "spells": ["divine-protection", "shroud-darkness", "fire-wall", "ice-wall", "sunray"],
     "amount": [150],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": true
+    "gems": 1
   },
   {
     "turns": 1,
@@ -669,15 +636,14 @@
     "id": "lucky-paw",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": [],
     "spells": ["concentration", "hallucination", "battle-chant", "blood-ritual"],
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": true
+    "gems": 1
   },
   {
     "turns": 1,
@@ -696,8 +662,7 @@
     "amount": [1000, 10000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -709,15 +674,14 @@
     "id": "magic-compass",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": ["land"],
     "spells": [],
     "amount": [50, 100],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": true
+    "gems": 1
   },
   {
     "turns": 1,
@@ -729,15 +693,14 @@
     "id": "magic-scroll",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": [],
     "spells": [],
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": true
+    "gems": 1
   },
   {
     "turns": 1,
@@ -756,8 +719,7 @@
     "amount": [-100000, -500000],
     "battle": false,
     "self": false,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -776,8 +738,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -796,8 +757,7 @@
     "amount": [1000, 100000],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -809,15 +769,14 @@
     "id": "rattle",
     "skills": [],
     "families": [],
-    "categories": [],
+    "categories": ["legendary"],
     "units": [],
     "resources": [],
     "spells": [],
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": true
+    "gems": 1
   },
   {
     "turns": 1,
@@ -836,8 +795,7 @@
     "amount": [-10000, -1000000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -856,8 +814,7 @@
     "amount": [100, 1000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -876,8 +833,7 @@
     "amount": [],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -896,8 +852,7 @@
     "amount": [100, 1000],
     "battle": false,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -916,8 +871,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -936,8 +890,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -956,8 +909,7 @@
     "amount": [100, 1000],
     "battle": true,
     "self": false,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -976,8 +928,7 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   },
   {
     "turns": 1,
@@ -996,7 +947,6 @@
     "amount": [],
     "battle": true,
     "self": true,
-    "gems": 1,
-    "legendary": false
+    "gems": 1
   }
 ]

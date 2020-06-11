@@ -11,8 +11,7 @@
     "families": ["elemental"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -26,8 +25,7 @@
     "families": ["undead"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -36,13 +34,12 @@
     "id": "bone-dragon",
     "image": "/assets/images/units/black/bone-dragon.png",
     "faction": "black",
-    "categories": ["cold", "breath", "melee"],
+    "categories": ["cold", "breath", "melee", "legendary"],
     "skills": ["flight", "scales", "life-leech"],
     "families": ["dragon", "undead"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -56,8 +53,7 @@
     "families": ["undead"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -71,8 +67,7 @@
     "families": ["undead"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -86,8 +81,7 @@
     "families": ["undead"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -101,8 +95,7 @@
     "families": ["undead"],
     "recruitable": false,
     "disbandable": false,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -111,13 +104,12 @@
     "id": "vampire",
     "image": "/assets/images/units/black/vampire.png",
     "faction": "black",
-    "categories": ["magic", "ranged"],
+    "categories": ["magic", "ranged", "legendary"],
     "skills": ["life-leech", "flight", "seduction"],
     "families": ["undead"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -131,8 +123,7 @@
     "families": ["animal", "human"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -146,8 +137,7 @@
     "families": ["undead"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -156,13 +146,12 @@
     "id": "blue-dragon",
     "image": "/assets/images/units/blue/blue-dragon.png",
     "faction": "blue",
-    "categories": ["breath", "melee", "lightning"],
+    "categories": ["breath", "melee", "lightning", "legendary"],
     "skills": ["flight", "scales", "haste"],
     "families": ["dragon"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -176,8 +165,7 @@
     "families": ["golem"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -191,8 +179,7 @@
     "families": ["elemental"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -206,8 +193,7 @@
     "families": ["giant"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -221,8 +207,7 @@
     "families": ["elemental"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -236,8 +221,7 @@
     "families": ["orkish"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -251,8 +235,7 @@
     "families": ["reptile"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -261,13 +244,12 @@
     "id": "leviathan",
     "image": "/assets/images/units/blue/leviathan.png",
     "faction": "blue",
-    "categories": ["melee"],
+    "categories": ["melee", "legendary"],
     "skills": ["strength", "scales", "weakness"],
     "families": ["giant", "reptile"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -281,8 +263,7 @@
     "families": ["human"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -296,8 +277,7 @@
     "families": ["giant"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -311,8 +291,7 @@
     "families": ["golem"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -326,8 +305,7 @@
     "families": ["animal", "giant"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -341,8 +319,7 @@
     "families": ["orkish"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -356,8 +333,7 @@
     "families": ["orkish"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -366,13 +342,12 @@
     "id": "golden-dragon",
     "image": "/assets/images/units/green/golden-dragon.png",
     "faction": "green",
-    "categories": ["melee", "breath", "poison"],
+    "categories": ["melee", "breath", "poison", "legendary"],
     "skills": ["flight", "scales", "regeneration"],
     "families": ["dragon"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -386,8 +361,7 @@
     "families": ["animal", "human"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -401,8 +375,7 @@
     "families": ["undead"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -416,8 +389,7 @@
     "families": ["animal", "giant"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -431,8 +403,7 @@
     "families": ["elemental"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -441,13 +412,12 @@
     "id": "wyvern",
     "image": "/assets/images/units/green/wyvern.png",
     "faction": "green",
-    "categories": ["melee", "poison", "breath"],
+    "categories": ["melee", "poison", "breath", "legendary"],
     "skills": ["scales"],
     "families": ["giant", "reptile"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -461,8 +431,7 @@
     "families": ["giant", "demon"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -476,8 +445,7 @@
     "families": ["demon"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -491,8 +459,7 @@
     "families": ["demon"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -506,8 +473,7 @@
     "families": ["elemental"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -521,8 +487,7 @@
     "families": ["reptile"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -536,8 +501,7 @@
     "families": ["demon", "giant", "orkish"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -551,8 +515,7 @@
     "families": ["demon", "orkish"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -561,13 +524,12 @@
     "id": "phoenix",
     "image": "/assets/images/units/red/phoenix.png",
     "faction": "red",
-    "categories": ["magic", "ranged", "fire"],
+    "categories": ["magic", "ranged", "fire", "legendary"],
     "skills": ["flight", "regeneration"],
     "families": ["elemental"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -576,13 +538,12 @@
     "id": "red-dragon",
     "image": "/assets/images/units/red/red-dragon.png",
     "faction": "red",
-    "categories": ["fire", "breath", "melee"],
+    "categories": ["fire", "breath", "melee", "legendary"],
     "skills": ["flight", "scales"],
     "families": ["dragon"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -596,8 +557,7 @@
     "families": ["demon", "giant", "orkish", "animal"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -606,13 +566,12 @@
     "id": "behemoth",
     "image": "/assets/images/units/white/behemoth.png",
     "faction": "white",
-    "categories": ["melee"],
+    "categories": ["melee", "legendary"],
     "skills": ["scales"],
     "families": ["dragon"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -621,13 +580,12 @@
     "id": "white-dragon",
     "image": "/assets/images/units/white/white-dragon.png",
     "faction": "white",
-    "categories": ["holy", "breath", "melee"],
+    "categories": ["holy", "breath", "melee", "legendary"],
     "skills": ["regeneration", "flight", "scales"],
     "families": ["dragon"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -641,8 +599,7 @@
     "families": ["animal"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -656,8 +613,7 @@
     "families": ["human"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -671,8 +627,7 @@
     "families": ["elemental"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -686,8 +641,7 @@
     "families": ["giant"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -701,8 +655,7 @@
     "families": ["human"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -716,8 +669,7 @@
     "families": ["human"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -731,8 +683,7 @@
     "families": ["human", "animal"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -746,8 +697,7 @@
     "families": ["human"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -761,8 +711,7 @@
     "families": ["human", "animal"],
     "recruitable": true,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -776,8 +725,7 @@
     "families": ["human"],
     "recruitable": true,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -791,8 +739,7 @@
     "families": ["human"],
     "recruitable": true,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -806,8 +753,7 @@
     "families": ["human"],
     "recruitable": true,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -821,8 +767,7 @@
     "families": ["human"],
     "recruitable": true,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -836,8 +781,7 @@
     "families": ["animal"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -851,8 +795,7 @@
     "families": ["animal"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -866,8 +809,7 @@
     "families": ["animal"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -881,8 +823,7 @@
     "families": ["animal"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -896,8 +837,7 @@
     "families": ["demon"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -911,8 +851,7 @@
     "families": ["animal"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -926,8 +865,7 @@
     "families": ["animal"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -936,13 +874,12 @@
     "id": "iron-golem",
     "image": "/assets/images/units/grey/iron-golem.png",
     "faction": "grey",
-    "categories": ["melee"],
+    "categories": ["melee", "legendary"],
     "skills": ["scales", "slowness"],
     "families": ["golem"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": true
+    "gold": 100
   },
   {
     "type": "unit",
@@ -956,8 +893,7 @@
     "families": ["golem"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   },
   {
     "type": "unit",
@@ -971,7 +907,6 @@
     "families": ["dragon"],
     "recruitable": false,
     "disbandable": true,
-    "gold": 100,
-    "legendary": false
+    "gold": 100
   }
 ]

@@ -20,8 +20,8 @@ import { ApiService } from 'src/app/services/api.service';
           <div mat-line>{{ unit.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of unit.families" [src]="family.image"/>
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of unit.categories" [src]="category.image"/>
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of unit.skills" [src]="skill.image"/>
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of unit.categories" [src]="category.image"/>
           </div>
           <div mat-list-avatar [matBadge]="unit.gold | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/gold.png">

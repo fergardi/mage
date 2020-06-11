@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     <div mat-dialog-content>
       <p>{{ 'kingdom.discharge.description' | translate }}</p>
       <mat-list dense>
-        <mat-list-item [ngClass]="{ 'legendary': contract.join.legendary }">
+        <mat-list-item [ngClass]="{ 'legendary': contract.join | legendary }">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.join.image">
           </div>

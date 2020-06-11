@@ -21,8 +21,8 @@ import { ApiService } from 'src/app/services/api.service';
           <div mat-line class="mat-card-subtitle" *ngIf="['artifact', 'contract'].includes(auction.type)" [innerHTML]="auction.join.description | translate | icon:auction.join.skills:auction.join.categories:auction.join.families:auction.join.units:auction.join.resources:auction.join.spells:auction.adjacents:auction.opposites"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['troop'].includes(auction.type)">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of auction.join.families" [src]="family.image"/>
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of auction.join.categories" [src]="category.image"/>
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of auction.join.skills" [src]="skill.image"/>
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of auction.join.categories" [src]="category.image"/>
           </div>
           <div mat-list-avatar [matBadge]="auction.gold | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/gold.png">

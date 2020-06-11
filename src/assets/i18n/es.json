@@ -108,7 +108,8 @@
       "help": "En esta enciclopedia encontrarás todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc."
     },
     "tome": {
-      "close": "Cerrar"
+      "close": "Cerrar",
+      "legendary": "Legendario"
     }
   },
   "shell": {
@@ -234,12 +235,14 @@
     "leadership": {
       "name": "Liderazgo",
       "description": "Comanda tus tropas",
-      "help": "Los héroes que tengas asignados al Liderazo entrarán en batalla contra cualquier reino al que ataques, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden morir en batalla."
+      "help": "Los héroes que tengas asignados al Liderazo entrarán en batalla contra cualquier reino al que ataques, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden morir en batalla.",
+      "max": "Máximo"
     },
     "guard": {
       "name": "Guardia",
       "description": "Vigila tus dominios",
-      "help": "Los héroes que tengas asignados a la Guardia entrarán en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden morir en batalla."
+      "help": "Los héroes que tengas asignados a la Guardia entrarán en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden morir en batalla.",
+      "max": "Máximo"
     },
     "census": {
       "name": "Censo",
@@ -255,7 +258,7 @@
     },
     "battle": {
       "name": "Batalla",
-      "description": "TODO",
+      "description": "Declara la guerra a un reino enemigo. El asedio se centra en destruir, el pillaje en robar recursos, y el ataque en una mezcla de ambas cosas. Usarás las tropas, hechizos y artefactos que tengas asociadas al ataque.",
       "attack": "Atacar",
       "cancel": "Cancelar",
       "type": "Tipo de batalla",
@@ -266,8 +269,8 @@
     "army": {
       "name": "Ejército",
       "description": "Gestiona tus tropas",
-      "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente.",
-      "maximum": "No puedes superar el máximo permitido",
+      "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
+      "max": "Máximo",
       "success": "Los cambios de tus tropas se han guardado",
       "error": "Ha ocurrido un problema al gestionar tus tropas"
     },
@@ -290,12 +293,14 @@
     "attack": {
       "name": "Ataque",
       "description": "Organiza tus fuerzas ofensivas",
-      "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha importancia en las batallas."
+      "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha importancia en las batallas.",
+      "max": "Máximo"
     },
     "defense": {
       "name": "Defensa",
       "description": "Organiza tus fuerzas defensivas",
-      "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha importancia en las batallas."
+      "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha importancia en las batallas.",
+      "max": "Máximo"
     },
     "recruit": {
       "name": "Reclutamiento",
@@ -337,8 +342,9 @@
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
       "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás subir de nivel a tus hechizos, invirtiendo turnos en su investigación.",
-      "maximum": "No puedes superar el máximo permitido",
-      "success": "Tus hechizos y artefactos han sido asignados"
+      "maximum": "???",
+      "success": "Tus hechizos y artefactos han sido asignados",
+      "max": "Máximo"
     },
     "research": {
       "name": "Investigación",
@@ -371,12 +377,14 @@
     "arcanism": {
       "name": "Arcanismo",
       "description": "Organiza tus artimañas ofensivas",
-      "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
+      "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible.",
+      "max": "Máximo"
     },
     "protection": {
       "name": "Protección",
       "description": "Organiza tus artimañas defensivas",
-      "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible."
+      "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible.",
+      "max": "Máximo"
     },
     "charge": {
       "name": "Meditación",
@@ -413,7 +421,8 @@
       "description": "Asigna a tus héroes",
       "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna. Puedes asignarlos a Liderazo para que entren en batalla o a Guardia para que defiendan tu ciudad. También puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos.",
       "success": "Tus héroes han sido asignados",
-      "error": "Ha ocurrido un problema al gestionar tus héroes"
+      "error": "Ha ocurrido un problema al gestionar tus héroes",
+      "max": "Máximo"
     },
     "archive": {
       "name": "Archivo",
@@ -1418,6 +1427,10 @@
     "breath": {
       "name": "Aliento",
       "description": "Daño elemental aumentado"
+    },
+    "legendary": {
+      "name": "Legendario",
+      "description": "Escaso y difícil de obtener"
     }
   },
   "skill": {
@@ -1728,23 +1741,23 @@
   },
   "god": {
     "death": {
-      "name": "Muerte",
+      "name": "Personificación de la Muerte",
       "description": "Los cinco sellos del Armagedón"
     },
     "void": {
-      "name": "Vacío",
+      "name": "Encarnación del Vacío",
       "description": "Los cinco sellos del Armagedón"
     },
     "famine": {
-      "name": "Hambruna",
+      "name": "Deidad de la Hambruna",
       "description": "Los cinco sellos del Armagedón"
     },
     "war": {
-      "name": "Guerra",
+      "name": "Divinidad de la Guerra",
       "description": "Los cinco sellos del Armagedón"
     },
     "pestilence": {
-      "name": "Enfermedad",
+      "name": "Veneración de la Pestilencia",
       "description": "Los cinco sellos del Armagedón"
     }
   }

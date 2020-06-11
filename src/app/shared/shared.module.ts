@@ -38,6 +38,7 @@ import { ShortPipe } from '../pipes/short.pipe';
 import { IconPipe } from '../pipes/icon.pipe';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LongPipe } from '../pipes/long.pipe';
+import { LegendaryPipe } from '../pipes/legendary.pipe';
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
@@ -49,6 +50,7 @@ const components = [
   ShortPipe,
   IconPipe,
   LongPipe,
+  LegendaryPipe,
 ];
 const modules = [
   CommonModule,

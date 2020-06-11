@@ -30,6 +30,7 @@ export class PopupComponent implements OnInit {
   questContracts: any[] = [];
   questTroops: any[] = [];
   questArtifacts: any[] = [];
+  confirmType: typeof ConfirmType = ConfirmType;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -50,12 +51,6 @@ export class PopupComponent implements OnInit {
       });
       this.firebaseService.leftJoin(`shops/${this.data.fid}/charms`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(charms => {
         this.shopCharms = charms;
-      });
-    }
-    // kingdom
-    if (this.data.type === PopupType.kingdom) {
-      this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/troops`, 'units', 'id', 'id', ref => ref.where('assignment', '==', TroopAssignmentType.troopDefense)).pipe(untilDestroyed(this)).subscribe(troops => {
-        this.kingdomTroops = troops.sort((a, b) => a.join.name - b.join.name);
       });
     }
     // quest

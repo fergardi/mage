@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     <div mat-dialog-content>
       <p>{{ 'type.' + tome.type + '.name'  | translate }}</p>
       <mat-list dense>
-        <mat-list-item [ngClass]="{ 'legendary': tome.legendary }">
+        <mat-list-item [ngClass]="{ 'legendary': tome | legendary }">
           <div mat-list-avatar>
             <img mat-list-avatar [src]="tome.image">
           </div>
@@ -17,8 +17,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(tome.type)" [innerHTML]="tome.description | translate | icon:tome.skills:tome.categories:tome.families:tome.units:tome.resources:tome.spells:tome.adjacents:tome.opposites"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(tome.type)">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of tome.families" [src]="family.image">
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of tome.categories" [src]="category.image">
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of tome.skills" [src]="skill.image">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of tome.categories" [src]="category.image">
           </div>
           <div mat-list-avatar *ngIf="tome.join">
             <img mat-list-avatar [src]="tome.join.image">
@@ -27,9 +27,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       </mat-list>
       <p>{{ tome.help | translate }}</p>
       <mat-chip-list>
-        <mat-chip *ngFor="let family of tome.families"><img class="icon" [src]="family.image">{{ family.name | translate }}</mat-chip>
-        <mat-chip *ngFor="let category of tome.categories"><img class="icon" [src]="category.image">{{ category.name | translate }}</mat-chip>
-        <mat-chip *ngFor="let skill of tome.skills"><img class="icon" [src]="skill.image">{{ skill.name | translate }}</mat-chip>
+        <mat-chip color="primary" selected *ngFor="let family of tome.families"><img class="icon" [src]="family.image">{{ family.name | translate }}</mat-chip>
+        <mat-chip color="primary" selected *ngFor="let skill of tome.skills"><img class="icon" [src]="skill.image">{{ skill.name | translate }}</mat-chip>
+        <mat-chip color="primary" [ngClass]="{ 'legendary' : category.id === 'legendary' }" selected *ngFor="let category of tome.categories"><img class="icon" [src]="category.image">{{ category.name | translate }}</mat-chip>
       </mat-chip-list>
     </div>
     <div mat-dialog-actions>

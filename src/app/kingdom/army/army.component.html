@@ -6,6 +6,7 @@
         <img mat-card-avatar src="/assets/images/cards/army.png">
         <mat-card-title >{{ 'kingdom.army.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.army.description' | translate }}</mat-card-subtitle>
+        <mat-chip-list><mat-chip color="primary" selected><mat-icon>filter_9_plus</mat-icon>{{ 'kingdom.army.max' | translate }}</mat-chip></mat-chip-list>
       </mat-card-header>
 
       <mat-card-content>
@@ -15,15 +16,15 @@
       <mat-card-content>
         <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
         <mat-action-list dense class="dotted" id="0" tourAnchor="tour.army" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="kingdomTroops">
-          <button mat-list-item *ngFor="let troop of kingdomTroops" cdkDrag class="handle" [id]="troop.fid" (click)="openDisbandDialog(troop)" [ngClass]="troop.join.legendary ? 'legendary' : 'common'">
+          <button mat-list-item *ngFor="let troop of kingdomTroops" cdkDrag class="handle" [id]="troop.fid" (click)="openDisbandDialog(troop)" [ngClass]="(troop.join | legendary) ? 'legendary' : 'common'">
             <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="troop.join.image">
             </div>
             <div mat-line>{{ troop.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">
               <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
-              <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
               <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
+              <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
             </div>
             <mat-icon>open_with</mat-icon>
           </button>
@@ -41,6 +42,7 @@
             <img mat-card-avatar src="/assets/images/cards/attack.png">
             <mat-card-title >{{ 'kingdom.attack.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.attack.description' | translate }}</mat-card-subtitle>
+            <mat-chip-list><mat-chip color="primary" selected><mat-icon>filter_5</mat-icon>{{ 'kingdom.attack.max' | translate }}</mat-chip></mat-chip-list>
           </mat-card-header>
 
           <mat-card-content>
@@ -50,15 +52,15 @@
           <mat-card-content>
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
             <mat-list dense class="dotted" id="1" tourAnchor="tour.attack" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="attackTroops">
-              <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle" [id]="troop.fid" [ngClass]="{ 'legendary': troop.join.legendary }">
+              <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle" [id]="troop.fid" [ngClass]="{ 'legendary': troop.join | legendary }">
                 <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="troop.join.image">
                 </div>
                 <div mat-line>{{ troop.join.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle">
                   <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
-                  <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
                   <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
+                  <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
                 </div>
                 <mat-icon>open_with</mat-icon>
               </mat-list-item>
@@ -75,6 +77,7 @@
             <img mat-card-avatar src="/assets/images/cards/defense.png">
             <mat-card-title >{{ 'kingdom.defense.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.defense.description' | translate }}</mat-card-subtitle>
+            <mat-chip-list><mat-chip color="primary" selected><mat-icon>filter_5</mat-icon>{{ 'kingdom.defense.max' | translate }}</mat-chip></mat-chip-list>
           </mat-card-header>
 
           <mat-card-content>
@@ -84,15 +87,15 @@
           <mat-card-content>
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
             <mat-list dense class="dotted" id="2" tourAnchor="tour.defense" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="defenseTroops">
-              <mat-list-item *ngFor="let troop of defenseTroops" cdkDrag class="handle" [id]="troop.fid" [ngClass]="{ 'legendary': troop.join.legendary }">
+              <mat-list-item *ngFor="let troop of defenseTroops" cdkDrag class="handle" [id]="troop.fid" [ngClass]="{ 'legendary': troop.join | legendary }">
                 <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="troop.join.image">
                 </div>
                 <div mat-line>{{ troop.join.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle">
                   <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image"/>
-                  <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
                   <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image"/>
+                  <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image"/>
                 </div>
                 <mat-icon>open_with</mat-icon>
               </mat-list-item>
@@ -124,8 +127,8 @@
                 <div mat-line>{{ unit.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle">
                   <img [title]="family.name | translate" class="icon" *ngFor="let family of unit.families" [src]="family.image"/>
-                  <img [title]="category.name | translate" class="icon" *ngFor="let category of unit.categories" [src]="category.image"/>
                   <img [title]="skill.name | translate" class="icon" *ngFor="let skill of unit.skills" [src]="skill.image"/>
+                  <img [title]="category.name | translate" class="icon" *ngFor="let category of unit.categories" [src]="category.image"/>
                 </div>
                 <div mat-list-avatar [matBadge]="unit.gold | long" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/gold.png">

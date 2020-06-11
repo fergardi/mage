@@ -60,6 +60,8 @@ $warn-color: mat-color($theme-warn);
 
 /* You can add global styles to this file, and also import other style files */
 $list-item-height: 60px;
+$common-color: #373638;
+$legendary-color: darkgoldenrod;
 
 html, body {
   height: 100%;
@@ -70,10 +72,10 @@ body {
 
 .mat-list {
   .mat-list-item.common .mat-list-item-content {
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, #373638 50%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $common-color 50%, rgba(255,255,255,0) 100%);
   }
   .mat-list-item.legendary .mat-list-item-content {
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, darkgoldenrod 50%, rgba(255,255,255,0) 100%);
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $legendary-color 50%, rgba(255,255,255,0) 100%);
   }
 }
 
@@ -99,6 +101,22 @@ body {
   img {
     margin-right: 3px !important;
     margin-left: -3px !important;
+  }
+  .mat-icon {
+    margin-right: 3px !important;
+    margin-left: -3px !important;
+  }
+  &.legendary {
+    background-color: $legendary-color !important;
+  }
+}
+
+.mat-card-header {
+  .mat-chip-list {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -294,6 +312,9 @@ body {
   background-color: #424242;
   color: white;
   font-size: 12px;
+  &.legendary .mat-list-item-content {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $legendary-color 50%, rgba(255,255,255,0) 100%);
+  }
   .mat-list-item-content {
     display: flex;
     flex-direction: row;
