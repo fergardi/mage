@@ -109,18 +109,14 @@
     },
     "tome": {
       "close": "Cerrar",
-      "goldCost": "Coste {{ quantity }}",
-      "goldMaintenance": "Mantenimiento {{ quantity }}",
-      "goldProduction": "Producción {{ quantity }}",
-      "goldCapacity": "Capacidad {{ quantity }}",
-      "manaCost": "Coste {{ quantity }}",
-      "manaMaintenance": "Mantenimiento {{ quantity }}",
-      "manaProduction": "Producción {{ quantity }}",
-      "manaCapacity": "Capacidad {{ quantity }}",
-      "populationCost": "Coste {{ quantity }}",
-      "populationMaintenance": "Mantenimiento {{ quantity }}",
-      "populationProduction": "Producción {{ quantity }}",
-      "populationCapacity": "Capacidad {{ quantity }}"
+      "goldMaintenance": "{{ number }} al turno",
+      "manaMaintenance": "{{ number }} al turno",
+      "populationMaintenance": "{{ number }} al turno",
+      "attack": "Ataque {{ number }}",
+      "defense": "Defensa {{ number }}",
+      "health": "Vida {{ number }}",
+      "initiative": "Iniciativa {{ number }}",
+      "power": "Poder {{ number }}"
     }
   },
   "shell": {
@@ -701,8 +697,8 @@
       "name": "Dragones de hueso",
       "description": ""
     },
-    "mummy": {
-      "name": "Momias",
+    "nightmare": {
+      "name": "Pesadillas",
       "description": ""
     },
     "ghoul": {
@@ -1531,8 +1527,8 @@
       "name": "Ingeniero",
       "description": "Reduce tiempos de construcción"
     },
-    "dark-knight": {
-      "name": "Caballero oscuro",
+    "mummy": {
+      "name": "Momia",
       "description": "Aumenta el ataque de tus tropas"
     },
     "silver-knight": {

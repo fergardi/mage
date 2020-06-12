@@ -4,9 +4,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-tome',
   template: `
-    <h1 mat-dialog-title>{{ tome.name | translate }}</h1>
+    <div class="dialog-title">
+      <h1 mat-dialog-title>{{ tome.name | translate }}</h1>
+      <mat-chip-list>
+        <mat-chip color="primary" selected>{{ 'type.' + tome.type + '.name'  | translate }}</mat-chip>
+      </mat-chip-list>
+    </div>
     <div mat-dialog-content>
-      <p>{{ 'type.' + tome.type + '.name'  | translate }}</p>
+      <p>{{ tome.description | translate }}</p>
       <mat-list dense>
         <mat-list-item [ngClass]="{ 'legendary': tome | legendary }">
           <div mat-list-avatar>
@@ -25,22 +30,22 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           </div>
         </mat-list-item>
       </mat-list>
-      <mat-chip-list class="attributes" *ngIf="['unit'].includes(tome.type)">
+      <mat-chip-list>
+        <mat-chip color="primary" selected *ngIf="tome.attack > 0"><img class="icon" src="/assets/images/icons/attack.png">{{ 'user.tome.attack' | translate:{ number: tome.attack | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="tome.defense > 0"><img class="icon" src="/assets/images/icons/defense.png">{{ 'user.tome.defense' | translate:{ number: tome.defense | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="tome.health > 0"><img class="icon" src="/assets/images/icons/health.png">{{ 'user.tome.health' | translate:{ number: tome.health | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="tome.initiative > 0"><img class="icon" src="/assets/images/icons/initiative.png">{{ 'user.tome.initiative' | translate:{ number: tome.initiative | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="tome.power > 0"><img class="icon" src="/assets/images/icons/power.png">{{ 'user.tome.power' | translate:{ number: tome.power | long } }}</mat-chip>
+      </mat-chip-list>
+      <mat-chip-list>
+        <mat-chip color="primary" selected *ngIf="tome.goldMaintenance > 0"><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldMaintenance' | translate:{ number: tome.goldMaintenance | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="tome.manaMaintenance > 0"><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaMaintenance' | translate:{ number: tome.manaMaintenance | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="tome.populationMaintenance > 0"><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationMaintenance' | translate:{ number: tome.populationMaintenance | long } }}</mat-chip>
+      </mat-chip-list>
+      <mat-chip-list>
         <mat-chip color="primary" selected *ngFor="let family of tome.families"><img class="icon" [src]="family.image">{{ family.name | translate }}</mat-chip>
         <mat-chip color="primary" selected *ngFor="let skill of tome.skills"><img class="icon" [src]="skill.image">{{ skill.name | translate }}</mat-chip>
         <mat-chip color="primary" selected *ngFor="let category of tome.categories" [ngClass]="{ 'legendary' : category.id === 'legendary' }"><img class="icon" [src]="category.image">{{ category.name | translate }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldCost' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldMaintenance' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldProduction' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldCapacity' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaCost' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaMaintenance' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaProduction' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaCapacity' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationCost' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationMaintenance' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationProduction' | translate:{ quantity: 12345 | long } }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationCapacity' | translate:{ quantity: 12345 | long } }}</mat-chip>
       </mat-chip-list>
     </div>
     <div mat-dialog-actions>
@@ -48,15 +53,25 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </div>
   `,
   styles: [`
+    .dialog-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      .mat-chip-list {
+        display: inline-block;
+      }
+    }
     .mat-dialog-content + .mat-dialog-content {
       margin-top: 10px;
     }
     ::ng-deep .mat-chip-list-wrapper {
       margin: 0 !important;
     }
-    .attributes {
-      margin-top: 10px;
+    ::ng-deep .mat-chip-list {
       display: block;
+    }
+    ::ng-deep .mat-chip-list:first-of-type {
+      margin-top: 5px;
     }
   `]
 })

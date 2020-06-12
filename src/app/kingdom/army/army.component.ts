@@ -53,7 +53,7 @@ export class ArmyComponent implements OnInit {
       this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopDefense).sort((a, b) => a.sort - b.sort);
     });
     let recruitUnits = await this.cacheService.getUnits();
-    this.recruitUnits = recruitUnits.filter((unit: any) => unit.recruitable === true);
+    this.recruitUnits = recruitUnits.filter((unit: any) => unit.gold > 0);
   }
 
   assignTroop($event: CdkDragDrop<any>) {

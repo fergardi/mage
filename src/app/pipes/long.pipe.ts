@@ -14,7 +14,8 @@ export class LongPipe implements PipeTransform {
     return number.toLocaleString(this.translateService.currentLang, {
       useGrouping: true,
       minimumIntegerDigits: 1,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: number % 1 !== 0 ? 3 : 0,
+      maximumFractionDigits: number % 1 !== 0 ? 3 : 0,
     });
   }
 

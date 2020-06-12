@@ -278,8 +278,8 @@ body {
 }
 
 .icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   margin: 2px;
   border: 1px solid $primary-color;
@@ -294,11 +294,15 @@ body {
   line-height: 1.25 !important;
 }
 
+.mat-dialog-title {
+  display: inline-block !important;
+}
+
 .mat-card-title::after,
 .mat-dialog-container .mat-dialog-title::after {
   content: '';
   border-bottom: 8px solid $primary-color;
-  width: 100px;
+  width: 100%;
   display: block;
 }
 
