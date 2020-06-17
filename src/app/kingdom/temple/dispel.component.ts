@@ -25,6 +25,9 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
           </div>
         </mat-list-item>
       </mat-list>
+      <mat-chip-list>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ 20000 | long }}</mat-chip>
+      </mat-chip-list>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.dispel.cancel' | translate }}</button>

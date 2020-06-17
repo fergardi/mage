@@ -30,7 +30,7 @@
     },
     "resurrection": {
       "name": "Te has reencarnado",
-      "description": "Estás en el más allá, en la más absoluta oscuridad, en otro plano de la realidad. Aquí el mundo es diferente, cargado de partículas mágicas, envuelto en misterio y poder. Lo ves en el agua, lo sientes en la tierra, lo hueles en el aire. Pensabas que era el final, pero en realidad tan sólo es el principio. Ahora puedes alcanzar tus verdaderos objetivos, desarrollar todo tu potencial, y ser el mejor mago o bruja que esta desolada tierra haya visto jamás."
+      "description": "Estás en el más allá, en la más absoluta oscuridad, en otro plano de la realidad. Aquí el mundo es diferente, cargado de partículas mágicas, envuelto en misterio y poder. Lo notas en el agua, lo sientes en la tierra, lo hueles en el aire. Pensabas que era el final, pero en realidad tan sólo es el principio. Ahora puedes alcanzar tus verdaderos objetivos, desarrollar todo tu potencial, y ser el mejor mago o bruja que esta desolada tierra haya visto jamás."
     },
     "choose": {
       "name": "Escoge una facción",
@@ -64,7 +64,7 @@
       "name": "Gestiona tu capital",
       "description": "Construye y demole edificios como los nodos, academias, granjas, pueblos... Explora (o roba) más tierras libres para ampliar tu economía y poder permitirte más poder ofensivo."
     },
-    "win": {
+    "victory": {
       "name": "Álzate con la victoria",
       "description": "Este plano de la realidad es muy cruel con los débiles. Sólo los magos y brujas más sobresalientes tienen una ligera posibilidad de sobrevivir aquí. ¿Eres uno de ellos?",
       "play": "Jugar"
@@ -121,10 +121,10 @@
   },
   "shell": {
     "group": {
-      "coin": "Gremio de la Moneda",
-      "sword": "Gremio de la Espada",
-      "wispers": "Gremio de los Susurros",
-      "priest": "Gremio del Clero",
+      "coin": "Gremio de Mercaderes",
+      "sword": "Gremio de Caballeros",
+      "wispers": "Gremio de Mensajeros",
+      "priest": "Gremio de Clérigos",
       "wisdom": "Gremio de Eruditos"
     }
   },
@@ -283,7 +283,7 @@
     },
     "disband": {
       "name": "Desbande",
-      "description": "TODO",
+      "description": "Puedes desbandar tropas que no quieras seguir manteniendo bajo tu mando, siempre y cuando no estén asignadas al ataque o a la defensa, y que no consuman población por su mantenimiento.",
       "quantity": "Cantidad",
       "cancel": "Cancelar",
       "disband": "Desbandar",
@@ -299,13 +299,13 @@
     },
     "attack": {
       "name": "Ataque",
-      "description": "Organiza tus fuerzas ofensivas",
+      "description": "Ordena tus fuerzas ofensivas",
       "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha importancia en las batallas.",
       "max": "Máximo"
     },
     "defense": {
       "name": "Defensa",
-      "description": "Organiza tus fuerzas defensivas",
+      "description": "Ordena tus fuerzas defensivas",
       "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha importancia en las batallas.",
       "max": "Máximo"
     },
@@ -322,7 +322,7 @@
     },
     "dispel": {
       "name": "Desencanto",
-      "description": "Romper encntamientos",
+      "description": "Romper encantamientos",
       "help": "Aqui puedes gastar maná para tratar de romper un encantamiento de tu reino. Si el encantamiento es de un enemigo, el éxito dependerá de su protección mágica.",
       "hint": "Debes tener suficiente maná",
       "error": "No tienes maná suficiente",
@@ -455,7 +455,7 @@
     "temple": {
       "name": "Templo",
       "description": "Complace a los dioses",
-      "help": "En el templo puedes ofrecer oro a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino. Debes ofrecer más del 10% que la ofrenda anterior y, a diferencia de la casa de subastas, no recuperarás nada de tu oro original si alguien te supera. Pero cuidado, los dioses son caprichosos...",
+      "help": "Puedes ofrecer oro a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino. Los favores incluyen encantamientos, artefactos, tropas, recursos... Pero ten cuidado con lo que deseas, pues los dioses son caprichosos.",
       "hero": "Te han otorgado el héroe '{{ hero }}' de nivel {{ level }}",
       "unit": "Te han otorgado una tropa de {{ quantity }} '{{ unit }}'",
       "enchantment": "Te han otorgado el encantamiento '{{ enchantment }}' durante {{ turns }} turnos",
@@ -467,7 +467,7 @@
     },
     "offer": {
       "name": "Ofrenda",
-      "description": "Ofrece oro a tu dios como sacrificio",
+      "description": "Ofrece oro a tu dios como sacrificio. Debes ofrecer más del 10% que la ofrenda anterior y, a diferencia de la casa de subastas, no recuperarás nada de tu oro original cuando otro reino ofrezca más que tú.",
       "cancel": "Cancelar",
       "offer": "Ofrecer",
       "hint": "Ofrece +10% oro que la ofrenda anterior",
@@ -488,7 +488,7 @@
     },
     "build": {
       "name": "Construcción",
-      "description": "TODO",
+      "description": "Invierte tierras libres, oro y turnos para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como batallas y asedios.",
       "cancel": "Cancelar",
       "build": "Construir",
       "hint": "Necesitas tierras, oro y turnos",
@@ -1173,7 +1173,7 @@
     },
     "laziness": {
       "name": "Pereza",
-      "description": "Destruye <population> al <turn> y se contagia"
+      "description": "Destruye <population> y <gold> al <turn> y se contagia"
     },
     "haste": {
       "name": "Prisa",
@@ -1451,27 +1451,27 @@
     },
     "scales": {
       "name": "Placas",
-      "description": "Aumenta defensa"
+      "description": "Aumenta su defensa"
     },
     "strength": {
       "name": "Fuerza",
-      "description": "Aumenta ataque"
+      "description": "Aumenta su ataque"
     },
     "haste": {
       "name": "Prisa",
-      "description": "Aumenta iniciativa"
+      "description": "Aumenta su iniciativa"
     },
     "weakness": {
       "name": "Debilidad",
-      "description": "Disminuye la defensa"
+      "description": "Disminuye su defensa"
     },
     "seduction": {
       "name": "Seducción",
-      "description": "Convierte unidades"
+      "description": "Esquiva los ataques"
     },
     "slowness": {
       "name": "Lentitud",
-      "description": "Disminuye la iniciativa"
+      "description": "Disminuye su iniciativa"
     },
     "flight": {
       "name": "Vuelo",
@@ -1479,7 +1479,7 @@
     },
     "fear": {
       "name": "Miedo",
-      "description": "Disminuye el ataque"
+      "description": "Disminuye su ataque"
     }
   },
   "hero": {

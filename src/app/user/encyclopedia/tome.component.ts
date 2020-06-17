@@ -61,18 +61,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
         display: inline-block;
       }
     }
-    .mat-dialog-content + .mat-dialog-content {
-      margin-top: 10px;
-    }
-    ::ng-deep .mat-chip-list-wrapper {
-      margin: 0 !important;
-    }
-    ::ng-deep .mat-chip-list {
-      display: block;
-    }
-    ::ng-deep .mat-chip-list:first-of-type {
-      margin-top: 5px;
-    }
   `]
 })
 export class TomeComponent {

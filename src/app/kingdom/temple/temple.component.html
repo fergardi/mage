@@ -11,14 +11,11 @@
       </mat-card-header>
 
       <mat-card-content>
-        {{ 'kingdom.temple.help' | translate }}
-      </mat-card-content>
-
-      <mat-card-content>
+        <span>{{ 'kingdom.temple.help' | translate }}</span>
         <div matSubheader>{{ 'card.list.gods' | translate }}:</div>
         <mat-action-list dense tourAnchor="tour.temple">
-          <button mat-list-item *ngFor="let god of kingdomGods" [disabled]="god.kingdom === uid" (click)="openOfferDialog(god)" class="common">
-            <div mat-list-avatar matBadge="?" matBadgePosition="above before">
+          <button mat-list-item *ngFor="let god of kingdomGods" [disabled]="god.kingdom === uid" (click)="openOfferDialog(god)" class="legendary">
+            <div mat-list-avatar matBadge="∞" matBadgePosition="above before">
               <img mat-list-avatar [src]="god.image">
             </div>
             <div mat-line>{{ god.name | translate }}</div>
@@ -47,10 +44,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            {{ 'kingdom.dispel.help' | translate }}
-          </mat-card-content>
-
-          <mat-card-content>
+            <span>{{ 'kingdom.dispel.help' | translate }}</span>
             <div matSubheader>{{ 'card.list.enchantments' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.dispel">
               <button mat-list-item *ngFor="let enchantment of kingdomEnchantments" (click)="openDispelDialog(enchantment)" [ngClass]="(enchantment.join | legendary) ? 'legendary' : 'common'">

@@ -15,8 +15,8 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
     <div mat-dialog-content>
       <p>{{ 'kingdom.offer.description' | translate }}</p>
       <mat-list dense>
-        <mat-list-item>
-          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
+        <mat-list-item class="legendary">
+          <div mat-list-avatar matBadge="∞" matBadgePosition="above before">
             <img mat-list-avatar [src]="god.image">
           </div>
           <div mat-line>{{ god.name | translate }}</div>

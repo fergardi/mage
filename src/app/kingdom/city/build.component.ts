@@ -32,6 +32,12 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
           <mat-error>{{ 'kingdom.build.error' | translate }}</mat-error>
         </mat-form-field>
       </form>
+      <mat-chip-list>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ building.gold }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/land.png">{{ building.land }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/turn.png">{{ building.turn }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/icons/power.png">{{ building.power }}</mat-chip>
+      </mat-chip-list>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.build.cancel' | translate }}</button>

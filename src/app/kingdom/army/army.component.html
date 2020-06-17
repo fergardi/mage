@@ -10,10 +10,7 @@
       </mat-card-header>
 
       <mat-card-content>
-        {{ 'kingdom.army.help' | translate }}
-      </mat-card-content>
-
-      <mat-card-content>
+        <span>{{ 'kingdom.army.help' | translate }}</span>
         <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
         <mat-action-list dense class="dotted" id="0" tourAnchor="tour.army" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="kingdomTroops">
           <button mat-list-item *ngFor="let troop of kingdomTroops" cdkDrag class="handle" [id]="troop.fid" (click)="openDisbandDialog(troop)" [ngClass]="(troop.join | legendary) ? 'legendary' : 'common'">
@@ -46,10 +43,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            {{ 'kingdom.attack.help' | translate }}
-          </mat-card-content>
-
-          <mat-card-content>
+            <span>{{ 'kingdom.attack.help' | translate }}</span>
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
             <mat-list dense class="dotted" id="1" tourAnchor="tour.attack" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="attackTroops">
               <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle" [id]="troop.fid" [ngClass]="{ 'legendary': troop.join | legendary }">
@@ -81,10 +75,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            {{ 'kingdom.defense.help' | translate }}
-          </mat-card-content>
-
-          <mat-card-content>
+            <span>{{ 'kingdom.defense.help' | translate }}</span>
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
             <mat-list dense class="dotted" id="2" tourAnchor="tour.defense" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="defenseTroops">
               <mat-list-item *ngFor="let troop of defenseTroops" cdkDrag class="handle" [id]="troop.fid" [ngClass]="{ 'legendary': troop.join | legendary }">
@@ -114,14 +105,11 @@
           </mat-card-header>
 
           <mat-card-content>
-            {{ 'kingdom.recruit.help' | translate }}
-          </mat-card-content>
-
-          <mat-card-content>
+            <span>{{ 'kingdom.recruit.help' | translate }}</span>
             <mat-action-list dense tourAnchor="tour.recruit">
               <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
               <button mat-list-item *ngFor="let unit of recruitUnits" (click)="openRecruitDialog(unit)" class="common">
-                <div mat-list-avatar matBadge="?" matBadgePosition="above before">
+                <div mat-list-avatar matBadge="∞" matBadgePosition="above before">
                   <img mat-list-avatar [src]="unit.image">
                 </div>
                 <div mat-line>{{ unit.name | translate }}</div>

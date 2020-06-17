@@ -40,6 +40,9 @@ export enum CharmAssignmentType {
           <mat-option *ngFor="let charm of kingdomCharms" [value]="charm">{{ charm.join.name | translate }}</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-chip-list>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ charm.join.mana }}</mat-chip>
+      </mat-chip-list>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.conjure.cancel' | translate }}</button>

@@ -77,6 +77,12 @@
         max-width: 256px;
       }
     }
+    p {
+      margin: 0 !important;
+    }
+    p + img {
+      margin-top: 40px;
+    }
     .map-wrapper {
       position: relative;
       svg {
@@ -96,7 +102,7 @@
     }
     .image-icons,
     .faction-icons {
-      margin-top: 20px;
+      margin-top: 10px;
       display: flex;
       justify-content: center;
       align-items: flex-start;

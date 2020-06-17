@@ -3,9 +3,6 @@ import { fadeInOnEnterAnimation } from 'angular-animations';
 import { CacheService } from 'src/app/services/cache.service';
 import { MatDialog } from '@angular/material/dialog';
 import { BuyComponent } from './buy.component';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase/app';
-import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 
@@ -23,9 +20,7 @@ export class EmporiumComponent implements OnInit {
 
   constructor(
     private cacheService: CacheService,
-    private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
-    private notificationService: NotificationService,
     private store: Store,
   ) { }
 

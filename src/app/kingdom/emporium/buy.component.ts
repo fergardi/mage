@@ -13,7 +13,7 @@ import { NotificationService } from 'src/app/services/notification.service';
       <p>{{ 'kingdom.buy.help' | translate }}</p>
       <mat-list dense>
         <mat-list-item [ngClass]="{ 'legendary': item | legendary }">
-          <div mat-list-avatar [matBadge]="1 | long" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="1" matBadgePosition="above before">
             <img mat-list-avatar [src]="item.image">
           </div>
           <div mat-line>{{ item.name | translate }}</div>
