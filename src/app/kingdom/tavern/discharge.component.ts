@@ -13,7 +13,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
             <img mat-list-avatar [src]="contract.join.image">
           </div>
           <div mat-line>{{ contract.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join.skills:contract.join.categories:contract.join.families:contract.join.units:contract.join.resources:contract.join.spells:contract.adjacents:contract.opposites"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join"></div>
           <div mat-list-avatar [matBadge]="0" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>

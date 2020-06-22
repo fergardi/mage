@@ -229,6 +229,7 @@ export class CacheService {
         unit.join = factions.find(faction => faction.id === unit.faction);
         unit.skills = unit.skills.map(skill => skills.find(s => s.id === skill));
         unit.categories = unit.categories.map(category => categories.find(c => c.id === category));
+        unit.resistances = unit.resistances.map(category => categories.find(c => c.id === category));
         unit.families = unit.families.map(family => families.find(f => f.id === family));
       });
       localStorage.setItem(CollectionType.units, JSON.stringify([...units]));

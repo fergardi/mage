@@ -18,8 +18,8 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
             <img mat-list-avatar [src]="building.join.image">
           </div>
           <div mat-line>{{ building.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join.skills:building.join.categories:building.join.families:building.join.units:building.join.resources:building.join.spells:building.join.adjacents:building.join.opposites"></div>
-          <div mat-list-avatar [matBadge]="building.join.turns" matBadgePosition="above after">
+          <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join"></div>
+          <div mat-list-avatar [matBadge]="building.join.turnRatio" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>
@@ -33,10 +33,10 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
         </mat-form-field>
       </form>
       <mat-chip-list>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ building.gold }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/land.png">{{ building.land }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/turn.png">{{ building.turn }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/icons/power.png">{{ building.power }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ building.join.goldCost }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/land.png">1</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/turn.png">{{ building.join.turnRatio }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/icons/power.png">{{ building.join.power }}</mat-chip>
       </mat-chip-list>
     </div>
     <div mat-dialog-actions>
@@ -78,7 +78,7 @@ export class BuildComponent implements OnInit {
   }
 
   async build() {
-    if (this.form.valid && this.form.value.quantity <= this.kingdomLand.quantity && (this.form.value.quantity * this.building.join.gold) <= this.kingdomGold.quantity) {
+    if (this.form.valid && this.form.value.quantity <= this.kingdomLand.quantity && (this.form.value.quantity * this.building.join.goldCost) <= this.kingdomGold.quantity) {
       try {
         let built = await this.apiService.buildStructure(this.uid, this.building.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.build.success', built);

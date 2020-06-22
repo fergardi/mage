@@ -29,7 +29,7 @@ export enum ArtifactAssignmentType {
                   <img mat-list-avatar [src]="selectedArtifact.join.image">
                 </div>
                 <div mat-line>{{ selectedArtifact.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="selectedArtifact.join.description | translate | icon:selectedArtifact.join.skills:selectedArtifact.join.categories:selectedArtifact.join.families:selectedArtifact.join.units:selectedArtifact.join.resources:selectedArtifact.join.spells:selectedArtifact.join.adjacents:selectedArtifact.join.opposites"></div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="selectedArtifact.join.description | translate | icon:selectedArtifact.join"></div>
                 <div mat-list-avatar [matBadge]="selectedArtifact.join.turns" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>

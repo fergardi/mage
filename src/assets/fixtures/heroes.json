@@ -11,7 +11,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -25,7 +26,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -39,7 +41,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -50,10 +53,11 @@
     "image": "/assets/images/heroes/trader.png",
     "skills": [],
     "families": [],
-    "categories": ["legendary"],
+    "categories": [],
     "units": [],
     "resources": ["gold", "turn"],
-    "spells": []
+    "spells": [],
+    "legendary": true
   },
   {
     "type": "hero",
@@ -67,7 +71,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -78,10 +83,11 @@
     "image": "/assets/images/heroes/shaman.png",
     "skills": [],
     "families": [],
-    "categories": ["legendary"],
+    "categories": [],
     "units": [],
     "resources": ["mana", "turn"],
-    "spells": []
+    "spells": [],
+    "legendary": true
   },
   {
     "type": "hero",
@@ -95,7 +101,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -106,10 +113,11 @@
     "image": "/assets/images/heroes/sage.png",
     "skills": [],
     "families": [],
-    "categories": ["legendary"],
+    "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": true
   },
   {
     "type": "hero",
@@ -123,7 +131,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -134,10 +143,11 @@
     "image": "/assets/images/heroes/necromancer.png",
     "skills": [],
     "families": [],
-    "categories": ["legendary"],
+    "categories": [],
     "units": [],
     "resources": ["population", "turn"],
-    "spells": []
+    "spells": [],
+    "legendary": true
   },
   {
     "type": "hero",
@@ -151,7 +161,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -165,7 +176,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -179,7 +191,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -193,7 +206,8 @@
     "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": false
   },
   {
     "type": "hero",
@@ -204,9 +218,10 @@
     "image": "/assets/images/heroes/engineer.png",
     "skills": [],
     "families": [],
-    "categories": ["legendary"],
+    "categories": [],
     "units": [],
     "resources": [],
-    "spells": []
+    "spells": [],
+    "legendary": true
   }
 ]

@@ -49,8 +49,8 @@ $md-palette: (
 );
 
 $theme-primary: mat-palette($md-palette);
-$theme-accent: mat-palette($mat-green, 600);
-$theme-warn: mat-palette($mat-red, 600);
+$theme-accent: mat-palette($mat-green, 800);
+$theme-warn: mat-palette($mat-red, 800);
 $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 @include angular-material-theme($theme);
 
@@ -80,6 +80,10 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+.mat-select-trigger .mat-select-value {
+  overflow: visible;
 }
 
 .mat-list {
@@ -294,8 +298,12 @@ body {
 }
 
 .mat-dialog-container {
+  position: relative;
   .mat-dialog-content {
     padding: 6px 24px !important;
+    .mat-chip-list:first-of-type {
+      margin-top: 12px;
+    }
   }
   .mat-dialog-title {
     display: inline-block !important;
@@ -306,9 +314,20 @@ body {
   .mat-chip-list {
     display: block;
   }
-  .mat-chip-list:first-of-type {
-    margin-top: 12px;
-  }
+}
+
+// ribbon
+.mat-dialog-content::after {
+  content: '';
+  width: 0px;
+  height: 50px;
+  background-color: transparent;
+  position: absolute;
+  top: 0px;
+  right: calc(50% - 15px);
+  border: solid 15px $warn-color;
+  border-bottom: solid 15px transparent;
+  z-index: -1;
 }
 
 .icon {
@@ -317,6 +336,9 @@ body {
   border-radius: 50%;
   margin: 2px;
   border: 1px solid $primary-color;
+  &.grayscale {
+    filter: grayscale(100%);
+  }
 }
 
 .mat-card,

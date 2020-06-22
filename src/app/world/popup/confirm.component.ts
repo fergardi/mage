@@ -14,7 +14,7 @@ import { NotificationService } from 'src/app/services/notification.service';
             <img mat-list-avatar [src]="data.object.join.image">
           </div>
           <div mat-line>{{ data.object.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="data.object.join.description | translate | icon:data.object.join.skills:data.object.join.categories:data.object.join.families:data.object.join.units:data.object.join.resources:data.object.join.spells:data.object.join.adjacents:data.object.join.opposites"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="data.object.join.description | translate | icon:data.object.join"></div>
           <div mat-list-avatar *ngIf="data.object.gold > 0" [matBadge]="data.object.gold | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
           </div>

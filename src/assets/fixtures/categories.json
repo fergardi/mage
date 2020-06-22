@@ -78,13 +78,5 @@
     "name": "category.breath.name",
     "description": "category.breath.description",
     "image": "/assets/images/categories/breath.png"
-  },
-  {
-    "type": "category",
-    "faction": "grey",
-    "id": "legendary",
-    "name": "category.legendary.name",
-    "description": "category.legendary.description",
-    "image": "/assets/images/categories/legendary.png"
   }
 ]

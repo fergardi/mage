@@ -48,13 +48,13 @@
             <div matSubheader>{{ 'card.list.enchantments' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.dispel">
               <button mat-list-item *ngFor="let enchantment of kingdomEnchantments" (click)="openDispelDialog(enchantment)" [ngClass]="(enchantment.join | legendary) ? 'legendary' : 'common'">
-                <div mat-list-avatar [matBadge]="enchantment.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
+                <div mat-list-avatar [matBadge]="enchantment.join.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
                   <img mat-list-avatar [src]="enchantment.join.image">
                 </div>
                 <div mat-line>{{ enchantment.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.join.description | translate | icon:enchantment.join.skills:enchantment.join.categories:enchantment.join.families:enchantment.join.units:enchantment.join.resources:enchantment.join.spells:enchantment.adjacents:enchantment.opposites"></div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.join.description | translate | icon:enchantment.join"></div>
                 <div mat-line>
-                  <mat-progress-bar [color]="enchantment.from === uid ? 'accent' : 'warn'" [value]="enchantment.turns * 100 / enchantment.join.duration"></mat-progress-bar>
+                  <mat-progress-bar [color]="enchantment.from === uid ? 'accent' : 'warn'" [value]="enchantment.turns * 100 / enchantment.join.turnDuration"></mat-progress-bar>
                 </div>
                 <div mat-list-avatar [matBadge]="enchantment.turns" matBadgePosition="above after" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">

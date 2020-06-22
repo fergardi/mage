@@ -17,7 +17,7 @@
             <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
 
             <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
-              <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off"/>
+              <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off">
               <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
                 <mat-icon>close</mat-icon>
               </button>
@@ -44,7 +44,7 @@
                     <img mat-list-avatar [src]="row.join.image">
                   </div>
                   <div mat-line>{{ row.join.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle" [innerHTML]="row.join.description | translate | icon:row.join.skills:row.join.categories:row.join.families:row.join.units:row.join.resources:row.join.spells:row.join.adjacents:row.join.opposites"></div>
+                  <div mat-line class="mat-card-subtitle" [innerHTML]="row.join.description | translate | icon:row.join"></div>
                 </mat-list-item>
               </mat-list>
             </ng-template>
@@ -57,11 +57,13 @@
                   </div>
                   <div mat-line>{{ row.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(row.type)">{{ row.description | translate }}</div>
-                  <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(row.type)" [innerHTML]="row.description | translate | icon:row.skills:row.categories:row.families:row.units:row.resources:row.spells:row.adjacents:row.opposites"></div>
+                  <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(row.type)" [innerHTML]="row.description | translate | icon:row"></div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(row.type)">
-                    <img [title]="family.name | translate" class="icon" *ngFor="let family of row.families" [src]="family.image"/>
-                    <img [title]="skill.name | translate" class="icon" *ngFor="let skill of row.skills" [src]="skill.image"/>
-                    <img [title]="category.name | translate" class="icon" *ngFor="let category of row.categories" [src]="category.image"/>
+                    <img [title]="family.name | translate" class="icon" *ngFor="let family of row.families" [src]="family.image">
+                    <img [title]="skill.name | translate" class="icon" *ngFor="let skill of row.skills" [src]="skill.image">
+                    <img [title]="category.name | translate" class="icon" *ngFor="let category of row.categories" [src]="category.image">
+                    <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="row.legendary" src="/assets/images/icons/legendary.png">
+                    <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of row.resistances" [src]="category.image">
                   </div>
                 </mat-list-item>
               </mat-list>

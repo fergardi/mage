@@ -108,6 +108,7 @@
       "help": "En esta enciclopedia encontrarás todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc."
     },
     "tome": {
+      "help": "Tus eruditos encuentran un viejo y polvoriento pergamino en la antigua biblioteca real. Los grabados, descoloridos por el paso del tiempo pero todavía legibles, contienen todo lo necesario para calmar tu sed de sabiduría. Sonríes, pues el conocimiento es la mitad de la batalla.",
       "close": "Cerrar",
       "goldMaintenance": "{{ number }} al turno",
       "manaMaintenance": "{{ number }} al turno",
@@ -235,7 +236,7 @@
     "city": {
       "name": "Ciudad",
       "description": "Administra tu capital",
-      "help": "En la ciudad puedes invertir turnos, oro, y tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino.",
+      "help": "En la ciudad puedes invertir turnos, oro, y tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino. Ten en cuenta que cuantos más talleres tengas, menos turnos necesitarás.",
       "success": "Edificios construidos correctamente",
       "error": "Ha ocurrido un error al construir edificios"
     },
@@ -293,7 +294,7 @@
     },
     "discharge": {
       "name": "Despido",
-      "description": "TODO",
+      "description": "Si no quieres seguir pagando los mantenimientos de un héroe, puedes despedirlo desterrándolo de tu reino.",
       "cancel": "Cancelar",
       "discharge": "Despedir"
     },
@@ -332,13 +333,13 @@
     "auction": {
       "name": "Subasta",
       "description": "Comercia con otros reinos",
-      "help": "Aquí puedes pujar oro contra otros reinos para adquirir artefactos, contratos o hechizos. Las subastas se renuevan diariamente, y debes pujar como mínimo un 10% más de oro que la puja anterior. Si alguien te sobrepuja, se te devolverá solo el 90% de tu puja original, así que puja con inteligencia.",
+      "help": "Aquí puedes pujar oro contra otros reinos para adquirir artefactos, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar.",
       "bid": "Pujar"
     },
     "bid": {
       "name": "Puja",
       "description": "Comercia con otros reinos",
-      "help": "TODO",
+      "help": "Debes pujar como mínimo un 10% más de oro que la puja anterior, si alguien te sobrepuja, se te devolverá solo el 90% de tu puja original, así que puja con inteligencia.",
       "cancel": "Cancelar",
       "bid": "Pujar",
       "hint": "Ofrece +10% oro que la puja anterior",
@@ -455,7 +456,7 @@
     "temple": {
       "name": "Templo",
       "description": "Complace a los dioses",
-      "help": "Puedes ofrecer oro a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino. Los favores incluyen encantamientos, artefactos, tropas, recursos... Pero ten cuidado con lo que deseas, pues los dioses son caprichosos.",
+      "help": "Puedes ofrecer oro a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
       "hero": "Te han otorgado el héroe '{{ hero }}' de nivel {{ level }}",
       "unit": "Te han otorgado una tropa de {{ quantity }} '{{ unit }}'",
       "enchantment": "Te han otorgado el encantamiento '{{ enchantment }}' durante {{ turns }} turnos",
@@ -873,8 +874,8 @@
       "name": "Monjes",
       "description": ""
     },
-    "warrior": {
-      "name": "Guerreros",
+    "templar": {
+      "name": "Templarios",
       "description": ""
     },
     "crusader": {
@@ -1057,19 +1058,19 @@
     },
     "flame-shield": {
       "name": "Escudos de llamas",
-      "description": "Aplica <scales> a tus tropas <melee>"
+      "description": "Aplica <scales> y <fire> a tus tropas <melee>"
     },
     "flame-blade": {
       "name": "Espadas flamígueras",
-      "description": "Aplica <fire> a tus tropas <melee>"
+      "description": "Aplica <strength> y <fire> a tus tropas <melee>"
     },
     "flame-arrow": {
       "name": "Flechas de fuego",
-      "description": "Aplica <fire> a tus tropas <ranged>"
+      "description": "Aplica <strength> y <fire> a tus tropas <ranged>"
     },
     "gravity": {
       "name": "Gravedad",
-      "description": "Aplica <weakness> a cada tropa <flight>"
+      "description": "Aplica <weakness>,<slowness> y <fear> a cada tropa <flight>"
     },
     "meteor-storm": {
       "name": "Tormenta de meteoros",
@@ -1225,7 +1226,7 @@
     },
     "growth": {
       "name": "Crecimiento",
-      "description": "Aplica <scales> a tus tropas <animal>"
+      "description": "Aumenta el daño y la vida de tus <animal>"
     },
     "locust-swarm": {
       "name": "Enjambre de langostas",
@@ -1279,9 +1280,9 @@
       "name": "Llamar Caballeros",
       "description": "Convoca una tropa de <knight>"
     },
-    "call-warrior": {
-      "name": "Llamar guerreros",
-      "description": "Convoca una tropa de <warrior>"
+    "call-templar": {
+      "name": "Llamar Templarios",
+      "description": "Convoca una tropa de <templar>"
     },
     "flash": {
       "name": "Destello",
@@ -1301,7 +1302,7 @@
     },
     "holy-word": {
       "name": "Palabra santa",
-      "description": "Mata unidades de una tropa enemiga"
+      "description": "Daña unidades de cada tropa enemiga"
     },
     "scales": {
       "name": "Placas",
@@ -1317,15 +1318,15 @@
     },
     "love-peace": {
       "name": "Paz y amor",
-      "description": "Aumenta <gold> y <mana> por <turn>"
+      "description": "Aumenta <gold>,<mana> y <population> por <turn>"
     },
     "resurrection": {
       "name": "Resurección",
-      "description": "Recupera tropas muertas tras la batalla"
+      "description": "Aplica <regeneration> a todas tus tropas"
     },
     "shield-light": {
       "name": "Escudos de luz",
-      "description": "Aplica <scales> a tus tropas <melee>"
+      "description": "Aplica <scales> y <holy> a tus tropas <melee>"
     },
     "summon-griffon": {
       "name": "Invocar Grifos",
@@ -1341,7 +1342,7 @@
     },
     "sword-light": {
       "name": "Espadas de luz",
-      "description": "Aplica <strength> a tus tropas <melee>"
+      "description": "Aplica <strength> y <holy> a tus tropas <melee>"
     },
     "tranquility": {
       "name": "Tranquilidad",
@@ -1395,6 +1396,12 @@
     }
   },
   "category": {
+    "legendary": {
+      "name": "Legendario"
+    },
+    "resistance": {
+      "name": "Resistencia a "
+    },
     "melee": {
       "name": "Físico",
       "description": "Tipo de daño cuerpo a cuerpo"
@@ -1434,16 +1441,12 @@
     "breath": {
       "name": "Aliento",
       "description": "Daño elemental aumentado"
-    },
-    "legendary": {
-      "name": "Legendario",
-      "description": "Escaso y difícil de obtener"
     }
   },
   "skill": {
     "regeneration": {
       "name": "Regeneración",
-      "description": "Resucita tropas muertas"
+      "description": "Resucita tropas tras la batalla"
     },
     "life-leech": {
       "name": "Robar vida",
@@ -1451,27 +1454,27 @@
     },
     "scales": {
       "name": "Placas",
-      "description": "Aumenta su defensa"
+      "description": "Aumenta su defensa en +30%"
     },
     "strength": {
       "name": "Fuerza",
-      "description": "Aumenta su ataque"
+      "description": "Aumenta su ataque en +20%"
     },
     "haste": {
       "name": "Prisa",
-      "description": "Aumenta su iniciativa"
+      "description": "Aumenta su iniciativa en +1"
     },
     "weakness": {
       "name": "Debilidad",
-      "description": "Disminuye su defensa"
+      "description": "Disminuye su defensa en -30%"
     },
     "seduction": {
       "name": "Seducción",
-      "description": "Esquiva los ataques"
+      "description": "Esquiva el primer ataque"
     },
     "slowness": {
       "name": "Lentitud",
-      "description": "Disminuye su iniciativa"
+      "description": "Disminuye su iniciativa en -1"
     },
     "flight": {
       "name": "Vuelo",
@@ -1479,21 +1482,21 @@
     },
     "fear": {
       "name": "Miedo",
-      "description": "Disminuye su ataque"
+      "description": "Disminuye su ataque en -20%"
     }
   },
   "hero": {
     "dragon-rider": {
       "name": "Jinete de dragones",
-      "description": "Mejora el daño de <dragon>"
+      "description": "Aumenta el daño de <dragon> en +2% por nivel"
     },
     "demon-prince": {
       "name": "Príncipe demonio",
-      "description": "Mejora el daño de <demon>"
+      "description": "Aumenta el daño de <demon> en +2% por nivel"
     },
     "commander": {
       "name": "Comandante",
-      "description": "Mejora el daño de <human>"
+      "description": "Aumenta el daño de <human> en +2% por nivel"
     },
     "trader": {
       "name": "Comerciante",
@@ -1501,7 +1504,7 @@
     },
     "beast-master": {
       "name": "Señor de las bestias",
-      "description": "Mejora el daño de <animal>"
+      "description": "Aumenta el daño de <animal> en +2% por nivel"
     },
     "shaman": {
       "name": "Chamán",
@@ -1509,15 +1512,15 @@
     },
     "elementalist": {
       "name": "Elementalista",
-      "description": "Mejora el daño de <elemental>"
+      "description": "Aumenta el daño de <elemental> en +2% por nivel"
     },
     "sage": {
       "name": "Sabio",
-      "description": "Aumenta la velocidad de investigación de hechizos de tu reino"
+      "description": "Aumenta la velocidad de investigación"
     },
     "necrophage": {
       "name": "Necrófago jefe",
-      "description": "Mejora el daño de <undead>"
+      "description": "Aumenta el daño de <undead> en +2% por nivel"
     },
     "necromancer": {
       "name": "Nigromante",
@@ -1529,19 +1532,19 @@
     },
     "mummy": {
       "name": "Momia",
-      "description": "Aumenta el ataque de tus tropas"
+      "description": "Aumenta el ataque de tus tropas en +1% por nivel"
     },
     "silver-knight": {
       "name": "Caballero plateado",
-      "description": "Aumenta la defensa de tus tropas"
+      "description": "Aumenta la defensa de tus tropas en +2% por nivel"
     },
     "orc-king": {
       "name": "Rey orco",
-      "description": "Mejora el daño de <orkish>"
+      "description": "Aumenta el daño de <orkish> en +2% por nivel"
     },
     "leprechaunt": {
       "name": "Leprechaunt",
-      "description": "Encuentra artefactos"
+      "description": "Aumenta la suerte de encontrar artefactos al <turn> +1% por nivel"
     }
   },
   "item": {
@@ -1555,7 +1558,7 @@
     },
     "stone-chest": {
       "name": "Cofre de piedra",
-      "description": "Otorga modearda cantidad de <gold>"
+      "description": "Otorga moderada cantidad de <gold>"
     },
     "wooden-chest": {
       "name": "Cofre de madera",
@@ -1571,7 +1574,7 @@
     },
     "wisdom-tome": {
       "name": "Tomo de sabiduría",
-      "description": "Aprende un hechizo de otro color"
+      "description": "Aprende un hechizo nuevo de otro color"
     },
     "demon-horn": {
       "name": "Cuerno de demonio",
@@ -1679,7 +1682,7 @@
     },
     "lucky-paw": {
       "name": "Pata de la suerte",
-      "description": "Conjura <concentration>,<hallucination>,<battle-chant> o <blood-ritual>"
+      "description": "Conjura <concentration>,<growth>,<hallucination>,<battle-chant> o <blood-ritual>"
     },
     "magic-beans": {
       "name": "Judías mágicas",
@@ -1691,7 +1694,7 @@
     },
     "magic-scroll": {
       "name": "Pergamino mágico",
-      "description": "Aprende un hechizo de tu color"
+      "description": "Aprende un nuevo hechizo de tu color"
     },
     "mana-vortex": {
       "name": "Vórtice de maná",
@@ -1748,7 +1751,7 @@
   },
   "god": {
     "death": {
-      "name": "Personificación de la Muerte",
+      "name": "Imagen de la Muerte",
       "description": "Los cinco sellos del Armagedón"
     },
     "void": {
@@ -1756,7 +1759,7 @@
       "description": "Los cinco sellos del Armagedón"
     },
     "famine": {
-      "name": "Deidad de la Hambruna",
+      "name": "Símbolo de la Hambruna",
       "description": "Los cinco sellos del Armagedón"
     },
     "war": {

@@ -26,12 +26,12 @@ export enum CharmAssignmentType {
           <mat-select-trigger *ngIf="selectedCharm">
             <mat-list dense>
               <mat-list-item [ngClass]="{ 'legendary': selectedCharm.join.legendary }">
-                <div mat-list-avatar [matBadge]="selectedCharm.level" matBadgePosition="above before">
+                <div mat-list-avatar [matBadge]="selectedCharm.join.level" matBadgePosition="above before">
                   <img mat-list-avatar [src]="selectedCharm.join.image">
                 </div>
                 <div mat-line>{{ selectedCharm.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="selectedCharm.join.description | translate | icon:selectedCharm.join.skills:selectedCharm.join.categories:selectedCharm.join.families:selectedCharm.join.units:selectedCharm.join.resources:selectedCharm.join.spells:selectedCharm.join.adjacents:selectedCharm.join.opposites"></div>
-                <div mat-list-avatar [matBadge]="selectedCharm.join.turns" matBadgePosition="above after">
+                <div mat-line class="mat-card-subtitle" [innerHTML]="selectedCharm.join.description | translate | icon:selectedCharm"></div>
+                <div mat-list-avatar [matBadge]="selectedCharm.join.turnCost" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
               </mat-list-item>
@@ -41,7 +41,7 @@ export enum CharmAssignmentType {
         </mat-select>
       </mat-form-field>
       <mat-chip-list>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ charm.join.mana }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ charm.join.manaCost }}</mat-chip>
       </mat-chip-list>
     </div>
     <div mat-dialog-actions>
@@ -88,7 +88,7 @@ export class ConjureComponent implements OnInit {
   }
 
   async conjure() {
-    if (this.selectedCharm.join.turns <= this.kingdomTurn.quantity) {
+    if (this.selectedCharm.join.turnCost <= this.kingdomTurn.quantity) {
       try {
         let conjured = await this.apiService.conjureCharm(this.uid, this.selectedCharm.fid, this.uid);
         this.notificationService.success('kingdom.conjure.success');

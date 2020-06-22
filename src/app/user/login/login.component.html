@@ -33,24 +33,24 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput type="text" formControlName="email" placeholder="{{ 'user.login.email' | translate }}" autocomplete="off"/>
+          <input matInput type="text" formControlName="email" placeholder="{{ 'user.login.email' | translate }}" autocomplete="off">
           <mat-error>{{ 'user.login.invalid' | translate }}</mat-error>
         </mat-form-field>
 
         <mat-form-field *ngIf="type !== 'reset'">
-          <input matInput type="password" formControlName="password" placeholder="{{ 'user.login.password' | translate }}" autocomplete="off"/>
+          <input matInput type="password" formControlName="password" placeholder="{{ 'user.login.password' | translate }}" autocomplete="off">
           <mat-error>{{ 'user.login.insecure' | translate }}</mat-error>
         </mat-form-field>
 
         <mat-form-field *ngIf="type === 'signup'">
-          <input matInput type="password" formControlName="password2" placeholder="{{ 'user.login.password2' | translate }}" autocomplete="off"/>
+          <input matInput type="password" formControlName="password2" placeholder="{{ 'user.login.password2' | translate }}" autocomplete="off">
           <mat-error>{{ 'user.login.mismatch' | translate }}</mat-error>
         </mat-form-field>
       </mat-card-content>
 
       <mat-card-actions>
         <button mat-stroked-button type="button" (click)="google()" class="flag-menu">
-          <img src="/assets/images/brands/google.png"/>
+          <img src="/assets/images/brands/google.png">
           <span>Google</span>
         </button>
         <span class="fill-space"></span>

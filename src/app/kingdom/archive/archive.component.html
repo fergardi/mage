@@ -2,7 +2,7 @@
 
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/archive.png"/>
+        <img mat-card-avatar src="/assets/images/cards/archive.png">
         <mat-card-title>{{ "kingdom.archive.name" | translate }}</mat-card-title>
         <mat-card-subtitle>{{ "kingdom.archive.description" | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -29,7 +29,7 @@
                 <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
 
                 <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
-                  <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off"/>
+                  <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off">
                   <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
                     <mat-icon>close</mat-icon>
                   </button>

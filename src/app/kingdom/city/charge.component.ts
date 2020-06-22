@@ -18,7 +18,7 @@ import { ApiService } from 'src/app/services/api.service';
             <img mat-list-avatar [src]="node.join.image">
           </div>
           <div mat-line>{{ node.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="node.join.description | translate | icon:node.join.skills:node.join.categories:node.join.families:node.join.units:node.join.resources:node.join.spells:node.join.adjacents:node.join.opposites"></div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="node.join.description | translate | icon:node.join"></div>
           <div mat-list-avatar matBadge="?" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>

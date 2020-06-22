@@ -16,7 +16,7 @@
             <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
 
             <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
-              <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off"/>
+              <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off">
               <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
                 <mat-icon>close</mat-icon>
               </button>
@@ -42,11 +42,11 @@
                     <img mat-list-avatar [src]="auction.join.image">
                   </div>
                   <div mat-line>{{ auction.join.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle" *ngIf="['artifact', 'contract'].includes(auction.type)" [innerHTML]="auction.join.description | translate | icon:auction.join.skills:auction.join.categories:auction.join.families:auction.join.units:auction.join.resources:auction.join.spells:auction.adjacents:auction.opposites"></div>
+                  <div mat-line class="mat-card-subtitle" *ngIf="['artifact', 'contract'].includes(auction.type)" [innerHTML]="auction.join.description | translate | icon:auction.join"></div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['troop'].includes(auction.type)">
-                    <img [title]="family.name | translate" class="icon" *ngFor="let family of auction.join.families" [src]="family.image"/>
-                    <img [title]="skill.name | translate" class="icon" *ngFor="let skill of auction.join.skills" [src]="skill.image"/>
-                    <img [title]="category.name | translate" class="icon" *ngFor="let category of auction.join.categories" [src]="category.image"/>
+                    <img [title]="family.name | translate" class="icon" *ngFor="let family of auction.join.families" [src]="family.image">
+                    <img [title]="skill.name | translate" class="icon" *ngFor="let skill of auction.join.skills" [src]="skill.image">
+                    <img [title]="category.name | translate" class="icon" *ngFor="let category of auction.join.categories" [src]="category.image">
                   </div>
                   <div mat-list-avatar [matBadge]="auction.gold | long" matBadgePosition="above after">
                     <img mat-list-avatar src="/assets/images/resources/gold.png">
