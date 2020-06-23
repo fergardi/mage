@@ -34,7 +34,10 @@
           <mat-cell *matCellDef="let row" [attr.data-label]="'table.column.' + column | translate">
 
             <ng-template [ngIf]="column === 'type'">
-              {{ 'type.' + row[column] + '.name' | translate }}
+              <mat-chip-list>
+                <mat-chip color="primary" selected><img class="icon" src="/assets/images/icons/type.png">{{ 'type.' + row.type + '.name'  | translate }}</mat-chip>
+                <mat-chip color="primary" selected *ngIf="row.legendary" class="legendary"><img class="icon" src="/assets/images/icons/legendary.png">{{ 'category.legendary.name' | translate }}</mat-chip>
+              </mat-chip-list>
             </ng-template>
 
             <ng-template [ngIf]="column === 'faction'">

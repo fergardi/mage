@@ -1,25 +1,25 @@
 [
   {
-    "id": "handful",
-    "name": "pack.handful.name",
-    "description": "pack.handful.description",
-    "image": "/assets/images/packs/handful.png",
+    "id": "few",
+    "name": "pack.few.name",
+    "description": "pack.few.description",
+    "image": "/assets/images/packs/few.png",
     "quantity": 20,
-    "money": 0.09
+    "money": 0.19
   },
   {
-    "id": "heap",
-    "name": "pack.heap.name",
-    "description": "pack.heap.description",
-    "image": "/assets/images/packs/heap.png",
+    "id": "many",
+    "name": "pack.many.name",
+    "description": "pack.many.description",
+    "image": "/assets/images/packs/many.png",
     "quantity": 50,
-    "money": 0.29
+    "money": 0.49
   },
   {
-    "id": "mountain",
-    "name": "pack.mountain.name",
-    "description": "pack.mountain.description",
-    "image": "/assets/images/packs/mountain.png",
+    "id": "lot",
+    "name": "pack.lot.name",
+    "description": "pack.lot.description",
+    "image": "/assets/images/packs/lot.png",
     "quantity": 100,
     "money": 0.99
   }

@@ -263,6 +263,10 @@ body {
   padding: 16px 0 !important;
 }
 
+hr {
+  border-color: $primary-color;
+}
+
 .mat-list-base:not(.mat-nav-list) {
   img.mat-list-avatar {
     box-sizing: content-box;
@@ -304,6 +308,9 @@ body {
     .mat-chip-list:first-of-type {
       margin-top: 12px;
     }
+    .mat-subheader + .mat-chip-list {
+      margin-top: 0;
+    }
   }
   .mat-dialog-title {
     display: inline-block !important;
@@ -318,15 +325,15 @@ body {
 
 // ribbon
 .mat-dialog-content::after {
-  content: '';
-  width: 0px;
-  height: 50px;
-  background-color: transparent;
+  content: "";
+  width: 90px;
+  height: 90px;
   position: absolute;
   top: 0px;
-  right: calc(50% - 15px);
-  border: solid 15px $warn-color;
-  border-bottom: solid 15px transparent;
+  right: 20px;
+  background: url('/assets/images/icons/banner.png');
+  background-repeat: no-repeat;
+  background-size: contain;
   z-index: -1;
 }
 
@@ -334,8 +341,9 @@ body {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  margin: 2px;
+  margin: 1px;
   border: 1px solid $primary-color;
+  box-sizing: border-box;
   &.grayscale {
     filter: grayscale(100%);
   }
@@ -519,7 +527,7 @@ body {
   }
   .table-responsive {
     .mat-list-item-content {
-      padding-right: 0 !important;
+      padding: 0 8px !important;
       flex-direction: row-reverse !important;
     }
     .mat-table {
@@ -562,7 +570,7 @@ body {
       padding: 0 16px 0 0 !important;
     }
     .mat-cell {
-      padding: 0 12px !important;
+      // padding: 0 12px !important;
     }
     .mat-cell:first-of-type, .mat-header-cell:first-of-type, .mat-footer-cell:first-of-type {
       padding-left: 0;

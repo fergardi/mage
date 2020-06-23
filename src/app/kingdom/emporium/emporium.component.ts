@@ -29,7 +29,7 @@ export class EmporiumComponent implements OnInit {
     let items = await this.cacheService.getItems();
     this.emporiumItems = items.filter((item: any) => item.gems > 0);
     let packs = await this.cacheService.getPacks();
-    this.emporiumPacks = packs;
+    this.emporiumPacks = packs.sort((a, b) => a.quantity - b.quantity);
   }
 
   openBuyDialog(item: any) {

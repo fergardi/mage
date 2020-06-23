@@ -29,12 +29,12 @@
       "description": "Otro plano de la realidad"
     },
     "resurrection": {
-      "name": "Te has reencarnado",
-      "description": "Estás en el más allá, en la más absoluta oscuridad, en otro plano de la realidad. Aquí el mundo es diferente, cargado de partículas mágicas, envuelto en misterio y poder. Lo notas en el agua, lo sientes en la tierra, lo hueles en el aire. Pensabas que era el final, pero en realidad tan sólo es el principio. Ahora puedes alcanzar tus verdaderos objetivos, desarrollar todo tu potencial, y ser el mejor mago o bruja que esta desolada tierra haya visto jamás."
+      "name": "Has renacido",
+      "description": "Estás en el más allá, en la más absoluta oscuridad, en otro plano de la realidad. Aquí el mundo es diferente, cargado de partículas mágicas, envuelto en misterio y poder. Lo notas en el agua, lo sientes en la tierra, lo hueles en el aire. Pensabas que era el final, pero en realidad sólo es el principio. Ahora puedes alcanzar tus verdaderos objetivos, desarrollar todo tu potencial, y ser el mejor mago o bruja que ésta desolada tierra haya visto jamás."
     },
     "choose": {
       "name": "Escoge una facción",
-      "description": "En este plano de la realidad cohexisten cinco tipos de magia muy diferentes. Asóciate con uno y moldéalo a tu voluntad. Todos tienen sus ventajas e inconvenientes, pero las mismas posibilidades de victoria."
+      "description": "En este plano de la realidad coexisten cinco tipos de magia muy diferentes. Asóciate con uno y moldéalo a tu voluntad. Todos tienen sus ventajas e inconvenientes, pero las mismas posibilidades de victoria."
     },
     "destiny": {
       "name": "Construye tu destino",
@@ -117,7 +117,12 @@
       "defense": "Defensa {{ number }}",
       "health": "Vida {{ number }}",
       "initiative": "Iniciativa {{ number }}",
-      "power": "Poder {{ number }}"
+      "power": "Poder {{ number }}",
+      "type": "Tipo",
+      "statistics": "Estadísticas",
+      "maintenances": "Mantenimientos",
+      "costs": "Costes",
+      "characteristics": "Características"
     }
   },
   "shell": {
@@ -534,17 +539,17 @@
     }
   },
   "pack": {
-    "handful": {
+    "few": {
       "name": "Puñado de gemas",
-      "description": "Unas pocas gemas"
+      "description": "Unas pocas gemas en la palma de la mano"
     },
-    "heap": {
-      "name": "Montón de gemas",
-      "description": "Un buen montón de gemas"
+    "many": {
+      "name": "Saco de gemas",
+      "description": "Un buen montón de gemas dentro de un saquito"
     },
-    "mountain": {
+    "lot": {
       "name": "Montaña de gemas",
-      "description": "Una montaña de gemas"
+      "description": "Un montón de gemas en forma de montaña"
     }
   },
   "structure": {
