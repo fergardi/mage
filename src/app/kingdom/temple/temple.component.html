@@ -14,15 +14,18 @@
         <span>{{ 'kingdom.temple.help' | translate }}</span>
         <div matSubheader>{{ 'card.list.gods' | translate }}:</div>
         <mat-action-list dense tourAnchor="tour.temple">
-          <button mat-list-item *ngFor="let god of kingdomGods" [disabled]="god.kingdom === uid" (click)="openOfferDialog(god)" class="legendary">
+          <button mat-list-item *ngFor="let god of kingdomGods" [disabled]="god.armageddon" (click)="openOfferDialog(god)" class="legendary">
             <div mat-list-avatar matBadge="∞" matBadgePosition="above before">
               <img mat-list-avatar [src]="god.image">
             </div>
             <div mat-line>{{ god.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
-            <div mat-list-avatar [matBadge]="god.gold | short" matBadgePosition="above after">
-              <img mat-list-avatar src="/assets/images/resources/gold.png">
-            </div>
+            <div mat-list-avatar *ngIf="!god.armageddon && god.gold > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.gold | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/gold.png"></div>
+            <div mat-list-avatar *ngIf="!god.armageddon && god.mana > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.mana | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/mana.png"></div>
+            <div mat-list-avatar *ngIf="!god.armageddon && god.population > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.population | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/population.png"></div>
+            <div mat-list-avatar *ngIf="!god.armageddon && god.land > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.land | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/land.png"></div>
+            <div mat-list-avatar *ngIf="!god.armageddon && god.turn > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.turn | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
+            <div mat-list-avatar *ngIf="god.armageddon"><img mat-list-avatar src="/assets/images/spells/grey/armageddon.png"></div>
           </button>
         </mat-action-list>
       </mat-card-content>

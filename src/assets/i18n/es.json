@@ -234,7 +234,7 @@
       "cancel": "Cancelar",
       "confirm": "Confirmar",
       "success": "Tus órdenes han sido ejecutadas",
-      "error": "Ha ocurrido un problema"
+      "error": "No es el resultado esperadoa"
     }
   },
   "kingdom": {
@@ -277,7 +277,7 @@
       "type": "Tipo de batalla",
       "hint": "Selecciona el objetivo",
       "success": "Has recibido un mensaje",
-      "error": "Ha ocurrido un problema"
+      "error": "No es el resultado esperadoa"
     },
     "army": {
       "name": "Ejército",
@@ -285,7 +285,7 @@
       "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
       "max": "Máximo",
       "success": "Los cambios de tus tropas se han guardado",
-      "error": "Ha ocurrido un problema al gestionar tus tropas"
+      "error": "No es el resultado esperados"
     },
     "disband": {
       "name": "Desbande",
@@ -294,7 +294,7 @@
       "cancel": "Cancelar",
       "disband": "Desbandar",
       "hint": "No puedes desbandar unidades que consuman población",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "success": "Has desbandado tropas"
     },
     "discharge": {
@@ -320,7 +320,7 @@
       "description": "Recluta tropas básicas",
       "help": "Aqui puedes gastar turnos y oro para adquirir tropas básicas para tus ejércitos. Cuantos más Barracones tengas, menos turnos necesitarás.",
       "hint": "Debes tener suficientes turnos y oro",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "recruit": "Reclutar",
       "cancel": "Cancelar",
       "quantity": "Cantidad",
@@ -348,7 +348,7 @@
       "cancel": "Cancelar",
       "bid": "Pujar",
       "hint": "Ofrece +10% oro que la puja anterior",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "success": "Puja aceptada"
     },
     "sorcery": {
@@ -363,7 +363,7 @@
       "name": "Investigación",
       "description": "Aqui puedes gastar turnos para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos turnos necesitarás.",
       "hint": "Invierte turnos en investigar",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "research": "Investigar",
       "cancel": "Cancelar",
       "success": "Has avanzado la investigación del hechizo"
@@ -372,7 +372,7 @@
       "name": "Conjuración",
       "description": "Aqui puedes gastar turnos y maná para conjurar tus hechizos investigados. Conjurar hechizos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Debes tener suficientes turnos y maná",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "conjure": "Conjurar",
       "cancel": "Cancelar",
       "select": "Escoge un hechizo",
@@ -382,7 +382,7 @@
       "name": "Activación",
       "description": "Activa artefactos sobre tu reino o sobre otros reinos. Cada activación consume el artefacto y turnos. Activar artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Selecciona el objetivo",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "activate": "Activar",
       "cancel": "Cancelar",
       "select": "Escoge un artefacto"
@@ -405,7 +405,7 @@
       "help": "Aquí podrás invertir turnos en reponer los depósitos de maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Debes tener suficientes turnos",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "charge": "Meditar",
       "success": "Has recargado {{ mana }} maná"
     },
@@ -415,7 +415,7 @@
       "help": "Aquí podrás invertir turnos en cobrar impuestos a los súbditos de tu reino. El oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Debes tener suficientes turnos",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "tax": "Tributar",
       "success": "Has recaudado {{ gold }} oro"
     },
@@ -425,7 +425,7 @@
       "help": "Aquí podrás invertir turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas tierras libres. Las tierras libres sirven como espacio para construir nuevos edificios en tu reino.",
       "cancel": "Cancelar",
       "hint": "Cuantas más tierras tengas, menos encontrarás explorando",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "explore": "Explorar",
       "success": "Has encontrado {{ lands }} tierra(s)"
     },
@@ -434,7 +434,7 @@
       "description": "Asigna a tus héroes",
       "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna. Puedes asignarlos a Liderazo para que entren en batalla o a Guardia para que defiendan tu ciudad. También puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos.",
       "success": "Tus héroes han sido asignados",
-      "error": "Ha ocurrido un problema al gestionar tus héroes",
+      "error": "No es el resultado esperado",
       "max": "Máximo"
     },
     "archive": {
@@ -454,14 +454,14 @@
       "send": "Enviar",
       "sent": "Mensaje enviado",
       "deleted": "Mensajes borrados",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "invalid": "Campo no válido",
       "reset": "Limpiar"
     },
     "temple": {
       "name": "Templo",
       "description": "Complace a los dioses",
-      "help": "Puedes ofrecer oro a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
+      "help": "Puedes ofrecer recursos a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
       "hero": "Te han otorgado el héroe '{{ hero }}' de nivel {{ level }}",
       "unit": "Te han otorgado una tropa de {{ quantity }} '{{ unit }}'",
       "enchantment": "Te han otorgado el encantamiento '{{ enchantment }}' durante {{ turns }} turnos",
@@ -469,22 +469,24 @@
       "gold": "Te han otorgado {{ gold }} oro",
       "mana": "Te han otorgado {{ mana }} maná",
       "population": "Te han otorgado {{ population }} población",
-      "land": "Te han otorgado {{ land }} tierra(s)"
+      "land": "Te han otorgado {{ land }} tierras",
+      "turn": "Te han otorgado {{ turn }} turnos"
     },
     "offer": {
       "name": "Ofrenda",
-      "description": "Ofrece oro a tu dios como sacrificio. Debes ofrecer más del 10% que la ofrenda anterior y, a diferencia de la casa de subastas, no recuperarás nada de tu oro original cuando otro reino ofrezca más que tú.",
+      "description": "Ofrece recursos a tu dios como sacrificio para obtener favores. Las ofrendas de todos los reinos se acumulan poco a poco, y cuando un dios se considere satisfecho, romperá uno de los cinco sellos, desencadenando finalmente el Armagedón sobre este plano de la realidad.",
       "cancel": "Cancelar",
       "offer": "Ofrecer",
-      "hint": "Ofrece +10% oro que la ofrenda anterior",
-      "error": "Ha ocurrido un problema"
+      "hint": "Debes ofrecer como mínimo {{ increment }} a tu dios",
+      "error": "No es el resultado esperado",
+      "sacrifice": "Sacrificio"
     },
     "emporium": {
       "name": "Emporio",
       "description": "Contrabando del mercado negro",
       "help": "Puedes gastar tus gemas adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un impulso económico, potenciando el status de tu reino en el ránking.",
       "success": "Compra satisfactoria",
-      "error": "Ha ocurrido un problema"
+      "error": "No es el resultado esperadoa"
     },
     "buy": {
       "name": "Compra",
@@ -498,7 +500,7 @@
       "cancel": "Cancelar",
       "build": "Construir",
       "hint": "Necesitas tierras, oro y turnos",
-      "error": "Ha ocurrido un problema",
+      "error": "No es el resultado esperado",
       "success": "Has construido {{ quantity }} edificio(s)"
     },
     "gemology": {
@@ -1768,11 +1770,11 @@
       "description": "Los cinco sellos del Armagedón"
     },
     "war": {
-      "name": "Divinidad de la Guerra",
+      "name": "Adalid de la Guerra",
       "description": "Los cinco sellos del Armagedón"
     },
     "pestilence": {
-      "name": "Veneración de la Pestilencia",
+      "name": "Portadora de la Pestilencia",
       "description": "Los cinco sellos del Armagedón"
     }
   }

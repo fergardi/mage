@@ -10,6 +10,12 @@
     "items": [],
     "spells": [],
     "gold": 0,
+    "mana": 0,
+    "population": 0,
+    "land": 0,
+    "turn": 100000,
+    "sacrifice": 0,
+    "increment": 100,
     "legendary": true
   },
   {
@@ -23,6 +29,12 @@
     "items": [],
     "spells": [],
     "gold": 0,
+    "mana": 100000000,
+    "population": 0,
+    "land": 0,
+    "turn": 0,
+    "sacrifice": 0,
+    "increment": 10000,
     "legendary": true
   },
   {
@@ -35,7 +47,13 @@
     "units": [],
     "items": [],
     "spells": [],
-    "gold": 0,
+    "gold": 1000000000,
+    "mana": 0,
+    "population": 0,
+    "land": 0,
+    "turn": 0,
+    "sacrifice": 0,
+    "increment": 100000,
     "legendary": true
   },
   {
@@ -49,6 +67,12 @@
     "items": [],
     "spells": [],
     "gold": 0,
+    "mana": 0,
+    "population": 0,
+    "land": 100000,
+    "turn": 0,
+    "sacrifice": 0,
+    "increment": 100,
     "legendary": true
   },
   {
@@ -62,6 +86,12 @@
     "items": [],
     "spells": [],
     "gold": 0,
+    "mana": 0,
+    "population": 100000000,
+    "land": 0,
+    "turn": 0,
+    "sacrifice": 0,
+    "increment": 10000,
     "legendary": true
   }
 ]

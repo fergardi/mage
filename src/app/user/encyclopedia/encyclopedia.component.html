@@ -55,7 +55,7 @@
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item [ngClass]="{ 'legendary': row | legendary }">
-                  <div mat-list-avatar>
+                  <div mat-list-avatar [matBadge]="row.level || '?'" matBadgePosition="above before">
                     <img mat-list-avatar [src]="row.image">
                   </div>
                   <div mat-line>{{ row.name | translate }}</div>

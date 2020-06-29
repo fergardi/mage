@@ -11,7 +11,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       <p>{{ 'user.tome.help' | translate }}</p>
       <mat-list dense>
         <mat-list-item [ngClass]="{ 'legendary': tome | legendary }">
-          <div mat-list-avatar [matBadge]="tome.join.level || '?'" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="tome.level || '?'" matBadgePosition="above before">
             <img mat-list-avatar [src]="tome.image">
           </div>
           <div mat-line>{{ tome.name | translate }}</div>

@@ -21,16 +21,18 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
           </div>
           <div mat-line>{{ god.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
-          <div mat-list-avatar [matBadge]="god.gold" matBadgePosition="above after">
-            <img mat-list-avatar src="/assets/images/resources/gold.png">
-          </div>
+          <div mat-list-avatar *ngIf="god.gold > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.gold | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/gold.png"></div>
+          <div mat-list-avatar *ngIf="god.mana > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.mana | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/mana.png"></div>
+          <div mat-list-avatar *ngIf="god.population > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.population | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/population.png"></div>
+          <div mat-list-avatar *ngIf="god.land > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.land | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/land.png"></div>
+          <div mat-list-avatar *ngIf="god.turn > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.turn | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
         </mat-list-item>
       </mat-list>
       <form [formGroup]="form">
         <mat-form-field>
-          <mat-label>{{ 'resource.gold.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="gold">
-          <mat-hint>{{ 'kingdom.offer.hint' | translate }}</mat-hint>
+          <mat-label>{{ 'kingdom.offer.sacrifice' | translate }}</mat-label>
+          <input type="number" placeholder="{{ 'kingdom.offer.sacrifice' | translate }}" matInput formControlName="sacrifice" autocomplete="off">
+          <mat-hint>{{ 'kingdom.offer.hint' | translate:{ increment: god.increment | long } }}</mat-hint>
           <mat-error>{{ 'kingdom.offer.error' | translate }}</mat-error>
         </mat-form-field>
       </form>
@@ -55,6 +57,9 @@ export class OfferComponent implements OnInit {
   form: FormGroup = null;
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
   kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
+  kingdomMana: any = this.store.selectSnapshot(AuthState.getKingdomMana);
+  kingdomPopulation: any = this.store.selectSnapshot(AuthState.getKingdomPopulation);
+  kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public god: any,
@@ -68,9 +73,20 @@ export class OfferComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let max = this.god.gold
+      ? this.kingdomGold.quantity
+      : this.god.mana
+        ? this.kingdomMana.quantity
+        : this.god.population
+          ? this.kingdomPopulation.quantity
+          : this.god.land
+            ? this.kingdomLand.quantity
+            : this.kingdomTurn.quantity;
     this.form = this.formBuilder.group({
-      gold: [null, [Validators.required, Validators.min(Math.ceil(this.god.gold * 1.10)), Validators.max(this.kingdomGold.quantity)]]
+      sacrifice: [this.god.increment, [Validators.required, Validators.min(this.god.increment), Validators.max(max)]],
     });
+    this.form.markAllAsTouched();
+    this.form.get('sacrifice').updateValueAndValidity();
   }
 
   close(): void {
@@ -78,9 +94,9 @@ export class OfferComponent implements OnInit {
   }
 
   async offer() {
-    if (this.form.valid && this.form.value.gold <= this.kingdomGold.quantity) {
+    if (this.form.valid) {
       try {
-        let offered = await this.apiService.offerGod(this.uid, this.god.fid, this.form.value.gold);
+        let offered = await this.apiService.offerGod(this.uid, this.god.fid, this.form.value.sacrifice);
         if (offered.hasOwnProperty('hero')) this.notificationService.success('kingdom.temple.hero', { hero: this.translateService.instant(offered['hero']), level: this.longPipe.transform(offered['level']) });
         if (offered.hasOwnProperty('item')) this.notificationService.success('kingdom.temple.item', { item: this.translateService.instant(offered['item']) });
         if (offered.hasOwnProperty('enchantment')) this.notificationService.success('kingdom.temple.enchantment', { enchantment: this.translateService.instant(offered['enchantment']), turns: this.longPipe.transform(offered['turns']) });

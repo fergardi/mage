@@ -636,21 +636,30 @@ const buildStructure = async (kingdomId: string, buildingId: string, quantity: n
 }
 
 /**
- * kingdom offers gold to a god in exchange of some random rewards, good and bad
+ * kingdom offers a resource to a god in exchange of some random rewards, good and bad
  * @param kingdomId
  * @param godId
- * @param gold
+ * @param sacrifice
  */
-const offerGod = async (kingdomId: string, godId: string, gold: number) => {
+const offerGod = async (kingdomId: string, godId: string, sacrifice: number) => {
   let result = {};
   let kingdomGod = await angularFirestore.doc(`gods/${godId}`).get();
   if (kingdomGod.exists) {
     let god = kingdomGod.data();
-    let kingdomGold = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get();
-    if (gold <= kingdomGold.docs[0].data().quantity && gold >= Math.ceil(god?.gold * 1.10) /*&& kingdomId !== god?.kingdom*/) {
+    let resource: ResourceType = god?.gold
+      ? 'gold'
+      : god?.mana
+        ? 'mana'
+        : god?.population
+          ? 'population'
+          : god?.land
+            ? 'land'
+            : 'turn';
+    let kingdomResource = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', resource).limit(1).get();
+    if (sacrifice <= kingdomResource.docs[0].data().quantity && sacrifice >= 1) {
       const batch = angularFirestore.batch();
-      batch.update(angularFirestore.doc(`gods/${godId}`), { /*kingdom: kingdomId,*/ gold: gold });
-      await addSupply(kingdomId, 'gold', -gold, batch);
+      batch.update(angularFirestore.doc(`gods/${godId}`), { sacrifice: admin.firestore.FieldValue.increment(sacrifice), armageddon: true });
+      await addSupply(kingdomId, resource, -sacrifice, batch);
       let rewards: RewardType[] = ['resource', 'artifact', 'contract', 'enchantment', 'summon'];
       let reward: RewardType = rewards[Math.floor(Math.random() * rewards.length)];
       switch (reward) {
@@ -680,7 +689,7 @@ const offerGod = async (kingdomId: string, godId: string, gold: number) => {
           result = { unit: `unit.${unitId}.name`, quantity: quantity };
           break;
         case 'resource':
-          let resources: ResourceType[] = ['gold', 'mana', 'population', 'land'];
+          let resources: ResourceType[] = ['gold', 'mana', 'population', 'land', 'turn'];
           let resource: ResourceType = resources[Math.floor(Math.random() * resources.length)];
           let amount = Math.floor(Math.random() * (resource === 'land' ? 100 : 100000));
           await addSupply(kingdomId, resource, amount, batch);
