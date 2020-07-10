@@ -73,7 +73,7 @@
       <!-- supply list -->
       <mat-nav-list dense class="supply-list" role="navigation" *ngIf="(angularFireAuth.authState | async)" tourAnchor="tour.supplies">
         <ng-container *ngFor="let supply of kingdomSupplies$ | async; let i = index">
-          <a mat-list-item [routerLink]="getSupplyLink(supply)">
+          <a mat-list-item [routerLink]="supply.join.route">
             <div
               mat-list-avatar
               (click)="close()"

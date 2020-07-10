@@ -615,18 +615,17 @@ const bidAuction = async (kingdomId: string, auctionId: string, gold: number) =>
 const buildStructure = async (kingdomId: string, buildingId: string, quantity: number) => {
   let kingdomBuilding = await angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${buildingId}`).get();
   if (kingdomBuilding.exists) {
+    let kingdomWorkshop = await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'workshop').limit(1).get();
     let kingdomGold = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get();
     let kingdomLand = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'land').limit(1).get();
     let kingdomTurn = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get();
     let kingdomStructure = await angularFirestore.doc(`structures/${kingdomBuilding.data()?.id}`).get();
-    let structure = kingdomStructure.data();
-    let turn = kingdomTurn.docs[0].data();
-    let land = kingdomLand.docs[0].data();
-    let gold = structure?.gold * quantity;
-    if (quantity <= land.quantity && gold <= kingdomGold.docs[0].data().quantity && quantity <= turn.quantity) {
+    let gold = kingdomStructure.data()?.goldCost * quantity;
+    let turn = Math.ceil(quantity / Math.ceil((kingdomWorkshop.docs[0].data().quantity + 1) / kingdomStructure.data()?.turnRatio))
+    if (quantity <= kingdomLand.docs[0].data().quantity && gold <= kingdomGold.docs[0].data().quantity && turn <= kingdomTurn.docs[0].data().quantity) {
       const batch = angularFirestore.batch();
       await addSupply(kingdomId, 'gold', -gold, batch);
-      await addSupply(kingdomId, 'turn', -quantity, batch);
+      await addSupply(kingdomId, 'turn', -turn, batch);
       await addSupply(kingdomId, 'land', -quantity, batch);
       await addBuilding(kingdomId, buildingId, quantity, batch);
       await batch.commit();

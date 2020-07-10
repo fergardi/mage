@@ -27,7 +27,7 @@ export class FirebaseService {
           };
         }
       });
-      element[subCollection] = element[subCollection].sort((a, b) => a.name - b.name);
+      element[subCollection] = element[subCollection].slice().sort((a: any, b: any) => a.name - b.name);
     }
     if (typeof element[subCollection] === 'string') {
       element.join = {

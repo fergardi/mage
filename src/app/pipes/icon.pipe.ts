@@ -13,11 +13,15 @@ export class IconPipe implements PipeTransform {
   ) {}
 
   transform(text: string, object: any): SafeHtml {
-    let terms = [object.skills || [], object.families || [], object.categories || [], object.units || [], object.resources || [], object.spells || [], object.adjacents || [], object.opposites || []].reduce((a, b) => a.concat(b), []);
-    terms.forEach(term => {
-      text = text.replace(`<${term.id}>`, `<img class="icon" title="${this.translateService.instant(term.name)}" src="${term.image}">`);
-    })
-    return this.domSanitizer.bypassSecurityTrustHtml(text);
+    if (object) {
+      let terms = [object.skills || [], object.families || [], object.categories || [], object.units || [], object.resources || [], object.spells || [], object.adjacents || [], object.opposites || []].reduce((a, b) => a.concat(b), []);
+      terms.forEach(term => {
+        text = text.replace(`<${term.id}>`, `<img class="icon" title="${this.translateService.instant(term.name)}" src="${term.image}">`);
+      })
+      return this.domSanitizer.bypassSecurityTrustHtml(text);
+    } else {
+      return text;
+    }
   }
 
 }

@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ApiService } from 'src/app/services/api.service';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 
 @Component({
@@ -19,7 +19,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
           </div>
           <div mat-line>{{ building.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join"></div>
-          <div mat-list-avatar [matBadge]="building.join.turnRatio" matBadgePosition="above after">
+          <div mat-list-avatar [matBadge]="Math.ceil((kingdomWorkshop.quantity + 1) / building.join.turnRatio) + ('resource.turn.ratio' | translate)" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>
@@ -33,10 +33,9 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
         </mat-form-field>
       </form>
       <mat-chip-list>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ building.join.goldCost }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/land.png">1</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/turn.png">{{ building.join.turnRatio }}</mat-chip>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/icons/power.png">{{ building.join.power }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ gold() | long}}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/land.png">{{ land() | long }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/turn.png">{{ turn() | long }}</mat-chip>
       </mat-chip-list>
     </div>
     <div mat-dialog-actions>
@@ -56,7 +55,9 @@ export class BuildComponent implements OnInit {
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
   kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
   kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
+  kingdomWorkshop: any = this.store.selectSnapshot(AuthState.getKingdomWorkshop);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  Math: any = Math;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public building: any,
@@ -69,7 +70,7 @@ export class BuildComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      quantity: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomLand.quantity)]],
+      quantity: [0, [Validators.required, Validators.min(1), Validators.max(this.kingdomLand.quantity)]],
     });
   }
 
@@ -78,7 +79,7 @@ export class BuildComponent implements OnInit {
   }
 
   async build() {
-    if (this.form.valid && this.form.value.quantity <= this.kingdomLand.quantity && (this.form.value.quantity * this.building.join.goldCost) <= this.kingdomGold.quantity) {
+    if (this.form.valid && this.land() <= this.kingdomLand.quantity && this.gold() <= this.kingdomGold.quantity && this.turn() <= this.kingdomTurn.quantity) {
       try {
         let built = await this.apiService.buildStructure(this.uid, this.building.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.build.success', built);
@@ -90,6 +91,18 @@ export class BuildComponent implements OnInit {
     } else {
       this.notificationService.error('kingdom.build.error');
     }
+  }
+
+  turn() {
+    return Math.ceil(this.form.value.quantity / Math.ceil((this.kingdomWorkshop.quantity + 1) / this.building.join.turnRatio));
+  }
+
+  gold() {
+    return this.form.value.quantity * this.building.join.goldCost;
+  }
+
+  land() {
+    return this.form.value.quantity;
   }
 
 }

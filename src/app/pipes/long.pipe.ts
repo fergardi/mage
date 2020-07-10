@@ -11,12 +11,14 @@ export class LongPipe implements PipeTransform {
   ) {}
 
   transform(number: number): string {
-    return number.toLocaleString(this.translateService.currentLang, {
-      useGrouping: true,
-      minimumIntegerDigits: 1,
-      minimumFractionDigits: number % 1 !== 0 ? 3 : 0,
-      maximumFractionDigits: number % 1 !== 0 ? 3 : 0,
-    });
+    return number !== undefined && number !== null
+      ? number.toLocaleString(this.translateService.currentLang, {
+          useGrouping: true,
+          minimumIntegerDigits: 1,
+          minimumFractionDigits: number % 1 !== 0 ? 3 : 0,
+          maximumFractionDigits: number % 1 !== 0 ? 3 : 0,
+        })
+      : '';
   }
 
 }

@@ -20,7 +20,7 @@ import { ApiService } from 'src/app/services/api.service';
           </div>
           <div mat-line>{{ 'resource.land.name' | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ 'resource.land.description' | translate }}</div>
-          <div mat-list-avatar [matBadge]="(turn$ | async)?.quantity | long" matBadgePosition="above after">
+          <div mat-list-avatar matBadge="?" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>

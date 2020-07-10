@@ -13,6 +13,11 @@ export class SetKingdomSuppliesAction {
   constructor(public uid: string) {}
 }
 
+export class SetKingdomBuildingsAction {
+  public static readonly type = '[User] Set Kingdom buildings';
+  constructor(public uid: string) {}
+}
+
 export class LoginWithGoogleAction {
   public static readonly type = '[User] Login with google';
   constructor() {}

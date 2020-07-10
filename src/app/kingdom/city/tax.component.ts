@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-tax',
@@ -14,11 +15,11 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
       <p>{{ 'kingdom.tax.help' | translate }}</p>
       <mat-list dense>
         <mat-list-item>
-          <div mat-list-avatar [matBadge]="village.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="village.join.image">
+          <div mat-list-avatar [matBadge]="(village$ | async)?.quantity | long" matBadgePosition="above before">
+            <img mat-list-avatar [src]="(village$ | async)?.join.image">
           </div>
-          <div mat-line>{{ village.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="village.join.description | translate | icon:village.join"></div>
+          <div mat-line>{{ (village$ | async)?.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="(village$ | async)?.join.description | translate | icon:(village$ | async)?.join"></div>
           <div mat-list-avatar matBadge="?" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
@@ -51,7 +52,7 @@ export class TaxComponent implements OnInit {
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public village: any,
+    @Inject(MAT_DIALOG_DATA) public village$: Observable<any>,
     private dialogRef: MatDialogRef<TaxComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,

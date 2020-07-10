@@ -13,13 +13,13 @@
         <span>{{ 'kingdom.city.help' | translate }}</span>
         <div matSubheader>{{ 'card.list.buildings' | translate }}:</div>
         <mat-action-list dense tourAnchor="tour.city">
-          <button mat-list-item *ngFor="let building of kingdomBuildings" (click)="openBuildDialog(building)" class="common">
+          <button mat-list-item *ngFor="let building of kingdomBuildings$ | async" (click)="openBuildDialog(building)" class="common">
             <div mat-list-avatar [matBadge]="building.quantity | long" matBadgePosition="above before">
               <img mat-list-avatar [src]="building.join.image">
             </div>
             <div mat-line>{{ building.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join"></div>
-            <div mat-list-avatar [matBadge]="building.join.turnRatio" matBadgePosition="above after">
+            <div mat-list-avatar [matBadge]="Math.ceil(((workshop$ | async)?.quantity + 1) / building.join.turnRatio) + ('resource.turn.ratio' | translate)" matBadgePosition="above after">
               <img mat-list-avatar src="/assets/images/resources/turn.png">
             </div>
           </button>
@@ -46,12 +46,12 @@
             <span>{{ 'kingdom.tax.help' | translate }}</span>
             <div matSubheader>{{ 'kingdom.tax.tax' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.tax">
-              <button mat-list-item *ngIf="village" (click)="openTaxDialog(village)" class="common">
-                <div mat-list-avatar [matBadge]="village.quantity | long" matBadgePosition="above before">
-                  <img mat-list-avatar [src]="village.join.image">
+              <button mat-list-item *ngIf="village$" (click)="openTaxDialog(village$)" class="common">
+                <div mat-list-avatar [matBadge]="(village$ | async)?.quantity | long" matBadgePosition="above before">
+                  <img mat-list-avatar [src]="(village$ | async)?.join.image">
                 </div>
-                <div mat-line>{{ village.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="village.join.description | translate | icon:village.join"></div>
+                <div mat-line>{{ (village$ | async)?.join.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="(village$ | async)?.join.description | translate | icon:(village$ | async)?.join"></div>
                 <div mat-list-avatar matBadge="?" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
@@ -75,12 +75,12 @@
             <span>{{ 'kingdom.charge.help' | translate }}</span>
             <div matSubheader>{{ 'kingdom.charge.charge' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.charge">
-              <button mat-list-item *ngIf="node" (click)="openChargeDialog(node)" class="common">
-                <div mat-list-avatar [matBadge]="node.quantity | long" matBadgePosition="above before">
-                  <img mat-list-avatar [src]="node.join.image">
+              <button mat-list-item *ngIf="node$" (click)="openChargeDialog(node$)" class="common">
+                <div mat-list-avatar [matBadge]="(node$ | async)?.quantity | long" matBadgePosition="above before">
+                  <img mat-list-avatar [src]="(node$ | async)?.join.image">
                 </div>
-                <div mat-line>{{ node.join.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="node.join.description | translate | icon:node.join"></div>
+                <div mat-line>{{ (node$ | async)?.join.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="(node$ | async)?.join.description | translate | icon:(node$ | async)?.join"></div>
                 <div mat-list-avatar matBadge="?" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>

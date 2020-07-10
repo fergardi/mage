@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-charge',
@@ -14,11 +15,11 @@ import { ApiService } from 'src/app/services/api.service';
       <p>{{ 'kingdom.charge.help' | translate }}</p>
       <mat-list dense>
         <mat-list-item>
-          <div mat-list-avatar [matBadge]="node.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="node.join.image">
+          <div mat-list-avatar [matBadge]="(node$ | async)?.quantity | long" matBadgePosition="above before">
+            <img mat-list-avatar [src]="(node$ | async)?.join.image">
           </div>
-          <div mat-line>{{ node.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="node.join.description | translate | icon:node.join"></div>
+          <div mat-line>{{ (node$ | async)?.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="(node$ | async)?.join.description | translate | icon:(node$ | async)?.join"></div>
           <div mat-list-avatar matBadge="?" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
@@ -51,7 +52,7 @@ export class ChargeComponent implements OnInit {
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public node: any,
+    @Inject(MAT_DIALOG_DATA) public node$: Observable<any>,
     private dialogRef: MatDialogRef<ChargeComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,

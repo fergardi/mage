@@ -1,5 +1,5 @@
 import { State, Action, Selector, StateContext, NgxsOnInit } from '@ngxs/store';
-import { SetUserAction, SetKingdomAction, SetKingdomSuppliesAction, LoginWithGoogleAction, LogoutAction } from './auth.actions';
+import { SetUserAction, SetKingdomAction, SetKingdomSuppliesAction, SetKingdomBuildingsAction, LoginWithGoogleAction, LogoutAction } from './auth.actions';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
@@ -10,10 +10,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 
 export interface AuthStateModel {
-  kingdom: any
-  uid: string | null
-  supplies: any[]
-  logged: boolean
+  kingdom: any,
+  uid: string | null,
+  supplies: any[],
+  buildings: any[],
+  logged: boolean,
 }
 
 @State<AuthStateModel>({
@@ -22,6 +23,7 @@ export interface AuthStateModel {
     uid: null,
     kingdom: null,
     supplies: [],
+    buildings: [],
     logged: false,
   }
 })
@@ -42,6 +44,7 @@ export class AuthState implements NgxsOnInit {
         ctx.dispatch(new SetUserAction(user.uid));
         ctx.dispatch(new SetKingdomAction(user.uid));
         ctx.dispatch(new SetKingdomSuppliesAction(user.uid));
+        ctx.dispatch(new SetKingdomBuildingsAction(user.uid));
         this.notificationService.success('user.auth.authorized');
         this.router.navigate(['/kingdom/city']);
       } else {
@@ -64,6 +67,7 @@ export class AuthState implements NgxsOnInit {
       uid: null,
       kingdom: null,
       supplies: [],
+      buildings: [],
       logged: false,
     });
   }
@@ -99,6 +103,19 @@ export class AuthState implements NgxsOnInit {
         ctx.setState({
           ...state,
           supplies: supplies.sort((a, b) => a.join.sort - b.join.sort),
+        });
+      })
+    );
+  }
+
+  @Action(SetKingdomBuildingsAction)
+  setKingdomBuildings(ctx: StateContext<AuthStateModel>, payload: SetKingdomBuildingsAction) {
+    return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/buildings`, 'structures', 'id', 'id').pipe(
+      tap(buildings => {
+        const state = ctx.getState();
+        ctx.setState({
+          ...state,
+          buildings: buildings,
         });
       })
     );
@@ -142,6 +159,31 @@ export class AuthState implements NgxsOnInit {
   @Selector()
   public static getKingdomPopulation(state: AuthStateModel): any {
     return state && state.supplies.find(supply => supply.id === 'population');
+  }
+
+  @Selector()
+  public static getKingdomBuildings(state: AuthStateModel): any[] {
+    return state && state.buildings;
+  }
+
+  @Selector()
+  public static getKingdomVillage(state: AuthStateModel): any {
+    return state && state.buildings.find(building => building.id === 'village');
+  }
+
+  @Selector()
+  public static getKingdomNode(state: AuthStateModel): any {
+    return state && state.buildings.find(building => building.id === 'node');
+  }
+
+  @Selector()
+  public static getKingdomWorkshop(state: AuthStateModel): any {
+    return state && state.buildings.find(building => building.id === 'workshop');
+  }
+
+  @Selector()
+  public static getKingdomAcademy(state: AuthStateModel): any {
+    return state && state.buildings.find(building => building.id === 'academy');
   }
 
   @Selector()

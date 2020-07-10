@@ -344,7 +344,7 @@
     "bid": {
       "name": "Puja",
       "description": "Comercia con otros reinos",
-      "help": "Debes pujar como mínimo un 10% más de oro que la puja anterior, si alguien te sobrepuja, se te devolverá solo el 90% de tu puja original, así que puja con inteligencia.",
+      "help": "Debes pujar como mínimo un 10% más de oro que la puja anterior, y si alguien te sobrepuja, se te devolverá solo el 90% de tu puja original, así que puja con inteligencia.",
       "cancel": "Cancelar",
       "bid": "Pujar",
       "hint": "Ofrece +10% oro que la puja anterior",
@@ -385,7 +385,8 @@
       "error": "No es el resultado esperado",
       "activate": "Activar",
       "cancel": "Cancelar",
-      "select": "Escoge un artefacto"
+      "select": "Escoge un artefacto",
+      "success": "Activación completada"
     },
     "arcanism": {
       "name": "Arcanismo",
@@ -629,7 +630,8 @@
     },
     "turn": {
       "name": "Turnos",
-      "description": "Representan el paso del tiempo"
+      "description": "Representan el paso del tiempo",
+      "ratio": " / turno"
     },
     "land": {
       "name": "Tierras",
@@ -1551,7 +1553,7 @@
     },
     "leprechaunt": {
       "name": "Leprechaunt",
-      "description": "Aumenta la suerte de encontrar artefactos al <turn> +1% por nivel"
+      "description": "Aumenta la suerte +1% por nivel"
     }
   },
   "item": {
