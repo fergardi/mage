@@ -128,8 +128,8 @@
   "shell": {
     "group": {
       "coin": "Gremio de Mercaderes",
-      "sword": "Gremio de Caballeros",
-      "wispers": "Gremio de Mensajeros",
+      "sword": "Gremio de Escuderos",
+      "wispers": "Gremio de Espías",
       "priest": "Gremio de Clérigos",
       "wisdom": "Gremio de Eruditos"
     }
@@ -327,12 +327,22 @@
       "success": "Has reclutado nuevas tropas"
     },
     "dispel": {
-      "name": "Desencanto",
+      "name": "Desvanecimiento",
       "description": "Romper encantamientos",
       "help": "Aqui puedes gastar maná para tratar de romper un encantamiento de tu reino. Si el encantamiento es de un enemigo, el éxito dependerá de su protección mágica.",
       "hint": "Debes tener suficiente maná",
       "error": "No tienes maná suficiente",
-      "dispel": "Desencantar",
+      "dispel": "Desvanecer",
+      "cancel": "Cancelar"
+    },
+    "guild": {
+      "name": "Gremio",
+      "description": "Favorece a un colectivo",
+      "help": "Puedes otorgar el favor de tu reinado a un gremio en concreto. Como agradecimiento, dicho gremio te otorgará bonuses adicionales en las batallas.",
+      "hint": "Debes esperar 7 días antes de cambiar de gremio",
+      "error": "No ha pasado tiempo suficiente",
+      "select": "Escoge un gremio",
+      "favor": "Favorecer",
       "cancel": "Cancelar"
     },
     "auction": {
@@ -649,7 +659,8 @@
       "buildings": "Edificios",
       "packs": "Paquetes",
       "gods": "Dioses",
-      "enchantments": "Encantamientos"
+      "enchantments": "Encantamientos",
+      "guilds": "Gremios"
     }
   },
   "location": {
@@ -1778,6 +1789,44 @@
     "pestilence": {
       "name": "Portadora de la Pestilencia",
       "description": "Los cinco sellos del Armagedón"
+    }
+  },
+  "guild": {
+    "assassin": {
+      "name": "Gremio de Asesinos",
+      "description": "Tus tropas tienen más ataque"
+    },
+    "champion": {
+      "name": "Gremio de Campeones",
+      "description": "Tus tropas tienen más defensa"
+    },
+    "hunter": {
+      "name": "Gremio de Cazadores",
+      "description": "Tus tropas tienen más ataque"
+    },
+    "knight": {
+      "name": "Gremio de Caballeros",
+      "description": "Tus tropas <melee> tienen más ataque"
+    },
+    "mage": {
+      "name": "Gremio de Magos",
+      "description": "Tus tropas roban más maná"
+    },
+    "priest": {
+      "name": "Gremio de Sanadores",
+      "description": "Tus tropas curan sus heridas"
+    },
+    "rogue": {
+      "name": "Gremio de Ladrones",
+      "description": "Tus tropas roban más oro"
+    },
+    "warlock": {
+      "name": "Gremio de Brujos",
+      "description": "Tus tropas roban más población"
+    },
+    "warrior": {
+      "name": "Gremio de Guerreros",
+      "description": "Tus tropas tienen más vida"
     }
   }
 }

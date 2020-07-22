@@ -1,0 +1,74 @@
+[
+  {
+    "type": "guild",
+    "faction": "grey",
+    "name": "guild.assassin.name",
+    "description": "guild.assassin.description",
+    "id": "assassin",
+    "image": "/assets/images/guilds/assassin.png"
+  },
+  {
+    "type": "guild",
+    "faction": "grey",
+    "name": "guild.champion.name",
+    "description": "guild.champion.description",
+    "id": "champion",
+    "image": "/assets/images/guilds/champion.png"
+  },
+  {
+    "type": "guild",
+    "faction": "grey",
+    "name": "guild.hunter.name",
+    "description": "guild.hunter.description",
+    "id": "hunter",
+    "image": "/assets/images/guilds/hunter.png"
+  },
+  {
+    "type": "guild",
+    "faction": "grey",
+    "name": "guild.knight.name",
+    "description": "guild.knight.description",
+    "id": "knight",
+    "image": "/assets/images/guilds/knight.png"
+  },
+  {
+    "type": "guild",
+    "faction": "grey",
+    "name": "guild.mage.name",
+    "description": "guild.mage.description",
+    "id": "mage",
+    "image": "/assets/images/guilds/mage.png"
+  },
+  {
+    "type": "guild",
+    "faction": "grey",
+    "name": "guild.priest.name",
+    "description": "guild.priest.description",
+    "id": "priest",
+    "image": "/assets/images/guilds/priest.png"
+  },
+  {
+    "type": "guild",
+    "faction": "grey",
+    "name": "guild.rogue.name",
+    "description": "guild.rogue.description",
+    "id": "rogue",
+    "image": "/assets/images/guilds/rogue.png"
+  },
+  {
+    "type": "guild",
+    "faction": "grey",
+    "name": "guild.warlock.name",
+    "description": "guild.warlock.description",
+    "id": "warlock",
+    "image": "/assets/images/guilds/warlock.png"
+  },
+  {
+    "type": "guild",
+    "faction": "grey",
+    "name": "guild.warrior.name",
+    "description": "guild.warrior.description",
+    "id": "warrior",
+    "image": "/assets/images/guilds/warrior.png"
+  }
+]

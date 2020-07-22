@@ -18,7 +18,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
           <div mat-line>{{ enchantment.join.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.join.description | translate | icon:enchantment.join"></div>
           <div mat-line>
-            <mat-progress-bar [color]="enchantment.from === uid ? 'accent' : 'warn'" [value]="enchantment.turns * 100 / enchantment.join.duration"></mat-progress-bar>
+            <mat-progress-bar [color]="enchantment.from === uid ? 'accent' : 'warn'" [value]="enchantment.turns * 100 / enchantment.join.turnDuration"></mat-progress-bar>
           </div>
           <div mat-list-avatar [matBadge]="enchantment.turns" matBadgePosition="above after" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
             <img mat-list-avatar src="/assets/images/resources/turn.png">

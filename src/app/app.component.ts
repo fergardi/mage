@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
     // this.firebaseService.importCollectionFromJson('families');
     // this.firebaseService.importCollectionFromJson('categories');
     // this.firebaseService.importCollectionFromJson('packs');
+    this.firebaseService.importCollectionFromJson('guilds');
     // this.firebaseService.loadCollectionIntoCollection('items', 'artifacts');
     // this.firebaseService.loadCollectionIntoCollection('units', 'troops');
     // this.firebaseService.loadCollectionIntoCollection('heroes', 'contracts');

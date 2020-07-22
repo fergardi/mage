@@ -99,6 +99,7 @@ body {
       background-size: 150% 100%;
       animation: legendary 5s ease-in-out infinite;
       border-radius: 4px;
+      animation-delay: 0ms;
     }
   }
 }
@@ -247,8 +248,8 @@ body {
 
 .mat-list-base {
   .mat-list-avatar {
-    width: 40px !important;
-    height: 40px !important;
+    width: 44px !important;
+    height: 44px !important;
   }
 }
 
@@ -397,6 +398,7 @@ hr {
       background-size: 150% 100%;
       animation: legendary 5s ease-in-out infinite;
       border-radius: 4px;
+      animation-delay: 0ms;
     }
   }
   .mat-list-item-content {
@@ -409,8 +411,8 @@ hr {
     height: inherit;
     .mat-list-avatar {
       flex-shrink: 0;
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       object-fit: cover;
       img.mat-list-avatar {

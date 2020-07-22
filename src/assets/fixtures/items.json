@@ -520,7 +520,7 @@
     "spells": [],
     "amount": [-25, -50],
     "battle": false,
-    "self": true,
+    "self": false,
     "gems": 1,
     "legendary": true
   },
