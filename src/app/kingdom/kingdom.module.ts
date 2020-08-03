@@ -30,6 +30,7 @@ import { DisbandComponent } from './army/disband.component';
 import { DischargeComponent } from './tavern/discharge.component';
 import { LetterComponent } from './census/letter.component';
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { ClanComponent } from './clan/clan.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { TourMatMenuModule } from 'ngx-tour-md-menu';
     DisbandComponent,
     DischargeComponent,
     LetterComponent,
+    ClanComponent,
   ],
   imports: [
     CommonModule,

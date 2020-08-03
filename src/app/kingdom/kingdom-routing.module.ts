@@ -9,6 +9,7 @@ import { TempleComponent } from './temple/temple.component';
 import { TavernComponent } from './tavern/tavern.component';
 import { AuctionComponent } from './auction/auction.component';
 import { EmporiumComponent } from './emporium/emporium.component';
+import { ClanComponent } from './clan/clan.component';
 
 const routes: Routes = [
   { path: 'city', component: CityComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'tavern', component: TavernComponent },
   { path: 'auction', component: AuctionComponent },
   { path: 'emporium', component: EmporiumComponent },
+  { path: 'clan', component: ClanComponent },
 ];
 
 @NgModule({

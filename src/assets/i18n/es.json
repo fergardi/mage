@@ -470,6 +470,11 @@
       "invalid": "Campo no válido",
       "reset": "Limpiar"
     },
+    "clan": {
+      "name": "Clan",
+      "description": "Forja alianzas",
+      "help": "Puedes unirte a un clan ya existente o fundar tu propio clan para que otros jugadores se unan. Un clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio..."
+    },
     "temple": {
       "name": "Templo",
       "description": "Complace a los dioses",
