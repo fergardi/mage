@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { BuildComponent } from './build.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,7 +9,7 @@ import { TaxComponent } from './tax.component';
 import { ChargeComponent } from './charge.component';
 import { ExploreComponent } from './explore.component';
 import { Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { CacheService } from 'src/app/services/cache.service';
 
 @Component({
   selector: 'app-city',
@@ -33,15 +33,14 @@ export class CityComponent implements OnInit {
   Math: any = Math;
 
   constructor(
-    private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private store: Store,
+    private cacheService: CacheService,
   ) {}
 
-  ngOnInit() {
-    this.angularFirestore.collection<any>('guilds').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(guilds => {
-      this.kingdomGuilds = guilds;
-    });
+  async ngOnInit() {
+    let guilds = await this.cacheService.getGuilds();
+    this.kingdomGuilds = guilds;
   }
 
   openBuildDialog(building: any): void {

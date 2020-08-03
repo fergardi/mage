@@ -143,13 +143,20 @@
                       </div>
                       <div mat-line>{{ selectedGuild.name | translate }}</div>
                       <div mat-line class="mat-card-subtitle" [innerHTML]="selectedGuild.description | translate | icon:selectedGuild"></div>
-                      <div mat-list-avatar [matBadge]="''" matBadgePosition="above after">
-                        <img mat-list-avatar src="/assets/images/resources/turn.png">
-                      </div>
                     </mat-list-item>
                   </mat-list>
                 </mat-select-trigger>
-                <mat-option *ngFor="let guild of kingdomGuilds" [value]="guild">{{ guild.name | translate }}</mat-option>
+                <mat-option *ngFor="let guild of kingdomGuilds" [value]="guild">
+                  <mat-list dense>
+                    <mat-list-item>
+                      <div mat-list-avatar>
+                        <img mat-list-avatar [src]="guild.image">
+                      </div>
+                      <div mat-line>{{ guild.name | translate }}</div>
+                      <div mat-line class="mat-card-subtitle" [innerHTML]="guild.description | translate | icon:guild"></div>
+                    </mat-list-item>
+                  </mat-list>
+                </mat-option>
               </mat-select>
             </mat-form-field>
           </mat-card-content>

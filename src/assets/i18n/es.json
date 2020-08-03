@@ -189,18 +189,20 @@
     "item": {
       "name": "Objeto",
       "description": ""
-    },
-    "attack": {
-      "name": "Ataque",
-      "description": ""
+    }
+  },
+  "attack": {
+    "assault": {
+      "name": "Asalto",
+      "description": "Un ataque a medio camino entre el pillaje y el asedio"
     },
     "pillage": {
       "name": "Pillaje",
-      "description": ""
+      "description": "Un ataque centrado en robar recursos sin destruir edificios"
     },
     "siege": {
       "name": "Asedio",
-      "description": ""
+      "description": "Un ataque centrado en destruir edificios sin robar recursos"
     }
   },
   "table": {
@@ -273,7 +275,7 @@
       "description": "Declara la guerra a un reino enemigo. El asedio se centra en destruir, el pillaje en robar recursos, y el ataque en una mezcla de ambas cosas. Usarás las tropas, hechizos y artefactos que tengas asociadas al ataque.",
       "attack": "Atacar",
       "cancel": "Cancelar",
-      "type": "Tipo de batalla",
+      "select": "Tipo de ataque",
       "hint": "Selecciona el objetivo",
       "success": "Has recibido un mensaje",
       "error": "No es el resultado esperadoa"
