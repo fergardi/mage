@@ -27,37 +27,29 @@ export class ShellComponent {
     { lang: 'fr', image: '/assets/images/languages/fr.png' },
   ];
   groups: any[] = [
-    {
-      name: 'shell.group.coin', image: '/assets/images/cards/coin.png', links: [
+    { name: 'shell.group.merchant', image: '/assets/images/cards/merchant.png', links: [
         { url: '/kingdom/city', name: 'kingdom.city.name', description: 'kingdom.city.description', image: '/assets/images/cards/city.png', show: true },
         { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/cards/auction.png', show: true },
+        { url: '/kingdom/emporium', name: 'kingdom.emporium.name', description: 'kingdom.emporium.description', image: '/assets/images/cards/emporium.png', show: true },
       ],
     },
-    {
-      name: 'shell.group.sword', image: '/assets/images/cards/sword.png', links: [
+    { name: 'shell.group.squire', image: '/assets/images/cards/squire.png', links: [
         { url: '/world/map', name: 'world.map.name', description: 'world.map.description', image: '/assets/images/cards/map.png', show: true },
         { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/cards/army.png', show: true },
         { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/cards/tavern.png', show: true },
       ]
     },
-    {
-      name: 'shell.group.wispers', image: '/assets/images/cards/wispers.png', links: [
+    { name: 'shell.group.spy', image: '/assets/images/cards/spy.png', links: [
         { url: '/kingdom/census', name: 'kingdom.census.name', description: 'kingdom.census.description', image: '/assets/images/cards/census.png', show: true },
         { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/cards/archive.png', show: true },
       ]
     },
-    {
-      name: 'shell.group.priest', image: '/assets/images/cards/priest.png', links: [
+    { name: 'shell.group.scholar', image: '/assets/images/cards/scholar.png', links: [
         { url: '/kingdom/sorcery', name: 'kingdom.sorcery.name', description: 'kingdom.sorcery.description', image: '/assets/images/cards/sorcery.png', show: true },
         { url: '/kingdom/temple', name: 'kingdom.temple.name', description: 'kingdom.temple.description', image: '/assets/images/cards/temple.png', show: true },
-      ],
-    },
-    {
-      name: 'shell.group.wisdom', image: '/assets/images/cards/wisdom.png', links: [
+        { url: '/user/encyclopedia', name: 'user.encyclopedia.name', description: 'user.encyclopedia.description', image: '/assets/images/cards/encyclopedia.png', show: true },
         { url: '/user/landing', name: 'user.landing.name', description: 'user.landing.description', image: '/assets/images/cards/landing.png', show: false },
         { url: '/user/login', name: 'user.login.name', description: 'user.login.description', image: '/assets/images/cards/login.png', show: false },
-        { url: '/kingdom/emporium', name: 'kingdom.emporium.name', description: 'kingdom.emporium.description', image: '/assets/images/cards/emporium.png', show: true },
-        { url: '/user/encyclopedia', name: 'user.encyclopedia.name', description: 'user.encyclopedia.description', image: '/assets/images/cards/encyclopedia.png', show: true },
       ],
     },
   ];

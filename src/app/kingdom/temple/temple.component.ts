@@ -21,9 +21,6 @@ export class TempleComponent implements OnInit {
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomGods: any[] = [];
   kingdomEnchantments: any[] = [];
-  kingdomGuilds: any[] = [];
-  kingdomGuild: any = this.store.selectSnapshot(AuthState.getKingdom);
-  selectedGuild: any = null;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -35,9 +32,6 @@ export class TempleComponent implements OnInit {
   ngOnInit() {
     this.angularFirestore.collection<any>('gods').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(gods => {
       this.kingdomGods = gods;
-    });
-    this.angularFirestore.collection<any>('guilds').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(guilds => {
-      this.kingdomGuilds = guilds;
     });
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/enchantments`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(enchantments => {
       this.kingdomEnchantments = enchantments.sort((a, b) => a.turns - b.turns);

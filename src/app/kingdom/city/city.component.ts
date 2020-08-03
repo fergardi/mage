@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { BuildComponent } from './build.component';
@@ -10,6 +9,7 @@ import { TaxComponent } from './tax.component';
 import { ChargeComponent } from './charge.component';
 import { ExploreComponent } from './explore.component';
 import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-city',
@@ -27,14 +27,21 @@ export class CityComponent implements OnInit {
   @Select((state: any) => state.auth.buildings.find((building: any) => building.id === 'workshop')) workshop$: Observable<any>;
   @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'land')) land$: Observable<any>;
   @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'turn')) turn$: Observable<any>;
+  kingdomGuilds: any[] = [];
+  kingdomGuild: any = this.store.selectSnapshot(AuthState.getKingdom);
+  selectedGuild: any = null;
   Math: any = Math;
 
   constructor(
+    private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private store: Store,
   ) {}
 
   ngOnInit() {
+    this.angularFirestore.collection<any>('guilds').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(guilds => {
+      this.kingdomGuilds = guilds;
+    });
   }
 
   openBuildDialog(building: any): void {

@@ -127,11 +127,10 @@
   },
   "shell": {
     "group": {
-      "coin": "Gremio de Mercaderes",
-      "sword": "Gremio de Escuderos",
-      "wispers": "Gremio de Espías",
-      "priest": "Gremio de Clérigos",
-      "wisdom": "Gremio de Eruditos"
+      "merchant": "Gremio de Mercaderes",
+      "squire": "Gremio de Escuderos",
+      "spy": "Gremio de Espías",
+      "scholar": "Gremio de Eruditos"
     }
   },
   "type": {
@@ -1093,7 +1092,7 @@
       "description": "Aplica <weakness>,<slowness> y <fear> a cada tropa <flight>"
     },
     "meteor-storm": {
-      "name": "Tormenta de meteoros",
+      "name": "Tormenta de meteoritos",
       "description": "Destruye <population> y <land> al <turn>"
     },
     "weakness": {
