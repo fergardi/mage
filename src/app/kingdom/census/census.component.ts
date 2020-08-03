@@ -38,7 +38,7 @@ export class CensusComponent implements OnInit, OnDestroy {
       value: '',
     },
   };
-  data: MatTableDataSource<any> = null;
+  data: MatTableDataSource<any> = new MatTableDataSource();
 
   constructor(
     private firebaseService: FirebaseService,
