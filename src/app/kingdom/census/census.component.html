@@ -42,6 +42,17 @@
               </mat-list>
             </ng-template>
 
+            <ng-template [ngIf]="column === 'clan'">
+              <mat-list dense *ngIf="kingdom.clan">
+                <mat-list-item>
+                  <div mat-list-avatar>
+                    <img mat-list-avatar [src]="kingdom.clan.image">
+                  </div>
+                  <div mat-line>{{ kingdom.clan.name }}</div>
+                </mat-list-item>
+              </mat-list>
+            </ng-template>
+
             <ng-template [ngIf]="column === 'actions'">
               <button mat-mini-fab color="primary" title="{{ 'kingdom.battle.attack' | translate }}" [disabled]="!canBeAttacked(kingdom) || kingdom.fid === uid" (click)="openAttackDialog(kingdom)">
                 <mat-icon>{{ canBeAttacked(kingdom) ? 'flag' : 'security' }}</mat-icon>

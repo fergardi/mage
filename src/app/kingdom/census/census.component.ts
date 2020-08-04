@@ -14,6 +14,7 @@ import { LetterComponent } from './letter.component';
 import { ActivateComponent } from '../sorcery/activate.component';
 import { ConjureComponent } from '../sorcery/conjure.component';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-census',
@@ -27,21 +28,28 @@ import { Router } from '@angular/router';
 @UntilDestroy()
 export class CensusComponent implements OnInit, OnDestroy {
 
-  uid: string = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);;
   protection: number = 8;
   clock: Date = new Date();
   interval: any = null;
-  columns = ['name', 'actions'];
+  columns = ['name', 'clan', 'actions'];
   filters: any = {
     name: {
       type: 'text',
       value: '',
     },
+    clan: {
+      type: 'text',
+      value: '',
+    },
   };
   data: MatTableDataSource<any> = new MatTableDataSource();
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private firebaseService: FirebaseService,
+    private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private store: Store,
     private router: Router,
@@ -49,13 +57,17 @@ export class CensusComponent implements OnInit, OnDestroy {
     this.interval = setInterval(() => this.clock = new Date(), 1000);
   }
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-
   ngOnInit() {
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
-    this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id', ref => ref.orderBy('power', 'desc')).pipe(untilDestroyed(this)).subscribe(kingdoms => {
-      this.data = new MatTableDataSource(kingdoms.sort((a, b) => b.radius - a.radius).map((kingdom, index) => { return { ...kingdom, position: index + 1 } }));
+    this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id', ref => ref.orderBy('power', 'desc')).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
+      let snapshot = await this.angularFirestore.collection<any>('clans').get().toPromise();
+      let clans = snapshot.docs.map(clan => { return { ...clan.data(), fid: clan.id } });
+      this.data = new MatTableDataSource(kingdoms.sort((a, b) => b.radius - a.radius).map((kingdom, index) => {
+        return {
+          ...kingdom,
+          position: index + 1,
+          clan: clans.find(clan => clan.fid === kingdom.clan),
+        };
+      }));
       this.data.paginator = this.paginator;
       this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
       this.data.sort = this.sort;
@@ -67,13 +79,15 @@ export class CensusComponent implements OnInit, OnDestroy {
   applyFilter() {
     this.data.filter = JSON.stringify({
       name: this.filters.name.value,
+      clan: this.filters.clan.value,
     });
   }
 
   createFilter(): (data: any, filter: string) => boolean {
     let filterFunction = function(data: any, filter: string): boolean {
       let filters = JSON.parse(filter);
-      return data.name.toLowerCase().includes(filters.name);
+      return data.name.toLowerCase().includes(filters.name)
+        && ((!filter && !data.clan) || (filter && data.clan && data.clan.name.toLowerCase().includes(filters.clan)))
     }
     return filterFunction;
   }

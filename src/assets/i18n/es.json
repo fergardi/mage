@@ -220,7 +220,8 @@
       "bid": "Puja",
       "power": "Poder",
       "position": "Posición",
-      "actions": "Acciones"
+      "actions": "Acciones",
+      "clan": "Clan"
     }
   },
   "world": {
