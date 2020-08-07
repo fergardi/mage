@@ -23,6 +23,24 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "firebase/app",
+              "@firebase/app",
+              "@firebase/firestore",
+              "@firebase/util",
+              "@firebase/component",
+              "mapbox-gl-circle",
+              "lodash/sample",
+              "withinviewport",
+              "@turf/bbox",
+              "@turf/bbox-polygon",
+              "@turf/circle",
+              "@turf/destination",
+              "@turf/distance",
+              "@turf/truncate",
+              "@turf/bearing"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -71,6 +89,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "mage:build"
+
           },
           "configurations": {
             "production": {
