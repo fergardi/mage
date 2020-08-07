@@ -1,15 +1,116 @@
-<div class="kingdom-clan table-responsive" [@fadeInOnEnter]>
-  <mat-card>
+<div class="kingdom-clan table-responsive" fxLayout="row wrap" fxLayoutGap="10px grid" [@fadeInOnEnter]>
 
-    <mat-card-header>
-      <img mat-card-avatar src="/assets/images/cards/clan.png">
-      <mat-card-title >{{ 'kingdom.clan.name' | translate }}</mat-card-title>
-      <mat-card-subtitle>{{ 'kingdom.clan.description' | translate }}</mat-card-subtitle>
-    </mat-card-header>
+  <div fxFlex.xl="66" fxFlex.lg="66" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
 
-    <mat-card-content>
-      <span>{{ 'kingdom.clan.help' | translate }}</span>
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/cards/clan.png">
+        <mat-card-title >{{ 'kingdom.clan.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.clan.description' | translate }}</mat-card-subtitle>
+        <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.found' | translate }}" (click)="foundClan()" [disabled]="kingdomClan">
+          <mat-icon>thumbs_up_down</mat-icon>
+        </button>
+        <mat-chip-list><mat-chip color="primary" selected><mat-icon>people</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
+      </mat-card-header>
 
-    </mat-card-content>
-  </mat-card>
+      <mat-card-content>
+        <span>{{ 'kingdom.clan.help' | translate }}</span>
+
+        <table mat-table matSort [dataSource]="data" matSortDisableClear tourAnchor="tour.clan">
+          <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
+            <mat-header-cell class="table-header" *matHeaderCellDef>
+
+              <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
+
+              <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
+                <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off">
+                <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+
+            </mat-header-cell>
+
+            <mat-cell *matCellDef="let clan" [attr.data-label]="'table.column.' + column | translate">
+
+              <ng-template [ngIf]="column === 'name'">
+                <mat-list dense>
+                  <mat-list-item [ngClass]="{ 'legendary': clan.fid === kingdomClan }">
+                    <div mat-list-avatar [matBadge]="clan.members.length | long" matBadgePosition="above before">
+                      <img mat-list-avatar [src]="clan.image">
+                    </div>
+                    <div mat-line>{{ clan.name | translate }}</div>
+                    <div mat-list-avatar [matBadge]="clan.power | short" matBadgePosition="above after">
+                      <img mat-list-avatar src="/assets/images/icons/power.png">
+                    </div>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template>
+
+              <ng-template [ngIf]="column === 'actions'">
+                <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.join' | translate }}" (click)="joinClan(clan)" [disabled]="clan.fid === kingdomClan">
+                  <mat-icon>thumb_up</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.leave' | translate }}" (click)="leaveClan(clan)" [disabled]="clan.fid !== kingdomClan">
+                  <mat-icon>thumb_down</mat-icon>
+                </button>
+              </ng-template>
+
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let kingdom; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.kingdom' : null"></mat-row>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/cards/guild.png">
+        <mat-card-title >{{ 'kingdom.guild.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.guild.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <span>{{ 'kingdom.guild.help' | translate }}</span>
+        <div matSubheader>{{ 'card.list.guilds' | translate }}:</div>
+        <mat-form-field>
+          <mat-label>{{ 'kingdom.guild.select' | translate }}</mat-label>
+          <mat-select [(ngModel)]="selectedGuild">
+            <mat-select-trigger *ngIf="selectedGuild">
+              <mat-list dense>
+                <mat-list-item>
+                  <div mat-list-avatar>
+                    <img mat-list-avatar [src]="selectedGuild.image">
+                  </div>
+                  <div mat-line>{{ selectedGuild.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle" [innerHTML]="selectedGuild.description | translate | icon:selectedGuild"></div>
+                </mat-list-item>
+              </mat-list>
+            </mat-select-trigger>
+            <mat-option *ngFor="let guild of kingdomGuilds" [value]="guild">
+              <mat-list dense>
+                <mat-list-item>
+                  <div mat-list-avatar>
+                    <img mat-list-avatar [src]="guild.image">
+                  </div>
+                  <div mat-line>{{ guild.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle" [innerHTML]="guild.description | translate | icon:guild"></div>
+                </mat-list-item>
+              </mat-list>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
 </div>

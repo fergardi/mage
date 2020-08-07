@@ -10,11 +10,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 
 export interface AuthStateModel {
-  kingdom: any,
-  uid: string | null,
-  supplies: any[],
-  buildings: any[],
-  logged: boolean,
+  kingdom: any;
+  uid: string | null;
+  supplies: any[];
+  buildings: any[];
+  logged: boolean;
 }
 
 @State<AuthStateModel>({
@@ -25,101 +25,10 @@ export interface AuthStateModel {
     supplies: [],
     buildings: [],
     logged: false,
-  }
+  },
 })
 @Injectable()
 export class AuthState implements NgxsOnInit {
-
-  constructor(
-    private angularFireAuth: AngularFireAuth,
-    private firebaseService: FirebaseService,
-    private angularFirestore: AngularFirestore,
-    private router: Router,
-    private notificationService: NotificationService,
-  ) { }
-
-  ngxsOnInit(ctx: StateContext<AuthStateModel>) {
-    this.angularFireAuth.authState.subscribe(user => {
-      if (user) {
-        ctx.dispatch(new SetUserAction(user.uid));
-        ctx.dispatch(new SetKingdomAction(user.uid));
-        ctx.dispatch(new SetKingdomSuppliesAction(user.uid));
-        ctx.dispatch(new SetKingdomBuildingsAction(user.uid));
-        this.notificationService.success('user.auth.authorized');
-        this.router.navigate(['/kingdom/city']);
-      } else {
-        this.router.navigate(['/user/login']);
-      }
-    });
-  }
-
-  @Action(LoginWithGoogleAction)
-  async loginWithGoogle(ctx: StateContext<AuthStateModel>) {
-    await this.angularFireAuth.signInWithPopup(new auth.GoogleAuthProvider());
-  }
-
-  @Action(LogoutAction)
-  async logout(ctx: StateContext<AuthStateModel>) {
-    await this.angularFireAuth.signOut();
-    const state = ctx.getState();
-    ctx.setState({
-      ...state,
-      uid: null,
-      kingdom: null,
-      supplies: [],
-      buildings: [],
-      logged: false,
-    });
-  }
-
-  @Action(SetUserAction)
-  setUser(ctx: StateContext<AuthStateModel>, payload: SetUserAction) {
-    const state = ctx.getState();
-    ctx.setState({
-      ...state,
-      uid: payload.uid,
-      logged: true,
-    });
-  }
-
-  @Action(SetKingdomAction)
-  setKingdom(ctx: StateContext<AuthStateModel>, payload: SetKingdomAction) {
-    return this.angularFirestore.doc<any>(`kingdoms/${payload.uid}`).valueChanges().pipe(
-      tap(kingdom => {
-        const state = ctx.getState();
-        ctx.setState({
-          ...state,
-          kingdom: kingdom,
-        });
-      })
-    );
-  }
-
-  @Action(SetKingdomSuppliesAction)
-  setKingdomSupplies(ctx: StateContext<AuthStateModel>, payload: SetKingdomSuppliesAction) {
-    return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/supplies`, 'resources', 'id', 'id').pipe(
-      tap(supplies => {
-        const state = ctx.getState();
-        ctx.setState({
-          ...state,
-          supplies: supplies.sort((a, b) => a.join.sort - b.join.sort),
-        });
-      })
-    );
-  }
-
-  @Action(SetKingdomBuildingsAction)
-  setKingdomBuildings(ctx: StateContext<AuthStateModel>, payload: SetKingdomBuildingsAction) {
-    return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/buildings`, 'structures', 'id', 'id').pipe(
-      tap(buildings => {
-        const state = ctx.getState();
-        ctx.setState({
-          ...state,
-          buildings: buildings,
-        });
-      })
-    );
-  }
 
   @Selector()
   public static getUserUID(state: AuthStateModel): string {
@@ -187,6 +96,16 @@ export class AuthState implements NgxsOnInit {
   }
 
   @Selector()
+  public static getKingdomGuild(state: AuthStateModel): any {
+    return state && state.kingdom && state.kingdom.guild;
+  }
+
+  @Selector()
+  public static getKingdomClan(state: AuthStateModel): any {
+    return state && state.kingdom && state.kingdom.clan;
+  }
+
+  @Selector()
   public static getKingdom(state: AuthStateModel): any {
     return state && state.kingdom;
   }
@@ -199,6 +118,97 @@ export class AuthState implements NgxsOnInit {
   @Selector()
   public static getAuthState(state: AuthStateModel): AuthStateModel {
     return state;
+  }
+
+  constructor(
+    private angularFireAuth: AngularFireAuth,
+    private firebaseService: FirebaseService,
+    private angularFirestore: AngularFirestore,
+    private router: Router,
+    private notificationService: NotificationService,
+  ) { }
+
+  ngxsOnInit(ctx: StateContext<AuthStateModel>) {
+    this.angularFireAuth.authState.subscribe(user => {
+      if (user) {
+        ctx.dispatch(new SetUserAction(user.uid));
+        ctx.dispatch(new SetKingdomAction(user.uid));
+        ctx.dispatch(new SetKingdomSuppliesAction(user.uid));
+        ctx.dispatch(new SetKingdomBuildingsAction(user.uid));
+        this.notificationService.success('user.auth.authorized');
+        this.router.navigate(['/kingdom/city']);
+      } else {
+        this.router.navigate(['/user/login']);
+      }
+    });
+  }
+
+  @Action(LoginWithGoogleAction)
+  async loginWithGoogle(ctx: StateContext<AuthStateModel>) {
+    await this.angularFireAuth.signInWithPopup(new auth.GoogleAuthProvider());
+  }
+
+  @Action(LogoutAction)
+  async logout(ctx: StateContext<AuthStateModel>) {
+    await this.angularFireAuth.signOut();
+    const state = ctx.getState();
+    ctx.setState({
+      ...state,
+      uid: null,
+      kingdom: null,
+      supplies: [],
+      buildings: [],
+      logged: false,
+    });
+  }
+
+  @Action(SetUserAction)
+  setUser(ctx: StateContext<AuthStateModel>, payload: SetUserAction) {
+    const state = ctx.getState();
+    ctx.setState({
+      ...state,
+      uid: payload.uid,
+      logged: true,
+    });
+  }
+
+  @Action(SetKingdomAction)
+  setKingdom(ctx: StateContext<AuthStateModel>, payload: SetKingdomAction) {
+    return this.angularFirestore.doc<any>(`kingdoms/${payload.uid}`).valueChanges().pipe(
+      tap(kingdom => {
+        const state = ctx.getState();
+        ctx.setState({
+          ...state,
+          kingdom: kingdom,
+        });
+      }),
+    );
+  }
+
+  @Action(SetKingdomSuppliesAction)
+  setKingdomSupplies(ctx: StateContext<AuthStateModel>, payload: SetKingdomSuppliesAction) {
+    return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/supplies`, 'resources', 'id', 'id').pipe(
+      tap(supplies => {
+        const state = ctx.getState();
+        ctx.setState({
+          ...state,
+          supplies: supplies.sort((a, b) => a.join.sort - b.join.sort),
+        });
+      }),
+    );
+  }
+
+  @Action(SetKingdomBuildingsAction)
+  setKingdomBuildings(ctx: StateContext<AuthStateModel>, payload: SetKingdomBuildingsAction) {
+    return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/buildings`, 'structures', 'id', 'id').pipe(
+      tap(buildings => {
+        const state = ctx.getState();
+        ctx.setState({
+          ...state,
+          buildings: buildings,
+        });
+      }),
+    );
   }
 
 }

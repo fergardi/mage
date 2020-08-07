@@ -136,11 +136,9 @@ body {
 }
 
 .mat-card-header {
-  .mat-chip-list {
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .mat-chip-list,
+  .mat-button-base {
+    margin: auto 10px auto 0;
   }
 }
 

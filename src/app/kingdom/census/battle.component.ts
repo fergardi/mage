@@ -100,7 +100,7 @@ export class BattleComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    let attacks = await this.cacheService.getAttacks();
+    const attacks = await this.cacheService.getAttacks();
     this.attackTypes = attacks;
     this.attackType = this.attackTypes[0];
   }
@@ -113,7 +113,7 @@ export class BattleComponent implements OnInit {
     this.loading = true;
     if (this.BATTLE_TURNS <= this.kingdomTurn.quantity) {
       try {
-        let battled = await this.apiService.battleKingdom(this.uid, this.kingdom.fid, this.attackType.id);
+        const battled = await this.apiService.battleKingdom(this.uid, this.kingdom.fid, this.attackType.id);
         this.notificationService.success('kingdom.battle.success');
         this.close();
       } catch (error) {

@@ -28,7 +28,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 @UntilDestroy()
 export class CensusComponent implements OnInit, OnDestroy {
 
-  uid: string = this.store.selectSnapshot(AuthState.getUserUID);;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   protection: number = 8;
   clock: Date = new Date();
   interval: any = null;
@@ -59,8 +59,13 @@ export class CensusComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id', ref => ref.orderBy('power', 'desc')).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
-      let snapshot = await this.angularFirestore.collection<any>('clans').get().toPromise();
-      let clans = snapshot.docs.map(clan => { return { ...clan.data(), fid: clan.id } });
+      const snapshot = await this.angularFirestore.collection<any>('clans').get().toPromise();
+      const clans = snapshot.docs.map(clan => {
+        return {
+          ...clan.data(),
+          fid: clan.id,
+        };
+      });
       this.data = new MatTableDataSource(kingdoms.sort((a, b) => b.radius - a.radius).map((kingdom, index) => {
         return {
           ...kingdom,
@@ -84,11 +89,11 @@ export class CensusComponent implements OnInit, OnDestroy {
   }
 
   createFilter(): (data: any, filter: string) => boolean {
-    let filterFunction = function(data: any, filter: string): boolean {
-      let filters = JSON.parse(filter);
+    const filterFunction = (data: any, filter: string): boolean => {
+      const filters = JSON.parse(filter);
       return data.name.toLowerCase().includes(filters.name)
-        && ((!filter && !data.clan) || (filter && data.clan && data.clan.name.toLowerCase().includes(filters.clan)))
-    }
+        && (!filters.clan || (data.clan && data.clan.name.toLowerCase().includes(filters.clan))); // clan can be null
+    };
     return filterFunction;
   }
 

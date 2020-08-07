@@ -340,7 +340,7 @@
     "guild": {
       "name": "Gremio",
       "description": "Favorece a un colectivo",
-      "help": "Puedes otorgar el favor de tu reinado a un gremio en concreto. Como agradecimiento, dicho gremio te otorgará bonuses adicionales en las batallas.",
+      "help": "Puedes otorgar el favor de tu reinado a un gremio en concreto. Como agradecimiento, dicho gremio te otorgará bonuses adicionales en las batallas. Sólo puedes cambiar de gremio una vez a la semana.",
       "hint": "Debes esperar 7 días antes de cambiar de gremio",
       "error": "No ha pasado tiempo suficiente",
       "select": "Escoge un gremio",
@@ -474,7 +474,10 @@
     "clan": {
       "name": "Clan",
       "description": "Forja alianzas",
-      "help": "Puedes unirte a un clan ya existente o fundar tu propio clan para que otros jugadores se unan. Un clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio..."
+      "help": "Puedes unirte a un clan ya existente o fundar tu propio clan para que otros magos y brujas se unan. Un clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio...",
+      "join": "Unirse",
+      "leave": "Marcharse",
+      "found": "Fundar"
     },
     "temple": {
       "name": "Templo",
