@@ -15,6 +15,7 @@ export interface AuthStateModel {
   supplies: any[];
   buildings: any[];
   logged: boolean;
+  clock: Date;
 }
 
 @State<AuthStateModel>({
@@ -25,6 +26,7 @@ export interface AuthStateModel {
     supplies: [],
     buildings: [],
     logged: false,
+    clock: null,
   },
 })
 @Injectable()
@@ -120,6 +122,11 @@ export class AuthState implements NgxsOnInit {
     return state;
   }
 
+  @Selector()
+  public static getClock(state: AuthStateModel): Date {
+    return state && state.clock;
+  }
+
   constructor(
     private angularFireAuth: AngularFireAuth,
     private firebaseService: FirebaseService,
@@ -129,6 +136,11 @@ export class AuthState implements NgxsOnInit {
   ) { }
 
   ngxsOnInit(ctx: StateContext<AuthStateModel>) {
+    setInterval(() => {
+      ctx.patchState({
+        clock: new Date(),
+      });
+    }, 1000);
     this.angularFireAuth.authState.subscribe(user => {
       if (user) {
         ctx.dispatch(new SetUserAction(user.uid));
@@ -159,6 +171,7 @@ export class AuthState implements NgxsOnInit {
       supplies: [],
       buildings: [],
       logged: false,
+      clock: null,
     });
   }
 

@@ -78,7 +78,7 @@
               mat-list-avatar
               (click)="close()"
               [title]="supply.join.name | translate"
-              [matBadge]="supply.max ? (supply.quantity | short) + '/' + (supply.max | short) : supply.quantity | short"
+              [matBadge]="supply.timestamp ? (supply.timestamp | turn:supply.join.max:supply.join.ratio | async) : supply.max ? (supply.quantity | short) + '/' + (supply.max | short) : supply.quantity | short"
               [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
               [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
               matBadgeOverlap="true">

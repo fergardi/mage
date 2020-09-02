@@ -60,12 +60,12 @@ export class ShellComponent {
     filter((event): event is NavigationEnd => event instanceof NavigationEnd),
     map(event => {
       return this.groups.reduce((a, b) => a.concat(b.links), []).find((link: any) => link.url === event.url);
-    })
+    }),
   );
   isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset])
   .pipe(
     map(result => result.matches),
-    shareReplay()
+    shareReplay(),
   );
 
   @ViewChild(MatSidenav, {static: true}) drawer: MatSidenav;
@@ -82,7 +82,7 @@ export class ShellComponent {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));
     this.translateService.setDefaultLang(this.langs[0].lang);
-    let browser = this.translateService.getBrowserLang();
+    const browser = this.translateService.getBrowserLang();
     this.translateService.use(this.langs.map(l => l.lang).includes(browser) ? browser : this.langs[0].lang);
   }
 

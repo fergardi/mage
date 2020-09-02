@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -26,12 +26,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
   ],
 })
 @UntilDestroy()
-export class CensusComponent implements OnInit, OnDestroy {
+export class CensusComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  clock: Date = this.store.selectSnapshot(AuthState.getClock);
   protection: number = 8;
-  clock: Date = new Date();
-  interval: any = null;
   columns = ['name', 'clan', 'actions'];
   filters: any = {
     name: {
@@ -53,9 +52,7 @@ export class CensusComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private store: Store,
     private router: Router,
-  ) {
-    this.interval = setInterval(() => this.clock = new Date(), 1000);
-  }
+  ) { }
 
   ngOnInit() {
     this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id', ref => ref.orderBy('power', 'desc')).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
@@ -133,10 +130,6 @@ export class CensusComponent implements OnInit, OnDestroy {
 
   async showInMap(kingdom: any) {
     await this.router.navigate([`/world/map/${kingdom.fid}`]);
-  }
-
-  ngOnDestroy() {
-    clearInterval(this.interval);
   }
 
 }

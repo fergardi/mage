@@ -7,7 +7,9 @@
     "description": "resource.population.description",
     "sort": 3,
     "image": "/assets/images/resources/population.png",
-    "route": "/kingdom/army"
+    "route": "/kingdom/army",
+    "ratio": null,
+    "max": null
   },
   {
     "id": "gold",
@@ -17,7 +19,9 @@
     "description": "resource.gold.description",
     "sort": 1,
     "image": "/assets/images/resources/gold.png",
-    "route": "/kingdom/auction"
+    "route": "/kingdom/auction",
+    "ratio": null,
+    "max": null
   },
   {
     "id": "mana",
@@ -27,7 +31,9 @@
     "description": "resource.mana.description",
     "sort": 2,
     "image": "/assets/images/resources/mana.png",
-    "route": "/kingdom/sorcery"
+    "route": "/kingdom/sorcery",
+    "ratio": null,
+    "max": null
   },
   {
     "id": "gem",
@@ -37,7 +43,9 @@
     "description": "resource.gem.description",
     "sort": 6,
     "image": "/assets/images/resources/gem.png",
-    "route": "/kingdom/emporium"
+    "route": "/kingdom/emporium",
+    "ratio": null,
+    "max": null
   },
   {
     "id": "turn",
@@ -47,7 +55,9 @@
     "description": "resource.turn.description",
     "sort": 5,
     "image": "/assets/images/resources/turn.png",
-    "route": "/kingdom/temple"
+    "route": "/kingdom/temple",
+    "ratio": 1,
+    "max": 300
   },
   {
     "id": "land",
@@ -57,6 +67,8 @@
     "description": "resource.land.description",
     "sort": 4,
     "image": "/assets/images/resources/land.png",
-    "route": "/kingdom/city"
+    "route": "/kingdom/city",
+    "ratio": null,
+    "max": null
   }
 ]

@@ -38,9 +38,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
+        deps: [HttpClient],
       },
-      isolate: false
+      isolate: false,
     }),
     NgxsModule.forRoot(
       [AuthState],
@@ -48,15 +48,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     ),
     NgxsReduxDevtoolsPluginModule.forRoot({
       name: 'Mage',
-      disabled: environment.production
+      disabled: environment.production,
     }),
     TourMatMenuModule.forRoot(),
   ],
   providers: [
-    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
   ],
   bootstrap: [
     AppComponent,
-  ]
+  ],
 })
 export class AppModule { }

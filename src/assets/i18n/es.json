@@ -1561,7 +1561,7 @@
       "description": "Aumenta el daño de <undead> en +2% por nivel"
     },
     "necromancer": {
-      "name": "Nigromante",
+      "name": "{{ name }} el Nigromante",
       "description": "Ganas más <population> por <turn>"
     },
     "engineer": {
