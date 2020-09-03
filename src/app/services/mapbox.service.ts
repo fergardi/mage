@@ -305,9 +305,9 @@ export class MapboxService {
     // remove the old one
     this.removeMarker(data.fid);
     // size
-    let size = type === MarkerType.kingdom ? 64 : 38;
+    let size = type === MarkerType.kingdom ? 70 : 40;
     // marker
-    let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = { ...data, size: size }), { anchor: 'bottom' })
+    let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = { ...data, size: size, type: type }), { anchor: 'bottom' })
     .setLngLat({ lat: data.coordinates.latitude, lng: data.coordinates.longitude })
     .addTo(this.map);
     // popup

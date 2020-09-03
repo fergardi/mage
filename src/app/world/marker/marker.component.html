@@ -1,7 +1,7 @@
 <div class="map-marker">
-  <ng-template [ngIf]="data.size === 64" [ngIfElse]="small">
+  <ng-template [ngIf]="data.type === MarkerType.kingdom" [ngIfElse]="small">
     <button mat-fab color="primary" class="marker animated bounceIn" [ngStyle]="{ height: data.size + 'px', width: data.size + 'px' }">
-      <img [src]="data.image || data.join.image">
+      <img [src]="data.image || data.join.marker || data.join.image">
     </button>
   </ng-template>
   <ng-template #small>

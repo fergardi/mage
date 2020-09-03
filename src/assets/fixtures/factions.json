@@ -4,6 +4,7 @@
     "name": "faction.black.name",
     "description": "faction.black.description",
     "image": "/assets/images/factions/black.png",
+    "marker": "/assets/images/factions/black-marker.png",
     "opposites": ["white", "green"],
     "adjacents": ["red", "blue"],
     "id": "black"
@@ -13,6 +14,7 @@
     "name": "faction.blue.name",
     "description": "faction.blue.description",
     "image": "/assets/images/factions/blue.png",
+    "marker": "/assets/images/factions/blue-marker.png",
     "opposites": ["green", "red"],
     "adjacents": ["white", "black"],
     "id": "blue"
@@ -22,6 +24,7 @@
     "name": "faction.green.name",
     "description": "faction.green.description",
     "image": "/assets/images/factions/green.png",
+    "marker": "/assets/images/factions/green-marker.png",
     "opposites": ["blue", "black"],
     "adjacents": ["white", "red"],
     "id": "green"
@@ -31,6 +34,7 @@
     "name": "faction.red.name",
     "description": "faction.red.description",
     "image": "/assets/images/factions/red.png",
+    "marker": "/assets/images/factions/red-marker.png",
     "opposites": ["white", "blue"],
     "adjacents": ["green", "black"],
     "id": "red"
@@ -40,6 +44,7 @@
     "name": "faction.white.name",
     "description": "faction.white.description",
     "image": "/assets/images/factions/white.png",
+    "marker": "/assets/images/factions/white-marker.png",
     "opposites": ["black", "red"],
     "adjacents": ["green", "blue"],
     "id": "white"
@@ -49,6 +54,7 @@
     "name": "faction.grey.name",
     "description": "faction.grey.description",
     "image": "/assets/images/factions/grey.png",
+    "marker": "/assets/images/factions/grey-marker.png",
     "opposites": ["black", "red", "blue", "green", "white"],
     "adjacents": [],
     "id": "grey"

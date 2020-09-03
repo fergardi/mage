@@ -29,7 +29,7 @@ export class PopupComponent implements OnInit {
   questContracts: any[] = [];
   questTroops: any[] = [];
   questArtifacts: any[] = [];
-  confirmType: typeof ConfirmType = ConfirmType;
+  ConfirmType: typeof ConfirmType = ConfirmType;
 
   constructor(
     private firebaseService: FirebaseService,
