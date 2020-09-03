@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   selector: 'app-tome',
   template: `
     <div class="dialog-title">
-      <h1 mat-dialog-title>{{ tome.name | translate }}</h1>
+      <h1 mat-dialog-title>{{ tome.name | translate:{name:'???'} }}</h1>
     </div>
     <div mat-dialog-content>
       <p>{{ 'user.tome.help' | translate }}</p>
@@ -14,7 +14,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           <div mat-list-avatar [matBadge]="tome.level || '?'" matBadgePosition="above before">
             <img mat-list-avatar [src]="tome.image">
           </div>
-          <div mat-line>{{ tome.name | translate }}</div>
+          <div mat-line>{{ tome.name | translate:{name:'???'} }}</div>
           <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(tome.type)">{{ tome.description | translate }}</div>
           <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(tome.type)" [innerHTML]="tome.description | translate | icon:tome"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(tome.type)">
@@ -22,6 +22,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of tome.skills" [src]="skill.image">
             <img [title]="category.name | translate" class="icon" *ngFor="let category of tome.categories" [src]="category.image">
             <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="tome.legendary" src="/assets/images/icons/legendary.png">
+          </div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(tome.type) && tome.categories && tome.categories.length">
             <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of tome.resistances" [src]="category.image">
           </div>
           <div mat-list-avatar *ngIf="tome.join">

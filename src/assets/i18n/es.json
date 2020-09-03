@@ -1492,15 +1492,15 @@
     },
     "scales": {
       "name": "Placas",
-      "description": "Aumenta su defensa en +30%"
+      "description": "Aumenta su defensa +30%"
     },
     "strength": {
       "name": "Fuerza",
-      "description": "Aumenta su ataque en +20%"
+      "description": "Aumenta su ataque +20%"
     },
     "haste": {
       "name": "Prisa",
-      "description": "Aumenta su iniciativa en +1"
+      "description": "Aumenta su iniciativa +1"
     },
     "weakness": {
       "name": "Debilidad",
@@ -1525,63 +1525,63 @@
   },
   "hero": {
     "dragon-rider": {
-      "name": "Jinete de dragones",
-      "description": "Aumenta el daño de <dragon> en +2% por nivel"
+      "name": "{{ name }} el Jinete de Dragones",
+      "description": "Aumenta el daño de <dragon> +2% por nivel"
     },
     "demon-prince": {
-      "name": "Príncipe demonio",
-      "description": "Aumenta el daño de <demon> en +2% por nivel"
+      "name": "{{ name }} el Príncipe Demonio",
+      "description": "Aumenta el daño de <demon> +2% por nivel"
     },
     "commander": {
-      "name": "Comandante",
-      "description": "Aumenta el daño de <human> en +2% por nivel"
+      "name": "{{ name }} el Comandante General",
+      "description": "Aumenta el daño de <human> +2% por nivel"
     },
     "trader": {
-      "name": "Comerciante",
-      "description": "Ganas más <gold> por <turn>"
+      "name": "{{ name }} el Gran Comerciante",
+      "description": "Generas +1% <gold> al <turn> por nivel"
     },
     "beast-master": {
-      "name": "Señor de las bestias",
-      "description": "Aumenta el daño de <animal> en +2% por nivel"
+      "name": "{{ name }} el Señor de las Bestias",
+      "description": "Aumenta el daño de <animal> +2% por nivel"
     },
     "shaman": {
-      "name": "Chamán",
-      "description": "Ganas más <mana> por <turn>"
+      "name": "{{ name }} el Chamán Voodoo",
+      "description": "Generas +1% <mana> al <turn> por nivel"
     },
     "elementalist": {
-      "name": "Elementalista",
-      "description": "Aumenta el daño de <elemental> en +2% por nivel"
+      "name": "{{ name }} el Elementalista",
+      "description": "Aumenta el daño de <elemental> +2% por nivel"
     },
     "sage": {
-      "name": "Sabio",
-      "description": "Aumenta la velocidad de investigación"
+      "name": "{{ name }} el Sabio",
+      "description": "Reduce investigaciones -1 <turn> por nivel"
     },
     "necrophage": {
-      "name": "Necrófago jefe",
-      "description": "Aumenta el daño de <undead> en +2% por nivel"
+      "name": "{{ name }} el Necrófago Jefe",
+      "description": "Aumenta el daño de <undead> +2% por nivel"
     },
     "necromancer": {
       "name": "{{ name }} el Nigromante",
-      "description": "Ganas más <population> por <turn>"
+      "description": "Generas +1% <population> al <turn> por nivel"
     },
     "engineer": {
-      "name": "Ingeniero",
-      "description": "Reduce tiempos de construcción"
+      "name": "{{ name }} el Ingeniero Constructor",
+      "description": "Aumenta el ratio de construcción +1 por nivel"
     },
     "mummy": {
-      "name": "Momia",
-      "description": "Aumenta el ataque de tus tropas en +1% por nivel"
+      "name": "{{ name }} la Momia Maldita",
+      "description": "Aumenta el ataque de tus tropas +1% por nivel"
     },
     "silver-knight": {
-      "name": "Caballero plateado",
-      "description": "Aumenta la defensa de tus tropas en +2% por nivel"
+      "name": "{{ name }} el Caballero Plateado",
+      "description": "Aumenta la defensa de tus tropas +2% por nivel"
     },
     "orc-king": {
-      "name": "Rey orco",
-      "description": "Aumenta el daño de <orkish> en +2% por nivel"
+      "name": "{{ name }} el Rey de los Orcos",
+      "description": "Aumenta el daño de <orkish> +2% por nivel"
     },
     "leprechaunt": {
-      "name": "Leprechaunt",
+      "name": "{{ name }} el Leprechaunt",
       "description": "Aumenta la suerte +1% por nivel"
     }
   },

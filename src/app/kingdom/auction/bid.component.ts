@@ -17,7 +17,7 @@ import { ApiService } from 'src/app/services/api.service';
           <div mat-list-avatar [matBadge]="(auction.quantity || auction.level) | short" matBadgePosition="above before">
             <img mat-list-avatar [src]="auction.join.image">
           </div>
-          <div mat-line>{{ auction.join.name | translate }}</div>
+          <div mat-line>{{ auction.join.name | translate:{name:auction.name} }}</div>
           <div mat-line class="mat-card-subtitle" *ngIf="['artifact', 'contract'].includes(auction.type)" [innerHTML]="auction.join.description | translate | icon:auction.join"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['troop'].includes(auction.type)">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of auction.join.families" [src]="family.image">

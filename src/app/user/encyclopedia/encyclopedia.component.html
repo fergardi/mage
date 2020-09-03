@@ -58,7 +58,7 @@
                   <div mat-list-avatar [matBadge]="row.level || '?'" matBadgePosition="above before">
                     <img mat-list-avatar [src]="row.image">
                   </div>
-                  <div mat-line>{{ row.name | translate }}</div>
+                  <div mat-line>{{ row.name | translate:{name:'???'} }}</div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(row.type)">{{ row.description | translate }}</div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(row.type)" [innerHTML]="row.description | translate | icon:row"></div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(row.type)">
@@ -66,6 +66,8 @@
                     <img [title]="skill.name | translate" class="icon" *ngFor="let skill of row.skills" [src]="skill.image">
                     <img [title]="category.name | translate" class="icon" *ngFor="let category of row.categories" [src]="category.image">
                     <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="row.legendary" src="/assets/images/icons/legendary.png">
+                  </div>
+                  <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(row.type) && row.resistances && row.resistances.length">
                     <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of row.resistances" [src]="category.image">
                   </div>
                 </mat-list-item>

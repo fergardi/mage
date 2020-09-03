@@ -22,7 +22,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
           <div mat-line *ngIf="charm.turnResearch < charm.join.turnResearch">
             <mat-progress-bar [value]="charm.turnResearch * 100 / charm.join.turnResearch"></mat-progress-bar>
           </div>
-          <div mat-list-avatar [matBadge]="(charm.join.turnResearch - charm.turnResearch) + '/' + charm.join.turnResearch" matBadgePosition="above after">
+          <div mat-list-avatar [matBadge]="(charm.join.turnResearch - charm.turnResearch) + ' / ' + charm.join.turnResearch" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>

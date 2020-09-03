@@ -20,11 +20,11 @@
             </div>
             <div mat-line>{{ god.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
-            <div mat-list-avatar *ngIf="!god.armageddon && god.gold > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.gold | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/gold.png"></div>
-            <div mat-list-avatar *ngIf="!god.armageddon && god.mana > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.mana | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/mana.png"></div>
-            <div mat-list-avatar *ngIf="!god.armageddon && god.population > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.population | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/population.png"></div>
-            <div mat-list-avatar *ngIf="!god.armageddon && god.land > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.land | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/land.png"></div>
-            <div mat-list-avatar *ngIf="!god.armageddon && god.turn > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.turn | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
+            <div mat-list-avatar *ngIf="!god.armageddon && god.gold > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.gold | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/gold.png"></div>
+            <div mat-list-avatar *ngIf="!god.armageddon && god.mana > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.mana | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/mana.png"></div>
+            <div mat-list-avatar *ngIf="!god.armageddon && god.population > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.population | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/population.png"></div>
+            <div mat-list-avatar *ngIf="!god.armageddon && god.land > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.land | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/land.png"></div>
+            <div mat-list-avatar *ngIf="!god.armageddon && god.turn > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.turn | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
             <div mat-list-avatar *ngIf="god.armageddon"><img mat-list-avatar src="/assets/images/spells/grey/armageddon.png"></div>
           </button>
         </mat-action-list>

@@ -21,11 +21,11 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
           </div>
           <div mat-line>{{ god.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
-          <div mat-list-avatar *ngIf="god.gold > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.gold | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/gold.png"></div>
-          <div mat-list-avatar *ngIf="god.mana > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.mana | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/mana.png"></div>
-          <div mat-list-avatar *ngIf="god.population > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.population | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/population.png"></div>
-          <div mat-list-avatar *ngIf="god.land > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.land | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/land.png"></div>
-          <div mat-list-avatar *ngIf="god.turn > 0" [matBadge]="(god.sacrifice | long) + '/' + (god.turn | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
+          <div mat-list-avatar *ngIf="god.gold > 0" [matBadge]="(god.sacrifice | long) + ' / ' + (god.gold | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/gold.png"></div>
+          <div mat-list-avatar *ngIf="god.mana > 0" [matBadge]="(god.sacrifice | long) + ' / ' + (god.mana | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/mana.png"></div>
+          <div mat-list-avatar *ngIf="god.population > 0" [matBadge]="(god.sacrifice | long) + ' / ' + (god.population | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/population.png"></div>
+          <div mat-list-avatar *ngIf="god.land > 0" [matBadge]="(god.sacrifice | long) + ' / ' + (god.land | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/land.png"></div>
+          <div mat-list-avatar *ngIf="god.turn > 0" [matBadge]="(god.sacrifice | long) + ' / ' + (god.turn | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
         </mat-list-item>
       </mat-list>
       <form [formGroup]="form">

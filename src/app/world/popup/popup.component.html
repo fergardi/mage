@@ -37,6 +37,8 @@
             <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image">
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image">
             <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image">
+          </div>
+          <div mat-line class="mat-card-subtitle" *ngIf="troop.join.resistances && troop.join.resistances.length">
             <img [title]="('category.resistance' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.join.resistances" [src]="category.image">
           </div>
           <div mat-list-avatar [matBadge]="troop.gold | long" matBadgePosition="above after">
@@ -107,6 +109,8 @@
             <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image">
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image">
             <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image">
+          </div>
+          <div mat-line class="mat-card-subtitle" *ngIf="troop.join.resistances && troop.join.resistances.length">
             <img [title]="('category.resistance' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.join.resistances" [src]="category.image">
           </div>
         </mat-list-item>

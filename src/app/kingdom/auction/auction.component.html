@@ -47,6 +47,10 @@
                     <img [title]="family.name | translate" class="icon" *ngFor="let family of auction.join.families" [src]="family.image">
                     <img [title]="skill.name | translate" class="icon" *ngFor="let skill of auction.join.skills" [src]="skill.image">
                     <img [title]="category.name | translate" class="icon" *ngFor="let category of auction.join.categories" [src]="category.image">
+                    <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="auction.join.legendary" src="/assets/images/icons/legendary.png">
+                  </div>
+                  <div mat-line class="mat-card-subtitle" *ngIf="['troop'].includes(auction.type) && auction.join.resistances && auction.join.resistances.length">
+                    <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of auction.join.resistances" [src]="category.image">
                   </div>
                   <div mat-list-avatar [matBadge]="auction.gold | long" matBadgePosition="above after">
                     <img mat-list-avatar src="/assets/images/resources/gold.png">
