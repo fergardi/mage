@@ -72,7 +72,7 @@ export class PopupComponent implements OnInit {
       data: {
         object: object,
         type: type,
-      }
+      },
     });
   }
 

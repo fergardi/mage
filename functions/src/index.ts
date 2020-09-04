@@ -6,8 +6,7 @@ import * as express from 'express';
 import * as ash from 'express-async-handler';
 import * as moment from 'moment';
 
-const MIN_TURNS: number = 5;
-// const MAX_TURNS: number = 300;
+const MAX_TURNS: number = 300;
 const MIN_LANDS: number = 1;
 const MAX_LANDS: number = 3500;
 const BATTLE_TURNS: number = 2;
@@ -25,7 +24,6 @@ const geofirex: any = geo.init(admin);
 const api = express();
 api.use(cors({ origin: true }));
 api.use(express.json());
-api.get('/advance', ash(async (req: any, res: any) => res.json(await advanceTime(MIN_TURNS))));
 api.post('/kingdom', ash(async (req: any, res: any) => res.json(await createKingdom(req.body.kingdomId, req.body.factionId, req.body.name, parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
 api.get('/kingdom/:kingdomId/explore/:turns', ash(async (req: any, res: any) => res.json(await exploreLands(req.params.kingdomId, parseInt(req.params.turns)))));
 api.get('/kingdom/:kingdomId/charge/:turns', ash(async (req: any, res: any) => res.json(await chargeMana(req.params.kingdomId, parseInt(req.params.turns)))));
@@ -129,7 +127,7 @@ let factions: any[] = [
   }
 ];
 
-let items = [
+const items = [
   'golden-chest',
   'magical-chest',
   'stone-chest',
@@ -190,9 +188,9 @@ let items = [
  * @param batch
  */
 const addSupply = async (kingdomId: string, supply: ResourceType, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
-  let kingdomSupply = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', supply).limit(1).get();
-  let s = kingdomSupply.docs[0].data();
-  let q = s.max && (s.quantity + quantity > s.max) ? s.max : admin.firestore.FieldValue.increment(quantity);
+  const kingdomSupply = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', supply).limit(1).get();
+  const s = kingdomSupply.docs[0].data();
+  const q = s.max && (s.quantity + quantity > s.max) ? s.max : admin.firestore.FieldValue.increment(quantity);
   batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomSupply.docs[0].id}`), { quantity: q });
 }
 
@@ -292,20 +290,6 @@ const addBuilding = async (kingdomId: string, buildingId: string, quantity: numb
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomLand.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(-quantity) });
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${buildingId}`), { quantity: admin.firestore.FieldValue.increment(quantity) });
   }
-}
-
-/**
- * all kingdoms advance time on a given number of turns
- * @param turns
- */
-const advanceTime = async (turns: number) => {
-  const batch = angularFirestore.batch();
-  let kingdoms = await angularFirestore.collection('kingdoms').limit(100).get();
-  await Promise.all(kingdoms.docs.map(async kingdom => {
-    await addSupply(kingdom.id, 'turn', turns, batch);
-  }));
-  await batch.commit();
-  return { turns: turns };
 }
 
 /**

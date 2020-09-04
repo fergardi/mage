@@ -37,12 +37,11 @@ interface Marker {
 })
 export class MapboxService {
 
-  geofirex: any = geofirex.init(firebase);
-  mapbox = (mapboxgl as typeof mapboxgl);
-  map: mapboxgl.Map = null;
-  markers: Marker[] = [];
-  offset: number = 10;
-  kingdom: string = null;
+  private geofirex: any = geofirex.init(firebase);
+  private mapbox = (mapboxgl as typeof mapboxgl);
+  public map: mapboxgl.Map = null;
+  private markers: Marker[] = [];
+  private offset: number = 10;
 
   constructor(
     private componentService: ComponentService,
@@ -62,7 +61,16 @@ export class MapboxService {
       center: [environment.mapbox.lng, environment.mapbox.lat],
       pitch: environment.mapbox.pitch,
       attributionControl: true,
-      interactive: true
+      interactive: true,
+    });
+    this.map.on('moveend', () => this.refreshMarkers());
+  }
+
+  refreshMarkers(): void {
+    this.markers.forEach((marker: any) => {
+      if (marker.type !== MarkerType.kingdom) {
+        marker.marker._element.style.visibility = this.map.getZoom() >= 10 ? 'visible' : 'hidden';
+      }
     });
   }
 
@@ -345,7 +353,7 @@ export class MapboxService {
     // center
     if (fly) {
       this.goTo(data.coordinates.latitude, data.coordinates.longitude, true);
-      marker.togglePopup();
+      // marker.togglePopup();
     }
     // add to list for future disposal
     this.markers.push({ id: data.fid, marker: marker, circle: circle, type: type });
