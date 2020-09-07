@@ -1,12 +1,11 @@
 <div class="map-marker">
-  <ng-template [ngIf]="data.type === MarkerType.kingdom" [ngIfElse]="small">
-    <button mat-fab color="primary" class="marker animated bounceIn" [ngStyle]="{ height: data.size + 'px', width: data.size + 'px' }">
-      <img [src]="data.image || data.join.marker || data.join.image">
-    </button>
-  </ng-template>
-  <ng-template #small>
-    <button mat-mini-fab color="primary" class="marker animated bounceIn" [ngStyle]="{ height: data.size + 'px', width: data.size + 'px' }">
-      <img [src]="data.image || data.join.image">
-    </button>
-  </ng-template>
+  <button *ngIf="data.type === MarkerType.kingdom" mat-fab color="primary" class="marker animated bounceIn" matBadge="home" matBadgePosition="before" matBadgeColor="primary">
+    <img [src]="data.join.marker">
+  </button>
+  <button *ngIf="data.type === MarkerType.shop" mat-mini-fab color="accent" class="marker animated bounceIn" matBadge="store" matBadgePosition="before" matBadgeColor="accent">
+    <img [src]="data.join.image">
+  </button>
+  <button *ngIf="data.type === MarkerType.quest" mat-mini-fab color="warn" class="marker animated bounceIn" matBadge="place" matBadgePosition="before" matBadgeColor="warn">
+    <img [src]="data.join.image">
+  </button>
 </div>

@@ -33,6 +33,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { EcoFabSpeedDialModule } from '@ecodev/fab-speed-dial';
 
 import { ShellComponent } from './shell/shell.component';
 import { ShortPipe } from '../pipes/short.pipe';
@@ -89,6 +90,7 @@ const modules = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatProgressSpinnerModule,
+  EcoFabSpeedDialModule,
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@
   "extends": "tslint:recommended",
   "rules": {
     "object-literal-shorthand": false,
+    "no-string-literal": false,
     "align": {
       "options": [
         "parameters",
@@ -42,8 +43,8 @@
     },
     "max-classes-per-file": false,
     "max-line-length": [
-      true,
-      250
+      false,
+      80
     ],
     "member-ordering": [
       true,

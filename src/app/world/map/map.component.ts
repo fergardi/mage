@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MapboxService, MarkerType } from 'src/app/services/mapbox.service';
+import { MapboxService, MarkerType, LocationType, StoreType, FactionType } from 'src/app/services/mapbox.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AuthState } from 'src/app/shared/auth/auth.state';
@@ -10,6 +10,8 @@ import * as firebase from 'firebase/app';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { CacheService } from 'src/app/services/cache.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-map',
@@ -23,6 +25,9 @@ export class MapComponent implements OnInit, OnDestroy {
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   @Select((state: any) => state.auth.kingdom) kingdom$: Observable<any>;
   container = 'map';
+  locations: any[] = [];
+  stores: any[] = [];
+  factions: any[] = [];
 
   constructor(
     public mapboxService: MapboxService,
@@ -30,9 +35,11 @@ export class MapComponent implements OnInit, OnDestroy {
     private angularFirestore: AngularFirestore,
     private store: Store,
     private activatedRoute: ActivatedRoute,
+    private cacheService: CacheService,
+    private notificationService: NotificationService,
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.on('load', () => {
       // resize map in case drawer has changed
@@ -82,6 +89,26 @@ export class MapComponent implements OnInit, OnDestroy {
         })
       });
     });
+    // menus
+    this.stores = await this.cacheService.getStores();
+    this.locations = await this.cacheService.getLocations();
+    this.factions = await this.cacheService.getFactions();
+    this.factions = this.factions.filter((faction: any) => faction.id !== 'grey');
+  }
+
+  addShop(type: StoreType) {
+    this.notificationService.warning('world.map.add');
+    this.mapboxService.addShop(type);
+  }
+
+  addQuest(type: LocationType) {
+    this.notificationService.warning('world.map.add');
+    this.mapboxService.addQuest(type);
+  }
+
+  addKingdom(type: FactionType) {
+    this.notificationService.warning('world.map.add');
+    this.mapboxService.addBot(type);
   }
 
   ngOnDestroy(): void {

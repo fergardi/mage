@@ -24,9 +24,9 @@
     "id": "merchant"
   },
   {
-    "image": "/assets/images/stores/sorcerer.png",
-    "name": "store.sorcerer.name",
-    "description": "store.sorcerer.description",
-    "id": "sorcerer"
+    "image": "/assets/images/stores/university.png",
+    "name": "store.university.name",
+    "description": "store.university.description",
+    "id": "university"
   }
 ]

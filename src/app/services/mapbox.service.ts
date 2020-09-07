@@ -22,18 +22,22 @@ export enum StoreType {
 }
 
 export enum LocationType {
-  'cathedral', 'cave', 'dungeon', 'forest', 'graveyard', 'lake', 'mine', 'mountain', 'nest', 'volcano'
+  'cathedral', 'cave', 'dungeon', 'forest', 'graveyard', 'lake', 'mine', 'mountain', 'nest', 'volcano',
+}
+
+export enum FactionType {
+  'red', 'white', 'green', 'blue', 'black',
 }
 
 interface Marker {
-  id: string
-  type: MarkerType
-  marker: mapboxgl.Marker
-  circle: MapboxCircle
+  id: string;
+  type: MarkerType;
+  marker: mapboxgl.Marker;
+  circle: MapboxCircle;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MapboxService {
 
@@ -42,6 +46,7 @@ export class MapboxService {
   public map: mapboxgl.Map = null;
   private markers: Marker[] = [];
   private offset: number = 10;
+  private uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
     private componentService: ComponentService,
@@ -76,8 +81,7 @@ export class MapboxService {
 
   addMe(): void {
     navigator.geolocation.getCurrentPosition(async position => {
-      let uid = this.store.selectSnapshot(AuthState.getUserUID);
-      this.addKingdom(uid, 'Fergardi', 'black', position.coords.latitude, position.coords.longitude);
+      this.addKingdom(this.uid, 'Fergardi', FactionType.black, position.coords.latitude, position.coords.longitude);
       this.goTo(position.coords.latitude, position.coords.longitude, true);
     }, null, {
       enableHighAccuracy: true,
@@ -86,15 +90,16 @@ export class MapboxService {
     });
   }
 
-  addBot(): void {
+  addBot(type: FactionType = null): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      let factions = ['red', 'white', 'green', 'blue', 'black'];
-      let uid = this.angularFirestore.collection<any>('kingdoms').ref.doc().id;
-      this.addKingdom(uid, this.randomService.kingdom(), factions[Math.floor(Math.random() * factions.length)], $event.lngLat.lat, $event.lngLat.lng);
+      const factions = [FactionType.red, FactionType.white, FactionType.green, FactionType.blue, FactionType.black];
+      const faction = type || factions[Math.floor(Math.random() * factions.length)];
+      const uid = this.angularFirestore.collection<any>('kingdoms').ref.doc().id;
+      this.addKingdom(uid, this.randomService.kingdom(), faction, $event.lngLat.lat, $event.lngLat.lng);
     });
   }
 
-  async addKingdom(id: string, name: string, faction: string, latitude: number, longitude: number) {
+  async addKingdom(id: string, name: string, faction: FactionType, latitude: number, longitude: number) {
     await this.firebaseService.addElementToCollection('kingdoms', {
       id: id,
       faction: faction,
@@ -133,11 +138,11 @@ export class MapboxService {
     ]);
   }
 
-  addShop(): void {
+  addShop(type: StoreType = null): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      let stores: StoreType[] = [StoreType.inn, StoreType.mercenary, StoreType.alchemist, StoreType.sorcerer, StoreType.merchant];
-      let store = stores[Math.floor(Math.random() * stores.length)];
-      let ref = await this.firebaseService.addElementToCollection('shops', {
+      const stores: StoreType[] = [StoreType.inn, StoreType.mercenary, StoreType.alchemist, StoreType.sorcerer, StoreType.merchant];
+      const store = type || stores[Math.floor(Math.random() * stores.length)];
+      const ref = await this.firebaseService.addElementToCollection('shops', {
         store: StoreType[store],
         position: this.geofirex.point($event.lngLat.lat, $event.lngLat.lng),
         coordinates: {
@@ -148,7 +153,7 @@ export class MapboxService {
       switch (store) {
         case StoreType.inn:
           this.firebaseService.addElementsToCollection(`shops/${ref['id']}/contracts`, [
-            { id: 'dragon-rider', gold: 23000,level: 2 },
+            { id: 'dragon-rider', gold: 23000, level: 2 },
           ]);
           break;
         case StoreType.mercenary:
@@ -178,11 +183,11 @@ export class MapboxService {
     });
   }
 
-  addQuest(): void {
+  addQuest(type: LocationType = null): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      let locations: LocationType[] = [LocationType.cathedral, LocationType.cave, LocationType.dungeon, LocationType.forest, LocationType.graveyard, LocationType.lake, LocationType.mine, LocationType.mountain, LocationType.nest, LocationType.volcano];
-      let location = locations[Math.floor(Math.random() * locations.length)];
-      let ref = await this.firebaseService.addElementToCollection('quests', {
+      const locations: LocationType[] = [LocationType.cathedral, LocationType.cave, LocationType.dungeon, LocationType.forest, LocationType.graveyard, LocationType.lake, LocationType.mine, LocationType.mountain, LocationType.nest, LocationType.volcano];
+      const location = type || locations[Math.floor(Math.random() * locations.length)];
+      const ref = await this.firebaseService.addElementToCollection('quests', {
         location: LocationType[location],
         position: this.geofirex.point($event.lngLat.lat, $event.lngLat.lng),
         coordinates: {
@@ -313,7 +318,7 @@ export class MapboxService {
     // remove the old one
     this.removeMarker(data.fid);
     // size
-    let size = type === MarkerType.kingdom ? 70 : 40;
+    const size = type === MarkerType.kingdom ? 70 : 40;
     // marker
     let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = { ...data, size: size, type: type }), { anchor: 'bottom' })
     .setLngLat({ lat: data.coordinates.latitude, lng: data.coordinates.longitude })

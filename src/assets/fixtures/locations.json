@@ -20,7 +20,7 @@
   {
     "type": "location",
     "faction": "grey",
-    "families": ["golem"],
+    "families": ["golem", "undead"],
     "id": "dungeon",
     "name": "location.dungeon.name",
     "description": "location.dungeon.description",
@@ -38,7 +38,7 @@
   {
     "type": "location",
     "faction": "grey",
-    "families": ["animal"],
+    "families": ["animal", "orkish"],
     "id": "forest",
     "name": "location.forest.name",
     "description": "location.forest.description",
@@ -88,5 +88,95 @@
     "name": "location.nest.name",
     "description": "location.nest.description",
     "image": "/assets/images/locations/nest.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["dragon", "human"],
+    "id": "castle",
+    "name": "location.castle.name",
+    "description": "location.castle.description",
+    "image": "/assets/images/locations/castle.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["human"],
+    "id": "barrack",
+    "name": "location.barrack.name",
+    "description": "location.barrack.description",
+    "image": "/assets/images/locations/barrack.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["animal", "dragon"],
+    "id": "island",
+    "name": "location.island.name",
+    "description": "location.island.description",
+    "image": "/assets/images/locations/island.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["giant", "golem"],
+    "id": "monolith",
+    "name": "location.monolith.name",
+    "description": "location.monolith.description",
+    "image": "/assets/images/locations/monolith.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["giant", "demon", "human"],
+    "id": "ruin",
+    "name": "location.ruin.name",
+    "description": "location.ruin.description",
+    "image": "/assets/images/locations/ruin.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["human", "reptile"],
+    "id": "ship",
+    "name": "location.ship.name",
+    "description": "location.ship.description",
+    "image": "/assets/images/locations/ship.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["undead", "human"],
+    "id": "town",
+    "name": "location.town.name",
+    "description": "location.town.description",
+    "image": "/assets/images/locations/town.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["dragon", "elemental"],
+    "id": "shrine",
+    "name": "location.shrine.name",
+    "description": "location.shrine.description",
+    "image": "/assets/images/locations/shrine.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["giant", "orkish"],
+    "id": "totem",
+    "name": "location.totem.name",
+    "description": "location.totem.description",
+    "image": "/assets/images/locations/totem.png"
+  },
+  {
+    "type": "location",
+    "faction": "grey",
+    "families": ["undead", "animal"],
+    "id": "pyramid",
+    "name": "location.pyramid.name",
+    "description": "location.pyramid.description",
+    "image": "/assets/images/locations/pyramid.png"
   }
 ]

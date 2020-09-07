@@ -23,7 +23,9 @@ import { ApiService } from 'src/app/services/api.service';
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image">
             <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image">
             <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="troop.join.legendary" src="/assets/images/icons/legendary.png">
-            <img [title]="('category.resistance' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.join.resistances" [src]="category.image">
+          </div>
+          <div mat-line class="mat-card-subtitle" *ngIf="troop.join.resistances && troop.join.resistances.length">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.join.resistances" [src]="category.image">
           </div>
           <div mat-list-avatar [matBadge]="0" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">

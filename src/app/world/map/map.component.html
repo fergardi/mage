@@ -1,16 +1,28 @@
 <div id="map" class="map-container"></div>
 
 <div class="map-admin">
-  <button mat-mini-fab color="primary" (click)="mapboxService.addBot()">
-    <mat-icon>android</mat-icon>
-  </button>
-  <button mat-mini-fab color="primary" (click)="mapboxService.addMe()">
-    <mat-icon>face</mat-icon>
-  </button>
-  <button mat-mini-fab color="primary" (click)="mapboxService.addShop()">
-    <mat-icon>shopping_basket</mat-icon>
-  </button>
-  <button mat-mini-fab color="primary" (click)="mapboxService.addQuest()">
-    <mat-icon>explore</mat-icon>
-  </button>
+  <eco-fab-speed-dial direction="up" animationMode="scale">
+    <eco-fab-speed-dial-trigger spin="true">
+      <button mat-fab color="primary"><mat-icon class="spin180">home</mat-icon></button>
+    </eco-fab-speed-dial-trigger>
+    <eco-fab-speed-dial-actions>
+      <button mat-mini-fab color="primary" *ngFor="let store of stores" (click)="addShop(store.type)" class="helper"><img [src]="store.image"></button>
+    </eco-fab-speed-dial-actions>
+  </eco-fab-speed-dial>
+  <eco-fab-speed-dial direction="up" animationMode="scale">
+    <eco-fab-speed-dial-trigger spin="true">
+      <button mat-fab color="primary"><mat-icon class="spin180">store</mat-icon></button>
+    </eco-fab-speed-dial-trigger>
+    <eco-fab-speed-dial-actions>
+      <button mat-mini-fab color="primary" *ngFor="let faction of factions" (click)="addKingdom(faction.type)" class="helper"><img [src]="faction.marker"></button>
+    </eco-fab-speed-dial-actions>
+  </eco-fab-speed-dial>
+  <eco-fab-speed-dial direction="up" animationMode="scale">
+    <eco-fab-speed-dial-trigger spin="true">
+      <button mat-fab color="primary"><mat-icon class="spin180">place</mat-icon></button>
+    </eco-fab-speed-dial-trigger>
+    <eco-fab-speed-dial-actions>
+      <button mat-mini-fab color="primary" *ngFor="let location of locations" (click)="addQuest(location.type)" class="helper"><img [src]="location.image"></button>
+    </eco-fab-speed-dial-actions>
+  </eco-fab-speed-dial>
 </div>

@@ -1,5 +1,3 @@
-@import "../../../colors.scss";
-
 .map-marker {
   .mat-fab {
     width: 70px !important;
@@ -19,9 +17,12 @@
         width: 100%;
         height: 100%;
         border-radius: 50%;
-        border: 2px solid $primary-color;
+        padding: 2px;
         box-sizing: border-box;
       }
     }
+  }
+  ::ng-deep .mat-badge-content {
+    font-family: 'Material Icons';
   }
 }

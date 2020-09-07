@@ -236,15 +236,16 @@
     "map": {
       "name": "Mapa",
       "description": "Planifica tu estrategia",
-      "localize": "Localizar"
+      "localize": "Localizar",
+      "add": "Haz click en un punto del mapa para colocar el nuevo marcador"
     },
     "confirm": {
       "name": "Confirmación",
-      "description": "Estás a punto de adquirir un bien a cambio de un precio, ya sea oro o turnos. En este último caso, además tendrás que librar una batalla y ganar para obtenerlo. ¿Estás de acuerdo?",
+      "description": "Estás a punto de adquirir un bien a cambio de un precio, ya sea oro o turnos. En este último caso, además tendrás que librar una batalla y ganarla para obtenerlo. ¿Estás de acuerdo?",
       "cancel": "Cancelar",
       "confirm": "Confirmar",
       "success": "Tus órdenes han sido ejecutadas",
-      "error": "No es el resultado esperadoa"
+      "error": "No es el resultado esperado"
     }
   },
   "kingdom": {
