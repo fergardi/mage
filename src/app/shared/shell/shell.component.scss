@@ -44,7 +44,8 @@
     overflow: hidden;
   }
   .main-content {
-    overflow-x: hidden;
+    overflow: hidden;
+    position: relative;
   }
   .sidenav-logo {
     width: 175px;

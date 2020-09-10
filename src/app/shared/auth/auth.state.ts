@@ -150,7 +150,7 @@ export class AuthState implements NgxsOnInit {
         this.notificationService.success('user.auth.authorized');
         this.router.navigate(['/kingdom/city']);
       } else {
-        this.router.navigate(['/user/login']);
+        this.router.navigate(['/user/landing']);
       }
     });
   }
