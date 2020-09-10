@@ -23,11 +23,21 @@
                     <img mat-list-avatar [src]="form.value.faction.image">
                   </div>
                   <div mat-line>{{ form.value.faction.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle">{{ form.value.faction.description | translate }}</div>
+                  <div mat-line class="mat-card-subtitle" [innerHTML]="form.value.faction.description | translate | icon:form.value.faction"></div>
                 </mat-list-item>
               </mat-list>
             </mat-select-trigger>
-            <mat-option *ngFor="let faction of factions" [value]="faction">{{ faction.name | translate }}</mat-option>
+            <mat-option *ngFor="let faction of factions" [value]="faction">
+              <mat-list dense>
+                <mat-list-item>
+                  <div mat-list-avatar>
+                    <img mat-list-avatar [src]="faction.image">
+                  </div>
+                  <div mat-line>{{ faction.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle" [innerHTML]="faction.description | translate | icon:faction"></div>
+                </mat-list-item>
+              </mat-list>
+            </mat-option>
           </mat-select>
           <mat-error>{{ 'user.login.unfactioned' | translate }}</mat-error>
         </mat-form-field>
