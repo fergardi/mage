@@ -18,9 +18,11 @@
   box-shadow: 0px 10px 10px 0px black;
   height: 1px;
 }
+/*
 ::ng-deep a.mapboxgl-ctrl-logo {
-  // display: none !important;
+  display: none !important;
 }
+*/
 ::ng-deep .mapboxgl-popup-content {
   background: transparent;
   box-shadow: none;
@@ -37,41 +39,18 @@
   bottom: 0;
   right: 0;
   padding: 10px;
-  div {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-  }
-  .mat-fab {
-    width: 70px !important;
-    height: 70px !important;
-  }
-  .mat-mini-fab {
-    width: 40px !important;
-    height: 40px !important;
-  }
-  .eco-scale {
-    margin: 0 5px;
-    eco-fab-speed-dial-actions {
-      top: 0px;
-      left: 14px;
-    }
-    .helper {
-      margin: 0;
-      ::ng-deep .mat-button-wrapper {
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          border: 2px solid $primary-color;
-          box-sizing: border-box;
-        }
-      }
-    }
+}
+
+.map-admin-button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  img {
+    width: 40px;
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid $primary-color;
+    box-sizing: border-box;
+    margin-right: 10px;
   }
 }

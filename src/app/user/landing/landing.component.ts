@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DomService } from 'src/app/services/dom.service';
 
 @Component({
   selector: 'app-landing',
@@ -7,10 +8,8 @@ import { Component } from '@angular/core';
 })
 export class LandingComponent {
 
-  constructor() { }
-
-  public scrollToElement($element: any): void {
-    $element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-  }
+  constructor(
+    public domService: DomService,
+  ) { }
 
 }

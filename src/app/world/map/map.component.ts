@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MapboxService, MarkerType, LocationType, StoreType, FactionType } from 'src/app/services/mapbox.service';
+import { MapboxService } from 'src/app/services/mapbox.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AuthState } from 'src/app/shared/auth/auth.state';
@@ -12,6 +12,7 @@ import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { CacheService } from 'src/app/services/cache.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { MarkerType, LocationType, StoreType, FactionType } from 'src/app/shared/type/common.type';
 
 @Component({
   selector: 'app-map',
@@ -43,18 +44,19 @@ export class MapComponent implements OnInit, OnDestroy {
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.on('load', () => {
       // resize map in case drawer has changed
-      this.mapboxService.resize();
+      this.mapboxService.resizeMap();
+      // pring kingdoms surrounding kingdom
       this.angularFirestore.collection<any>('kingdoms').valueChanges().pipe(untilDestroyed(this)).subscribe(kingdoms => {
         kingdoms.forEach(async (data: any) => {
           let kingdom = await this.firebaseService.selfJoin({ ...data, fid: data.id });
-          this.mapboxService.addMarker(kingdom, MarkerType.kingdom, true, kingdom.id === this.uid,
+          this.mapboxService.addMarker(kingdom, MarkerType.KINGDOM, true, kingdom.id === this.uid,
             this.activatedRoute.snapshot.params.kingdom
               ? this.activatedRoute.snapshot.params.kingdom === kingdom.id
               : kingdom.id === this.uid
             );
         })
       });
-      // print kingdoms
+      // print quests surrounding kingdom
       this.kingdom$.pipe(
         switchMap(kingdom => {
           if (kingdom) {
@@ -65,13 +67,13 @@ export class MapComponent implements OnInit, OnDestroy {
           }
         })
       ).subscribe((quests: Array<any>) => {
-        this.mapboxService.clearMarkers(MarkerType.quest);
+        this.mapboxService.clearMarkers(MarkerType.QUEST);
         quests.forEach(async (kingdom: any) => {
           let quest = await this.firebaseService.selfJoin({ ...kingdom, fid: kingdom.id });
-          this.mapboxService.addMarker(quest, MarkerType.quest, true, false, false);
+          this.mapboxService.addMarker(quest, MarkerType.QUEST, true, false, false);
         })
       });
-      // print kingdom surroundings based on power radius km
+      // print shops surrounding kingdom
       this.kingdom$.pipe(
         switchMap(kingdom => {
           if (kingdom) {
@@ -82,10 +84,10 @@ export class MapComponent implements OnInit, OnDestroy {
           }
         })
       ).subscribe((shops: Array<any>) => {
-        this.mapboxService.clearMarkers(MarkerType.shop);
+        this.mapboxService.clearMarkers(MarkerType.SHOP);
         shops.forEach(async (kingdom: any) => {
           let shop = await this.firebaseService.selfJoin({ ...kingdom, fid: kingdom.id });
-          this.mapboxService.addMarker(shop, MarkerType.shop, true, false, false);
+          this.mapboxService.addMarker(shop, MarkerType.SHOP, true, false, false);
         })
       });
     });
@@ -98,17 +100,22 @@ export class MapComponent implements OnInit, OnDestroy {
 
   addShop(type: StoreType) {
     this.notificationService.warning('world.map.add');
-    this.mapboxService.addShop(type);
+    this.mapboxService.addShopByClick(type);
   }
 
   addQuest(type: LocationType) {
     this.notificationService.warning('world.map.add');
-    this.mapboxService.addQuest(type);
+    this.mapboxService.addQuestByClick(type);
   }
 
   addKingdom(type: FactionType) {
     this.notificationService.warning('world.map.add');
     this.mapboxService.addBot(type);
+  }
+
+  populateMap() {
+    this.notificationService.warning('world.map.populate');
+    this.mapboxService.populateMap();
   }
 
   ngOnDestroy(): void {

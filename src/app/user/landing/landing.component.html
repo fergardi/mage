@@ -17,7 +17,7 @@
     <div class="parallax-layer parallax-layer9"></div>
     <div class="parallax-layer parallax-layer10" #login>
       <app-login></app-login>
-      <button mat-mini-fab color="primary" class="content-button animated pulse infinite" (click)="scrollToElement(content)"><mat-icon>keyboard_arrow_down</mat-icon></button>
+      <button mat-mini-fab color="primary" class="content-button animated pulse infinite" (click)="domService.scrollToElement(content)"><mat-icon>keyboard_arrow_down</mat-icon></button>
     </div>
     <div class="parallax-content" #content>
       <div class="wrapper">
@@ -226,7 +226,7 @@
             <h1 class="mat-display-3 margened">{{ 'landing.victory.name' | translate }}</h1>
             <p class="mat-subheading-2">{{ 'landing.victory.description' | translate }}</p>
             <img src="/assets/images/landing/census.png">
-            <a mat-raised-button color="primary" class="play-button" (click)="scrollToElement(login)">{{ 'landing.victory.play' | translate }}</a>
+            <a mat-raised-button color="primary" class="play-button" (click)="domService.scrollToElement(login)">{{ 'landing.victory.play' | translate }}</a>
           </div>
         </div>
       </div>

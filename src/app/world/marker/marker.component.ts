@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-
-export enum MarkerType {
-  'kingdom', 'shop', 'quest',
-}
+import { MarkerType } from 'src/app/shared/type/common.type';
 
 @Component({
   selector: 'app-marker',

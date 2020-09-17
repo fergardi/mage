@@ -93,12 +93,14 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #auth="matMenu">
+        <a mat-menu-item (click)="login(main)" *ngIf="!(angularFireAuth.authState | async)"><mat-icon>lock_open</mat-icon>{{ 'user.auth.login' | translate }}</a>
         <a mat-menu-item (click)="logout()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>lock</mat-icon>{{ 'user.auth.logout' | translate }}</a>
         <a mat-menu-item (click)="tour()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>live_help</mat-icon>{{ 'user.auth.tour' | translate }}</a>
       </mat-menu>
     </mat-toolbar>
     <!-- main content -->
     <main
+      #main
       class="main-content"
       [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100vh - 64px)' : 'calc(100vh - 56px)', width: !(isHandset$ | async) && drawer.opened ? 'calc(100vw - 300px)' : '100vw' }">
       <ng-content></ng-content>

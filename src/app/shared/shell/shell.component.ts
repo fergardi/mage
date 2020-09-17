@@ -11,6 +11,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store, Select } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
 import { TourService } from 'ngx-tour-md-menu';
+import { DomService } from 'src/app/services/dom.service';
 
 @Component({
   selector: 'app-shell',
@@ -20,7 +21,6 @@ import { TourService } from 'ngx-tour-md-menu';
 @UntilDestroy()
 export class ShellComponent {
 
-  uid: string = null;
   langs: any[] = [
     { lang: 'es', image: '/assets/images/languages/es.png' },
     { lang: 'en', image: '/assets/images/languages/en.png' },
@@ -37,13 +37,13 @@ export class ShellComponent {
         { url: '/world/map', name: 'world.map.name', description: 'world.map.description', image: '/assets/images/cards/map.png', show: true },
         { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/cards/army.png', show: true },
         { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/cards/tavern.png', show: true },
-      ]
+      ],
     },
     { name: 'shell.group.spy', image: '/assets/images/cards/spy.png', links: [
         { url: '/kingdom/census', name: 'kingdom.census.name', description: 'kingdom.census.description', image: '/assets/images/cards/census.png', show: true },
         { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/cards/archive.png', show: true },
         { url: '/kingdom/clan', name: 'kingdom.clan.name', description: 'kingdom.clan.description', image: '/assets/images/cards/clan.png', show: true },
-      ]
+      ],
     },
     { name: 'shell.group.scholar', image: '/assets/images/cards/scholar.png', links: [
         { url: '/kingdom/sorcery', name: 'kingdom.sorcery.name', description: 'kingdom.sorcery.description', image: '/assets/images/cards/sorcery.png', show: true },
@@ -78,6 +78,7 @@ export class ShellComponent {
     private mapboxService: MapboxService,
     private store: Store,
     private tourService: TourService,
+    private domService: DomService,
   ) {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));
@@ -88,13 +89,15 @@ export class ShellComponent {
 
   async toggle() {
     await this.drawer.toggle();
-    this.mapboxService.resize();
+    this.mapboxService.resizeMap();
   }
 
   close() {
     this.isHandset$.subscribe(isHandset => {
-      if (isHandset) this.drawer.close();
-    })
+      if (isHandset) {
+        this.drawer.close();
+      }
+    });
   }
 
   logout() {
@@ -108,6 +111,11 @@ export class ShellComponent {
   tour() {
     // if (!this.drawer.opened) await this.drawer.open();
     this.tourService.start();
+  }
+
+  login($element: any) {
+    this.domService.scrollToTop($element);
+    this.router.navigate(['/user/landing']);
   }
 
 }

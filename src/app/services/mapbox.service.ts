@@ -12,22 +12,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { RandomService } from './random.service';
 import * as geofirex from 'geofirex';
 import * as firebase from 'firebase/app';
-
-export enum MarkerType {
-  'kingdom', 'shop', 'quest',
-}
-
-export enum StoreType {
-  'inn', 'mercenary', 'alchemist', 'sorcerer', 'merchant',
-}
-
-export enum LocationType {
-  'cathedral', 'cave', 'dungeon', 'forest', 'graveyard', 'lake', 'mine', 'mountain', 'nest', 'volcano',
-}
-
-export enum FactionType {
-  'red', 'white', 'green', 'blue', 'black',
-}
+import { ApiService } from './api.service';
+import * as _ from 'lodash';
+import { MarkerType, FactionType, StoreType, LocationType } from '../shared/type/common.type';
 
 interface Marker {
   id: string;
@@ -54,6 +41,7 @@ export class MapboxService {
     private angularFirestore: AngularFirestore,
     private store: Store,
     private randomService: RandomService,
+    private apiService: ApiService,
   ) {
     this.mapbox.accessToken = environment.mapbox.token;
   }
@@ -73,7 +61,7 @@ export class MapboxService {
 
   refreshMarkers(): void {
     this.markers.forEach((marker: any) => {
-      if (marker.type !== MarkerType.kingdom) {
+      if (marker.type !== MarkerType.KINGDOM) {
         marker.marker._element.style.visibility = this.map.getZoom() >= 10 ? 'visible' : 'hidden';
       }
     });
@@ -90,19 +78,17 @@ export class MapboxService {
     });
   }
 
-  addBot(type: FactionType = null): void {
+  addBot(type: FactionType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      const factions = [FactionType.red, FactionType.white, FactionType.green, FactionType.blue, FactionType.black];
-      const faction = type || factions[Math.floor(Math.random() * factions.length)];
       const uid = this.angularFirestore.collection<any>('kingdoms').ref.doc().id;
-      this.addKingdom(uid, this.randomService.kingdom(), faction, $event.lngLat.lat, $event.lngLat.lng);
+      this.addKingdom(uid, this.randomService.kingdom(), type, $event.lngLat.lat, $event.lngLat.lng);
     });
   }
 
-  async addKingdom(id: string, name: string, faction: FactionType, latitude: number, longitude: number) {
+  async addKingdom(id: string, name: string, type: FactionType, latitude: number, longitude: number) {
     await this.firebaseService.addElementToCollection('kingdoms', {
       id: id,
-      faction: faction,
+      faction: type,
       position: this.geofirex.point(latitude, longitude),
       coordinates: {
         latitude: latitude,
@@ -138,65 +124,79 @@ export class MapboxService {
     ]);
   }
 
-  addShop(type: StoreType = null): void {
+  addShopByClick(type: StoreType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      const stores: StoreType[] = [StoreType.inn, StoreType.mercenary, StoreType.alchemist, StoreType.sorcerer, StoreType.merchant];
-      const store = type || stores[Math.floor(Math.random() * stores.length)];
-      const ref = await this.firebaseService.addElementToCollection('shops', {
-        store: StoreType[store],
-        position: this.geofirex.point($event.lngLat.lat, $event.lngLat.lng),
+      this.addShop(type, $event.lngLat.lat, $event.lngLat.lng, null);
+    });
+  }
+
+  async addShop(type: StoreType, latitude: number, longitude: number, name: string) {
+    const geopoint = this.geofirex.point(latitude, longitude);
+    const ref = await this.angularFirestore.doc(`shops/${geopoint.geohash}`).get().toPromise();
+    if (!ref.exists) {
+      await this.firebaseService.addElementToCollection('shops', {
+        store: type,
+        position: geopoint,
         coordinates: {
-          latitude: $event.lngLat.lat,
-          longitude: $event.lngLat.lng,
+          latitude: latitude,
+          longitude: longitude,
         },
-      });
-      switch (store) {
-        case StoreType.inn:
+        name: name,
+      }, geopoint.geohash);
+      switch (type) {
+        case StoreType.INN:
           this.firebaseService.addElementsToCollection(`shops/${ref['id']}/contracts`, [
             { id: 'dragon-rider', gold: 23000, level: 2 },
           ]);
           break;
-        case StoreType.mercenary:
+        case StoreType.MERCENARY:
           this.firebaseService.addElementsToCollection(`shops/${ref['id']}/troops`, [
             { id: 'skeleton', gold: 1, quantity: 20000 },
           ]);
           break;
-        case StoreType.merchant:
+        case StoreType.MERCHANT:
           this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [
             { id: 'magical-chest', gold: 1000000, quantity: 1 },
             { id: 'stone-chest', gold: 1000000, quantity: 2 },
           ]);
           break;
-        case StoreType.alchemist:
+        case StoreType.ALCHEMIST:
           this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [
             { id: 'love-potion', gold: 1000000, quantity: 1 },
             { id: 'mana-potion', gold: 1000000, quantity: 2 },
             { id: 'strength-potion', gold: 1000000, quantity: 2 },
           ]);
           break;
-        case StoreType.sorcerer:
+        case StoreType.SORCERER:
           this.firebaseService.addElementsToCollection(`shops/${ref['id']}/charms`, [
-            { id: 'summon-golden-dragon', gold: 1000000, level: 1 },
+            { id: 'animate-skeleton', gold: 1000000, level: 1 },
           ]);
           break;
       }
+    }
+  }
+
+  addQuestByClick(type: LocationType): void {
+    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
+      this.addQuest(type, $event.lngLat.lat, $event.lngLat.lng, null);
     });
   }
 
-  addQuest(type: LocationType = null): void {
-    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      const locations: LocationType[] = [LocationType.cathedral, LocationType.cave, LocationType.dungeon, LocationType.forest, LocationType.graveyard, LocationType.lake, LocationType.mine, LocationType.mountain, LocationType.nest, LocationType.volcano];
-      const location = type || locations[Math.floor(Math.random() * locations.length)];
-      const ref = await this.firebaseService.addElementToCollection('quests', {
-        location: LocationType[location],
-        position: this.geofirex.point($event.lngLat.lat, $event.lngLat.lng),
+  async addQuest(type: LocationType, latitude: number, longitude: number, name: string) {
+    const geopoint = this.geofirex.point(latitude, longitude);
+    const ref = await this.angularFirestore.doc(`quests/${geopoint.geohash}`).get().toPromise();
+    if (!ref.exists) {
+      await this.firebaseService.addElementToCollection('quests', {
+        location: type,
+        position: geopoint,
         coordinates: {
-          latitude: $event.lngLat.lat,
-          longitude: $event.lngLat.lng,
+          latitude: latitude,
+          longitude: longitude,
         },
-      });
-      switch (location) {
-        case LocationType.graveyard:
+        name: name,
+      }, geopoint.geohash);
+      switch (type) {
+        case LocationType.GRAVEYARD:
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
             { id: 'skeleton', quantity: 123123 },
             { id: 'zombie', quantity: 123132 },
@@ -210,7 +210,7 @@ export class MapboxService {
             { id: 'magical-chest', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
-        case LocationType.cathedral:
+        case LocationType.CATHEDRAL:
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
             { id: 'griffon', quantity: 123123 },
             { id: 'knight', quantity: 123132 },
@@ -223,7 +223,7 @@ export class MapboxService {
             { id: 'golden-chest', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
-        case LocationType.cave:
+        case LocationType.CAVE:
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
             { id: 'gnoll', quantity: 123123 },
             { id: 'orc', quantity: 123132 },
@@ -233,7 +233,7 @@ export class MapboxService {
             { id: 'rattle', quantity: 2, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
-        case LocationType.dungeon:
+        case LocationType.DUNGEON:
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
             { id: 'wood-golem', quantity: 123123 },
             { id: 'stone-golem', quantity: 123132 },
@@ -244,7 +244,7 @@ export class MapboxService {
             { id: 'animal-fang', quantity: 2, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
-        case LocationType.forest:
+        case LocationType.FOREST:
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
             { id: 'bat', quantity: 123123 },
             { id: 'frog', quantity: 123132 },
@@ -254,7 +254,7 @@ export class MapboxService {
             { id: 'voodoo-doll', quantity: 2, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
-        case LocationType.lake:
+        case LocationType.LAKE:
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
             { id: 'basilisk', quantity: 123123 },
             { id: 'wyvern', quantity: 123132 },
@@ -263,7 +263,7 @@ export class MapboxService {
             { id: 'golden-idol', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
-        case LocationType.mine:
+        case LocationType.MINE:
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
             { id: 'lightning-elemental', quantity: 123123 },
             { id: 'ice-elemental', quantity: 123132 },
@@ -278,7 +278,7 @@ export class MapboxService {
             { id: 'earth-orb', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
-        case LocationType.mountain:
+        case LocationType.MOUNTAIN:
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
             { id: 'yeti', quantity: 123123 },
             { id: 'cyclop', quantity: 123132 },
@@ -288,7 +288,7 @@ export class MapboxService {
             { id: 'powder-barrel', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
-        case LocationType.nest:
+        case LocationType.NEST:
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
             { id: 'blue-dragon', quantity: 1 },
             { id: 'red-dragon', quantity: 1 },
@@ -300,7 +300,7 @@ export class MapboxService {
             { id: 'dragon-egg', quantity: 1, turns: Math.ceil(Math.random() * 10) },
           ]);
           break;
-        case LocationType.volcano:
+        case LocationType.VOLCANO:
           this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
             { id: 'demon', quantity: 666 },
             { id: 'devil', quantity: 666 },
@@ -311,14 +311,14 @@ export class MapboxService {
           ]);
           break;
       }
-    });
+    }
   }
 
   addMarker(data: any, type: MarkerType, popup: boolean = false, radius: boolean = false, fly: boolean = false): mapboxgl.Marker {
     // remove the old one
     this.removeMarker(data.fid);
     // size
-    const size = type === MarkerType.kingdom ? 70 : 40;
+    const size = type === MarkerType.KINGDOM ? 70 : 40;
     // marker
     let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = { ...data, size: size, type: type }), { anchor: 'bottom' })
     .setLngLat({ lat: data.coordinates.latitude, lng: data.coordinates.longitude })
@@ -399,8 +399,65 @@ export class MapboxService {
     }
   }
 
-  resize() {
-    if (this.map) this.map.resize();
+  resizeMap() {
+    if (this.map) {
+      this.map.resize();
+    }
+  }
+
+  populateMap() {
+    navigator.geolocation.getCurrentPosition(async position => {
+      const elements: any[] = [
+        { type: MarkerType.SHOP, subtype: StoreType.INN, query: '[building=hotel]', radius: 2000 },
+        { type: MarkerType.SHOP, subtype: StoreType.MERCENARY, query: '[amenity=police]', radius: 5000 },
+        { type: MarkerType.SHOP, subtype: StoreType.SORCERER, query: '[building=university]', radius: 2000 },
+        { type: MarkerType.SHOP, subtype: StoreType.ALCHEMIST, query: '[amenity=hospital]', radius: 2000 },
+        { type: MarkerType.SHOP, subtype: StoreType.MERCHANT, query: '[shop=mall]', radius: 5000 },
+        { type: MarkerType.QUEST, subtype: LocationType.GRAVEYARD, query: '[landuse=cemetery]', radius: 5000 },
+        { type: MarkerType.QUEST, subtype: LocationType.LAKE, query: '[sport=swimming]', radius: 5000 },
+        { type: MarkerType.QUEST, subtype: LocationType.FOREST, query: '[leisure=park]', radius: 1000 },
+        { type: MarkerType.QUEST, subtype: LocationType.CATHEDRAL, query: '[building=church]', radius: 2000 },
+        { type: MarkerType.QUEST, subtype: LocationType.RUIN, query: '[historic=monument]', radius: 2000 },
+        { type: MarkerType.QUEST, subtype: LocationType.TOWN, query: '[place=village]', radius: 10000 },
+        { type: MarkerType.QUEST, subtype: LocationType.CASTLE, query: '[amenity=townhall]', radius: 5000 },
+        { type: MarkerType.QUEST, subtype: LocationType.CAVE, query: '[amenity=bus_station]', radius: 5000 },
+        { type: MarkerType.QUEST, subtype: LocationType.DUNGEON, query: '[amenity=post_office]', radius: 5000 },
+        { type: MarkerType.QUEST, subtype: LocationType.VOLCANO, query: '[amenity=fire_station]', radius: 10000 },
+        { type: MarkerType.QUEST, subtype: LocationType.PYRAMID, query: '[amenity=bank]', radius: 1000 },
+        { type: MarkerType.QUEST, subtype: LocationType.NEST, query: '[aeroway=terminal]', radius: 50000 },
+        { type: MarkerType.QUEST, subtype: LocationType.BARRACK, query: '[landuse=military]', radius: 50000 },
+        { type: MarkerType.QUEST, subtype: LocationType.SHRINE, query: '[leisure=sports_centre]', radius: 2000 },
+        { type: MarkerType.QUEST, subtype: LocationType.SHIP, query: '[waterway=dock]', radius: 5000 },
+        { type: MarkerType.QUEST, subtype: LocationType.ISLAND, query: '[water=river]', radius: 5000 },
+        { type: MarkerType.QUEST, subtype: LocationType.MINE, query: '[tourism=museum]', radius: 2000 },
+        { type: MarkerType.QUEST, subtype: LocationType.MONOLITH, query: '[amenity=library]', radius: 5000 },
+        { type: MarkerType.QUEST, subtype: LocationType.TOTEM, query: '[amenity=place_of_worship]', radius: 2000 },
+        { type: MarkerType.QUEST, subtype: LocationType.MOUNTAIN, query: '[amenity=cinema]', radius: 5000 },
+      ];
+      const lat = 42.605556;
+      const lng = -5.570000;
+      const radius = 10000;
+      let query = '[out:json][timeout:300];\n';
+      elements.forEach((e: any) => query += `nwr(around:${radius},${lat},${lng})${e.query};convert nwr ::geom=center(geom()),::=::,type="${e.type}",subtype="${e.subtype}";out center;\n`);
+      const response: any = await this.apiService.mapQuery(query);
+      const groups = _.groupBy(response.elements.filter((e: any) => e.geometry && e.geometry.coordinates && e.tags && e.tags.name), (e: any) => e.tags.subtype);
+      for (const group of Object.keys(groups)) {
+        for (const element of groups[group].slice(0, 2)) {
+          switch (element.tags.type) {
+            case (MarkerType.SHOP):
+              this.addShop(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+              break;
+            case (MarkerType.QUEST):
+              this.addQuest(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+              break;
+          }
+        }
+      }
+    }, null, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    });
   }
 
 }

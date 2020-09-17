@@ -1,11 +1,11 @@
 <div class="map-marker">
-  <button *ngIf="data.type === MarkerType.kingdom" mat-fab color="primary" class="marker animated bounceIn" matBadge="home" matBadgePosition="before" matBadgeColor="primary">
+  <button *ngIf="data.type === MarkerType.KINGDOM" mat-fab color="primary" class="marker animated bounceIn" matBadge="home" matBadgePosition="before" matBadgeColor="primary">
     <img [src]="data.join.marker">
   </button>
-  <button *ngIf="data.type === MarkerType.shop" mat-mini-fab color="accent" class="marker animated bounceIn" matBadge="store" matBadgePosition="before" matBadgeColor="accent">
+  <button *ngIf="data.type === MarkerType.SHOP" mat-mini-fab color="accent" class="marker animated bounceIn" matBadge="store" matBadgePosition="before" matBadgeColor="accent">
     <img [src]="data.join.image">
   </button>
-  <button *ngIf="data.type === MarkerType.quest" mat-mini-fab color="warn" class="marker animated bounceIn" matBadge="place" matBadgePosition="before" matBadgeColor="warn">
+  <button *ngIf="data.type === MarkerType.QUEST" mat-mini-fab color="warn" class="marker animated bounceIn" matBadge="place" matBadgePosition="before" matBadgeColor="warn">
     <img [src]="data.join.image">
   </button>
 </div>

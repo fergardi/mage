@@ -148,7 +148,8 @@ export class AuthState implements NgxsOnInit {
         ctx.dispatch(new SetKingdomSuppliesAction(user.uid));
         ctx.dispatch(new SetKingdomBuildingsAction(user.uid));
         this.notificationService.success('user.auth.authorized');
-        this.router.navigate(['/kingdom/city']);
+        // this.router.navigate(['/kingdom/city']);
+        this.router.navigate(['/world/map']);
       } else {
         this.router.navigate(['/user/landing']);
       }

@@ -259,7 +259,7 @@ body {
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
   line-height: 8px;
-  padding: 16px 0 !important;
+  padding: 8px 0 !important;
 }
 
 hr {
@@ -489,6 +489,13 @@ hr {
         white-space: pre-wrap !important;
       }
     }
+  }
+}
+
+.mat-card.map-popup {
+  .mat-card-avatar {
+    height: 48px !important;
+    width: 48px !important;
   }
 }
 

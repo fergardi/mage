@@ -237,7 +237,8 @@
       "name": "Mapa",
       "description": "Planifica tu estrategia",
       "localize": "Localizar",
-      "add": "Haz click en un punto del mapa para colocar el nuevo marcador"
+      "add": "Haz click en un punto del mapa para colocar el nuevo marcador",
+      "populate": "Espera mientras se rellena el mapa..."
     },
     "confirm": {
       "name": "Confirmación",
@@ -620,24 +621,24 @@
   },
   "store": {
     "inn": {
-      "name": "Posada del viajero",
+      "name": "Posada del Viajero",
       "description": "Contrata héroes para tu reino"
     },
     "merchant": {
-      "name": "Mercader ambulante",
+      "name": "Mercader Ambulante",
       "description": "Adquiere artefactos peculiares"
     },
     "mercenary": {
-      "name": "Campamento de mercenarios",
+      "name": "Campamento de Mercenarios",
       "description": "Incorpora tropas para tu ejército"
     },
     "alchemist": {
-      "name": "Alquimista hermitaño",
+      "name": "Alquimista Hermitaño",
       "description": "Compra pociones mágicas"
     },
     "sorcerer": {
-      "name": "Hechicero renegado",
-      "description": "Aprende hechizos nuevos"
+      "name": "Escuela de Magia",
+      "description": "Aprende nuevos conjuros"
     }
   },
   "resource": {
@@ -685,43 +686,83 @@
   "location": {
     "cave": {
       "name": "Cueva húmeda",
-      "description": "Habitada por <orkish>"
+      "description": ""
     },
     "graveyard": {
-      "name": "Cementerio terrorífico",
-      "description": "Asolado por <undead>"
+      "name": "Necrópolis Terrorífica",
+      "description": ""
     },
     "dungeon": {
       "name": "Mazmorra olvidada",
-      "description": "Protegida por <golem>"
+      "description": ""
     },
     "mine": {
       "name": "Mina profunda",
-      "description": "Custodiada por <elemental>"
+      "description": ""
     },
     "forest": {
       "name": "Bosque salvaje",
-      "description": "Preservado por <animal>"
+      "description": ""
     },
     "cathedral": {
       "name": "Catedral antigua",
-      "description": "Defendida por <human>"
+      "description": ""
     },
     "mountain": {
       "name": "Montaña lejana",
-      "description": "Ocupada por <gian>"
+      "description": ""
     },
     "volcano": {
       "name": "Volcán ardiente",
-      "description": "Corrompido por <demon>"
+      "description": ""
     },
     "lake": {
       "name": "Lago misterioso",
-      "description": "Infestado de <reptile>"
+      "description": ""
     },
     "nest": {
       "name": "Nido dracónido",
-      "description": "Habitado por <dragon>"
+      "description": ""
+    },
+    "castle": {
+      "name": "Castillo fortificado",
+      "description": ""
+    },
+    "barrack": {
+      "name": "",
+      "description": ""
+    },
+    "island": {
+      "name": "",
+      "description": ""
+    },
+    "monolith": {
+      "name": "",
+      "description": ""
+    },
+    "ruin": {
+      "name": "",
+      "description": ""
+    },
+    "ship": {
+      "name": "",
+      "description": ""
+    },
+    "town": {
+      "name": "",
+      "description": ""
+    },
+    "shrine": {
+      "name": "",
+      "description": ""
+    },
+    "totem": {
+      "name": "",
+      "description": ""
+    },
+    "pyramid": {
+      "name": "",
+      "description": ""
     }
   },
   "unit": {
@@ -1526,63 +1567,63 @@
   },
   "hero": {
     "dragon-rider": {
-      "name": "{{ name }} el Jinete de Dragones",
+      "name": "Jinete de Dragones",
       "description": "Aumenta el daño de <dragon> +2% por nivel"
     },
     "demon-prince": {
-      "name": "{{ name }} el Príncipe Demonio",
+      "name": "Príncipe Demonio",
       "description": "Aumenta el daño de <demon> +2% por nivel"
     },
     "commander": {
-      "name": "{{ name }} el Comandante General",
+      "name": "Comandante General",
       "description": "Aumenta el daño de <human> +2% por nivel"
     },
     "trader": {
-      "name": "{{ name }} el Gran Comerciante",
+      "name": "Gran Comerciante",
       "description": "Generas +1% <gold> al <turn> por nivel"
     },
     "beast-master": {
-      "name": "{{ name }} el Señor de las Bestias",
+      "name": "Señor de las Bestias",
       "description": "Aumenta el daño de <animal> +2% por nivel"
     },
     "shaman": {
-      "name": "{{ name }} el Chamán Voodoo",
+      "name": "Chamán Loco",
       "description": "Generas +1% <mana> al <turn> por nivel"
     },
     "elementalist": {
-      "name": "{{ name }} el Elementalista",
+      "name": "Elementalista",
       "description": "Aumenta el daño de <elemental> +2% por nivel"
     },
     "sage": {
-      "name": "{{ name }} el Sabio",
+      "name": "Sabio Erudito",
       "description": "Reduce investigaciones -1 <turn> por nivel"
     },
     "necrophage": {
-      "name": "{{ name }} el Necrófago Jefe",
+      "name": "Necrófago Jefe",
       "description": "Aumenta el daño de <undead> +2% por nivel"
     },
     "necromancer": {
-      "name": "{{ name }} el Nigromante",
+      "name": "Nigromante Putrefacto",
       "description": "Generas +1% <population> al <turn> por nivel"
     },
     "engineer": {
-      "name": "{{ name }} el Ingeniero Constructor",
+      "name": "Ingeniero Constructor",
       "description": "Aumenta el ratio de construcción +1 por nivel"
     },
     "mummy": {
-      "name": "{{ name }} la Momia Maldita",
+      "name": "Momia Maldita",
       "description": "Aumenta el ataque de tus tropas +1% por nivel"
     },
     "silver-knight": {
-      "name": "{{ name }} el Caballero Plateado",
+      "name": "Caballero Plateado",
       "description": "Aumenta la defensa de tus tropas +2% por nivel"
     },
     "orc-king": {
-      "name": "{{ name }} el Rey de los Orcos",
+      "name": "Rey de los Orcos",
       "description": "Aumenta el daño de <orkish> +2% por nivel"
     },
     "leprechaunt": {
-      "name": "{{ name }} el Leprechaunt",
+      "name": "Leprechaunt Avaricioso",
       "description": "Aumenta la suerte +1% por nivel"
     }
   },

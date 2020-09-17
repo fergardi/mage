@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
 
@@ -11,7 +11,7 @@ export class ApiService {
     private httpClient: HttpClient,
   ) { }
 
-  createKingdom(kingdomId: string, factionId: string, name:string, latitude: number, longitude: number) {
+  createKingdom(kingdomId: string, factionId: string, name: string, latitude: number, longitude: number) {
     return this.httpClient.post(environment.functions.url + `/kingdom`, {
       kingdomId: kingdomId,
       name: name,
@@ -79,6 +79,16 @@ export class ApiService {
 
   battleKingdom(kingdomId: string, targetId: string, battleId: number ) {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/battle/${battleId}/target/${targetId}`).toPromise();
+  }
+
+  mapQuery(query: string) {
+    const form = new URLSearchParams();
+    form.set('data', query);
+    return this.httpClient.post(environment.overpass.url, form.toString(), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    }).toPromise();
   }
 
 }

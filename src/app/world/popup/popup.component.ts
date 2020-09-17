@@ -3,10 +3,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from './confirm.component';
-
-export enum PopupType {
-  'kingdom', 'shop', 'quest',
-}
+import { PopupType } from 'src/app/shared/type/common.type';
 
 export enum ConfirmType {
   'charm', 'contract', 'artifact', 'battle', 'troop',
@@ -38,7 +35,7 @@ export class PopupComponent implements OnInit {
 
   ngOnInit(): void {
     // shop
-    if (this.data.type === PopupType.shop) {
+    if (this.data.type === PopupType.SHOP) {
       this.firebaseService.leftJoin(`shops/${this.data.fid}/contracts`, 'heroes', 'id', 'id').pipe(untilDestroyed(this)).subscribe(contracts => {
         this.shopContracts = contracts;
       });
@@ -53,7 +50,7 @@ export class PopupComponent implements OnInit {
       });
     }
     // quest
-    if (this.data.type === PopupType.quest) {
+    if (this.data.type === PopupType.QUEST) {
       this.firebaseService.leftJoin(`quests/${this.data.fid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
         this.questTroops = troops;
       });
