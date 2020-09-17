@@ -685,7 +685,7 @@
   },
   "location": {
     "cave": {
-      "name": "Cueva húmeda",
+      "name": "Cueva Oscura",
       "description": ""
     },
     "graveyard": {
@@ -693,75 +693,75 @@
       "description": ""
     },
     "dungeon": {
-      "name": "Mazmorra olvidada",
+      "name": "Mazmorra Olvidada",
       "description": ""
     },
     "mine": {
-      "name": "Mina profunda",
+      "name": "Mina Profunda",
       "description": ""
     },
     "forest": {
-      "name": "Bosque salvaje",
+      "name": "Bosque Salvaje",
       "description": ""
     },
     "cathedral": {
-      "name": "Catedral antigua",
+      "name": "Catedral Antigua",
       "description": ""
     },
     "mountain": {
-      "name": "Montaña lejana",
+      "name": "Montaña Lejana",
       "description": ""
     },
     "volcano": {
-      "name": "Volcán ardiente",
+      "name": "Volcán Ardiente",
       "description": ""
     },
     "lake": {
-      "name": "Lago misterioso",
+      "name": "Lago Misterioso",
       "description": ""
     },
     "nest": {
-      "name": "Nido dracónido",
+      "name": "Nido Dracónido",
       "description": ""
     },
     "castle": {
-      "name": "Castillo fortificado",
+      "name": "Castillo Fortificado",
       "description": ""
     },
     "barrack": {
-      "name": "",
+      "name": "Barracones Amurallados",
       "description": ""
     },
     "island": {
-      "name": "",
+      "name": "Isla Remota",
       "description": ""
     },
     "monolith": {
-      "name": "",
+      "name": "Monolito Perdido",
       "description": ""
     },
     "ruin": {
-      "name": "",
+      "name": "Ruinas Derruidas",
       "description": ""
     },
     "ship": {
-      "name": "",
+      "name": "Navío Naufragado",
       "description": ""
     },
     "town": {
-      "name": "",
+      "name": "Ciudad Fantasma",
       "description": ""
     },
     "shrine": {
-      "name": "",
+      "name": "Santuario Profanado",
       "description": ""
     },
     "totem": {
-      "name": "",
+      "name": "Tótem Maldito",
       "description": ""
     },
     "pyramid": {
-      "name": "",
+      "name": "Pirámide Faraónica",
       "description": ""
     }
   },

@@ -145,30 +145,30 @@ export class MapboxService {
       }, geopoint.geohash);
       switch (type) {
         case StoreType.INN:
-          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/contracts`, [
+          this.firebaseService.addElementsToCollection(`shops/${geopoint.geohash}/contracts`, [
             { id: 'dragon-rider', gold: 23000, level: 2 },
           ]);
           break;
         case StoreType.MERCENARY:
-          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/troops`, [
+          this.firebaseService.addElementsToCollection(`shops/${geopoint.geohash}/troops`, [
             { id: 'skeleton', gold: 1, quantity: 20000 },
           ]);
           break;
         case StoreType.MERCHANT:
-          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [
+          this.firebaseService.addElementsToCollection(`shops/${geopoint.geohash}/artifacts`, [
             { id: 'magical-chest', gold: 1000000, quantity: 1 },
             { id: 'stone-chest', gold: 1000000, quantity: 2 },
           ]);
           break;
         case StoreType.ALCHEMIST:
-          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/artifacts`, [
+          this.firebaseService.addElementsToCollection(`shops/${geopoint.geohash}/artifacts`, [
             { id: 'love-potion', gold: 1000000, quantity: 1 },
             { id: 'mana-potion', gold: 1000000, quantity: 2 },
             { id: 'strength-potion', gold: 1000000, quantity: 2 },
           ]);
           break;
         case StoreType.SORCERER:
-          this.firebaseService.addElementsToCollection(`shops/${ref['id']}/charms`, [
+          this.firebaseService.addElementsToCollection(`shops/${geopoint.geohash}/charms`, [
             { id: 'animate-skeleton', gold: 1000000, level: 1 },
           ]);
           break;
@@ -195,122 +195,184 @@ export class MapboxService {
         },
         name: name,
       }, geopoint.geohash);
+      let troops = [];
+      let contracts = [];
+      let artifacts = [];
       switch (type) {
         case LocationType.GRAVEYARD:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+          troops = [
             { id: 'skeleton', quantity: 123123 },
             { id: 'zombie', quantity: 123132 },
             { id: 'lich', quantity: 123132 },
             { id: 'bone-dragon', quantity: 3 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/contracts`, [
+          ];
+          contracts = [
             { id: 'necrophage', level: 1 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'magical-chest', quantity: 1, turns: Math.ceil(Math.random() * 10) },
-          ]);
+          ];
+          break;
+        case LocationType.TOWN:
+          troops = [
+            { id: 'werewolf', quantity: 123123 },
+            { id: 'vampire', quantity: 123132 },
+            { id: 'wraith', quantity: 123132 },
+            { id: 'nightmare', quantity: 3 },
+          ];
+          contracts = [
+            { id: 'necromancer', level: 1 },
+          ];
           break;
         case LocationType.CATHEDRAL:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
-            { id: 'griffon', quantity: 123123 },
-            { id: 'knight', quantity: 123132 },
+          troops = [
+            { id: 'monk', quantity: 123123 },
+            { id: 'templar', quantity: 123132 },
             { id: 'paladin', quantity: 123132 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/contracts`, [
+          ];
+          contracts = [
             { id: 'commander', level: 1 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'golden-chest', quantity: 1, turns: Math.ceil(Math.random() * 10) },
-          ]);
+          ];
+          break;
+        case LocationType.CASTLE:
+          troops = [
+            { id: 'knight', quantity: 123123 },
+            { id: 'crusader', quantity: 123132 },
+            { id: 'griffon', quantity: 123132 },
+          ];
+          contracts = [
+            { id: 'commander', level: 1 },
+          ];
           break;
         case LocationType.CAVE:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+          troops = [
             { id: 'gnoll', quantity: 123123 },
             { id: 'orc', quantity: 123132 },
-            { id: 'goblin', quantity: 123132 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'rattle', quantity: 2, turns: Math.ceil(Math.random() * 10) },
-          ]);
+          ];
           break;
         case LocationType.DUNGEON:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+          troops = [
             { id: 'wood-golem', quantity: 123123 },
             { id: 'stone-golem', quantity: 123132 },
             { id: 'crystal-golem', quantity: 123132 },
             { id: 'iron-golem', quantity: 123132 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'animal-fang', quantity: 2, turns: Math.ceil(Math.random() * 10) },
-          ]);
+          ];
           break;
         case LocationType.FOREST:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+          troops = [
             { id: 'bat', quantity: 123123 },
             { id: 'frog', quantity: 123132 },
             { id: 'rat', quantity: 123132 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'voodoo-doll', quantity: 2, turns: Math.ceil(Math.random() * 10) },
-          ]);
+          ];
           break;
         case LocationType.LAKE:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+          troops = [
             { id: 'basilisk', quantity: 123123 },
             { id: 'wyvern', quantity: 123132 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'golden-idol', quantity: 1, turns: Math.ceil(Math.random() * 10) },
-          ]);
+          ];
           break;
         case LocationType.MINE:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
-            { id: 'lightning-elemental', quantity: 123123 },
+          troops = [
             { id: 'ice-elemental', quantity: 123132 },
             { id: 'fire-elemental', quantity: 123132 },
             { id: 'earth-elemental', quantity: 123132 },
-            { id: 'light-elemental', quantity: 123132 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/contracts`, [
+          ];
+          contracts = [
             { id: 'elementalist', level: 6 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'earth-orb', quantity: 1, turns: Math.ceil(Math.random() * 10) },
-          ]);
+          ];
+          break;
+        case LocationType.MONOLITH:
+          troops = [
+            { id: 'lightning-elemental', quantity: 123123 },
+            { id: 'light-elemental', quantity: 123132 },
+          ];
+          contracts = [
+            { id: 'elementalist', level: 6 },
+          ];
           break;
         case LocationType.MOUNTAIN:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+          troops = [
             { id: 'yeti', quantity: 123123 },
             { id: 'cyclop', quantity: 123132 },
             { id: 'ogre', quantity: 123132 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'powder-barrel', quantity: 1, turns: Math.ceil(Math.random() * 10) },
-          ]);
+            { id: 'frost-giant', quantity: 123132 },
+          ];
           break;
         case LocationType.NEST:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+          troops = [
             { id: 'blue-dragon', quantity: 1 },
             { id: 'red-dragon', quantity: 1 },
             { id: 'golden-dragon', quantity: 1 },
             { id: 'white-dragon', quantity: 1 },
             { id: 'baby-dragon', quantity: 1 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'dragon-egg', quantity: 1, turns: Math.ceil(Math.random() * 10) },
-          ]);
+          ];
           break;
         case LocationType.VOLCANO:
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/troops`, [
+          troops = [
             { id: 'demon', quantity: 666 },
             { id: 'devil', quantity: 666 },
             { id: 'wendigo', quantity: 666 },
-          ]);
-          this.firebaseService.addElementsToCollection(`quests/${ref['id']}/artifacts`, [
-            { id: 'valhalla-horn', quantity: 1, turns: Math.ceil(Math.random() * 10) },
-          ]);
+            { id: 'fire-elemental', quantity: 666 },
+          ];
+          break;
+        case LocationType.BARRACK:
+          troops = [
+            { id: 'cavalry', quantity: 123456 },
+            { id: 'fanatic', quantity: 123456 },
+            { id: 'pikeman', quantity: 123456 },
+            { id: 'archer', quantity: 123456 },
+          ];
+          contracts = [
+            { id: 'commander', level: 1 },
+          ];
+          break;
+        case LocationType.ISLAND:
+          troops = [
+            { id: 'crystal-golem', quantity: 123132 },
+            { id: 'ice-elemental', quantity: 123132 },
+          ];
+          break;
+        case LocationType.TOTEM:
+          troops = [
+            { id: 'goblin', quantity: 123132 },
+            { id: 'goblin', quantity: 123132 },
+            { id: 'goblin', quantity: 123132 },
+            { id: 'goblin', quantity: 123132 },
+            { id: 'goblin', quantity: 123132 },
+          ];
+          break;
+        case LocationType.PYRAMID:
+          troops = [
+            { id: 'wraith', quantity: 123132 },
+            { id: 'zombie', quantity: 123132 },
+            { id: 'skeleton', quantity: 123132 },
+          ];
+          contracts = [
+            { id: 'mummy', level: 6 },
+          ];
+          break;
+        case LocationType.SHIP:
+          troops = [
+            { id: 'leviathan', quantity: 123132 },
+          ];
+          break;
+        case LocationType.RUIN:
+          troops = [
+            { id: 'giant-spider', quantity: 123132 },
+            { id: 'basilisk', quantity: 123132 },
+          ];
+          break;
+        case LocationType.SHRINE:
+          troops = [
+            { id: 'djinni', quantity: 123132 },
+            { id: 'wisp', quantity: 123132 },
+            { id: 'werebear', quantity: 123132 },
+          ];
           break;
       }
+      artifacts = [
+        { id: 'valhalla-horn', quantity: 1, turns: 10 },
+      ];
+      this.firebaseService.addElementsToCollection(`quests/${geopoint.geohash}/troops`, troops);
+      this.firebaseService.addElementsToCollection(`quests/${geopoint.geohash}/contracts`, contracts);
+      this.firebaseService.addElementsToCollection(`quests/${geopoint.geohash}/artifacts`, artifacts);
     }
   }
 
@@ -437,18 +499,19 @@ export class MapboxService {
       const lat = 42.605556;
       const lng = -5.570000;
       const radius = 10000;
+      const limit = 1;
       let query = '[out:json][timeout:300];\n';
       elements.forEach((e: any) => query += `nwr(around:${radius},${lat},${lng})${e.query};convert nwr ::geom=center(geom()),::=::,type="${e.type}",subtype="${e.subtype}";out center;\n`);
       const response: any = await this.apiService.mapQuery(query);
       const groups = _.groupBy(response.elements.filter((e: any) => e.geometry && e.geometry.coordinates && e.tags && e.tags.name), (e: any) => e.tags.subtype);
       for (const group of Object.keys(groups)) {
-        for (const element of groups[group].slice(0, 2)) {
+        for (const element of groups[group].slice(0, limit)) {
           switch (element.tags.type) {
             case (MarkerType.SHOP):
-              this.addShop(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+              await this.addShop(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
               break;
             case (MarkerType.QUEST):
-              this.addQuest(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+              await this.addQuest(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
               break;
           }
         }
