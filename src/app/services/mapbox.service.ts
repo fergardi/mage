@@ -33,7 +33,7 @@ export class MapboxService {
   public map: mapboxgl.Map = null;
   private markers: Marker[] = [];
   private offset: number = 10;
-  private uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  private uid: string;
 
   constructor(
     private componentService: ComponentService,
@@ -47,6 +47,7 @@ export class MapboxService {
   }
 
   initialize(container: string) {
+    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.map = new mapboxgl.Map({
       container: container,
       style: environment.mapbox.style + '?optimize=true',
@@ -59,10 +60,16 @@ export class MapboxService {
     this.map.on('moveend', () => this.refreshMarkers());
   }
 
+  markerVisible(marker: Marker): boolean {
+    return this.map.getBounds().contains(marker.marker.getLngLat());
+  }
+
   refreshMarkers(): void {
     this.markers.forEach((marker: any) => {
-      if (marker.type !== MarkerType.KINGDOM) {
-        marker.marker._element.style.visibility = this.map.getZoom() >= 10 ? 'visible' : 'hidden';
+      if (marker.id !== this.uid && (this.map.getZoom() < environment.mapbox.zoom || !this.markerVisible(marker))) {
+        marker.marker._element.style.display = 'none';
+      } else {
+        marker.marker._element.style.display = 'block';
       }
     });
   }
@@ -443,9 +450,9 @@ export class MapboxService {
   }
 
   removeMarker(id: string): void {
-    let index = this.markers.findIndex(item => item.id === id);
+    const index = this.markers.findIndex(item => item.id === id);
     if (index !== -1) {
-      let found = this.markers[index];
+      const found = this.markers[index];
       if (found.marker) found.marker.remove();
       if (found.circle) found.circle.remove();
       this.markers.splice(index, 1);
@@ -467,60 +474,56 @@ export class MapboxService {
     }
   }
 
-  populateMap() {
-    navigator.geolocation.getCurrentPosition(async position => {
-      const elements: any[] = [
-        { type: MarkerType.SHOP, subtype: StoreType.INN, query: '[building=hotel]', radius: 2000 },
-        { type: MarkerType.SHOP, subtype: StoreType.MERCENARY, query: '[amenity=police]', radius: 5000 },
-        { type: MarkerType.SHOP, subtype: StoreType.SORCERER, query: '[building=university]', radius: 2000 },
-        { type: MarkerType.SHOP, subtype: StoreType.ALCHEMIST, query: '[amenity=hospital]', radius: 2000 },
-        { type: MarkerType.SHOP, subtype: StoreType.MERCHANT, query: '[shop=mall]', radius: 5000 },
-        { type: MarkerType.QUEST, subtype: LocationType.GRAVEYARD, query: '[landuse=cemetery]', radius: 5000 },
-        { type: MarkerType.QUEST, subtype: LocationType.LAKE, query: '[sport=swimming]', radius: 5000 },
-        { type: MarkerType.QUEST, subtype: LocationType.FOREST, query: '[leisure=park]', radius: 1000 },
-        { type: MarkerType.QUEST, subtype: LocationType.CATHEDRAL, query: '[building=church]', radius: 2000 },
-        { type: MarkerType.QUEST, subtype: LocationType.RUIN, query: '[historic=monument]', radius: 2000 },
-        { type: MarkerType.QUEST, subtype: LocationType.TOWN, query: '[place=village]', radius: 10000 },
-        { type: MarkerType.QUEST, subtype: LocationType.CASTLE, query: '[amenity=townhall]', radius: 5000 },
-        { type: MarkerType.QUEST, subtype: LocationType.CAVE, query: '[amenity=bus_station]', radius: 5000 },
-        { type: MarkerType.QUEST, subtype: LocationType.DUNGEON, query: '[amenity=post_office]', radius: 5000 },
-        { type: MarkerType.QUEST, subtype: LocationType.VOLCANO, query: '[amenity=fire_station]', radius: 10000 },
-        { type: MarkerType.QUEST, subtype: LocationType.PYRAMID, query: '[amenity=bank]', radius: 1000 },
-        { type: MarkerType.QUEST, subtype: LocationType.NEST, query: '[aeroway=terminal]', radius: 50000 },
-        { type: MarkerType.QUEST, subtype: LocationType.BARRACK, query: '[landuse=military]', radius: 50000 },
-        { type: MarkerType.QUEST, subtype: LocationType.SHRINE, query: '[leisure=sports_centre]', radius: 2000 },
-        { type: MarkerType.QUEST, subtype: LocationType.SHIP, query: '[waterway=dock]', radius: 5000 },
-        { type: MarkerType.QUEST, subtype: LocationType.ISLAND, query: '[water=river]', radius: 5000 },
-        { type: MarkerType.QUEST, subtype: LocationType.MINE, query: '[tourism=museum]', radius: 2000 },
-        { type: MarkerType.QUEST, subtype: LocationType.MONOLITH, query: '[amenity=library]', radius: 5000 },
-        { type: MarkerType.QUEST, subtype: LocationType.TOTEM, query: '[amenity=place_of_worship]', radius: 2000 },
-        { type: MarkerType.QUEST, subtype: LocationType.MOUNTAIN, query: '[amenity=cinema]', radius: 5000 },
-      ];
-      const lat = 42.605556;
-      const lng = -5.570000;
-      const radius = 10000;
-      const limit = 1;
-      let query = '[out:json][timeout:300];\n';
-      elements.forEach((e: any) => query += `nwr(around:${radius},${lat},${lng})${e.query};convert nwr ::geom=center(geom()),::=::,type="${e.type}",subtype="${e.subtype}";out center;\n`);
-      const response: any = await this.apiService.mapQuery(query);
-      const groups = _.groupBy(response.elements.filter((e: any) => e.geometry && e.geometry.coordinates && e.tags && e.tags.name), (e: any) => e.tags.subtype);
-      for (const group of Object.keys(groups)) {
-        for (const element of groups[group].slice(0, limit)) {
-          switch (element.tags.type) {
-            case (MarkerType.SHOP):
-              await this.addShop(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
-              break;
-            case (MarkerType.QUEST):
-              await this.addQuest(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
-              break;
-          }
+  async populateMap() {
+    const elements: any[] = [
+      { type: MarkerType.SHOP, subtype: StoreType.INN, query: '[building=hotel]', radius: 2000 },
+      { type: MarkerType.SHOP, subtype: StoreType.MERCENARY, query: '[amenity=police]', radius: 5000 },
+      { type: MarkerType.SHOP, subtype: StoreType.SORCERER, query: '[building=university]', radius: 2000 },
+      { type: MarkerType.SHOP, subtype: StoreType.ALCHEMIST, query: '[amenity=hospital]', radius: 2000 },
+      { type: MarkerType.SHOP, subtype: StoreType.MERCHANT, query: '[shop=mall]', radius: 5000 },
+      { type: MarkerType.QUEST, subtype: LocationType.GRAVEYARD, query: '[landuse=cemetery]', radius: 5000 },
+      { type: MarkerType.QUEST, subtype: LocationType.LAKE, query: '[sport=swimming]', radius: 5000 },
+      { type: MarkerType.QUEST, subtype: LocationType.FOREST, query: '[leisure=park]', radius: 1000 },
+      { type: MarkerType.QUEST, subtype: LocationType.CATHEDRAL, query: '[building=church]', radius: 2000 },
+      { type: MarkerType.QUEST, subtype: LocationType.RUIN, query: '[historic=monument]', radius: 2000 },
+      { type: MarkerType.QUEST, subtype: LocationType.TOWN, query: '[place=village]', radius: 10000 },
+      { type: MarkerType.QUEST, subtype: LocationType.CASTLE, query: '[amenity=townhall]', radius: 5000 },
+      { type: MarkerType.QUEST, subtype: LocationType.CAVE, query: '[amenity=bus_station]', radius: 5000 },
+      { type: MarkerType.QUEST, subtype: LocationType.DUNGEON, query: '[amenity=post_office]', radius: 5000 },
+      { type: MarkerType.QUEST, subtype: LocationType.VOLCANO, query: '[amenity=fire_station]', radius: 10000 },
+      { type: MarkerType.QUEST, subtype: LocationType.PYRAMID, query: '[amenity=bank]', radius: 1000 },
+      { type: MarkerType.QUEST, subtype: LocationType.NEST, query: '[aeroway=terminal]', radius: 50000 },
+      { type: MarkerType.QUEST, subtype: LocationType.BARRACK, query: '[landuse=military]', radius: 50000 },
+      { type: MarkerType.QUEST, subtype: LocationType.SHRINE, query: '[leisure=sports_centre]', radius: 2000 },
+      { type: MarkerType.QUEST, subtype: LocationType.SHIP, query: '[waterway=dock]', radius: 5000 },
+      { type: MarkerType.QUEST, subtype: LocationType.ISLAND, query: '[water=river]', radius: 5000 },
+      { type: MarkerType.QUEST, subtype: LocationType.MINE, query: '[tourism=museum]', radius: 2000 },
+      { type: MarkerType.QUEST, subtype: LocationType.MONOLITH, query: '[amenity=library]', radius: 5000 },
+      { type: MarkerType.QUEST, subtype: LocationType.TOTEM, query: '[amenity=place_of_worship]', radius: 2000 },
+      { type: MarkerType.QUEST, subtype: LocationType.MOUNTAIN, query: '[amenity=cinema]', radius: 5000 },
+    ];
+    const lat = 42.605556;
+    const lng = -5.570000;
+    const radius = 10000;
+    const limit = 1;
+    const bounds = this.map.getBounds();
+    let query = '[out:json][timeout:300][bbox];\n';
+    elements.forEach((e: any) => query += `nwr${e.query};convert nwr ::geom=center(geom()),::=::,type="${e.type}",subtype="${e.subtype}";out center;\n`);
+    const bbox = `${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()},${bounds.getNorth()}`;
+    const response: any = await this.apiService.mapQuery(query, bbox);
+    const groups = _.groupBy(response.elements.filter((e: any) => e.geometry && e.geometry.coordinates && e.tags && e.tags.name), (e: any) => e.tags.subtype);
+    for (const group of Object.keys(groups)) {
+      for (const element of groups[group].slice(0, limit)) {
+        switch (element.tags.type) {
+          case (MarkerType.SHOP):
+            await this.addShop(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+            break;
+          case (MarkerType.QUEST):
+            await this.addQuest(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+            break;
         }
       }
-    }, null, {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
-    });
+    }
   }
 
 }

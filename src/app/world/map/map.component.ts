@@ -48,47 +48,50 @@ export class MapComponent implements OnInit, OnDestroy {
       // pring kingdoms surrounding kingdom
       this.angularFirestore.collection<any>('kingdoms').valueChanges().pipe(untilDestroyed(this)).subscribe(kingdoms => {
         kingdoms.forEach(async (data: any) => {
-          let kingdom = await this.firebaseService.selfJoin({ ...data, fid: data.id });
+          const kingdom = await this.firebaseService.selfJoin({ ...data, fid: data.id });
           this.mapboxService.addMarker(kingdom, MarkerType.KINGDOM, true, kingdom.id === this.uid,
             this.activatedRoute.snapshot.params.kingdom
               ? this.activatedRoute.snapshot.params.kingdom === kingdom.id
-              : kingdom.id === this.uid
+              : kingdom.id === this.uid,
             );
-        })
+        });
+        this.mapboxService.refreshMarkers();
       });
       // print quests surrounding kingdom
       this.kingdom$.pipe(
         switchMap(kingdom => {
           if (kingdom) {
-            let quests = this.angularFirestore.collection('quests');
+            const quests = this.angularFirestore.collection('quests');
             return this.geofirex.query(quests.ref).within(kingdom.position, kingdom.power / 1000, 'position');
           } else {
             return of([]);
           }
-        })
+        }),
       ).subscribe((quests: Array<any>) => {
         this.mapboxService.clearMarkers(MarkerType.QUEST);
         quests.forEach(async (kingdom: any) => {
-          let quest = await this.firebaseService.selfJoin({ ...kingdom, fid: kingdom.id });
+          const quest = await this.firebaseService.selfJoin({ ...kingdom, fid: kingdom.id });
           this.mapboxService.addMarker(quest, MarkerType.QUEST, true, false, false);
-        })
+        });
+        this.mapboxService.refreshMarkers();
       });
       // print shops surrounding kingdom
       this.kingdom$.pipe(
         switchMap(kingdom => {
           if (kingdom) {
-            let shops = this.angularFirestore.collection('shops');
+            const shops = this.angularFirestore.collection('shops');
             return this.geofirex.query(shops.ref).within(kingdom.position, kingdom.power / 1000, 'position');
           } else {
             return of([]);
           }
-        })
+        }),
       ).subscribe((shops: Array<any>) => {
         this.mapboxService.clearMarkers(MarkerType.SHOP);
         shops.forEach(async (kingdom: any) => {
-          let shop = await this.firebaseService.selfJoin({ ...kingdom, fid: kingdom.id });
+          const shop = await this.firebaseService.selfJoin({ ...kingdom, fid: kingdom.id });
           this.mapboxService.addMarker(shop, MarkerType.SHOP, true, false, false);
-        })
+        });
+        this.mapboxService.refreshMarkers();
       });
     });
     // menus

@@ -1,13 +1,13 @@
 <div id="map" class="map-container"></div>
 
 <div class="map-admin">
-  <button mat-mini-fab color="primary" [matMenuTriggerFor]="adminMenu"><mat-icon>home</mat-icon></button>
+  <button mat-mini-fab color="primary" [matMenuTriggerFor]="adminMenu"><mat-icon>security</mat-icon></button>
 
   <mat-menu #adminMenu="matMenu">
-    <button mat-menu-item [matMenuTriggerFor]="kingdomMenu"><mat-icon>home</mat-icon></button>
-    <button mat-menu-item [matMenuTriggerFor]="shopMenu"><mat-icon>store</mat-icon></button>
-    <button mat-menu-item [matMenuTriggerFor]="questMenu"><mat-icon>place</mat-icon></button>
-    <button mat-menu-item (click)="populateMap()"><mat-icon>map</mat-icon></button>
+    <button mat-menu-item [matMenuTriggerFor]="kingdomMenu"><mat-icon>person</mat-icon>Bot</button>
+    <button mat-menu-item [matMenuTriggerFor]="shopMenu"><mat-icon>attach_money</mat-icon>Tienda</button>
+    <button mat-menu-item [matMenuTriggerFor]="questMenu"><mat-icon>search</mat-icon>Lugar</button>
+    <button mat-menu-item (click)="populateMap()"><mat-icon>map</mat-icon>Auto</button>
   </mat-menu>
 
   <mat-menu #kingdomMenu="matMenu">
@@ -23,34 +23,3 @@
   </mat-menu>
 
 </div>
-
-<!--
-
-<div class="map-admin">
-  <eco-fab-speed-dial direction="up" animationMode="scale">
-    <eco-fab-speed-dial-trigger spin="true">
-      <button mat-fab color="primary"><mat-icon class="spin180">home</mat-icon></button>
-    </eco-fab-speed-dial-trigger>
-    <eco-fab-speed-dial-actions>
-      <button mat-mini-fab color="primary" *ngFor="let store of stores" (click)="addShop(store.type)" class="helper"><img [src]="store.image"></button>
-    </eco-fab-speed-dial-actions>
-  </eco-fab-speed-dial>
-  <eco-fab-speed-dial direction="up" animationMode="scale">
-    <eco-fab-speed-dial-trigger spin="true">
-      <button mat-fab color="primary"><mat-icon class="spin180">store</mat-icon></button>
-    </eco-fab-speed-dial-trigger>
-    <eco-fab-speed-dial-actions>
-      <button mat-mini-fab color="primary" *ngFor="let faction of factions" (click)="addKingdom(faction.type)" class="helper"><img [src]="faction.marker"></button>
-    </eco-fab-speed-dial-actions>
-  </eco-fab-speed-dial>
-  <eco-fab-speed-dial direction="up" animationMode="scale">
-    <eco-fab-speed-dial-trigger spin="true">
-      <button mat-fab color="primary"><mat-icon class="spin180">place</mat-icon></button>
-    </eco-fab-speed-dial-trigger>
-    <eco-fab-speed-dial-actions>
-      <button mat-mini-fab color="primary" *ngFor="let location of locations" (click)="addQuest(location.type)" class="helper"><img [src]="location.image"></button>
-    </eco-fab-speed-dial-actions>
-  </eco-fab-speed-dial>
-</div>
-
--->

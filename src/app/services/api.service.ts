@@ -81,9 +81,10 @@ export class ApiService {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/battle/${battleId}/target/${targetId}`).toPromise();
   }
 
-  mapQuery(query: string) {
+  mapQuery(query: string, bbox: string) {
     const form = new URLSearchParams();
     form.set('data', query);
+    form.set('bbox', bbox);
     return this.httpClient.post(environment.overpass.url, form.toString(), {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
