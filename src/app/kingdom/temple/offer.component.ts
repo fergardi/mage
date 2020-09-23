@@ -17,7 +17,7 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
       <mat-list dense>
         <mat-list-item class="legendary">
           <div mat-list-avatar matBadge="∞" matBadgePosition="above before">
-            <img mat-list-avatar [src]="god.image">
+            <img mat-list-avatar class="god-avatar" [src]="god.image">
           </div>
           <div mat-line>{{ god.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
@@ -45,6 +45,9 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
   styles: [`
     .mat-form-field {
       width: 100%;
+    }
+    .god-avatar {
+      border-radius: 4px !important;
     }
   `],
   providers: [

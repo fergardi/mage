@@ -164,12 +164,14 @@ export class CacheService {
       let factions = await this.getFactions();
       let families = await this.getFamilies();
       let resources = await this.getResources();
+      let categories = await this.getCategories();
       let snapshot = await this.angularFirestore.collection('heroes').get().toPromise();
       let heroes = snapshot.docs.map(faction => faction.data());
       heroes.forEach(hero => {
         hero.join = factions.find(faction => faction.id === hero.faction);
         hero.families = hero.families.map(family => families.find(f => f.id === family));
         hero.resources = hero.resources.map(resource => resources.find(r => r.id === resource));
+        hero.categories = hero.categories.map(category => categories.find(r => r.id === category));
       });
       localStorage.setItem(CollectionType.heroes, JSON.stringify([...heroes]));
     }

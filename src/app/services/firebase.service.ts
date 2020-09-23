@@ -102,7 +102,7 @@ export class FirebaseService {
 
   async addElementsToCollection(collection: string, elements: any[], master: boolean = false) {
     for (const [index, element] of elements.entries()) {
-      await this.delay(index * 500);
+      await this.delay(250);
       await this.addElementToCollection(collection, element, master ? element.id : null);
     }
   }

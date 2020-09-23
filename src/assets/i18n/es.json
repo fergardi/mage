@@ -1587,11 +1587,11 @@
       "description": "Aumenta el daño de <animal> +2% por nivel"
     },
     "shaman": {
-      "name": "Chamán Loco",
+      "name": "Chamán Místico",
       "description": "Generas +1% <mana> al <turn> por nivel"
     },
     "elementalist": {
-      "name": "Elementalista",
+      "name": "Elementalista Exiliado",
       "description": "Aumenta el daño de <elemental> +2% por nivel"
     },
     "sage": {
@@ -1610,13 +1610,13 @@
       "name": "Ingeniero Constructor",
       "description": "Aumenta el ratio de construcción +1 por nivel"
     },
-    "mummy": {
-      "name": "Momia Maldita",
-      "description": "Aumenta el ataque de tus tropas +1% por nivel"
+    "crypt-keeper": {
+      "name": "Guardián de la Cripta",
+      "description": "Resucita +1% de tus tropas muertas en batalla"
     },
-    "silver-knight": {
-      "name": "Caballero Plateado",
-      "description": "Aumenta la defensa de tus tropas +2% por nivel"
+    "pyromancer": {
+      "name": "Piromante Abrasado",
+      "description": "Inflige a cada tropa 1000 daño <fire> por nivel"
     },
     "orc-king": {
       "name": "Rey de los Orcos",
@@ -1625,6 +1625,26 @@
     "leprechaunt": {
       "name": "Leprechaunt Avaricioso",
       "description": "Aumenta la suerte +1% por nivel"
+    },
+    "colossus": {
+      "name": "Coloso Imponente",
+      "description": "Inflige a cada tropa 1000 daño <holy> por nivel"
+    },
+    "golem-golem": {
+      "name": "Gólem de Gólems",
+      "description": "Aumenta el ataque y defensa de <golem> +2%/+2% por nivel"
+    },
+    "illusionist": {
+      "name": "Ilusionista Congelado",
+      "description": "Inflige a cada tropa 1000 daño <cold> por nivel"
+    },
+    "soul-reaper": {
+      "name": "Segador de Almas",
+      "description": "Inflige a cada tropa 1000 daño <lightning> por nivel"
+    },
+    "swamp-thing": {
+      "name": "Monstruo del Pantano",
+      "description": "Inflige a cada tropa 1000 daño <poison> por nivel"
     }
   },
   "item": {
@@ -1843,11 +1863,11 @@
       "description": "Los cinco sellos del Armagedón"
     },
     "war": {
-      "name": "Adalid de la Guerra",
+      "name": "Efigie de la Guerra",
       "description": "Los cinco sellos del Armagedón"
     },
     "pestilence": {
-      "name": "Portadora de la Pestilencia",
+      "name": "Portador de la Pestilencia",
       "description": "Los cinco sellos del Armagedón"
     }
   },

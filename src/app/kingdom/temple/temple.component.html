@@ -16,7 +16,7 @@
         <mat-action-list dense tourAnchor="tour.temple">
           <button mat-list-item *ngFor="let god of kingdomGods" [disabled]="god.armageddon" (click)="openOfferDialog(god)" class="legendary">
             <div mat-list-avatar matBadge="∞" matBadgePosition="above before">
-              <img mat-list-avatar [src]="god.image">
+              <img mat-list-avatar class="god-avatar" [src]="god.image">
             </div>
             <div mat-line>{{ god.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
