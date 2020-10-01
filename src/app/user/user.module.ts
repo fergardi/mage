@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EncyclopediaComponent } from './encyclopedia/encyclopedia.component';
 import { TomeComponent } from './encyclopedia/tome.component';
 import { LandingComponent } from './landing/landing.component';
+import { LegendComponent } from './legend/legend.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { LandingComponent } from './landing/landing.component';
     EncyclopediaComponent,
     TomeComponent,
     LandingComponent,
+    LegendComponent,
   ],
   imports: [
     CommonModule,

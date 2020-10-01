@@ -1,0 +1,78 @@
+<div class="app-legend table-responsive">
+  <mat-card>
+
+    <mat-card-header>
+      <img mat-card-avatar src="/assets/images/cards/legend.png">
+      <mat-card-title>{{ 'user.legend.name' | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ 'user.legend.description' | translate }}</mat-card-subtitle>
+      <mat-chip-list><mat-chip color="primary" selected><mat-icon>person</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
+    </mat-card-header>
+
+    <mat-card-content>
+      <table mat-table matSort [dataSource]="data" matSortActive="timestamp" matSortDirection="desc" matSortDisableClear>
+        <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
+          <mat-header-cell class="table-header" *matHeaderCellDef>
+
+            <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
+
+            <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
+              <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off">
+              <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+
+            <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'timestamp'">
+              <input matInput [(ngModel)]="filters[column].value" [matDatepicker]="timestamp" disabled (dateChange)="applyFilter()">
+              <mat-datepicker-toggle matSuffix [for]="timestamp"></mat-datepicker-toggle>
+              <mat-datepicker #timestamp disabled="false"></mat-datepicker>
+              <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=null; applyFilter()">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+
+          </mat-header-cell>
+
+          <mat-cell *matCellDef="let legend" [attr.data-label]="'table.column.' + column | translate">
+
+            <ng-template [ngIf]="column === 'name'">
+              <mat-list dense>
+                <mat-list-item class="legendary">
+                  <div mat-list-avatar [matBadge]="legend.position | long" matBadgePosition="above before">
+                    <img mat-list-avatar [src]="legend.join.image">
+                  </div>
+                  <div mat-line>{{ legend.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ legend.join.name | translate }}</div>
+                  <div mat-list-avatar [matBadge]="legend.power | short" matBadgePosition="above after">
+                    <img mat-list-avatar src="/assets/images/icons/power.png">
+                  </div>
+                </mat-list-item>
+              </mat-list>
+            </ng-template>
+<!--
+            <ng-template [ngIf]="column === 'clan'">
+              <mat-list dense *ngIf="legend.clan">
+                <mat-list-item>
+                  <div mat-list-avatar>
+                    <img mat-list-avatar [src]="legend.clan.image">
+                  </div>
+                  <div mat-line>{{ legend.clan.name }}</div>
+                </mat-list-item>
+              </mat-list>
+            </ng-template>
+-->
+            <ng-template [ngIf]="column === 'timestamp'">
+              {{ legend.timestamp.toMillis() | date }}
+            </ng-template>
+
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let legend; columns: columns; let i = index"></mat-row>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

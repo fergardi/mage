@@ -1,23 +1,22 @@
 <div class="app-landing" >
   <!-- PARALLAX https://codepen.io/samdbeckham/pen/OPXPNp -->
   <div class="parallax">
-    <div class="parallax-layer parallax-layer1"></div>
-    <div class="parallax-layer parallax-layer2"></div>
-    <div class="parallax-layer parallax-layer3"></div>
-    <div class="parallax-layer parallax-layer4">
+    <div class="parallax-layer parallax-layer-1"></div>
+    <div class="parallax-layer parallax-layer-2"></div>
+    <div class="parallax-layer parallax-layer-3"></div>
+    <div class="parallax-layer parallax-layer-4">
       <div class="landing-title">
         <h1 class="mat-display-4">{{ 'landing.title.name' | translate }}</h1>
         <h3 class="mat-subheading-2">{{ 'landing.title.description' | translate }}</h3>
       </div>
     </div>
-    <div class="parallax-layer parallax-layer5"></div>
-    <div class="parallax-layer parallax-layer6"></div>
-    <div class="parallax-layer parallax-layer7"></div>
-    <div class="parallax-layer parallax-layer8"></div>
-    <div class="parallax-layer parallax-layer9"></div>
-    <div class="parallax-layer parallax-layer10" #login>
+    <div class="parallax-layer parallax-layer-5"></div>
+    <div class="parallax-layer parallax-layer-6"></div>
+    <div class="parallax-layer parallax-layer-7"></div>
+    <div class="parallax-layer parallax-layer-8"></div>
+    <div class="parallax-layer parallax-layer-9"></div>
+    <div class="parallax-layer parallax-layer-10" #login>
       <app-login></app-login>
-      <button mat-mini-fab color="primary" class="content-button animated pulse infinite" (click)="domService.scrollToElement(content)"><mat-icon>keyboard_arrow_down</mat-icon></button>
     </div>
     <div class="parallax-content" #content>
       <div class="wrapper">
@@ -165,11 +164,11 @@
             <h1 class="mat-h1">{{ 'landing.tavern.name' | translate }}</h1>
             <p>{{ 'landing.tavern.description' | translate }}</p>
             <div class="image-icons">
-              <img src="/assets/images/heroes/orc-king.png">
-              <img src="/assets/images/heroes/shaman.png" class="legendary">
-              <img src="/assets/images/heroes/silver-knight.png">
-              <img src="/assets/images/heroes/necromancer.png" class="legendary">
-              <img src="/assets/images/heroes/elementalist.png">
+              <img src="/assets/images/heroes/blue/shaman.png" class="legendary">
+              <img src="/assets/images/heroes/red/dragon-rider.png">
+              <img src="/assets/images/heroes/white/trader.png" class="legendary">
+              <img src="/assets/images/heroes/black/crypt-keeper.png">
+              <img src="/assets/images/heroes/blue/elementalist.png" class="legendary">
             </div>
           </div>
           <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="170">
@@ -225,13 +224,14 @@
           <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center image-responsive" fxFlexOrder.xs="260">
             <h1 class="mat-display-3 margened">{{ 'landing.victory.name' | translate }}</h1>
             <p class="mat-subheading-2">{{ 'landing.victory.description' | translate }}</p>
+            <app-legend style="min-width: 70%;"></app-legend>
             <img src="/assets/images/landing/census.png">
             <a mat-raised-button color="primary" class="play-button" (click)="domService.scrollToElement(login)">{{ 'landing.victory.play' | translate }}</a>
           </div>
         </div>
       </div>
       <div class="app-landing-footer">
-        <svg style="margin-bottom: -5px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#99009c" fill-opacity="1" d="M0,128L48,106.7C96,85,192,43,288,26.7C384,11,480,21,576,64C672,107,768,181,864,197.3C960,213,1056,171,1152,154.7C1248,139,1344,149,1392,154.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#99009c" fill-opacity="1" d="M0,128L48,144C96,160,192,192,288,213.3C384,235,480,245,576,240C672,235,768,213,864,213.3C960,213,1056,235,1152,208C1248,181,1344,107,1392,69.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
         <div class="retribution" fxLayout="row wrap" fxLayoutAlign="center center">
           <a mat-button href="https://www.freepik.com/free-photos-vectors/business">Freepik Images</a>
           <a mat-button href="https://assetstore.unity.com/publishers/13229">Unity Store</a>

@@ -44,7 +44,6 @@
           </div>
           <ng-container *ngFor="let link of group.links">
             <a mat-list-item
-              *ngIf="link.show"
               [disabled]="!(angularFireAuth.authState | async)"
               (click)="close()"
               [routerLink]="link.url ? link.url : null"

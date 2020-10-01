@@ -1,91 +1,91 @@
 <div class="kingdom-archive table-responsive" [@fadeInOnEnter]>
 
-    <mat-card>
-      <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/archive.png">
-        <mat-card-title>{{ "kingdom.archive.name" | translate }}</mat-card-title>
-        <mat-card-subtitle>{{ "kingdom.archive.description" | translate }}</mat-card-subtitle>
-      </mat-card-header>
+  <mat-card>
+    <mat-card-header>
+      <img mat-card-avatar src="/assets/images/cards/archive.png">
+      <mat-card-title>{{ "kingdom.archive.name" | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ "kingdom.archive.description" | translate }}</mat-card-subtitle>
+    </mat-card-header>
 
-      <mat-card-content>
-        <span>{{ "kingdom.archive.help" | translate }}</span>
-        <table mat-table matSort [dataSource]="data" tourAnchor="tour.archive">
+    <mat-card-content>
+      <span>{{ "kingdom.archive.help" | translate }}</span>
+      <table mat-table matSort [dataSource]="data" matSortActive="timestamp" matSortDirection="desc" tourAnchor="tour.archive">
 
-          <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
+        <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
 
-            <ng-container *ngIf="column === 'select'; else noSelect">
-              <mat-header-cell class="table-header" *matHeaderCellDef>
-                <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
-              </mat-header-cell>
+          <ng-container *ngIf="column === 'select'; else noSelect">
+            <mat-header-cell class="table-header" *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()"></mat-checkbox>
+            </mat-header-cell>
 
-              <mat-cell *matCellDef="let letter" [attr.data-label]="column">
-                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(letter) : null" [checked]="selection.isSelected(letter)"></mat-checkbox>
-              </mat-cell>
-            </ng-container>
-
-            <ng-template #noSelect>
-              <mat-header-cell class="table-header" *matHeaderCellDef>
-
-                <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
-
-                <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
-                  <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off">
-                  <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
-                    <mat-icon>close</mat-icon>
-                  </button>
-                </mat-form-field>
-
-                <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'timestamp'">
-                  <input matInput [(ngModel)]="filters[column].value" [matDatepicker]="timestamp" disabled (dateChange)="applyFilter()">
-                  <mat-datepicker-toggle matSuffix [for]="timestamp"></mat-datepicker-toggle>
-                  <mat-datepicker #timestamp disabled="false"></mat-datepicker>
-                  <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=null; applyFilter()">
-                    <mat-icon>close</mat-icon>
-                  </button>
-                </mat-form-field>
-
-              </mat-header-cell>
-
-              <mat-cell *matCellDef="let letter" [attr.data-label]="'table.column.' + column | translate">
-
-                <ng-template [ngIf]="column === 'from'">
-                  <mat-list dense>
-                    <mat-list-item>
-                      <div mat-list-avatar>
-                        <img mat-list-avatar [src]="letter['join'].join.image">
-                      </div>
-                      <div mat-line>{{ letter['join'].name }}</div>
-                      <div mat-line class="mat-card-subtitle">{{ letter['join'].join.name | translate }}</div>
-                    </mat-list-item>
-                  </mat-list>
-                </ng-template>
-
-                <ng-template [ngIf]="column === 'subject'">
-                  {{ letter[column] | translate }}
-                </ng-template>
-
-                <ng-template [ngIf]="column === 'timestamp'">
-                  {{ letter[column]?.toMillis() | date }}
-                </ng-template>
-
-              </mat-cell>
-
-            </ng-template>
+            <mat-cell *matCellDef="let letter" [attr.data-label]="column">
+              <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(letter) : null" [checked]="selection.isSelected(letter)"></mat-checkbox>
+            </mat-cell>
           </ng-container>
 
-          <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
-          <mat-row *matRowDef="let letter; columns: columns" (click)="openReportDialog(letter)"></mat-row>
-        </table>
+          <ng-template #noSelect>
+            <mat-header-cell class="table-header" *matHeaderCellDef>
 
-        <mat-toolbar>
-          <mat-toolbar-row>
-            <button mat-icon-button [disabled]="!selection.selected.length" (click)="deleteReports()"><mat-icon>delete</mat-icon></button>
-            <span class="fill-space"></span>
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-          </mat-toolbar-row>
-        </mat-toolbar>
+              <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
 
-      </mat-card-content>
-    </mat-card>
+              <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
+                <input matInput [(ngModel)]="filters[column].value" (keyup)="applyFilter()" autocomplete="off">
+                <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=''; applyFilter()">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+
+              <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'timestamp'">
+                <input matInput [(ngModel)]="filters[column].value" [matDatepicker]="timestamp" disabled (dateChange)="applyFilter()">
+                <mat-datepicker-toggle matSuffix [for]="timestamp"></mat-datepicker-toggle>
+                <mat-datepicker #timestamp disabled="false"></mat-datepicker>
+                <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=null; applyFilter()">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+
+            </mat-header-cell>
+
+            <mat-cell *matCellDef="let letter" [attr.data-label]="'table.column.' + column | translate">
+
+              <ng-template [ngIf]="column === 'from'">
+                <mat-list dense>
+                  <mat-list-item>
+                    <div mat-list-avatar>
+                      <img mat-list-avatar [src]="letter['join'].join.image">
+                    </div>
+                    <div mat-line>{{ letter['join'].name }}</div>
+                    <div mat-line class="mat-card-subtitle">{{ letter['join'].join.name | translate }}</div>
+                  </mat-list-item>
+                </mat-list>
+              </ng-template>
+
+              <ng-template [ngIf]="column === 'subject'">
+                {{ letter[column] | translate }}
+              </ng-template>
+
+              <ng-template [ngIf]="column === 'timestamp'">
+                {{ letter[column]?.toMillis() | date }}
+              </ng-template>
+
+            </mat-cell>
+
+          </ng-template>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let letter; columns: columns" (click)="openReportDialog(letter)"></mat-row>
+      </table>
+
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <button mat-icon-button [disabled]="!selection.selected.length" (click)="deleteReports()"><mat-icon>delete</mat-icon></button>
+          <span class="fill-space"></span>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+    </mat-card-content>
+  </mat-card>
 
 </div>

@@ -19,16 +19,16 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .parallax-layer1 {
+  .parallax-layer-1 {
     background-image: url("/assets/images/parallax/layer1.png");
   }
-  .parallax-layer2 {
+  .parallax-layer-2 {
     background-image: url("/assets/images/parallax/layer2.png");
   }
-  .parallax-layer3 {
+  .parallax-layer-3 {
     background-image: url("/assets/images/parallax/layer3.png");
   }
-  .parallax-layer4 {
+  .parallax-layer-4 {
     display: flex;
     justify-content: center;
     .landing-title {
@@ -40,42 +40,37 @@
       }
     }
   }
-  .parallax-layer5 {
+  .parallax-layer-5 {
     background-image: url("/assets/images/parallax/layer5.png");
   }
-  .parallax-layer6 {
+  .parallax-layer-6 {
     background-image: url("/assets/images/parallax/layer6.png");
   }
-  .parallax-layer7 {
+  .parallax-layer-7 {
     background-image: url("/assets/images/parallax/layer7.png");
   }
-  .parallax-layer8 {
+  .parallax-layer-8 {
     background-image: url("/assets/images/parallax/layer8.png");
   }
-  .parallax-layer9 {
+  .parallax-layer-9 {
     background-image: url("/assets/images/parallax/layer9.png");
   }
-  .parallax-layer10 {
+  .parallax-layer-10 {
     background-image: url("/assets/images/parallax/layer10.png");
   }
   $parallax-layers: 10;
   @for $i from 1 through $parallax-layers {
     $x: ($parallax-layers - $i) / 2;
-    .parallax-layer#{$i}{
+    .parallax-layer-#{$i} {
       transform: translateZ(-100px * $x) scale($x + 1);
     }
-  }
-  .content-button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin: 10px;
   }
   .parallax-content {
     background-color: #160d25;
     display: block;
     position: absolute;
-    top: 100%;
+    // top: 100%;
+    top: calc(100% - 40px); // to be able to see more content
     left: 0;
     right: 0;
     .wrapper {
@@ -112,7 +107,7 @@
         }
         .image-desktop,
         .image-mobile {
-          width: calc(100% - 50px);
+          width: calc(100% - 20px);
           border-radius: 4px;
           box-sizing: border-box;
           position: absolute;
@@ -121,7 +116,6 @@
           right: 0;
           bottom: 0;
           margin: auto;
-          width: 100%;
           height: auto;
         }
         .image-mobile {
@@ -168,6 +162,10 @@
       }
     }
     .app-landing-footer {
+      svg {
+        margin-bottom: -5px;
+        margin-top: -200px;
+      }
       .retribution {
         background-color: $primary-color;
         width: 100%;
@@ -193,6 +191,11 @@
     .faction-icons img {
       width: 40px !important;
       height: 40px !important;
+    }
+    .app-landing-footer {
+      svg {
+        margin-top: 0 !important;
+      }
     }
   }
 }

@@ -25,19 +25,19 @@
   },
   "landing": {
     "title": {
-      "name": "Archimago",
+      "name": "LëgëndäriüM",
       "description": "Otro plano de la realidad"
     },
     "resurrection": {
-      "name": "Has renacido",
+      "name": "Häs rënäcidö",
       "description": "Estás en el más allá, en la más absoluta oscuridad, en otro plano de la realidad. Aquí el mundo es diferente, cargado de partículas mágicas, envuelto en misterio y poder. Lo notas en el agua, lo sientes en la tierra, lo hueles en el aire. Pensabas que era el final, pero en realidad sólo es el principio. Ahora puedes alcanzar tus verdaderos objetivos, desarrollar todo tu potencial, y ser el mejor mago o bruja que ésta desolada tierra haya visto jamás."
     },
     "choose": {
-      "name": "Escoge una facción",
+      "name": "Ëscögë ünä fäcción",
       "description": "En este plano de la realidad coexisten cinco tipos de magia muy diferentes. Asóciate con uno y moldéalo a tu voluntad. Todos tienen sus ventajas e inconvenientes, pero las mismas posibilidades de victoria."
     },
     "destiny": {
-      "name": "Construye tu destino",
+      "name": "Cönstrüyë tü dëstinö",
       "description": "Hay muchas maneras distintas de alcanzar la gloria, sólo tienes que encontrar la que más se adapte a tu estilo de juego. La verdadera sabiduría está en mantener un equilibrio perfecto entre todas ellas."
     },
     "conjure": {
@@ -73,15 +73,15 @@
       "description": "Honra y realiza sacrificios a los distintos dioses para que te otorguen su favor y finalmente rompan los cinco sellos del Armagedón, provocando el apocalipsis y finalizando la partida."
     },
     "victory": {
-      "name": "Álzate con la victoria",
-      "description": "Este plano de la realidad es muy cruel con los débiles. Sólo los magos y brujas más sobresalientes tienen una ligera posibilidad de sobrevivir aquí. ¿Eres uno de ellos? Y de entre todos, sólo un reino será digno de ascender tras el Armagedón. ¿Será el tuyo?",
+      "name": "Ënträ ën ël LëgëndäriüM",
+      "description": "Este plano de la realidad es muy cruel con los débiles. Sólo los magos y brujas más sobresalientes tienen una ligera posibilidad de sobrevivir aquí. ¿Eres uno de ellos? Y de entre todos, sólo un reino será digno de ser recordado eternamente en el Legendarium tras el Armagedón. ¿Será el tuyo?",
       "play": "Renacer"
     }
   },
   "user": {
-    "landing": {
-      "name": "Archimago",
-      "description": "Otro plano de la realidad"
+    "legend": {
+      "name": "Legendarium",
+      "description": "Listado de mágos y brujas célebres"
     },
     "auth": {
       "login": "Iniciar sesión",
@@ -1042,11 +1042,11 @@
     },
     "life-leech": {
       "name": "Beso del vampiro",
-      "description": "Aplica <life-leech> a tus tropas"
+      "description": "Aplica <life-leech> a una tropa aliada"
     },
     "fear": {
       "name": "Miedo",
-      "description": "Aplica <fear> a una tropa enemiga"
+      "description": "Aplica <fear> a una tropa aliada"
     },
     "night-living-dead": {
       "name": "Noche de los muertos vivientes",
@@ -1150,7 +1150,7 @@
     },
     "gravity": {
       "name": "Gravedad",
-      "description": "Aplica <weakness>,<slowness> y <fear> a cada tropa <flight>"
+      "description": "Elimina <flight> de cada tropa enemiga"
     },
     "meteor-storm": {
       "name": "Tormenta de meteoritos",
@@ -1230,7 +1230,7 @@
     },
     "fog": {
       "name": "Niebla",
-      "description": "Aplica <slowness> a todas las tropas"
+      "description": "Aplica <slowness> cada tropa enemiga"
     },
     "fools-gold": {
       "name": "Oro de los tontos",
@@ -1238,7 +1238,7 @@
     },
     "hallucination": {
       "name": "Alucinación",
-      "description": "Aplica <seduction> a una tropa"
+      "description": "Aplica <seduction> a cada tropa aliada"
     },
     "ice-shock": {
       "name": "Choque de hielo",
@@ -1366,7 +1366,7 @@
     },
     "flash": {
       "name": "Destello",
-      "description": "Aplica <weakness> y <fear> a cada tropa enemiga"
+      "description": "Aplica <weakness> y <slowness> a cada tropa enemiga"
     },
     "gate": {
       "name": "Puerta celestial",
@@ -1750,7 +1750,7 @@
     },
     "cursed-skull": {
       "name": "Calavera maldita",
-      "description": "Aplica <fear> a cada tropa enemiga"
+      "description": "Aplica <fear> a cada tropa aliada"
     },
     "golden-feather": {
       "name": "Pluma dorada",
@@ -1846,7 +1846,7 @@
     },
     "vampire-teeth": {
       "name": "Colmillo de vampiro",
-      "description": "Aplica <life-leech> a una tropa"
+      "description": "Aplica <life-leech> a cada tropa aliada"
     }
   },
   "god": {

@@ -8,11 +8,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 import { ReportComponent } from './report.component';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { firestore } from 'firebase/app';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
 import * as moment from 'moment';
 
