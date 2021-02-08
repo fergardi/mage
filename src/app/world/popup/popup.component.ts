@@ -34,6 +34,12 @@ export class PopupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // kingdom
+    if (this.data.type === PopupType.KINGDOM) {
+      this.firebaseService.leftJoin(`kingdoms/${this.data.fid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
+        this.kingdomTroops = troops;
+      });
+    }
     // shop
     if (this.data.type === PopupType.SHOP) {
       this.firebaseService.leftJoin(`shops/${this.data.fid}/contracts`, 'heroes', 'id', 'id').pipe(untilDestroyed(this)).subscribe(contracts => {
