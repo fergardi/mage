@@ -40,7 +40,7 @@
         <ng-container *ngFor="let group of groups">
           <div matSubheader>
             <img [src]="group.image">
-            <span>{{ group.name | translate }}:</span>
+            <span>{{ group.name | translate }}</span>
           </div>
           <ng-container *ngFor="let link of group.links">
             <a mat-list-item
@@ -62,7 +62,7 @@
   </mat-sidenav>
   <!-- sidenav content -->
   <mat-sidenav-content>
-    <mat-toolbar>
+    <mat-toolbar class="mat-elevation-z8">
       <!-- toggler -->
       <button type="button" aria-label="toggle" mat-icon-button (click)="toggle()">
         <mat-icon aria-label="menu">{{ drawer.opened ? 'first_page' : 'last_page' }}</mat-icon>

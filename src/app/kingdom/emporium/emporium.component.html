@@ -19,7 +19,7 @@
             </div>
             <div mat-line>{{ item.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="item.description | translate | icon:item"></div>
-            <div mat-list-avatar [matBadge]="item.gems" matBadgePosition="above before">
+            <div mat-list-avatar [matBadge]="item.gems" matBadgePosition="above after">
               <img mat-list-avatar src="/assets/images/resources/gem.png">
             </div>
           </button>
@@ -48,7 +48,7 @@
             </div>
             <div mat-line>{{ pack.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ pack.description | translate }}</div>
-            <div mat-list-avatar [matBadge]="pack.money + '€'" matBadgePosition="above before">
+            <div mat-list-avatar [matBadge]="pack.money + '€'" matBadgePosition="above after">
               <img mat-list-avatar src="/assets/images/stores/merchant.png">
             </div>
           </button>

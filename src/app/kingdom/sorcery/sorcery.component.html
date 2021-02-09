@@ -32,7 +32,7 @@
 
         <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
         <mat-action-list dense class="dotted" id="3" tourAnchor="tour.spells" #kngdmCharms="cdkDropList" [cdkDropListConnectedTo]="[atckCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="kingdomCharms">
-          <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.join.battle || !charm.completed" [ngClass]="{ 'handle': charm.join.battle && charm.completed, 'legendary': charm.join | legendary, 'common': !(charm.join | legendary) }" (click)="!charm.completed ? openResearchDialog(charm) : !charm.join.battle ? openConjureDialog(charm) : null" [id]="charm.fid">
+          <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.join.battle || !charm.completed" [ngClass]="[charm.join.faction, charm.join.battle && charm.completed ? 'handle' : '', (charm.join | legendary) ? 'legendary' : 'common']" (click)="!charm.completed ? openResearchDialog(charm) : !charm.join.battle ? openConjureDialog(charm) : null" [id]="charm.fid">
             <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="charm.join.image">
             </div>
@@ -82,7 +82,7 @@
 
             <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
             <mat-list dense class="dotted" id="4" #atckCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="attackCharms">
-              <mat-list-item *ngFor="let charm of attackCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="{ 'legendary': charm.join | legendary }">
+              <mat-list-item *ngFor="let charm of attackCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="[charm.join.faction, (charm.join | legendary) ? 'legendary' : 'common']">
                 <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="charm.join.image">
                 </div>
@@ -123,7 +123,7 @@
 
             <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
             <mat-list dense class="dotted" id="5" #defCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, atckCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="defenseCharms">
-              <mat-list-item *ngFor="let charm of defenseCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="{ 'legendary': charm.join | legendary }">
+              <mat-list-item *ngFor="let charm of defenseCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="[charm.join.faction, (charm.join | legendary) ? 'legendary' : 'common']">
                 <div mat-list-avatar [matBadge]="charm.join.level | short" matBadgePosition="above before">
                   <img mat-list-avatar [src]="charm.join.image">
                 </div>

@@ -11,7 +11,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     <div mat-dialog-content>
       <p>{{ 'kingdom.dispel.help' | translate }}</p>
       <mat-list dense>
-        <mat-list-item (click)="dispel()" [ngClass]="{ 'legendary': enchantment.join | legendary }">
+        <mat-list-item (click)="dispel()" [ngClass]="[enchantment.join.faction, (enchantment.join | legendary) ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="enchantment.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
             <img mat-list-avatar [src]="enchantment.join.image">
           </div>

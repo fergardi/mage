@@ -24,7 +24,7 @@ const BATTLE_TURNS = 2;
     <div mat-dialog-content>
       <p>{{ 'kingdom.battle.description' | translate }}</p>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item [ngClass]="[kingdom.faction, kingdom.fid === uid ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="kingdom.position | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="kingdom.join.image">
           </div>

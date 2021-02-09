@@ -42,7 +42,7 @@
 
             <ng-template [ngIf]="column === 'faction'">
               <mat-list dense>
-                <mat-list-item>
+                <mat-list-item [ngClass]="row.join.id">
                   <div mat-list-avatar>
                     <img mat-list-avatar [src]="row.join.image">
                   </div>
@@ -54,11 +54,11 @@
 
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
-                <mat-list-item [ngClass]="{ 'legendary': row | legendary }">
+                <mat-list-item [ngClass]="[row.faction, (row.join | legendary) ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="row.level || '?'" matBadgePosition="above before">
                     <img mat-list-avatar [src]="row.image">
                   </div>
-                  <div mat-line>{{ row.name | translate:{name:'???'} }}</div>
+                  <div mat-line>{{ row.name | translate:{name:'?'} }}</div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(row.type)">{{ row.description | translate }}</div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(row.type)" [innerHTML]="row.description | translate | icon:row"></div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(row.type)">

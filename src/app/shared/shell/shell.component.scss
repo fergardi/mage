@@ -23,6 +23,7 @@
     overflow: hidden;
     ::ng-deep .mat-nav-list {
       overflow-y: auto;
+      height: 100%;
     }
   }
   .mat-toolbar.mat-primary {

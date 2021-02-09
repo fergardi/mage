@@ -6,11 +6,32 @@
   </mat-card-header>
 
   <mat-card-content>
+    <!-- kingdom troops -->
+    <ng-template [ngIf]="kingdomTroops.length">
+      <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
+      <mat-list dense>
+        <mat-list-item *ngFor="let troop of kingdomTroops" [ngClass]="[troop.join.faction, (troop.join | legendary) ? 'legendary' : 'common']">
+          <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
+            <img mat-list-avatar [src]="troop.join.image">
+          </div>
+          <div mat-line>{{ troop.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image">
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image">
+          </div>
+          <div mat-line class="mat-card-subtitle" *ngIf="troop.join.resistances && troop.join.resistances.length">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.join.resistances" [src]="category.image">
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
+
     <!-- shop contracts -->
     <ng-template [ngIf]="shopContracts.length">
       <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let contract of shopContracts" [ngClass]="(contract.join | legendary) ? 'legendary' : 'common'" (click)="openConfirmDialog(contract, ConfirmType.contract)">
+        <button mat-list-item *ngFor="let contract of shopContracts" [ngClass]="[contract.join.faction, (contract.join | legendary) ? 'legendary' : 'common']" (click)="openConfirmDialog(contract, ConfirmType.contract)">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.join.image">
           </div>
@@ -27,7 +48,7 @@
     <ng-template [ngIf]="shopTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let troop of shopTroops" [ngClass]="(troop.join | legendary) ? 'legendary': 'common'" (click)="openConfirmDialog(troop, ConfirmType.troop)">
+        <button mat-list-item *ngFor="let troop of shopTroops" [ngClass]="[troop.join.faction, (troop.join | legendary) ? 'legendary' : 'common']" (click)="openConfirmDialog(troop, ConfirmType.troop)">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image">
           </div>
@@ -51,7 +72,7 @@
     <ng-template [ngIf]="shopArtifacts.length">
       <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let artifact of shopArtifacts" [ngClass]="(artifact.join | legendary) ? 'legendary' : 'common'" (click)="openConfirmDialog(artifact, ConfirmType.artifact)">
+        <button mat-list-item *ngFor="let artifact of shopArtifacts" [ngClass]="[artifact.join.faction, (artifact.join | legendary) ? 'legendary' : 'common']" (click)="openConfirmDialog(artifact, ConfirmType.artifact)">
           <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
             <img mat-list-avatar [src]="artifact.join.image">
           </div>
@@ -68,7 +89,7 @@
     <ng-template [ngIf]="shopCharms.length">
       <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let charm of shopCharms" [ngClass]="(charm.join | legendary) ? 'legendary' : 'common'" (click)="openConfirmDialog(charm, ConfirmType.charm)">
+        <button mat-list-item *ngFor="let charm of shopCharms" [ngClass]="[charm.join.faction, (charm.join | legendary) ? 'legendary' : 'common']" (click)="openConfirmDialog(charm, ConfirmType.charm)">
           <div mat-list-avatar [matBadge]="charm.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="charm.join.image">
           </div>
@@ -85,7 +106,7 @@
     <ng-template [ngIf]="questContracts.length">
       <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item *ngFor="let contract of questContracts" [ngClass]="{ 'legendary': contract.join | legendary }">
+        <mat-list-item *ngFor="let contract of questContracts" [ngClass]="[contract.join.faction, (contract.join | legendary) ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.join.image">
           </div>
@@ -99,7 +120,7 @@
     <ng-template [ngIf]="questTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item *ngFor="let troop of questTroops" [ngClass]="{ 'legendary': troop.join | legendary }">
+        <mat-list-item *ngFor="let troop of questTroops" [ngClass]="[troop.join.faction, (troop.join | legendary) ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.join.image">
           </div>
@@ -120,7 +141,7 @@
     <ng-template [ngIf]="questArtifacts.length">
       <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let artifact of questArtifacts" [ngClass]="(artifact.join | legendary) ? 'legendary' : 'common'" (click)="openConfirmDialog(artifact, ConfirmType.battle)">
+        <button mat-list-item *ngFor="let artifact of questArtifacts" [ngClass]="[artifact.join.faction, (artifact.join | legendary) ? 'legendary' : 'common']" (click)="openConfirmDialog(artifact, ConfirmType.battle)">
           <div mat-list-avatar [matBadge]="artifact.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="artifact.join.image">
           </div>

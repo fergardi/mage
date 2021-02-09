@@ -50,7 +50,7 @@
 
               <ng-template [ngIf]="column === 'from'">
                 <mat-list dense>
-                  <mat-list-item>
+                  <mat-list-item [ngClass]="letter['join'].join.id">
                     <div mat-list-avatar>
                       <img mat-list-avatar [src]="letter['join'].join.image">
                     </div>
