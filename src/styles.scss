@@ -54,14 +54,26 @@ $theme-warn: mat-palette($mat-red, 800);
 $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 @include angular-material-theme($theme);
 
+$theme-black: mat-palette($mat-purple, 900);
+$theme-red: mat-palette($mat-red, 900);
+$theme-green: mat-palette($mat-green, 900);
+$theme-blue: mat-palette($mat-blue, 900);
+$theme-white: mat-palette($mat-grey, 500);
+$theme-grey: mat-palette($mat-brown, 900);
+
 $primary-color: mat-color($theme-primary);
 $accent-color: mat-color($theme-accent);
 $warn-color: mat-color($theme-warn);
 
-/* You can add global styles to this file, and also import other style files */
-$list-item-height: 60px;
-$common-color: #373638;
+$black-color: mat-color($theme-black);
+$red-color: mat-color($theme-red);
+$green-color: mat-color($theme-green);
+$blue-color: mat-color($theme-blue);
+$white-color: mat-color($theme-white);
 $legendary-color: darkgoldenrod;
+$common-color: mat-color($theme-grey);
+
+$list-item-height: 60px;
 
 html, body {
   height: 100%;
@@ -87,20 +99,32 @@ body {
 }
 
 .mat-list {
-  .mat-list-item.common .mat-list-item-content {
+  .mat-list-item .mat-list-item-content {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $common-color 50%, rgba(255,255,255,0) 100%);
   }
   .mat-list-item.legendary {
-    box-shadow: 0px 0px 10px 0px $legendary-color;
-    border-radius: 4px;
-    z-index: 1;
-    .mat-list-item-content {
-      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $legendary-color 50%, rgba(255,255,255,0) 100%);
-      background-size: 150% 100%;
-      animation: legendary 5s ease-in-out infinite;
-      border-radius: 4px;
-      animation-delay: 0ms;
+    .mat-list-avatar.mat-badge-before img.mat-list-avatar {
+      box-shadow: 0px 0px 20px 10px $legendary-color;
+      border-color: $legendary-color;
     }
+    .mat-list-item-content .mat-list-text .mat-line:first-of-type {
+      color: $legendary-color;
+    }
+  }
+  .mat-list-item.black .mat-list-item-content {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $black-color 50%, rgba(255,255,255,0) 100%);
+  }
+  .mat-list-item.red .mat-list-item-content {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $red-color 50%, rgba(255,255,255,0) 100%);
+  }
+  .mat-list-item.green .mat-list-item-content {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $green-color 50%, rgba(255,255,255,0) 100%);
+  }
+  .mat-list-item.blue .mat-list-item-content {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $blue-color 50%, rgba(255,255,255,0) 100%);
+  }
+  .mat-list-item.white .mat-list-item-content {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $white-color 50%, rgba(255,255,255,0) 100%);
   }
 }
 
@@ -210,7 +234,7 @@ body {
   }
   .mat-list-base {
     width: 100%;
-    margin: 6px;
+    // margin: 6px;
   }
   .mat-form-field-infix {
     width: auto;
@@ -351,6 +375,7 @@ hr {
 .mat-card,
 .mat-dialog-container {
   opacity: 0.975;
+  // background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.commentnation.com%2Fbackgrounds%2Fimages%2Fparchment_paper_seamless_pattern.jpg&f=1&nofb=1');
 }
 
 .mat-card-title {
