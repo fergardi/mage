@@ -246,7 +246,7 @@
       "cancel": "Cancelar",
       "confirm": "Confirmar",
       "success": "Tus órdenes han sido ejecutadas",
-      "error": "No es el resultado esperado"
+      "error": "Ha ocurrido un problema"
     }
   },
   "kingdom": {
@@ -289,15 +289,16 @@
       "select": "Tipo de ataque",
       "hint": "Selecciona el objetivo",
       "success": "Has recibido un mensaje",
-      "error": "No es el resultado esperadoa"
+      "error": "Ha ocurrido un problema"
     },
     "army": {
       "name": "Ejército",
       "description": "Gestiona tus tropas",
       "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
       "max": "Máximo",
+      "maximum": "No caben más tropas",
       "success": "Los cambios de tus tropas se han guardado",
-      "error": "No es el resultado esperados"
+      "error": "Ha ocurrido un problema"
     },
     "disband": {
       "name": "Desbande",
@@ -306,7 +307,7 @@
       "cancel": "Cancelar",
       "disband": "Desbandar",
       "hint": "No puedes desbandar unidades que consuman población",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "success": "Has desbandado tropas"
     },
     "discharge": {
@@ -332,7 +333,7 @@
       "description": "Recluta tropas básicas",
       "help": "Aqui puedes gastar turnos y oro para adquirir tropas básicas para tus ejércitos. Cuantos más Barracones tengas, menos turnos necesitarás.",
       "hint": "Debes tener suficientes turnos y oro",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "recruit": "Reclutar",
       "cancel": "Cancelar",
       "quantity": "Cantidad",
@@ -370,7 +371,7 @@
       "cancel": "Cancelar",
       "bid": "Pujar",
       "hint": "Ofrece +10% oro que la puja anterior",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "success": "Puja aceptada"
     },
     "sorcery": {
@@ -385,7 +386,7 @@
       "name": "Investigación",
       "description": "Aqui puedes gastar turnos para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos turnos necesitarás.",
       "hint": "Invierte turnos en investigar",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "research": "Investigar",
       "cancel": "Cancelar",
       "success": "Has avanzado la investigación del hechizo"
@@ -394,7 +395,7 @@
       "name": "Conjuración",
       "description": "Aqui puedes gastar turnos y maná para conjurar tus hechizos investigados. Conjurar hechizos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Debes tener suficientes turnos y maná",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "conjure": "Conjurar",
       "cancel": "Cancelar",
       "select": "Escoge un hechizo",
@@ -404,7 +405,7 @@
       "name": "Activación",
       "description": "Activa artefactos sobre tu reino o sobre otros reinos. Cada activación consume el artefacto y turnos. Activar artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Selecciona el objetivo",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "activate": "Activar",
       "cancel": "Cancelar",
       "select": "Escoge un artefacto",
@@ -428,7 +429,7 @@
       "help": "Aquí podrás invertir turnos en reponer los depósitos de maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Debes tener suficientes turnos",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "charge": "Meditar",
       "success": "Has recargado {{ mana }} maná"
     },
@@ -438,7 +439,7 @@
       "help": "Aquí podrás invertir turnos en cobrar impuestos a los súbditos de tu reino. El oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Debes tener suficientes turnos",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "tax": "Tributar",
       "success": "Has recaudado {{ gold }} oro"
     },
@@ -448,7 +449,7 @@
       "help": "Aquí podrás invertir turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas tierras libres. Las tierras libres sirven como espacio para construir nuevos edificios en tu reino.",
       "cancel": "Cancelar",
       "hint": "Cuantas más tierras tengas, menos encontrarás explorando",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "explore": "Explorar",
       "success": "Has encontrado {{ lands }} tierra(s)"
     },
@@ -457,7 +458,7 @@
       "description": "Asigna a tus héroes",
       "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna. Puedes asignarlos a Liderazo para que entren en batalla o a Guardia para que defiendan tu ciudad. También puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos.",
       "success": "Tus héroes han sido asignados",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "max": "Máximo"
     },
     "archive": {
@@ -477,7 +478,7 @@
       "send": "Enviar",
       "sent": "Mensaje enviado",
       "deleted": "Mensajes borrados",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "invalid": "Campo no válido",
       "reset": "Limpiar"
     },
@@ -509,7 +510,7 @@
       "cancel": "Cancelar",
       "offer": "Ofrecer",
       "hint": "Debes ofrecer como mínimo {{ increment }} a tu dios",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "sacrifice": "Sacrificio"
     },
     "emporium": {
@@ -517,7 +518,7 @@
       "description": "Contrabando del mercado negro",
       "help": "Puedes gastar tus gemas adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un impulso económico, potenciando el status de tu reino en el ránking.",
       "success": "Compra satisfactoria",
-      "error": "No es el resultado esperadoa"
+      "error": "Ha ocurrido un problema"
     },
     "buy": {
       "name": "Compra",
@@ -531,7 +532,7 @@
       "cancel": "Cancelar",
       "build": "Construir",
       "hint": "Necesitas tierras, oro y turnos",
-      "error": "No es el resultado esperado",
+      "error": "Ha ocurrido un problema",
       "success": "Has construido {{ quantity }} edificio(s)"
     },
     "gemology": {
@@ -846,8 +847,8 @@
       "name": "Yetis",
       "description": ""
     },
-    "wood-golem": {
-      "name": "Gólems de madera",
+    "carnivorous-plant": {
+      "name": "Plantas carnívoras",
       "description": ""
     },
     "giant-snail": {
@@ -874,8 +875,8 @@
       "name": "Espíritus del bosque",
       "description": ""
     },
-    "giant-spider": {
-      "name": "Arañas descomunales",
+    "lizardman": {
+      "name": "Hombres lagarto",
       "description": ""
     },
     "earth-elemental": {
@@ -902,8 +903,8 @@
       "name": "Elementales de fuego",
       "description": ""
     },
-    "lizardman": {
-      "name": "Hombres lagarto",
+    "berserker": {
+      "name": "Berserkers",
       "description": ""
     },
     "ogre": {
@@ -934,8 +935,8 @@
       "name": "Dragones blancos",
       "description": ""
     },
-    "griffon": {
-      "name": "Grifos",
+    "angel": {
+      "name": "Ángeles",
       "description": ""
     },
     "knight": {
@@ -1040,21 +1041,21 @@
       "name": "Animar Necrófagos",
       "description": "Convoca una tropa de <ghoul>"
     },
-    "life-leech": {
-      "name": "Beso del vampiro",
-      "description": "Aplica <life-leech> a una tropa aliada"
+    "vampirism": {
+      "name": "Vampirismo",
+      "description": "Aplica <leech> y <flight> a una tropa aliada"
     },
-    "fear": {
-      "name": "Miedo",
-      "description": "Aplica <fear> a una tropa aliada"
+    "terror": {
+      "name": "Terror",
+      "description": "Aplica <fear> a cada tropa enemiga"
     },
     "night-living-dead": {
       "name": "Noche de los muertos vivientes",
       "description": "Convoca una tropa de <undead> al azar"
     },
-    "necromancy-touch": {
+    "necromancy": {
       "name": "Toque de nigromancia",
-      "description": "Revive tropas caídas en <undead>"
+      "description": "Aplica <regeneration> a una tropa al azar"
     },
     "summon-wraith": {
       "name": "Invocar apariciones",
@@ -1070,35 +1071,35 @@
     },
     "death-decay": {
       "name": "Muerte y putrefacción",
-      "description": "Destruye <population> y <land> al <turn>"
+      "description": "Destruye <population> y <land> cada <turn>"
     },
     "shroud-darkness": {
       "name": "Manto de oscuridad",
-      "description": "Aumenta protección mágica"
+      "description": "Aumenta la protección mágica del reino"
     },
-    "poison": {
-      "name": "Veneno ponzoñoso",
-      "description": "Aplica <poison> a tus tropas"
+    "plague": {
+      "name": "Peste negra",
+      "description": "Destruye <population> cada <turn>"
     },
     "soul-pact": {
       "name": "Pacto con el diablo",
-      "description": "Invoca <devil> al <turn> por <population>"
+      "description": "Invoca <devil> cada <turn> por <population>"
     },
-    "icy-touch": {
-      "name": "Toque helado",
-      "description": "Mata unidades de una tropa enemiga"
+    "chain-lightning": {
+      "name": "Cadena de relámpagos",
+      "description": "Inflige daño de <lightning> a cada tropa enemiga"
     },
-    "vampire-kiss": {
-      "name": "Beso del vampiro",
-      "description": "Aplica <seduction> a una tropa aliada"
+    "corruption": {
+      "name": "Corrupción",
+      "description": "Elimina <regeneration> de cada tropa enemiga"
     },
-    "seduction": {
-      "name": "Seducción",
-      "description": "Convierte unidades de una tropa enemiga"
+    "witchcraft": {
+      "name": "Brujería",
+      "description": "Aplica <seduction> y <slowness> a cada tropa enemiga"
     },
-    "black-death": {
-      "name": "Peste negra",
-      "description": "Mata <population> al <turn> y se contagia"
+    "full-moon": {
+      "name": "Luna llena",
+      "description": "Aplica <strength> y <haste> a cada tropa aliada"
     },
     "curse": {
       "name": "Maldición",
@@ -1110,43 +1111,47 @@
     },
     "fireball": {
       "name": "Bola de fuego",
-      "description": "Mata unidades de una tropa enemiga"
+      "description": "Inflige daño de <fire> a una tropa enemiga"
     },
     "battle-chant": {
       "name": "Cántico de batalla",
-      "description": "Aumenta ataque pero disminuye salud"
+      "description": "Elimina <strength> y <scales> de cada tropa enemiga"
     },
     "call-lizardman": {
-      "name": "Llamar hombres lagarto",
+      "name": "Llamar Hombres lagarto",
       "description": "Convoca una tropa de <lizardman>"
+    },
+    "call-berserker": {
+      "name": "Llamar Berserkers",
+      "description": "Convoca una tropa de <berserker>"
     },
     "call-orc": {
       "name": "Llamar Orcos",
       "description": "Convoca una tropa de <orc>"
     },
-    "chain-lightning": {
-      "name": "Cadena de relámpagos",
-      "description": "Mata unidades de varias tropas enemigas"
+    "succubus-kiss": {
+      "name": "Beso del súcubo",
+      "description": "Aplica <seduction> a una tropa enemiga al azar"
     },
     "destroy-artifact": {
-      "name": "Destruir artefactos",
+      "name": "Destruir artefacto",
       "description": "Destruye uno o varios artefactos enemigos"
     },
     "inferno": {
       "name": "Infierno",
-      "description": "Mata unidades de cada tropa enemiga"
+      "description": "Inflige daño de <fire> a cada tropa enemiga"
     },
     "flame-shield": {
       "name": "Escudos de llamas",
-      "description": "Aplica <scales> y <fire> a tus tropas <melee>"
+      "description": "Aplica <scales> y <slowness> a todas tus tropas"
     },
     "flame-blade": {
       "name": "Espadas flamígueras",
-      "description": "Aplica <strength> y <fire> a tus tropas <melee>"
+      "description": "Aplica <strength> y <slowness> a todas tus tropas"
     },
     "flame-arrow": {
       "name": "Flechas de fuego",
-      "description": "Aplica <strength> y <fire> a tus tropas <ranged>"
+      "description": "Aplica <strength> y <weakness> a todas tus tropas"
     },
     "gravity": {
       "name": "Gravedad",
@@ -1156,9 +1161,9 @@
       "name": "Tormenta de meteoritos",
       "description": "Destruye <population> y <land> al <turn>"
     },
-    "weakness": {
-      "name": "Debilidad",
-      "description": "Aplica <weakness> a una tropa enemiga"
+    "fatigue": {
+      "name": "Fatiga",
+      "description": "Aplica <weakness> y <slowness> cada tropa enemiga"
     },
     "summon-demon": {
       "name": "Invocar Demonios",
@@ -1178,22 +1183,22 @@
     },
     "volcano": {
       "name": "Volcán",
-      "description": "Destruye <population> y <land>"
+      "description": "Destruye <population> y <land> del enemigo"
     },
     "fire-wall": {
       "name": "Muro de fuego",
-      "description": "Aumenta protección física"
+      "description": "Aumenta la protección física del reino"
     },
     "frenzy": {
       "name": "Locura",
-      "description": "Aplica <strength> y <weakness> a una tropa"
+      "description": "Aplica <strength>, <weakness> y <leech> a una tropa aliada al azar"
     },
     "call-frost-giant": {
-      "name": "Llamar Gigantes de escarcha",
+      "name": "Llamar Gigantes de Escarcha",
       "description": "Convoca una tropa de <frost-giant>"
     },
     "call-cave-troll": {
-      "name": "Llamar Trolls de cueva",
+      "name": "Llamar Trolls de Cueva",
       "description": "Convoca una tropa de <cave-troll>"
     },
     "call-yeti": {
@@ -1214,51 +1219,51 @@
     },
     "concentration": {
       "name": "Concentración",
-      "description": "Acelera investigaciones"
+      "description": "Acelera las investigaciones de tu reino"
     },
     "confuse": {
-      "name": "Confundir",
-      "description": "Retasa investigaciones y se contagia"
+      "name": "Confusión",
+      "description": "Retasa investigaciones enemigas y se puede contagiar"
     },
     "conjure-elemental": {
-      "name": "Conjurar elementales",
+      "name": "Conjurar Elementales",
       "description": "Convoca una tropa de <elemental> al azar"
     },
-    "flight": {
-      "name": "Vuelo",
-      "description": "Aplica <flight> a una tropa"
+    "levitation": {
+      "name": "Levitación",
+      "description": "Aplica <flight> a una tropa aliada al azar"
     },
     "fog": {
       "name": "Niebla",
-      "description": "Aplica <slowness> cada tropa enemiga"
+      "description": "Aplica <slowness> y <weakness> a cada tropa enemiga y aliada"
     },
-    "fools-gold": {
-      "name": "Oro de los tontos",
-      "description": "Roba <gold> al enemigo"
+    "avarice": {
+      "name": "Avaricia",
+      "description": "Roba <gold> al reino enemigo"
     },
     "hallucination": {
       "name": "Alucinación",
-      "description": "Aplica <seduction> a cada tropa aliada"
+      "description": "Aplica <seduction> y <fear> a cada tropa enemiga"
     },
-    "ice-shock": {
-      "name": "Choque de hielo",
-      "description": "Mata unidades de una tropa enemiga"
+    "freeze": {
+      "name": "Congelar",
+      "description": "Inflige daño de <cold> a una tropa enemiga al azar"
     },
     "ice-wall": {
       "name": "Muro helado",
-      "description": "Aumenta protección física y mágica"
+      "description": "Aumenta la protección física y mágica del reino"
     },
     "invisibility": {
       "name": "Invisibilidad",
-      "description": "Aplica <strength> a una tropa"
+      "description": "Aplica <strength> y <haste> a una tropa aliada al azar"
     },
     "laziness": {
       "name": "Pereza",
-      "description": "Destruye <population> y <gold> al <turn> y se contagia"
+      "description": "Destruye <population> y <gold> cada <turn> y se puede contagiar"
     },
-    "haste": {
-      "name": "Prisa",
-      "description": "Aplica <haste> a una tropa"
+    "celerity": {
+      "name": "Celeridad",
+      "description": "Aplica <haste> a cada tropa aliada"
     },
     "spy": {
       "name": "Espejo espía",
@@ -1269,28 +1274,28 @@
       "description": "Roba un artefacto enemigo al azar"
     },
     "accuracy": {
-      "name": "Precisión",
-      "description": "Aplica <strength> a tus tropas <ranged>"
+      "name": "Puntería",
+      "description": "Aplica <strength> a cada tropa aliada"
     },
     "ambush": {
       "name": "Emboscada",
-      "description": "Aplica <haste> a tus tropas <melee>"
+      "description": "Aplica <haste> a cada tropa aliada"
     },
     "druidism": {
       "name": "Druidismo",
-      "description": "Gana <land> al <turn> por <gold> y <mana>"
+      "description": "Genera <land> cada <turn> por <gold> y <mana>"
     },
     "beast-council": {
-      "name": "Concilio de bestias",
+      "name": "Concilio de las bestias",
       "description": "Convoca una tropa de <animal> al azar"
     },
     "call-giant-snail": {
       "name": "Llamar Caracoles monstruosos",
       "description": "Convoca una tropa de <giant-snail>"
     },
-    "call-giant-spider": {
-      "name": "Llamar Arañas descomunales",
-      "description": "Convoca una tropa de <giant-spider>"
+    "call-carnivorous-plant": {
+      "name": "Llamar Plantas carnívoras",
+      "description": "Convoca una tropa de <carnivorous-plant>"
     },
     "call-gnoll": {
       "name": "Llamar Gnolls",
@@ -1298,39 +1303,39 @@
     },
     "climate-control": {
       "name": "Control del clima",
-      "description": "Aumenta producción de <gold> al <turn>"
+      "description": "Aumenta producción de <gold> cada <turn>"
     },
     "cure": {
       "name": "Curación",
-      "description": "Recupera salud a una tropa"
+      "description": "Recupera salud a una tropa aliada al azar"
     },
     "growth": {
       "name": "Crecimiento",
-      "description": "Aumenta el daño y la vida de tus <animal>"
+      "description": "Aplica <leech> a cada tropa aliada"
     },
     "locust-swarm": {
       "name": "Enjambre de langostas",
-      "description": "Destruye <population> al <turn> y se contagia"
+      "description": "Elimina <population> del reino enemigo cada <turn> y se puede contagiar"
     },
     "natures-favor": {
       "name": "Favor de la naturaleza",
-      "description": "Aumenta producción de <population> al <turn>"
+      "description": "Aumenta producción de <population> cada <turn>"
     },
-    "regeneration": {
-      "name": "Regeneración",
-      "description": "Aplica <regeneration> a una tropa"
+    "invigorate": {
+      "name": "Vigorizar",
+      "description": "Aplica <regeneration> y <scales> a una tropa aliada al azar"
     },
-    "rust-armor": {
-      "name": "Oxidar armadura",
-      "description": "Aplica <weakness> a una tropa enemiga"
+    "venom": {
+      "name": "Ponzoña",
+      "description": "Inflige daño de <poison> a una tropa enemiga al azar"
     },
     "serenity": {
       "name": "Serenidad",
-      "description": "Rompe todos los encantamientos"
+      "description": "Rompe todos los encantamientos del reino enemigo"
     },
-    "slowness": {
-      "name": "Lentitud",
-      "description": "Aplica <slowness> a una tropa enemiga"
+    "calm": {
+      "name": "Calma",
+      "description": "Elimina <fear>,<slowness>,<weakness>,<seduction>,<leech> a una tropa aliada al azar"
     },
     "summon-goblin": {
       "name": "Invocar Goblins",
@@ -1346,11 +1351,11 @@
     },
     "sunray": {
       "name": "Rayo de sol",
-      "description": "Aumenta protección mágica"
+      "description": "Aumenta la protección mágica del reino"
     },
-    "strength": {
-      "name": "Fuerza",
-      "description": "Aplica <strength> a una tropa"
+    "wrath": {
+      "name": "Ira",
+      "description": "Elimina <strength> de cada tropa enemiga y aliada"
     },
     "call-crusader": {
       "name": "Llamar Cruzados",
@@ -1364,16 +1369,16 @@
       "name": "Llamar Templarios",
       "description": "Convoca una tropa de <templar>"
     },
-    "flash": {
+    "blaze": {
       "name": "Destello",
-      "description": "Aplica <weakness> y <slowness> a cada tropa enemiga"
+      "description": "Aplica <fear> y <weakness> a cada tropa enemiga"
     },
-    "gate": {
-      "name": "Puerta celestial",
-      "description": "Convoca una tropa de <giant> al azar"
+    "prayer": {
+      "name": "Plegaria",
+      "description": "Convoca una tropa de <human> al azar"
     },
-    "healing-hand": {
-      "name": "Mano sanadora",
+    "healing": {
+      "name": "Sanación",
       "description": "Recupera salud a cada tropa aliada"
     },
     "divine-protection": {
@@ -1382,11 +1387,11 @@
     },
     "holy-word": {
       "name": "Palabra santa",
-      "description": "Daña unidades de cada tropa enemiga"
+      "description": "Inflige daño de <holy> a cada tropa enemiga"
     },
-    "scales": {
-      "name": "Placas",
-      "description": "Aplica <scales> a una tropa"
+    "endurance": {
+      "name": "Resistencia",
+      "description": "Elimina <scales> de cada tropa enemiga y aliada"
     },
     "locate-artifact": {
       "name": "Localizar artefacto",
@@ -1394,11 +1399,11 @@
     },
     "miracle": {
       "name": "Milagro",
-      "description": "Gana la batalla inmediatamente"
+      "description": "Aplica <regeneration>,<strength>,<scales>,<haste> y <flight> a una tropa aliada al azar"
     },
-    "love-peace": {
-      "name": "Paz y amor",
-      "description": "Aumenta <gold>,<mana> y <population> por <turn>"
+    "peace": {
+      "name": "Paz",
+      "description": "Genera <gold>,<mana> y <population> cada <turn>"
     },
     "resurrection": {
       "name": "Resurección",
@@ -1406,11 +1411,11 @@
     },
     "shield-light": {
       "name": "Escudos de luz",
-      "description": "Aplica <scales> y <holy> a tus tropas <melee>"
+      "description": "Aplica <scales> a cada tropa aliada"
     },
-    "summon-griffon": {
-      "name": "Invocar Grifos",
-      "description": "Convoca una tropa de <griffon>"
+    "summon-angel": {
+      "name": "Invocar Ángeles",
+      "description": "Convoca una tropa de <angel>"
     },
     "summon-titan": {
       "name": "Invocar Titanes",
@@ -1422,11 +1427,11 @@
     },
     "sword-light": {
       "name": "Espadas de luz",
-      "description": "Aplica <strength> y <holy> a tus tropas <melee>"
+      "description": "Aplica <strength> a cada tropa aliada"
     },
     "tranquility": {
       "name": "Tranquilidad",
-      "description": "Aplica <slowness> a cada tropa enemiga"
+      "description": "Aplica <slowness> y <weakness> a cada tropa enemiga"
     },
     "armageddon": {
       "name": "Armagedón",
@@ -1443,7 +1448,7 @@
       "description": ""
     },
     "giant": {
-      "name": "Giante",
+      "name": "Gigante",
       "description": ""
     },
     "reptile": {
@@ -1526,31 +1531,31 @@
   "skill": {
     "regeneration": {
       "name": "Regeneración",
-      "description": "Resucita tropas tras la batalla"
+      "description": "Resucita +25% tropas tras la batalla"
     },
-    "life-leech": {
+    "leech": {
       "name": "Robar vida",
-      "description": "Recupera salud al atacar"
+      "description": "Aumenta su vida en +25%"
     },
     "scales": {
       "name": "Placas",
-      "description": "Aumenta su defensa +30%"
+      "description": "Aumenta su defensa en +25%"
     },
     "strength": {
       "name": "Fuerza",
-      "description": "Aumenta su ataque +20%"
+      "description": "Aumenta su ataque en +25%"
     },
     "haste": {
       "name": "Prisa",
-      "description": "Aumenta su iniciativa +1"
+      "description": "Aumenta su iniciativa en +1"
     },
     "weakness": {
       "name": "Debilidad",
-      "description": "Disminuye su defensa en -30%"
+      "description": "Disminuye su defensa en -25%"
     },
     "seduction": {
       "name": "Seducción",
-      "description": "Esquiva el primer ataque"
+      "description": "Disminuye su vida en -25%"
     },
     "slowness": {
       "name": "Lentitud",
@@ -1562,7 +1567,7 @@
     },
     "fear": {
       "name": "Miedo",
-      "description": "Disminuye su ataque en -20%"
+      "description": "Disminuye su ataque en -25%"
     }
   },
   "hero": {
@@ -1774,7 +1779,7 @@
     },
     "lucky-coin": {
       "name": "Moneda de la suerte",
-      "description": "Conjura <love-peace>,<climate-control>,<natures-favor> o <druidism>"
+      "description": "Conjura <peace>,<climate-control>,<natures-favor> o <druidism>"
     },
     "lucky-horseshoe": {
       "name": "Herradura de la suerte",
@@ -1782,7 +1787,7 @@
     },
     "lucky-paw": {
       "name": "Pata de la suerte",
-      "description": "Conjura <concentration>,<growth>,<hallucination>,<battle-chant> o <blood-ritual>"
+      "description": "Conjura <concentration>,<soul-pact> o <blood-ritual>"
     },
     "magic-beans": {
       "name": "Judías mágicas",
@@ -1846,7 +1851,7 @@
     },
     "vampire-teeth": {
       "name": "Colmillo de vampiro",
-      "description": "Aplica <life-leech> a cada tropa aliada"
+      "description": "Aplica <leech> a cada tropa aliada"
     }
   },
   "god": {

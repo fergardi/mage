@@ -253,7 +253,7 @@ export class CacheService {
       let units = snapshot.docs.map(unit => unit.data());
       units.forEach(unit => {
         unit.join = factions.find(faction => faction.id === unit.faction);
-        unit.skills = unit.skills.map(skill => skills.find(s => s.id === skill));
+        unit.skills = unit.skills.map(skill => skills.find(s => s.id === skill.replace(/\+|\-|\//g, '')));
         unit.categories = unit.categories.map(category => categories.find(c => c.id === category));
         unit.resistances = unit.resistances.map(category => categories.find(c => c.id === category));
         unit.families = unit.families.map(family => families.find(f => f.id === family));
@@ -275,11 +275,11 @@ export class CacheService {
       let spells = snapshot.docs.map(spell => spell.data());
       spells.forEach(spell => {
         spell.join = factions.find(faction => faction.id === spell.faction);
-        spell.skills = spell.skills.map(skill => skills.find(s => s.id === skill));
+        spell.skills = spell.skills.map(skill => skills.find(s => s.id === skill.replace(/\+|\-|\//g, '')));
         spell.categories = spell.categories.map(category => categories.find(c => c.id === category));
         spell.families = spell.families.map(family => families.find(f => f.id === family));
         spell.units = spell.units.map(unit => units.find(u => u.id === unit));
-        spell.resources = spell.resources.map(resource => resources.find(r => r.id === resource));
+        spell.resources = spell.resources.map(resource => resources.find(r => r.id === resource.replace(/\+|\-|\//g, '')));
       });
       localStorage.setItem(CollectionType.spells, JSON.stringify([...spells]));
     }
@@ -299,11 +299,11 @@ export class CacheService {
       let items = snapshot.docs.map(item => item.data());
       items.forEach(item => {
         item.join = factions.find(faction => faction.id === item.faction);
-        item.skills = item.skills.map(skill => skills.find(s => s.id === skill));
+        item.skills = item.skills.map(skill => skills.find(s => s.id === skill.replace(/\+|\-|\//g, '')));
         item.categories = item.categories.map(category => categories.find(c => c.id === category));
         item.families = item.families.map(family => families.find(f => f.id === family));
         item.units = item.units.map(unit => units.find(u => u.id === unit));
-        item.resources = item.resources.map(resource => resources.find(r => r.id === resource));
+        item.resources = item.resources.map(resource => resources.find(r => r.id === resource.replace(/\+|\-|\//g, '')));
         item.spells = item.spells.map(spell => spells.find(s => s.id === spell));
       });
       localStorage.setItem(CollectionType.items, JSON.stringify([...items]));

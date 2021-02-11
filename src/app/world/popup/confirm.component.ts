@@ -9,7 +9,7 @@ import { NotificationService } from 'src/app/services/notification.service';
     <div mat-dialog-content>
       <p>{{ 'world.confirm.description' | translate }}</p>
       <mat-list dense *ngIf="data && data.object && data.object.join">
-        <mat-list-item [ngClass]="{ 'legendary': data.object.join | legendary }">
+        <mat-list-item [ngClass]="[data.object.join.faction, (data.object.join | legendary) ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="data.object.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="data.object.join.image">
           </div>

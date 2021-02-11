@@ -10,10 +10,10 @@
   {
     "type": "skill",
     "faction": "black",
-    "id": "life-leech",
-    "name": "skill.life-leech.name",
-    "description": "skill.life-leech.description",
-    "image": "/assets/images/skills/life-leech.png"
+    "id": "leech",
+    "name": "skill.leech.name",
+    "description": "skill.leech.description",
+    "image": "/assets/images/skills/leech.png"
   },
   {
     "type": "skill",

@@ -27,7 +27,7 @@ export class NotificationService {
   }
 
   warning(text: string) {
-    this.snackBar.open(this.translateService.instant(text), '‼', {...this.options, panelClass: ['mat-toolbar', 'mat-primary']} );
+    this.snackBar.open(this.translateService.instant(text), '✗', {...this.options, panelClass: ['mat-toolbar', 'mat-primary']} );
   }
 
   error(text: string) {
