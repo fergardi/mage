@@ -12,6 +12,7 @@ import { RecruitComponent } from './recruit.component';
 import { DisbandComponent } from './disband.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 export enum TroopAssignmentType {
   'troopNone', 'troopAttack', 'troopDefense'
@@ -43,6 +44,7 @@ export class ArmyComponent implements OnInit {
     private store: Store,
     private dialog: MatDialog,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) {}
 
   async ngOnInit() {
@@ -70,6 +72,7 @@ export class ArmyComponent implements OnInit {
   }
 
   async updateArmy() {
+    this.loadingService.setLoading(true);
     try {
       let army = [];
       this.kingdomTroops.forEach((kingdomTroop, index) => {
@@ -82,10 +85,12 @@ export class ArmyComponent implements OnInit {
         army.push({ troopId: defenseTroop.fid, sort: 3000 + index, assignment: TroopAssignmentType.troopDefense });
       });
       let assigned = await this.apiService.assignArmy(this.uid, army);
-      this.notificationService.success('kingdom.army.success')
+      this.notificationService.success('kingdom.army.success');
+      this.loadingService.setLoading(false);
     } catch (error) {
       console.error(error);
       this.notificationService.error('kingdom.army.error')
+      this.loadingService.setLoading(false);
     }
   }
 

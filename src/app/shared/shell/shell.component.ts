@@ -12,6 +12,7 @@ import { Store, Select } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
 import { TourService } from 'ngx-tour-md-menu';
 import { DomService } from 'src/app/services/dom.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-shell',
@@ -52,6 +53,7 @@ export class ShellComponent {
       ],
     },
   ];
+
   @Select((state: any) => state.auth.supplies) kingdomSupplies$: Observable<any[]>;
   link$: Observable<any> = this.router.events
   .pipe(
@@ -77,6 +79,7 @@ export class ShellComponent {
     private store: Store,
     private tourService: TourService,
     private domService: DomService,
+    public loadingService: LoadingService,
   ) {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));

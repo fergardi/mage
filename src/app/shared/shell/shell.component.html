@@ -97,6 +97,10 @@
         <a mat-menu-item (click)="tour()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>live_help</mat-icon>{{ 'user.auth.tour' | translate }}</a>
       </mat-menu>
     </mat-toolbar>
+    <!-- loading -->
+    <div class="loading-screen" *ngIf="loadingService.loading" [ngStyle]="{ height: !(isHandset$ | async) ? 'calc(100vh - 64px)' : 'calc(100vh - 56px)'}">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    </div>
     <!-- main content -->
     <main
       #main
