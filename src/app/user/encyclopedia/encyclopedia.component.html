@@ -9,7 +9,7 @@
 
     <mat-card-content>
       <span>{{ 'user.encyclopedia.help' | translate }}</span>
-      <table mat-table matSort [dataSource]="data">
+      <table mat-table matSort matSortActive="name" matSortDirection="asc" [dataSource]="data">
 
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
 

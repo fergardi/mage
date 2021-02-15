@@ -115,7 +115,7 @@ let factions: any[] = [
   }, {
     faction: 'green',
     units: [
-      'wyvern',
+      'hydra',
     ],
     enchantments: [
       'druidism',
@@ -335,9 +335,9 @@ const createKingdom = async (kingdomId: string, factionId: string, name: string,
     }
     case 'white': {
       // troops
-      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: 'crusader', quantity: 20000, assignment: 2 });
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: 'pegasus', quantity: 20000, assignment: 2 });
       // charms
-      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'call-crusader', turns: 0, completed: false, total: 200 });
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'call-pegasus', turns: 0, completed: false, total: 200 });
       batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'healing-hand', turns: 0, completed: false, total: 200 });
       break;
     }

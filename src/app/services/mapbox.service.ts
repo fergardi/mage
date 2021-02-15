@@ -241,7 +241,7 @@ export class MapboxService {
         case LocationType.CASTLE:
           troops = [
             { id: 'knight', quantity: 123123 },
-            { id: 'crusader', quantity: 123132 },
+            { id: 'pegasus', quantity: 123132 },
             { id: 'griffon', quantity: 123132 },
           ];
           contracts = [
@@ -271,8 +271,8 @@ export class MapboxService {
           break;
         case LocationType.LAKE:
           troops = [
-            { id: 'basilisk', quantity: 123123 },
-            { id: 'wyvern', quantity: 123132 },
+            { id: 'medusa', quantity: 123123 },
+            { id: 'hydra', quantity: 123132 },
           ];
           break;
         case LocationType.MINE:
@@ -313,9 +313,9 @@ export class MapboxService {
           break;
         case LocationType.VOLCANO:
           troops = [
-            { id: 'demon', quantity: 666 },
+            { id: 'minotaur', quantity: 666 },
             { id: 'devil', quantity: 666 },
-            { id: 'wendigo', quantity: 666 },
+            { id: 'griffon', quantity: 666 },
             { id: 'fire-elemental', quantity: 666 },
           ];
           break;
@@ -363,13 +363,13 @@ export class MapboxService {
         case LocationType.RUIN:
           troops = [
             { id: 'giant-spider', quantity: 123132 },
-            { id: 'basilisk', quantity: 123132 },
+            { id: 'medusa', quantity: 123132 },
           ];
           break;
         case LocationType.SHRINE:
           troops = [
             { id: 'djinni', quantity: 123132 },
-            { id: 'wisp', quantity: 123132 },
+            { id: 'spider', quantity: 123132 },
             { id: 'werebear', quantity: 123132 },
           ];
           break;
