@@ -118,8 +118,8 @@
 
           <mat-card-content>
             <span>{{ 'kingdom.recruit.help' | translate }}</span>
+            <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.recruit">
-              <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
               <button mat-list-item *ngFor="let unit of recruitUnits" (click)="openRecruitDialog(unit)" class="common">
                 <div mat-list-avatar matBadge="∞" matBadgePosition="above before">
                   <img mat-list-avatar [src]="unit.image">

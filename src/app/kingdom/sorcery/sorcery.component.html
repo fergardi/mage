@@ -16,7 +16,7 @@
         <span>{{ 'kingdom.sorcery.help' | translate }}</span>
         <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
         <mat-action-list dense class="dotted" id="0" tourAnchor="tour.artifacts" #kngdmArtifacts="cdkDropList" [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="kingdomArtifacts">
-          <button mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag [cdkDragDisabled]="!artifact.join.battle" [ngClass]="{ 'handle': artifact.join.battle, 'legendary': artifact.join | legendary, 'common': !(artifact.join | legendary) }" [id]="artifact.fid" (click)="!artifact.join.battle && artifact.join.self ? openActivateDialog(artifact) : null">
+          <button mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag [cdkDragDisabled]="!artifact.join.battle" [ngClass]="{ 'handle': artifact.join.battle, 'legendary': artifact.join | legendary, 'common': !(artifact.join | legendary) }" [id]="artifact.fid" (click)="!artifact.join.battle && artifact.join.self ? openActivateDialog(artifact) : null" [disabled]="!artifact.join.battle && !artifact.join.self">
             <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
               <img mat-list-avatar [src]="artifact.join.image">
             </div>

@@ -260,25 +260,28 @@ body {
   padding: 0 5px;
 }
 
+.mat-badge-above .mat-badge-content {
+  top: -8px !important;
+}
+
+.mat-badge-below .mat-badge-content {
+  bottom: -8px !important;
+}
+
 .mat-card-content {
   margin-bottom: 0px !important;
 }
 
 .mat-list-base {
   padding-top: 0px !important;
-}
-
-.mat-list-base {
   .mat-list-avatar {
     width: 44px !important;
     height: 44px !important;
   }
+  .mat-subheader:first-child {
+    margin-top: 0 !important;
+  }
 }
-
-.mat-list-base .mat-subheader:first-child {
-  margin-top: 0 !important;
-}
-
 .mat-subheader {
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
@@ -495,13 +498,18 @@ hr {
 
 .mat-list-base.dotted {
   padding-top: 0;
-  min-height: $list-item-height;
   border: 2px dashed $primary-color;
 }
 .mat-list {
+  min-height: $list-item-height;
+  max-height: ($list-item-height * 5) + 4;
+  overflow: hidden auto;
+  box-sizing: border-box;
   .mat-list-item {
     min-height: $list-item-height !important;
+    max-height: $list-item-height !important;
     height: $list-item-height !important;
+    overflow: hidden;
     &.handle {
       &:hover {
         cursor: move;
@@ -538,6 +546,7 @@ hr {
   .mat-card-avatar {
     height: 48px !important;
     width: 48px !important;
+    border: 2px solid $primary-color;
   }
 }
 
