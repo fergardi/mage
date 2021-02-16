@@ -16,6 +16,8 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AuthState } from './shared/auth/auth.state';
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { PaginatorIntl } from './shared/custom/paginator.intl';
 
 // AOT compilation support
 export function HttpLoaderFactory(http: HttpClient) {
@@ -54,6 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+    { provide: MatPaginatorIntl, useClass: PaginatorIntl },
   ],
   bootstrap: [
     AppComponent,

@@ -1,4 +1,12 @@
 {
+  "paginator": {
+    "itemsPerPageLabel": "Pergaminos por página",
+    "nextPageLabel": "Siguiente página",
+    "previousPageLabel": "Anterior página",
+    "firstPageLabel": "Primera página",
+    "lastPageLabel": "Última página",
+    "rangeLabelIntl": "Mostrando {{ start }} - {{ end }} de {{ length }} pergaminos"
+  },
   "tour": {
     "end": "Terminar",
     "supplies": {
@@ -113,7 +121,7 @@
     "encyclopedia": {
       "name": "Enciclopedia",
       "description": "Conocimiento ilimitado",
-      "help": "En esta enciclopedia encontrarás todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc."
+      "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc."
     },
     "tome": {
       "help": "Tus eruditos encuentran un viejo y polvoriento pergamino en la antigua biblioteca real. Los grabados, descoloridos por el paso del tiempo pero todavía legibles, contienen todo lo necesario para calmar tu sed de sabiduría. Sonríes, pues el conocimiento es la mitad de la batalla.",
@@ -123,7 +131,7 @@
       "populationMaintenance": "{{ number }} al turno",
       "attack": "Ataque {{ number }}",
       "defense": "Defensa {{ number }}",
-      "health": "Vida {{ number }}",
+      "health": "Salud {{ number }}",
       "initiative": "Iniciativa {{ number }}",
       "power": "Poder {{ number }}",
       "type": "Tipo",
@@ -1525,7 +1533,7 @@
     },
     "breath": {
       "name": "Aliento",
-      "description": "Daño elemental aumentado"
+      "description": "Tipo de daño múltiple"
     }
   },
   "skill": {
@@ -1535,7 +1543,7 @@
     },
     "leech": {
       "name": "Robar vida",
-      "description": "Aumenta su vida en +25%"
+      "description": "Aumenta su salud en +25%"
     },
     "scales": {
       "name": "Placas",
@@ -1555,7 +1563,7 @@
     },
     "seduction": {
       "name": "Seducción",
-      "description": "Disminuye su vida en -25%"
+      "description": "Disminuye su salud en -25%"
     },
     "slowness": {
       "name": "Lentitud",
@@ -1911,7 +1919,7 @@
     },
     "warrior": {
       "name": "Gremio de Guerreros",
-      "description": "Tus tropas tienen más vida"
+      "description": "Tus tropas tienen más salud"
     }
   }
 }
