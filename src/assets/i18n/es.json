@@ -831,8 +831,8 @@
       "name": "Trolls de cueva",
       "description": ""
     },
-    "basilisk": {
-      "name": "Basiliscos",
+    "medusa": {
+      "name": "Medusas",
       "description": ""
     },
     "leviathan": {
@@ -871,8 +871,8 @@
       "name": "Hombres oso",
       "description": ""
     },
-    "wisp": {
-      "name": "Espíritus del bosque",
+    "spider": {
+      "name": "Arañas",
       "description": ""
     },
     "lizardman": {
@@ -883,15 +883,15 @@
       "name": "Elementales de tierra",
       "description": ""
     },
-    "wyvern": {
-      "name": "Wyvernos",
+    "hydra": {
+      "name": "Hidras",
       "description": ""
     },
     "cyclop": {
       "name": "Cíclopes",
       "description": ""
     },
-    "demon": {
+    "minotaur": {
       "name": "Demonios",
       "description": ""
     },
@@ -923,8 +923,8 @@
       "name": "Dragones rojos",
       "description": ""
     },
-    "wendigo": {
-      "name": "Wéndigos",
+    "griffon": {
+      "name": "Grifos",
       "description": ""
     },
     "behemoth": {
@@ -959,7 +959,7 @@
       "name": "Templarios",
       "description": ""
     },
-    "crusader": {
+    "pegasus": {
       "name": "Cruzados",
       "description": ""
     },
@@ -1165,17 +1165,17 @@
       "name": "Fatiga",
       "description": "Aplica <weakness> y <slowness> cada tropa enemiga"
     },
-    "summon-demon": {
+    "summon-minotaur": {
       "name": "Invocar Demonios",
-      "description": "Convoca una tropa de <demon>"
+      "description": "Convoca una tropa de <minotaur>"
     },
     "summon-ogre": {
       "name": "Invocar Ogros",
       "description": "Convoca una tropa de <ogre>"
     },
-    "summon-wendigo": {
-      "name": "Invocar Wéndigos",
-      "description": "Convoca una tropa de <wendigo>"
+    "summon-griffon": {
+      "name": "Invocar Grifos",
+      "description": "Convoca una tropa de <griffon>"
     },
     "call-cyclop": {
       "name": "Llamar Cíclopes",
@@ -1209,9 +1209,9 @@
       "name": "Invocar Magos",
       "description": "Convoca una tropa de <mage>"
     },
-    "summon-basilisk": {
-      "name": "Invocar Basiliscos",
-      "description": "Convoca una tropa de <basilisk>"
+    "summon-medusa": {
+      "name": "Invocar Medusas",
+      "description": "Convoca una tropa de <medusa>"
     },
     "summon-djinni": {
       "name": "Invocar Genios",
@@ -1345,9 +1345,9 @@
       "name": "Invocar Hombres oso",
       "description": "Convoca una tropa de <werebear>"
     },
-    "summon-wisp": {
-      "name": "Invocar Espíritus del bosque",
-      "description": "Convoca una tropa de <wisp>"
+    "summon-spider": {
+      "name": "Invocar Arañas",
+      "description": "Convoca una tropa de <spider>"
     },
     "sunray": {
       "name": "Rayo de sol",
@@ -1357,9 +1357,9 @@
       "name": "Ira",
       "description": "Elimina <strength> de cada tropa enemiga y aliada"
     },
-    "call-crusader": {
+    "call-pegasus": {
       "name": "Llamar Cruzados",
-      "description": "Convoca una tropa de <crusader>"
+      "description": "Convoca una tropa de <pegasus>"
     },
     "call-knight": {
       "name": "Llamar Caballeros",
@@ -1385,7 +1385,7 @@
       "name": "Protección divina",
       "description": "Aumenta protección física"
     },
-    "holy-word": {
+    "exorcism": {
       "name": "Palabra santa",
       "description": "Inflige daño de <holy> a cada tropa enemiga"
     },
