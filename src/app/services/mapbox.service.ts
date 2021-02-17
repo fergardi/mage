@@ -15,6 +15,7 @@ import * as firebase from 'firebase/app';
 import { ApiService } from './api.service';
 import * as _ from 'lodash';
 import { MarkerType, FactionType, StoreType, LocationType } from '../shared/type/common.type';
+import { NotificationService } from './notification.service';
 
 interface Marker {
   id: string;
@@ -42,6 +43,7 @@ export class MapboxService {
     private store: Store,
     private randomService: RandomService,
     private apiService: ApiService,
+    private notificationService: NotificationService,
   ) {
     this.mapbox.accessToken = environment.mapbox.token;
   }
@@ -133,261 +135,23 @@ export class MapboxService {
 
   addShopByClick(type: StoreType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      this.addShop(type, $event.lngLat.lat, $event.lngLat.lng, null);
+      await this.apiService.addShop(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
+      this.notificationService.warning('world.map.populate');
     });
-  }
-
-  async addShop(type: StoreType, latitude: number, longitude: number, name: string) {
-    const geopoint = this.geofirex.point(latitude, longitude);
-    const ref = await this.angularFirestore.doc(`shops/${geopoint.geohash}`).get().toPromise();
-    if (!ref.exists) {
-      await this.firebaseService.addElementToCollection('shops', {
-        store: type,
-        position: geopoint,
-        coordinates: {
-          latitude: latitude,
-          longitude: longitude,
-        },
-        name: name,
-      }, geopoint.geohash);
-      switch (type) {
-        case StoreType.INN:
-          this.firebaseService.addElementsToCollection(`shops/${geopoint.geohash}/contracts`, [
-            { id: 'dragon-rider', gold: 23000, level: 2 },
-          ]);
-          break;
-        case StoreType.MERCENARY:
-          this.firebaseService.addElementsToCollection(`shops/${geopoint.geohash}/troops`, [
-            { id: 'skeleton', gold: 1, quantity: 20000 },
-          ]);
-          break;
-        case StoreType.MERCHANT:
-          this.firebaseService.addElementsToCollection(`shops/${geopoint.geohash}/artifacts`, [
-            { id: 'magical-chest', gold: 1000000, quantity: 1 },
-            { id: 'stone-chest', gold: 1000000, quantity: 2 },
-          ]);
-          break;
-        case StoreType.ALCHEMIST:
-          this.firebaseService.addElementsToCollection(`shops/${geopoint.geohash}/artifacts`, [
-            { id: 'love-potion', gold: 1000000, quantity: 1 },
-            { id: 'mana-potion', gold: 1000000, quantity: 2 },
-            { id: 'strength-potion', gold: 1000000, quantity: 2 },
-          ]);
-          break;
-        case StoreType.SORCERER:
-          this.firebaseService.addElementsToCollection(`shops/${geopoint.geohash}/charms`, [
-            { id: 'animate-skeleton', gold: 1000000, level: 1 },
-          ]);
-          break;
-      }
-    }
   }
 
   addQuestByClick(type: LocationType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      this.addQuest(type, $event.lngLat.lat, $event.lngLat.lng, null);
+      await this.apiService.addQuest(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
+      this.notificationService.warning('world.map.populate');
     });
-  }
-
-  async addQuest(type: LocationType, latitude: number, longitude: number, name: string) {
-    const geopoint = this.geofirex.point(latitude, longitude);
-    const ref = await this.angularFirestore.doc(`quests/${geopoint.geohash}`).get().toPromise();
-    if (!ref.exists) {
-      await this.firebaseService.addElementToCollection('quests', {
-        location: type,
-        position: geopoint,
-        coordinates: {
-          latitude: latitude,
-          longitude: longitude,
-        },
-        name: name,
-      }, geopoint.geohash);
-      let troops = [];
-      let contracts = [];
-      let artifacts = [];
-      switch (type) {
-        case LocationType.GRAVEYARD:
-          troops = [
-            { id: 'skeleton', quantity: 123123 },
-            { id: 'zombie', quantity: 123132 },
-            { id: 'lich', quantity: 123132 },
-            { id: 'bone-dragon', quantity: 3 },
-          ];
-          contracts = [
-            { id: 'necrophage', level: 1 },
-          ];
-          break;
-        case LocationType.TOWN:
-          troops = [
-            { id: 'werewolf', quantity: 123123 },
-            { id: 'vampire', quantity: 123132 },
-            { id: 'wraith', quantity: 123132 },
-            { id: 'nightmare', quantity: 3 },
-          ];
-          contracts = [
-            { id: 'necromancer', level: 1 },
-          ];
-          break;
-        case LocationType.CATHEDRAL:
-          troops = [
-            { id: 'monk', quantity: 123123 },
-            { id: 'templar', quantity: 123132 },
-            { id: 'paladin', quantity: 123132 },
-          ];
-          contracts = [
-            { id: 'commander', level: 1 },
-          ];
-          break;
-        case LocationType.CASTLE:
-          troops = [
-            { id: 'knight', quantity: 123123 },
-            { id: 'pegasus', quantity: 123132 },
-            { id: 'griffon', quantity: 123132 },
-          ];
-          contracts = [
-            { id: 'commander', level: 1 },
-          ];
-          break;
-        case LocationType.CAVE:
-          troops = [
-            { id: 'gnoll', quantity: 123123 },
-            { id: 'orc', quantity: 123132 },
-          ];
-          break;
-        case LocationType.DUNGEON:
-          troops = [
-            { id: 'wood-golem', quantity: 123123 },
-            { id: 'stone-golem', quantity: 123132 },
-            { id: 'crystal-golem', quantity: 123132 },
-            { id: 'iron-golem', quantity: 123132 },
-          ];
-          break;
-        case LocationType.FOREST:
-          troops = [
-            { id: 'bat', quantity: 123123 },
-            { id: 'frog', quantity: 123132 },
-            { id: 'rat', quantity: 123132 },
-          ];
-          break;
-        case LocationType.LAKE:
-          troops = [
-            { id: 'medusa', quantity: 123123 },
-            { id: 'hydra', quantity: 123132 },
-          ];
-          break;
-        case LocationType.MINE:
-          troops = [
-            { id: 'ice-elemental', quantity: 123132 },
-            { id: 'fire-elemental', quantity: 123132 },
-            { id: 'earth-elemental', quantity: 123132 },
-          ];
-          contracts = [
-            { id: 'elementalist', level: 6 },
-          ];
-          break;
-        case LocationType.MONOLITH:
-          troops = [
-            { id: 'lightning-elemental', quantity: 123123 },
-            { id: 'light-elemental', quantity: 123132 },
-          ];
-          contracts = [
-            { id: 'elementalist', level: 6 },
-          ];
-          break;
-        case LocationType.MOUNTAIN:
-          troops = [
-            { id: 'yeti', quantity: 123123 },
-            { id: 'cyclop', quantity: 123132 },
-            { id: 'ogre', quantity: 123132 },
-            { id: 'frost-giant', quantity: 123132 },
-          ];
-          break;
-        case LocationType.NEST:
-          troops = [
-            { id: 'blue-dragon', quantity: 1 },
-            { id: 'red-dragon', quantity: 1 },
-            { id: 'golden-dragon', quantity: 1 },
-            { id: 'white-dragon', quantity: 1 },
-            { id: 'baby-dragon', quantity: 1 },
-          ];
-          break;
-        case LocationType.VOLCANO:
-          troops = [
-            { id: 'minotaur', quantity: 666 },
-            { id: 'devil', quantity: 666 },
-            { id: 'griffon', quantity: 666 },
-            { id: 'fire-elemental', quantity: 666 },
-          ];
-          break;
-        case LocationType.BARRACK:
-          troops = [
-            { id: 'cavalry', quantity: 123456 },
-            { id: 'fanatic', quantity: 123456 },
-            { id: 'pikeman', quantity: 123456 },
-            { id: 'archer', quantity: 123456 },
-          ];
-          contracts = [
-            { id: 'commander', level: 1 },
-          ];
-          break;
-        case LocationType.ISLAND:
-          troops = [
-            { id: 'crystal-golem', quantity: 123132 },
-            { id: 'ice-elemental', quantity: 123132 },
-          ];
-          break;
-        case LocationType.TOTEM:
-          troops = [
-            { id: 'goblin', quantity: 123132 },
-            { id: 'goblin', quantity: 123132 },
-            { id: 'goblin', quantity: 123132 },
-            { id: 'goblin', quantity: 123132 },
-            { id: 'goblin', quantity: 123132 },
-          ];
-          break;
-        case LocationType.PYRAMID:
-          troops = [
-            { id: 'wraith', quantity: 123132 },
-            { id: 'zombie', quantity: 123132 },
-            { id: 'skeleton', quantity: 123132 },
-          ];
-          contracts = [
-            { id: 'mummy', level: 6 },
-          ];
-          break;
-        case LocationType.SHIP:
-          troops = [
-            { id: 'leviathan', quantity: 123132 },
-          ];
-          break;
-        case LocationType.RUIN:
-          troops = [
-            { id: 'giant-spider', quantity: 123132 },
-            { id: 'medusa', quantity: 123132 },
-          ];
-          break;
-        case LocationType.SHRINE:
-          troops = [
-            { id: 'djinni', quantity: 123132 },
-            { id: 'spider', quantity: 123132 },
-            { id: 'werebear', quantity: 123132 },
-          ];
-          break;
-      }
-      artifacts = [
-        { id: 'valhalla-horn', quantity: 1, turns: 10 },
-      ];
-      this.firebaseService.addElementsToCollection(`quests/${geopoint.geohash}/troops`, troops);
-      this.firebaseService.addElementsToCollection(`quests/${geopoint.geohash}/contracts`, contracts);
-      this.firebaseService.addElementsToCollection(`quests/${geopoint.geohash}/artifacts`, artifacts);
-    }
   }
 
   addMarker(data: any, type: MarkerType, popup: boolean = false, radius: boolean = false, fly: boolean = false): mapboxgl.Marker {
     // remove the old one
     this.removeMarker(data.fid);
     // size
-    const size = type === MarkerType.KINGDOM ? 70 : 40;
+    const size = type === MarkerType.KINGDOM ? 70 : 44;
     // marker
     let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = { ...data, size: size, type: type }), { anchor: 'bottom' })
     .setLngLat({ lat: data.coordinates.latitude, lng: data.coordinates.longitude })
@@ -479,8 +243,8 @@ export class MapboxService {
       { type: MarkerType.SHOP, subtype: StoreType.INN, query: '[building=hotel]', radius: 2000 },
       { type: MarkerType.SHOP, subtype: StoreType.MERCENARY, query: '[amenity=police]', radius: 5000 },
       { type: MarkerType.SHOP, subtype: StoreType.SORCERER, query: '[building=university]', radius: 2000 },
-      { type: MarkerType.SHOP, subtype: StoreType.ALCHEMIST, query: '[amenity=hospital]', radius: 2000 },
       { type: MarkerType.SHOP, subtype: StoreType.MERCHANT, query: '[shop=mall]', radius: 5000 },
+
       { type: MarkerType.QUEST, subtype: LocationType.GRAVEYARD, query: '[landuse=cemetery]', radius: 5000 },
       { type: MarkerType.QUEST, subtype: LocationType.LAKE, query: '[sport=swimming]', radius: 5000 },
       { type: MarkerType.QUEST, subtype: LocationType.FOREST, query: '[leisure=park]', radius: 1000 },
@@ -516,10 +280,10 @@ export class MapboxService {
       for (const element of groups[group].slice(0, limit)) {
         switch (element.tags.type) {
           case (MarkerType.SHOP):
-            await this.addShop(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+            await this.apiService.addShop(null, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
             break;
           case (MarkerType.QUEST):
-            await this.addQuest(element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+            await this.apiService.addQuest(null, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
             break;
         }
       }

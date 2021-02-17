@@ -1,7 +1,7 @@
 import { Injectable, Injector, ApplicationRef, ComponentFactoryResolver, ComponentRef, Type } from '@angular/core'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ComponentService {
 
@@ -10,7 +10,7 @@ export class ComponentService {
   constructor(
     private injector: Injector,
     private componentFactoryResolver: ComponentFactoryResolver,
-    private applicationRef: ApplicationRef
+    private applicationRef: ApplicationRef,
   ) { }
 
   public injectComponent<T>(component: Type<T>, propertySetter?: (type: T) => void): HTMLDivElement {
@@ -18,7 +18,7 @@ export class ComponentService {
     this.componentRef = componentFactory.create(this.injector);
     if (propertySetter) propertySetter(this.componentRef.instance);
     this.applicationRef.attachView(this.componentRef.hostView);
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.appendChild(this.componentRef.location.nativeElement);
     return div;
   }

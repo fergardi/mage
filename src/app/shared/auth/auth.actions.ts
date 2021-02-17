@@ -27,4 +27,3 @@ export class LogoutAction {
   public static readonly type = '[User] Logout user';
   constructor() {}
 }
-

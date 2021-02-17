@@ -9,13 +9,15 @@ import { tap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 
+const HOME_ROUTE: string = '/kingdom/city';
+
 export interface AuthStateModel {
   kingdom: any;
   uid: string | null;
   supplies: any[];
   buildings: any[];
   logged: boolean;
-  clock: Date;
+  clock: Date | null;
 }
 
 @State<AuthStateModel>({
@@ -148,8 +150,8 @@ export class AuthState implements NgxsOnInit {
         ctx.dispatch(new SetKingdomSuppliesAction(user.uid));
         ctx.dispatch(new SetKingdomBuildingsAction(user.uid));
         this.notificationService.success('user.auth.authorized');
-        this.router.navigate(['/user/encyclopedia']);
-        // this.router.navigate(['/world/map']);
+        const route = localStorage.getItem('route') || HOME_ROUTE;
+        this.router.navigate([route]);
       } else {
         this.router.navigate(['/user/landing']);
       }

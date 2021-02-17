@@ -14,12 +14,15 @@ describe('Auth store', () => {
 
   it('should create an action and add an item', () => {
     const expected: AuthStateModel = {
-      user: {
-        uid: 'test'
-      },
-      logged: true
+      uid: 'test',
+      kingdom: null,
+      supplies: [],
+      buildings: [],
+      logged: false,
+      clock: null,
+      popup: null,
     };
-    store.dispatch(new SetUserAction({ uid: 'test' }));
+    store.dispatch(new SetUserAction('test'));
     const actual = store.selectSnapshot(AuthState.getAuthState);
     expect(actual).toEqual(expected);
   });

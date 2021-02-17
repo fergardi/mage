@@ -6,12 +6,6 @@
     "id": "inn"
   },
   {
-    "image": "/assets/images/stores/alchemist.png",
-    "name": "store.alchemist.name",
-    "description": "store.alchemist.description",
-    "id": "alchemist"
-  },
-  {
     "image": "/assets/images/stores/mercenary.png",
     "name": "store.mercenary.name",
     "description": "store.mercenary.description",

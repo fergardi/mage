@@ -1,18 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 
 @Pipe({
-  name: 'long'
+  name: 'long',
 })
 export class LongPipe implements PipeTransform {
 
-  constructor(
-    private translateService: TranslateService,
-  ) {}
+  constructor() {}
 
   transform(number: number): string {
     return number !== undefined && number !== null
-      ? number.toLocaleString(this.translateService.currentLang, {
+      ? number.toLocaleString('de-DE', { // de-DE is the only locale that allows show a thousand separator under 10.000
           useGrouping: true,
           minimumIntegerDigits: 1,
           minimumFractionDigits: number % 1 !== 0 ? 3 : 0,

@@ -13,7 +13,6 @@ export enum PopupType {
 export enum StoreType {
   INN = 'inn',
   MERCENARY = 'mercenary',
-  ALCHEMIST = 'alchemist',
   SORCERER = 'sorcerer',
   MERCHANT = 'merchant',
 }

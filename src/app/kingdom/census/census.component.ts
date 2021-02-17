@@ -123,8 +123,8 @@ export class CensusComponent implements OnInit {
   }
 
   canBeAttacked(kingdom: any): boolean {
-    return kingdom.lastAttacked
-      ? moment(this.clock).isAfter(moment(kingdom.lastAttacked.toMillis()))
+    return kingdom.attacked
+      ? moment(this.clock).isAfter(moment(kingdom.attacked.toMillis()))
       : true;
   }
 

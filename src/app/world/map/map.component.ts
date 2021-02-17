@@ -13,22 +13,24 @@ import { ActivatedRoute } from '@angular/router';
 import { CacheService } from 'src/app/services/cache.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MarkerType, LocationType, StoreType, FactionType } from 'src/app/shared/type/common.type';
+import { ApiService } from 'src/app/services/api.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
 })
 @UntilDestroy()
 export class MapComponent implements OnInit, OnDestroy {
 
   geofirex: any = geofirex.init(firebase);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  @Select((state: any) => state.auth.kingdom) kingdom$: Observable<any>;
   container = 'map';
   locations: any[] = [];
   stores: any[] = [];
   factions: any[] = [];
+  @Select((state: any) => state.auth.kingdom) kingdom$: Observable<any>;
 
   constructor(
     public mapboxService: MapboxService,
@@ -38,6 +40,7 @@ export class MapComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private cacheService: CacheService,
     private notificationService: NotificationService,
+    private apiService: ApiService,
   ) { }
 
   async ngOnInit() {
@@ -47,8 +50,8 @@ export class MapComponent implements OnInit, OnDestroy {
       this.mapboxService.resizeMap();
       // pring kingdoms surrounding kingdom
       this.angularFirestore.collection<any>('kingdoms').valueChanges().pipe(untilDestroyed(this)).subscribe(kingdoms => {
-        kingdoms.forEach(async (data: any) => {
-          const kingdom = await this.firebaseService.selfJoin({ ...data, fid: data.id });
+        kingdoms.forEach(async (k: any) => {
+          const kingdom = await this.firebaseService.selfJoin({ ...k, fid: k.id });
           this.mapboxService.addMarker(kingdom, MarkerType.KINGDOM, true, kingdom.id === this.uid,
             this.activatedRoute.snapshot.params.kingdom
               ? this.activatedRoute.snapshot.params.kingdom === kingdom.id
@@ -69,8 +72,11 @@ export class MapComponent implements OnInit, OnDestroy {
         }),
       ).subscribe((quests: Array<any>) => {
         this.mapboxService.clearMarkers(MarkerType.QUEST);
-        quests.forEach(async (kingdom: any) => {
-          const quest = await this.firebaseService.selfJoin({ ...kingdom, fid: kingdom.id });
+        quests.forEach(async (q: any) => {
+          if (q.explored && moment().isAfter(moment(q.explored.toMillis()))) {
+            await this.apiService.addQuest(q.id, q.location, null, null, null);
+          }
+          const quest = await this.firebaseService.selfJoin({ ...q, fid: q.id });
           this.mapboxService.addMarker(quest, MarkerType.QUEST, true, false, false);
         });
         this.mapboxService.refreshMarkers();
@@ -87,8 +93,11 @@ export class MapComponent implements OnInit, OnDestroy {
         }),
       ).subscribe((shops: Array<any>) => {
         this.mapboxService.clearMarkers(MarkerType.SHOP);
-        shops.forEach(async (kingdom: any) => {
-          const shop = await this.firebaseService.selfJoin({ ...kingdom, fid: kingdom.id });
+        shops.forEach(async (s: any) => {
+          if (s.explored && moment().isAfter(moment(s.explored.toMillis()))) {
+            await this.apiService.addShop(s.id, s.store, null, null, null);
+          }
+          const shop = await this.firebaseService.selfJoin({ ...s, fid: s.id });
           this.mapboxService.addMarker(shop, MarkerType.SHOP, true, false, false);
         });
         this.mapboxService.refreshMarkers();

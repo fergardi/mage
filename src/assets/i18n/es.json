@@ -536,7 +536,7 @@
     },
     "build": {
       "name": "Construcción",
-      "description": "Invierte tierras libres, oro y turnos para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como batallas y asedios.",
+      "description": "Invierte tierras libres, oro y turnos para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como las batallas o los asedios. Cuantos más talleres tengas, menos turnos gastarás al construir. Otros factores que pueden influir en esto son ciertos encantamientos y héroes aliados.",
       "cancel": "Cancelar",
       "build": "Construir",
       "hint": "Necesitas tierras, oro y turnos",
@@ -640,10 +640,6 @@
     "mercenary": {
       "name": "Campamento de Mercenarios",
       "description": "Incorpora tropas para tu ejército"
-    },
-    "alchemist": {
-      "name": "Alquimista Hermitaño",
-      "description": "Compra pociones mágicas"
     },
     "sorcerer": {
       "name": "Escuela de Magia",
@@ -776,7 +772,7 @@
   },
   "unit": {
     "lightning-elemental": {
-      "name": "Elementales de rayo",
+      "name": "Elementales de Rayo",
       "description": ""
     },
     "wraith": {
@@ -784,7 +780,7 @@
       "description": ""
     },
     "bone-dragon": {
-      "name": "Dragones de hueso",
+      "name": "Dragones de Hueso",
       "description": ""
     },
     "nightmare": {
@@ -808,7 +804,7 @@
       "description": ""
     },
     "werewolf": {
-      "name": "Hombres lobo",
+      "name": "Hombres Lobo",
       "description": ""
     },
     "zombie": {
@@ -816,11 +812,11 @@
       "description": ""
     },
     "blue-dragon": {
-      "name": "Dragones azules",
+      "name": "Dragones Azules",
       "description": ""
     },
     "crystal-golem": {
-      "name": "Gólems de cristal",
+      "name": "Gólems de Cristal",
       "description": ""
     },
     "djinni": {
@@ -828,15 +824,15 @@
       "description": ""
     },
     "frost-giant": {
-      "name": "Gigantes de escarcha",
+      "name": "Gigantes de Escarcha",
       "description": ""
     },
     "ice-elemental": {
-      "name": "Elementales de hielo",
+      "name": "Elementales de Hielo",
       "description": ""
     },
     "cave-troll": {
-      "name": "Trolls de cueva",
+      "name": "Trolls de Cueva",
       "description": ""
     },
     "medusa": {
@@ -856,11 +852,11 @@
       "description": ""
     },
     "carnivorous-plant": {
-      "name": "Plantas carnívoras",
+      "name": "Plantas Carnívoras",
       "description": ""
     },
     "giant-snail": {
-      "name": "Caracoles monstruosos",
+      "name": "Caracoles Monstruosos",
       "description": ""
     },
     "gnoll": {
@@ -872,11 +868,11 @@
       "description": ""
     },
     "golden-dragon": {
-      "name": "Dragones dorados",
+      "name": "Dragones Dorados",
       "description": ""
     },
     "werebear": {
-      "name": "Hombres oso",
+      "name": "Hombres Oso",
       "description": ""
     },
     "spider": {
@@ -884,11 +880,11 @@
       "description": ""
     },
     "lizardman": {
-      "name": "Hombres lagarto",
+      "name": "Hombres Lagarto",
       "description": ""
     },
     "earth-elemental": {
-      "name": "Elementales de tierra",
+      "name": "Elementales de Tierra",
       "description": ""
     },
     "hydra": {
@@ -908,7 +904,7 @@
       "description": ""
     },
     "fire-elemental": {
-      "name": "Elementales de fuego",
+      "name": "Elementales de Fuego",
       "description": ""
     },
     "berserker": {
@@ -928,7 +924,7 @@
       "description": ""
     },
     "red-dragon": {
-      "name": "Dragones rojos",
+      "name": "Dragones Rojos",
       "description": ""
     },
     "griffon": {
@@ -940,7 +936,7 @@
       "description": ""
     },
     "white-dragon": {
-      "name": "Dragones blancos",
+      "name": "Dragones Blancos",
       "description": ""
     },
     "angel": {
@@ -952,7 +948,7 @@
       "description": ""
     },
     "light-elemental": {
-      "name": "Elementales de luz",
+      "name": "Elementales de Luz",
       "description": ""
     },
     "titan": {
@@ -1016,7 +1012,7 @@
       "description": ""
     },
     "trained-elephant": {
-      "name": "Elefantes de guerra",
+      "name": "Elefantes de Guerra",
       "description": ""
     },
     "wolf": {
@@ -1024,15 +1020,15 @@
       "description": ""
     },
     "iron-golem": {
-      "name": "Gólems de acero",
+      "name": "Gólems de Acero",
       "description": ""
     },
     "stone-golem": {
-      "name": "Gólems de piedra",
+      "name": "Gólems de Piedra",
       "description": ""
     },
     "baby-dragon": {
-      "name": "Bebés dragón",
+      "name": "Bebés Dragón",
       "description": ""
     }
   },
@@ -1058,43 +1054,43 @@
       "description": "Aplica <fear> a cada tropa enemiga"
     },
     "night-living-dead": {
-      "name": "Noche de los muertos vivientes",
+      "name": "Noche de los Muertos Vivientes",
       "description": "Convoca una tropa de <undead> al azar"
     },
     "necromancy": {
-      "name": "Toque de nigromancia",
+      "name": "Toque de Nigromancia",
       "description": "Aplica <regeneration> a una tropa al azar"
     },
     "summon-wraith": {
-      "name": "Invocar apariciones",
+      "name": "Invocar Apariciones",
       "description": "Convoca una tropa de <wraith>"
     },
     "summon-lich": {
-      "name": "Invocar liches",
+      "name": "Invocar Liches",
       "description": "Convoca una tropa de <lich>"
     },
     "summon-vampire": {
-      "name": "Invocar vampiros",
+      "name": "Invocar Vampiros",
       "description": "Convoca una tropa de <vampire>"
     },
     "death-decay": {
-      "name": "Muerte y putrefacción",
+      "name": "Muerte y Putrefacción",
       "description": "Destruye <population> y <land> cada <turn>"
     },
     "shroud-darkness": {
-      "name": "Manto de oscuridad",
+      "name": "Manto de Oscuridad",
       "description": "Aumenta la protección mágica del reino"
     },
     "plague": {
-      "name": "Peste negra",
+      "name": "Peste Negra",
       "description": "Destruye <population> cada <turn>"
     },
     "soul-pact": {
-      "name": "Pacto con el diablo",
+      "name": "Pacto con el Diablo",
       "description": "Invoca <devil> cada <turn> por <population>"
     },
     "chain-lightning": {
-      "name": "Cadena de relámpagos",
+      "name": "Cadena de Relámpagos",
       "description": "Inflige daño de <lightning> a cada tropa enemiga"
     },
     "corruption": {
@@ -1106,7 +1102,7 @@
       "description": "Aplica <seduction> y <slowness> a cada tropa enemiga"
     },
     "full-moon": {
-      "name": "Luna llena",
+      "name": "Luna Llena",
       "description": "Aplica <strength> y <haste> a cada tropa aliada"
     },
     "curse": {
@@ -1114,19 +1110,19 @@
       "description": "Aplica <weakness> a una tropa enemiga"
     },
     "blood-ritual": {
-      "name": "Ritual sangriento",
+      "name": "Ritual Sangriento",
       "description": "Transforma <population> en <ghoul> cada <turn>"
     },
     "fireball": {
-      "name": "Bola de fuego",
+      "name": "Bola de Fuego",
       "description": "Inflige daño de <fire> a una tropa enemiga"
     },
     "battle-chant": {
-      "name": "Cántico de batalla",
+      "name": "Cántico de Batalla",
       "description": "Elimina <strength> y <scales> de cada tropa enemiga"
     },
     "call-lizardman": {
-      "name": "Llamar Hombres lagarto",
+      "name": "Llamar Hombres Lagarto",
       "description": "Convoca una tropa de <lizardman>"
     },
     "call-berserker": {
@@ -1138,11 +1134,11 @@
       "description": "Convoca una tropa de <orc>"
     },
     "succubus-kiss": {
-      "name": "Beso del súcubo",
+      "name": "Beso del Súcubo",
       "description": "Aplica <seduction> a una tropa enemiga al azar"
     },
     "destroy-artifact": {
-      "name": "Destruir artefacto",
+      "name": "Destruir Artefacto",
       "description": "Destruye uno o varios artefactos enemigos"
     },
     "inferno": {
@@ -1150,15 +1146,15 @@
       "description": "Inflige daño de <fire> a cada tropa enemiga"
     },
     "flame-shield": {
-      "name": "Escudos de llamas",
+      "name": "Escudos de Llamas",
       "description": "Aplica <scales> y <slowness> a todas tus tropas"
     },
     "flame-blade": {
-      "name": "Espadas flamígueras",
+      "name": "Espadas Flamígueras",
       "description": "Aplica <strength> y <slowness> a todas tus tropas"
     },
     "flame-arrow": {
-      "name": "Flechas de fuego",
+      "name": "Flechas de Fuego",
       "description": "Aplica <strength> y <weakness> a todas tus tropas"
     },
     "gravity": {
@@ -1166,7 +1162,7 @@
       "description": "Elimina <flight> de cada tropa enemiga"
     },
     "meteor-storm": {
-      "name": "Tormenta de meteoritos",
+      "name": "Tormenta de Meteoritos",
       "description": "Destruye <population> y <land> al <turn>"
     },
     "fatigue": {
@@ -1194,7 +1190,7 @@
       "description": "Destruye <population> y <land> del enemigo"
     },
     "fire-wall": {
-      "name": "Muro de fuego",
+      "name": "Muro de Fuego",
       "description": "Aumenta la protección física del reino"
     },
     "frenzy": {
@@ -1258,7 +1254,7 @@
       "description": "Inflige daño de <cold> a una tropa enemiga al azar"
     },
     "ice-wall": {
-      "name": "Muro helado",
+      "name": "Muro Helado",
       "description": "Aumenta la protección física y mágica del reino"
     },
     "invisibility": {
@@ -1274,11 +1270,11 @@
       "description": "Aplica <haste> a cada tropa aliada"
     },
     "spy": {
-      "name": "Espejo espía",
+      "name": "Espejo Espía",
       "description": "Analiza al reino enemigo"
     },
     "steal-artifact": {
-      "name": "Robar artefacto",
+      "name": "Robar Artefacto",
       "description": "Roba un artefacto enemigo al azar"
     },
     "accuracy": {
@@ -1294,15 +1290,15 @@
       "description": "Genera <land> cada <turn> por <gold> y <mana>"
     },
     "beast-council": {
-      "name": "Concilio de las bestias",
+      "name": "Concilio de las Bestias",
       "description": "Convoca una tropa de <animal> al azar"
     },
     "call-giant-snail": {
-      "name": "Llamar Caracoles monstruosos",
+      "name": "Llamar Caracoles Monstruosos",
       "description": "Convoca una tropa de <giant-snail>"
     },
     "call-carnivorous-plant": {
-      "name": "Llamar Plantas carnívoras",
+      "name": "Llamar Plantas Carnívoras",
       "description": "Convoca una tropa de <carnivorous-plant>"
     },
     "call-gnoll": {
@@ -1310,7 +1306,7 @@
       "description": "Convoca una tropa de <gnoll>"
     },
     "climate-control": {
-      "name": "Control del clima",
+      "name": "Control del Clima",
       "description": "Aumenta producción de <gold> cada <turn>"
     },
     "cure": {
@@ -1322,11 +1318,11 @@
       "description": "Aplica <leech> a cada tropa aliada"
     },
     "locust-swarm": {
-      "name": "Enjambre de langostas",
+      "name": "Enjambre de Langostas",
       "description": "Elimina <population> del reino enemigo cada <turn> y se puede contagiar"
     },
     "natures-favor": {
-      "name": "Favor de la naturaleza",
+      "name": "Favor de la Naturaleza",
       "description": "Aumenta producción de <population> cada <turn>"
     },
     "invigorate": {
@@ -1350,7 +1346,7 @@
       "description": "Convoca una tropa de <goblin>"
     },
     "summon-werebear": {
-      "name": "Invocar Hombres oso",
+      "name": "Invocar Hombres Oso",
       "description": "Convoca una tropa de <werebear>"
     },
     "summon-spider": {
@@ -1358,7 +1354,7 @@
       "description": "Convoca una tropa de <spider>"
     },
     "sunray": {
-      "name": "Rayo de sol",
+      "name": "Rayo de Sol",
       "description": "Aumenta la protección mágica del reino"
     },
     "wrath": {
@@ -1390,11 +1386,11 @@
       "description": "Recupera salud a cada tropa aliada"
     },
     "divine-protection": {
-      "name": "Protección divina",
+      "name": "Protección Divina",
       "description": "Aumenta protección física"
     },
     "exorcism": {
-      "name": "Palabra santa",
+      "name": "Exorcismo",
       "description": "Inflige daño de <holy> a cada tropa enemiga"
     },
     "endurance": {
@@ -1402,7 +1398,7 @@
       "description": "Elimina <scales> de cada tropa enemiga y aliada"
     },
     "locate-artifact": {
-      "name": "Localizar artefacto",
+      "name": "Localizar Artefacto",
       "description": "Encuentra un artefacto al azar"
     },
     "miracle": {
@@ -1418,7 +1414,7 @@
       "description": "Aplica <regeneration> a todas tus tropas"
     },
     "shield-light": {
-      "name": "Escudos de luz",
+      "name": "Escudos de Luz",
       "description": "Aplica <scales> a cada tropa aliada"
     },
     "summon-angel": {
@@ -1434,7 +1430,7 @@
       "description": "Convoca una tropa de <monk>"
     },
     "sword-light": {
-      "name": "Espadas de luz",
+      "name": "Espadas de Luz",
       "description": "Aplica <strength> a cada tropa aliada"
     },
     "tranquility": {
@@ -1542,7 +1538,7 @@
       "description": "Resucita +25% tropas tras la batalla"
     },
     "leech": {
-      "name": "Robar vida",
+      "name": "Robar Vida",
       "description": "Aumenta su salud en +25%"
     },
     "scales": {
@@ -1662,163 +1658,163 @@
   },
   "item": {
     "golden-chest": {
-      "name": "Cofre dorado",
+      "name": "Cofre Dorado",
       "description": "Otorga enorme cantidad de <gold>"
     },
     "magical-chest": {
-      "name": "Cofre mágico",
+      "name": "Cofre Mágico",
       "description": "Otorga gran cantidad de <gold>"
     },
     "stone-chest": {
-      "name": "Cofre de piedra",
+      "name": "Cofre de Piedra",
       "description": "Otorga moderada cantidad de <gold>"
     },
     "wooden-chest": {
-      "name": "Cofre de madera",
+      "name": "Cofre de Madera",
       "description": "Otorga poca cantidad de <gold>"
     },
     "necronomicon": {
-      "name": "Libro de los muertos",
+      "name": "Libro de los Muertos",
       "description": "Convoca una tropa de <undead>"
     },
     "enchanted-lamp": {
-      "name": "Lámpara maravillosa",
+      "name": "Lámpara Maravillosa",
       "description": "Convoca una tropa de <djinni>"
     },
     "wisdom-tome": {
-      "name": "Tomo de sabiduría",
+      "name": "Tomo de Sabiduría",
       "description": "Aprende un hechizo nuevo de otro color"
     },
     "demon-horn": {
-      "name": "Cuerno de demonio",
+      "name": "Cuerno de Demonio",
       "description": "Convoca una tropa de <demon>"
     },
     "lightning-orb": {
-      "name": "Orbe de rayos",
+      "name": "Orbe de Rayos",
       "description": "Convoca una tropa de <lightning-elemental>"
     },
     "dragon-egg": {
-      "name": "Huevo de dragón",
+      "name": "Huevo de Dragón",
       "description": "Convoca una tropa de <dragon>"
     },
     "crystal-ball": {
-      "name": "Bola de cristal",
+      "name": "Bola de Cristal",
       "description": "Espía al enemigo"
     },
     "agility-potion": {
-      "name": "Poción de agilidad",
+      "name": "Poción de Agilidad",
       "description": "Aplica <haste> a cada tropa aliada"
     },
     "defense-potion": {
-      "name": "Poción de defensa",
+      "name": "Poción de Defensa",
       "description": "Aplica <scales> a cada tropa aliada"
     },
     "cold-orb": {
-      "name": "Orbe de hielo",
+      "name": "Orbe de Hielo",
       "description": "Convoca una tropa de <ice-elemental>"
     },
     "earth-orb": {
-      "name": "Orbe de tierra",
+      "name": "Orbe de Tierra",
       "description": "Convoca una tropa de <earth-elemental>"
     },
     "fire-orb": {
-      "name": "Orbe de fuego",
+      "name": "Orbe de Fuego",
       "description": "Convoca una tropa de <fire-elemental>"
     },
     "mana-potion": {
-      "name": "Poción de maná",
+      "name": "Poción de Maná",
       "description": "Otorga gran cantidad de <mana>"
     },
     "light-orb": {
-      "name": "Orbe de luz",
+      "name": "Orbe de Luz",
       "description": "Conjura tropa de <light-elemental>"
     },
     "strength-potion": {
-      "name": "Poción de fuerza",
+      "name": "Poción de Fuerza",
       "description": "Aplica <strength> a cada tropa aliada"
     },
     "love-potion": {
-      "name": "Poción de amor",
+      "name": "Poción de Amor",
       "description": "Otorga gran cantidad de <population>"
     },
     "spider-web": {
-      "name": "Tela de araña",
+      "name": "Tela de Araña",
       "description": "Aplica <slowness> a cada tropa enemiga"
     },
     "animal-fang": {
-      "name": "Colmillo animal",
+      "name": "Colmillo Animal",
       "description": "Convoca una tropa de <animal>"
     },
     "bone-necklace": {
-      "name": "Collar de hueso",
+      "name": "Collar de Hueso",
       "description": "Convoca una tropa de <orkish>"
     },
     "crown-thorns": {
-      "name": "Corona de espinas",
+      "name": "Corona de Espinas",
       "description": "Aplica <weakness> a cada tropa enemiga"
     },
     "voodoo-doll": {
-      "name": "Muñeca voodoo",
+      "name": "Muñeca Voodoo",
       "description": "Destruye <turn> del enemigo"
     },
     "cursed-skull": {
-      "name": "Calavera maldita",
-      "description": "Aplica <fear> a cada tropa aliada"
+      "name": "Calavera Maldita",
+      "description": "Aplica <fear> a cada tropa enemiga"
     },
     "golden-feather": {
-      "name": "Pluma dorada",
+      "name": "Pluma Dorada",
       "description": "Convoca una tropa de <phoenix>"
     },
     "golden-idol": {
-      "name": "Ídolo dorado",
+      "name": "Ídolo Dorado",
       "description": "Destruye <gold> del enemigo"
     },
     "golem-book": {
-      "name": "Libro del gólem",
+      "name": "Libro de Invocación del Gólem",
       "description": "Convoca una tropa de <golem>"
     },
     "letter-thieves": {
-      "name": "Carta del gremio de ladrones",
+      "name": "Carta del Gremio de Ladrones",
       "description": "Roba <gold> al enemigo"
     },
     "vial-venom": {
-      "name": "Vial de veneno",
+      "name": "Vial de Veneno",
       "description": "Aplica <poison> a cada tropa aliada"
     },
     "lucky-coin": {
-      "name": "Moneda de la suerte",
+      "name": "Moneda de la Suerte",
       "description": "Conjura <peace>,<climate-control>,<natures-favor> o <druidism>"
     },
     "lucky-horseshoe": {
-      "name": "Herradura de la suerte",
+      "name": "Herradura de la Suerte",
       "description": "Conjura <divine-protection>,<shroud-darkness>,<fire-wall>,<ice-wall> o <sunray>"
     },
     "lucky-paw": {
-      "name": "Pata de la suerte",
+      "name": "Pata de Conejo de la Suerte",
       "description": "Conjura <concentration>,<soul-pact> o <blood-ritual>"
     },
     "magic-beans": {
-      "name": "Judías mágicas",
+      "name": "Judías Mágicas",
       "description": "Convoca una tropa de <giant>"
     },
     "magic-compass": {
-      "name": "Brújula mágica",
+      "name": "Brújula Mágica",
       "description": "Otorga poca cantidad de <land>"
     },
     "magic-scroll": {
-      "name": "Pergamino mágico",
+      "name": "Pergamino Mágico",
       "description": "Aprende un nuevo hechizo de tu color"
     },
     "mana-vortex": {
-      "name": "Vórtice de maná",
+      "name": "Vórtice de Maná",
       "description": "Destruye <mana> del enemigo"
     },
     "monkey-hand": {
-      "name": "Mano del mono",
+      "name": "Mano del Mono",
       "description": "Conjura un encantamiento al azar"
     },
     "powder-barrel": {
-      "name": "Barril de pólvora",
+      "name": "Barril de Pólvora",
       "description": "Mata unidades de cada tropa enemiga"
     },
     "rattle": {
@@ -1826,39 +1822,39 @@
       "description": "Rompe todos los encantamientos"
     },
     "rotten-food": {
-      "name": "Comida putrefacta",
+      "name": "Comida Putrefacta",
       "description": "Destruye <population> del enemigo"
     },
     "snake-eye": {
-      "name": "Ojo de serpiente",
+      "name": "Ojo de Serpiente",
       "description": "Convoca una tropa de <reptile>"
     },
     "treasure-map": {
-      "name": "Mapa del tesoro",
+      "name": "Mapa del Tesoro",
       "description": "Encuentra un artefacto"
     },
     "valhalla-horn": {
-      "name": "Cuerno del valhalla",
+      "name": "Cuerno del Valhalla",
       "description": "Convoca una tropa de <human>"
     },
     "bottomless-carcaj": {
-      "name": "Carcaj sin fondo",
+      "name": "Carcaj sin Fondo",
       "description": "Aplica <ranged> a tus tropas"
     },
     "fairy-wings": {
-      "name": "Alas de hada",
+      "name": "Alas de Hada",
       "description": "Aplica <flight> a una tropa"
     },
     "holy-grenade": {
-      "name": "Santa granada",
+      "name": "Santa Granada",
       "description": "Mata unidades de una tropa enemiga"
     },
     "magic-ashes": {
-      "name": "Cenizas mágicas",
+      "name": "Cenizas Mágicas",
       "description": "Aplica <magic> a tus tropas"
     },
     "vampire-teeth": {
-      "name": "Colmillo de vampiro",
+      "name": "Colmillo de Vampiro",
       "description": "Aplica <leech> a cada tropa aliada"
     }
   },
