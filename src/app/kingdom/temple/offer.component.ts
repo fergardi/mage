@@ -21,11 +21,11 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
           </div>
           <div mat-line>{{ god.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
-          <div mat-list-avatar *ngIf="god.gold > 0" [matBadge]="(god.sacrifice | long) + ' / ' + (god.gold | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/gold.png"></div>
-          <div mat-list-avatar *ngIf="god.mana > 0" [matBadge]="(god.sacrifice | long) + ' / ' + (god.mana | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/mana.png"></div>
-          <div mat-list-avatar *ngIf="god.population > 0" [matBadge]="(god.sacrifice | long) + ' / ' + (god.population | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/population.png"></div>
-          <div mat-list-avatar *ngIf="god.land > 0" [matBadge]="(god.sacrifice | long) + ' / ' + (god.land | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/land.png"></div>
-          <div mat-list-avatar *ngIf="god.turn > 0" [matBadge]="(god.sacrifice | long) + ' / ' + (god.turn | long)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
+          <div mat-list-avatar *ngIf="god.gold > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.gold | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/gold.png"></div>
+          <div mat-list-avatar *ngIf="god.mana > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.mana | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/mana.png"></div>
+          <div mat-list-avatar *ngIf="god.population > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.population | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/population.png"></div>
+          <div mat-list-avatar *ngIf="god.land > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.land | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/land.png"></div>
+          <div mat-list-avatar *ngIf="god.turn > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.turn | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
         </mat-list-item>
       </mat-list>
       <form [formGroup]="form">
@@ -51,7 +51,7 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
     }
   `],
   providers: [
-    LongPipe
+    LongPipe,
   ],
 })
 export class OfferComponent implements OnInit {

@@ -10,9 +10,7 @@
     <mat-card-content>
       <span>{{ 'user.encyclopedia.help' | translate }}</span>
       <table mat-table matSort matSortActive="name" matSortDirection="asc" [dataSource]="data">
-
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
-
           <mat-header-cell class="table-header" *matHeaderCellDef>
             <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
 
@@ -29,8 +27,8 @@
                 <mat-option *ngFor="let option of filters[column].options" [value]="option.value">{{ option.name | translate }}</mat-option>
               </mat-select>
             </mat-form-field>
-
           </mat-header-cell>
+
           <mat-cell *matCellDef="let row" [attr.data-label]="'table.column.' + column | translate">
 
             <ng-template [ngIf]="column === 'type'">

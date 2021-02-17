@@ -581,7 +581,7 @@
     "categories": ["psychic"],
     "resistances": [],
     "skills": [],
-    "families": ["undead"],
+    "families": ["animal"],
     "initiative": 3,
     "attack": 500,
     "defense": 0,

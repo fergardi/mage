@@ -24,6 +24,9 @@ import { ApiService } from 'src/app/services/api.service';
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of auction.join.skills" [src]="skill.image">
             <img [title]="category.name | translate" class="icon" *ngFor="let category of auction.join.categories" [src]="category.image">
           </div>
+          <div mat-line class="mat-card-subtitle" *ngIf="auction.join.resistances && auction.join.resistances.length">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of auction.join.resistances" [src]="category.image">
+          </div>
           <div mat-list-avatar [matBadge]="auction.gold | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
           </div>

@@ -81,8 +81,8 @@ export class EncyclopediaComponent implements OnInit {
   }
 
   createFilter(): (data: any, filter: string) => boolean {
-    let filterFunction = (data: any, filter: string): boolean => {
-      let filters = JSON.parse(filter);
+    const filterFunction = (data: any, filter: string): boolean => {
+      const filters = JSON.parse(filter);
       return (this.translateService.instant(data.name).toLowerCase().includes(filters.name)
         || this.translateService.instant(data.description).toLowerCase().includes(filters.name))
         && data.type.toString().toLowerCase().includes(filters.type)

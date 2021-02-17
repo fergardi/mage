@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Store } from '@ngxs/store';
 import { combineLatest } from 'rxjs';
+import { CacheService } from 'src/app/services/cache.service';
 
 @Component({
   selector: 'app-auction',
@@ -22,19 +23,21 @@ import { combineLatest } from 'rxjs';
 @UntilDestroy()
 export class AuctionComponent implements OnInit {
 
-  // columns = ['name', 'timestamp', 'actions'];
-  columns = ['name', 'actions'];
+  columns: string[] = [
+    'name',
+    'faction',
+    'actions',
+  ];
   filters: any = {
     name: {
       type: 'text',
       value: '',
     },
-    /*
-    timestamp: {
-      type: 'timestamp',
-      value: null,
+    faction: {
+      type: 'select',
+      value: '',
+      options: [],
     },
-    */
   };
   data: MatTableDataSource<any> = null;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
@@ -47,40 +50,45 @@ export class AuctionComponent implements OnInit {
     private translateService: TranslateService,
     private dialog: MatDialog,
     private store: Store,
+    private cacheService: CacheService,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const factions = await this.cacheService.getFactions();
     combineLatest([
       this.firebaseService.leftJoin('auctions', 'items', 'item', 'id', x => x.where('type', '==', 'artifact')),
       this.firebaseService.leftJoin('auctions', 'heroes', 'hero', 'id', x => x.where('type', '==', 'contract')),
       this.firebaseService.leftJoin('auctions', 'units', 'unit', 'id', x => x.where('type', '==', 'troop')),
     ])
     .pipe(untilDestroyed(this))
-    .subscribe(([artifacts,  contracts, troops]) => {
+    .subscribe(([artifacts, contracts, troops]) => {
+      console.log(contracts);
       let data = [artifacts,  contracts, troops];
       data = data.reduce((a, b) => a.concat(b), []);
       this.data = new MatTableDataSource(data);
       this.data.paginator = this.paginator;
       this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['gold'] : obj[property];
       this.data.sort = this.sort;
+      this.filters.faction.options = factions.map(faction => { return { name: 'faction.' + faction.id + '.name', value: faction.id } })
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
-    })
+    });
   }
 
   applyFilter() {
     this.data.filter = JSON.stringify({
       name: this.filters.name.value,
-      // timestamp: this.filters.timestamp.value,
+      faction: this.filters.faction.value,
     });
   }
 
   createFilter(): (data: any, filter: string) => boolean {
-    let filterFunction = (data: any, filter: string): boolean => {
-      let filters = JSON.parse(filter);
-      return this.translateService.instant(data.join.name).toLowerCase().includes(filters.name)
-      // && (!filters.timestamp || moment(data.timestamp.toMillis()).isBetween(moment(filters.timestamp).startOf('day'), moment(filters.timestamp).endOf('day'), 'days', '[]'));
-    }
+    const filterFunction = (data: any, filter: string): boolean => {
+      const filters = JSON.parse(filter);
+      return (this.translateService.instant(data.join.name).toLowerCase().includes(filters.name)
+        || this.translateService.instant(data.join.description).toLowerCase().includes(filters.name))
+        && data.join.join.id.toLowerCase().includes(filters.faction);
+    };
     return filterFunction;
   }
 

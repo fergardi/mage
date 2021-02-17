@@ -9,10 +9,9 @@
 
     <mat-card-content>
       <span>{{ 'kingdom.auction.help' | translate }}</span>
-      <table mat-table matSort [dataSource]="data" matSortDisableClear tourAnchor="tour.auction">
+      <table mat-table matSort matSortActive="name" matSortDirection="asc" [dataSource]="data" tourAnchor="tour.auction">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>
-
             <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>
 
             <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'text'">
@@ -21,16 +20,13 @@
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
-<!--
-            <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'timestamp'">
-              <input matInput [(ngModel)]="filters[column].value" [matDatepicker]="timestamp" disabled (dateChange)="applyFilter()">
-              <mat-datepicker-toggle matSuffix [for]="timestamp"></mat-datepicker-toggle>
-              <mat-datepicker #timestamp disabled="false"></mat-datepicker>
-              <button mat-button *ngIf="filters[column].value" matSuffix mat-icon-button (click)="filters[column].value=null; applyFilter()">
-                <mat-icon>close</mat-icon>
-              </button>
+
+            <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'select'">
+              <mat-select [(ngModel)]="filters[column].value" (selectionChange)="applyFilter()">
+                <mat-option value="">{{ 'table.filter.any' | translate }}</mat-option>
+                <mat-option *ngFor="let option of filters[column].options" [value]="option.value">{{ option.name | translate }}</mat-option>
+              </mat-select>
             </mat-form-field>
--->
           </mat-header-cell>
 
           <mat-cell *matCellDef="let auction" [attr.data-label]="'table.column.' + column | translate">
@@ -58,11 +54,19 @@
                 </mat-list-item>
               </mat-list>
             </ng-template>
-<!--
-            <ng-template [ngIf]="column === 'timestamp'">
-              {{ auction[column]?.toMillis() | date }}
+
+            <ng-template [ngIf]="column === 'faction'">
+              <mat-list dense>
+                <mat-list-item [ngClass]="auction.join.join.id">
+                  <div mat-list-avatar>
+                    <img mat-list-avatar [src]="auction.join.join.image">
+                  </div>
+                  <div mat-line>{{ auction.join.join.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle" [innerHTML]="auction.join.join.description | translate | icon:auction.join.join"></div>
+                </mat-list-item>
+              </mat-list>
             </ng-template>
--->
+
             <ng-template [ngIf]="column === 'actions'">
               <button mat-mini-fab color="primary" title="{{ 'kingdom.auction.bid' | translate }}" [disabled]="auction.kingdom === uid" (click)="openBidDialog(auction)">
                 <mat-icon>gavel</mat-icon>

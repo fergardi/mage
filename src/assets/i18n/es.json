@@ -1,11 +1,11 @@
 {
   "paginator": {
-    "itemsPerPageLabel": "Pergaminos por página",
+    "itemsPerPageLabel": "Elementos por página",
     "nextPageLabel": "Siguiente página",
     "previousPageLabel": "Anterior página",
     "firstPageLabel": "Primera página",
     "lastPageLabel": "Última página",
-    "rangeLabelIntl": "Mostrando {{ start }} - {{ end }} de {{ length }} pergaminos"
+    "rangeLabelIntl": "Mostrando {{ start }} - {{ end }} de {{ length }} elementos"
   },
   "tour": {
     "end": "Terminar",
@@ -896,7 +896,7 @@
       "description": ""
     },
     "minotaur": {
-      "name": "Demonios",
+      "name": "Minotauros",
       "description": ""
     },
     "devil": {
@@ -1170,7 +1170,7 @@
       "description": "Aplica <weakness> y <slowness> cada tropa enemiga"
     },
     "summon-minotaur": {
-      "name": "Invocar Demonios",
+      "name": "Invocar Minotauros",
       "description": "Convoca una tropa de <minotaur>"
     },
     "summon-ogre": {
@@ -1593,7 +1593,7 @@
     },
     "beast-master": {
       "name": "Señor de las Bestias",
-      "description": "Aumenta el daño de <animal> +2% por nivel"
+      "description": "Aumenta el daño de <animal> y <reptile> +2% por nivel"
     },
     "shaman": {
       "name": "Chamán Místico",
@@ -1641,7 +1641,7 @@
     },
     "golem-golem": {
       "name": "Gólem de Gólems",
-      "description": "Aumenta el ataque y defensa de <golem> +2%/+2% por nivel"
+      "description": "Aumenta el ataque y defensa de <golem> y <giant> +2%/+2% por nivel"
     },
     "illusionist": {
       "name": "Ilusionista Congelado",

@@ -5,6 +5,7 @@ import * as cors from 'cors';
 import * as express from 'express';
 import * as ash from 'express-async-handler';
 import * as moment from 'moment';
+import * as _ from 'lodash';
 
 // const MAX_TURNS: number = 300;
 const MIN_LANDS: number = 1;
@@ -89,7 +90,7 @@ api.get('/kingdom/:kingdomId/temple/:godId/offer/:gold', ash(async (req: any, re
 api.get('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
 api.get('/kingdom/:kingdomId/tavern/:contractId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignContract(req.params.kingdomId, req.params.contractId, parseInt(req.params.assignmentId)))));
 api.get('/kingdom/:kingdomId/emporium/:itemId', ash(async (req: any, res: any) => res.json(await buyEmporium(req.params.kingdomId, req.params.itemId))));
-
+api.get('/kingdom/auction', ash(async (req: any, res: any) => res.json(await refreshAuction())));
 api.post('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
 api.post('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
 
@@ -775,16 +776,83 @@ const checkQuest = async (fid?: string, latitude?: number, longitude?: number, t
   questTroops.map(troop => batch.delete(troop));
   const questArtifacts = await angularFirestore.collection(`quests/${fid}/artifacts`).listDocuments();
   questArtifacts.map(artifact => batch.delete(artifact));
+  let questHeroes: any[] = [];
+  let questUnits: any[] = [];
+  let questItems: any[] = [];
+  let questLegendaries: any[] = ['wisdom-tome', 'dragon-egg', 'voodoo-doll', 'golden-feather', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-compass', 'magic-scroll', 'rattle'];
   switch (type) {
     case LocationType.VOLCANO:
-      batch.create(angularFirestore.collection(`quests/${fid}/contracts`).doc(), { id: heroes[random(0, heroes.length - 1)], level: random(1, 20) });
-      batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: units[random(0, units.length - 1)], quantity: random(10, 10000) });
-      batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: units[random(0, units.length - 1)], quantity: random(10, 10000) });
-      batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: units[random(0, units.length - 1)], quantity: random(10, 10000) });
-      batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: units[random(0, units.length - 1)], quantity: random(10, 10000) });
-      batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: units[random(0, units.length - 1)], quantity: random(10, 10000) });
-      batch.create(angularFirestore.collection(`quests/${fid}/artifacts`).doc(), { id: items[random(0, items.length - 1)], quantity: random(1, 2) });
+    case LocationType.DUNGEON:
+      questHeroes = ['demon-prince'];
+      questUnits = ['nightmare', 'medusa', 'cyclop', 'minotaur', 'devil', 'ogre', 'imp'];
+      questItems = _.difference(items, questLegendaries);
+      break;
+    case LocationType.CAVE:
+    case LocationType.MINE:
+      questHeroes = ['orc-king'];
+      questUnits = ['cave-troll', 'gnoll', 'goblin', 'ogre', 'orc'];
+      questItems = _.difference(items, questLegendaries);
+      break;
+    case LocationType.MOUNTAIN:
+    case LocationType.RUIN:
+      questHeroes = ['golem-golem'];
+      questUnits = ['crystal-golem', 'iron-golem', 'stone-golem'];
+      questItems = _.difference(items, questLegendaries);
+      break;
+    case LocationType.MONOLITH:
+    case LocationType.PYRAMID:
+      questHeroes = ['elementalist'];
+      questUnits = ['lightning-elemental', 'djinni', 'ice-elemental', 'earth-elemental', 'fire-elemental', 'phoenix', 'light-elemental'];
+      questItems = _.difference(items, questLegendaries);
+      break;
+    case LocationType.SHRINE:
+    case LocationType.FOREST:
+      questHeroes = ['beast-master'];
+      questUnits = ['werewolf', 'giant-snail', 'werebear', 'spider', 'carnivorous-plant', 'griffon', 'pegasus', 'cavalry', 'trained-elephant', 'wolf'];
+      questItems = _.difference(items, questLegendaries);
+      break;
+    case LocationType.LAKE:
+    case LocationType.SHIP:
+      questHeroes = ['illusionist', 'swamp-thing'];
+      questUnits = ['medusa', 'leviathan', 'lizardman', 'hydra'];
+      questItems = _.difference(items, questLegendaries);
+      break;
+    case LocationType.NEST:
+    case LocationType.TOTEM:
+      questHeroes = ['dragon-rider'];
+      questUnits = ['bone-dragon', 'blue-dragon', 'white-dragon', 'green-dragon', 'gold-dragon', 'baby-dragon'];
+      questItems = questLegendaries;
+      break;
+    case LocationType.CATHEDRAL:
+    case LocationType.CASTLE:
+      questHeroes = ['commander', 'colossus'];
+      questUnits = ['angel', 'knight', 'monk', 'templar', 'pegasus', 'paladin', 'cavalry', 'fanatic', 'pikeman', 'fighter', 'archer'];
+      questItems = _.difference(items, questLegendaries);
+      break;
+    case LocationType.BARRACK:
+    case LocationType.ISLAND:
+      questHeroes = ['golem-golem'];
+      questUnits = ['frost-giant','leviathan','yeti','giant-snail','carnivorous-plant','hydra','cyclop','ogre','titan'];
+      questItems = _.difference(items, questLegendaries);
+      break;
+    case LocationType.GRAVEYARD:
+    case LocationType.TOWN:
+      questHeroes = ['necrophage', 'soul-reaper'];
+      questItems = _.difference(items, questLegendaries);
+      questUnits = ['wraith', 'bone-dragon', 'nightmare', 'ghoul', 'lich', 'skeleton', 'vampire', 'werewolf', 'zombie'];
       break;
   }
+  questHeroes = _.shuffle(questHeroes);
+  questUnits = _.shuffle(questUnits);
+  questItems = _.shuffle(questItems);
+  batch.create(angularFirestore.collection(`quests/${fid}/contracts`).doc(), { id: questHeroes[0], level: random(1, 20) });
+  batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: questUnits[0], quantity: random(10, 10000) });
+  batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: questUnits[1], quantity: random(10, 10000) });
+  batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: questUnits[2], quantity: random(10, 10000) });
+  batch.create(angularFirestore.collection(`quests/${fid}/artifacts`).doc(), { id: questItems[0], quantity: random(1, 2) });
   return await batch.commit();
+}
+
+const refreshAuction = async () => {
+
 }
