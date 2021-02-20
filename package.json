@@ -8,7 +8,7 @@
     "build": "ng build",
     "functions": "npm --prefix functions run build",
     "emulator": "firebase emulators:start --only functions",
-    "test": "ng test",
+    "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -27,7 +27,7 @@
     "@angular/platform-browser": "~11.1.2",
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
-    "@ngneat/until-destroy": "^7.1.6",
+    "@ngneat/until-destroy": "^8.0.3",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "@ngxs/devtools-plugin": "^3.3.2",

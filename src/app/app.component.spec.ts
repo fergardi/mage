@@ -1,15 +1,32 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { FirebaseService } from './services/firebase.service';
+import { TourService } from 'ngx-tour-core';
+import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+const FirebaseServiceStub = {
+  joinObject: () => null,
+};
+
 
 describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        TourMatMenuModule.forRoot(),
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+      ],
+      providers: [
+        TourService,
+        { provide: FirebaseService, useValue: FirebaseServiceStub },
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
       ],
     }).compileComponents();
   }));
@@ -20,16 +37,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'mage'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('mage');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('mage app is running!');
-  });
 });

@@ -20,7 +20,6 @@ describe('Auth store', () => {
       buildings: [],
       logged: false,
       clock: null,
-      popup: null,
     };
     store.dispatch(new SetUserAction('test'));
     const actual = store.selectSnapshot(AuthState.getAuthState);

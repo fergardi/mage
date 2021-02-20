@@ -55,6 +55,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class DisbandComponent implements OnInit {
 
   form: FormGroup = null;
+  uid = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public troop: any,
@@ -67,7 +68,7 @@ export class DisbandComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      quantity: [null, [Validators.required, Validators.min(1), Validators.max(this.troop.quantity)]]
+      quantity: [null, [Validators.required, Validators.min(1), Validators.max(this.troop.quantity)]],
     });
   }
 
@@ -76,11 +77,9 @@ export class DisbandComponent implements OnInit {
   }
 
   async disband() {
-    let uid = this.store.selectSnapshot(AuthState.getUserUID);
-    // let kingdomBarrack = this.store.selectSnapshot(AuthState.getKingdomBarrack);
     if (this.form.valid) {
       try {
-        let disbanded = await this.apiService.disbandTroop(uid, this.troop.fid, this.form.value.quantity);
+        let disbanded = await this.apiService.disbandTroop(this.uid, this.troop.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.disband.success');
         this.close();
       } catch (error) {
