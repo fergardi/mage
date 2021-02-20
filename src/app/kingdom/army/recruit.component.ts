@@ -55,7 +55,8 @@ import { ApiService } from 'src/app/services/api.service';
 export class RecruitComponent implements OnInit {
 
   form: FormGroup = null;
-  kingdomGold: any = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public unit: any,
@@ -67,9 +68,8 @@ export class RecruitComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.kingdomGold = this.store.selectSnapshot(AuthState.getKingdomGold);
     this.form = this.formBuilder.group({
-      quantity: [null, [Validators.required, Validators.min(1), Validators.max(Math.floor(this.kingdomGold.quantity / this.unit.gold))]]
+      quantity: [null, [Validators.required, Validators.min(1), Validators.max(Math.floor(this.kingdomGold.quantity / this.unit.gold))]],
     });
   }
 
@@ -78,11 +78,9 @@ export class RecruitComponent implements OnInit {
   }
 
   async recruit() {
-    let uid = this.store.selectSnapshot(AuthState.getUserUID);
-    // let kingdomBarrack = this.store.selectSnapshot(AuthState.getKingdomBarrack);
     if (this.form.valid && this.form.value.quantity * this.unit.gold <= this.kingdomGold.quantity) {
       try {
-        let recruited = await this.apiService.recruitUnit(uid, this.unit.id, this.form.value.quantity);
+        let recruited = await this.apiService.recruitUnit(this.uid, this.unit.id, this.form.value.quantity);
         this.notificationService.success('kingdom.recruit.success', recruited);
         this.close();
       } catch (error) {

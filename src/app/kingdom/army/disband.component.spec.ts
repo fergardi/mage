@@ -10,20 +10,7 @@ import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatBadge } from '@angular/material/badge';
-
-const NotificationServiceStub: any = {
-  success: () => null,
-  warning: () => null,
-  error: () => null,
-};
-
-const StoreStub: any = {
-  selectSnapshot: () => null,
-};
-
-const ApiServiceStub: any = {
-  disbandTroop: (a, b, c) => null,
-};
+import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
 
 fdescribe('DisbandComponent', () => {
   let component: DisbandComponent;
@@ -31,25 +18,11 @@ fdescribe('DisbandComponent', () => {
   const troop = {
     quantity: 9999,
     join: {
-      type: 'unit',
       name: 'unit.skeleton.name',
       description: 'unit.skeleton.description',
       id: 'skeleton',
       image: '/assets/images/units/black/skeleton.png',
       faction: 'black',
-      categories: ['melee'],
-      resistances: [],
-      skills: [],
-      families: ['undead'],
-      initiative: 1,
-      attack: 100,
-      defense: 40,
-      health: 70,
-      gold: 0,
-      goldMaintenance: 0,
-      manaMaintenance: 0.01,
-      populationMaintenance: 0,
-      power: 10,
       legendary: false,
     },
   };
@@ -70,12 +43,12 @@ fdescribe('DisbandComponent', () => {
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: troop },
-        { provide: MatDialogRef, useValue: {} },
+        { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
-      ]
+      ],
     })
     .compileComponents();
   }));
@@ -88,5 +61,15 @@ fdescribe('DisbandComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should DISBAND a troop', () => {
+    component.form.patchValue({ quantity: 1 });
+    component.disband();
+  });
+
+  it('should NOT DISBAND a troop', () => {
+    component.form.patchValue({ quantity: 0 });
+    component.disband();
   });
 });

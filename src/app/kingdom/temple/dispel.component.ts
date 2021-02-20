@@ -42,7 +42,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 })
 export class DispelComponent implements OnInit {
 
-  uid: string = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public enchantment: any,
@@ -52,7 +52,6 @@ export class DispelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
   }
 
   close(): void {
