@@ -92,7 +92,7 @@ export class ApiService {
   }
 
   addShop(fid: string, storeType: StoreType, latitude: number, longitude: number, name: string) {
-    return this.httpClient.post(environment.functions.url + `/world/shop`, {
+    return this.httpClient.put(environment.functions.url + `/world/shop`, {
       fid: fid,
       storeType: storeType,
       latitude: latitude,
@@ -102,13 +102,17 @@ export class ApiService {
   }
 
   addQuest(fid: string, locationType: LocationType, latitude: number, longitude: number, name: string) {
-    return this.httpClient.post(environment.functions.url + `/world/quest`, {
+    return this.httpClient.put(environment.functions.url + `/world/quest`, {
       fid: fid,
       locationType: locationType,
       latitude: latitude,
       longitude: longitude,
       name: name,
     }).toPromise();
+  }
+
+  refreshAuction() {
+    return this.httpClient.patch(environment.functions.url + `/kingdom/auction`, undefined).toPromise();
   }
 
 }

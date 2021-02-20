@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private firebaseService: FirebaseService,
-    public tourService: TourService
+    public tourService: TourService,
   ) {
     // this.firebaseService.importCollectionFromJson('factions');
     // this.firebaseService.importCollectionFromJson('structures');

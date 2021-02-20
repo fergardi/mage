@@ -964,7 +964,7 @@
       "description": ""
     },
     "pegasus": {
-      "name": "Cruzados",
+      "name": "Pegasos",
       "description": ""
     },
     "paladin": {
@@ -1177,9 +1177,9 @@
       "name": "Invocar Ogros",
       "description": "Convoca una tropa de <ogre>"
     },
-    "summon-griffon": {
-      "name": "Invocar Grifos",
-      "description": "Convoca una tropa de <griffon>"
+    "summon-lizardman": {
+      "name": "Invocar Hombres Lagarto",
+      "description": "Convoca una tropa de <lizardman>"
     },
     "call-cyclop": {
       "name": "Llamar Cíclopes",
@@ -1362,7 +1362,7 @@
       "description": "Elimina <strength> de cada tropa enemiga y aliada"
     },
     "call-pegasus": {
-      "name": "Llamar Cruzados",
+      "name": "Llamar Pegasos",
       "description": "Convoca una tropa de <pegasus>"
     },
     "call-knight": {
@@ -1657,21 +1657,9 @@
     }
   },
   "item": {
-    "golden-chest": {
-      "name": "Cofre Dorado",
-      "description": "Otorga enorme cantidad de <gold>"
-    },
-    "magical-chest": {
-      "name": "Cofre Mágico",
+    "treasure-chest": {
+      "name": "Cofre del Tesoro",
       "description": "Otorga gran cantidad de <gold>"
-    },
-    "stone-chest": {
-      "name": "Cofre de Piedra",
-      "description": "Otorga moderada cantidad de <gold>"
-    },
-    "wooden-chest": {
-      "name": "Cofre de Madera",
-      "description": "Otorga poca cantidad de <gold>"
     },
     "necronomicon": {
       "name": "Libro de los Muertos",
@@ -1777,10 +1765,6 @@
       "name": "Carta del Gremio de Ladrones",
       "description": "Roba <gold> al enemigo"
     },
-    "vial-venom": {
-      "name": "Vial de Veneno",
-      "description": "Aplica <poison> a cada tropa aliada"
-    },
     "lucky-coin": {
       "name": "Moneda de la Suerte",
       "description": "Conjura <peace>,<climate-control>,<natures-favor> o <druidism>"
@@ -1801,25 +1785,13 @@
       "name": "Brújula Mágica",
       "description": "Otorga poca cantidad de <land>"
     },
-    "magic-scroll": {
-      "name": "Pergamino Mágico",
-      "description": "Aprende un nuevo hechizo de tu color"
-    },
     "mana-vortex": {
       "name": "Vórtice de Maná",
       "description": "Destruye <mana> del enemigo"
     },
-    "monkey-hand": {
-      "name": "Mano del Mono",
-      "description": "Conjura un encantamiento al azar"
-    },
-    "powder-barrel": {
-      "name": "Barril de Pólvora",
-      "description": "Mata unidades de cada tropa enemiga"
-    },
     "rattle": {
       "name": "Cascabel",
-      "description": "Rompe todos los encantamientos"
+      "description": "Rompe todos los encantamientos de tu reino"
     },
     "rotten-food": {
       "name": "Comida Putrefacta",
@@ -1831,31 +1803,59 @@
     },
     "treasure-map": {
       "name": "Mapa del Tesoro",
-      "description": "Encuentra un artefacto"
+      "description": "Encuentra un artefacto aleatorio"
     },
     "valhalla-horn": {
       "name": "Cuerno del Valhalla",
       "description": "Convoca una tropa de <human>"
     },
-    "bottomless-carcaj": {
-      "name": "Carcaj sin Fondo",
-      "description": "Aplica <ranged> a tus tropas"
-    },
     "fairy-wings": {
       "name": "Alas de Hada",
       "description": "Aplica <flight> a una tropa"
     },
-    "holy-grenade": {
-      "name": "Santa Granada",
-      "description": "Mata unidades de una tropa enemiga"
-    },
-    "magic-ashes": {
-      "name": "Cenizas Mágicas",
-      "description": "Aplica <magic> a tus tropas"
-    },
     "vampire-teeth": {
       "name": "Colmillo de Vampiro",
       "description": "Aplica <leech> a cada tropa aliada"
+    },
+    "fire-scroll": {
+      "name": "Pergamino de Resistencia al Fuego",
+      "description": "Aplica resistencia a <fire> a cada tropa aliada"
+    },
+    "lightning-scroll": {
+      "name": "Pergamino de Resistencia al Rayo",
+      "description": "Aplica resistencia a <lightning> a cada tropa aliada"
+    },
+    "light-scroll": {
+      "name": "Pergamino de Resistencia a Sagrado",
+      "description": "Aplica resistencia a <holy> a cada tropa aliada"
+    },
+    "cold-scroll": {
+      "name": "Pergamino de Resistencia al Frío",
+      "description": "Aplica resistencia a <cold> a cada tropa aliada"
+    },
+    "earth-scroll": {
+      "name": "Pergamino de Resistencia al Veneno",
+      "description": "Aplica resistencia a <poison> a cada tropa aliada"
+    },
+    "holy-grenade": {
+      "name": "Santa Granada",
+      "description": "Inlfige daño de <holy> a cada tropa enemiga"
+    },
+    "powder-barrel": {
+      "name": "Barril de Pólvora",
+      "description": "Inflige daño de <fire> a cada tropa enemiga"
+    },
+    "ancient-rune": {
+      "name": "Runa Antigua",
+      "description": "Inflige daño de <lightning> a cada tropa enemiga"
+    },
+    "ice-stone": {
+      "name": "Piedra Helada",
+      "description": "Inflige daño de <cold> a cada tropa enemiga"
+    },
+    "vial-venom": {
+      "name": "Vial de Veneno",
+      "description": "Inflige daño de <poison> a cada tropa enemiga"
     }
   },
   "god": {

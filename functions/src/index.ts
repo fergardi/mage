@@ -13,6 +13,7 @@ const MAX_LANDS: number = 3500;
 const BATTLE_TURNS: number = 2;
 const PROTECTION_TIME: number = 60;
 const EXPLORATION_TIME: number = 60;
+const AUCTION_TIME: number = 60;
 
 enum BattleType {
   SIEGE = 'siege',
@@ -50,12 +51,19 @@ enum LocationType {
   PYRAMID = 'pyramid',
 };
 
+enum AuctionType {
+  ARTIFACT = 'artifact',
+  CHARM = 'charm',
+  CONTRACT = 'contract',
+  TROOP = 'troop',
+};
+
 const resources = ['gold', 'mana', 'population', 'land', 'turn'];
 const structures = ['barrier', 'farm', 'fortress', 'academy', 'node', 'village', 'workshop'];
-const spells = ['animate-skeleton', 'animate-zombie', 'animate-ghoul', 'vampirism', 'terror', 'night-living-dead', 'necromancy', 'summon-wraith', 'summon-lich', 'summon-vampire', 'death-decay', 'shroud-darkness', 'corruption', 'soul-pact', 'chain-lightning', 'full-moon', 'witchcraft', 'plague', 'curse', 'blood-ritual', 'fireball', 'battle-chant', 'call-berserker', 'call-orc', 'succubus-kiss', 'destroy-artifact', 'inferno', 'flame-shield', 'flame-blade', 'flame-arrow', 'gravity', 'meteor-storm', 'fatigue', 'summon-minotaur', 'summon-ogre', 'summon-griffon', 'call-cyclop', 'volcano', 'fire-wall', 'frenzy', 'call-frost-giant', 'call-cave-troll', 'call-yeti', 'summon-mage', 'summon-medusa', 'summon-djinni', 'concentration', 'confuse', 'conjure-elemental', 'levitation', 'fog', 'avarice', 'hallucination', 'freeze', 'ice-wall', 'invisibility', 'laziness', 'celerity', 'spy', 'steal-artifact', 'accuracy', 'ambush', 'druidism', 'beast-council', 'call-giant-snail', 'call-carnivorous-plant', 'call-gnoll', 'climate-control', 'cure', 'growth', 'locust-swarm', 'natures-favor', 'invigorate', 'calm', 'serenity', 'venom', 'summon-goblin', 'summon-werebear', 'summon-spider', 'sunray', 'wrath', 'call-pegasus', 'call-knight', 'call-templar', 'blaze', 'prayer', 'healing', 'divine-protection', 'exorcism', 'endurance', 'locate-artifact', 'miracle', 'peace', 'resurrection', 'shield-light', 'summon-angel', 'summon-titan', 'summon-monk', 'sword-light', 'tranquility'];
+const spells = ['animate-skeleton', 'animate-zombie', 'animate-ghoul', 'vampirism', 'terror', 'night-living-dead', 'necromancy', 'summon-wraith', 'summon-lich', 'summon-vampire', 'death-decay', 'shroud-darkness', 'corruption', 'soul-pact', 'chain-lightning', 'full-moon', 'witchcraft', 'plague', 'curse', 'blood-ritual', 'fireball', 'battle-chant', 'call-berserker', 'call-orc', 'succubus-kiss', 'destroy-artifact', 'inferno', 'flame-shield', 'flame-blade', 'flame-arrow', 'gravity', 'meteor-storm', 'fatigue', 'summon-minotaur', 'summon-ogre', 'summon-lizardman', 'call-cyclop', 'volcano', 'fire-wall', 'frenzy', 'call-frost-giant', 'call-cave-troll', 'call-yeti', 'summon-mage', 'summon-medusa', 'summon-djinni', 'concentration', 'confuse', 'conjure-elemental', 'levitation', 'fog', 'avarice', 'hallucination', 'freeze', 'ice-wall', 'invisibility', 'laziness', 'celerity', 'spy', 'steal-artifact', 'accuracy', 'ambush', 'druidism', 'beast-council', 'call-giant-snail', 'call-carnivorous-plant', 'call-gnoll', 'climate-control', 'cure', 'growth', 'locust-swarm', 'natures-favor', 'invigorate', 'calm', 'serenity', 'venom', 'summon-goblin', 'summon-werebear', 'summon-spider', 'sunray', 'wrath', 'call-pegasus', 'call-knight', 'call-templar', 'blaze', 'prayer', 'healing', 'divine-protection', 'exorcism', 'endurance', 'locate-artifact', 'miracle', 'peace', 'resurrection', 'shield-light', 'summon-angel', 'summon-titan', 'summon-monk', 'sword-light', 'tranquility'];
 const enchantments = ['death-decay', 'shroud-darkness', 'soul-pact', 'plague', 'blood-ritual', 'meteor-storm', 'fire-wall', 'concentration', 'confuse', 'ice-wall', 'laziness', 'druidism', 'climate-control', 'locust-swarm', 'natures-favor', 'sunray', 'divine-protection', 'peace'];
 const units = ['lightning-elemental', 'wraith', 'bone-dragon', 'nightmare', 'ghoul', 'lich', 'skeleton', 'vampire', 'werewolf', 'zombie', 'blue-dragon', 'crystal-golem', 'djinni', 'frost-giant', 'ice-elemental', 'cave-troll', 'medusa', 'leviathan', 'mage', 'yeti', 'lizardman', 'giant-snail', 'gnoll', 'goblin', 'golden-dragon', 'werebear', 'spider', 'carnivorous-plant', 'earth-elemental', 'hydra', 'cyclop', 'minotaur', 'devil', 'fire-elemental', 'berserker', 'ogre', 'orc', 'phoenix', 'red-dragon', 'griffon', 'behemoth', 'white-dragon', 'angel', 'knight', 'light-elemental', 'titan', 'monk', 'templar', 'pegasus', 'paladin', 'cavalry', 'fanatic', 'pikeman', 'fighter', 'archer', 'frog', 'sheep', 'bat', 'rat', 'imp', 'trained-elephant', 'wolf', 'iron-golem', 'stone-golem', 'baby-dragon'];
-const items = ['golden-chest', 'magical-chest', 'stone-chest', 'wooden-chest', 'necronomicon', 'enchanted-lamp', 'wisdom-tome', 'demon-horn', 'lightning-orb', 'dragon-egg', 'crystal-ball', 'agility-potion', 'defense-potion', 'cold-orb', 'earth-orb', 'fire-orb', 'mana-potion', 'light-orb', 'strength-potion', 'love-potion', 'spider-web', 'animal-fang', 'bone-necklace', 'crown-thorns', 'voodoo-doll', 'cursed-skull', 'golden-feather', 'golden-idol', 'golem-book', 'letter-thieves', 'vial-venom', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-beans', 'magic-compass', 'magic-scroll', 'mana-vortex', 'monkey-hand', 'powder-barrel', 'rattle', 'rotten-food', 'snake-eye', 'treasure-map', 'valhalla-horn', 'bottomless-carcaj', 'fairy-wings', 'holy-grenade', 'magic-ashes', 'vampire-teeth'];
+const items = ['treasure-chest', 'necronomicon', 'enchanted-lamp', 'wisdom-tome', 'demon-horn', 'lightning-orb', 'dragon-egg', 'crystal-ball', 'agility-potion', 'defense-potion', 'cold-orb', 'earth-orb', 'fire-orb', 'mana-potion', 'light-orb', 'strength-potion', 'love-potion', 'spider-web', 'animal-fang', 'bone-necklace', 'crown-thorns', 'voodoo-doll', 'cursed-skull', 'golden-feather', 'golden-idol', 'golem-book', 'letter-thieves', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-beans', 'magic-compass', 'mana-vortex', 'rattle', 'rotten-food', 'snake-eye', 'treasure-map', 'valhalla-horn', 'fairy-wings', 'vampire-teeth', 'holy-grenade', 'powder-barrel', 'vial-venom', 'ancient-rune', 'ice-stone', 'fire-scroll', 'cold-scroll', 'light-scroll', 'earth-scroll', 'lightning-scroll'];
 const heroes = ['dragon-rider', 'demon-prince', 'pyromancer', 'orc-king', 'commander', 'trader', 'colossus', 'engineer', 'beast-master', 'leprechaunt', 'golem-golem', 'swamp-thing', 'shaman', 'elementalist', 'sage', 'illusionist', 'necrophage', 'necromancer', 'soul-reaper', 'crypt-keeper'];
 
 const random = (min: number, max: number): number => {
@@ -90,9 +98,9 @@ api.get('/kingdom/:kingdomId/temple/:godId/offer/:gold', ash(async (req: any, re
 api.get('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
 api.get('/kingdom/:kingdomId/tavern/:contractId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignContract(req.params.kingdomId, req.params.contractId, parseInt(req.params.assignmentId)))));
 api.get('/kingdom/:kingdomId/emporium/:itemId', ash(async (req: any, res: any) => res.json(await buyEmporium(req.params.kingdomId, req.params.itemId))));
-api.get('/kingdom/auction', ash(async (req: any, res: any) => res.json(await refreshAuction())));
-api.post('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
-api.post('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
+api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
+api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
+api.patch('/kingdom/auction', ash(async (req: any, res: any) => res.json(await refreshAuctions())));
 
 // error handler
 api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));;
@@ -729,12 +737,12 @@ const checkShop = async (fid?: string, latitude?: number, longitude?: number, ty
     case StoreType.INN:
       const innContracts = await angularFirestore.collection(`shops/${fid}/contracts`).listDocuments();
       innContracts.map(contract => batch.delete(contract));
-      batch.create(angularFirestore.collection(`shops/${fid}/contracts`).doc(), { id: heroes[random(0, heroes.length - 1)], gold: random(1000000, 10000000), level: random(1, 5) });
+      batch.create(angularFirestore.collection(`shops/${fid}/contracts`).doc(), { id: heroes[random(0, heroes.length - 1)], gold: random(1000000, 10000000), level: random(1, 10) });
       break;
     case StoreType.MERCENARY:
       const mercenaryTroops = await angularFirestore.collection(`shops/${fid}/troops`).listDocuments();
       mercenaryTroops.map(troop => batch.delete(troop));
-      batch.create(angularFirestore.collection(`shops/${fid}/troops`).doc(), { id: units[random(0, units.length - 1)], gold: random(1000000, 10000000), quantity: random(100, 10000) });
+      batch.create(angularFirestore.collection(`shops/${fid}/troops`).doc(), { id: units[random(0, units.length - 1)], gold: random(1000000, 10000000), quantity: random(1, 1000) });
       break;
     case StoreType.MERCHANT:
       const merchantArtifacts = await angularFirestore.collection(`shops/${fid}/artifacts`).listDocuments();
@@ -845,14 +853,39 @@ const checkQuest = async (fid?: string, latitude?: number, longitude?: number, t
   questHeroes = _.shuffle(questHeroes);
   questUnits = _.shuffle(questUnits);
   questItems = _.shuffle(questItems);
-  batch.create(angularFirestore.collection(`quests/${fid}/contracts`).doc(), { id: questHeroes[0], level: random(1, 20) });
-  batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: questUnits[0], quantity: random(10, 10000) });
-  batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: questUnits[1], quantity: random(10, 10000) });
-  batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: questUnits[2], quantity: random(10, 10000) });
-  batch.create(angularFirestore.collection(`quests/${fid}/artifacts`).doc(), { id: questItems[0], quantity: random(1, 2) });
+  [0].forEach(i => batch.create(angularFirestore.collection(`quests/${fid}/contracts`).doc(), { id: questHeroes[i], level: random(1, 20) }));
+  [0,1,2].forEach(j => batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: questUnits[j], quantity: random(10, 10000) }));
+  [0].forEach(k => batch.create(angularFirestore.collection(`quests/${fid}/artifacts`).doc(), { id: questItems[k], quantity: random(1, 3) }));
   return await batch.commit();
 }
 
-const refreshAuction = async () => {
-
+const refreshAuctions = async () => {
+  const batch = angularFirestore.batch();
+  const auctioned = moment(admin.firestore.Timestamp.now().toMillis()).add(AUCTION_TIME, 'seconds');
+  const kingdomAuctions = await angularFirestore.collection(`auctions`).get();
+  kingdomAuctions.forEach(kingdomAuction => {
+    const auction = kingdomAuction.data();
+    if (moment().isAfter(moment(auction?.auctioned.toMillis()))) {
+      switch (auction?.type) {
+        case AuctionType.ARTIFACT:
+          if (auction?.kingdom) addArtifact(auction?.kingdom, auction?.item, auction?.quantity, batch);
+          batch.create(angularFirestore.collection(`auctions`).doc(), { type: AuctionType.ARTIFACT, item: items[random(0, items.length - 1)], quantity: random(1, 3), gold: random(1000000, 5000000), auctioned: auctioned });
+          break;
+        case AuctionType.CHARM:
+          if (auction?.kingdom) addCharm(auction?.kingdom, auction?.spell, auction?.level, batch);
+          batch.create(angularFirestore.collection(`auctions`).doc(), { type: AuctionType.CHARM, spell: spells[random(0, spells.length - 1)], level: 0, gold: random(1000000, 5000000), auctioned: auctioned });
+          break;
+        case AuctionType.CONTRACT:
+          if (auction?.kingdom) addContract(auction?.kingdom, auction?.hero, auction?.level, batch);
+          batch.create(angularFirestore.collection(`auctions`).doc(), { type: AuctionType.CONTRACT, hero: heroes[random(0, heroes.length - 1)], level: random(1, 10), gold: random(5000000, 15000000), auctioned: auctioned });
+          break;
+        case AuctionType.TROOP:
+          if (auction?.kingdom) addTroop(auction?.kingdom, auction?.unit, auction?.quantity, batch);
+          batch.create(angularFirestore.collection(`auctions`).doc(), { type: AuctionType.TROOP, unit: units[random(0, units.length - 1)], quantity: random(1, 1000), gold: random(1000000, 10000000), auctioned: auctioned });
+          break;
+      }
+      batch.delete(kingdomAuction.ref);
+    }
+  });
+  return await batch.commit();
 }

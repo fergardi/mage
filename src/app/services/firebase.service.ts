@@ -27,7 +27,7 @@ export class FirebaseService {
           };
         }
       });
-      element[subCollection] = element[subCollection].slice().sort((a: any, b: any) => a.name - b.name);
+      element[subCollection] = element[subCollection].slice().sort((a: any, b: any) => a?.name - b?.name);
     }
     if (typeof element[subCollection] === 'string') {
       element.join = {
@@ -37,19 +37,20 @@ export class FirebaseService {
   }
 
   async selfJoin(element: any) {
-    if (element.store) this.joinObject(element, 'store', await this.cacheService.getStores());
-    if (element.faction) this.joinObject(element, 'faction', await this.cacheService.getFactions());
-    if (element.location) this.joinObject(element, 'location', await this.cacheService.getLocations());
-    if (element.skills) this.joinObject(element, 'skills', await this.cacheService.getSkills());
-    if (element.unit) this.joinObject(element, 'unit', await this.cacheService.getUnits());
-    if (element.units) this.joinObject(element, 'units', await this.cacheService.getUnits());
-    if (element.categories) this.joinObject(element, 'categories', await this.cacheService.getCategories());
-    if (element.families) this.joinObject(element, 'families', await this.cacheService.getFamilies());
-    if (element.spell) this.joinObject(element, 'spell', await this.cacheService.getSpells());
-    if (element.spells) this.joinObject(element, 'spells', await this.cacheService.getSpells());
-    if (element.item) this.joinObject(element, 'item', await this.cacheService.getItems());
-    if (element.items) this.joinObject(element, 'items', await this.cacheService.getItems());
-    if (element.resources) this.joinObject(element, 'resources', await this.cacheService.getResources());
+    if (element.store && element.store.length) this.joinObject(element, 'store', await this.cacheService.getStores());
+    if (element.faction && element.faction.length) this.joinObject(element, 'faction', await this.cacheService.getFactions());
+    if (element.location && element.location.length) this.joinObject(element, 'location', await this.cacheService.getLocations());
+    if (element.skills && element.skills.length) this.joinObject(element, 'skills', await this.cacheService.getSkills());
+    if (element.unit && element.unit.length) this.joinObject(element, 'unit', await this.cacheService.getUnits());
+    if (element.units && element.units.length) this.joinObject(element, 'units', await this.cacheService.getUnits());
+    if (element.categories && element.categories.length) this.joinObject(element, 'categories', await this.cacheService.getCategories());
+    if (element.resistances && element.resistances.length) this.joinObject(element, 'resistances', await this.cacheService.getCategories());
+    if (element.families && element.families.length) this.joinObject(element, 'families', await this.cacheService.getFamilies());
+    if (element.spell && element.spell.length) this.joinObject(element, 'spell', await this.cacheService.getSpells());
+    if (element.spells && element.spells.length) this.joinObject(element, 'spells', await this.cacheService.getSpells());
+    if (element.item && element.item.length) this.joinObject(element, 'item', await this.cacheService.getItems());
+    if (element.items && element.items.length) this.joinObject(element, 'items', await this.cacheService.getItems());
+    if (element.resources && element.resources.length) this.joinObject(element, 'resources', await this.cacheService.getResources());
     return element;
   }
 
@@ -60,19 +61,20 @@ export class FirebaseService {
         : this.angularFirestore.collection<any>(left, query).valueChanges({ idField: 'fid' }), // select * from left where query
       CollectionType[right] === undefined
         ? this.angularFirestore.collection<any>(right).valueChanges() // left join right on left.from = right.to
-        : this.cacheService.get(right) // left join cached right on left.from = right.to
+        : this.cacheService.get(right), // left join cached right on left.from = right.to
     ]).pipe(
       map(([
         leftCollection,
         rightCollection,
       ]) => {
         rightCollection.forEach(async (element: any) => {
-          if (element.skills) this.joinObject(element, 'skills', await this.cacheService.getSkills());
-          if (element.units) this.joinObject(element, 'units', await this.cacheService.getUnits());
-          if (element.categories) this.joinObject(element, 'categories', await this.cacheService.getCategories());
-          if (element.families) this.joinObject(element, 'families', await this.cacheService.getFamilies());
-          if (element.spells) this.joinObject(element, 'spells', await this.cacheService.getSpells());
-          if (element.resources) this.joinObject(element, 'resources', await this.cacheService.getResources());
+          if (element.skills && element.skills.length) this.joinObject(element, 'skills', await this.cacheService.getSkills());
+          if (element.units && element.units.length) this.joinObject(element, 'units', await this.cacheService.getUnits());
+          if (element.categories && element.categories.length) this.joinObject(element, 'categories', await this.cacheService.getCategories());
+          if (element.resistances && element.resistances.length) this.joinObject(element, 'resistances', await this.cacheService.getCategories());
+          if (element.families && element.families.length) this.joinObject(element, 'families', await this.cacheService.getFamilies());
+          if (element.spells && element.spells.length) this.joinObject(element, 'spells', await this.cacheService.getSpells());
+          if (element.resources && element.resources.length) this.joinObject(element, 'resources', await this.cacheService.getResources());
         });
         return leftCollection.map(leftElement => {
           return {

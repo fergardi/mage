@@ -14,7 +14,7 @@ export class IconPipe implements PipeTransform {
 
   transform(text: string, object: any): SafeHtml {
     if (object) {
-      const terms = [object.skills || [], object.families || [], object.categories || [], object.units || [], object.resources || [], object.spells || [], object.adjacents || [], object.opposites || []].reduce((a, b) => a.concat(b), []);
+      const terms = [object.skills || [], object.families || [], object.categories || [], object.units || [], object.resources || [], object.spells || [], object.adjacents || [], object.opposites || [], object.resistances || []].reduce((a, b) => a.concat(b), []);
       terms.forEach((term: any) => {
         text = text.replace(`<${term.id}>`, `<img class="icon" title="${this.translateService.instant(term.name)}" src="${term.image}">`);
       });

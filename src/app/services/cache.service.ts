@@ -301,6 +301,7 @@ export class CacheService {
         item.join = factions.find(faction => faction.id === item.faction);
         item.skills = item.skills.map(skill => skills.find(s => s.id === skill.replace(/\+|\-|\//g, '')));
         item.categories = item.categories.map(category => categories.find(c => c.id === category));
+        item.resistances = item.resistances.map(resistance => categories.find(c => c.id === resistance));
         item.families = item.families.map(family => families.find(f => f.id === family));
         item.units = item.units.map(unit => units.find(u => u.id === unit));
         item.resources = item.resources.map(resource => resources.find(r => r.id === resource.replace(/\+|\-|\//g, '')));

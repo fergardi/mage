@@ -444,7 +444,7 @@
     "name": "unit.lizardman.name",
     "description": "unit.lizardman.description",
     "id": "lizardman",
-    "image": "/assets/images/units/green/lizardman.png",
+    "image": "/assets/images/units/red/lizardman.png",
     "faction": "red",
     "categories": ["poison"],
     "resistances": [],

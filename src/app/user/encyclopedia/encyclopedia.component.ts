@@ -66,8 +66,8 @@ export class EncyclopediaComponent implements OnInit {
     this.data = new MatTableDataSource(data);
     this.data.paginator = this.paginator;
     this.data.sort = this.sort;
-    this.filters.faction.options = [...new Set(data.map(row => row.faction))].map(faction => { return { name: 'faction.' + faction + '.name', value: faction } });
-    this.filters.type.options = [...new Set(data.map(row => row.type))].map(type => { return { name: 'type.' + type + '.name', value: type } });
+    this.filters.faction.options = [...new Set(data.map(row => row.faction))].map(faction => ({ name: 'faction.' + faction + '.name', value: faction }));
+    this.filters.type.options = [...new Set(data.map(row => row.type))].map(type => ({ name: 'type.' + type + '.name', value: type }));
     this.data.filterPredicate = this.createFilter();
     this.applyFilter();
   }
@@ -86,8 +86,8 @@ export class EncyclopediaComponent implements OnInit {
       return (this.translateService.instant(data.name).toLowerCase().includes(filters.name)
         || this.translateService.instant(data.description).toLowerCase().includes(filters.name))
         && data.type.toString().toLowerCase().includes(filters.type)
-        && data.faction.toLowerCase().includes(filters.faction)
-    }
+        && data.faction.toLowerCase().includes(filters.faction);
+    };
     return filterFunction;
   }
 

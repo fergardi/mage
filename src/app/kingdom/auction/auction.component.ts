@@ -13,6 +13,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Store } from '@ngxs/store';
 import { combineLatest } from 'rxjs';
 import { CacheService } from 'src/app/services/cache.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-auction',
@@ -51,6 +52,7 @@ export class AuctionComponent implements OnInit {
     private dialog: MatDialog,
     private store: Store,
     private cacheService: CacheService,
+    private apiService: ApiService,
   ) { }
 
   async ngOnInit() {
@@ -59,19 +61,24 @@ export class AuctionComponent implements OnInit {
       this.firebaseService.leftJoin('auctions', 'items', 'item', 'id', x => x.where('type', '==', 'artifact')),
       this.firebaseService.leftJoin('auctions', 'heroes', 'hero', 'id', x => x.where('type', '==', 'contract')),
       this.firebaseService.leftJoin('auctions', 'units', 'unit', 'id', x => x.where('type', '==', 'troop')),
+      this.firebaseService.leftJoin('auctions', 'spells', 'spell', 'id', x => x.where('type', '==', 'charm')),
     ])
     .pipe(untilDestroyed(this))
-    .subscribe(([artifacts, contracts, troops]) => {
-      console.log(contracts);
-      let data = [artifacts,  contracts, troops];
+    .subscribe(([artifacts, contracts, troops, charms]) => {
+      let data = [artifacts,  contracts, troops, charms];
       data = data.reduce((a, b) => a.concat(b), []);
       this.data = new MatTableDataSource(data);
       this.data.paginator = this.paginator;
+      this.data.paginator._changePageSize(20);
       this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['gold'] : obj[property];
       this.data.sort = this.sort;
-      this.filters.faction.options = factions.map(faction => { return { name: 'faction.' + faction.id + '.name', value: faction.id } })
+      this.filters.faction.options = factions.map(faction => ({ name: 'faction.' + faction.id + '.name', value: faction.id }));
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
+      const firstAuction: any = data[0];
+      if (firstAuction.auctioned && moment().isAfter(moment(firstAuction.auctioned.toMillis()))) {
+        this.apiService.refreshAuction();
+      }
     });
   }
 
