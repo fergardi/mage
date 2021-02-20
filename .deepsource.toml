@@ -1,0 +1,16 @@
+version = 1
+
+test_patterns = ["**/**.specs.ts"]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  plugins = ["angular"]
+  style_guide = "standard"
+  dialect = "typescript"
+  environment = [
+    "browser",
+    "nodejs"
+  ]
