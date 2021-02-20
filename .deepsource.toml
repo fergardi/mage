@@ -1,6 +1,6 @@
 version = 1
 
-test_patterns = ["**/**.specs.ts"]
+test_patterns = ["**/*.spec.ts"]
 
 [[analyzers]]
 name = "javascript"
