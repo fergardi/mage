@@ -21,7 +21,7 @@ const StoreStub: any = {
 };
 
 
-fdescribe('DispelComponent', () => {
+describe('DispelComponent', () => {
   let component: DispelComponent;
   let fixture: ComponentFixture<DispelComponent>;
   const enchantment = {

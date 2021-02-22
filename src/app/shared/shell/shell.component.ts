@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay, filter } from 'rxjs/operators';
@@ -7,20 +7,21 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router, NavigationEnd } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MapboxService } from 'src/app/services/mapbox.service';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store, Select } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
 import { TourService } from 'ngx-tour-md-menu';
 import { DomService } from 'src/app/services/dom.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthState } from '../auth/auth.state';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss']
 })
-@UntilDestroy()
-export class ShellComponent {
+export class ShellComponent implements OnInit {
 
   langs: any[] = [
     { lang: 'es', image: '/assets/images/languages/es.png' },
@@ -53,7 +54,6 @@ export class ShellComponent {
       ],
     },
   ];
-
   @Select((state: any) => state.auth.supplies) kingdomSupplies$: Observable<any[]>;
   link$: Observable<any> = this.router.events
   .pipe(
@@ -67,7 +67,7 @@ export class ShellComponent {
     map(result => result.matches),
     shareReplay(),
   );
-
+  public reports: number = 0;
   @ViewChild(MatSidenav, {static: true}) drawer: MatSidenav;
 
   constructor(
@@ -80,12 +80,25 @@ export class ShellComponent {
     private tourService: TourService,
     private domService: DomService,
     public loadingService: LoadingService,
+    private angularFirestore: AngularFirestore,
+    private notificationService: NotificationService,
   ) {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));
     this.translateService.setDefaultLang(this.langs[0].lang);
     const browser = this.translateService.getBrowserLang();
     this.translateService.use(this.langs.map(l => l.lang).includes(browser) ? browser : this.langs[0].lang);
+  }
+
+  ngOnInit() {
+    this.store.select(AuthState.getUserUID).subscribe(uid => {
+      if (uid) {
+        this.angularFirestore.collection<any>(`kingdoms/${uid}/letters`, x => x.where('read', '==', false)).valueChanges().subscribe(reports => {
+          this.reports = reports.length;
+          if (this.reports > 0) this.notificationService.warning('Tienes mensajes nuevos');
+        });
+      }
+    });
   }
 
   async toggle() {

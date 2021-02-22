@@ -13,6 +13,9 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { NotificationService } from 'src/app/services/notification.service';
 import * as moment from 'moment';
+import { TranslateService } from '@ngx-translate/core';
+import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-archive',
@@ -23,8 +26,7 @@ import * as moment from 'moment';
 @UntilDestroy()
 export class ArchiveComponent implements OnInit {
 
-  uid: string = null;
-  kingdoms: any[] = [];
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   columns = ['select', 'from', 'subject', 'timestamp'];
   filters: any = {
     from: {
@@ -45,17 +47,18 @@ export class ArchiveComponent implements OnInit {
 
   constructor(
     private firebaseService: FirebaseService,
-    private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private store: Store,
     private notificationService: NotificationService,
+    private translateService: TranslateService,
+    private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit(): void {
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/letters`, 'kingdoms', 'from', 'id').pipe(untilDestroyed(this)).subscribe(async letters => {
       letters = await Promise.all(letters.map(async letter => {
         return {
@@ -69,9 +72,6 @@ export class ArchiveComponent implements OnInit {
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
     });
-    this.angularFirestore.collection('kingdoms').valueChanges().pipe(untilDestroyed(this)).subscribe(kingdoms => {
-      this.kingdoms = kingdoms;
-    });
   }
 
   applyFilter(): void {
@@ -83,12 +83,13 @@ export class ArchiveComponent implements OnInit {
   }
 
   createFilter(): (data: any, filter: string) => boolean {
-    let filterFunction = function(data: any, filter: string): boolean {
-      let filters = JSON.parse(filter);
-      return data.join.name.toLowerCase().includes(filters.from)
-        && data.subject.toString().toLowerCase().includes(filters.subject)
+    const filterFunction = (data: any, filter: string): boolean => {
+      const filters = JSON.parse(filter);
+      return data && data.join && data.join.name && data.subject
+        && this.translateService.instant(data.join.name).toLowerCase().includes(filters.from)
+        && this.translateService.instant(data.subject).toString().toLowerCase().includes(filters.subject)
         && (!filters.timestamp || moment(data.timestamp.toMillis()).isBetween(moment(filters.timestamp).startOf('day'), moment(filters.timestamp).endOf('day'), 'days', '[]'));
-    }
+    };
     return filterFunction;
   }
 
@@ -102,26 +103,22 @@ export class ArchiveComponent implements OnInit {
       : this.data.data.forEach(row => this.selection.select(row));
   }
 
-  async openReportDialog(letter: any) {
+  async openReportDialog(report: any) {
+    report.message = await this.firebaseService.selfJoin(report.message);
     const dialogRef = this.dialog.open(ReportComponent, {
       panelClass: 'dialog-responsive',
-      data: letter,
+      data: report,
     });
   }
 
   async deleteReports() {
     if (this.selection.selected.length) {
-      try {
-        const batch = this.angularFirestore.firestore.batch();
-        this.selection.selected.forEach(letter => {
-          batch.delete(this.angularFirestore.collection(`kingdoms/${this.uid}/letters`).doc(letter.fid).ref);
-        });
-        await batch.commit();
-        this.selection.clear();
-        this.notificationService.success('kingdom.letter.deleted');
-      } catch (error) {
-        this.notificationService.error('kingdom.letter.error');
-      }
+      this.loadingService.setLoading(true);
+      const fids = this.selection.selected.map(letter => letter.fid);
+      await this.apiService.removeLetters(this.uid, fids);
+      this.selection.clear();
+      this.loadingService.setLoading(false);
+      this.notificationService.success('kingdom.letter.deleted');
     }
   }
 

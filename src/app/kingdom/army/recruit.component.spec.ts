@@ -13,7 +13,7 @@ import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { MatBadge } from '@angular/material/badge';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-fdescribe('RecruitComponent', () => {
+describe('RecruitComponent', () => {
   let component: RecruitComponent;
   let fixture: ComponentFixture<RecruitComponent>;
   const unit = {

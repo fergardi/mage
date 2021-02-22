@@ -7,6 +7,10 @@
     "lastPageLabel": "Última página",
     "rangeLabelIntl": "Mostrando {{ start }} - {{ end }} de {{ length }} elementos"
   },
+  "dateformat": {
+    "long": "dd/MM/yyyy HH:mm:ss",
+    "short": "MMM d, y, h:mm:ss"
+  },
   "tour": {
     "end": "Terminar",
     "supplies": {
@@ -286,7 +290,9 @@
     },
     "report": {
       "battle": "Reporte de batalla",
-      "description": "Este reporte contiene la siguiente información relevante:",
+      "auction": "Subasta terminada",
+      "from": "De",
+      "adquisitions": "Adquisiciones",
       "close": "Cerrar"
     },
     "battle": {
@@ -370,7 +376,8 @@
       "name": "Subasta",
       "description": "Comercia con otros reinos",
       "help": "Aquí puedes pujar oro contra otros reinos para adquirir artefactos, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar.",
-      "bid": "Pujar"
+      "bid": "Pujar",
+      "from": "Casa de Subastas"
     },
     "bid": {
       "name": "Puja",
@@ -378,8 +385,8 @@
       "help": "Debes pujar como mínimo un 10% más de oro que la puja anterior, y si alguien te sobrepuja, se te devolverá solo el 90% de tu puja original, así que puja con inteligencia.",
       "cancel": "Cancelar",
       "bid": "Pujar",
-      "hint": "Ofrece +10% oro que la puja anterior",
-      "error": "Ha ocurrido un problema",
+      "hint": "Ofrece como mínimo un 10% más Oro que la puja anterior",
+      "error": "La puja no supera el mínimo o no dispones de suficiente Oro",
       "success": "Puja aceptada"
     },
     "sorcery": {
@@ -1405,8 +1412,8 @@
       "name": "Milagro",
       "description": "Aplica <regeneration>,<strength>,<scales>,<haste> y <flight> a una tropa aliada al azar"
     },
-    "peace": {
-      "name": "Paz",
+    "peace-prosperity": {
+      "name": "Paz y Prosperidad",
       "description": "Genera <gold>,<mana> y <population> cada <turn>"
     },
     "resurrection": {
@@ -1767,7 +1774,7 @@
     },
     "lucky-coin": {
       "name": "Moneda de la Suerte",
-      "description": "Conjura <peace>,<climate-control>,<natures-favor> o <druidism>"
+      "description": "Conjura <peace-prosperity>,<climate-control>,<natures-favor> o <druidism>"
     },
     "lucky-horseshoe": {
       "name": "Herradura de la Suerte",

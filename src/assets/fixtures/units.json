@@ -96,7 +96,7 @@
     "faction": "black",
     "categories": ["melee"],
     "resistances": ["poison"],
-    "skills": ["leech"],
+    "skills": ["leech", "regeneration"],
     "families": ["undead"],
     "initiative": 1,
     "attack": 500,

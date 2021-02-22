@@ -49,7 +49,7 @@
               [routerLink]="link.url ? link.url : null"
               [routerLinkActive]="link.url ? ['active'] : []"
               [routerLinkActiveOptions]="{ exact: true }">
-              <div mat-list-avatar>
+              <div mat-list-avatar [matBadge]="link.name === 'kingdom.archive.name' && reports ? reports : undefined">
                 <img mat-list-avatar [src]="link.image">
               </div>
               <div mat-line>{{ link.name | translate }}</div>

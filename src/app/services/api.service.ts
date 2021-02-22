@@ -112,7 +112,15 @@ export class ApiService {
   }
 
   refreshAuction() {
-    return this.httpClient.patch(environment.functions.url + `/kingdom/auction`, undefined).toPromise();
+    return this.httpClient.put(environment.functions.url + `/kingdom/auction`, undefined).toPromise();
+  }
+
+  readLetter(kingdomId: string, letterId: string) {
+    return this.httpClient.patch(environment.functions.url + `/kingdom/${kingdomId}/archive/${letterId}`, undefined).toPromise();
+  }
+
+  removeLetters(kingdomId: string, letterIds: string[]) { // https://stackoverflow.com/a/63135636/2477303
+    return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/archive`, { body: { letterIds: letterIds } }).toPromise();
   }
 
 }

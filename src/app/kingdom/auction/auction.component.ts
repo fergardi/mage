@@ -14,6 +14,7 @@ import { Store } from '@ngxs/store';
 import { combineLatest } from 'rxjs';
 import { CacheService } from 'src/app/services/cache.service';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-auction',
@@ -53,6 +54,7 @@ export class AuctionComponent implements OnInit {
     private store: Store,
     private cacheService: CacheService,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   async ngOnInit() {
@@ -64,7 +66,7 @@ export class AuctionComponent implements OnInit {
       this.firebaseService.leftJoin('auctions', 'spells', 'spell', 'id', x => x.where('type', '==', 'charm')),
     ])
     .pipe(untilDestroyed(this))
-    .subscribe(([artifacts, contracts, troops, charms]) => {
+    .subscribe(async ([artifacts, contracts, troops, charms]) => {
       let data = [artifacts,  contracts, troops, charms];
       data = data.reduce((a, b) => a.concat(b), []);
       this.data = new MatTableDataSource(data);
@@ -77,7 +79,9 @@ export class AuctionComponent implements OnInit {
       this.applyFilter();
       const firstAuction: any = data[0];
       if (firstAuction.auctioned && moment().isAfter(moment(firstAuction.auctioned.toMillis()))) {
-        this.apiService.refreshAuction();
+        this.loadingService.setLoading(true);
+        await this.apiService.refreshAuction();
+        this.loadingService.setLoading(false);
       }
     });
   }

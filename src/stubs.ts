@@ -26,3 +26,7 @@ export const ApiServiceStub: any = {
   bidAuction: () => null,
   recruitUnit: () => null,
 };
+
+export const FirebaseServiceStub: any = {
+  selfJoin: (a: any) => a,
+};

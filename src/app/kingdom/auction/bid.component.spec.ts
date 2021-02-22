@@ -13,7 +13,7 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatBadge } from '@angular/material/badge';
 import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
 
-fdescribe('BidComponent', () => {
+describe('BidComponent', () => {
   let component: BidComponent;
   let fixture: ComponentFixture<BidComponent>;
   const auction = {

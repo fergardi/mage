@@ -14,7 +14,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           <div mat-list-avatar [matBadge]="tome.level || '?'" matBadgePosition="above before">
             <img mat-list-avatar [src]="tome.image">
           </div>
-          <div mat-line>{{ tome.name | translate:{name:'???'} }}</div>
+          <div mat-line>{{ tome.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(tome.type)">{{ tome.description | translate }}</div>
           <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(tome.type)" [innerHTML]="tome.description | translate | icon:tome"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(tome.type)">

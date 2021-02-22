@@ -607,7 +607,7 @@
     "resistances": [],
     "units": [],
     "resources": [],
-    "spells": ["peace", "climate-control", "natures-favor", "druidism"],
+    "spells": ["peace-prosperity", "climate-control", "natures-favor", "druidism"],
     "amount": [],
     "battle": false,
     "self": true,

@@ -12,7 +12,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatBadge } from '@angular/material/badge';
 import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
 
-fdescribe('DisbandComponent', () => {
+describe('DisbandComponent', () => {
   let component: DisbandComponent;
   let fixture: ComponentFixture<DisbandComponent>;
   const troop = {

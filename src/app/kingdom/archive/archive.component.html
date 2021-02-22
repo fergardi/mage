@@ -51,10 +51,10 @@
               <ng-template [ngIf]="column === 'from'">
                 <mat-list dense>
                   <mat-list-item [ngClass]="letter['join'].join.id">
-                    <div mat-list-avatar>
+                    <div mat-list-avatar [matBadge]="!letter.read ? '❕' : undefined" matBadgePosition="above before">
                       <img mat-list-avatar [src]="letter['join'].join.image">
                     </div>
-                    <div mat-line>{{ letter['join'].name }}</div>
+                    <div mat-line>{{ letter['join'].name | translate  }}</div>
                     <div mat-line class="mat-card-subtitle">{{ letter['join'].join.name | translate }}</div>
                   </mat-list-item>
                 </mat-list>
@@ -65,7 +65,7 @@
               </ng-template>
 
               <ng-template [ngIf]="column === 'timestamp'">
-                {{ letter[column]?.toMillis() | date }}
+                {{ letter[column]?.toMillis() | date:('dateformat.short' | translate) }}
               </ng-template>
 
             </mat-cell>
