@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
 import { LandingComponent } from './landing.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { DomService } from 'src/app/services/dom.service';
 
 describe('LandingComponent', () => {
   let component: LandingComponent;
@@ -8,7 +10,18 @@ describe('LandingComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingComponent ]
+      imports: [
+        TranslateModule.forRoot(),
+      ],
+      declarations: [
+        LandingComponent,
+      ],
+      providers: [
+        DomService,
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+      ],
     })
     .compileComponents();
   }));
@@ -19,7 +32,7 @@ describe('LandingComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should CREATE', () => {
     expect(component).toBeTruthy();
   });
 });

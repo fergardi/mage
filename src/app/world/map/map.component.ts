@@ -125,9 +125,9 @@ export class MapComponent implements OnInit, OnDestroy {
     this.mapboxService.addBot(type);
   }
 
-  populateMap() {
+  async populateMap() {
     this.notificationService.warning('world.map.populate');
-    this.mapboxService.populateMap();
+    await this.mapboxService.populateMap();
   }
 
   ngOnDestroy(): void {

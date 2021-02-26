@@ -48,6 +48,8 @@ import { ApiService } from 'src/app/services/api.service';
 export class ExploreComponent implements OnInit {
 
   form: FormGroup = null;
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  uid = this.store.selectSnapshot(AuthState.getUserUID);
   @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'land')) land$: Observable<any>;
   @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'turn')) turn$: Observable<any>;
 
@@ -60,9 +62,8 @@ export class ExploreComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(kingdomTurn.quantity)]]
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
     });
   }
 
@@ -71,11 +72,9 @@ export class ExploreComponent implements OnInit {
   }
 
   async explore() {
-    let uid = this.store.selectSnapshot(AuthState.getUserUID);
-    let kingdomTurn = this.store.selectSnapshot(AuthState.getKingdomTurn);
-    if (this.form.valid && this.form.value.turns <= kingdomTurn.quantity) {
+    if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       try {
-        let explored = await this.apiService.exploreLand(uid, this.form.value.turns);
+        let explored = await this.apiService.exploreLand(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.explore.success', explored);
         this.close();
       } catch (error) {

@@ -47,8 +47,8 @@ import { Observable } from 'rxjs';
 })
 export class ChargeComponent implements OnInit {
 
-  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   form: FormGroup = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
 
   constructor(
@@ -62,7 +62,7 @@ export class ChargeComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]]
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
     });
   }
 

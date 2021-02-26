@@ -5,11 +5,13 @@ import { SetUserAction } from './auth.actions';
 
 describe('Auth store', () => {
   let store: Store;
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [NgxsModule.forRoot([AuthState])]
     }).compileComponents();
-    store = TestBed.get(Store);
+
+    store = TestBed.inject(Store);
   }));
 
   it('should create an action and add an item', () => {

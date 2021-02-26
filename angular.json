@@ -46,13 +46,16 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/rpg-awesome/css/rpg-awesome.min.css",
               "node_modules/animate.css/animate.min.css",
               "node_modules/mapbox-gl/dist/mapbox-gl.css",
-              "src/styles.scss",
-              "src/colors.scss"
+              "src/styles/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            }
           },
           "configurations": {
             "hmr": {
@@ -125,11 +128,13 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": [],
             "scripts": [],
-            "codeCoverage": true
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            }
           }
         },
         "lint": {

@@ -62,7 +62,7 @@ export class TaxComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]]
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
     });
   }
 

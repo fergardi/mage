@@ -8,7 +8,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-
 @Component({
   selector: 'app-clan',
   templateUrl: './clan.component.html',

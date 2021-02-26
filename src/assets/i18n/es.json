@@ -214,7 +214,7 @@
   "attack": {
     "assault": {
       "name": "Asalto",
-      "description": "Un ataque a medio camino entre el pillaje y el asedio"
+      "description": "Un ataque centrado en destruir tropas y héroes"
     },
     "pillage": {
       "name": "Pillaje",
@@ -1888,41 +1888,41 @@
     }
   },
   "guild": {
-    "assassin": {
-      "name": "Gremio de Asesinos",
-      "description": "Tus tropas tienen más ataque"
-    },
-    "champion": {
-      "name": "Gremio de Campeones",
-      "description": "Tus tropas tienen más defensa"
-    },
-    "hunter": {
-      "name": "Gremio de Cazadores",
-      "description": "Tus tropas tienen más ataque"
-    },
     "knight": {
       "name": "Gremio de Caballeros",
-      "description": "Tus tropas <melee> tienen más ataque"
-    },
-    "mage": {
-      "name": "Gremio de Magos",
-      "description": "Tus tropas roban más maná"
+      "description": "Obtienes +10% ataque en las Batallas"
     },
     "priest": {
       "name": "Gremio de Sanadores",
-      "description": "Tus tropas curan sus heridas"
+      "description": "Obtienes +10% salud en las Batallas"
+    },
+    "champion": {
+      "name": "Gremio de Campeones",
+      "description": "Obtienes +10% defensa en las Batallas"
+    },
+    "hunter": {
+      "name": "Gremio de Cazadores",
+      "description": "Robas +10% Población en los Pillajes"
     },
     "rogue": {
       "name": "Gremio de Ladrones",
-      "description": "Tus tropas roban más oro"
+      "description": "Robas +10% Oro en los Pillajes"
     },
-    "warlock": {
-      "name": "Gremio de Brujos",
-      "description": "Tus tropas roban más población"
+    "mage": {
+      "name": "Gremio de Magos",
+      "description": "Robas +10% Maná en los Pillajes"
     },
     "warrior": {
       "name": "Gremio de Guerreros",
-      "description": "Tus tropas tienen más salud"
+      "description": "Destruyes +10% Recursos en los Asedios"
+    },
+    "assassin": {
+      "name": "Gremio de Asesinos",
+      "description": "Destruyes +10% Tropas en los Asedios"
+    },
+    "warlock": {
+      "name": "Gremio de Brujos",
+      "description": "Destruyes +10% Edificios en los Asedios"
     }
   }
 }

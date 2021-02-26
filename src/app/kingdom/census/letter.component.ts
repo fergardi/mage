@@ -53,8 +53,8 @@ export class LetterComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      subject: ['', [Validators.required]],
-      message: ['', [Validators.required]],
+      subject: [null, [Validators.required]],
+      message: [null, [Validators.required]],
     });
   }
 

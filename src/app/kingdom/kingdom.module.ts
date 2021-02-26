@@ -68,6 +68,6 @@ import { ClanComponent } from './clan/clan.component';
     KingdomRoutingModule,
     SharedModule,
     TourMatMenuModule,
-  ]
+  ],
 })
 export class KingdomModule { }

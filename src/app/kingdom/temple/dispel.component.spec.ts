@@ -7,19 +7,9 @@ import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
-import { MatBadge } from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
-const NotificationServiceStub: any = {
-  success: () => null,
-  warning: () => null,
-  error: () => null,
-};
-
-const StoreStub: any = {
-  selectSnapshot: () => null,
-};
-
+import { NotificationServiceStub, StoreStub } from 'src/stubs';
 
 describe('DispelComponent', () => {
   let component: DispelComponent;
@@ -41,9 +31,9 @@ describe('DispelComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         TranslateModule.forRoot(),
+        MatBadgeModule,
       ],
       declarations: [
-        MatBadge,
         DispelComponent,
         LegendaryPipe,
         LongPipe,
@@ -68,7 +58,7 @@ describe('DispelComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should CREATE', () => {
     expect(component).toBeTruthy();
   });
 });

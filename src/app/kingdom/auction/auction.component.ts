@@ -67,18 +67,17 @@ export class AuctionComponent implements OnInit {
     ])
     .pipe(untilDestroyed(this))
     .subscribe(async ([artifacts, contracts, troops, charms]) => {
-      let data = [artifacts,  contracts, troops, charms];
+      let data = [artifacts, contracts, troops, charms];
       data = data.reduce((a, b) => a.concat(b), []);
       this.data = new MatTableDataSource(data);
       this.data.paginator = this.paginator;
-      this.data.paginator._changePageSize(20);
       this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['gold'] : obj[property];
       this.data.sort = this.sort;
       this.filters.faction.options = factions.map(faction => ({ name: 'faction.' + faction.id + '.name', value: faction.id }));
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
       const firstAuction: any = data[0];
-      if (firstAuction.auctioned && moment().isAfter(moment(firstAuction.auctioned.toMillis()))) {
+      if (firstAuction && firstAuction.auctioned && moment().isAfter(moment(firstAuction.auctioned.toMillis()))) {
         this.loadingService.setLoading(true);
         await this.apiService.refreshAuction();
         this.loadingService.setLoading(false);

@@ -1,24 +1,36 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReportComponent } from './report.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogRefStub, FirebaseServiceStub } from 'src/stubs';
+import { DialogRefStub, FirebaseServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngxs/store';
+import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
+import { ShortPipe } from 'src/app/pipes/short.pipe';
+import { MatBadgeModule } from '@angular/material/badge';
 
-fdescribe('ReportComponent', () => {
+describe('ReportComponent', () => {
   let component: ReportComponent;
   let fixture: ComponentFixture<ReportComponent>;
   const report = {
-    from: 'test',
+    read: false,
+    from: 'auction',
     to: 'test',
     join: {
       join: {
+        id: '',
         image: '',
       },
     },
     message: {
-      unit: 'skeleton',
+      join: {
+        id: '',
+      },
+      unit: {
+        id: 'skeleton',
+      },
       quantity: 999,
     },
   };
@@ -27,14 +39,19 @@ fdescribe('ReportComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         TranslateModule.forRoot(),
+        MatBadgeModule,
       ],
       declarations: [
         ReportComponent,
+        LegendaryPipe,
+        ShortPipe,
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: report },
         { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: FirebaseService, useValue: FirebaseServiceStub },
+        { provide: ApiService, useValue: ApiServiceStub },
+        { provide: Store, useValue: StoreStub },
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,
@@ -49,7 +66,7 @@ fdescribe('ReportComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should CREATE', () => {
     expect(component).toBeTruthy();
   });
 });

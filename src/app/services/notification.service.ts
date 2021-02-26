@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-@UntilDestroy()
 export class NotificationService {
 
   private options: MatSnackBarConfig = {

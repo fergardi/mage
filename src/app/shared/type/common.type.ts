@@ -41,5 +41,9 @@ export enum LocationType {
 }
 
 export enum FactionType {
-  'red', 'white', 'green', 'blue', 'black',
+  RED = 'red',
+  WHITE = 'white',
+  GREEN = 'green',
+  BLUE = 'blue',
+  BLACK = 'black',
 }

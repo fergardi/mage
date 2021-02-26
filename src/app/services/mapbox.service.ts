@@ -78,7 +78,7 @@ export class MapboxService {
 
   addMe(): void {
     navigator.geolocation.getCurrentPosition(async position => {
-      this.addKingdom(this.uid, 'Fergardi', FactionType.black, position.coords.latitude, position.coords.longitude);
+      this.addKingdom(this.uid, 'Fergardi', FactionType.BLACK, position.coords.latitude, position.coords.longitude);
       this.goTo(position.coords.latitude, position.coords.longitude, true);
     }, null, {
       enableHighAccuracy: true,

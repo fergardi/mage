@@ -513,9 +513,7 @@ const bidAuction = async (kingdomId: string, auctionId: string, gold: number) =>
     if (gold <= kingdomGold.docs[0].data().quantity && gold >= Math.floor(auction?.gold * 1.10) && kingdomId !== auction?.kingdom) {
       const batch = angularFirestore.batch();
       await addSupply(kingdomId, 'gold', -gold, batch);
-      if (auction?.kingdom) {
-        await addSupply(auction?.kingdom, 'gold', Math.floor(auction?.gold * 0.90), batch);
-      }
+      if (auction?.kingdom) await addSupply(auction?.kingdom, 'gold', Math.floor(auction?.gold * 0.90), batch);
       batch.update(angularFirestore.doc(`auctions/${auctionId}`), { kingdom: kingdomId, gold: gold });
       await batch.commit();
     }
@@ -798,7 +796,7 @@ const checkShop = async (fid?: string, latitude?: number, longitude?: number, ty
       batch.create(angularFirestore.collection(`shops/${fid}/charms`).doc(), { id: spells[random(0, spells.length - 1)], gold: random(10000000, 100000000) });
       break;
   }
-  return await batch.commit();
+  await batch.commit();
 }
 
 /**

@@ -13,4 +13,10 @@ describe('LoadingService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should set LOADING state', () => {
+    service.setLoading(true);
+    expect(service.loading).toBe(true);
+  });
+
 });

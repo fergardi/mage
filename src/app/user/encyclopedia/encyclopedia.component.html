@@ -27,6 +27,7 @@
                 <mat-option *ngFor="let option of filters[column].options" [value]="option.value">{{ option.name | translate }}</mat-option>
               </mat-select>
             </mat-form-field>
+
           </mat-header-cell>
 
           <mat-cell *matCellDef="let row" [attr.data-label]="'table.column.' + column | translate">

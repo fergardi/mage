@@ -1,7 +1,5 @@
-// Import material theming functions
 @import '~@angular/material/theming';
 
-// Copy the palettes from your selected theme (usually theme.scss).
 $md-palette: (
   50 : #f3e0f3,
   100 : #e0b3e1,
@@ -34,14 +32,30 @@ $md-palette: (
     A700 : #ffffff,
   )
 );
-$theme-primary: mat-palette($md-palette);
-$theme-accent: mat-palette($mat-green, 600);
-$theme-warn: mat-palette($mat-red, 600);
 
-// Create your Sass color vars (will be available in all the project)
+$theme-primary: mat-palette($md-palette);
+$theme-accent: mat-palette($mat-green, 800);
+$theme-warn: mat-palette($mat-red, 800);
+$theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+@include angular-material-theme($theme);
+
+$theme-black: mat-palette($mat-purple, 900);
+$theme-red: mat-palette($mat-red, 900);
+$theme-green: mat-palette($mat-green, 900);
+$theme-blue: mat-palette($mat-blue, 900);
+$theme-white: mat-palette($mat-blue-grey, 200);
+$theme-common: mat-palette($mat-brown, 900);
+
 $primary-color: mat-color($theme-primary);
 $accent-color: mat-color($theme-accent);
 $warn-color: mat-color($theme-warn);
 
-$common-color: #373638;
+$black-color: mat-color($theme-black);
+$red-color: mat-color($theme-red);
+$green-color: mat-color($theme-green);
+$blue-color: mat-color($theme-blue);
+$white-color: mat-color($theme-white);
+
+// $common-color: #373638;
+$common-color: mat-color($theme-common);
 $legendary-color: darkgoldenrod;

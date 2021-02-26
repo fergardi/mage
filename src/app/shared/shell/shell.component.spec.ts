@@ -1,6 +1,30 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed, waitForAsync, fakeAsync, inject } from '@angular/core/testing';
 import { ShellComponent } from './shell.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuthStub, StoreStub, MapboxServiceStub, AngularFirestoreStub, NotificationServiceStub } from 'src/stubs';
+import { Store } from '@ngxs/store';
+import { MapboxService } from 'src/app/services/mapbox.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { LoadingService } from 'src/app/services/loading.service';
+import { DomService } from 'src/app/services/dom.service';
+import { TourService } from 'ngx-tour-core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from 'src/app/app-routing.module';
+import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatListModule } from '@angular/material/list';
+import { of } from 'rxjs';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
 
 describe('ShellComponent', () => {
   let component: ShellComponent;
@@ -8,7 +32,36 @@ describe('ShellComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShellComponent ]
+      imports: [
+        TranslateModule.forRoot(),
+        RouterTestingModule.withRoutes(routes),
+        TourMatMenuModule.forRoot(),
+        MatMenuModule,
+        BrowserAnimationsModule,
+        MatBadgeModule,
+        MatListModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSelectModule,
+      ],
+      declarations: [
+        ShellComponent,
+      ],
+      providers: [
+        LoadingService,
+        DomService,
+        TourService,
+        { provide: NotificationService, useValue: NotificationServiceStub },
+        { provide: AngularFireAuth, useValue: AngularFireAuthStub },
+        { provide: Store, useValue: StoreStub },
+        { provide: MapboxService, useValue: MapboxServiceStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
+      ],
     })
     .compileComponents();
   }));
@@ -16,10 +69,42 @@ describe('ShellComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ShellComponent);
     component = fixture.componentInstance;
+    Object.defineProperty(component, 'kingdomSupplies$', { writable: true });
+    Object.defineProperty(component, 'isHandset$', { writable: true });
+    component.kingdomSupplies$ = of([]);
+    component.isHandset$ = of(true);
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should CREATE', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should TOGGLE the DRAWER', fakeAsync(() => {
+    const opened = component.drawer.opened;
+    component.toggle();
+    expect(component.drawer.opened).toBe(!opened);
+  }));
+
+  it('should CLOSE the DRAWER', () => {
+    component.close();
+    expect(component.drawer.opened).toBe(false);
+  });
+
+  it('should LOGIN in the APP', inject([Router], (router: Router) => {
+    spyOn(router, 'navigate').and.stub();
+    component.login(null);
+    expect(router.navigate).toHaveBeenCalledWith(['/user/landing']);
+  }));
+
+  it('should LOGOUT from the APP', inject([Store], (store: Store) => {
+    spyOn(store, 'dispatch').and.stub();
+    component.logout();
+    expect(store.dispatch).toHaveBeenCalled();
+  }));
+
+  it('should START the TOUR', () => {
+    component.tour();
+  });
+
 });

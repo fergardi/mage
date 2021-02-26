@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
 import { RecruitComponent } from './recruit.component';
 import { ApiService } from 'src/app/services/api.service';
 import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
@@ -10,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
-import { MatBadge } from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('RecruitComponent', () => {
@@ -31,9 +30,9 @@ describe('RecruitComponent', () => {
       imports: [
         ReactiveFormsModule,
         TranslateModule.forRoot(),
+        MatBadgeModule,
       ],
       declarations: [
-        MatBadge,
         LegendaryPipe,
         LongPipe,
         RecruitComponent,
@@ -54,11 +53,12 @@ describe('RecruitComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RecruitComponent);
+    (fixture.nativeElement as HTMLDivElement).classList.add('mat-dialog-container');
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should CREATE', () => {
     expect(component).toBeTruthy();
   });
 

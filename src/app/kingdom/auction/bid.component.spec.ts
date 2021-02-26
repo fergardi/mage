@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
-import { MatBadge } from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
 
 describe('BidComponent', () => {
@@ -35,9 +35,9 @@ describe('BidComponent', () => {
       imports: [
         ReactiveFormsModule,
         TranslateModule.forRoot(),
+        MatBadgeModule,
       ],
       declarations: [
-        MatBadge,
         BidComponent,
         LegendaryPipe,
         ShortPipe,
@@ -63,7 +63,7 @@ describe('BidComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should CREATE', () => {
     expect(component).toBeTruthy();
   });
 

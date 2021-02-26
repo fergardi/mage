@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
@@ -50,7 +49,7 @@ export class TavernComponent implements OnInit {
   }
 
   async assignContract($event: CdkDragDrop<any>) {
-    if ([0,3].includes(parseInt($event.container.id)) || $event.container.data.length < MAXIMUM_CONTRACTS) {
+    if ([0, 3].includes(parseInt($event.container.id)) || $event.container.data.length < MAXIMUM_CONTRACTS) {
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {

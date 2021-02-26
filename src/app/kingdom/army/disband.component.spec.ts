@@ -9,7 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MatBadge } from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
 import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
 
 describe('DisbandComponent', () => {
@@ -32,9 +32,9 @@ describe('DisbandComponent', () => {
       imports: [
         ReactiveFormsModule,
         TranslateModule.forRoot(),
+        MatBadgeModule,
       ],
       declarations: [
-        MatBadge,
         DisbandComponent,
         LegendaryPipe,
         LongPipe,
@@ -59,7 +59,7 @@ describe('DisbandComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should CREATE', () => {
     expect(component).toBeTruthy();
   });
 

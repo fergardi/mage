@@ -43,21 +43,21 @@ export class CityComponent implements OnInit {
     });
   }
 
-  openTaxDialog(village$: any) {
+  openTaxDialog(village$: any): void {
     const dialogRef = this.dialog.open(TaxComponent, {
       panelClass: 'dialog-responsive',
       data: village$,
     });
   }
 
-  openChargeDialog(node$: any) {
+  openChargeDialog(node$: any): void {
     const dialogRef = this.dialog.open(ChargeComponent, {
       panelClass: 'dialog-responsive',
       data: node$,
     });
   }
 
-  openExploreDialog(land$: Observable<any>) {
+  openExploreDialog(land$: Observable<any>): void {
     const dialogRef = this.dialog.open(ExploreComponent, {
       panelClass: 'dialog-responsive',
       data: land$,

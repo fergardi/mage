@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './user/auth.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: 'user/landing', pathMatch: 'full' },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'world', loadChildren: () => import('./world/world.module').then(m => m.WorldModule), canActivate: [AuthGuard] },

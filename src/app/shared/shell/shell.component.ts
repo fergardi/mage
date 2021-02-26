@@ -107,15 +107,11 @@ export class ShellComponent implements OnInit {
   }
 
   close() {
-    this.isHandset$.subscribe(isHandset => {
+    this.isHandset$.subscribe(async isHandset => {
       if (isHandset) {
-        this.drawer.close();
+        await this.drawer.close();
       }
     });
-  }
-
-  logout() {
-    this.store.dispatch(new LogoutAction());
   }
 
   getFlag(): string {
@@ -130,6 +126,10 @@ export class ShellComponent implements OnInit {
   login($element: any) {
     this.domService.scrollToTop($element);
     this.router.navigate(['/user/landing']);
+  }
+
+  logout() {
+    this.store.dispatch(new LogoutAction());
   }
 
 }
