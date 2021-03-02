@@ -8,8 +8,11 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { NotificationServiceStub, StoreStub } from 'src/stubs';
+import { NotificationServiceStub, StoreStub, DialogRefStub } from 'src/stubs';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('DispelComponent', () => {
   let component: DispelComponent;
@@ -32,6 +35,10 @@ describe('DispelComponent', () => {
       imports: [
         TranslateModule.forRoot(),
         MatBadgeModule,
+        MatChipsModule,
+        MatProgressBarModule,
+        MatListModule,
+        MatButtonModule,
       ],
       declarations: [
         DispelComponent,
@@ -42,11 +49,8 @@ describe('DispelComponent', () => {
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: enchantment },
-        { provide: MatDialogRef, useValue: {} },
+        { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: Store, useValue: StoreStub },
-      ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
       ],
     })
     .compileComponents();
@@ -54,11 +58,12 @@ describe('DispelComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DispelComponent);
+    (fixture.nativeElement as HTMLDivElement).classList.add('mat-dialog-container');
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 });

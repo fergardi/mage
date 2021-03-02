@@ -1,16 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DisbandComponent } from './disband.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('DisbandComponent', () => {
   let component: DisbandComponent;
@@ -18,8 +21,8 @@ describe('DisbandComponent', () => {
   const troop = {
     quantity: 9999,
     join: {
-      name: 'unit.skeleton.name',
-      description: 'unit.skeleton.description',
+      name: 'test',
+      description: 'test',
       id: 'skeleton',
       image: '/assets/images/units/black/skeleton.png',
       faction: 'black',
@@ -33,6 +36,11 @@ describe('DisbandComponent', () => {
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         MatBadgeModule,
+        MatListModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        BrowserAnimationsModule,
       ],
       declarations: [
         DisbandComponent,
@@ -46,20 +54,18 @@ describe('DisbandComponent', () => {
         { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-      ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DisbandComponent);
+    (fixture.nativeElement as HTMLDivElement).classList.add('mat-dialog-container');
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
@@ -15,7 +14,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
 export enum TroopAssignmentType {
-  'troopNone', 'troopAttack', 'troopDefense'
+  'troopNone', 'troopAttack', 'troopDefense',
 }
 
 const MAXIMUM_TROOPS = 5;
@@ -38,7 +37,6 @@ export class ArmyComponent implements OnInit {
 
   constructor(
     private firebaseService: FirebaseService,
-    private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
     private cacheService: CacheService,
     private store: Store,
@@ -58,14 +56,14 @@ export class ArmyComponent implements OnInit {
     this.recruitUnits = recruitUnits.filter((unit: any) => unit.gold > 0);
   }
 
-  assignTroop($event: CdkDragDrop<any>) {
-    if (parseInt($event.container.id) === 0 || $event.previousContainer === $event.container || $event.container.data.length < MAXIMUM_TROOPS) {
+  async assignTroop($event: CdkDragDrop<any>) {
+    if ($event.container && (parseInt($event.container.id) === 0 || $event.previousContainer === $event.container || $event.container.data.length < MAXIMUM_TROOPS)) {
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
       }
-      this.updateArmy();
+      await this.updateArmy();
     } else {
       this.notificationService.warning('kingdom.army.maximum')
     }

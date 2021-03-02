@@ -66,22 +66,26 @@ describe('TaxComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 
   it('should TAX some TURNS', async () => {
     component.form.patchValue({ turns: component.kingdomTurn.quantity });
     component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'taxGold');
     await component.tax();
     expect(component.form.valid).toBeTrue();
+    expect(ApiServiceStub.taxGold).toHaveBeenCalledWith(component.uid, component.form.value.turns);
   });
 
   it('should NOT TAX some TURNS', async () => {
     component.form.patchValue({ turns: component.kingdomTurn.quantity + 1 });
     component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'taxGold');
     await component.tax();
     expect(component.form.valid).toBeFalse();
+    expect(ApiServiceStub.taxGold).not.toHaveBeenCalled();
   });
 
 });

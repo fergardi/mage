@@ -14,7 +14,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 })
 export class EmporiumComponent implements OnInit {
 
-  uid: string = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   emporiumItems: any[] = [];
   emporiumPacks: any[] = [];
 
@@ -25,7 +25,6 @@ export class EmporiumComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     let items = await this.cacheService.getItems();
     this.emporiumItems = items.filter((item: any) => item.gems > 0);
     let packs = await this.cacheService.getPacks();

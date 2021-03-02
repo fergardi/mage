@@ -22,7 +22,7 @@ describe('ApiService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should CREATE a KINGDOM', (async () => {
+  it('should CREATE the INSTANCE a KINGDOM', (async () => {
     const request = service.createKingdom('bot', 'faction', 'name', 0, 0);
     const mock = httpMock.expectOne(environment.functions.url + `/kingdom`);
     mock.flush(null);

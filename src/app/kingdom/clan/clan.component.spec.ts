@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClanComponent } from './clan.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { CacheServiceStub, StoreStub, AngularFirestoreStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
@@ -15,6 +14,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 describe('ClanComponent', () => {
   let component: ClanComponent;
@@ -33,6 +34,8 @@ describe('ClanComponent', () => {
         FormsModule,
         MatSelectModule,
         MatIconModule,
+        MatChipsModule,
+        MatPaginatorModule,
       ],
       declarations: [
         ClanComponent,
@@ -42,9 +45,6 @@ describe('ClanComponent', () => {
         { provide: CacheService, useValue: CacheServiceStub },
         { provide: Store, useValue: StoreStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
-      ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
       ],
     })
     .compileComponents();
@@ -56,7 +56,7 @@ describe('ClanComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 });

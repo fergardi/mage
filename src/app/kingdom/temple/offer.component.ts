@@ -76,7 +76,7 @@ export class OfferComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    let max = this.god.gold
+    const max = this.god.gold
       ? this.kingdomGold.quantity
       : this.god.mana
         ? this.kingdomMana.quantity
@@ -99,7 +99,7 @@ export class OfferComponent implements OnInit {
   async offer() {
     if (this.form.valid) {
       try {
-        let offered = await this.apiService.offerGod(this.uid, this.god.fid, this.form.value.sacrifice);
+        const offered = await this.apiService.offerGod(this.uid, this.god.fid, this.form.value.sacrifice);
         if (offered.hasOwnProperty('hero')) this.notificationService.success('kingdom.temple.hero', { hero: this.translateService.instant(offered['hero']), level: this.longPipe.transform(offered['level']) });
         if (offered.hasOwnProperty('item')) this.notificationService.success('kingdom.temple.item', { item: this.translateService.instant(offered['item']) });
         if (offered.hasOwnProperty('enchantment')) this.notificationService.success('kingdom.temple.enchantment', { enchantment: this.translateService.instant(offered['enchantment']), turns: this.longPipe.transform(offered['turns']) });

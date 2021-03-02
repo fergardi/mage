@@ -5,24 +5,28 @@ import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } fro
 import { Store } from '@ngxs/store';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('RecruitComponent', () => {
   let component: RecruitComponent;
   let fixture: ComponentFixture<RecruitComponent>;
   const unit = {
-    name: 'unit.skeleton.name',
-    description: 'unit.skeleton.description',
+    name: 'test',
+    description: 'test',
     id: 'skeleton',
     image: '/assets/images/units/black/skeleton.png',
     faction: 'black',
     legendary: false,
-    gold: 100,
+    gold: 1,
   };
 
   beforeEach(waitForAsync(() => {
@@ -31,6 +35,12 @@ describe('RecruitComponent', () => {
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         MatBadgeModule,
+        MatListModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
       ],
       declarations: [
         LegendaryPipe,
@@ -44,9 +54,6 @@ describe('RecruitComponent', () => {
         { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-      ],
     })
     .compileComponents();
   }));
@@ -58,21 +65,25 @@ describe('RecruitComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should RECRUIT troops with ENOUGH MONEY', () => {
+  it('should RECRUIT troops with ENOUGH MONEY', async() => {
     component.form.patchValue({ quantity: 1 });
     component.form.updateValueAndValidity();
-    component.recruit();
+    spyOn(ApiServiceStub, 'recruitUnit');
+    await component.recruit();
     expect(component.form.valid).toBeTrue();
+    expect(ApiServiceStub.recruitUnit).toHaveBeenCalledWith(component.uid, component.unit.id, component.form.value.quantity);
   });
 
-  it('should NOT RECRUIT troops with NOT ENOUGH MONEY', () => {
+  it('should NOT RECRUIT troops with NOT ENOUGH MONEY', async() => {
     component.form.patchValue({ quantity: 1000 });
     component.form.updateValueAndValidity();
-    component.recruit();
+    spyOn(ApiServiceStub, 'recruitUnit');
+    await component.recruit();
     expect(component.form.valid).toBeFalse();
+    expect(ApiServiceStub.recruitUnit).not.toHaveBeenCalled();
   });
 });

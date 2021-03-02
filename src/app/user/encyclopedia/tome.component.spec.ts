@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TomeComponent } from './tome.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DialogRefStub } from 'src/stubs';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
@@ -41,9 +40,6 @@ describe('TomeComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: tome },
         { provide: MatDialogRef, useValue: DialogRefStub },
       ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-      ],
     })
     .compileComponents();
   }));
@@ -55,7 +51,7 @@ describe('TomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 });

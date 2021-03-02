@@ -49,9 +49,9 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 })
 export class ResearchComponent implements OnInit {
 
-  form: FormGroup = null;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  form: FormGroup = null;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public charm: any,

@@ -60,10 +60,10 @@ export class ActivateComponent implements OnInit {
   selectedArtifact: any = null;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public artifact: any,
     private dialogRef: MatDialogRef<ActivateComponent>,
     private firebaseService: FirebaseService,
     private store: Store,
-    @Inject(MAT_DIALOG_DATA) public artifact: any,
     private apiService: ApiService,
     private notificationService: NotificationService,
   ) { }
@@ -84,7 +84,7 @@ export class ActivateComponent implements OnInit {
   }
 
   async activate() {
-    if (this.selectedArtifact.join.turns <= this.kingdomTurn.quantity) {
+    if (this.selectedArtifact.quantity && this.selectedArtifact.join.turns <= this.kingdomTurn.quantity) {
       try {
         let activated = await this.apiService.activateArtifact(this.uid, this.selectedArtifact.fid, this.uid);
         this.notificationService.success('kingdom.activate.success');

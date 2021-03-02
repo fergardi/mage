@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { LetterComponent } from './letter.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogRefStub } from 'src/stubs';
@@ -8,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatListModule } from '@angular/material/list';
 
 describe('LetterComponent', () => {
   let component: LetterComponent;
@@ -27,6 +27,7 @@ describe('LetterComponent', () => {
         MatButtonModule,
         MatInputModule,
         BrowserAnimationsModule,
+        MatListModule,
       ],
       declarations: [
         LetterComponent,
@@ -34,9 +35,6 @@ describe('LetterComponent', () => {
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: kingdom },
         { provide: MatDialogRef, useValue: DialogRefStub },
-      ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
       ],
     })
     .compileComponents();
@@ -49,7 +47,7 @@ describe('LetterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 

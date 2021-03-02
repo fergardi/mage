@@ -7,7 +7,6 @@ import { NotificationServiceStub, StoreStub, DialogRefStub, ApiServiceStub, Cach
 import { Store } from '@ngxs/store';
 import { CacheService } from 'src/app/services/cache.service';
 import { ApiService } from 'src/app/services/api.service';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -16,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('BattleComponent', () => {
   let component: BattleComponent;
@@ -40,6 +40,8 @@ describe('BattleComponent', () => {
         MatButtonModule,
         BrowserAnimationsModule,
         MatListModule,
+        FormsModule,
+        ReactiveFormsModule,
       ],
       declarations: [
         BattleComponent,
@@ -54,9 +56,6 @@ describe('BattleComponent', () => {
         { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-      ],
     })
     .compileComponents();
   }));
@@ -68,7 +67,7 @@ describe('BattleComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 

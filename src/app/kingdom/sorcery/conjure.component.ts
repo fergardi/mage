@@ -53,13 +53,14 @@ export enum CharmAssignmentType {
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 @UntilDestroy()
 export class ConjureComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomMana: any = this.store.selectSnapshot(AuthState.getKingdomMana);
   kingdomCharms: any[] = [];
   selectedCharm: any = null;
 
@@ -73,6 +74,7 @@ export class ConjureComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // TODO
     if (this.charm) {
       this.kingdomCharms = [this.charm];
       this.selectedCharm = this.charm;
@@ -88,7 +90,7 @@ export class ConjureComponent implements OnInit {
   }
 
   async conjure() {
-    if (this.selectedCharm.join.turnCost <= this.kingdomTurn.quantity) {
+    if (this.selectedCharm.join.turnCost <= this.kingdomTurn.quantity && this.selectedCharm.join.manaCost <= this.kingdomMana.quantity) {
       try {
         let conjured = await this.apiService.conjureCharm(this.uid, this.selectedCharm.fid, this.uid);
         this.notificationService.success('kingdom.conjure.success');

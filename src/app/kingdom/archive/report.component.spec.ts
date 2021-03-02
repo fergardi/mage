@@ -4,12 +4,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogRefStub, FirebaseServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { TranslateModule } from '@ngx-translate/core';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('ReportComponent', () => {
   let component: ReportComponent;
@@ -19,17 +20,20 @@ describe('ReportComponent', () => {
     from: 'auction',
     to: 'test',
     join: {
+      name: 'test',
       join: {
-        id: '',
-        image: '',
+        id: 'red',
+        name: 'test',
+        image: 'assets/images/factions/red.png',
       },
     },
     message: {
       join: {
-        id: '',
-      },
-      unit: {
-        id: 'skeleton',
+        type: 'unit',
+        name: 'test',
+        description: 'test',
+        image: 'assets/images/units/red/lizardman.png',
+        id: 'red',
       },
       quantity: 999,
     },
@@ -40,6 +44,8 @@ describe('ReportComponent', () => {
       imports: [
         TranslateModule.forRoot(),
         MatBadgeModule,
+        MatListModule,
+        MatButtonModule,
       ],
       declarations: [
         ReportComponent,
@@ -53,20 +59,18 @@ describe('ReportComponent', () => {
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: Store, useValue: StoreStub },
       ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-      ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ReportComponent);
+    (fixture.nativeElement as HTMLDivElement).classList.add('mat-dialog-container');
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 });

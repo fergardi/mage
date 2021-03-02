@@ -11,6 +11,10 @@ import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
+import { BuildComponent } from './build.component';
+import { TaxComponent } from './tax.component';
+import { ChargeComponent } from './charge.component';
+import { ExploreComponent } from './explore.component';
 
 describe('CityComponent', () => {
   let component: CityComponent;
@@ -56,24 +60,32 @@ describe('CityComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 
   it('should OPEN the BUILD dialog', () => {
+    spyOn(MatDialogStub, 'open');
     component.openBuildDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(BuildComponent, { panelClass: 'dialog-responsive', data: null });
   });
 
   it('should OPEN the TAX dialog', () => {
+    spyOn(MatDialogStub, 'open');
     component.openTaxDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(TaxComponent, { panelClass: 'dialog-responsive', data: null });
   });
 
   it('should OPEN the CHARGE dialog', () => {
+    spyOn(MatDialogStub, 'open');
     component.openChargeDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(ChargeComponent, { panelClass: 'dialog-responsive', data: null });
   });
 
   it('should OPEN the EXPLORE dialog', () => {
+    spyOn(MatDialogStub, 'open');
     component.openExploreDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(ExploreComponent, { panelClass: 'dialog-responsive', data: null });
   });
 
 });

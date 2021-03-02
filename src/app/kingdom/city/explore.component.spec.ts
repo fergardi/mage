@@ -56,22 +56,26 @@ describe('ExploreComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 
   it('should TAX some TURNS', async () => {
     component.form.patchValue({ turns: component.kingdomTurn.quantity });
     component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'exploreLand');
     await component.explore();
     expect(component.form.valid).toBeTrue();
+    expect(ApiServiceStub.exploreLand).toHaveBeenCalledWith(component.uid, component.form.value.turns);
   });
 
   it('should NOT TAX some TURNS', async () => {
     component.form.patchValue({ turns: component.kingdomTurn.quantity + 1 });
     component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'exploreLand');
     await component.explore();
     expect(component.form.valid).toBeFalse();
+    expect(ApiServiceStub.exploreLand).not.toHaveBeenCalledWith();
   });
 
 });

@@ -14,7 +14,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
 import { MatMenuModule } from '@angular/material/menu';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
@@ -59,9 +58,6 @@ describe('ShellComponent', () => {
         { provide: MapboxService, useValue: MapboxServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
       ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-      ],
     })
     .compileComponents();
   }));
@@ -76,7 +72,7 @@ describe('ShellComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 

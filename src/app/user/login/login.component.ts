@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { MatTabChangeEvent } from '@angular/material/tabs';
@@ -13,7 +13,7 @@ import { CacheService } from 'src/app/services/cache.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   form: FormGroup;
   types =  ['login', 'signup', 'reset'] as const;

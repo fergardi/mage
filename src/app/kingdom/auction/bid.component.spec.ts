@@ -1,17 +1,21 @@
 import { ComponentFixture, TestBed, waitForAsync, fakeAsync } from '@angular/core/testing';
 import { BidComponent } from './bid.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('BidComponent', () => {
   let component: BidComponent;
@@ -20,8 +24,8 @@ describe('BidComponent', () => {
     quantity: 9999,
     type: 'troop',
     join: {
-      name: 'unit.skeleton.name',
-      description: 'unit.skeleton.description',
+      name: 'test',
+      description: 'test',
       id: 'skeleton',
       image: '/assets/images/units/black/skeleton.png',
       faction: 'black',
@@ -36,6 +40,12 @@ describe('BidComponent', () => {
         ReactiveFormsModule,
         TranslateModule.forRoot(),
         MatBadgeModule,
+        MatListModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        MatButtonModule,
+        BrowserAnimationsModule,
       ],
       declarations: [
         BidComponent,
@@ -50,20 +60,18 @@ describe('BidComponent', () => {
         { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-      ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BidComponent);
+    (fixture.nativeElement as HTMLDivElement).classList.add('mat-dialog-container');
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 

@@ -8,7 +8,6 @@ import { Store } from '@ngxs/store';
 import { CacheService } from 'src/app/services/cache.service';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -20,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable, of } from 'rxjs';
 import * as firebase from 'firebase/app';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const FirebaseServiceStub: any = {
   leftJoin: (a, b, c, d): Observable<any[]> => of([{ id: 'test', name: 'test', gold: 10000, auctioned: firebase.firestore.Timestamp.now(), join: { name: 'test', join: { id: 'test' } } }]),
@@ -43,6 +43,7 @@ describe('AuctionComponent', () => {
         MatButtonModule,
         MatInputModule,
         MatIconModule,
+        MatPaginatorModule,
       ],
       declarations: [
         AuctionComponent,
@@ -55,9 +56,6 @@ describe('AuctionComponent', () => {
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: LoadingService, useValue: LoadingServiceStub },
       ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-      ]
     })
     .compileComponents();
   }));
@@ -68,7 +66,7 @@ describe('AuctionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 });

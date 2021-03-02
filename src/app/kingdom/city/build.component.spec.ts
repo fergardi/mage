@@ -65,22 +65,26 @@ describe('BuildComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 
   it('should BUILD some LANDS', async () => {
     component.form.patchValue({ quantity: component.kingdomLand.quantity });
     component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'buildStructure');
     await component.build();
     expect(component.form.valid).toBeTrue();
+    expect(ApiServiceStub.buildStructure).toHaveBeenCalledWith(component.uid, component.building.fid, component.form.value.quantity);
   });
 
   it('should NOT BUILD some LANDS', async () => {
     component.form.patchValue({ quantity: component.kingdomLand.quantity + 1 });
     component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'buildStructure');
     await component.build();
     expect(component.form.valid).toBeFalse();
+    expect(ApiServiceStub.buildStructure).not.toHaveBeenCalled();
   });
 
 });

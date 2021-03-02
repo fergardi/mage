@@ -4,7 +4,6 @@ import { CacheServiceStub, MatDialogStub } from 'src/stubs';
 import { CacheService } from 'src/app/services/cache.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -12,6 +11,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 describe('EncyclopediaComponent', () => {
   let component: EncyclopediaComponent;
@@ -29,6 +29,7 @@ describe('EncyclopediaComponent', () => {
         ReactiveFormsModule,
         MatFormFieldModule,
         MatSelectModule,
+        MatPaginatorModule,
       ],
       declarations: [
         EncyclopediaComponent,
@@ -37,9 +38,6 @@ describe('EncyclopediaComponent', () => {
         { provide: CacheService, useValue: CacheServiceStub },
         { provide: MatDialog, useValue: MatDialogStub },
       ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-      ]
     })
     .compileComponents();
   }));
@@ -50,7 +48,7 @@ describe('EncyclopediaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', fakeAsync(() => {
+  it('should CREATE the INSTANCE', fakeAsync(() => {
     expect(component).toBeTruthy();
   }));
 });

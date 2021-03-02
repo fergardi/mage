@@ -21,7 +21,7 @@ import { ActivateComponent, ArtifactAssignmentType } from './activate.component'
 @UntilDestroy()
 export class SorceryComponent implements OnInit {
 
-  uid: string = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   kingdomArtifacts: any[] = [];
   attackArtifacts: any[] = [];
@@ -42,14 +42,13 @@ export class SorceryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/artifacts`, 'items', 'id', 'id').pipe(untilDestroyed(this)).subscribe(artifacts => {
       this.kingdomArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.none || !artifact.assignment).sort((a, b) => {
         return a.join.battle === b.join.battle
           ? 0
           : a.join.battle
             ? -1
-            : 1
+            : 1;
       });
       this.attackArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.attack);
       this.defenseArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.defense);
@@ -60,7 +59,7 @@ export class SorceryComponent implements OnInit {
           ? 0
           : (a.turns >= a.join.research)
             ? -1
-            : 1
+            : 1;
       });
       this.attackCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.attack);
       this.defenseCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.defense);
@@ -68,10 +67,10 @@ export class SorceryComponent implements OnInit {
   }
 
   async assignArtifact($event: CdkDragDrop<any>) {
-    if ($event.previousContainer === $event.container) {
+    if ($event.container && $event.previousContainer === $event.container) {
       moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
     } else {
-      if (parseInt($event.container.id) === 0 || $event.container.data.length < this.maximumArtifacts) {
+      if ($event.container && (parseInt($event.container.id) === 0 || $event.container.data.length < this.maximumArtifacts)) {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
         await this.angularFirestore.collection(`kingdoms/${this.uid}/artifacts`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
         this.notificationService.success('kingdom.sorcery.success');
@@ -82,10 +81,10 @@ export class SorceryComponent implements OnInit {
   }
 
   async assignCharm($event: CdkDragDrop<any>) {
-    if ($event.previousContainer === $event.container) {
+    if ($event.container && $event.previousContainer === $event.container) {
       moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
     } else {
-      if (parseInt($event.container.id) === 3 || $event.container.data.length < this.maximumCharms) {
+      if ($event.container && (parseInt($event.container.id) === 3 || $event.container.data.length < this.maximumCharms)) {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
         await this.angularFirestore.collection(`kingdoms/${this.uid}/charms`).doc($event.item.element.nativeElement.id).update({ assignment: parseInt($event.container.id) });
         this.notificationService.success('kingdom.sorcery.success');

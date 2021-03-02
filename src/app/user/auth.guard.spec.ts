@@ -23,7 +23,7 @@ describe('AuthGuard', () => {
     guard = TestBed.inject(AuthGuard);
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(guard).toBeTruthy();
   });
 

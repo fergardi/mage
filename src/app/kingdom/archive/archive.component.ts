@@ -7,7 +7,6 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDialog } from '@angular/material/dialog';
 import { ReportComponent } from './report.component';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';

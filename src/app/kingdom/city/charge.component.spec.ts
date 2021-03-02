@@ -65,22 +65,26 @@ describe('ChargeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 
   it('should CHARGE some TURNS', async () => {
     component.form.patchValue({ turns: component.kingdomTurn.quantity });
     component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'chargeMana');
     await component.charge();
     expect(component.form.valid).toBeTrue();
+    expect(ApiServiceStub.chargeMana).toHaveBeenCalledWith(component.uid, component.form.value.turns);
   });
 
   it('should NOT CHARGE some TURNS', async () => {
     component.form.patchValue({ turns: component.kingdomTurn.quantity + 1 });
     component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'chargeMana');
     await component.charge();
     expect(component.form.valid).toBeFalse();
+    expect(ApiServiceStub.chargeMana).not.toHaveBeenCalled();
   });
 
 });
