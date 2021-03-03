@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MapComponent } from './map.component';
 import { NotificationService } from 'src/app/services/notification.service';
 import { NotificationServiceStub, AngularFirestoreStub, FirebaseServiceStub, MapboxServiceStub, StoreStub, CacheServiceStub, ApiServiceStub } from 'src/stubs';
@@ -50,9 +50,9 @@ describe('MapComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should POPULATE the MAP', fakeAsync(async () => {
+  it('should POPULATE the MAP', async () => {
     await component.populateMap();
-  }));
+  });
 
   it('should ADD a SHOP', () => {
     component.addShop(StoreType.INN);

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { EncyclopediaComponent } from './encyclopedia.component';
 import { CacheServiceStub, MatDialogStub } from 'src/stubs';
 import { CacheService } from 'src/app/services/cache.service';
@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { TomeComponent } from './tome.component';
 
 describe('EncyclopediaComponent', () => {
   let component: EncyclopediaComponent;
@@ -48,7 +49,14 @@ describe('EncyclopediaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should CREATE the INSTANCE', fakeAsync(() => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
-  }));
+  });
+
+  it('should OPEN the TOME dialog', () => {
+    spyOn(MatDialogStub, 'open');
+    component.openTomeDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(TomeComponent, { panelClass: 'dialog-responsive', data: null });
+  });
+
 });

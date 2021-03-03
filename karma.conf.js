@@ -36,15 +36,16 @@ module.exports = function (config) {
         { type: 'teamcity', subdir: '.', file: 'teamcity.txt' },
         { type: 'text', subdir: '.', file: 'text.txt' },
         { type: 'text-summary', subdir: '.', file: 'text-summary.txt' },
+        { type: 'text-summary', subdir: '.' }, // to show in console
       ]
     },
-    reporters: ['progress', 'coverage'],
+    reporters: ['coverage'], // kjhtml, progress, coverage
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
+    browsers: ['ChromeHeadless'],
+    singleRun: true,
     restartOnFileChange: true,
   });
 };

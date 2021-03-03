@@ -41,7 +41,7 @@ export class TempleComponent implements OnInit {
   openOfferDialog(god: any): void {
     const dialogRef = this.dialog.open(OfferComponent, {
       panelClass: 'dialog-responsive',
-      data: god
+      data: god,
     });
   }
 

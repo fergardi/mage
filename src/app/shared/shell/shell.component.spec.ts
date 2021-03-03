@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync, fakeAsync, inject } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync, inject, fakeAsync } from '@angular/core/testing';
 import { ShellComponent } from './shell.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AngularFireAuth } from '@angular/fire/auth';

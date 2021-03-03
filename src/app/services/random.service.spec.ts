@@ -10,7 +10,7 @@ describe('RandomService', () => {
     service = TestBed.inject(RandomService);
   });
 
-  it('should be created', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(service).toBeTruthy();
   });
 });

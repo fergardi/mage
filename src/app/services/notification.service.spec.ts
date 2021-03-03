@@ -18,7 +18,7 @@ describe('NotificationService', () => {
     service = TestBed.inject(NotificationService);
   });
 
-  it('should be created', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(service).toBeTruthy();
   });
 

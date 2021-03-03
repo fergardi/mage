@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { map, first } from 'rxjs/operators';
-import { combineLatest, of } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { CacheService, CollectionType } from './cache.service';

@@ -18,7 +18,7 @@ describe('ApiService', () => {
     httpMock = TestBed.inject(HttpTestingController);
   });
 
-  it('should be created', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(service).toBeTruthy();
   });
 

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BidComponent } from './bid.component';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -31,7 +31,7 @@ describe('BidComponent', () => {
       faction: 'black',
       legendary: false,
     },
-    gold: 100,
+    gold: 1,
   };
 
   beforeEach(waitForAsync(() => {
@@ -75,15 +75,17 @@ describe('BidComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should BID with ENOUGH MONEY', fakeAsync(async () => {
+  it('should BID with ENOUGH MONEY', async () => {
     component.form.patchValue({ gold: auction.gold * 2 });
     component.form.updateValueAndValidity();
     await component.bid();
-  }));
+    expect(component.form.valid).toBeTrue();
+  });
 
-  it('should NOT BID with NOT ENOUGH MONEY', fakeAsync(async () => {
+  it('should NOT BID with NOT ENOUGH MONEY', async () => {
     component.form.patchValue({ gold: 0 });
     component.form.updateValueAndValidity();
     await component.bid();
-  }));
+    expect(component.form.valid).toBeFalse();
+  });
 });

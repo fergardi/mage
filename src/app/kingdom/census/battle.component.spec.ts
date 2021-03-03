@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BattleComponent } from './battle.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -71,14 +71,14 @@ describe('BattleComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should ATTACK another kingdom with ENOUGH TURNS', fakeAsync(async () => {
+  it('should ATTACK another kingdom with ENOUGH TURNS', async () => {
     component.kingdomTurn = { quantity: component.BATTLE_TURNS + 1 };
     await component.battle();
-  }));
+  });
 
-  it('should NOT ATTACK another kingdom with NOT ENOUGH TURNS', fakeAsync(async () => {
+  it('should NOT ATTACK another kingdom with NOT ENOUGH TURNS', async () => {
     component.kingdomTurn = { quantity: 0 };
     await component.battle();
-  }));
+  });
 
 });

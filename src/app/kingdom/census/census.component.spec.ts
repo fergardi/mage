@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync, inject } from '@angular/core/testing';
 import { CensusComponent } from './census.component';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { FirebaseServiceStub, AngularFirestoreStub, MatDialogStub, StoreStub, RouterStub } from 'src/stubs';
+import { FirebaseServiceStub, AngularFirestoreStub, MatDialogStub, StoreStub } from 'src/stubs';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { MatDialog } from '@angular/material/dialog';

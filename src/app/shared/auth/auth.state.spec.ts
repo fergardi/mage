@@ -2,25 +2,48 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { AuthState, AuthStateModel } from './auth.state';
 import { SetUserAction } from './auth.actions';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuthStub, FirebaseServiceStub, AngularFirestoreStub, NotificationServiceStub } from 'src/stubs';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { NotificationService } from 'src/app/services/notification.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from 'src/app/app-routing.module';
 
 describe('Auth store', () => {
   let store: Store;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [NgxsModule.forRoot([AuthState])]
-    }).compileComponents();
-
-    store = TestBed.inject(Store);
+      imports: [
+        NgxsModule.forRoot([AuthState]),
+        RouterTestingModule.withRoutes(routes),
+      ],
+      providers: [
+        { provide: AngularFireAuth, useValue: AngularFireAuthStub },
+        { provide: FirebaseService, useValue: FirebaseServiceStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
+        { provide: NotificationService, useValue: NotificationServiceStub },
+      ],
+    })
+    .compileComponents();
   }));
 
-  it('should create an action and add an item', () => {
+  beforeEach(() => {
+    store = TestBed.inject(Store);
+  });
+
+  it('should CREATE the INSTANCE', () => {
+    expect(store).toBeTruthy();
+  });
+
+  it('should DISPATCH the USER action', () => {
     const expected: AuthStateModel = {
       uid: 'test',
       kingdom: null,
       supplies: [],
       buildings: [],
-      logged: false,
+      logged: true,
       clock: null,
     };
     store.dispatch(new SetUserAction('test'));

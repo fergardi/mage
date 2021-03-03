@@ -13,12 +13,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 
-fdescribe('BuyComponent', () => {
+describe('BuyComponent', () => {
   let component: BuyComponent;
   let fixture: ComponentFixture<BuyComponent>;
   const item: any = {
     id: 'test',
     name: 'test',
+    description: 'test',
     image: 'assets/images/items/magic-compass.png',
     gems: 1,
   };

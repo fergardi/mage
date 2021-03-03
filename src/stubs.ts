@@ -94,6 +94,12 @@ export const AngularFirestoreStub: any = {
       valueChanges: () => of([{ test: 'test' }]),
     };
   },
+  doc: () => {
+    return {
+      get: () => ({ toPromise: () => ({ docs: [] }) }),
+      valueChanges: () => of(null),
+    };
+  },
 };
 
 export const LoadingServiceStub: any = {
@@ -107,7 +113,7 @@ export const AngularFireAuthStub: any = {
     signInWithPopup: Promise.resolve(),
     signOut: Promise.resolve(),
   }),
-  authState: of<object>({ uid: '17WvU2Vj58SnTz8v7EqyYYb0WRc2', displayName: 'test', isAnonymous: true }),
+  authState: of<object>({ uid: 'test', displayName: 'test', isAnonymous: true }),
 };
 
 export const MapboxServiceStub: any = {
@@ -132,11 +138,6 @@ export const MapboxServiceStub: any = {
   addBot: () => null,
   populateMap: () => Promise.resolve(null),
   clearMarkers: () => null,
-};
-
-export const RouterStub: any = {
-  events: of([]),
-  navigate: jasmine.createSpy('navigate'),
 };
 
 export class DragDropEventFactory<T> {
@@ -177,7 +178,7 @@ export class DragDropEventFactory<T> {
 }
 
 export interface ContainerModel<T> {
-   id: string,
-   data: T[],
-   index: number,
+  id: string;
+  data: T[];
+  index: number;
 }
