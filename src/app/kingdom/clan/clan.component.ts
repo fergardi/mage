@@ -7,6 +7,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
+import * as moment from 'moment';
+import { NotificationService } from 'src/app/services/notification.service';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-clan',
@@ -17,12 +23,14 @@ import { AngularFirestore } from '@angular/fire/firestore';
     fadeOutOnLeaveAnimation({ duration: 250, delay: 250 }),
   ],
 })
+@UntilDestroy()
 export class ClanComponent implements OnInit {
 
   kingdomGuilds: any[] = [];
-  kingdomGuild: any = this.store.selectSnapshot(AuthState.getKingdomGuild);
+  kingdomGuild: any = null;
   kingdomClan: any = this.store.selectSnapshot(AuthState.getKingdomClan);
-  selectedGuild: any = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomGuilded: any = null;
   columns = ['name', 'actions'];
   filters: any = {
     name: {
@@ -38,13 +46,23 @@ export class ClanComponent implements OnInit {
     private store: Store,
     private cacheService: CacheService,
     private angularFirestore: AngularFirestore,
+    private apiService: ApiService,
+    private loadingService: LoadingService,
+    private notificationService: NotificationService,
   ) { }
 
   async ngOnInit() {
     const guilds = await this.cacheService.getGuilds();
     this.kingdomGuilds = guilds;
-    const snapshot = await this.angularFirestore.collection<any>('clans').get().toPromise();
-    this.data = new MatTableDataSource(snapshot.docs.map((clan: any) => {
+    this.store.select(AuthState.getKingdomGuild).pipe(map(data => JSON.parse(data))).pipe(untilDestroyed(this)).subscribe(kingdomGuild => {
+      console.log(kingdomGuild);
+      if (kingdomGuild) {
+        this.kingdomGuild = this.kingdomGuilds.find(guild => guild.id === kingdomGuild.guild);
+        this.kingdomGuilded = kingdomGuild.guilded;
+      }
+    });
+    const clans = await this.angularFirestore.collection<any>('clans').get().toPromise();
+    this.data = new MatTableDataSource(clans.docs.map((clan: any) => {
       return {
         ...clan.data(),
         fid: clan.id,
@@ -71,16 +89,38 @@ export class ClanComponent implements OnInit {
     return filterFunction;
   }
 
-  joinClan(clan: any): void {
+  join(clan: any): void {
     // TODO
   }
 
-  leaveClan(clan: any): void {
+  leave(clan: any): void {
     // TODO
   }
 
-  foundClan(): void {
+  foundation(): void {
     // TODO
+  }
+
+  canBeFavored(): boolean {
+    return this.kingdomGuilded
+      ? moment(this.store.selectSnapshot(AuthState.getClock)).isAfter(moment(this.kingdomGuilded))
+      : false;
+  }
+
+  async favor() {
+    if (this.kingdomGuild) {
+      this.loadingService.setLoading(true);
+      try {
+        let favored = await this.apiService.favorGuild(this.uid, this.kingdomGuild.id);
+        this.notificationService.success('kingdom.guild.success');
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.guild.error');
+      }
+      this.loadingService.setLoading(false);
+    } else {
+      this.notificationService.error('kingdom.guild.error');
+    }
   }
 
 }

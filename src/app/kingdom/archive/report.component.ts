@@ -31,7 +31,7 @@ export enum ReportType {
             <img mat-list-avatar [src]="report.message.join.image">
           </div>
           <div mat-line>{{ report.message.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'enchantment', 'hero', 'item'].includes(report.message.join.type)" [innerHTML]="report.message.join.description | translate | icon:report.message.join"></div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'enchantment', 'hero', 'item', 'summon'].includes(report.message.join.type)" [innerHTML]="report.message.join.description | translate | icon:report.message.join"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(report.message.join.type)">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of report.message.join.families" [src]="family.image">
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of report.message.join.skills" [src]="skill.image">
@@ -81,8 +81,8 @@ export enum ReportType {
 })
 export class ReportComponent implements OnInit {
 
-  reportType: typeof ReportType = ReportType;
   uid = this.store.selectSnapshot(AuthState.getUserUID);
+  reportType: typeof ReportType = ReportType;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public report: any,

@@ -52,10 +52,10 @@
     "description": "item.enchanted-lamp.description",
     "id": "enchanted-lamp",
     "skills": [],
-    "families": [],
+    "families": ["elemental"],
     "categories": [],
     "resistances": [],
-    "units": ["djinni"],
+    "units": [],
     "resources": [],
     "spells": [],
     "amount": [],
@@ -63,7 +63,7 @@
     "self": true,
     "multiple": false,
     "gems": 1,
-    "legendary": false
+    "legendary": true
   },
   {
     "turns": 1,

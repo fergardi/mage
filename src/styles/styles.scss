@@ -389,6 +389,10 @@ hr {
   display: block;
 }
 
+.mat-card > .mat-card-actions:last-child {
+  margin-bottom: 0 !important;
+}
+
 // DRAG AND DROP
 .cdk-drag-placeholder {
   opacity: 0.5;

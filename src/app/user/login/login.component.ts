@@ -29,22 +29,27 @@ export class LoginComponent implements OnInit {
     private store: Store,
     private apiService: ApiService,
     private cacheService: CacheService,
-  ) { }
+  ) {
+    this.createForm();
+  }
 
   async ngOnInit() {
-    this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      password2: ['', [Validators.required, Validators.minLength(6), this.matchValues('password')]],
-      faction: [null, [Validators.required]]
-    });
     let factions = await this.cacheService.getFactions();
     this.factions = factions.filter((faction: any) => faction.id !== 'grey');
   }
 
+  async createForm() {
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', this.type !== 'reset' ? [Validators.required, Validators.minLength(6)] : []],
+      password2: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), this.matchValues('password')] : []],
+      faction: [null, this.type === 'signup' ? [Validators.required] : []],
+    });
+  }
+
   changeType($event: MatTabChangeEvent) {
     this.type = this.types[$event.index];
-    this.form.reset();
+    this.createForm();
   }
 
   matchValues(matchTo: string): (AbstractControl) => ValidationErrors | null {

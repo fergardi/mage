@@ -28,7 +28,7 @@ const MAXIMUM_TROOPS = 5;
 @UntilDestroy()
 export class ArmyComponent implements OnInit {
 
-  uid: string = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   kingdomTroops: any[] = [];
   attackTroops: any[] = [];
@@ -46,7 +46,6 @@ export class ArmyComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.firebaseService.leftJoin(`kingdoms/${this.uid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
       this.kingdomTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopNone || !troop.assignment).sort((a, b) => a.sort - b.sort);
       this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopAttack).sort((a, b) => a.sort - b.sort);

@@ -14,6 +14,7 @@ const BATTLE_TURNS: number = 2;
 const PROTECTION_TIME: number = 60;
 const EXPLORATION_TIME: number = 60;
 const AUCTION_TIME: number = 60;
+const GUILD_TIME: number = 60;
 
 enum BattleType {
   SIEGE = 'siege',
@@ -99,6 +100,7 @@ api.get('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: 
 api.get('/kingdom/:kingdomId/tavern/:contractId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignContract(req.params.kingdomId, req.params.contractId, parseInt(req.params.assignmentId)))));
 api.get('/kingdom/:kingdomId/emporium/:itemId', ash(async (req: any, res: any) => res.json(await buyEmporium(req.params.kingdomId, req.params.itemId))));
 api.patch('/kingdom/:kingdomId/archive/:letterId', ash(async (req: any, res: any) => res.json(await readLetter(req.params.kingdomId, req.params.letterId))));
+api.patch('/kingdom/:kingdomId/guild/:guildId', ash(async (req: any, res: any) => res.json(await favorGuild(req.params.kingdomId, req.params.guildId))));
 api.delete('/kingdom/:kingdomId/archive', ash(async (req: any, res: any) => res.json(await removeLetters(req.params.kingdomId, req.body.letterIds))));
 api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
 api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
@@ -739,6 +741,16 @@ const addLetter = async (targetId: string, subject: string, message: object, bat
  */
 const readLetter = async (kingdomId: string, letterId: string) => {
   await angularFirestore.doc(`kingdoms/${kingdomId}/letters/${letterId}`).update({ read: true });
+}
+
+/**
+ * favors a guild
+ * @param kingdomId
+ * @param guildId
+ */
+const favorGuild = async (kingdomId: string, guildId: string) => {
+  const guilded = moment(admin.firestore.Timestamp.now().toMillis()).add(GUILD_TIME, 'seconds');
+  await angularFirestore.doc(`kingdoms/${kingdomId}`).update({ guild: guildId, guilded: guilded });
 }
 
 /**

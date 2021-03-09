@@ -365,7 +365,7 @@
     "guild": {
       "name": "Gremio",
       "description": "Favorece a un colectivo",
-      "help": "Puedes otorgar el favor de tu reinado a un gremio en concreto. Como agradecimiento, dicho gremio te otorgará bonuses adicionales en las batallas. Sólo puedes cambiar de gremio una vez a la semana.",
+      "help": "Puedes otorgar el favor de tu reinado a un gremio en concreto. Como agradecimiento, dicho gremio te otorgará un bonus adicional en los ataques a otros reinos (Batallas, Pillajes o Asedios). Sólo puedes cambiar de gremio una vez cada cierto tiempo.",
       "hint": "Debes esperar 7 días antes de cambiar de gremio",
       "error": "No ha pasado tiempo suficiente",
       "select": "Escoge un gremio",
@@ -1451,44 +1451,44 @@
   },
   "family": {
     "human": {
-      "name": "Humano",
-      "description": ""
+      "name": "Humanos",
+      "description": "Sociedad feudal inspirada por seres celestiales"
     },
     "demon": {
-      "name": "Demonio",
-      "description": ""
+      "name": "Demonios",
+      "description": "Monstruos y aberraciones de los abismos abrasadores"
     },
     "giant": {
-      "name": "Gigante",
-      "description": ""
+      "name": "Gigantes",
+      "description": "Moles de gran tamaño pero con poca inteligencia"
     },
     "reptile": {
-      "name": "Reptil",
-      "description": ""
+      "name": "Reptiles",
+      "description": "Criaturas actuáticas y pantanosas de las profundidades"
     },
     "animal": {
-      "name": "Animal",
-      "description": ""
+      "name": "Animales",
+      "description": "Todo tipo de animales y plantas de la naturaleza"
     },
     "dragon": {
-      "name": "Dragón",
-      "description": ""
+      "name": "Dragones",
+      "description": "Inmensas serpientes aladas que escupen magia"
     },
     "elemental": {
-      "name": "Elemental",
-      "description": ""
+      "name": "Elementales",
+      "description": "Conflujos de los elementos primordiales"
     },
     "golem": {
-      "name": "Gólem",
-      "description": ""
+      "name": "Gólems",
+      "description": "Constructos animados mediante magia poderosa"
     },
     "undead": {
-      "name": "NoMuerto",
-      "description": ""
+      "name": "NoMuertos",
+      "description": "Cadáveres reanimados por las artes oscuras"
     },
     "orkish": {
-      "name": "Orco",
-      "description": ""
+      "name": "Orcos",
+      "description": "Brutos, agresivos, viles y malvados humanoides"
     }
   },
   "category": {
@@ -1674,7 +1674,7 @@
     },
     "enchanted-lamp": {
       "name": "Lámpara Maravillosa",
-      "description": "Convoca una tropa de <djinni>"
+      "description": "Convoca una tropa de <elemental>"
     },
     "wisdom-tome": {
       "name": "Tomo de Sabiduría",
@@ -1890,15 +1890,15 @@
   "guild": {
     "knight": {
       "name": "Gremio de Caballeros",
-      "description": "Obtienes +10% ataque en las Batallas"
+      "description": "Obtienes +10% Ataque en las Batallas"
     },
     "priest": {
       "name": "Gremio de Sanadores",
-      "description": "Obtienes +10% salud en las Batallas"
+      "description": "Obtienes +10% Salud en las Batallas"
     },
     "champion": {
       "name": "Gremio de Campeones",
-      "description": "Obtienes +10% defensa en las Batallas"
+      "description": "Obtienes +10% Defensa en las Batallas"
     },
     "hunter": {
       "name": "Gremio de Cazadores",
@@ -1914,7 +1914,7 @@
     },
     "warrior": {
       "name": "Gremio de Guerreros",
-      "description": "Destruyes +10% Recursos en los Asedios"
+      "description": "Destruyes +10% Edificios en los Asedios"
     },
     "assassin": {
       "name": "Gremio de Asesinos",
@@ -1922,7 +1922,7 @@
     },
     "warlock": {
       "name": "Gremio de Brujos",
-      "description": "Destruyes +10% Edificios en los Asedios"
+      "description": "Destruyes +10% Recursos en los Asedios"
     }
   }
 }

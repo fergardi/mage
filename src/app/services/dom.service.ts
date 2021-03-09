@@ -13,7 +13,6 @@ export class DomService {
 
   public scrollToTop($element: any = null) {
     if ($element) {
-      console.log($element);
       $element.scroll(0, 0);
     } else {
       window.scroll(0, 0);

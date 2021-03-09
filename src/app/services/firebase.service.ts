@@ -37,20 +37,20 @@ export class FirebaseService {
   }
 
   async selfJoin(element: any) {
-    if (element.store) this.joinObject(element, 'store', await this.cacheService.getStores());
-    if (element.faction) this.joinObject(element, 'faction', await this.cacheService.getFactions());
-    if (element.location) this.joinObject(element, 'location', await this.cacheService.getLocations());
-    if (element.skills && element.skills.length) this.joinObject(element, 'skills', await this.cacheService.getSkills());
-    if (element.unit) this.joinObject(element, 'unit', await this.cacheService.getUnits());
-    if (element.units && element.units.length) this.joinObject(element, 'units', await this.cacheService.getUnits());
-    if (element.categories && element.categories.length) this.joinObject(element, 'categories', await this.cacheService.getCategories());
-    if (element.resistances && element.resistances.length) this.joinObject(element, 'resistances', await this.cacheService.getCategories());
-    if (element.families && element.families.length) this.joinObject(element, 'families', await this.cacheService.getFamilies());
-    if (element.spell) this.joinObject(element, 'spell', await this.cacheService.getSpells());
-    if (element.spells && element.spells.length) this.joinObject(element, 'spells', await this.cacheService.getSpells());
-    if (element.item) this.joinObject(element, 'item', await this.cacheService.getItems());
-    if (element.items && element.items.length) this.joinObject(element, 'items', await this.cacheService.getItems());
-    if (element.resources && element.resources.length) this.joinObject(element, 'resources', await this.cacheService.getResources());
+    if (element && element.store) this.joinObject(element, 'store', await this.cacheService.getStores());
+    if (element && element.faction) this.joinObject(element, 'faction', await this.cacheService.getFactions());
+    if (element && element.location) this.joinObject(element, 'location', await this.cacheService.getLocations());
+    if (element && element.skills && element.skills.length) this.joinObject(element, 'skills', await this.cacheService.getSkills());
+    if (element && element.unit) this.joinObject(element, 'unit', await this.cacheService.getUnits());
+    if (element && element.units && element.units.length) this.joinObject(element, 'units', await this.cacheService.getUnits());
+    if (element && element.categories && element.categories.length) this.joinObject(element, 'categories', await this.cacheService.getCategories());
+    if (element && element.resistances && element.resistances.length) this.joinObject(element, 'resistances', await this.cacheService.getCategories());
+    if (element && element.families && element.families.length) this.joinObject(element, 'families', await this.cacheService.getFamilies());
+    if (element && element.spell) this.joinObject(element, 'spell', await this.cacheService.getSpells());
+    if (element && element.spells && element.spells.length) this.joinObject(element, 'spells', await this.cacheService.getSpells());
+    if (element && element.item) this.joinObject(element, 'item', await this.cacheService.getItems());
+    if (element && element.items && element.items.length) this.joinObject(element, 'items', await this.cacheService.getItems());
+    if (element && element.resources && element.resources.length) this.joinObject(element, 'resources', await this.cacheService.getResources());
     return element;
   }
 
@@ -59,33 +59,31 @@ export class FirebaseService {
       query === undefined
         ? this.angularFirestore.collection<any>(left).valueChanges({ idField: 'fid' }) // select * from left
         : this.angularFirestore.collection<any>(left, query).valueChanges({ idField: 'fid' }), // select * from left where query
-      CollectionType[right] === undefined
+      CollectionType[right.toUpperCase()] === undefined
         ? this.angularFirestore.collection<any>(right).valueChanges() // left join right on left.from = right.to
-        : this.cacheService.get(right), // left join cached right on left.from = right.to
+        : this.cacheService.get(CollectionType[right.toUpperCase()]), // left join cached right on left.from = right.to
     ]).pipe(
       map(([
         leftCollection,
         rightCollection,
       ]) => {
         rightCollection.forEach(async (element: any) => {
-          if (element.skills && element.skills.length) this.joinObject(element, 'skills', await this.cacheService.getSkills());
-          if (element.units && element.units.length) this.joinObject(element, 'units', await this.cacheService.getUnits());
-          if (element.categories && element.categories.length) this.joinObject(element, 'categories', await this.cacheService.getCategories());
-          if (element.resistances && element.resistances.length) this.joinObject(element, 'resistances', await this.cacheService.getCategories());
-          if (element.families && element.families.length) this.joinObject(element, 'families', await this.cacheService.getFamilies());
-          if (element.spells && element.spells.length) this.joinObject(element, 'spells', await this.cacheService.getSpells());
-          if (element.resources && element.resources.length) this.joinObject(element, 'resources', await this.cacheService.getResources());
+          if (element && element.skills && element.skills.length) this.joinObject(element, 'skills', await this.cacheService.getSkills());
+          if (element && element.units && element.units.length) this.joinObject(element, 'units', await this.cacheService.getUnits());
+          if (element && element.categories && element.categories.length) this.joinObject(element, 'categories', await this.cacheService.getCategories());
+          if (element && element.resistances && element.resistances.length) this.joinObject(element, 'resistances', await this.cacheService.getCategories());
+          if (element && element.families && element.families.length) this.joinObject(element, 'families', await this.cacheService.getFamilies());
+          if (element && element.spells && element.spells.length) this.joinObject(element, 'spells', await this.cacheService.getSpells());
+          if (element && element.resources && element.resources.length) this.joinObject(element, 'resources', await this.cacheService.getResources());
         });
         return leftCollection.map(leftElement => {
           return {
             ...leftElement,
-            join: {
-              ...rightCollection.find(rightElement => leftElement[from] === rightElement[to])
-            }
-          }
-        })
-      })
-    )
+            join: rightCollection.find(rightElement => leftElement[from] === rightElement[to]),
+          };
+        });
+      }),
+    );
   }
 
   retrieveElementFromPath(path: string) {

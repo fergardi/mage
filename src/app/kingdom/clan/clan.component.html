@@ -7,7 +7,7 @@
         <img mat-card-avatar src="/assets/images/cards/clan.png">
         <mat-card-title>{{ 'kingdom.clan.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.clan.description' | translate }}</mat-card-subtitle>
-        <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.found' | translate }}" (click)="foundClan()" [disabled]="kingdomClan">
+        <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.found' | translate }}" (click)="foundation()" [disabled]="kingdomClan">
           <mat-icon>thumbs_up_down</mat-icon>
         </button>
         <mat-chip-list><mat-chip color="primary" selected><mat-icon>people</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
@@ -48,10 +48,10 @@
               </ng-template>
 
               <ng-template [ngIf]="column === 'actions'">
-                <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.join' | translate }}" (click)="joinClan(clan)" [disabled]="clan.fid === kingdomClan">
+                <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.join' | translate }}" (click)="join(clan)" [disabled]="clan.fid === kingdomClan">
                   <mat-icon>thumb_up</mat-icon>
                 </button>
-                <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.leave' | translate }}" (click)="leaveClan(clan)" [disabled]="clan.fid !== kingdomClan">
+                <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.leave' | translate }}" (click)="leave(clan)" [disabled]="clan.fid !== kingdomClan">
                   <mat-icon>thumb_down</mat-icon>
                 </button>
               </ng-template>
@@ -84,15 +84,15 @@
         <div matSubheader>{{ 'card.list.guilds' | translate }}:</div>
         <mat-form-field>
           <mat-label>{{ 'kingdom.guild.select' | translate }}</mat-label>
-          <mat-select [(ngModel)]="selectedGuild">
-            <mat-select-trigger *ngIf="selectedGuild">
+          <mat-select [(ngModel)]="kingdomGuild">
+            <mat-select-trigger *ngIf="kingdomGuild">
               <mat-list dense>
                 <mat-list-item>
                   <div mat-list-avatar>
-                    <img mat-list-avatar [src]="selectedGuild.image">
+                    <img mat-list-avatar [src]="kingdomGuild.image">
                   </div>
-                  <div mat-line>{{ selectedGuild.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle" [innerHTML]="selectedGuild.description | translate | icon:selectedGuild"></div>
+                  <div mat-line>{{ kingdomGuild.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle" [innerHTML]="kingdomGuild.description | translate | icon:kingdomGuild"></div>
                 </mat-list-item>
               </mat-list>
             </mat-select-trigger>
@@ -110,6 +110,13 @@
           </mat-select>
         </mat-form-field>
       </mat-card-content>
+
+      <mat-card-actions>
+        <span class="fill-space"></span>
+        <button mat-raised-button color="primary" [disabled]="!kingdomGuild || !canBeFavored()" (click)="favor()" cdkFocusInitial>
+          {{ canBeFavored() ? ('kingdom.guild.favor' | translate) : kingdomGuilded | date:('dateformat.short' | translate) }}
+        </button>
+      </mat-card-actions>
     </mat-card>
 
   </div>

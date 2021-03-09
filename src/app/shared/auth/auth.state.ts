@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 
@@ -101,7 +101,7 @@ export class AuthState implements NgxsOnInit {
 
   @Selector()
   public static getKingdomGuild(state: AuthStateModel): any {
-    return state && state.kingdom && state.kingdom.guild;
+    return state && state.kingdom && JSON.stringify({ guild: state.kingdom.guild, guilded: state.kingdom.guilded.toMillis() });
   }
 
   @Selector()
@@ -217,11 +217,11 @@ export class AuthState implements NgxsOnInit {
   @Action(SetKingdomBuildingsAction)
   setKingdomBuildings(ctx: StateContext<AuthStateModel>, payload: SetKingdomBuildingsAction) {
     return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/buildings`, 'structures', 'id', 'id').pipe(
-      tap(buildings => {
+      map(buildings => {
         const state = ctx.getState();
         ctx.setState({
           ...state,
-          buildings: buildings,
+          buildings: JSON.parse(JSON.stringify(buildings)),
         });
       }),
     );

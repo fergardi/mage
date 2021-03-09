@@ -53,7 +53,7 @@
 
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
-                <mat-list-item [ngClass]="[row.faction, (row.join | legendary) ? 'legendary' : 'common']">
+                <mat-list-item [ngClass]="[row.faction, (row | legendary) ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="row.level || '?'" matBadgePosition="above before">
                     <img mat-list-avatar [src]="row.image">
                   </div>

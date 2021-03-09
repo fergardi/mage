@@ -123,4 +123,8 @@ export class ApiService {
     return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/archive`, { body: { letterIds: letterIds } }).toPromise();
   }
 
+  favorGuild(kingdomId: string, guildId: string) {
+    return this.httpClient.patch(environment.functions.url + `/kingdom/${kingdomId}/guild/${guildId}`, undefined).toPromise();
+  }
+
 }
