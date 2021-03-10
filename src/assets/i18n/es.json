@@ -272,13 +272,13 @@
     "leadership": {
       "name": "Liderazgo",
       "description": "Comanda tus tropas",
-      "help": "Los héroes que tengas asignados al Liderazo entrarán en batalla contra cualquier reino al que ataques, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden morir en batalla.",
+      "help": "Los héroes que tengas asignados al Liderazo entrarán en batalla contra cualquier reino al que ataques, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla.",
       "max": "Máximo"
     },
     "guard": {
       "name": "Guardia",
       "description": "Vigila tus dominios",
-      "help": "Los héroes que tengas asignados a la Guardia entrarán en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden morir en batalla.",
+      "help": "Los héroes que tengas asignados a la Guardia entrarán en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla.",
       "max": "Máximo"
     },
     "census": {
@@ -320,13 +320,15 @@
       "quantity": "Cantidad",
       "cancel": "Cancelar",
       "disband": "Desbandar",
-      "hint": "No puedes desbandar unidades que consuman población",
+      "hint": "No puedes desbandar unidades que consuman Población",
       "error": "Ha ocurrido un problema",
-      "success": "Has desbandado tropas"
+      "success": "Has desbandado {{ quantity }} {{ unit }}"
     },
     "discharge": {
       "name": "Despido",
       "description": "Si no quieres seguir pagando los mantenimientos de un héroe, puedes despedirlo desterrándolo de tu reino.",
+      "success": "Has despedido al héroe {{ hero }}",
+      "error": "Ha ocurrido un problema",
       "cancel": "Cancelar",
       "discharge": "Despedir"
     },
@@ -345,13 +347,14 @@
     "recruit": {
       "name": "Reclutamiento",
       "description": "Recluta tropas básicas",
-      "help": "Aqui puedes gastar turnos y oro para adquirir tropas básicas para tus ejércitos. Cuantos más Barracones tengas, menos turnos necesitarás.",
-      "hint": "Debes tener suficientes turnos y oro",
+      "help": "Aqui puedes gastar Oro para adquirir tropas básicas para tus ejércitos. Reclutar no consume Turnos, por lo que es una buena forma de reorganizarse militarmente tras una derrota.",
+      "hint": "Debes tener suficiente Oro",
+      "invalid": "No válido",
       "error": "Ha ocurrido un problema",
       "recruit": "Reclutar",
       "cancel": "Cancelar",
       "quantity": "Cantidad",
-      "success": "Has reclutado nuevas tropas"
+      "success": "Has reclutado {{ quantity }} {{ unit }}"
     },
     "dispel": {
       "name": "Desvanecimiento",
@@ -443,7 +446,8 @@
       "description": "Recarga tus reservas mágicas",
       "help": "Aquí podrás invertir turnos en reponer los depósitos de maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
       "cancel": "Cancelar",
-      "hint": "Debes tener suficientes turnos",
+      "hint": "Cuantos más nodos tengas, más Maná recargarás",
+      "invalid": "No válido",
       "error": "Ha ocurrido un problema",
       "charge": "Meditar",
       "success": "Has recargado {{ mana }} maná"
@@ -453,7 +457,8 @@
       "description": "Engrosa tus arcas",
       "help": "Aquí podrás invertir turnos en cobrar impuestos a los súbditos de tu reino. El oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
       "cancel": "Cancelar",
-      "hint": "Debes tener suficientes turnos",
+      "hint": "Cuantos más pueblos tengas, más Oro recaudarás",
+      "invalid": "No válido",
       "error": "Ha ocurrido un problema",
       "tax": "Tributar",
       "success": "Has recaudado {{ gold }} oro"
@@ -463,15 +468,16 @@
       "description": "Anexiona nuevos territorios a tu reino",
       "help": "Aquí podrás invertir turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas tierras libres. Las tierras libres sirven como espacio para construir nuevos edificios en tu reino.",
       "cancel": "Cancelar",
-      "hint": "Cuantas más tierras tengas, menos encontrarás explorando",
+      "hint": "Cuantas más Tierras tengas, menos encontrarás",
       "error": "Ha ocurrido un problema",
+      "invalid": "No válido",
       "explore": "Explorar",
       "success": "Has encontrado {{ lands }} tierra(s)"
     },
     "tavern": {
       "name": "Taberna",
       "description": "Asigna a tus héroes",
-      "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna. Puedes asignarlos a Liderazo para que entren en batalla o a Guardia para que defiendan tu ciudad. También puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos.",
+      "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores. Puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos. Los héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
       "success": "Tus héroes han sido asignados",
       "error": "Ha ocurrido un problema",
       "max": "Máximo"
@@ -479,7 +485,8 @@
     "archive": {
       "name": "Archivo",
       "description": "Revisa tu correspondencia",
-      "help": "Aqui puedes ver un listado de los mensajes directos, informes de batalla, pujas ganadas o superadas, hechizos, artefactos y encantamientos lanzados contra tu reino."
+      "help": "Aqui puedes ver un listado de los mensajes directos, informes de batalla, pujas ganadas o superadas, hechizos, artefactos y encantamientos lanzados contra tu reino.",
+      "new": "Tienes mensajes nuevos"
     },
     "letter": {
       "name": "Redactar",
@@ -532,7 +539,7 @@
       "name": "Emporio",
       "description": "Contrabando del mercado negro",
       "help": "Puedes gastar tus gemas adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un impulso económico, potenciando el status de tu reino en el ránking.",
-      "success": "Compra satisfactoria",
+      "success": "Has adquirido {{ quantity }} {{ item }}",
       "error": "Ha ocurrido un problema"
     },
     "buy": {
@@ -546,9 +553,10 @@
       "description": "Invierte tierras libres, oro y turnos para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como las batallas o los asedios. Cuantos más talleres tengas, menos turnos gastarás al construir. Otros factores que pueden influir en esto son ciertos encantamientos y héroes aliados.",
       "cancel": "Cancelar",
       "build": "Construir",
-      "hint": "Necesitas tierras, oro y turnos",
+      "hint": "Cuantos más Talleres tengas, menos Turnos necesitarás",
+      "invalid": "No válido",
       "error": "Ha ocurrido un problema",
-      "success": "Has construido {{ quantity }} edificio(s)"
+      "success": "Has construido {{ quantity }} {{ structure }}"
     },
     "gemology": {
       "name": "Gemología",

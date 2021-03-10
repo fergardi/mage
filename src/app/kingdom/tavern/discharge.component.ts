@@ -19,6 +19,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           </div>
         </mat-list-item>
       </mat-list>
+      <mat-chip-list>
+        <mat-chip color="primary" selected *ngIf="contract.join.goldMaintenance > 0"><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldMaintenance' | translate:{ number: (contract.join.goldMaintenance * contract.level) | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="contract.join.manaMaintenance > 0"><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaMaintenance' | translate:{ number: (contract.join.manaMaintenance * contract.level) | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="contract.join.populationMaintenance > 0"><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationMaintenance' | translate:{ number: (contract.join.populationMaintenance * contract.level) | long } }}</mat-chip>
+      </mat-chip-list>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.discharge.cancel' | translate }}</button>
@@ -36,7 +41,9 @@ export class DischargeComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public contract: any,
     private dialogRef: MatDialogRef<DischargeComponent>,
-  ) { }
+  ) {
+    console.log(this.contract)
+  }
 
   close(): void {
     this.dialogRef.close();

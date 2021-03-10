@@ -12,6 +12,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -27,6 +34,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -42,6 +56,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": true
   },
   {
@@ -57,6 +78,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -72,6 +100,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -87,6 +122,13 @@
     "units": [],
     "resources": ["gold", "turn"],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": true
   },
   {
@@ -102,6 +144,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -117,6 +166,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": true
   },
   {
@@ -132,6 +188,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -147,6 +210,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": true
   },
   {
@@ -162,6 +232,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -177,6 +254,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -192,6 +276,13 @@
     "units": [],
     "resources": ["mana", "turn"],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": true
   },
   {
@@ -207,6 +298,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -222,6 +320,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -237,6 +342,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -252,6 +364,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -267,6 +386,13 @@
     "units": [],
     "resources": ["population", "turn"],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": true
   },
   {
@@ -282,6 +408,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   },
   {
@@ -297,6 +430,13 @@
     "units": [],
     "resources": [],
     "spells": [],
+    "powerLevel": 0,
+    "goldMaintenanceBase": 0,
+    "manaMaintenanceBase": 0,
+    "populationMaintenanceBase": 0,
+    "goldMaintenanceLevel": 0,
+    "manaMaintenanceLevel": 0,
+    "populationMaintenanceLevel": 0,
     "legendary": false
   }
 ]

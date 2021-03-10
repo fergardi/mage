@@ -204,7 +204,7 @@ export class AuthState implements NgxsOnInit {
   @Action(SetKingdomSuppliesAction)
   setKingdomSupplies(ctx: StateContext<AuthStateModel>, payload: SetKingdomSuppliesAction) {
     return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/supplies`, 'resources', 'id', 'id').pipe(
-      tap(supplies => {
+      map(supplies => {
         const state = ctx.getState();
         ctx.setState({
           ...state,

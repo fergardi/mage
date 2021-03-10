@@ -9,6 +9,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { DischargeComponent } from './discharge.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 export enum ContractAssignmentType {
   'contractNone', 'contractAttack', 'contractDefense',
@@ -37,6 +38,7 @@ export class TavernComponent implements OnInit {
     private dialog: MatDialog,
     private store: Store,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) {}
 
   ngOnInit() {
@@ -50,6 +52,7 @@ export class TavernComponent implements OnInit {
 
   async assignContract($event: CdkDragDrop<any>) {
     if ([0, 3].includes(parseInt($event.container.id)) || $event.container.data.length < MAXIMUM_CONTRACTS) {
+      this.loadingService.setLoading(true);
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
@@ -62,6 +65,7 @@ export class TavernComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.tavern.error');
       }
+      this.loadingService.setLoading(false);
     } else {
       this.notificationService.warning('kingdom.tavern.maximum');
     }

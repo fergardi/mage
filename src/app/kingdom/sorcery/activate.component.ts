@@ -19,7 +19,19 @@ export enum ArtifactAssignmentType {
     <h1 mat-dialog-title>{{ 'kingdom.activate.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.activate.description' | translate }}</p>
-      <mat-form-field>
+      <mat-list dense *ngIf="!kingdomArtifacts">
+        <mat-list-item [ngClass]="{ 'legendary': selectedArtifact.join | legendary }" *ngIf="selectedArtifact">
+          <div mat-list-avatar [matBadge]="selectedArtifact.quantity" matBadgePosition="above before">
+            <img mat-list-avatar [src]="selectedArtifact.join.image">
+          </div>
+          <div mat-line>{{ selectedArtifact.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="selectedArtifact.join.description | translate | icon:selectedArtifact.join"></div>
+          <div mat-list-avatar [matBadge]="selectedArtifact.join.turns" matBadgePosition="above after">
+            <img mat-list-avatar src="/assets/images/resources/turn.png">
+          </div>
+        </mat-list-item>
+      </mat-list>
+      <mat-form-field *ngIf="kingdomArtifacts">
         <mat-label>{{ 'kingdom.activate.select' | translate }}</mat-label>
         <mat-select [(ngModel)]="selectedArtifact">
           <mat-select-trigger *ngIf="selectedArtifact">
@@ -36,13 +48,26 @@ export enum ArtifactAssignmentType {
               </mat-list-item>
             </mat-list>
           </mat-select-trigger>
-          <mat-option *ngFor="let artifact of kingdomArtifacts" [value]="artifact">{{ artifact.join.name | translate }}</mat-option>
+          <mat-option *ngFor="let artifact of kingdomArtifacts" [value]="artifact">
+            <mat-list dense>
+              <mat-list-item [ngClass]="{ 'legendary': artifact.join | legendary }">
+                <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
+                  <img mat-list-avatar [src]="artifact.join.image">
+                </div>
+                <div mat-line>{{ artifact.join.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join"></div>
+                <div mat-list-avatar [matBadge]="artifact.join.turns" matBadgePosition="above after">
+                  <img mat-list-avatar src="/assets/images/resources/turn.png">
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.activate.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="!selectedArtifact" (click)="activate()" cdkFocusInitial>{{ 'kingdom.activate.activate' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="!selectedArtifact" (click)="activate()">{{ 'kingdom.activate.activate' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -56,7 +81,7 @@ export class ActivateComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
-  kingdomArtifacts: any[] = [];
+  kingdomArtifacts: any[] = null;
   selectedArtifact: any = null;
 
   constructor(
@@ -70,11 +95,12 @@ export class ActivateComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.artifact) {
-      this.kingdomArtifacts = [this.artifact];
+      // this.kingdomArtifacts = [this.artifact];
       this.selectedArtifact = this.artifact;
     } else {
       this.firebaseService.leftJoin(`kingdoms/${this.uid}/artifacts`, 'items', 'id', 'id', ref => ref.where('assignment', '==', ArtifactAssignmentType.none)).pipe(untilDestroyed(this)).subscribe(artifacts => {
         this.kingdomArtifacts = artifacts.filter(artifact => !artifact.join.battle && !artifact.join.self);
+        console.log(this.kingdomArtifacts)
       });
     }
   }

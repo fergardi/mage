@@ -40,10 +40,15 @@ import { ApiService } from 'src/app/services/api.service';
           <mat-error>{{ 'kingdom.disband.error' | translate }}</mat-error>
         </mat-form-field>
       </form>
+      <mat-chip-list>
+        <mat-chip color="primary" selected *ngIf="troop.join.goldMaintenance > 0"><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldMaintenance' | translate:{ number: (troop.join.goldMaintenance * troop.quantity) | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="troop.join.manaMaintenance > 0"><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaMaintenance' | translate:{ number: (troop.join.manaMaintenance * troop.quantity) | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="troop.join.populationMaintenance > 0"><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationMaintenance' | translate:{ number: (troop.join.populationMaintenance * troop.quantity) | long } }}</mat-chip>
+      </mat-chip-list>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.disband.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid || !troop.join.disbandable" (click)="disband()" cdkFocusInitial>{{ 'kingdom.disband.disband' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid || troop.join.populationMaintenance > 0" (click)="disband()">{{ 'kingdom.disband.disband' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -70,6 +75,7 @@ export class DisbandComponent implements OnInit {
     this.form = this.formBuilder.group({
       quantity: [null, [Validators.required, Validators.min(1), Validators.max(this.troop.quantity)]],
     });
+    console.log(this.troop)
   }
 
   close(): void {
@@ -80,7 +86,7 @@ export class DisbandComponent implements OnInit {
     if (this.form.valid) {
       try {
         let disbanded = await this.apiService.disbandTroop(this.uid, this.troop.fid, this.form.value.quantity);
-        this.notificationService.success('kingdom.disband.success');
+        this.notificationService.success('kingdom.disband.success', disbanded);
         this.close();
       } catch (error) {
         console.error(error);

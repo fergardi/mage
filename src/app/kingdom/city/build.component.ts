@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { ApiService } from 'src/app/services/api.service';
 import { Store, Select } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { calculateTurns } from 'src/app/pipes/turn.pipe';
 
 @Component({
   selector: 'app-build',
@@ -29,7 +30,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
           <mat-label>{{ 'resource.land.name' | translate }}</mat-label>
           <input type="number" placeholder="{{ 'resource.land.name' | translate }}" matInput formControlName="quantity">
           <mat-hint>{{ 'kingdom.build.hint' | translate }}</mat-hint>
-          <mat-error>{{ 'kingdom.build.error' | translate }}</mat-error>
+          <mat-error>{{ 'kingdom.build.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
       <mat-chip-list>
@@ -40,7 +41,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.build.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="build()" cdkFocusInitial>{{ 'kingdom.build.build' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="build()">{{ 'kingdom.build.build' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -57,6 +58,7 @@ export class BuildComponent implements OnInit {
   kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
   kingdomWorkshop: any = this.store.selectSnapshot(AuthState.getKingdomWorkshop);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  max: number = calculateTurns(this.kingdomTurn.timestamp.seconds * 1000, Date.now(), this.kingdomTurn.join.max, this.kingdomTurn.join.ratio);
   Math: any = Math;
 
   constructor(
@@ -70,7 +72,7 @@ export class BuildComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      quantity: [0, [Validators.required, Validators.min(1), Validators.max(this.kingdomLand.quantity)]],
+      quantity: [null, [Validators.required, Validators.min(1), Validators.max(Math.max(this.max, this.kingdomLand.quantity,  this.kingdomGold.quantity))]],
     });
   }
 
@@ -79,7 +81,7 @@ export class BuildComponent implements OnInit {
   }
 
   async build() {
-    if (this.form.valid && this.land() <= this.kingdomLand.quantity && this.gold() <= this.kingdomGold.quantity && this.turn() <= this.kingdomTurn.quantity) {
+    if (this.form.valid && this.land() <= this.kingdomLand.quantity && this.gold() <= this.kingdomGold.quantity && this.turn() <= this.max) {
       try {
         let built = await this.apiService.buildStructure(this.uid, this.building.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.build.success', built);
@@ -102,7 +104,7 @@ export class BuildComponent implements OnInit {
   }
 
   land() {
-    return this.form.value.quantity;
+    return this.form.value.quantity || 0;
   }
 
 }

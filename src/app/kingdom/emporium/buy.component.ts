@@ -53,7 +53,7 @@ export class BuyComponent {
     if (this.item.gems <= this.kingdomGem.quantity) {
       try {
         let bought = await this.apiService.buyEmporium(this.uid, this.item.id);
-        this.notificationService.success('kingdom.emporium.success');
+        this.notificationService.success('kingdom.emporium.success', bought);
         this.close();
       } catch (error) {
         console.error(error);

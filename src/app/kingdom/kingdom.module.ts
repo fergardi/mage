@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { KingdomRoutingModule } from './kingdom-routing.module';
 import { CityComponent } from './city/city.component';
 import { SharedModule } from '../shared/shared.module';
@@ -31,7 +30,6 @@ import { DischargeComponent } from './tavern/discharge.component';
 import { LetterComponent } from './census/letter.component';
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
 import { ClanComponent } from './clan/clan.component';
-
 
 @NgModule({
   declarations: [

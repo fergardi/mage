@@ -37,13 +37,16 @@ import { ApiService } from 'src/app/services/api.service';
           <mat-label>{{ 'kingdom.recruit.quantity' | translate }}</mat-label>
           <input type="number" placeholder="{{ 'kingdom.recruit.quantity' | translate }}" matInput formControlName="quantity">
           <mat-hint>{{ 'kingdom.recruit.hint' | translate }}</mat-hint>
-          <mat-error>{{ 'kingdom.recruit.error' | translate }}</mat-error>
+          <mat-error>{{ 'kingdom.recruit.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
+      <mat-chip-list>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ gold() | long}}</mat-chip>
+      </mat-chip-list>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.recruit.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="recruit()" cdkFocusInitial>{{ 'kingdom.recruit.recruit' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="recruit()">{{ 'kingdom.recruit.recruit' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -77,8 +80,12 @@ export class RecruitComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  gold(): number {
+    return this.form.value.quantity * this.unit.gold;
+  }
+
   async recruit() {
-    if (this.form.valid && this.form.value.quantity * this.unit.gold <= this.kingdomGold.quantity) {
+    if (this.form.valid && this.gold() <= this.kingdomGold.quantity) {
       try {
         let recruited = await this.apiService.recruitUnit(this.uid, this.unit.id, this.form.value.quantity);
         this.notificationService.success('kingdom.recruit.success', recruited);

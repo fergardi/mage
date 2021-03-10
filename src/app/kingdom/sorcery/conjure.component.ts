@@ -20,7 +20,19 @@ export enum CharmAssignmentType {
     <h1 mat-dialog-title>{{ 'kingdom.conjure.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.conjure.description' | translate }}</p>
-      <mat-form-field>
+      <mat-list dense *ngIf="!kingdomCharms && selectedCharm">
+        <mat-list-item [ngClass]="{ 'legendary': selectedCharm.join.legendary }">
+          <div mat-list-avatar [matBadge]="selectedCharm.join.level" matBadgePosition="above before">
+            <img mat-list-avatar [src]="selectedCharm.join.image">
+          </div>
+          <div mat-line>{{ selectedCharm.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="selectedCharm.join.description | translate | icon:selectedCharm"></div>
+          <div mat-list-avatar [matBadge]="selectedCharm.join.turnCost" matBadgePosition="above after">
+            <img mat-list-avatar src="/assets/images/resources/turn.png">
+          </div>
+        </mat-list-item>
+      </mat-list>
+      <mat-form-field *ngIf="kingdomCharms">
         <mat-label>{{ 'kingdom.conjure.select' | translate }}</mat-label>
         <mat-select [(ngModel)]="selectedCharm">
           <mat-select-trigger *ngIf="selectedCharm">
@@ -37,16 +49,29 @@ export enum CharmAssignmentType {
               </mat-list-item>
             </mat-list>
           </mat-select-trigger>
-          <mat-option *ngFor="let charm of kingdomCharms" [value]="charm">{{ charm.join.name | translate }}</mat-option>
+          <mat-option *ngFor="let charm of kingdomCharms" [value]="charm">
+            <mat-list dense>
+              <mat-list-item [ngClass]="{ 'legendary': selectedCharm.join.legendary }">
+                <div mat-list-avatar [matBadge]="selectedCharm.join.level" matBadgePosition="above before">
+                  <img mat-list-avatar [src]="selectedCharm.join.image">
+                </div>
+                <div mat-line>{{ selectedCharm.join.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="selectedCharm.join.description | translate | icon:selectedCharm"></div>
+                <div mat-list-avatar [matBadge]="selectedCharm.join.turnCost" matBadgePosition="above after">
+                  <img mat-list-avatar src="/assets/images/resources/turn.png">
+                </div>
+              </mat-list-item>
+            </mat-list>
+          </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-chip-list>
-        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ charm.join.manaCost }}</mat-chip>
+      <mat-chip-list *ngIf="selectedCharm">
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ selectedCharm.join.manaCost }}</mat-chip>
       </mat-chip-list>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.conjure.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="!selectedCharm" (click)="conjure()" cdkFocusInitial>{{ 'kingdom.conjure.conjure' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="!selectedCharm" (click)="conjure()">{{ 'kingdom.conjure.conjure' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -61,7 +86,7 @@ export class ConjureComponent implements OnInit {
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
   kingdomMana: any = this.store.selectSnapshot(AuthState.getKingdomMana);
-  kingdomCharms: any[] = [];
+  kingdomCharms: any[] = null;
   selectedCharm: any = null;
 
   constructor(
@@ -76,7 +101,7 @@ export class ConjureComponent implements OnInit {
   ngOnInit(): void {
     // TODO
     if (this.charm) {
-      this.kingdomCharms = [this.charm];
+      // this.kingdomCharms = [this.charm];
       this.selectedCharm = this.charm;
     } else {
       this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id').pipe(take(1), untilDestroyed(this)).subscribe(charms => {

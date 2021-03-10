@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     <h1 mat-dialog-title>{{ 'kingdom.letter.name' | translate }}</h1>
     <div mat-dialog-content>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item [ngClass]="kingdom.faction">
           <div mat-list-avatar matBadgePosition="above before">
             <img mat-list-avatar [src]="kingdom.join.image">
           </div>
@@ -31,7 +31,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.letter.close' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="sendLetter()" cdkFocusInitial>{{ 'kingdom.letter.send' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="sendLetter()">{{ 'kingdom.letter.send' | translate }}</button>
     </div>
   `,
   styles: [`

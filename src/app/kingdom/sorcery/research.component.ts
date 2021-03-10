@@ -38,7 +38,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.research.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="research()" cdkFocusInitial>{{ 'kingdom.research.research' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="research()">{{ 'kingdom.research.research' | translate }}</button>
     </div>
   `,
   styles: [`

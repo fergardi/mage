@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
-import { Observable } from 'rxjs';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
+import { calculateTurns } from 'src/app/pipes/turn.pipe';
 
 @Component({
   selector: 'app-explore',
@@ -15,7 +15,7 @@ import { ApiService } from 'src/app/services/api.service';
       <p>{{ 'kingdom.explore.help' | translate }}</p>
       <mat-list dense>
         <mat-list-item>
-          <div mat-list-avatar [matBadge]="(land$ | async)?.quantity | long" matBadgePosition="above before">
+          <div mat-list-avatar [matBadge]="kingdomLand.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/land.png">
           </div>
           <div mat-line>{{ 'resource.land.name' | translate }}</div>
@@ -30,13 +30,13 @@ import { ApiService } from 'src/app/services/api.service';
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>
           <input type="number" placeholder="{{ 'resource.turn.name' | translate }}" matInput formControlName="turns">
           <mat-hint>{{ 'kingdom.explore.hint' | translate }}</mat-hint>
-          <mat-error>{{ 'kingdom.explore.error' | translate }}</mat-error>
+          <mat-error>{{ 'kingdom.explore.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.explore.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" (click)="explore()" cdkFocusInitial>{{ 'kingdom.explore.explore' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="explore()">{{ 'kingdom.explore.explore' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -48,10 +48,10 @@ import { ApiService } from 'src/app/services/api.service';
 export class ExploreComponent implements OnInit {
 
   form: FormGroup = null;
-  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
   uid = this.store.selectSnapshot(AuthState.getUserUID);
-  @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'land')) land$: Observable<any>;
-  @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'turn')) turn$: Observable<any>;
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
+  max: number = calculateTurns(this.kingdomTurn.timestamp.seconds * 1000, Date.now(), this.kingdomTurn.join.max, this.kingdomTurn.join.ratio);
 
   constructor(
     private dialogRef: MatDialogRef<ExploreComponent>,
@@ -63,7 +63,7 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.max)]],
     });
   }
 
@@ -72,7 +72,7 @@ export class ExploreComponent implements OnInit {
   }
 
   async explore() {
-    if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
+    if (this.form.valid && this.form.value.turns <= this.max) {
       try {
         let explored = await this.apiService.exploreLand(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.explore.success', explored);

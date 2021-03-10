@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Observable } from 'rxjs';
+import { calculateTurns } from 'src/app/pipes/turn.pipe';
 
 @Component({
   selector: 'app-tax',
@@ -30,13 +31,13 @@ import { Observable } from 'rxjs';
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>
           <input type="number" placeholder="{{ 'resource.turn.name' | translate }}" matInput formControlName="turns">
           <mat-hint>{{ 'kingdom.tax.hint' | translate }}</mat-hint>
-          <mat-error>{{ 'kingdom.tax.error' | translate }}</mat-error>
+          <mat-error>{{ 'kingdom.tax.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.tax.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="tax()" cdkFocusInitial>{{ 'kingdom.tax.tax' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="tax()">{{ 'kingdom.tax.tax' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -50,6 +51,7 @@ export class TaxComponent implements OnInit {
   form: FormGroup = null;
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  max: number = calculateTurns(this.kingdomTurn.timestamp.seconds * 1000, Date.now(), this.kingdomTurn.join.max, this.kingdomTurn.join.ratio);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public village$: Observable<any>,
@@ -62,7 +64,7 @@ export class TaxComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.max)]],
     });
   }
 
@@ -71,7 +73,7 @@ export class TaxComponent implements OnInit {
   }
 
   async tax() {
-    if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
+    if (this.form.valid && this.form.value.turns <= this.max) {
       try {
         let taxed = await this.apiService.taxGold(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.tax.success', taxed);

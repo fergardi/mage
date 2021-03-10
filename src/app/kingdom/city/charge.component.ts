@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
+import { calculateTurns } from 'src/app/pipes/turn.pipe';
 
 @Component({
   selector: 'app-charge',
@@ -30,13 +31,13 @@ import { Observable } from 'rxjs';
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>
           <input type="number" placeholder="{{ 'resource.turn.name' | translate }}" matInput formControlName="turns">
           <mat-hint>{{ 'kingdom.charge.hint' | translate }}</mat-hint>
-          <mat-error>{{ 'kingdom.charge.error' | translate }}</mat-error>
+          <mat-error>{{ 'kingdom.charge.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.charge.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="charge()" cdkFocusInitial>{{ 'kingdom.charge.charge' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="charge()">{{ 'kingdom.charge.charge' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -50,6 +51,7 @@ export class ChargeComponent implements OnInit {
   form: FormGroup = null;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  max: number = calculateTurns(this.kingdomTurn.timestamp.seconds * 1000, Date.now(), this.kingdomTurn.join.max, this.kingdomTurn.join.ratio);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public node$: Observable<any>,
@@ -62,7 +64,7 @@ export class ChargeComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.max)]],
     });
   }
 
@@ -71,7 +73,7 @@ export class ChargeComponent implements OnInit {
   }
 
   async charge() {
-    if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
+    if (this.form.valid && this.form.value.turns <= this.max) {
       try {
         let charged = await this.apiService.chargeMana(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.charge.success', charged);

@@ -94,8 +94,9 @@ export class ShellComponent implements OnInit {
     this.store.select(AuthState.getUserUID).subscribe(uid => {
       if (uid) {
         this.angularFirestore.collection<any>(`kingdoms/${uid}/letters`, x => x.where('read', '==', false)).valueChanges().subscribe(reports => {
+          let oldReports = this.reports;
           this.reports = reports.length;
-          if (this.reports > 0) this.notificationService.warning('Tienes mensajes nuevos');
+          if (this.reports > oldReports) this.notificationService.warning('kingdom.archive.new');
         });
       }
     });
