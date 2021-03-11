@@ -11,8 +11,8 @@ export const NotificationServiceStub: any = {
 };
 
 export const StoreStub: any = {
-  selectSnapshot: (type: any) => {
-    switch (type) {
+  selectSnapshot: (selector: any) => {
+    switch (selector) {
       case AuthState.getKingdomTurn:
       case AuthState.getKingdomLand:
       case AuthState.getKingdomPopulation:
@@ -27,7 +27,14 @@ export const StoreStub: any = {
         return true;
     }
   },
-  select: (a: any) => of(a),
+  select: (selector: any) => {
+    switch (selector) {
+      case AuthState.getKingdomGuild:
+        return of(JSON.stringify({ guild: "hunter", guilded: new Date().getTime() }));
+      default:
+        return of(selector);
+    }
+  },
   dispatch: (a: any) => of(a),
 };
 
@@ -103,7 +110,8 @@ export const AngularFirestoreStub: any = {
 };
 
 export const LoadingServiceStub: any = {
-  setLoading: () => null,
+  startLoading: () => null,
+  stopLoading: () => null,
 };
 
 export const AngularFireAuthStub: any = {
@@ -145,9 +153,9 @@ export class DragDropEventFactory<T> {
   createInContainerEvent(containerId: string, data: T[], fromIndex: number, toIndex: number): CdkDragDrop<T[], T[]> {
     const event = this.createEvent(fromIndex, toIndex);
     const container: any = { id: containerId, data: data };
-    event.container = <CdkDropList<T[]>>container;
+    event.container = (container as CdkDropList<T[]>);
     event.previousContainer = event.container;
-    event.item = <CdkDrag<T>>{ data: data[fromIndex] };
+    event.item = ({ data: data[fromIndex] } as CdkDrag<T>);
     return event;
   }
 
@@ -155,7 +163,7 @@ export class DragDropEventFactory<T> {
     const event = this.createEvent(from.index, to.index);
     event.container = this.createContainer(to);
     event.previousContainer = this.createContainer(from);
-    event.item = <CdkDrag<T>>{ data: from.data[from.index] };
+    event.item = ({ data: from.data[from.index] } as CdkDrag<T>);
     return event;
   }
 
@@ -173,7 +181,7 @@ export class DragDropEventFactory<T> {
 
   createContainer(model: ContainerModel<T>): CdkDropList<T[]> {
     const container: any = { id: model.id, data: model.data };
-    return <CdkDropList<T[]>>container;
+    return container as CdkDropList<T[]>;
   }
 }
 

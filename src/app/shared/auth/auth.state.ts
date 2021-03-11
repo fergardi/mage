@@ -8,6 +8,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { tap, map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
+import { calculateTurns } from 'src/app/pipes/turn.pipe';
 
 const HOME_ROUTE: string = '/kingdom/city';
 
@@ -51,7 +52,12 @@ export class AuthState implements NgxsOnInit {
 
   @Selector()
   public static getKingdomTurn(state: AuthStateModel): any {
-    return state && state.supplies.find(supply => supply.id === 'turn');
+    if (state) {
+      let kingdomTurn = JSON.parse(JSON.stringify(state.supplies.find(supply => supply.id === 'turn')));
+      kingdomTurn.quantity = calculateTurns(kingdomTurn.timestamp.seconds * 1000, Date.now(), kingdomTurn.join.max, kingdomTurn.join.ratio);
+      return kingdomTurn;
+    }
+    return null;
   }
 
   @Selector()

@@ -30,14 +30,14 @@ describe('AuthGuard', () => {
   it('should BLOCK a ROUTE', inject([Store, Router], (store: Store, router: Router) => {
     spyOn(store, 'selectSnapshot').and.returnValue(false);
     spyOn(router, 'navigate').and.stub();
-    expect(guard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{ url: 'test' })).toBeFalse();
+    expect(guard.canActivate(new ActivatedRouteSnapshot(), { url: 'test' } as RouterStateSnapshot)).toBeFalse();
     expect(router.navigate).toHaveBeenCalledWith(['/user/landing']);
   }));
 
   it('should PASS a ROUTE', inject([Store, Router], (store: Store, router: Router) => {
     spyOn(store, 'selectSnapshot').and.returnValue(true);
     spyOn(router, 'navigate').and.stub();
-    expect(guard.canActivate(new ActivatedRouteSnapshot(), <RouterStateSnapshot>{ url: 'test' })).toBeTrue();
+    expect(guard.canActivate(new ActivatedRouteSnapshot(), { url: 'test' } as RouterStateSnapshot)).toBeTrue();
     expect(router.navigate).not.toHaveBeenCalled();
   }));
 

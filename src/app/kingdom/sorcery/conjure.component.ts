@@ -117,7 +117,7 @@ export class ConjureComponent implements OnInit {
   async conjure() {
     if (this.selectedCharm.join.turnCost <= this.kingdomTurn.quantity && this.selectedCharm.join.manaCost <= this.kingdomMana.quantity) {
       try {
-        let conjured = await this.apiService.conjureCharm(this.uid, this.selectedCharm.fid, this.uid);
+        const conjured = await this.apiService.conjureCharm(this.uid, this.selectedCharm.fid, this.uid);
         this.notificationService.success('kingdom.conjure.success');
         this.close();
       } catch (error) {

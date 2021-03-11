@@ -45,7 +45,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class ResearchComponent implements OnInit {
 
@@ -64,7 +64,7 @@ export class ResearchComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]]
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
     });
   }
 
@@ -75,7 +75,7 @@ export class ResearchComponent implements OnInit {
   async research() {
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       try {
-        let researched = await this.apiService.researchCharm(this.uid, this.charm.fid, this.form.value.turns);
+        const researched = await this.apiService.researchCharm(this.uid, this.charm.fid, this.form.value.turns);
         this.notificationService.success('kingdom.research.success');
         this.close();
       } catch (error) {

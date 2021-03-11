@@ -21,7 +21,7 @@ export enum CollectionType {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CacheService {
 
@@ -68,11 +68,11 @@ export class CacheService {
 
   async getFactions() {
     if (!localStorage.getItem(CollectionType.FACTIONS)) {
-      let snapshot = await this.angularFirestore.collection(CollectionType.FACTIONS).get().toPromise();
-      let factions = snapshot.docs.map(faction => faction.data());
+      const snapshot = await this.angularFirestore.collection(CollectionType.FACTIONS).get().toPromise();
+      const factions = snapshot.docs.map(faction => faction.data());
       factions.forEach(faction => {
         faction.adjacents = faction.adjacents.map((adjacent: string) => {
-          let f = factions.find(f => f.id === adjacent);
+          const f = factions.find(fac => fac.id === adjacent);
           return f
             ? {
               ...f,
@@ -82,7 +82,7 @@ export class CacheService {
             : null;
         });
         faction.opposites = faction.opposites.map((opposite: string) => {
-          let f = factions.find(f => f.id === opposite);
+          const f = factions.find(fac => fac.id === opposite);
           return f
             ? {
               ...f,
@@ -99,8 +99,8 @@ export class CacheService {
 
   async getPacks() {
     if (!localStorage.getItem(CollectionType.PACKS)) {
-      let snapshot = await this.angularFirestore.collection(CollectionType.PACKS).get().toPromise();
-      let packs = snapshot.docs.map(faction => faction.data());
+      const snapshot = await this.angularFirestore.collection(CollectionType.PACKS).get().toPromise();
+      const packs = snapshot.docs.map(faction => faction.data());
       localStorage.setItem(CollectionType.PACKS, JSON.stringify([...packs]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.PACKS));
@@ -108,8 +108,8 @@ export class CacheService {
 
   async getAttacks() {
     if (!localStorage.getItem(CollectionType.ATTACKS)) {
-      let snapshot = await this.angularFirestore.collection(CollectionType.ATTACKS).get().toPromise();
-      let attacks = snapshot.docs.map(attack => attack.data());
+      const snapshot = await this.angularFirestore.collection(CollectionType.ATTACKS).get().toPromise();
+      const attacks = snapshot.docs.map(attack => attack.data());
       localStorage.setItem(CollectionType.ATTACKS, JSON.stringify([...attacks]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.ATTACKS));
@@ -117,8 +117,8 @@ export class CacheService {
 
   async getGuilds() {
     if (!localStorage.getItem(CollectionType.GUILDS)) {
-      let snapshot = await this.angularFirestore.collection(CollectionType.GUILDS).get().toPromise();
-      let guilds = snapshot.docs.map(guild => guild.data());
+      const snapshot = await this.angularFirestore.collection(CollectionType.GUILDS).get().toPromise();
+      const guilds = snapshot.docs.map(guild => guild.data());
       localStorage.setItem(CollectionType.GUILDS, JSON.stringify([...guilds]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.GUILDS));
@@ -126,8 +126,8 @@ export class CacheService {
 
   async getStores() {
     if (!localStorage.getItem(CollectionType.STORES)) {
-      let snapshot = await this.angularFirestore.collection(CollectionType.STORES).get().toPromise();
-      let stores = snapshot.docs.map(faction => faction.data());
+      const snapshot = await this.angularFirestore.collection(CollectionType.STORES).get().toPromise();
+      const stores = snapshot.docs.map(faction => faction.data());
       localStorage.setItem(CollectionType.STORES, JSON.stringify([...stores]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.STORES));
@@ -135,9 +135,9 @@ export class CacheService {
 
   async getResources() {
     if (!localStorage.getItem(CollectionType.RESOURCES)) {
-      let factions = await this.getFactions();
-      let snapshot = await this.angularFirestore.collection(CollectionType.RESOURCES).get().toPromise();
-      let resources = snapshot.docs.map(faction => faction.data());
+      const factions = await this.getFactions();
+      const snapshot = await this.angularFirestore.collection(CollectionType.RESOURCES).get().toPromise();
+      const resources = snapshot.docs.map(faction => faction.data());
       resources.forEach(resource => {
         resource.join = factions.find(faction => faction.id === resource.faction);
       });
@@ -148,10 +148,10 @@ export class CacheService {
 
   async getStructures() {
     if (!localStorage.getItem(CollectionType.STRUCTURES)) {
-      let factions = await this.getFactions();
-      let resources = await this.getResources();
-      let snapshot = await this.angularFirestore.collection(CollectionType.STRUCTURES).get().toPromise();
-      let structures = snapshot.docs.map(faction => faction.data());
+      const factions = await this.getFactions();
+      const resources = await this.getResources();
+      const snapshot = await this.angularFirestore.collection(CollectionType.STRUCTURES).get().toPromise();
+      const structures = snapshot.docs.map(faction => faction.data());
       structures.forEach(structure => {
         structure.join = factions.find(faction => faction.id === structure.faction);
         structure.resources = structure.resources.map(resource => resources.find(r => r.id === resource));
@@ -163,12 +163,12 @@ export class CacheService {
 
   async getHeroes() {
     if (!localStorage.getItem(CollectionType.HEROES)) {
-      let factions = await this.getFactions();
-      let families = await this.getFamilies();
-      let resources = await this.getResources();
-      let categories = await this.getCategories();
-      let snapshot = await this.angularFirestore.collection(CollectionType.HEROES).get().toPromise();
-      let heroes = snapshot.docs.map(faction => faction.data());
+      const factions = await this.getFactions();
+      const families = await this.getFamilies();
+      const resources = await this.getResources();
+      const categories = await this.getCategories();
+      const snapshot = await this.angularFirestore.collection(CollectionType.HEROES).get().toPromise();
+      const heroes = snapshot.docs.map(faction => faction.data());
       heroes.forEach(hero => {
         hero.join = factions.find(faction => faction.id === hero.faction);
         hero.families = hero.families.map(family => families.find(f => f.id === family));
@@ -182,9 +182,9 @@ export class CacheService {
 
   async getGods() {
     if (!localStorage.getItem(CollectionType.GODS)) {
-      let factions = await this.getFactions();
-      let snapshot = await this.angularFirestore.collection(CollectionType.GODS).get().toPromise();
-      let gods = snapshot.docs.map(god => god.data());
+      const factions = await this.getFactions();
+      const snapshot = await this.angularFirestore.collection(CollectionType.GODS).get().toPromise();
+      const gods = snapshot.docs.map(god => god.data());
       gods.forEach(god => {
         god.join = factions.find(faction => faction.id === god.faction);
       });
@@ -195,9 +195,9 @@ export class CacheService {
 
   async getSkills() {
     if (!localStorage.getItem(CollectionType.SKILLS)) {
-      let factions = await this.getFactions();
-      let snapshot = await this.angularFirestore.collection(CollectionType.SKILLS).get().toPromise();
-      let skills = snapshot.docs.map(skill => skill.data());
+      const factions = await this.getFactions();
+      const snapshot = await this.angularFirestore.collection(CollectionType.SKILLS).get().toPromise();
+      const skills = snapshot.docs.map(skill => skill.data());
       skills.forEach(skill => {
         skill.join = factions.find(faction => faction.id === skill.faction);
       });
@@ -208,9 +208,9 @@ export class CacheService {
 
   async getCategories() {
     if (!localStorage.getItem(CollectionType.CATEGORIES)) {
-      let factions = await this.getFactions();
-      let snapshot = await this.angularFirestore.collection(CollectionType.CATEGORIES).get().toPromise();
-      let categories = snapshot.docs.map(category => category.data());
+      const factions = await this.getFactions();
+      const snapshot = await this.angularFirestore.collection(CollectionType.CATEGORIES).get().toPromise();
+      const categories = snapshot.docs.map(category => category.data());
       categories.forEach(category => {
         category.join = factions.find(faction => faction.id === category.faction);
       });
@@ -221,9 +221,9 @@ export class CacheService {
 
   async getFamilies() {
     if (!localStorage.getItem(CollectionType.FAMILIES)) {
-      let factions = await this.getFactions();
-      let snapshot = await this.angularFirestore.collection(CollectionType.FAMILIES).get().toPromise();
-      let families = snapshot.docs.map(family => family.data());
+      const factions = await this.getFactions();
+      const snapshot = await this.angularFirestore.collection(CollectionType.FAMILIES).get().toPromise();
+      const families = snapshot.docs.map(family => family.data());
       families.forEach(family => {
         family.join = factions.find(faction => faction.id === family.faction);
       });
@@ -234,9 +234,9 @@ export class CacheService {
 
   async getLocations() {
     if (!localStorage.getItem(CollectionType.LOCATIONS)) {
-      let families = await this.getFamilies();
-      let snapshot = await this.angularFirestore.collection(CollectionType.LOCATIONS).get().toPromise();
-      let locations = snapshot.docs.map(location => location.data());
+      const families = await this.getFamilies();
+      const snapshot = await this.angularFirestore.collection(CollectionType.LOCATIONS).get().toPromise();
+      const locations = snapshot.docs.map(location => location.data());
       locations.forEach(location => {
         location.families = location.families.map(family => families.find(f => f.id === family));
       });
@@ -247,12 +247,12 @@ export class CacheService {
 
   async getUnits() {
     if (!localStorage.getItem(CollectionType.UNITS)) {
-      let factions = await this.getFactions();
-      let skills = await this.getSkills();
-      let families = await this.getFamilies();
-      let categories = await this.getCategories();
-      let snapshot = await this.angularFirestore.collection(CollectionType.UNITS).get().toPromise();
-      let units = snapshot.docs.map(unit => unit.data());
+      const factions = await this.getFactions();
+      const skills = await this.getSkills();
+      const families = await this.getFamilies();
+      const categories = await this.getCategories();
+      const snapshot = await this.angularFirestore.collection(CollectionType.UNITS).get().toPromise();
+      const units = snapshot.docs.map(unit => unit.data());
       units.forEach(unit => {
         unit.join = factions.find(faction => faction.id === unit.faction);
         unit.skills = unit.skills.map(skill => skills.find(s => s.id === skill.replace(/\+|\-|\//g, '')));
@@ -267,14 +267,14 @@ export class CacheService {
 
   async getSpells() {
     if (!localStorage.getItem(CollectionType.SPELLS)) {
-      let factions = await this.getFactions();
-      let skills = await this.getSkills();
-      let families = await this.getFamilies();
-      let categories = await this.getCategories();
-      let units = await this.getUnits();
-      let resources = await this.getResources();
-      let snapshot = await this.angularFirestore.collection(CollectionType.SPELLS).get().toPromise();
-      let spells = snapshot.docs.map(spell => spell.data());
+      const factions = await this.getFactions();
+      const skills = await this.getSkills();
+      const families = await this.getFamilies();
+      const categories = await this.getCategories();
+      const units = await this.getUnits();
+      const resources = await this.getResources();
+      const snapshot = await this.angularFirestore.collection(CollectionType.SPELLS).get().toPromise();
+      const spells = snapshot.docs.map(spell => spell.data());
       spells.forEach(spell => {
         spell.join = factions.find(faction => faction.id === spell.faction);
         spell.skills = spell.skills.map(skill => skills.find(s => s.id === skill.replace(/\+|\-|\//g, '')));
@@ -290,15 +290,15 @@ export class CacheService {
 
   async getItems() {
     if (!localStorage.getItem(CollectionType.ITEMS)) {
-      let factions = await this.getFactions();
-      let skills = await this.getSkills();
-      let families = await this.getFamilies();
-      let categories = await this.getCategories();
-      let units = await this.getUnits();
-      let resources = await this.getResources();
-      let spells = await this.getSpells();
-      let snapshot = await this.angularFirestore.collection(CollectionType.ITEMS).get().toPromise();
-      let items = snapshot.docs.map(item => item.data());
+      const factions = await this.getFactions();
+      const skills = await this.getSkills();
+      const families = await this.getFamilies();
+      const categories = await this.getCategories();
+      const units = await this.getUnits();
+      const resources = await this.getResources();
+      const spells = await this.getSpells();
+      const snapshot = await this.angularFirestore.collection(CollectionType.ITEMS).get().toPromise();
+      const items = snapshot.docs.map(item => item.data());
       items.forEach(item => {
         item.join = factions.find(faction => faction.id === item.faction);
         item.skills = item.skills.map(skill => skills.find(s => s.id === skill.replace(/\+|\-|\//g, '')));

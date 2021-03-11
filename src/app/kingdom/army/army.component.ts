@@ -51,12 +51,12 @@ export class ArmyComponent implements OnInit {
       this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopAttack).sort((a, b) => a.sort - b.sort);
       this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopDefense).sort((a, b) => a.sort - b.sort);
     });
-    let recruitUnits = await this.cacheService.getUnits();
+    const recruitUnits = await this.cacheService.getUnits();
     this.recruitUnits = recruitUnits.filter((unit: any) => unit.gold > 0);
   }
 
   async assignTroop($event: CdkDragDrop<any>) {
-    if ($event.container && (parseInt($event.container.id) === 0 || $event.previousContainer === $event.container || $event.container.data.length < MAXIMUM_TROOPS)) {
+    if ($event.container && (Number($event.container.id) === 0 || $event.previousContainer === $event.container || $event.container.data.length < MAXIMUM_TROOPS)) {
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
@@ -64,14 +64,14 @@ export class ArmyComponent implements OnInit {
       }
       await this.updateArmy();
     } else {
-      this.notificationService.warning('kingdom.army.maximum')
+      this.notificationService.warning('kingdom.army.maximum');
     }
   }
 
   async updateArmy() {
     this.loadingService.startLoading();
     try {
-      let army = [];
+      const army = [];
       this.kingdomTroops.forEach((kingdomTroop, index) => {
         army.push({ troopId: kingdomTroop.fid, sort: 1000 + index, assignment: TroopAssignmentType.troopNone });
       });
@@ -81,11 +81,11 @@ export class ArmyComponent implements OnInit {
       this.defenseTroops.forEach((defenseTroop, index) => {
         army.push({ troopId: defenseTroop.fid, sort: 3000 + index, assignment: TroopAssignmentType.troopDefense });
       });
-      let assigned = await this.apiService.assignArmy(this.uid, army);
+      const assigned = await this.apiService.assignArmy(this.uid, army);
       this.notificationService.success('kingdom.army.success');
     } catch (error) {
       console.error(error);
-      this.notificationService.error('kingdom.army.error')
+      this.notificationService.error('kingdom.army.error');
     }
     this.loadingService.stopLoading();
   }

@@ -44,7 +44,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class ExploreComponent implements OnInit {
 
@@ -52,7 +52,6 @@ export class ExploreComponent implements OnInit {
   uid = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
   kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
-  max: number = calculateTurns(this.kingdomTurn.timestamp.seconds * 1000, Date.now(), this.kingdomTurn.join.max, this.kingdomTurn.join.ratio);
 
   constructor(
     private dialogRef: MatDialogRef<ExploreComponent>,
@@ -65,7 +64,7 @@ export class ExploreComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.max)]],
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
     });
   }
 
@@ -74,10 +73,10 @@ export class ExploreComponent implements OnInit {
   }
 
   async explore() {
-    if (this.form.valid && this.form.value.turns <= this.max) {
+    if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       this.loadingService.startLoading();
       try {
-        let explored = await this.apiService.exploreLand(this.uid, this.form.value.turns);
+        const explored = await this.apiService.exploreLand(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.explore.success', explored);
         this.close();
       } catch (error) {

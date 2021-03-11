@@ -1,7 +1,6 @@
 @import '~@angular/material/theming';
 @import url("https://use.typekit.net/jnq3uxd.css");
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Uncial+Antiqua&display=swap');
-@import '~material-icons/iconfont/material-icons.scss';
 
 $custom-typography: mat-typography-config($font-family: "'Open Sans', sans-serif");
 @include mat-core($custom-typography);

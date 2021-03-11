@@ -7,7 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { CacheService, CollectionType } from './cache.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FirebaseService {
 
@@ -23,7 +23,7 @@ export class FirebaseService {
       element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
         if (typeof subElement === 'string') {
           element[subCollection][subElementIndex] = {
-            ...collection.find(el => el['id'] === subElement)
+            ...collection.find(el => el['id'] === subElement),
           };
         }
       });
@@ -31,7 +31,7 @@ export class FirebaseService {
     }
     if (typeof element[subCollection] === 'string') {
       element.join = {
-        ...collection.find(el => el['id'] === element[subCollection])
+        ...collection.find(el => el['id'] === element[subCollection]),
       };
     }
   }
@@ -54,9 +54,9 @@ export class FirebaseService {
     return element;
   }
 
-  leftJoin(left: string, right: string, from: string = 'id', to: string = 'id', query: QueryFn = undefined) {
+  leftJoin(left: string, right: string, from: string = 'id', to: string = 'id', query?: QueryFn) {
     return combineLatest([
-      query === undefined
+      !query
         ? this.angularFirestore.collection<any>(left).valueChanges({ idField: 'fid' }) // select * from left
         : this.angularFirestore.collection<any>(left, query).valueChanges({ idField: 'fid' }), // select * from left where query
       CollectionType[right.toUpperCase()] === undefined
@@ -110,7 +110,7 @@ export class FirebaseService {
   async importCollectionFromJson(collection: string) {
     this.angularFireAuth.authState.subscribe(user => {
       if (user) {
-        console.info(`Loading collection ${collection}...`)
+        console.log(`Loading collection ${collection}...`);
         this.httpClient.get<any[]>(`assets/fixtures/${collection}.json`).pipe(first()).subscribe(elements => {
           this.addElementsToCollection(collection, elements, true);
         });
@@ -118,19 +118,19 @@ export class FirebaseService {
     });
   }
 
-  async loadCollectionIntoCollection(from: string, to: string, query: QueryFn = undefined) {
+  async loadCollectionIntoCollection(from: string, to: string, query?: QueryFn) {
     this.angularFireAuth.authState.subscribe(user => {
-      this.angularFirestore.collection<any>(`kingdoms/${user.uid}/${to}`).get().subscribe(collection => {
-        collection.forEach(element => {
-          element.ref.delete()
+      this.angularFirestore.collection<any>(`kingdoms/${user.uid}/${to}`).get().subscribe(documents => {
+        documents.forEach(document => {
+          document.ref.delete();
         });
       });
-      let collection = query === undefined
+      const collection = !query
         ? this.angularFirestore.collection<any>(from).get()
         : this.angularFirestore.collection<any>(from, query).get();
-      collection.subscribe(collection => {
-        collection.forEach(element => {
-          let data = element.data();
+      collection.subscribe(documents => {
+        documents.forEach(document => {
+          const data = document.data();
           this.angularFirestore.collection<any>(`kingdoms/${user.uid}/${to}`).add({
             id: data.id,
             quantity: 99, // artifacts
@@ -140,7 +140,7 @@ export class FirebaseService {
             max: 1000, // resources
             balance: 123, // resources
             assignment: 0, // troops, artifacts, heroes
-          })
+          });
         });
       });
     });

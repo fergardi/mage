@@ -55,7 +55,6 @@ export class ClanComponent implements OnInit {
     const guilds = await this.cacheService.getGuilds();
     this.kingdomGuilds = guilds;
     this.store.select(AuthState.getKingdomGuild).pipe(map(data => JSON.parse(data))).pipe(untilDestroyed(this)).subscribe(kingdomGuild => {
-      console.log(kingdomGuild);
       if (kingdomGuild) {
         this.kingdomGuild = this.kingdomGuilds.find(guild => guild.id === kingdomGuild.guild);
         this.kingdomGuilded = kingdomGuild.guilded;
@@ -111,7 +110,7 @@ export class ClanComponent implements OnInit {
     if (this.kingdomGuild) {
       this.loadingService.startLoading();
       try {
-        let favored = await this.apiService.favorGuild(this.uid, this.kingdomGuild.id);
+        const favored = await this.apiService.favorGuild(this.uid, this.kingdomGuild.id);
         this.notificationService.success('kingdom.guild.success');
       } catch (error) {
         console.error(error);

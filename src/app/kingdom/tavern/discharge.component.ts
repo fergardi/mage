@@ -34,7 +34,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class DischargeComponent {
 
@@ -42,7 +42,6 @@ export class DischargeComponent {
     @Inject(MAT_DIALOG_DATA) public contract: any,
     private dialogRef: MatDialogRef<DischargeComponent>,
   ) {
-    console.log(this.contract)
   }
 
   close(): void {

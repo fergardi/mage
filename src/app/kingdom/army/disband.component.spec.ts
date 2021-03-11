@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatChipsModule } from '@angular/material/chips';
 
 describe('DisbandComponent', () => {
   let component: DisbandComponent;
@@ -41,6 +42,7 @@ describe('DisbandComponent', () => {
         FormsModule,
         MatInputModule,
         BrowserAnimationsModule,
+        MatChipsModule,
       ],
       declarations: [
         DisbandComponent,

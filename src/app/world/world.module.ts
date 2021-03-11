@@ -21,6 +21,6 @@ import { ConfirmComponent } from './popup/confirm.component';
     CommonModule,
     SharedModule,
     WorldRoutingModule,
-  ]
+  ],
 })
 export class WorldModule { }

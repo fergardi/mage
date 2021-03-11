@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { sample } from 'lodash';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RandomService {
 

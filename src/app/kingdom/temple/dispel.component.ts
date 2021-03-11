@@ -38,7 +38,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class DispelComponent implements OnInit {
 

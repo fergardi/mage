@@ -48,7 +48,7 @@ import { calculateTurns } from 'src/app/pipes/turn.pipe';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class BuildComponent implements OnInit {
 
@@ -58,7 +58,6 @@ export class BuildComponent implements OnInit {
   kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
   kingdomWorkshop: any = this.store.selectSnapshot(AuthState.getKingdomWorkshop);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  max: number = calculateTurns(this.kingdomTurn.timestamp.seconds * 1000, Date.now(), this.kingdomTurn.join.max, this.kingdomTurn.join.ratio);
   Math: any = Math;
 
   constructor(
@@ -72,7 +71,7 @@ export class BuildComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      quantity: [null, [Validators.required, Validators.min(1), Validators.max(Math.max(this.max, this.kingdomLand.quantity,  this.kingdomGold.quantity))]],
+      quantity: [null, [Validators.required, Validators.min(1), Validators.max(Math.max(this.kingdomTurn.quantity, this.kingdomLand.quantity,  this.kingdomGold.quantity))]],
     });
   }
 
@@ -81,9 +80,9 @@ export class BuildComponent implements OnInit {
   }
 
   async build() {
-    if (this.form.valid && this.land() <= this.kingdomLand.quantity && this.gold() <= this.kingdomGold.quantity && this.turn() <= this.max) {
+    if (this.form.valid && this.land() <= this.kingdomLand.quantity && this.gold() <= this.kingdomGold.quantity && this.turn() <= this.kingdomTurn.quantity) {
       try {
-        let built = await this.apiService.buildStructure(this.uid, this.building.fid, this.form.value.quantity);
+        const built = await this.apiService.buildStructure(this.uid, this.building.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.build.success', built);
         this.close();
       } catch (error) {

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClanComponent } from './clan.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { CacheServiceStub, StoreStub, AngularFirestoreStub } from 'src/stubs';
+import { CacheServiceStub, StoreStub, AngularFirestoreStub, ApiServiceStub, NotificationServiceStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { CacheService } from 'src/app/services/cache.service';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -16,6 +16,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ApiService } from 'src/app/services/api.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 describe('ClanComponent', () => {
   let component: ClanComponent;
@@ -45,6 +47,8 @@ describe('ClanComponent', () => {
         { provide: CacheService, useValue: CacheServiceStub },
         { provide: Store, useValue: StoreStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
+        { provide: ApiService, useValue: ApiServiceStub },
+        { provide: NotificationService, useValue: NotificationServiceStub },
       ],
     })
     .compileComponents();

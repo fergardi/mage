@@ -45,14 +45,13 @@ import { LoadingService } from 'src/app/services/loading.service';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class ChargeComponent implements OnInit {
 
   form: FormGroup = null;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
-  max: number = calculateTurns(this.kingdomTurn.timestamp.seconds * 1000, Date.now(), this.kingdomTurn.join.max, this.kingdomTurn.join.ratio);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public node$: Observable<any>,
@@ -66,7 +65,7 @@ export class ChargeComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.max)]],
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
     });
   }
 
@@ -75,10 +74,10 @@ export class ChargeComponent implements OnInit {
   }
 
   async charge() {
-    if (this.form.valid && this.form.value.turns <= this.max) {
+    if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       this.loadingService.startLoading();
       try {
-        let charged = await this.apiService.chargeMana(this.uid, this.form.value.turns);
+        const charged = await this.apiService.chargeMana(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.charge.success', charged);
         this.close();
       } catch (error) {

@@ -50,7 +50,7 @@ import { ApiService } from 'src/app/services/api.service';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class BidComponent implements OnInit {
 
@@ -69,7 +69,7 @@ export class BidComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      gold: [null, [Validators.required, Validators.min(Math.floor(this.auction.gold * 1.10)), Validators.max(this.kingdomGold.quantity)]]
+      gold: [null, [Validators.required, Validators.min(Math.floor(this.auction.gold * 1.10)), Validators.max(this.kingdomGold.quantity)]],
     });
   }
 
@@ -80,7 +80,7 @@ export class BidComponent implements OnInit {
   async bid() {
     if (this.form.valid && this.form.value.gold <= this.kingdomGold.quantity) {
       try {
-        let bidded = await this.apiService.bidAuction(this.uid, this.auction.fid, this.form.value.gold);
+        const bidded = await this.apiService.bidAuction(this.uid, this.auction.fid, this.form.value.gold);
         this.notificationService.success('kingdom.bid.success');
         this.close();
       } catch (error) {

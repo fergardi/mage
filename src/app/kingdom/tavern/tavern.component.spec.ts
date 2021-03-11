@@ -38,8 +38,8 @@ describe('TavernComponent', () => {
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },
-        { provide: ApiService, useValue: ApiServiceStub }
-      ]
+        { provide: ApiService, useValue: ApiServiceStub },
+      ],
     })
     .compileComponents();
   }));

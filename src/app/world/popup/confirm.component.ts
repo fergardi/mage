@@ -30,7 +30,7 @@ import { NotificationService } from 'src/app/services/notification.service';
     </div>
   `,
   styles: [
-  ]
+  ],
 })
 export class ConfirmComponent implements OnInit {
 

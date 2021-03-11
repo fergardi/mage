@@ -74,7 +74,7 @@ export enum ArtifactAssignmentType {
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 @UntilDestroy()
 export class ActivateComponent implements OnInit {
@@ -100,7 +100,6 @@ export class ActivateComponent implements OnInit {
     } else {
       this.firebaseService.leftJoin(`kingdoms/${this.uid}/artifacts`, 'items', 'id', 'id', ref => ref.where('assignment', '==', ArtifactAssignmentType.none)).pipe(untilDestroyed(this)).subscribe(artifacts => {
         this.kingdomArtifacts = artifacts.filter(artifact => !artifact.join.battle && !artifact.join.self);
-        console.log(this.kingdomArtifacts)
       });
     }
   }
@@ -112,7 +111,7 @@ export class ActivateComponent implements OnInit {
   async activate() {
     if (this.selectedArtifact.quantity && this.selectedArtifact.join.turns <= this.kingdomTurn.quantity) {
       try {
-        let activated = await this.apiService.activateArtifact(this.uid, this.selectedArtifact.fid, this.uid);
+        const activated = await this.apiService.activateArtifact(this.uid, this.selectedArtifact.fid, this.uid);
         this.notificationService.success('kingdom.activate.success');
         this.close();
       } catch (error) {

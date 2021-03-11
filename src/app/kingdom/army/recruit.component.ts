@@ -53,7 +53,7 @@ import { ApiService } from 'src/app/services/api.service';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class RecruitComponent implements OnInit {
 
@@ -87,7 +87,7 @@ export class RecruitComponent implements OnInit {
   async recruit() {
     if (this.form.valid && this.gold() <= this.kingdomGold.quantity) {
       try {
-        let recruited = await this.apiService.recruitUnit(this.uid, this.unit.id, this.form.value.quantity);
+        const recruited = await this.apiService.recruitUnit(this.uid, this.unit.id, this.form.value.quantity);
         this.notificationService.success('kingdom.recruit.success', recruited);
         this.close();
       } catch (error) {

@@ -15,8 +15,11 @@ describe('LoadingService', () => {
   });
 
   it('should set LOADING state', () => {
-    service.setLoading(true);
+    expect(service.loading).toBe(false);
+    service.startLoading();
     expect(service.loading).toBe(true);
+    service.stopLoading();
+    expect(service.loading).toBe(false);
   });
 
 });

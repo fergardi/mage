@@ -30,7 +30,7 @@ import { NotificationService } from 'src/app/services/notification.service';
     </div>
   `,
   styles: [`
-  `]
+  `],
 })
 export class BuyComponent {
 
@@ -52,7 +52,7 @@ export class BuyComponent {
   async buy() {
     if (this.item.gems <= this.kingdomGem.quantity) {
       try {
-        let bought = await this.apiService.buyEmporium(this.uid, this.item.id);
+        const bought = await this.apiService.buyEmporium(this.uid, this.item.id);
         this.notificationService.success('kingdom.emporium.success', bought);
         this.close();
       } catch (error) {

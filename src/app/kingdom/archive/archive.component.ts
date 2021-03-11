@@ -39,7 +39,7 @@ export class ArchiveComponent implements OnInit {
     timestamp: {
       type: 'timestamp',
       value: null,
-    }
+    },
   };
   selection: SelectionModel<any> = new SelectionModel<any>(true, []);
   data: MatTableDataSource<any> = new MatTableDataSource([]);
@@ -63,7 +63,7 @@ export class ArchiveComponent implements OnInit {
         return {
           ...letter,
           join: await this.firebaseService.selfJoin(letter.join),
-        }
+        };
       }));
       this.data = new MatTableDataSource(letters);
       this.data.paginator = this.paginator;

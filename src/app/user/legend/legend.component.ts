@@ -11,7 +11,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 @Component({
   selector: 'app-legend',
   templateUrl: './legend.component.html',
-  styleUrls: ['./legend.component.scss']
+  styleUrls: ['./legend.component.scss'],
 })
 @UntilDestroy()
 export class LegendComponent implements OnInit {
@@ -32,7 +32,7 @@ export class LegendComponent implements OnInit {
     timestamp: {
       type: 'timestamp',
       value: null,
-    }
+    },
   };
   data: MatTableDataSource<any> = new MatTableDataSource();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

@@ -23,6 +23,6 @@ import { LegendComponent } from './legend/legend.component';
     SharedModule,
     UserRoutingModule,
     ReactiveFormsModule,
-  ]
+  ],
 })
 export class UserModule { }

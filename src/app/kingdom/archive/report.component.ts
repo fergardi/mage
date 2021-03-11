@@ -77,7 +77,7 @@ export enum ReportType {
       align-items: flex-end;
       justify-content: flex-end;
     }
-  `]
+  `],
 })
 export class ReportComponent implements OnInit {
 

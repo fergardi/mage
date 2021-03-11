@@ -49,10 +49,6 @@ describe('ExploreComponent', () => {
     fixture = TestBed.createComponent(ExploreComponent);
     (fixture.nativeElement as HTMLDivElement).classList.add('mat-dialog-container');
     component = fixture.componentInstance;
-    Object.defineProperty(component, 'land$', { writable: true });
-    Object.defineProperty(component, 'turn$', { writable: true });
-    component.land$ = of({ quantity: 1000 });
-    component.turn$ = of({ quantity: 1000 });
     fixture.detectChanges();
   });
 
@@ -60,7 +56,7 @@ describe('ExploreComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should TAX some TURNS', async () => {
+  it('should EXPLORE some TURNS', async () => {
     component.form.patchValue({ turns: component.kingdomTurn.quantity });
     component.form.updateValueAndValidity();
     spyOn(ApiServiceStub, 'exploreLand');
@@ -69,7 +65,7 @@ describe('ExploreComponent', () => {
     expect(ApiServiceStub.exploreLand).toHaveBeenCalledWith(component.uid, component.form.value.turns);
   });
 
-  it('should NOT TAX some TURNS', async () => {
+  it('should NOT EXPLORE some TURNS', async () => {
     component.form.patchValue({ turns: component.kingdomTurn.quantity + 1 });
     component.form.updateValueAndValidity();
     spyOn(ApiServiceStub, 'exploreLand');

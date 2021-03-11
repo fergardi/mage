@@ -8,6 +8,7 @@ import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 
 describe('DischargeComponent', () => {
   let component: DischargeComponent;
@@ -28,6 +29,7 @@ describe('DischargeComponent', () => {
         MatListModule,
         MatBadgeModule,
         MatButtonModule,
+        MatChipsModule,
       ],
       declarations: [
         DischargeComponent,

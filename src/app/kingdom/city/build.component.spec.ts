@@ -20,11 +20,12 @@ describe('BuildComponent', () => {
   let component: BuildComponent;
   let fixture: ComponentFixture<BuildComponent>;
   const building: any = {
+    fid: 'test',
     quantity: 10,
     join: {
       name: 'test',
       image: 'assets/images/structures/academy.png',
-      turnRatio: 1,
+      turnRatio: 10,
       goldCost: 1,
     },
   };
@@ -79,7 +80,7 @@ describe('BuildComponent', () => {
   });
 
   it('should NOT BUILD some LANDS', async () => {
-    component.form.patchValue({ quantity: component.kingdomLand.quantity + 1 });
+    component.form.patchValue({ quantity: 9999999 });
     component.form.updateValueAndValidity();
     spyOn(ApiServiceStub, 'buildStructure');
     await component.build();

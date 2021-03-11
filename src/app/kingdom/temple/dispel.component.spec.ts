@@ -27,7 +27,7 @@ describe('DispelComponent', () => {
       faction: 'black',
       turnDuration: 300,
       legendary: false,
-    }
+    },
   };
 
   beforeEach(waitForAsync(() => {

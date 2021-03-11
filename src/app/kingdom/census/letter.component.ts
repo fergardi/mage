@@ -38,7 +38,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class LetterComponent implements OnInit {
 

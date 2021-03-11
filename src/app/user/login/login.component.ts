@@ -11,7 +11,7 @@ import { CacheService } from 'src/app/services/cache.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   async ngOnInit() {
-    let factions = await this.cacheService.getFactions();
+    const factions = await this.cacheService.getFactions();
     this.factions = factions.filter((faction: any) => faction.id !== 'grey');
   }
 
@@ -76,8 +76,8 @@ export class LoginComponent implements OnInit {
           await this.angularFireAuth.signInWithEmailAndPassword(email, password);
           break;
         case 'signup':
-          let position: any = await this.getCurrentPosition();
-          let credentials = await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
+          const position: any = await this.getCurrentPosition();
+          const credentials = await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
           await this.apiService.createKingdom(credentials.user.uid, this.form.value.faction.id, credentials.user.email, position.coords.latitude, position.coords.longitude);
           break;
         case 'reset':
@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
   }
 
   async google() {
-    this.store.dispatch(new LoginWithGoogleAction())
+    this.store.dispatch(new LoginWithGoogleAction());
   }
 
 }

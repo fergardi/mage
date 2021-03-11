@@ -55,7 +55,7 @@ import { ApiService } from 'src/app/services/api.service';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class DisbandComponent implements OnInit {
 
@@ -75,7 +75,6 @@ export class DisbandComponent implements OnInit {
     this.form = this.formBuilder.group({
       quantity: [null, [Validators.required, Validators.min(1), Validators.max(this.troop.quantity)]],
     });
-    console.log(this.troop)
   }
 
   close(): void {
@@ -85,7 +84,7 @@ export class DisbandComponent implements OnInit {
   async disband() {
     if (this.form.valid) {
       try {
-        let disbanded = await this.apiService.disbandTroop(this.uid, this.troop.fid, this.form.value.quantity);
+        const disbanded = await this.apiService.disbandTroop(this.uid, this.troop.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.disband.success', disbanded);
         this.close();
       } catch (error) {

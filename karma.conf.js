@@ -39,13 +39,13 @@ module.exports = function (config) {
         { type: 'text-summary', subdir: '.' }, // to show in console
       ]
     },
-    reporters: ['coverage'], // kjhtml, progress, coverage
+    reporters: ['progress', 'coverage'], // kjhtml, progress, coverage
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['ChromeHeadless'],
-    singleRun: true,
+    singleRun: false,
     restartOnFileChange: true,
   });
 };

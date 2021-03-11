@@ -366,7 +366,6 @@ const recruitUnit = async (kingdomId: string, unitId: string, quantity: number) 
     // let kingdomBarrack = await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'barrack').get();
     // et turns = quantity; // TODO turns
     let gold = kingdomUnit?.gold * quantity;
-    console.log(gold)
     if (gold <= kingdomGold.quantity) { // turns <= kingdomTurn.docs[0].data().quantity &&
       const batch = angularFirestore.batch();
       // await addSupply(kingdomId, 'turn', -turns, batch);

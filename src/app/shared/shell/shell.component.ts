@@ -18,7 +18,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
-  styleUrls: ['./shell.component.scss']
+  styleUrls: ['./shell.component.scss'],
 })
 export class ShellComponent implements OnInit {
 
@@ -92,7 +92,7 @@ export class ShellComponent implements OnInit {
     this.store.select(AuthState.getUserUID).subscribe(uid => {
       if (uid) {
         this.angularFirestore.collection<any>(`kingdoms/${uid}/letters`, x => x.where('read', '==', false)).valueChanges().subscribe(reports => {
-          let oldReports = this.reports;
+          const oldReports = this.reports;
           this.reports = reports.length;
           if (this.reports > oldReports) this.notificationService.warning('kingdom.archive.new');
         });

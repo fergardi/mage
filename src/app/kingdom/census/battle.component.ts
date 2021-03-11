@@ -78,7 +78,7 @@ const BATTLE_TURNS = 2;
     .list-margened {
       margin-top: 15px;
     }
-  `]
+  `],
 })
 @UntilDestroy()
 export class BattleComponent implements OnInit {

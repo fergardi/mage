@@ -45,14 +45,13 @@ import { LoadingService } from 'src/app/services/loading.service';
     .mat-form-field {
       width: 100%;
     }
-  `]
+  `],
 })
 export class TaxComponent implements OnInit {
 
   form: FormGroup = null;
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  max: number = calculateTurns(this.kingdomTurn.timestamp.seconds * 1000, Date.now(), this.kingdomTurn.join.max, this.kingdomTurn.join.ratio);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public village$: Observable<any>,
@@ -66,7 +65,7 @@ export class TaxComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.max)]],
+      turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
     });
   }
 
@@ -75,10 +74,10 @@ export class TaxComponent implements OnInit {
   }
 
   async tax() {
-    if (this.form.valid && this.form.value.turns <= this.max) {
+    if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
       this.loadingService.startLoading();
       try {
-        let taxed = await this.apiService.taxGold(this.uid, this.form.value.turns);
+        const taxed = await this.apiService.taxGold(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.tax.success', taxed);
         this.close();
       } catch (error) {

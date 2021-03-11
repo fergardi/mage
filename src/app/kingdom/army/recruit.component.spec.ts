@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 
 describe('RecruitComponent', () => {
   let component: RecruitComponent;
@@ -41,6 +42,7 @@ describe('RecruitComponent', () => {
         FormsModule,
         BrowserAnimationsModule,
         MatButtonModule,
+        MatChipsModule,
       ],
       declarations: [
         LegendaryPipe,
@@ -69,7 +71,7 @@ describe('RecruitComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should RECRUIT troops with ENOUGH MONEY', async() => {
+  it('should RECRUIT troops with ENOUGH MONEY', async () => {
     component.form.patchValue({ quantity: 1 });
     component.form.updateValueAndValidity();
     spyOn(ApiServiceStub, 'recruitUnit');
@@ -78,7 +80,7 @@ describe('RecruitComponent', () => {
     expect(ApiServiceStub.recruitUnit).toHaveBeenCalledWith(component.uid, component.unit.id, component.form.value.quantity);
   });
 
-  it('should NOT RECRUIT troops with NOT ENOUGH MONEY', async() => {
+  it('should NOT RECRUIT troops with NOT ENOUGH MONEY', async () => {
     component.form.patchValue({ quantity: 1000 });
     component.form.updateValueAndValidity();
     spyOn(ApiServiceStub, 'recruitUnit');
