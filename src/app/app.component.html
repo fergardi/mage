@@ -16,6 +16,10 @@
     </mat-card>
   </ng-template>
 </tour-step-template>
+<!-- loading -->
+<div class="loading-screen" *ngIf="loadingService.loading">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
 <!-- shell -->
 <app-shell>
   <!-- router -->

@@ -39,7 +39,7 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.offer.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="offer()" cdkFocusInitial>{{ 'kingdom.offer.offer' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="offer()">{{ 'kingdom.offer.offer' | translate }}</button>
     </div>
   `,
   styles: [`

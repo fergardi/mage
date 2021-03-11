@@ -11,7 +11,6 @@ import { Store, Select } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
 import { TourService } from 'ngx-tour-md-menu';
 import { DomService } from 'src/app/services/dom.service';
-import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthState } from '../auth/auth.state';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -79,7 +78,6 @@ export class ShellComponent implements OnInit {
     private store: Store,
     private tourService: TourService,
     private domService: DomService,
-    public loadingService: LoadingService,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
   ) {

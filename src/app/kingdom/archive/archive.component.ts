@@ -112,12 +112,19 @@ export class ArchiveComponent implements OnInit {
 
   async deleteReports() {
     if (this.selection.selected.length) {
-      this.loadingService.setLoading(true);
-      const fids = this.selection.selected.map(letter => letter.fid);
-      await this.apiService.removeLetters(this.uid, fids);
-      this.selection.clear();
-      this.loadingService.setLoading(false);
-      this.notificationService.success('kingdom.letter.deleted');
+      this.loadingService.startLoading();
+      try {
+        const fids = this.selection.selected.map(letter => letter.fid);
+        await this.apiService.removeLetters(this.uid, fids);
+        this.selection.clear();
+        this.notificationService.success('kingdom.letter.deleted');
+      } catch (error) {
+        console.error(error);
+        this.notificationService.success('kingdom.letter.error');
+      }
+      this.loadingService.stopLoading();
+    } else {
+      this.notificationService.success('kingdom.letter.error');
     }
   }
 

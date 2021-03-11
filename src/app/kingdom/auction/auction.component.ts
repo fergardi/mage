@@ -78,13 +78,13 @@ export class AuctionComponent implements OnInit {
       this.applyFilter();
       const firstAuction: any = data[0];
       if (firstAuction && firstAuction.auctioned && moment().isAfter(moment(firstAuction.auctioned.toMillis()))) {
-        this.loadingService.setLoading(true);
+        this.loadingService.startLoading();
         try {
           await this.apiService.refreshAuction();
         } catch (error) {
           console.error(error);
         }
-        this.loadingService.setLoading(false);
+        this.loadingService.stopLoading();
       }
     });
   }

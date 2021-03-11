@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from './services/firebase.service';
 import { TourService } from 'ngx-tour-md-menu';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent implements OnInit {
   constructor(
     private firebaseService: FirebaseService,
     public tourService: TourService,
+    public loadingService: LoadingService,
   ) {
     // this.firebaseService.importCollectionFromJson('factions');
     // this.firebaseService.importCollectionFromJson('structures');

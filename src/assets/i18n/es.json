@@ -450,7 +450,7 @@
       "invalid": "No válido",
       "error": "Ha ocurrido un problema",
       "charge": "Meditar",
-      "success": "Has recargado {{ mana }} maná"
+      "success": "Has recargado {{ mana }} Maná"
     },
     "tax": {
       "name": "Tributo",
@@ -461,7 +461,7 @@
       "invalid": "No válido",
       "error": "Ha ocurrido un problema",
       "tax": "Tributar",
-      "success": "Has recaudado {{ gold }} oro"
+      "success": "Has recaudado {{ gold }} Oro"
     },
     "explore": {
       "name": "Exploración",
@@ -472,7 +472,7 @@
       "error": "Ha ocurrido un problema",
       "invalid": "No válido",
       "explore": "Explorar",
-      "success": "Has encontrado {{ lands }} tierra(s)"
+      "success": "Has encontrado {{ lands }} Tierras"
     },
     "tavern": {
       "name": "Taberna",
@@ -685,7 +685,7 @@
     },
     "land": {
       "name": "Tierras",
-      "description": "Necesarias para construir edificios"
+      "description": "Espacio libre para la construcción"
     }
   },
   "card": {
@@ -1730,7 +1730,7 @@
     },
     "light-orb": {
       "name": "Orbe de Luz",
-      "description": "Conjura tropa de <light-elemental>"
+      "description": "Conjura una tropa de <light-elemental>"
     },
     "strength-potion": {
       "name": "Poción de Fuerza",

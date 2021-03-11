@@ -109,7 +109,7 @@ export class ClanComponent implements OnInit {
 
   async favor() {
     if (this.kingdomGuild) {
-      this.loadingService.setLoading(true);
+      this.loadingService.startLoading();
       try {
         let favored = await this.apiService.favorGuild(this.uid, this.kingdomGuild.id);
         this.notificationService.success('kingdom.guild.success');
@@ -117,7 +117,7 @@ export class ClanComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.guild.error');
       }
-      this.loadingService.setLoading(false);
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.guild.error');
     }

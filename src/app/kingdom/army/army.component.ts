@@ -69,7 +69,7 @@ export class ArmyComponent implements OnInit {
   }
 
   async updateArmy() {
-    this.loadingService.setLoading(true);
+    this.loadingService.startLoading();
     try {
       let army = [];
       this.kingdomTroops.forEach((kingdomTroop, index) => {
@@ -83,12 +83,11 @@ export class ArmyComponent implements OnInit {
       });
       let assigned = await this.apiService.assignArmy(this.uid, army);
       this.notificationService.success('kingdom.army.success');
-      this.loadingService.setLoading(false);
     } catch (error) {
       console.error(error);
       this.notificationService.error('kingdom.army.error')
-      this.loadingService.setLoading(false);
     }
+    this.loadingService.stopLoading();
   }
 
   openRecruitDialog(unit: any): void {

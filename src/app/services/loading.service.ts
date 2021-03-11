@@ -12,4 +12,13 @@ export class LoadingService {
   setLoading(state: boolean) {
     this.loading = state;
   }
+
+  startLoading(): void {
+    this.loading = true;
+  }
+
+  stopLoading(): void {
+    this.loading = false;
+  }
+
 }

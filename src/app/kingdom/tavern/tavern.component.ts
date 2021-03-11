@@ -52,7 +52,7 @@ export class TavernComponent implements OnInit {
 
   async assignContract($event: CdkDragDrop<any>) {
     if ([0, 3].includes(parseInt($event.container.id)) || $event.container.data.length < MAXIMUM_CONTRACTS) {
-      this.loadingService.setLoading(true);
+      this.loadingService.startLoading();
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
@@ -65,7 +65,7 @@ export class TavernComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.tavern.error');
       }
-      this.loadingService.setLoading(false);
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.warning('kingdom.tavern.maximum');
     }

@@ -7,6 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Observable } from 'rxjs';
 import { calculateTurns } from 'src/app/pipes/turn.pipe';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-tax',
@@ -60,6 +61,7 @@ export class TaxComponent implements OnInit {
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
@@ -74,6 +76,7 @@ export class TaxComponent implements OnInit {
 
   async tax() {
     if (this.form.valid && this.form.value.turns <= this.max) {
+      this.loadingService.startLoading();
       try {
         let taxed = await this.apiService.taxGold(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.tax.success', taxed);
@@ -82,6 +85,7 @@ export class TaxComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.tax.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.tax.error');
     }

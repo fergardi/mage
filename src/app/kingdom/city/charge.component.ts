@@ -7,6 +7,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
 import { calculateTurns } from 'src/app/pipes/turn.pipe';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-charge',
@@ -60,6 +61,7 @@ export class ChargeComponent implements OnInit {
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
@@ -74,6 +76,7 @@ export class ChargeComponent implements OnInit {
 
   async charge() {
     if (this.form.valid && this.form.value.turns <= this.max) {
+      this.loadingService.startLoading();
       try {
         let charged = await this.apiService.chargeMana(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.charge.success', charged);
@@ -82,6 +85,7 @@ export class ChargeComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.charge.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.charge.error');
     }

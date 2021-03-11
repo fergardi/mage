@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { calculateTurns } from 'src/app/pipes/turn.pipe';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-explore',
@@ -59,6 +60,7 @@ export class ExploreComponent implements OnInit {
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
@@ -73,6 +75,7 @@ export class ExploreComponent implements OnInit {
 
   async explore() {
     if (this.form.valid && this.form.value.turns <= this.max) {
+      this.loadingService.startLoading();
       try {
         let explored = await this.apiService.exploreLand(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.explore.success', explored);
@@ -81,6 +84,7 @@ export class ExploreComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.explore.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.explore.error');
     }
