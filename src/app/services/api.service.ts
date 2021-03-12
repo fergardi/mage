@@ -42,6 +42,10 @@ export class ApiService {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/army/${troopId}/disband/${quantity}`).toPromise();
   }
 
+  dischargeContract(kingdomId: string, contractId: string) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/tavern/${contractId}/discharge`).toPromise();
+  }
+
   researchCharm(kingdomId: string, charmId: string, turns: number) {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/sorcery/${charmId}/research/${turns}`).toPromise();
   }

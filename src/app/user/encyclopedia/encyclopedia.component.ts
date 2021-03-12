@@ -83,8 +83,8 @@ export class EncyclopediaComponent implements OnInit {
   createFilter(): (data: any, filter: string) => boolean {
     const filterFunction = (data: any, filter: string): boolean => {
       const filters = JSON.parse(filter);
-      return (this.translateService.instant(data.name).toLowerCase().includes(filters.name)
-        || this.translateService.instant(data.description).toLowerCase().includes(filters.name))
+      return (this.translateService.instant(data.name).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(filters.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+        || this.translateService.instant(data.description).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(filters.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
         && data.type.toString().toLowerCase().includes(filters.type)
         && data.faction.toLowerCase().includes(filters.faction);
     };

@@ -3,6 +3,7 @@ import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
 import { map, first } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { CacheService, CollectionType } from './cache.service';
 
@@ -48,6 +49,7 @@ export class FirebaseService {
     if (element && element.families && element.families.length) this.joinObject(element, 'families', await this.cacheService.getFamilies());
     if (element && element.spell) this.joinObject(element, 'spell', await this.cacheService.getSpells());
     if (element && element.spells && element.spells.length) this.joinObject(element, 'spells', await this.cacheService.getSpells());
+    if (element && element.hero) this.joinObject(element, 'hero', await this.cacheService.getHeroes());
     if (element && element.item) this.joinObject(element, 'item', await this.cacheService.getItems());
     if (element && element.items && element.items.length) this.joinObject(element, 'items', await this.cacheService.getItems());
     if (element && element.resources && element.resources.length) this.joinObject(element, 'resources', await this.cacheService.getResources());
@@ -91,6 +93,11 @@ export class FirebaseService {
   }
 
   addElementToCollection(collection: string, element: any, id?: string) {
+    if (element) {
+      Object.keys(element).forEach((key, index) => {
+        if (element[key] === 'now') element[key] = firebase.firestore.Timestamp.now();
+      });
+    }
     return id
     ? this.angularFirestore.collection<any>(collection).doc<any>(id).set(element)
     : this.angularFirestore.collection<any>(collection).add(element);

@@ -7,6 +7,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LongPipe } from 'src/app/pipes/long.pipe';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-offer',
@@ -33,7 +34,7 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
           <mat-label>{{ 'kingdom.offer.sacrifice' | translate }}</mat-label>
           <input type="number" placeholder="{{ 'kingdom.offer.sacrifice' | translate }}" matInput formControlName="sacrifice" autocomplete="off">
           <mat-hint>{{ 'kingdom.offer.hint' | translate:{ increment: god.increment | long } }}</mat-hint>
-          <mat-error>{{ 'kingdom.offer.error' | translate }}</mat-error>
+          <mat-error>{{ 'kingdom.offer.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
     </div>
@@ -73,6 +74,7 @@ export class OfferComponent implements OnInit {
     private apiService: ApiService,
     private translateService: TranslateService,
     private longPipe: LongPipe,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
@@ -98,6 +100,7 @@ export class OfferComponent implements OnInit {
 
   async offer() {
     if (this.form.valid) {
+      this.loadingService.startLoading();
       try {
         const offered = await this.apiService.offerGod(this.uid, this.god.fid, this.form.value.sacrifice);
         if (offered.hasOwnProperty('hero')) this.notificationService.success('kingdom.temple.hero', { hero: this.translateService.instant(offered['hero']), level: this.longPipe.transform(offered['level']) });
@@ -108,11 +111,13 @@ export class OfferComponent implements OnInit {
         if (offered.hasOwnProperty('mana')) this.notificationService.success('kingdom.temple.mana', { mana: this.longPipe.transform(offered['mana']) });
         if (offered.hasOwnProperty('population')) this.notificationService.success('kingdom.temple.population', { population: this.longPipe.transform(offered['population']) });
         if (offered.hasOwnProperty('land')) this.notificationService.success('kingdom.temple.land', { land: this.longPipe.transform(offered['land']) });
+        if (offered.hasOwnProperty('spell')) this.notificationService.success('kingdom.temple.spell', { spell: this.longPipe.transform(offered['spell']), turns: this.longPipe.transform(offered['turns']) });
         this.close();
       } catch (error) {
         console.error(error);
         this.notificationService.error('kingdom.offer.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.offer.error');
     }

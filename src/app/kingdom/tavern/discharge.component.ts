@@ -1,5 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LoadingService } from 'src/app/services/loading.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 @Component({
   selector: 'app-discharge',
@@ -38,18 +43,32 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DischargeComponent {
 
+  uid = this.store.selectSnapshot(AuthState.getUserUID);
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public contract: any,
     private dialogRef: MatDialogRef<DischargeComponent>,
-  ) {
-  }
+    private loadingService: LoadingService,
+    private notificationService: NotificationService,
+    private apiService: ApiService,
+    private store: Store,
+  ) { }
 
   close(): void {
     this.dialogRef.close();
   }
 
-  discharge(): void {
-    this.dialogRef.close();
+  async discharge() {
+    this.loadingService.startLoading();
+    try {
+      const discharged = await this.apiService.dischargeContract(this.uid, this.contract.fid);
+      this.notificationService.success('kingdom.discharge.success', discharged);
+      this.close();
+    } catch (error) {
+      console.error(error);
+      this.notificationService.error('kingdom.discharge.error');
+    }
+    this.loadingService.stopLoading();
   }
 
 }

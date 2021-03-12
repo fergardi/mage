@@ -130,6 +130,11 @@
     "tome": {
       "help": "Tus eruditos encuentran un viejo y polvoriento pergamino en la antigua biblioteca real. Los grabados, descoloridos por el paso del tiempo pero todavía legibles, contienen todo lo necesario para calmar tu sed de sabiduría. Sonríes, pues el conocimiento es la mitad de la batalla.",
       "close": "Cerrar",
+      "goldCost": "{{ number }}",
+      "manaCost": "{{ number }}",
+      "populationCost": "{{ number }}",
+      "turnCost": "{{ number }} para lanzar",
+      "turnResearch": "{{ number }} de investigación",
       "goldMaintenance": "{{ number }} al turno",
       "manaMaintenance": "{{ number }} al turno",
       "populationMaintenance": "{{ number }} al turno",
@@ -327,7 +332,7 @@
     "discharge": {
       "name": "Despido",
       "description": "Si no quieres seguir pagando los mantenimientos de un héroe, puedes despedirlo desterrándolo de tu reino.",
-      "success": "Has despedido al héroe {{ hero }}",
+      "success": "Has despedido al héroe",
       "error": "Ha ocurrido un problema",
       "cancel": "Cancelar",
       "discharge": "Despedir"
@@ -378,7 +383,7 @@
     "auction": {
       "name": "Subasta",
       "description": "Comercia con otros reinos",
-      "help": "Aquí puedes pujar oro contra otros reinos para adquirir artefactos, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar.",
+      "help": "Aquí puedes pujar oro contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar.",
       "bid": "Pujar",
       "from": "Casa de Subastas"
     },
@@ -528,10 +533,11 @@
     },
     "offer": {
       "name": "Ofrenda",
-      "description": "Ofrece recursos a tu dios como sacrificio para obtener favores. Las ofrendas de todos los reinos se acumulan poco a poco, y cuando un dios se considere satisfecho, romperá uno de los cinco sellos, desencadenando finalmente el Armagedón sobre este plano de la realidad.",
+      "description": "Ofrece recursos a tu dios como sacrificio para obtener favores. Las ofrendas de todos los reinos se acumulan poco a poco, y cuando un dios se considere satisfecho, romperá uno de los cinco sellos. Cuando se rompan todos, desencadenarán el Armagedón sobre este plano de la realidad.",
       "cancel": "Cancelar",
       "offer": "Ofrecer",
       "hint": "Debes ofrecer como mínimo {{ increment }} a tu dios",
+      "invalid": "No válido",
       "error": "Ha ocurrido un problema",
       "sacrifice": "Sacrificio"
     },
@@ -874,8 +880,8 @@
       "name": "Caracoles Monstruosos",
       "description": ""
     },
-    "gnoll": {
-      "name": "Gnolls",
+    "centaur": {
+      "name": "Centauros",
       "description": ""
     },
     "goblin": {
@@ -1306,7 +1312,7 @@
     },
     "beast-council": {
       "name": "Concilio de las Bestias",
-      "description": "Convoca una tropa de <animal> al azar"
+      "description": "Convoca una tropa de <animal> o <reptile> al azar"
     },
     "call-giant-snail": {
       "name": "Llamar Caracoles Monstruosos",
@@ -1316,9 +1322,9 @@
       "name": "Llamar Plantas Carnívoras",
       "description": "Convoca una tropa de <carnivorous-plant>"
     },
-    "call-gnoll": {
-      "name": "Llamar Gnolls",
-      "description": "Convoca una tropa de <gnoll>"
+    "call-centaur": {
+      "name": "Llamar Centauros",
+      "description": "Convoca una tropa de <centaur>"
     },
     "climate-control": {
       "name": "Control del Clima",
@@ -1620,7 +1626,7 @@
     },
     "sage": {
       "name": "Sabio Erudito",
-      "description": "Reduce investigaciones -1 <turn> por nivel"
+      "description": "Reduce investigaciones -1% <turn> por nivel"
     },
     "necrophage": {
       "name": "Necrófago Jefe",
@@ -1640,7 +1646,7 @@
     },
     "pyromancer": {
       "name": "Piromante Abrasado",
-      "description": "Inflige a cada tropa 1000 daño <fire> por nivel"
+      "description": "Inflige a cada tropa daño de <fire> por nivel"
     },
     "orc-king": {
       "name": "Rey de los Orcos",
@@ -1652,7 +1658,7 @@
     },
     "colossus": {
       "name": "Coloso Imponente",
-      "description": "Inflige a cada tropa 1000 daño <holy> por nivel"
+      "description": "Inflige a cada tropa daño de <holy> por nivel"
     },
     "golem-golem": {
       "name": "Gólem de Gólems",
@@ -1660,15 +1666,15 @@
     },
     "illusionist": {
       "name": "Ilusionista Congelado",
-      "description": "Inflige a cada tropa 1000 daño <cold> por nivel"
+      "description": "Inflige a cada tropa daño de <cold> por nivel"
     },
     "soul-reaper": {
       "name": "Segador de Almas",
-      "description": "Inflige a cada tropa 1000 daño <lightning> por nivel"
+      "description": "Inflige a cada tropa daño de <lightning> por nivel"
     },
     "swamp-thing": {
       "name": "Monstruo del Pantano",
-      "description": "Inflige a cada tropa 1000 daño <poison> por nivel"
+      "description": "Inflige a cada tropa daño de <poison> por nivel"
     }
   },
   "item": {

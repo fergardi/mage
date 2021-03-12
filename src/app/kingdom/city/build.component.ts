@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Store, Select } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { calculateTurns } from 'src/app/pipes/turn.pipe';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-build',
@@ -67,6 +68,7 @@ export class BuildComponent implements OnInit {
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
@@ -81,6 +83,7 @@ export class BuildComponent implements OnInit {
 
   async build() {
     if (this.form.valid && this.land() <= this.kingdomLand.quantity && this.gold() <= this.kingdomGold.quantity && this.turn() <= this.kingdomTurn.quantity) {
+      this.loadingService.startLoading();
       try {
         const built = await this.apiService.buildStructure(this.uid, this.building.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.build.success', built);
@@ -89,6 +92,7 @@ export class BuildComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.build.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.build.error');
     }

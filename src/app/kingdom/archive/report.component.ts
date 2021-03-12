@@ -27,11 +27,11 @@ export enum ReportType {
       <div matSubheader>{{ 'kingdom.report.adquisitions' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[report.message.join.id, (report.message.join | legendary) ? 'legendary' : 'common']">
-          <div mat-list-avatar [matBadge]="(report.message.quantity || report.message.level) | short" matBadgePosition="ahove before">
+          <div mat-list-avatar [matBadge]="(report.message.quantity || report.message.level || report.message.join.level) | short" matBadgePosition="ahove before">
             <img mat-list-avatar [src]="report.message.join.image">
           </div>
           <div mat-line>{{ report.message.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'enchantment', 'hero', 'item', 'summon'].includes(report.message.join.type)" [innerHTML]="report.message.join.description | translate | icon:report.message.join"></div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'enchantment', 'hero', 'item', 'summon', 'sorcery', 'instant'].includes(report.message.join.type)" [innerHTML]="report.message.join.description | translate | icon:report.message.join"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(report.message.join.type)">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of report.message.join.families" [src]="family.image">
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of report.message.join.skills" [src]="skill.image">

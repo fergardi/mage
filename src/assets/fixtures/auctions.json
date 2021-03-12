@@ -1,0 +1,34 @@
+[
+  {
+    "auctioned": "now",
+    "gold": 1000000,
+    "item": "magic-compass",
+    "kingdom": null,
+    "quantity": 1,
+    "type": "artifact"
+  },
+  {
+    "auctioned": "now",
+    "gold": 1000000,
+    "hero": "dragon-rider",
+    "kingdom": null,
+    "level": 1,
+    "type": "contract"
+  },
+  {
+    "auctioned": "now",
+    "gold": 1000000,
+    "unit": "skeleton",
+    "kingdom": null,
+    "quantity": 1,
+    "type": "troop"
+  },
+  {
+    "auctioned": "now",
+    "gold": 1000000,
+    "spell": "animate-skeleton",
+    "kingdom": null,
+    "level": 1,
+    "type": "charm"
+  }
+]

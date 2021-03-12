@@ -13,10 +13,11 @@
     "mana": 0,
     "population": 0,
     "land": 0,
-    "turn": 100000,
+    "turn": 10000,
     "sacrifice": 0,
-    "increment": 100,
-    "legendary": true
+    "increment": 10,
+    "legendary": true,
+    "armageddon": false
   },
   {
     "type": "god",
@@ -35,7 +36,8 @@
     "turn": 0,
     "sacrifice": 0,
     "increment": 10000,
-    "legendary": true
+    "legendary": true,
+    "armageddon": false
   },
   {
     "type": "god",
@@ -54,7 +56,8 @@
     "turn": 0,
     "sacrifice": 0,
     "increment": 100000,
-    "legendary": true
+    "legendary": true,
+    "armageddon": false
   },
   {
     "type": "god",
@@ -73,7 +76,8 @@
     "turn": 0,
     "sacrifice": 0,
     "increment": 100,
-    "legendary": true
+    "legendary": true,
+    "armageddon": false
   },
   {
     "type": "god",
@@ -91,7 +95,8 @@
     "land": 0,
     "turn": 0,
     "sacrifice": 0,
-    "increment": 10000,
-    "legendary": true
+    "increment": 1000,
+    "legendary": true,
+    "armageddon": false
   }
 ]

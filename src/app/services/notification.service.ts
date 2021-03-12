@@ -23,6 +23,7 @@ export class NotificationService {
     if (variable) {
       Object.keys(variable).forEach((key, index) => {
         if (typeof variable[key] === 'number') variable[key] = new LongPipe().transform(variable[key]);
+        if (typeof variable[key] === 'string' && variable[key].includes('.')) variable[key] = this.translateService.instant(variable[key]);
       });
     }
     this.snackBar.open(this.translateService.instant(text, variable), '✔️', {...this.options, panelClass: ['mat-toolbar', 'mat-accent']} );

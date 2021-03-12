@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-disband',
@@ -69,11 +70,12 @@ export class DisbandComponent implements OnInit {
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      quantity: [null, [Validators.required, Validators.min(1), Validators.max(this.troop.quantity)]],
+      quantity: [this.troop.quantity, [Validators.required, Validators.min(1), Validators.max(this.troop.quantity)]],
     });
   }
 
@@ -83,6 +85,7 @@ export class DisbandComponent implements OnInit {
 
   async disband() {
     if (this.form.valid) {
+      this.loadingService.startLoading();
       try {
         const disbanded = await this.apiService.disbandTroop(this.uid, this.troop.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.disband.success', disbanded);
@@ -91,6 +94,7 @@ export class DisbandComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.disband.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.disband.error');
     }

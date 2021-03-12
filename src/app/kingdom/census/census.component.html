@@ -51,6 +51,7 @@
                   <div mat-line>{{ kingdom.clan.name }}</div>
                 </mat-list-item>
               </mat-list>
+              <span *ngIf="!kingdom.clan" style="margin-left: auto;">-</span>
             </ng-template>
 
             <ng-template [ngIf]="column === 'actions'">

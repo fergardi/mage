@@ -39,10 +39,10 @@
             <div mat-line>{{ charm.join.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join"></div>
             <div mat-line *ngIf="!charm.completed">
-              <mat-progress-bar [value]="charm.turns * 100 / charm.join.turnResearch"></mat-progress-bar>
+              <mat-progress-bar [value]="charm.turnResearch * 100 / charm.join.turnResearch"></mat-progress-bar>
             </div>
             <mat-icon *ngIf="charm.join.battle && charm.completed">open_with</mat-icon>
-            <div mat-list-avatar *ngIf="!charm.join.battle || !charm.completed" [matBadge]="!charm.completed ? ((charm.join.turnResearch - charm.turnResearch) | long) + ' / ' + (charm.join.turnResearch | long) : charm.join.turnCost" matBadgePosition="above after">
+            <div mat-list-avatar *ngIf="!charm.join.battle || !charm.completed" [matBadge]="!charm.completed ? ((charm.turnResearch) | long) + ' / ' + (charm.join.turnResearch | long) : charm.join.turnCost" matBadgePosition="above after">
               <img mat-list-avatar src="/assets/images/resources/turn.png">
             </div>
           </button>

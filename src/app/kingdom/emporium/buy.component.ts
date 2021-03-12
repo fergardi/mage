@@ -4,6 +4,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-buy',
@@ -43,6 +44,7 @@ export class BuyComponent {
     private store: Store,
     private apiService: ApiService,
     private notificationService: NotificationService,
+    private loadingService: LoadingService,
   ) { }
 
   close(): void {
@@ -51,6 +53,7 @@ export class BuyComponent {
 
   async buy() {
     if (this.item.gems <= this.kingdomGem.quantity) {
+      this.loadingService.startLoading();
       try {
         const bought = await this.apiService.buyEmporium(this.uid, this.item.id);
         this.notificationService.success('kingdom.emporium.success', bought);
@@ -59,6 +62,7 @@ export class BuyComponent {
         console.error(error);
         this.notificationService.error('kingdom.emporium.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.emporium.error');
     }

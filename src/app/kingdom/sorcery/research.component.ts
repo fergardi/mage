@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-research',
@@ -22,7 +23,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
           <div mat-line *ngIf="charm.turnResearch < charm.join.turnResearch">
             <mat-progress-bar [value]="charm.turnResearch * 100 / charm.join.turnResearch"></mat-progress-bar>
           </div>
-          <div mat-list-avatar [matBadge]="((charm.join.turnResearch - charm.turnResearch) | long) + ' / ' + (charm.join.turnResearch | long)" matBadgePosition="above after">
+          <div mat-list-avatar [matBadge]="((charm.turnResearch) | long) + ' / ' + (charm.join.turnResearch | long)" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>
@@ -60,6 +61,7 @@ export class ResearchComponent implements OnInit {
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
@@ -74,6 +76,7 @@ export class ResearchComponent implements OnInit {
 
   async research() {
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
+      this.loadingService.startLoading();
       try {
         const researched = await this.apiService.researchCharm(this.uid, this.charm.fid, this.form.value.turns);
         this.notificationService.success('kingdom.research.success');
@@ -82,6 +85,7 @@ export class ResearchComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.research.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.research.error');
     }

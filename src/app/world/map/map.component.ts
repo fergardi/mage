@@ -73,7 +73,7 @@ export class MapComponent implements OnInit, OnDestroy {
       ).subscribe((quests: Array<any>) => {
         this.mapboxService.clearMarkers(MarkerType.QUEST);
         quests.forEach(async (q: any) => {
-          if (q.explored && moment().isAfter(moment(q.explored.toMillis()))) {
+          if (q.visited && moment().isAfter(moment(q.visited.toMillis()))) {
             await this.apiService.addQuest(q.id, q.location, null, null, null);
           }
           const quest = await this.firebaseService.selfJoin({ ...q, fid: q.id });
@@ -94,7 +94,7 @@ export class MapComponent implements OnInit, OnDestroy {
       ).subscribe((shops: Array<any>) => {
         this.mapboxService.clearMarkers(MarkerType.SHOP);
         shops.forEach(async (s: any) => {
-          if (s.explored && moment().isAfter(moment(s.explored.toMillis()))) {
+          if (s.visited && moment().isAfter(moment(s.visited.toMillis()))) {
             await this.apiService.addShop(s.id, s.store, null, null, null);
           }
           const shop = await this.firebaseService.selfJoin({ ...s, fid: s.id });

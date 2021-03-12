@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-bid',
@@ -43,7 +44,7 @@ import { ApiService } from 'src/app/services/api.service';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.bid.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="bid()" cdkFocusInitial>{{ 'kingdom.bid.bid' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="bid()">{{ 'kingdom.bid.bid' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -65,6 +66,7 @@ export class BidComponent implements OnInit {
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
@@ -79,6 +81,7 @@ export class BidComponent implements OnInit {
 
   async bid() {
     if (this.form.valid && this.form.value.gold <= this.kingdomGold.quantity) {
+      this.loadingService.startLoading();
       try {
         const bidded = await this.apiService.bidAuction(this.uid, this.auction.fid, this.form.value.gold);
         this.notificationService.success('kingdom.bid.success');
@@ -87,6 +90,7 @@ export class BidComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.bid.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.bid.error');
     }
