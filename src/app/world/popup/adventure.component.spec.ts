@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ConfirmComponent } from './confirm.component';
+import { AdventureComponent } from './adventure.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogRefStub, NotificationServiceStub } from 'src/stubs';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -11,9 +11,9 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 
-describe('ConfirmComponent', () => {
-  let component: ConfirmComponent;
-  let fixture: ComponentFixture<ConfirmComponent>;
+describe('AdventureComponent', () => {
+  let component: AdventureComponent;
+  let fixture: ComponentFixture<AdventureComponent>;
   const data: any = {
     object: {
       join: {
@@ -36,7 +36,7 @@ describe('ConfirmComponent', () => {
         MatButtonModule,
       ],
       declarations: [
-        ConfirmComponent,
+        AdventureComponent,
         LegendaryPipe,
         IconPipe,
         LongPipe,
@@ -51,7 +51,7 @@ describe('ConfirmComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConfirmComponent);
+    fixture = TestBed.createComponent(AdventureComponent);
     (fixture.nativeElement as HTMLDivElement).classList.add('mat-dialog-container');
     component = fixture.componentInstance;
     fixture.detectChanges();

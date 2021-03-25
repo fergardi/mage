@@ -55,7 +55,7 @@ export class AuctionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.angularFirestore.collection<any>('auctions').valueChanges().pipe(untilDestroyed(this)).subscribe(async auctions => {
+    this.angularFirestore.collection<any>('auctions').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async auctions => {
       const data = auctions.map(auction => {
         auction.join = auction.hero || auction.item || auction.spell || auction.unit;
         return auction;

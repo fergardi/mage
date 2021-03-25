@@ -5,8 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { BuyComponent } from './buy.component';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
-// import { AngularFirestore } from '@angular/fire/firestore';
-// import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @Component({
   selector: 'app-emporium',
@@ -25,7 +23,6 @@ export class EmporiumComponent implements OnInit {
     private cacheService: CacheService,
     private dialog: MatDialog,
     private store: Store,
-    // private angularFirestore: AngularFirestore,
   ) { }
 
   async ngOnInit() {
@@ -33,14 +30,6 @@ export class EmporiumComponent implements OnInit {
     this.emporiumItems = items.filter((item: any) => item.gems > 0);
     const packs = await this.cacheService.getPacks();
     this.emporiumPacks = packs.sort((a, b) => a.quantity - b.quantity);
-    /*
-    this.angularFirestore.collection<any>('items', ref => ref.where('gems', '>', 0)).valueChanges().pipe(untilDestroyed(this)).subscribe(items => {
-      this.emporiumItems = items;
-    });
-    this.angularFirestore.collection<any>('packs').valueChanges().pipe(untilDestroyed(this)).subscribe(packs => {
-      this.emporiumPacks = packs.sort((a, b) => a.quantity - b.quantity);
-    });
-    */
   }
 
   openBuyDialog(item: any): void {

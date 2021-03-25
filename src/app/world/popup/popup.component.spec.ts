@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { PopupComponent, ConfirmType } from './popup.component';
+import { PopupComponent } from './popup.component';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { FirebaseServiceStub, MatDialogStub } from 'src/stubs';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatCardModule } from '@angular/material/card';
 import { PopupType } from 'src/app/shared/type/common.type';
-import { ConfirmComponent } from './confirm.component';
+import { ShopComponent } from './deal.component';
+import { QuestComponent } from './adventure.component';
 
 describe('PopupComponent', () => {
   let component: PopupComponent;
@@ -99,10 +100,16 @@ describe('PopupComponent', () => {
     expect(component.data.type).toBe(PopupType.QUEST);
   });
 
-  it('should OPEN the CONFIRM dialog', () => {
+  it('should OPEN the SHOP dialog', () => {
     spyOn(MatDialogStub, 'open');
-    component.openConfirmDialog(null, ConfirmType.charm);
-    expect(MatDialogStub.open).toHaveBeenCalledWith(ConfirmComponent, { panelClass: 'dialog-responsive', data: { object: null, type: ConfirmType.charm } });
+    component.openShopDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(ShopComponent, { panelClass: 'dialog-responsive', data: { object: null } });
+  });
+
+  it('should OPEN the QUEST dialog', () => {
+    spyOn(MatDialogStub, 'open');
+    component.openQuestDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(QuestComponent, { panelClass: 'dialog-responsive', data: { object: null } });
   });
 
 });

@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmComponent } from './confirm.component';
 import { PopupType } from 'src/app/shared/type/common.type';
 import { AngularFirestore } from '@angular/fire/firestore';
-
-export enum ConfirmType {
-  'charm', 'contract', 'artifact', 'battle', 'troop',
-}
+import { AdventureComponent } from './adventure.component';
+import { DealComponent } from './deal.component';
 
 @Component({
   selector: 'app-popup',
@@ -27,7 +23,6 @@ export class PopupComponent implements OnInit {
   questContracts: any[] = [];
   questTroops: any[] = [];
   questArtifacts: any[] = [];
-  ConfirmType: typeof ConfirmType = ConfirmType;
   PopupType: typeof PopupType = PopupType;
 
   constructor(
@@ -36,7 +31,6 @@ export class PopupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.dialog.openDialogs)
     // kingdom
     if (this.data.type === PopupType.KINGDOM) {
       this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
@@ -72,13 +66,18 @@ export class PopupComponent implements OnInit {
     }
   }
 
-  openConfirmDialog(object: any, type: ConfirmType): void {
-    const dialogRef = this.dialog.open(ConfirmComponent, {
+  openDealDialog(deal: any): void {
+    deal.join = deal.hero || deal.item || deal.spell || deal.unit;
+    const dialogRef = this.dialog.open(DealComponent, {
       panelClass: 'dialog-responsive',
-      data: {
-        object: object,
-        type: type,
-      },
+      data: deal,
+    });
+  }
+
+  openAdventureDialog(adventure: any): void {
+    const dialogRef = this.dialog.open(AdventureComponent, {
+      panelClass: 'dialog-responsive',
+      data: adventure,
     });
   }
 
