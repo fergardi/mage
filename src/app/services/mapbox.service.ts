@@ -78,7 +78,7 @@ export class MapboxService {
 
   addMe(): void {
     navigator.geolocation.getCurrentPosition(async position => {
-      this.addKingdom(this.uid, 'Fergardi', FactionType.BLACK, position.coords.latitude, position.coords.longitude);
+      await this.apiService.addKingdom(this.uid, FactionType.BLACK, position.coords.latitude, position.coords.longitude, 'Fergardi');
       this.goTo(position.coords.latitude, position.coords.longitude, true);
     }, null, {
       enableHighAccuracy: true,
@@ -89,48 +89,9 @@ export class MapboxService {
 
   addBot(type: FactionType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      const uid = this.angularFirestore.collection<any>('kingdoms').ref.doc().id;
-      this.addKingdom(uid, this.randomService.kingdom(), type, $event.lngLat.lat, $event.lngLat.lng);
+      await this.apiService.addKingdom(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
+      this.notificationService.warning('world.map.populate');
     });
-  }
-
-  async addKingdom(id: string, name: string, type: FactionType, latitude: number, longitude: number) {
-    await this.firebaseService.addElementToCollection('kingdoms', {
-      id: id,
-      faction: type,
-      position: this.geofirex.point(latitude, longitude),
-      coordinates: {
-        latitude: latitude,
-        longitude: longitude,
-      },
-      name: name,
-      power: 1500,
-    }, id);
-    this.firebaseService.addElementsToCollection(`kingdoms/${id}/troops`, [
-      { id: 'skeleton', quantity: 20000, assignment: 2 },
-    ]);
-    this.firebaseService.addElementsToCollection(`kingdoms/${id}/supplies`, [
-      { id: 'gold', quantity: 20000, max: null, balance: 0 },
-      { id: 'mana', quantity: 20000, max: 20000, balance: 0 },
-      { id: 'population', quantity: 20000, max: 20000, balance: 0 },
-      { id: 'gem', quantity: 10, max: null, balance: 0 },
-      { id: 'turn', quantity: 300, max: 300, balance: 0 },
-      { id: 'land', quantity: 300, max: null, balance: 0 },
-    ]);
-    this.firebaseService.addElementsToCollection(`kingdoms/${id}/buildings`, [
-      { id: 'barrack', quantity: 100 },
-      { id: 'barrier', quantity: 100 },
-      { id: 'farm', quantity: 100 },
-      { id: 'fortress', quantity: 100 },
-      { id: 'academy', quantity: 100 },
-      { id: 'node', quantity: 100 },
-      { id: 'village', quantity: 100 },
-      { id: 'workshop', quantity: 100 },
-    ]);
-    this.firebaseService.addElementsToCollection(`kingdoms/${id}/charms`, [
-      { id: 'animate-skeleton', turns: 0, completed: false, total: 200 },
-      { id: 'fear', turns: 0, completed: false, total: 200 },
-    ]);
   }
 
   addShopByClick(type: StoreType): void {
@@ -152,8 +113,15 @@ export class MapboxService {
     this.removeMarker(data.fid);
     // size
     const size = type === MarkerType.KINGDOM ? 70 : 44;
+    // markerData
+    const markerData = JSON.parse(JSON.stringify(data));
+    markerData.size = size;
+    markerData.type = type;
+    // popupData
+    const popupData = JSON.parse(JSON.stringify(data));
+    popupData.type = type;
     // marker
-    let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = { ...data, size: size, type: type }), { anchor: 'bottom' })
+    let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = markerData), { anchor: 'bottom' })
     .setLngLat({ lat: data.coordinates.latitude, lng: data.coordinates.longitude })
     .addTo(this.map);
     // popup
@@ -166,7 +134,7 @@ export class MapboxService {
         closeOnMove: false,
         maxWidth: 'none',
       })
-      .setDOMContent(this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type }))
+      .setDOMContent(this.componentService.injectComponent(PopupComponent, component => component.data = popupData))
       .on('open', ($event: any) => {
         this.map.easeTo({
           center: $event.target.getLngLat(),
@@ -194,7 +162,7 @@ export class MapboxService {
       // marker.togglePopup();
     }
     // add to list for future disposal
-    this.markers.push({ id: data.fid, marker: marker, circle: circle, type: type });
+    this.markers.push({ id: data.fid || data.id, marker: marker, circle: circle, type: type });
     // return
     return marker;
   }
@@ -266,28 +234,30 @@ export class MapboxService {
       { type: MarkerType.QUEST, subtype: LocationType.TOTEM, query: '[amenity=place_of_worship]', radius: 2000 },
       { type: MarkerType.QUEST, subtype: LocationType.MOUNTAIN, query: '[amenity=cinema]', radius: 5000 },
     ];
-    const lat = 42.605556;
-    const lng = -5.570000;
-    const radius = 10000;
-    const limit = 1;
-    const bounds = this.map.getBounds();
-    let query = '[out:json][timeout:300][bbox];\n';
-    elements.forEach((e: any) => query += `nwr${e.query};convert nwr ::geom=center(geom()),::=::,type="${e.type}",subtype="${e.subtype}";out center;\n`);
-    const bbox = `${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()},${bounds.getNorth()}`;
-    const response: any = await this.apiService.mapQuery(query, bbox);
-    const groups = _.groupBy(response.elements.filter((e: any) => e.geometry && e.geometry.coordinates && e.tags && e.tags.name), (e: any) => e.tags.subtype);
-    for (const group of Object.keys(groups)) {
-      for (const element of groups[group].slice(0, limit)) {
-        switch (element.tags.type) {
-          case (MarkerType.SHOP):
-            await this.apiService.addShop(null, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
-            break;
-          case (MarkerType.QUEST):
-            await this.apiService.addQuest(null, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
-            break;
+    navigator.geolocation.getCurrentPosition(async position => {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      const radius = 10000;
+      const limit = 1;
+      const bounds = this.map.getBounds();
+      let query = '[out:json][timeout:300][bbox];\n';
+      elements.forEach((e: any) => query += `nwr${e.query};convert nwr ::geom=center(geom()),::=::,type="${e.type}",subtype="${e.subtype}";out center;\n`);
+      const bbox = `${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()},${bounds.getNorth()}`;
+      const response: any = await this.apiService.mapQuery(query, bbox);
+      const groups = _.groupBy(response.elements.filter((e: any) => e.geometry && e.geometry.coordinates && e.tags && e.tags.name), (e: any) => e.tags.subtype);
+      for (const group of Object.keys(groups)) {
+        for (const element of groups[group].slice(0, limit)) {
+          switch (element.tags.type) {
+            case (MarkerType.SHOP):
+              await this.apiService.addShop(null, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+              break;
+            case (MarkerType.QUEST):
+              await this.apiService.addQuest(null, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+              break;
+          }
         }
       }
-    }
+    });
   }
 
 }

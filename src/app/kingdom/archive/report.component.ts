@@ -16,12 +16,12 @@ export enum ReportType {
     <div mat-dialog-content>
       <div matSubheader>{{ 'kingdom.report.from' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item [ngClass]="report.join.join.id">
+        <mat-list-item [ngClass]="report.from.faction.id">
           <div mat-list-avatar>
-            <img mat-list-avatar [src]="report.join.join.image">
+            <img mat-list-avatar [src]="report.from.faction.image">
           </div>
-          <div mat-line>{{ report.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ report.join.join.name | translate }}</div>
+          <div mat-line>{{ report.from.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ report.from.faction.name | translate }}</div>
         </mat-list-item>
       </mat-list>
       <div matSubheader>{{ 'kingdom.report.adquisitions' | translate }}:</div>

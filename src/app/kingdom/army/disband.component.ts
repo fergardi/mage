@@ -14,19 +14,19 @@ import { LoadingService } from 'src/app/services/loading.service';
     <div mat-dialog-content>
       <p>{{ 'kingdom.disband.description' | translate }}</p>
       <mat-list dense>
-        <mat-list-item [ngClass]="[troop.join.faction, (troop.join | legendary) ? 'legendary' : 'common']">
+        <mat-list-item [ngClass]="[troop.unit.faction, (troop.unit | legendary) ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="troop.join.image">
+            <img mat-list-avatar [src]="troop.unit.image">
           </div>
-          <div mat-line>{{ troop.join.name | translate }}</div>
+          <div mat-line>{{ troop.unit.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">
-            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image">
-            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image">
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image">
-            <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="troop.join.legendary" src="/assets/images/icons/legendary.png">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image">
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image">
+            <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="troop.unit.legendary" src="/assets/images/icons/legendary.png">
           </div>
-          <div mat-line class="mat-card-subtitle" *ngIf="troop.join.resistances && troop.join.resistances.length">
-            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.join.resistances" [src]="category.image">
+          <div mat-line class="mat-card-subtitle" *ngIf="troop.unit.resistances && troop.unit.resistances.length">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image">
           </div>
           <div mat-list-avatar [matBadge]="0" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
@@ -42,14 +42,14 @@ import { LoadingService } from 'src/app/services/loading.service';
         </mat-form-field>
       </form>
       <mat-chip-list>
-        <mat-chip color="primary" selected *ngIf="troop.join.goldMaintenance > 0"><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldMaintenance' | translate:{ number: (troop.join.goldMaintenance * troop.quantity) | long } }}</mat-chip>
-        <mat-chip color="primary" selected *ngIf="troop.join.manaMaintenance > 0"><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaMaintenance' | translate:{ number: (troop.join.manaMaintenance * troop.quantity) | long } }}</mat-chip>
-        <mat-chip color="primary" selected *ngIf="troop.join.populationMaintenance > 0"><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationMaintenance' | translate:{ number: (troop.join.populationMaintenance * troop.quantity) | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="troop.unit.goldMaintenance > 0"><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldMaintenance' | translate:{ number: (troop.unit.goldMaintenance * troop.quantity) | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="troop.unit.manaMaintenance > 0"><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaMaintenance' | translate:{ number: (troop.unit.manaMaintenance * troop.quantity) | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="troop.unit.populationMaintenance > 0"><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationMaintenance' | translate:{ number: (troop.unit.populationMaintenance * troop.quantity) | long } }}</mat-chip>
       </mat-chip-list>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.disband.cancel' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="form.invalid || troop.join.populationMaintenance > 0" (click)="disband()">{{ 'kingdom.disband.disband' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid || troop.unit.populationMaintenance > 0" (click)="disband()">{{ 'kingdom.disband.disband' | translate }}</button>
     </div>
   `,
   styles: [`

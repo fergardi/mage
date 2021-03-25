@@ -49,9 +49,8 @@ export class MapComponent implements OnInit, OnDestroy {
       // resize map in case drawer has changed
       this.mapboxService.resizeMap();
       // pring kingdoms surrounding kingdom
-      this.angularFirestore.collection<any>('kingdoms').valueChanges().pipe(untilDestroyed(this)).subscribe(kingdoms => {
-        kingdoms.forEach(async (k: any) => {
-          const kingdom = await this.firebaseService.selfJoin({ ...k, fid: k.id });
+      this.angularFirestore.collection<any>('kingdoms').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(kingdoms => {
+        kingdoms.forEach((kingdom: any) => {
           this.mapboxService.addMarker(kingdom, MarkerType.KINGDOM, true, kingdom.id === this.uid,
             this.activatedRoute.snapshot.params.kingdom
               ? this.activatedRoute.snapshot.params.kingdom === kingdom.id
@@ -72,11 +71,8 @@ export class MapComponent implements OnInit, OnDestroy {
         }),
       ).subscribe((quests: Array<any>) => {
         this.mapboxService.clearMarkers(MarkerType.QUEST);
-        quests.forEach(async (q: any) => {
-          if (q.visited && moment().isAfter(moment(q.visited.toMillis()))) {
-            await this.apiService.addQuest(q.id, q.location, null, null, null);
-          }
-          const quest = await this.firebaseService.selfJoin({ ...q, fid: q.id });
+        quests.forEach((quest: any) => {
+
           this.mapboxService.addMarker(quest, MarkerType.QUEST, true, false, false);
         });
         this.mapboxService.refreshMarkers();
@@ -93,11 +89,8 @@ export class MapComponent implements OnInit, OnDestroy {
         }),
       ).subscribe((shops: Array<any>) => {
         this.mapboxService.clearMarkers(MarkerType.SHOP);
-        shops.forEach(async (s: any) => {
-          if (s.visited && moment().isAfter(moment(s.visited.toMillis()))) {
-            await this.apiService.addShop(s.id, s.store, null, null, null);
-          }
-          const shop = await this.firebaseService.selfJoin({ ...s, fid: s.id });
+        shops.forEach((shop: any) => {
+
           this.mapboxService.addMarker(shop, MarkerType.SHOP, true, false, false);
         });
         this.mapboxService.refreshMarkers();
@@ -123,6 +116,11 @@ export class MapComponent implements OnInit, OnDestroy {
   addKingdom(type: FactionType) {
     this.notificationService.warning('world.map.add');
     this.mapboxService.addBot(type);
+  }
+
+  addMe() {
+    this.notificationService.warning('world.map.add');
+    this.mapboxService.addMe();
   }
 
   async populateMap() {

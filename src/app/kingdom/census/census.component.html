@@ -29,12 +29,12 @@
 
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
-                <mat-list-item [ngClass]="[kingdom.faction, kingdom.fid === uid ? 'legendary' : 'common']">
+                <mat-list-item [ngClass]="[kingdom.faction.id, kingdom.fid === uid ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="kingdom.position | long" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="kingdom.join.image">
+                    <img mat-list-avatar [src]="kingdom.faction.image">
                   </div>
                   <div mat-line>{{ kingdom.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle">{{ kingdom.join.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ kingdom.faction.name | translate }}</div>
                   <div mat-list-avatar [matBadge]="kingdom.power | short" matBadgePosition="above after">
                     <img mat-list-avatar src="/assets/images/icons/power.png">
                   </div>
@@ -51,7 +51,7 @@
                   <div mat-line>{{ kingdom.clan.name }}</div>
                 </mat-list-item>
               </mat-list>
-              <span *ngIf="!kingdom.clan" style="margin-left: auto;">-</span>
+              <span *ngIf="!kingdom.clan" style="margin-left: auto;">{{ 'kingdom.clan.none' | translate }}</span>
             </ng-template>
 
             <ng-template [ngIf]="column === 'actions'">

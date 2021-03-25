@@ -14,7 +14,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     <div mat-dialog-content>
       <p>{{ 'kingdom.bid.help' | translate }}</p>
       <mat-list dense>
-        <mat-list-item [ngClass]="[auction.join.faction, (auction.join | legendary) ? 'legendary' : 'common']">
+        <mat-list-item [ngClass]="[auction.join.faction.id, auction.join.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="(auction.quantity || auction.level) | short" matBadgePosition="above before">
             <img mat-list-avatar [src]="auction.join.image">
           </div>
@@ -71,7 +71,7 @@ export class BidComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      gold: [null, [Validators.required, Validators.min(Math.floor(this.auction.gold * 1.10)), Validators.max(this.kingdomGold.quantity)]],
+      gold: [Math.floor(this.auction.gold * 1.10), [Validators.required, Validators.min(Math.floor(this.auction.gold * 1.10)), Validators.max(this.kingdomGold.quantity)]],
     });
   }
 

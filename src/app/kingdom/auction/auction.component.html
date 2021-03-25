@@ -33,7 +33,7 @@
 
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
-                <mat-list-item [ngClass]="[auction.join.faction, (auction.join | legendary) ? 'legendary' : 'common']">
+                <mat-list-item [ngClass]="[auction.join.faction.id, auction.join.legendary ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="(auction.quantity || auction.level) | short" matBadgePosition="above before">
                     <img mat-list-avatar [src]="auction.join.image">
                   </div>
@@ -57,12 +57,12 @@
 
             <ng-template [ngIf]="column === 'faction'">
               <mat-list dense>
-                <mat-list-item [ngClass]="auction.join.join.id">
+                <mat-list-item [ngClass]="auction.join.faction.id">
                   <div mat-list-avatar>
-                    <img mat-list-avatar [src]="auction.join.join.image">
+                    <img mat-list-avatar [src]="auction.join.faction.image">
                   </div>
-                  <div mat-line>{{ auction.join.join.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle" [innerHTML]="auction.join.join.description | translate | icon:auction.join.join"></div>
+                  <div mat-line>{{ auction.join.faction.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle" [innerHTML]="auction.join.faction.description | translate | icon:auction.join.faction"></div>
                 </mat-list-item>
               </mat-list>
             </ng-template>

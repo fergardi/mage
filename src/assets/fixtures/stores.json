@@ -3,24 +3,28 @@
     "image": "/assets/images/stores/inn.png",
     "name": "store.inn.name",
     "description": "store.inn.description",
-    "id": "inn"
+    "id": "inn",
+    "faction": "grey"
   },
   {
     "image": "/assets/images/stores/mercenary.png",
     "name": "store.mercenary.name",
     "description": "store.mercenary.description",
-    "id": "mercenary"
+    "id": "mercenary",
+    "faction": "grey"
   },
   {
     "image": "/assets/images/stores/merchant.png",
     "name": "store.merchant.name",
     "description": "store.merchant.description",
-    "id": "merchant"
+    "id": "merchant",
+    "faction": "grey"
   },
   {
     "image": "/assets/images/stores/sorcerer.png",
     "name": "store.sorcerer.name",
     "description": "store.sorcerer.description",
-    "id": "sorcerer"
+    "id": "sorcerer",
+    "faction": "grey"
   }
 ]

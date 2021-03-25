@@ -15,6 +15,7 @@ import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-archive',
@@ -45,7 +46,7 @@ export class ArchiveComponent implements OnInit {
   data: MatTableDataSource<any> = new MatTableDataSource([]);
 
   constructor(
-    private firebaseService: FirebaseService,
+    private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private store: Store,
     private notificationService: NotificationService,
@@ -58,14 +59,12 @@ export class ArchiveComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit(): void {
-    this.firebaseService.leftJoin(`kingdoms/${this.uid}/letters`, 'kingdoms', 'from', 'id').pipe(untilDestroyed(this)).subscribe(async letters => {
-      letters = await Promise.all(letters.map(async letter => {
-        return {
-          ...letter,
-          join: await this.firebaseService.selfJoin(letter.join),
-        };
-      }));
-      this.data = new MatTableDataSource(letters);
+    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/letters`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(letters => {
+      const data = letters.map(letter => {
+        letter.message.join = letter.message.hero || letter.message.item || letter.message.spell || letter.message.unit;
+        return letter;
+      });
+      this.data = new MatTableDataSource(data);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
@@ -84,8 +83,8 @@ export class ArchiveComponent implements OnInit {
   createFilter(): (data: any, filter: string) => boolean {
     const filterFunction = (data: any, filter: string): boolean => {
       const filters = JSON.parse(filter);
-      return data && data.join && data.join.name && data.subject
-        && this.translateService.instant(data.join.name).toLowerCase().includes(filters.from)
+      return data && data.from && data.from.name && data.subject
+        && this.translateService.instant(data.from.name).toLowerCase().includes(filters.from)
         && this.translateService.instant(data.subject).toString().toLowerCase().includes(filters.subject)
         && (!filters.timestamp || moment(data.timestamp.toMillis()).isBetween(moment(filters.timestamp).startOf('day'), moment(filters.timestamp).endOf('day'), 'days', '[]'));
     };
@@ -103,7 +102,6 @@ export class ArchiveComponent implements OnInit {
   }
 
   async openReportDialog(report: any) {
-    report.message = await this.firebaseService.selfJoin(report.message);
     const dialogRef = this.dialog.open(ReportComponent, {
       panelClass: 'dialog-responsive',
       data: report,

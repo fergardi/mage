@@ -18,10 +18,10 @@ import { LoadingService } from 'src/app/services/loading.service';
       <mat-list dense>
         <mat-list-item>
           <div mat-list-avatar [matBadge]="(node$ | async)?.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="(node$ | async)?.join.image">
+            <img mat-list-avatar [src]="(node$ | async)?.structure.image">
           </div>
-          <div mat-line>{{ (node$ | async)?.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="(node$ | async)?.join.description | translate | icon:(node$ | async)?.join"></div>
+          <div mat-line>{{ (node$ | async)?.structure.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="(node$ | async)?.structure.description | translate | icon:(node$ | async)?.structure"></div>
           <div mat-list-avatar matBadge="?" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>

@@ -3,7 +3,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import * as moment from 'moment';
 import { BidComponent } from './bid.component';
@@ -11,10 +10,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Store } from '@ngxs/store';
-import { combineLatest } from 'rxjs';
-import { CacheService } from 'src/app/services/cache.service';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-auction',
@@ -48,35 +46,28 @@ export class AuctionComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
-    private firebaseService: FirebaseService,
     private translateService: TranslateService,
     private dialog: MatDialog,
     private store: Store,
-    private cacheService: CacheService,
     private apiService: ApiService,
     private loadingService: LoadingService,
+    private angularFirestore: AngularFirestore,
   ) { }
 
-  async ngOnInit() {
-    const factions = await this.cacheService.getFactions();
-    combineLatest([
-      this.firebaseService.leftJoin('auctions', 'items', 'item', 'id', x => x.where('type', '==', 'artifact')),
-      this.firebaseService.leftJoin('auctions', 'heroes', 'hero', 'id', x => x.where('type', '==', 'contract')),
-      this.firebaseService.leftJoin('auctions', 'units', 'unit', 'id', x => x.where('type', '==', 'troop')),
-      this.firebaseService.leftJoin('auctions', 'spells', 'spell', 'id', x => x.where('type', '==', 'charm')),
-    ])
-    .pipe(untilDestroyed(this))
-    .subscribe(async ([artifacts, contracts, troops, charms]) => {
-      let data = [artifacts, contracts, troops, charms];
-      data = data.reduce((a, b) => a.concat(b), []);
+  ngOnInit() {
+    this.angularFirestore.collection<any>('auctions').valueChanges().pipe(untilDestroyed(this)).subscribe(async auctions => {
+      const data = auctions.map(auction => {
+        auction.join = auction.hero || auction.item || auction.spell || auction.unit;
+        return auction;
+      });
       this.data = new MatTableDataSource(data);
       this.data.paginator = this.paginator;
       this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['gold'] : obj[property];
       this.data.sort = this.sort;
-      this.filters.faction.options = factions.map(faction => ({ name: 'faction.' + faction.id + '.name', value: faction.id }));
       this.data.filterPredicate = this.createFilter();
+      this.filters.faction.options = [...new Set(data.map(auction => auction.join.faction))];
       this.applyFilter();
-      const firstAuction: any = data[0];
+      const firstAuction: any = auctions[0];
       if (firstAuction && firstAuction.auctioned && moment().isAfter(moment(firstAuction.auctioned.toMillis()))) {
         this.loadingService.startLoading();
         try {
@@ -101,7 +92,7 @@ export class AuctionComponent implements OnInit {
       const filters = JSON.parse(filter);
       return (this.translateService.instant(data.join.name).toLowerCase().includes(filters.name)
         || this.translateService.instant(data.join.description).toLowerCase().includes(filters.name))
-        && data.join.join.id.toLowerCase().includes(filters.faction);
+        && data.join.faction.id.toLowerCase().includes(filters.faction);
     };
     return filterFunction;
   }

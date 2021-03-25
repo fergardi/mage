@@ -5,7 +5,6 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
-import { calculateTurns } from 'src/app/pipes/turn.pipe';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({

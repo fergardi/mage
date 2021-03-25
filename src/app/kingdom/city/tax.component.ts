@@ -6,7 +6,6 @@ import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Observable } from 'rxjs';
-import { calculateTurns } from 'src/app/pipes/turn.pipe';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -18,10 +17,10 @@ import { LoadingService } from 'src/app/services/loading.service';
       <mat-list dense>
         <mat-list-item>
           <div mat-list-avatar [matBadge]="(village$ | async)?.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="(village$ | async)?.join.image">
+            <img mat-list-avatar [src]="(village$ | async)?.structure.image">
           </div>
-          <div mat-line>{{ (village$ | async)?.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="(village$ | async)?.join.description | translate | icon:(village$ | async)?.join"></div>
+          <div mat-line>{{ (village$ | async)?.structure.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="(village$ | async)?.structure.description | translate | icon:(village$ | async)?.structure"></div>
           <div mat-list-avatar matBadge="?" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>

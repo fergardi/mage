@@ -50,12 +50,12 @@
 
               <ng-template [ngIf]="column === 'from'">
                 <mat-list dense>
-                  <mat-list-item [ngClass]="letter['join'].join.id">
+                  <mat-list-item [ngClass]="letter['from'].faction.id">
                     <div mat-list-avatar [matBadge]="!letter.read ? '❕' : undefined" matBadgePosition="above before">
-                      <img mat-list-avatar [src]="letter['join'].join.image">
+                      <img mat-list-avatar [src]="letter['from'].faction.image">
                     </div>
-                    <div mat-line>{{ letter['join'].name | translate  }}</div>
-                    <div mat-line class="mat-card-subtitle">{{ letter['join'].join.name | translate }}</div>
+                    <div mat-line>{{ letter['from'].name | translate  }}</div>
+                    <div mat-line class="mat-card-subtitle">{{ letter['from'].faction.name | translate }}</div>
                   </mat-list-item>
                 </mat-list>
               </ng-template>

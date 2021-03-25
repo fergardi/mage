@@ -92,7 +92,6 @@ api.use(cors({ origin: true }));
 api.use(express.json());
 
 // endpoints
-api.post('/kingdom', ash(async (req: any, res: any) => res.json(await createKingdom(req.body.kingdomId, req.body.factionId, req.body.name, parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
 api.get('/kingdom/:kingdomId/explore/:turns', ash(async (req: any, res: any) => res.json(await exploreLands(req.params.kingdomId, parseInt(req.params.turns)))));
 api.get('/kingdom/:kingdomId/charge/:turns', ash(async (req: any, res: any) => res.json(await chargeMana(req.params.kingdomId, parseInt(req.params.turns)))));
 api.get('/kingdom/:kingdomId/tax/:turns', ash(async (req: any, res: any) => res.json(await taxGold(req.params.kingdomId, parseInt(req.params.turns)))));
@@ -112,9 +111,10 @@ api.get('/kingdom/:kingdomId/emporium/:itemId', ash(async (req: any, res: any) =
 api.patch('/kingdom/:kingdomId/archive/:letterId', ash(async (req: any, res: any) => res.json(await readLetter(req.params.kingdomId, req.params.letterId))));
 api.patch('/kingdom/:kingdomId/guild/:guildId', ash(async (req: any, res: any) => res.json(await favorGuild(req.params.kingdomId, req.params.guildId))));
 api.delete('/kingdom/:kingdomId/archive', ash(async (req: any, res: any) => res.json(await removeLetters(req.params.kingdomId, req.body.letterIds))));
+api.put('/kingdom/auction', ash(async (req: any, res: any) => res.json(await refreshAuctions())));
+api.post('/world/kingdom', ash(async (req: any, res: any) => res.json(await createKingdom(req.body.kingdomId, req.body.factionId, req.body.name, parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
 api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
 api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
-api.put('/kingdom/auction', ash(async (req: any, res: any) => res.json(await refreshAuctions())));
 
 // error handler
 api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));;
@@ -166,12 +166,12 @@ const payMaintenance = async (kingdomId: string, quantity: number, batch: Fireba
  * @param quantity
  * @param batch
  */
-const addTroop = async (kingdomId: string, unitId: string, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
-  let kingdomTroop = await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('id', '==', unitId).limit(1).get();
+const addTroop = async (kingdomId: string, unit: any, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
+  let kingdomTroop = await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('id', '==', unit.id).limit(1).get();
   if (kingdomTroop.size > 0) {
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${kingdomTroop.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(quantity) });
   } else {
-    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: unitId, quantity: quantity });
+    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: unit.id, quantity: quantity, unit: unit });
   }
 }
 
@@ -182,12 +182,12 @@ const addTroop = async (kingdomId: string, unitId: string, quantity: number, bat
  * @param quantity
  * @param batch
  */
-const addArtifact = async (kingdomId: string, itemId: string, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
-  let kingdomArtifact = await angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).where('id', '==', itemId).limit(1).get();
+const addArtifact = async (kingdomId: string, item: any, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
+  let kingdomArtifact = await angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).where('id', '==', item.id).limit(1).get();
   if (kingdomArtifact.size > 0) {
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/artifacts/${kingdomArtifact.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(quantity) });
   } else {
-    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).doc(), { id: itemId, quantity: quantity });
+    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).doc(), { id: item.id, quantity: quantity, item: item });
   }
 }
 
@@ -198,12 +198,12 @@ const addArtifact = async (kingdomId: string, itemId: string, quantity: number, 
  * @param level
  * @param batch
  */
-const addContract = async (kingdomId: string, heroId: string, level: number, batch: FirebaseFirestore.WriteBatch) => {
-  let kingdomContract = await angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).where('id', '==', heroId).limit(1).get();
+const addContract = async (kingdomId: string, hero: any, level: number, batch: FirebaseFirestore.WriteBatch) => {
+  let kingdomContract = await angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).where('id', '==', hero.id).limit(1).get();
   if (kingdomContract.size > 0) {
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${kingdomContract.docs[0].id}`), { level: admin.firestore.FieldValue.increment(level) });
   } else {
-    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).doc(), { id: heroId, level: level });
+    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).doc(), { id: hero.id, level: level, hero: hero });
   }
 }
 
@@ -215,12 +215,12 @@ const addContract = async (kingdomId: string, heroId: string, level: number, bat
  * @param turns
  * @param batch
  */
-const addEnchantment = async (kingdomId: string, spellId: string, level: number, originId: string|null = null, turns: number, batch: FirebaseFirestore.WriteBatch) => {
-  let kingdomEnchantment = await angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).where('id', '==', spellId).limit(1).get();
+const addEnchantment = async (kingdomId: string, enchantment: any, level: number, originId: string|null = null, turns: number, batch: FirebaseFirestore.WriteBatch) => {
+  let kingdomEnchantment = await angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).where('id', '==', enchantment.id).limit(1).get();
   if (kingdomEnchantment.size > 0) {
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${kingdomEnchantment.docs[0].id}`), { from: originId, turns: admin.firestore.FieldValue.increment(turns) });
   } else {
-    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).doc(), { id: spellId, from: originId, turns: turns, level: level });
+    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).doc(), { id: enchantment.id, enchantment: enchantment, from: originId, turns: turns, level: level });
   }
 }
 
@@ -231,18 +231,15 @@ const addEnchantment = async (kingdomId: string, spellId: string, level: number,
  * @param turns
  * @param batch
  */
-const addCharm = async (kingdomId: string, spellId: string, turns: number, batch: FirebaseFirestore.WriteBatch) => {
-  let kingdomCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('id', '==', spellId).limit(1).get();
-  console.log(kingdomCharm)
+const addCharm = async (kingdomId: string, spell: any, turns: number, batch: FirebaseFirestore.WriteBatch) => {
+  let kingdomCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('id', '==', spell.id).limit(1).get();
   if (kingdomCharm.size > 0) {
-    let charm = kingdomCharm.docs[0].data();
-    let spell = (await angularFirestore.doc(`spells/${spellId}`).get()).data();
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/charms/${kingdomCharm.docs[0].id}`), {
-      turnResearch: admin.firestore.FieldValue.increment(turns),
-      completed: charm?.turnResearch + turns >= spell?.turnResearch,
+      turns: admin.firestore.FieldValue.increment(turns),
+      completed: (kingdomCharm.docs[0]?.data().turns + turns) >= spell?.turnResearch,
     });
   } else {
-    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: spellId, turnResearch: 0 });
+    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: spell.id, spell: spell, turns: 0 });
   }
 }
 
@@ -260,7 +257,7 @@ const researchCharm = async (kingdomId: string, charmId: string, turns: number) 
     let spell = (await angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`).get()).data();
     const batch = angularFirestore.batch();
     await addSupply(kingdomId, 'turn', -turns, batch, resourceTurn?.ratio);
-    await addCharm(kingdomId, spell?.id, turns, batch);
+    await addCharm(kingdomId, spell, turns, batch);
     await batch.commit();
   }
   return { turns: turns };
@@ -273,14 +270,23 @@ const researchCharm = async (kingdomId: string, charmId: string, turns: number) 
  */
 const createKingdom = async (kingdomId: string, factionId: string, name: string, latitude: number, longitude: number) => {
   const batch = angularFirestore.batch();
-  batch.create(angularFirestore.doc(`kingdoms/${kingdomId}`), { id: kingdomId, faction: factionId, position: geofirex.point(latitude, longitude), coordinates: { latitude: latitude, longitude: longitude }, name: name, power: 1500 });
+  const faction = (await angularFirestore.doc(`factions/${factionId}`).get()).data();
+  if (kingdomId) {
+    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { id: kingdomId, faction: faction, guild: null, position: geofirex.point(latitude, longitude), coordinates: { latitude: latitude, longitude: longitude }, name: name, power: 1500 });
+  } else {
+    kingdomId = angularFirestore.collection('kingdoms').doc().id;
+    batch.create(angularFirestore.doc(`kingdoms/${kingdomId}`), { id: kingdomId, faction: faction, guild: null, position: geofirex.point(latitude, longitude), coordinates: { latitude: latitude, longitude: longitude }, name: name, power: 1500 });
+  }
   switch (factionId) {
     case 'black': {
       // troops
-      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: 'skeleton', quantity: 20000, assignment: 2 });
+      const skeleton = (await angularFirestore.doc(`units/skeleton`).get()).data();
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: skeleton?.id, unit: skeleton, quantity: 20000, assignment: 2 });
       // charms
-      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'animate-skeleton', turns: 0, completed: false, total: 200 });
-      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: 'fear', turns: 0, completed: false, total: 200 });
+      const animateSkeleton = (await angularFirestore.doc(`spells/animate-skeleton`).get()).data();
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: animateSkeleton?.id, spell: animateSkeleton, turns: 0 });
+      const terror = (await angularFirestore.doc(`spells/terror`).get()).data();
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: terror?.id, spell: terror, turns: 0, completed: false, total: 200 });
       break;
     }
     case 'green': {
@@ -317,24 +323,36 @@ const createKingdom = async (kingdomId: string, factionId: string, name: string,
     }
   }
   // artifacts
-  let itemId = items[Math.floor(Math.random() * items.length)];
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).doc(), { id: itemId, quantity: 1 });
+  const item = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).doc(), { id: item.id, item: item, quantity: 1, assignment: 0 });
   // supplies
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'gold', quantity: 20000, max: null, balance: 0 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'mana', quantity: 20000, max: 20000, balance: 0 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'population', quantity: 20000, max: 20000, balance: 0 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'gem', quantity: 10, max: null, balance: 0 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'turn', quantity: 300, max: 300, balance: 0 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'land', quantity: 300, max: null, balance: 0 });
+  const gold = (await angularFirestore.doc(`resources/gold`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'gold', resource: gold, quantity: 20000, max: null, balance: 0 });
+  const mana = (await angularFirestore.doc(`resources/mana`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'mana', resource: mana, quantity: 20000, max: 20000, balance: 0 });
+  const population = (await angularFirestore.doc(`resources/population`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'population', resource: population, quantity: 20000, max: 20000, balance: 0 });
+  const gem = (await angularFirestore.doc(`resources/gem`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'gem', resource: gem, quantity: 10, max: null, balance: 0 });
+  const turn = (await angularFirestore.doc(`resources/turn`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'turn', resource: turn, quantity: 0, max: 300, balance: 0, timestamp: moment(admin.firestore.Timestamp.now().toMillis()).subtract(MAX_TURNS * turn?.ratio, 'minutes') });
+  const land = (await angularFirestore.doc(`resources/land`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).doc(), { id: 'land', resource: land, quantity: 300, max: null, balance: 0 });
   // buildings
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'barrack', quantity: 100 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'barrier', quantity: 100 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'farm', quantity: 100 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'fortress', quantity: 100 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'academy', quantity: 100 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'node', quantity: 100 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'village', quantity: 100 });
-  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'workshop', quantity: 100 });
+  const barrier = (await angularFirestore.doc(`structures/barrier`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'barrier', structure: barrier, quantity: 100 });
+  const farm = (await angularFirestore.doc(`structures/farm`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'farm', structure: farm, quantity: 100 });
+  const fortress = (await angularFirestore.doc(`structures/fortress`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'fortress', structure: fortress, quantity: 100 });
+  const academy = (await angularFirestore.doc(`structures/academy`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'academy', structure: academy, quantity: 100 });
+  const node = (await angularFirestore.doc(`structures/node`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'node', structure: node, quantity: 100 });
+  const village = (await angularFirestore.doc(`structures/village`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'village', structure: village, quantity: 100 });
+  const workshop = (await angularFirestore.doc(`structures/workshop`).get()).data();
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).doc(), { id: 'workshop', structure: workshop, quantity: 100 });
   // commit
   return batch.commit();
 }
@@ -369,22 +387,21 @@ const exploreLands = async (kingdomId: string, turns: number) => {
  * @param quantity
  */
 const recruitUnit = async (kingdomId: string, unitId: string, quantity: number) => {
-  let kingdomUnit = (await angularFirestore.doc(`units/${unitId}`).get()).data();
-  console.log(kingdomUnit)
-  if (kingdomUnit?.gold > 0) {
+  let unit = (await angularFirestore.doc(`units/${unitId}`).get()).data();
+  if (unit?.gold > 0) {
     // let kingdomTurn = await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get();
     let kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0].data();
     // let kingdomBarrack = await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'barrack').get();
     // et turns = quantity; // TODO turns
-    let gold = kingdomUnit?.gold * quantity;
+    let gold = unit?.gold * quantity;
     if (gold <= kingdomGold.quantity) { // turns <= kingdomTurn.docs[0].data().quantity &&
       const batch = angularFirestore.batch();
       // await addSupply(kingdomId, 'turn', -turns, batch);
       await addSupply(kingdomId, 'gold', -gold, batch);
       // batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${kingdomBarrack.docs[0].id}`), { total: admin.firestore.FieldValue.increment(quantity) });
-      await addTroop(kingdomId, unitId, quantity, batch);
+      await addTroop(kingdomId, unit, quantity, batch);
       await batch.commit();
-      return { quantity: quantity, unit: kingdomUnit?.name };
+      return { quantity: quantity, unit: unit?.name };
     } else throw new Error('api.error.recruitable');
   } else throw new Error('api.error.recruitable');
 }
@@ -779,13 +796,13 @@ const battleKingdom = async (kingdomId: string, battleId: BattleType, targetId: 
  * @param batch
  * @param fromId
  */
-const addLetter = async (targetId: string, subject: string, message: object, batch: FirebaseFirestore.WriteBatch, sourceId: string | null) => {
+const addLetter = async (targetId: string, subject: string, message: object, batch: FirebaseFirestore.WriteBatch, sourceId: any) => {
   batch.create(angularFirestore.collection(`kingdoms/${targetId}/letters`).doc(), {
     to: targetId,
     subject: subject,
     message: message,
     timestamp: admin.firestore.Timestamp.now(),
-    from: sourceId || targetId,
+    from: sourceId,
     read: false,
   });
 }
@@ -833,35 +850,39 @@ const removeLetters = async (kingdomId: string, letterIds: string[]) => {
 const checkShop = async (fid?: string, latitude?: number, longitude?: number, type?: StoreType, name?: string) => {
   const batch = angularFirestore.batch();
   const visited = moment(admin.firestore.Timestamp.now().toMillis()).add(VISITATION_TIME, 'seconds');
-  if (fid) {
-    let worldShop = await angularFirestore.doc(`shops/${fid}`).get();
-    let shop = worldShop.data();
-    if (worldShop.exists && moment().isAfter(moment(shop?.visited.toMillis()))) batch.update(angularFirestore.doc(`shops/${fid}`), { visited: visited });
+  const geopoint = geofirex.point(latitude, longitude);
+  if (!fid) fid = geopoint.geohash;
+  let shop = (await angularFirestore.doc(`shops/${fid}`).get()).data();
+  if (shop) {
+    if (moment().isAfter(moment(shop?.visited.toMillis()))) batch.update(angularFirestore.doc(`shops/${fid}`), { visited: visited });
   } else {
-    const geopoint = geofirex.point(latitude, longitude);
-    fid = geopoint.geohash;
-    batch.create(angularFirestore.doc(`shops/${fid}`), { store: type, position: geopoint, coordinates: { latitude: latitude, longitude: longitude }, name: name, visited: visited });
+    const store = (await angularFirestore.doc(`stores/${type}`).get()).data();
+    batch.create(angularFirestore.doc(`shops/${fid}`), { store: store, position: geopoint, coordinates: { latitude: latitude, longitude: longitude }, name: name, visited: visited });
   }
   switch (type) {
     case StoreType.INN:
       const innContracts = await angularFirestore.collection(`shops/${fid}/contracts`).listDocuments();
       innContracts.map(contract => batch.delete(contract));
-      batch.create(angularFirestore.collection(`shops/${fid}/contracts`).doc(), { id: heroes[random(0, heroes.length - 1)], gold: random(1000000, 10000000), level: random(1, 10) });
+      const hero = (await angularFirestore.collection('heroes').where('random', '==', random(0, 19)).limit(1).get()).docs[0].data();
+      batch.create(angularFirestore.collection(`shops/${fid}/contracts`).doc(), { id: hero.id, hero: hero, gold: random(1000000, 10000000), level: random(1, 10) });
       break;
     case StoreType.MERCENARY:
       const mercenaryTroops = await angularFirestore.collection(`shops/${fid}/troops`).listDocuments();
       mercenaryTroops.map(troop => batch.delete(troop));
-      batch.create(angularFirestore.collection(`shops/${fid}/troops`).doc(), { id: units[random(0, units.length - 1)], gold: random(1000000, 10000000), quantity: random(1, 1000) });
+      const unit = (await angularFirestore.collection('units').where('random', '==', random(0, 64)).limit(1).get()).docs[0].data();
+      batch.create(angularFirestore.collection(`shops/${fid}/troops`).doc(), { id: unit.id, unit: unit, gold: random(1000000, 10000000), quantity: random(1, 1000) });
       break;
     case StoreType.MERCHANT:
       const merchantArtifacts = await angularFirestore.collection(`shops/${fid}/artifacts`).listDocuments();
       merchantArtifacts.map(artifact => batch.delete(artifact));
-      batch.create(angularFirestore.collection(`shops/${fid}/artifacts`).doc(), { id: items[random(0, items.length - 1)], gold: random(1000000, 10000000), quantity: random(1, 3) });
+      const item = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
+      batch.create(angularFirestore.collection(`shops/${fid}/artifacts`).doc(), { id: item.id, item: item, gold: random(1000000, 10000000), quantity: random(1, 3) });
       break;
     case StoreType.SORCERER:
       const sorcererCharms = await angularFirestore.collection(`shops/${fid}/charms`).listDocuments();
       sorcererCharms.map(charm => batch.delete(charm));
-      batch.create(angularFirestore.collection(`shops/${fid}/charms`).doc(), { id: spells[random(0, spells.length - 1)], gold: random(10000000, 100000000) });
+      const spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 100)).limit(1).get()).docs[0].data();
+      batch.create(angularFirestore.collection(`shops/${fid}/charms`).doc(), { id: spell.id, spell: spell, gold: random(10000000, 100000000), level: 0 });
       break;
   }
   await batch.commit();
@@ -878,14 +899,14 @@ const checkShop = async (fid?: string, latitude?: number, longitude?: number, ty
 const checkQuest = async (fid?: string, latitude?: number, longitude?: number, type?: LocationType, name?: string) => {
   const batch = angularFirestore.batch();
   const visited = moment(admin.firestore.Timestamp.now().toMillis()).add(VISITATION_TIME, 'seconds');
-  if (fid) {
-    const worldQuest = await angularFirestore.doc(`quests/${fid}`).get();
-    const quest = worldQuest.data();
-    if (worldQuest.exists && moment().isAfter(moment(quest?.visited.toMillis()))) batch.update(angularFirestore.doc(`quests/${fid}`), { visited: visited });
+  const geopoint = geofirex.point(latitude, longitude);
+  if (!fid) fid = geopoint.geohash;
+  let quest = (await angularFirestore.doc(`quests/${fid}`).get()).data();
+  if (quest) {
+    if (moment().isAfter(moment(quest?.visited.toMillis()))) batch.update(angularFirestore.doc(`quests/${fid}`), { visited: visited });
   } else {
-    const geopoint = geofirex.point(latitude, longitude);
-    fid = geopoint.geohash;
-    batch.create(angularFirestore.doc(`quests/${fid}`), { location: type, position: geopoint, coordinates: { latitude: latitude, longitude: longitude }, name: name, visited: visited });
+    const location = (await angularFirestore.doc(`locations/${type}`).get()).data();
+    batch.create(angularFirestore.doc(`quests/${fid}`), { location: location, position: geopoint, coordinates: { latitude: latitude, longitude: longitude }, name: name, visited: visited });
   }
   const questContracts = await angularFirestore.collection(`quests/${fid}/contracts`).listDocuments();
   questContracts.map(contract => batch.delete(contract));
@@ -962,9 +983,18 @@ const checkQuest = async (fid?: string, latitude?: number, longitude?: number, t
   questHeroes = _.shuffle(questHeroes);
   questUnits = _.shuffle(questUnits);
   questItems = _.shuffle(questItems);
-  [0].forEach(i => batch.create(angularFirestore.collection(`quests/${fid}/contracts`).doc(), { id: questHeroes[i], level: random(1, 20) }));
-  [0,1,2].forEach(j => batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: questUnits[j], quantity: random(10, 10000) }));
-  [0].forEach(k => batch.create(angularFirestore.collection(`quests/${fid}/artifacts`).doc(), { id: questItems[k], quantity: random(1, 3) }));
+  for (let i of [0]) {
+    let hero = (await angularFirestore.doc(`heroes/${questHeroes[i]}`).get()).data();
+    batch.create(angularFirestore.collection(`quests/${fid}/contracts`).doc(), { id: questHeroes[i], hero: hero, level: random(1, 20) });
+  };
+  for (let j of [0,1,2]) {
+    let unit = (await angularFirestore.doc(`units/${questUnits[j]}`).get()).data();
+    batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: questUnits[j], unit: unit, quantity: random(10, 10000) });
+  }
+  for (let k of [0]) {
+    let item = (await angularFirestore.doc(`items/${questItems[k]}`).get()).data();
+    batch.create(angularFirestore.collection(`quests/${fid}/artifacts`).doc(), { id: questItems[k], item: item, quantity: random(1, 3) });
+  }
   await batch.commit();
 }
 
@@ -974,7 +1004,8 @@ const checkQuest = async (fid?: string, latitude?: number, longitude?: number, t
 const refreshAuctions = async () => {
   const batch = angularFirestore.batch();
   const auctioned = moment(admin.firestore.Timestamp.now().toMillis()).add(AUCTION_TIME, 'seconds');
-  const kingdomAuctions = await angularFirestore.collection(`auctions`).get();
+  const from = (await angularFirestore.doc('kingdoms/auction').get()).data();
+  const kingdomAuctions = await angularFirestore.collection('auctions').get();
   for (const kingdomAuction of kingdomAuctions.docs) { // cannot use forEach due to async/await of batch.commit
     const auction = kingdomAuction.data();
     if (moment().isAfter(moment(auction.auctioned.toMillis()))) {
@@ -987,24 +1018,28 @@ const refreshAuctions = async () => {
           quantity: auction.quantity || null,
           level: auction.level || null,
         };
-        await addLetter(auction.kingdom, 'kingdom.report.auction', message, batch, 'auction');
+        await addLetter(auction.kingdom, 'kingdom.report.auction', message, batch, from);
       }
       switch (auction.type) {
         case AuctionType.ARTIFACT:
           if (auction.kingdom) await addArtifact(auction.kingdom, auction.item, auction.quantity, batch);
-          batch.create(angularFirestore.collection(`auctions`).doc(), { type: AuctionType.ARTIFACT, item: items[random(0, items.length - 1)], quantity: random(1, 3), gold: random(1000000, 5000000), auctioned: auctioned, kingdom: null });
+          const item = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
+          batch.create(angularFirestore.collection('auctions').doc(), { type: AuctionType.ARTIFACT, item: item, quantity: random(1, 3), gold: random(1000000, 5000000), auctioned: auctioned, kingdom: null /*'wS6oK6Epj3XvavWFtngLZkgFx263'*/ });
           break;
         case AuctionType.CHARM:
           if (auction.kingdom) await addCharm(auction.kingdom, auction.spell, auction.level, batch);
-          batch.create(angularFirestore.collection(`auctions`).doc(), { type: AuctionType.CHARM, spell: spells[random(0, spells.length - 1)], level: 0, gold: random(1000000, 5000000), auctioned: auctioned, kingdom: null });
+          const spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 100)).limit(1).get()).docs[0].data();
+          batch.create(angularFirestore.collection('auctions').doc(), { type: AuctionType.CHARM, spell: spell, level: 0, gold: random(1000000, 5000000), auctioned: auctioned, kingdom: 'wS6oK6Epj3XvavWFtngLZkgFx263' });
           break;
         case AuctionType.CONTRACT:
           if (auction.kingdom) await addContract(auction.kingdom, auction.hero, auction.level, batch);
-          batch.create(angularFirestore.collection(`auctions`).doc(), { type: AuctionType.CONTRACT, hero: heroes[random(0, heroes.length - 1)], level: random(1, 10), gold: random(5000000, 15000000), auctioned: auctioned, kingdom: null });
+          const hero = (await angularFirestore.collection('heroes').where('random', '==', random(0, 19)).limit(1).get()).docs[0].data();
+          batch.create(angularFirestore.collection('auctions').doc(), { type: AuctionType.CONTRACT, hero: hero, level: random(1, 10), gold: random(5000000, 15000000), auctioned: auctioned, kingdom: 'wS6oK6Epj3XvavWFtngLZkgFx263' });
           break;
         case AuctionType.TROOP:
+          const unit = (await angularFirestore.collection('units').where('random', '==', random(0, 64)).limit(1).get()).docs[0].data();
           if (auction.kingdom) await addTroop(auction.kingdom, auction.unit, auction.quantity, batch);
-          batch.create(angularFirestore.collection(`auctions`).doc(), { type: AuctionType.TROOP, unit: units[random(0, units.length - 1)], quantity: random(1, 1000), gold: random(1000000, 10000000), auctioned: auctioned, kingdom: null });
+          batch.create(angularFirestore.collection('auctions').doc(), { type: AuctionType.TROOP, unit: unit, quantity: random(1, 1000), gold: random(1000000, 10000000), auctioned: auctioned, kingdom: 'wS6oK6Epj3XvavWFtngLZkgFx263' });
           break;
       }
       batch.delete(kingdomAuction.ref);

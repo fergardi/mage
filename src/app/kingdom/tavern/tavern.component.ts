@@ -10,6 +10,7 @@ import { DischargeComponent } from './discharge.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 export enum ContractAssignmentType {
   'contractNone', 'contractAttack', 'contractDefense',
@@ -26,14 +27,14 @@ const MAXIMUM_CONTRACTS = 5;
 @UntilDestroy()
 export class TavernComponent implements OnInit {
 
-  uid: string = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   kingdomContracts: any[] = [];
   attackContracts: any[] = [];
   defenseContracts: any[] = [];
 
   constructor(
-    private firebaseService: FirebaseService,
+    private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
     private dialog: MatDialog,
     private store: Store,
@@ -42,8 +43,7 @@ export class TavernComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
-    this.firebaseService.leftJoin(`kingdoms/${this.uid}/contracts`, 'heroes', 'id', 'id').pipe(untilDestroyed(this)).subscribe(contracts => {
+    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/contracts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(contracts => {
       this.kingdomContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.contractNone || !contract.assignment);
       this.attackContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.contractAttack);
       this.defenseContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.contractDefense);

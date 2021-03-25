@@ -1,8 +1,24 @@
 <mat-card class="map-popup animated bounceIn mat-elevation-z4">
-  <mat-card-header>
-    <img mat-card-avatar [src]="data.faction ? data.join.marker : data.join.image">
-    <mat-card-title>{{ (data.faction ? data.name : data.join.name) | translate }}</mat-card-title>
-    <mat-card-subtitle>{{ (data.faction ? data.join.name : data.name ? data.name : data.join.description) | translate }}</mat-card-subtitle>
+
+  <!-- kingdom -->
+  <mat-card-header *ngIf="data.type === PopupType.KINGDOM">
+    <img mat-card-avatar [src]="data.faction.marker">
+    <mat-card-title>{{ data.name }}</mat-card-title>
+    <mat-card-subtitle>{{ data.faction.name | translate }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <!-- shop -->
+  <mat-card-header *ngIf="data.type === PopupType.SHOP">
+    <img mat-card-avatar [src]="data.store.image">
+    <mat-card-title>{{ data.store.name | translate }}</mat-card-title>
+    <mat-card-subtitle>{{ data.name }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <!-- quest -->
+  <mat-card-header *ngIf="data.type === PopupType.QUEST">
+    <img mat-card-avatar [src]="data.location.image">
+    <mat-card-title>{{ data.location.name | translate }}</mat-card-title>
+    <mat-card-subtitle>{{ data.name }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
@@ -10,18 +26,18 @@
     <ng-template [ngIf]="kingdomTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item *ngFor="let troop of kingdomTroops" [ngClass]="[troop.join.faction, (troop.join | legendary) ? 'legendary' : 'common']">
-          <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="troop.join.image">
+        <mat-list-item *ngFor="let troop of kingdomTroops" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']">
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
+            <img mat-list-avatar [src]="troop.unit.image">
           </div>
-          <div mat-line>{{ troop.join.name | translate }}</div>
+          <div mat-line>{{ troop.unit.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">
-            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image">
-            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image">
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image">
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image">
           </div>
-          <div mat-line class="mat-card-subtitle" *ngIf="troop.join.resistances && troop.join.resistances.length">
-            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.join.resistances" [src]="category.image">
+          <div mat-line class="mat-card-subtitle" *ngIf="troop.unit.resistances && troop.unit.resistances.length">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image">
           </div>
         </mat-list-item>
       </mat-list>
@@ -31,12 +47,12 @@
     <ng-template [ngIf]="shopContracts.length">
       <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let contract of shopContracts" [ngClass]="[contract.join.faction, (contract.join | legendary) ? 'legendary' : 'common']" (click)="openConfirmDialog(contract, ConfirmType.contract)">
+        <button mat-list-item *ngFor="let contract of shopContracts" [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']" (click)="openConfirmDialog(contract, ConfirmType.contract)">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
-            <img mat-list-avatar [src]="contract.join.image">
+            <img mat-list-avatar [src]="contract.hero.image">
           </div>
-          <div mat-line>{{ contract.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join"></div>
+          <div mat-line>{{ contract.hero.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.hero.description | translate | icon:contract.hero"></div>
           <div mat-list-avatar [matBadge]="contract.gold | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
           </div>
@@ -48,18 +64,18 @@
     <ng-template [ngIf]="shopTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let troop of shopTroops" [ngClass]="[troop.join.faction, (troop.join | legendary) ? 'legendary' : 'common']" (click)="openConfirmDialog(troop, ConfirmType.troop)">
+        <button mat-list-item *ngFor="let troop of shopTroops" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']" (click)="openConfirmDialog(troop, ConfirmType.troop)">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="troop.join.image">
+            <img mat-list-avatar [src]="troop.unit.image">
           </div>
-          <div mat-line>{{ troop.join.name | translate }}</div>
+          <div mat-line>{{ troop.unit.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">
-            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image">
-            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image">
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image">
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image">
           </div>
-          <div mat-line class="mat-card-subtitle" *ngIf="troop.join.resistances && troop.join.resistances.length">
-            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.join.resistances" [src]="category.image">
+          <div mat-line class="mat-card-subtitle" *ngIf="troop.unit.resistances && troop.unit.resistances.length">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image">
           </div>
           <div mat-list-avatar [matBadge]="troop.gold | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
@@ -72,12 +88,12 @@
     <ng-template [ngIf]="shopArtifacts.length">
       <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let artifact of shopArtifacts" [ngClass]="[artifact.join.faction, (artifact.join | legendary) ? 'legendary' : 'common']" (click)="openConfirmDialog(artifact, ConfirmType.artifact)">
+        <button mat-list-item *ngFor="let artifact of shopArtifacts" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']" (click)="openConfirmDialog(artifact, ConfirmType.artifact)">
           <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
-            <img mat-list-avatar [src]="artifact.join.image">
+            <img mat-list-avatar [src]="artifact.item.image">
           </div>
-          <div mat-line>{{ artifact.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join"></div>
+          <div mat-line>{{ artifact.item.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item"></div>
           <div mat-list-avatar [matBadge]="artifact.gold | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
           </div>
@@ -89,12 +105,12 @@
     <ng-template [ngIf]="shopCharms.length">
       <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let charm of shopCharms" [ngClass]="[charm.join.faction, (charm.join | legendary) ? 'legendary' : 'common']" (click)="openConfirmDialog(charm, ConfirmType.charm)">
+        <button mat-list-item *ngFor="let charm of shopCharms" [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']" (click)="openConfirmDialog(charm, ConfirmType.charm)">
           <div mat-list-avatar [matBadge]="charm.level" matBadgePosition="above before">
-            <img mat-list-avatar [src]="charm.join.image">
+            <img mat-list-avatar [src]="charm.spell.image">
           </div>
-          <div mat-line>{{ charm.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join"></div>
+          <div mat-line>{{ charm.spell.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="charm.spell.description | translate | icon:charm.spell"></div>
           <div mat-list-avatar [matBadge]="charm.gold | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
           </div>
@@ -106,12 +122,12 @@
     <ng-template [ngIf]="questContracts.length">
       <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item *ngFor="let contract of questContracts" [ngClass]="[contract.join.faction, (contract.join | legendary) ? 'legendary' : 'common']">
+        <mat-list-item *ngFor="let contract of questContracts" [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
-            <img mat-list-avatar [src]="contract.join.image">
+            <img mat-list-avatar [src]="contract.hero.image">
           </div>
-          <div mat-line>{{ contract.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.join.description | translate | icon:contract.join"></div>
+          <div mat-line>{{ contract.hero.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.hero.description | translate | icon:contract.hero"></div>
         </mat-list-item>
       </mat-list>
     </ng-template>
@@ -120,18 +136,18 @@
     <ng-template [ngIf]="questTroops.length">
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item *ngFor="let troop of questTroops" [ngClass]="[troop.join.faction, (troop.join | legendary) ? 'legendary' : 'common']">
+        <mat-list-item *ngFor="let troop of questTroops" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="troop.join.image">
+            <img mat-list-avatar [src]="troop.unit.image">
           </div>
-          <div mat-line>{{ troop.join.name | translate }}</div>
+          <div mat-line>{{ troop.unit.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">
-            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.join.families" [src]="family.image">
-            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.join.skills" [src]="skill.image">
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.join.categories" [src]="category.image">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image">
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image">
           </div>
-          <div mat-line class="mat-card-subtitle" *ngIf="troop.join.resistances && troop.join.resistances.length">
-            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.join.resistances" [src]="category.image">
+          <div mat-line class="mat-card-subtitle" *ngIf="troop.unit.resistances && troop.unit.resistances.length">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image">
           </div>
         </mat-list-item>
       </mat-list>
@@ -141,12 +157,12 @@
     <ng-template [ngIf]="questArtifacts.length">
       <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let artifact of questArtifacts" [ngClass]="[artifact.join.faction, (artifact.join | legendary) ? 'legendary' : 'common']" (click)="openConfirmDialog(artifact, ConfirmType.battle)">
+        <button mat-list-item *ngFor="let artifact of questArtifacts" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']" (click)="openConfirmDialog(artifact, ConfirmType.battle)">
           <div mat-list-avatar [matBadge]="artifact.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="artifact.join.image">
+            <img mat-list-avatar [src]="artifact.item.image">
           </div>
-          <div mat-line>{{ artifact.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.join.description | translate | icon:artifact.join"></div>
+          <div mat-line>{{ artifact.item.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item"></div>
           <div mat-list-avatar [matBadge]="artifact.turns | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>

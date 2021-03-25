@@ -53,8 +53,8 @@ export class AuthState implements NgxsOnInit {
   @Selector()
   public static getKingdomTurn(state: AuthStateModel): any {
     if (state) {
-      let kingdomTurn = JSON.parse(JSON.stringify(state.supplies.find(supply => supply.id === 'turn')));
-      kingdomTurn.quantity = calculateTurns(kingdomTurn.timestamp.seconds * 1000, Date.now(), kingdomTurn.join.max, kingdomTurn.join.ratio);
+      const kingdomTurn = JSON.parse(JSON.stringify(state.supplies.find(supply => supply.id === 'turn')));
+      kingdomTurn.quantity = calculateTurns(kingdomTurn.timestamp.seconds * 1000, Date.now(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
       return kingdomTurn;
     }
     return null;
@@ -209,6 +209,16 @@ export class AuthState implements NgxsOnInit {
 
   @Action(SetKingdomSuppliesAction)
   setKingdomSupplies(ctx: StateContext<AuthStateModel>, payload: SetKingdomSuppliesAction) {
+    return this.angularFirestore.collection<any>(`kingdoms/${payload.uid}/supplies`).valueChanges({ idField: 'fid' }).pipe(
+      tap(supplies => {
+        const state = ctx.getState();
+        ctx.setState({
+          ...state,
+          supplies: supplies.sort((a, b) => a.resource.sort - b.resource.sort),
+        });
+      }),
+    );
+    /*
     return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/supplies`, 'resources', 'id', 'id').pipe(
       map(supplies => {
         const state = ctx.getState();
@@ -218,10 +228,21 @@ export class AuthState implements NgxsOnInit {
         });
       }),
     );
+    */
   }
 
   @Action(SetKingdomBuildingsAction)
   setKingdomBuildings(ctx: StateContext<AuthStateModel>, payload: SetKingdomBuildingsAction) {
+    return this.angularFirestore.collection<any>(`kingdoms/${payload.uid}/buildings`).valueChanges({ idField: 'fid' }).pipe(
+      tap(buildings => {
+        const state = ctx.getState();
+        ctx.setState({
+          ...state,
+          buildings: buildings,
+        });
+      }),
+    );
+    /*
     return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/buildings`, 'structures', 'id', 'id').pipe(
       map(buildings => {
         const state = ctx.getState();
@@ -231,6 +252,7 @@ export class AuthState implements NgxsOnInit {
         });
       }),
     );
+    */
   }
 
 }

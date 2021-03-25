@@ -3,9 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ApiService } from 'src/app/services/api.service';
-import { Store, Select } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
-import { calculateTurns } from 'src/app/pipes/turn.pipe';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -17,11 +16,11 @@ import { LoadingService } from 'src/app/services/loading.service';
       <mat-list dense>
         <mat-list-item>
           <div mat-list-avatar [matBadge]="building.quantity" matBadgePosition="above before">
-            <img mat-list-avatar [src]="building.join.image">
+            <img mat-list-avatar [src]="building.structure.image">
           </div>
-          <div mat-line>{{ building.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="building.join.description | translate | icon:building.join"></div>
-          <div mat-list-avatar [matBadge]="Math.ceil((kingdomWorkshop.quantity + 1) / building.join.turnRatio) + ('resource.turn.ratio' | translate)" matBadgePosition="above after">
+          <div mat-line>{{ building.structure.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="building.structure.description | translate | icon:building.structure"></div>
+          <div mat-list-avatar [matBadge]="Math.ceil((kingdomWorkshop.quantity + 1) / building.structure.turnRatio) + ('resource.turn.ratio' | translate)" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>
@@ -99,11 +98,11 @@ export class BuildComponent implements OnInit {
   }
 
   turn() {
-    return Math.ceil(this.form.value.quantity / Math.ceil((this.kingdomWorkshop.quantity + 1) / this.building.join.turnRatio));
+    return Math.ceil(this.form.value.quantity / Math.ceil((this.kingdomWorkshop.quantity + 1) / this.building.structure.turnRatio));
   }
 
   gold() {
-    return this.form.value.quantity * this.building.join.goldCost;
+    return this.form.value.quantity * this.building.structure.goldCost;
   }
 
   land() {

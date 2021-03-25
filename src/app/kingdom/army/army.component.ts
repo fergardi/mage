@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { NotificationService } from 'src/app/services/notification.service';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
-import { CacheService } from 'src/app/services/cache.service';
 import { RecruitComponent } from './recruit.component';
 import { DisbandComponent } from './disband.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 export enum TroopAssignmentType {
   'troopNone', 'troopAttack', 'troopDefense',
@@ -36,9 +35,8 @@ export class ArmyComponent implements OnInit {
   recruitUnits: any[] = [];
 
   constructor(
-    private firebaseService: FirebaseService,
+    private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
-    private cacheService: CacheService,
     private store: Store,
     private dialog: MatDialog,
     private apiService: ApiService,
@@ -46,13 +44,14 @@ export class ArmyComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.firebaseService.leftJoin(`kingdoms/${this.uid}/troops`, 'units', 'id', 'id').pipe(untilDestroyed(this)).subscribe(troops => {
+    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
       this.kingdomTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopNone || !troop.assignment).sort((a, b) => a.sort - b.sort);
       this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopAttack).sort((a, b) => a.sort - b.sort);
       this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopDefense).sort((a, b) => a.sort - b.sort);
     });
-    const recruitUnits = await this.cacheService.getUnits();
-    this.recruitUnits = recruitUnits.filter((unit: any) => unit.gold > 0);
+    this.angularFirestore.collection<any>(`units`, ref => ref.where('gold', '>', 0)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(units => {
+      this.recruitUnits = units;
+    });
   }
 
   async assignTroop($event: CdkDragDrop<any>) {

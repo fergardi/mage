@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { MatDialog } from '@angular/material/dialog';
 import { OfferComponent } from './offer.component';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -23,7 +22,6 @@ export class TempleComponent implements OnInit {
   kingdomEnchantments: any[] = [];
 
   constructor(
-    private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private store: Store,
@@ -33,7 +31,7 @@ export class TempleComponent implements OnInit {
     this.angularFirestore.collection<any>('gods').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(gods => {
       this.kingdomGods = gods;
     });
-    this.firebaseService.leftJoin(`kingdoms/${this.uid}/enchantments`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(enchantments => {
+    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/enchantments`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(enchantments => {
       this.kingdomEnchantments = enchantments.sort((a, b) => a.turns - b.turns);
     });
   }

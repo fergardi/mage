@@ -11,6 +11,7 @@
   </mat-menu>
 
   <mat-menu #kingdomMenu="matMenu">
+    <button mat-menu-item (click)="addMe()" class="map-admin-button">Yo</button>
     <button mat-menu-item *ngFor="let faction of factions" (click)="addKingdom(faction.id)" class="map-admin-button"><img [src]="faction.marker">{{ faction.name | translate }}</button>
   </mat-menu>
 

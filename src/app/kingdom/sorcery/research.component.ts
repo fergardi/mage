@@ -14,16 +14,16 @@ import { LoadingService } from 'src/app/services/loading.service';
     <div mat-dialog-content>
       <p>{{ 'kingdom.research.description' | translate }}</p>
       <mat-list dense>
-        <mat-list-item [ngClass]="[charm.join.faction, (charm.join | legendary) ? 'legendary' : 'common']">
-          <div mat-list-avatar [matBadge]="charm.join.level" matBadgePosition="above before">
-            <img mat-list-avatar [src]="charm.join.image">
+        <mat-list-item [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']">
+          <div mat-list-avatar [matBadge]="charm.spell.level" matBadgePosition="above before">
+            <img mat-list-avatar [src]="charm.spell.image">
           </div>
-          <div mat-line>{{ charm.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="charm.join.description | translate | icon:charm.join"></div>
-          <div mat-line *ngIf="charm.turnResearch < charm.join.turnResearch">
-            <mat-progress-bar [value]="charm.turnResearch * 100 / charm.join.turnResearch"></mat-progress-bar>
+          <div mat-line>{{ charm.spell.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="charm.spell.description | translate | icon:charm.spell"></div>
+          <div mat-line *ngIf="charm.turns < charm.spell.turnResearch">
+            <mat-progress-bar [value]="charm.turns * 100 / charm.spell.turnResearch"></mat-progress-bar>
           </div>
-          <div mat-list-avatar [matBadge]="((charm.turnResearch) | long) + ' / ' + (charm.join.turnResearch | long)" matBadgePosition="above after">
+          <div mat-list-avatar [matBadge]="((charm.turns) | long) + ' / ' + (charm.spell.turnResearch | long)" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>

@@ -72,16 +72,16 @@
       <!-- supply list -->
       <mat-nav-list dense class="supply-list" role="navigation" *ngIf="(angularFireAuth.authState | async)" tourAnchor="tour.supplies">
         <ng-container *ngFor="let supply of kingdomSupplies$ | async; let i = index">
-          <a mat-list-item [routerLink]="supply.join.route">
+          <a mat-list-item [routerLink]="supply.resource.route">
             <div
               mat-list-avatar
               (click)="close()"
-              [title]="supply.join.name | translate"
-              [matBadge]="supply.timestamp ? (supply.timestamp | turn:supply.join.max:supply.join.ratio | async) : supply.max ? (supply.quantity | short) + ' / ' + (supply.max | short) : supply.quantity | short"
+              [title]="supply.resource.name | translate"
+              [matBadge]="supply.timestamp ? (supply.timestamp | turn:supply.resource.max:supply.resource.ratio | async) : supply.max ? (supply.quantity | short) + ' / ' + (supply.max | short) : supply.quantity | short"
               [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
               [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
               matBadgeOverlap="true">
-              <img mat-list-avatar [src]="supply.join.image">
+              <img mat-list-avatar [src]="supply.resource.image">
             </div>
           </a>
         </ng-container>

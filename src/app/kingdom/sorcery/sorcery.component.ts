@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -34,7 +33,6 @@ export class SorceryComponent implements OnInit {
   maximumCharms: number = 1;
 
   constructor(
-    private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
     private dialog: MatDialog,
@@ -42,25 +40,13 @@ export class SorceryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.firebaseService.leftJoin(`kingdoms/${this.uid}/artifacts`, 'items', 'id', 'id').pipe(untilDestroyed(this)).subscribe(artifacts => {
-      this.kingdomArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.none || !artifact.assignment).sort((a, b) => {
-        return a.join.battle === b.join.battle
-          ? 0
-          : a.join.battle
-            ? -1
-            : 1;
-      });
+    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
+      this.kingdomArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.none || !artifact.assignment).sort((a, b) => a.item.battle === b.item.battle ? 0 : a.item.battle ? -1 : 1);
       this.attackArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.attack);
       this.defenseArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.defense);
     });
-    this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id').pipe(untilDestroyed(this)).subscribe(charms => {
-      this.kingdomCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.none || !charm.assignment).sort((a, b) => {
-        return (a.turns >= a.join.research) === (b.turns >= b.join.research)
-          ? 0
-          : (a.turns >= a.join.research)
-            ? -1
-            : 1;
-      });
+    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/charms`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(charms => {
+      this.kingdomCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.none || !charm.assignment).sort((a, b) => (a.turns >= a.spell.research) === (b.turns >= b.spell.research) ? 0 : (a.turns >= a.spell.research) ? -1 : 1);
       this.attackCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.attack);
       this.defenseCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.defense);
     });

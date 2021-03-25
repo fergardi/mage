@@ -515,7 +515,8 @@
       "help": "Puedes unirte a un clan ya existente o fundar tu propio clan para que otros magos y brujas se unan. Un clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio...",
       "join": "Unirse",
       "leave": "Marcharse",
-      "found": "Fundar"
+      "found": "Fundar",
+      "none": "Ninguno"
     },
     "temple": {
       "name": "Templo",
@@ -537,7 +538,7 @@
       "cancel": "Cancelar",
       "offer": "Ofrecer",
       "hint": "Debes ofrecer como mínimo {{ increment }} a tu dios",
-      "invalid": "No válido",
+      "invalid": "No dispones de suficientes recursos",
       "error": "Ha ocurrido un problema",
       "sacrifice": "Sacrificio"
     },
@@ -1606,7 +1607,7 @@
     },
     "commander": {
       "name": "Comandante General",
-      "description": "Aumenta el daño de <human> +2% por nivel"
+      "description": "Aumenta la defensa de <human> +2% por nivel"
     },
     "trader": {
       "name": "Gran Comerciante",
@@ -1614,7 +1615,7 @@
     },
     "beast-master": {
       "name": "Señor de las Bestias",
-      "description": "Aumenta el daño de <animal> y <reptile> +2% por nivel"
+      "description": "Aumenta la salud de <animal> y <reptile> +2% por nivel"
     },
     "shaman": {
       "name": "Chamán Místico",
@@ -1642,11 +1643,7 @@
     },
     "crypt-keeper": {
       "name": "Guardián de la Cripta",
-      "description": "Resucita +1% de tus tropas muertas en batalla"
-    },
-    "pyromancer": {
-      "name": "Piromante Abrasado",
-      "description": "Inflige a cada tropa daño de <fire> por nivel"
+      "description": "Resucita +1% por nivel de tus tropas muertas"
     },
     "orc-king": {
       "name": "Rey de los Orcos",
@@ -1654,27 +1651,31 @@
     },
     "leprechaunt": {
       "name": "Leprechaunt Avaricioso",
-      "description": "Aumenta la suerte +1% por nivel"
-    },
-    "colossus": {
-      "name": "Coloso Imponente",
-      "description": "Inflige a cada tropa daño de <holy> por nivel"
+      "description": "Aumenta la probabilidad de encontrar artefactos +1% por nivel"
     },
     "golem-golem": {
       "name": "Gólem de Gólems",
-      "description": "Aumenta el ataque y defensa de <golem> y <giant> +2%/+2% por nivel"
+      "description": "Aumenta el ataque, defensa y vida de <golem> y <giant> +2% por nivel"
     },
     "illusionist": {
       "name": "Ilusionista Congelado",
-      "description": "Inflige a cada tropa daño de <cold> por nivel"
+      "description": "Inflige a cada tropa enemiga 1.000 daño de <cold> por nivel"
     },
     "soul-reaper": {
       "name": "Segador de Almas",
-      "description": "Inflige a cada tropa daño de <lightning> por nivel"
+      "description": "Inflige a cada tropa enemiga 1.000 daño de <lightning> por nivel"
     },
     "swamp-thing": {
       "name": "Monstruo del Pantano",
-      "description": "Inflige a cada tropa daño de <poison> por nivel"
+      "description": "Inflige a cada tropa enemiga 1.000 daño de <poison> por nivel"
+    },
+    "pyromancer": {
+      "name": "Piromante Abrasado",
+      "description": "Inflige a cada tropa enemiga 1.000 daño de <fire> por nivel"
+    },
+    "colossus": {
+      "name": "Coloso Imponente",
+      "description": "Inflige a cada tropa enemiga 1.000 daño de <holy> por nivel"
     }
   },
   "item": {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { StoreType, LocationType } from 'src/app/shared/type/common.type';
+import { StoreType, LocationType, FactionType } from 'src/app/shared/type/common.type';
 
 @Injectable({
   providedIn: 'root',
@@ -95,8 +95,18 @@ export class ApiService {
     }).toPromise();
   }
 
+  addKingdom(kingdomId: string, factionId: FactionType, latitude: number, longitude: number, name: string) {
+    return this.httpClient.post(environment.functions.url + '/world/kingdom', {
+      kingdomId: kingdomId,
+      factionId: factionId,
+      latitude: latitude,
+      longitude: longitude,
+      name: name,
+    }).toPromise();
+  }
+
   addShop(fid: string, storeType: StoreType, latitude: number, longitude: number, name: string) {
-    return this.httpClient.put(environment.functions.url + `/world/shop`, {
+    return this.httpClient.put(environment.functions.url + '/world/shop', {
       fid: fid,
       storeType: storeType,
       latitude: latitude,
@@ -106,7 +116,7 @@ export class ApiService {
   }
 
   addQuest(fid: string, locationType: LocationType, latitude: number, longitude: number, name: string) {
-    return this.httpClient.put(environment.functions.url + `/world/quest`, {
+    return this.httpClient.put(environment.functions.url + '/world/quest', {
       fid: fid,
       locationType: locationType,
       latitude: latitude,

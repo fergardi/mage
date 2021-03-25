@@ -11,7 +11,4 @@ export class MarkerComponent {
   data: any = null;
   MarkerType: typeof MarkerType = MarkerType;
 
-  constructor() {
-  }
-
 }
