@@ -13,7 +13,7 @@ import { ApiService } from 'src/app/services/api.service';
     <div mat-dialog-content>
       <p>{{ 'kingdom.recruit.help' | translate }}</p>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item [ngClass]="[unit.faction.id, unit.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="unit.image">
           </div>

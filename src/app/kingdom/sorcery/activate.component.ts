@@ -20,7 +20,7 @@ export enum ArtifactAssignmentType {
     <div mat-dialog-content>
       <p>{{ 'kingdom.activate.description' | translate }}</p>
       <mat-list dense *ngIf="!kingdomArtifacts">
-        <mat-list-item [ngClass]="{ 'legendary': selectedArtifact.item | legendary }" *ngIf="selectedArtifact">
+        <mat-list-item [ngClass]="[selectedArtifact.item.faction.id, selectedArtifact.item.legendary ? 'legendary' : 'common']" *ngIf="selectedArtifact">
           <div mat-list-avatar [matBadge]="selectedArtifact.quantity" matBadgePosition="above before">
             <img mat-list-avatar [src]="selectedArtifact.item.image">
           </div>
@@ -36,7 +36,7 @@ export enum ArtifactAssignmentType {
         <mat-select [(ngModel)]="selectedArtifact">
           <mat-select-trigger *ngIf="selectedArtifact">
             <mat-list dense>
-              <mat-list-item [ngClass]="{ 'legendary': selectedArtifact.item | legendary }">
+              <mat-list-item [ngClass]="[selectedArtifact.item.faction.id, selectedArtifact.item.legendary ? 'legendary' : 'common']">
                 <div mat-list-avatar [matBadge]="selectedArtifact.quantity" matBadgePosition="above before">
                   <img mat-list-avatar [src]="selectedArtifact.item.image">
                 </div>
@@ -50,7 +50,7 @@ export enum ArtifactAssignmentType {
           </mat-select-trigger>
           <mat-option *ngFor="let artifact of kingdomArtifacts" [value]="artifact">
             <mat-list dense>
-              <mat-list-item [ngClass]="{ 'legendary': artifact.item | legendary }">
+              <mat-list-item [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']">
                 <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
                   <img mat-list-avatar [src]="artifact.item.image">
                 </div>

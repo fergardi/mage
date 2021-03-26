@@ -16,6 +16,7 @@ import { ApiService } from './api.service';
 import * as _ from 'lodash';
 import { MarkerType, FactionType, StoreType, LocationType } from '../shared/type/common.type';
 import { NotificationService } from './notification.service';
+import { SetPopupAction } from '../shared/auth/auth.actions';
 
 interface Marker {
   id: string;
@@ -136,10 +137,14 @@ export class MapboxService {
       })
       .setDOMContent(this.componentService.injectComponent(PopupComponent, component => component.data = popupData))
       .on('open', ($event: any) => {
+        this.store.dispatch(new SetPopupAction(data.id));
         this.map.easeTo({
           center: $event.target.getLngLat(),
           offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],
         });
+      })
+      .on('close', ($event: any) => {
+        this.store.dispatch(new SetPopupAction(null));
       }));
     }
     // radius

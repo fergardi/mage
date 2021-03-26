@@ -43,7 +43,7 @@ export enum ReportType {
           </div>
         </mat-list-item>
       </mat-list>
-      <!--
+<!--
       <mat-list dense *ngIf="report.log">
         <mat-list-item *ngFor="let log of report.log" [ngClass]="['log-' + log.side, (log.join | legendary) ? 'legendary' : '']">
           <div mat-list-avatar [matBadge]="log.quantity | long" [matBadgePosition]="log.side === 'left' ? 'above before' : 'above after'">

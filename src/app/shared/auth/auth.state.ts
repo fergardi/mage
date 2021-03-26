@@ -1,5 +1,5 @@
 import { State, Action, Selector, StateContext, NgxsOnInit } from '@ngxs/store';
-import { SetUserAction, SetKingdomAction, SetKingdomSuppliesAction, SetKingdomBuildingsAction, LoginWithGoogleAction, LogoutAction } from './auth.actions';
+import { SetUserAction, SetKingdomAction, SetKingdomSuppliesAction, SetKingdomBuildingsAction, LoginWithGoogleAction, LogoutAction, SetPopupAction } from './auth.actions';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
@@ -19,6 +19,7 @@ export interface AuthStateModel {
   buildings: any[];
   logged: boolean;
   clock: Date | null;
+  popup: string | null;
 }
 
 @State<AuthStateModel>({
@@ -30,6 +31,7 @@ export interface AuthStateModel {
     buildings: [],
     logged: false,
     clock: null,
+    popup: null,
   },
 })
 @Injectable()
@@ -133,6 +135,11 @@ export class AuthState implements NgxsOnInit {
   @Selector()
   public static getClock(state: AuthStateModel): Date {
     return state && state.clock;
+  }
+
+  @Selector()
+  public static getWorldPopup(state: AuthStateModel): string | null {
+    return state && state.popup;
   }
 
   constructor(
@@ -253,6 +260,15 @@ export class AuthState implements NgxsOnInit {
       }),
     );
     */
+  }
+
+  @Action(SetPopupAction)
+  popup(ctx: StateContext<AuthStateModel>, payload: SetPopupAction) {
+    const state = ctx.getState();
+    ctx.setState({
+      ...state,
+      popup: payload.uid,
+    });
   }
 
 }

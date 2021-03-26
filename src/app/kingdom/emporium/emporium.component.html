@@ -13,7 +13,7 @@
         <span>{{ 'kingdom.emporium.help' | translate }}</span>
         <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
         <mat-action-list dense tourAnchor="tour.emporium">
-          <button mat-list-item *ngFor="let item of emporiumItems" (click)="openBuyDialog(item)" [ngClass]="(item | legendary) ? 'legendary' : 'common'">
+          <button mat-list-item *ngFor="let item of emporiumItems" (click)="openBuyDialog(item)" [ngClass]="item.legendary ? 'legendary' : 'common'">
             <div mat-list-avatar matBadge="∞" matBadgePosition="above before">
               <img mat-list-avatar [src]="item.image">
             </div>

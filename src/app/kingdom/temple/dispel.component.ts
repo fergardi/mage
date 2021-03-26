@@ -11,14 +11,14 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     <div mat-dialog-content>
       <p>{{ 'kingdom.dispel.help' | translate }}</p>
       <mat-list dense>
-        <mat-list-item (click)="dispel()" [ngClass]="[enchantment.join.faction, (enchantment.join | legendary) ? 'legendary' : 'common']">
+        <mat-list-item (click)="dispel()" [ngClass]="[enchantment.spell.faction.id, enchantment.spell.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="enchantment.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
-            <img mat-list-avatar [src]="enchantment.join.image">
+            <img mat-list-avatar [src]="enchantment.spell.image">
           </div>
-          <div mat-line>{{ enchantment.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.join.description | translate | icon:enchantment.join"></div>
+          <div mat-line>{{ enchantment.spell.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.spell.description | translate | icon:enchantment.spell"></div>
           <div mat-line>
-            <mat-progress-bar [color]="enchantment.from === uid ? 'accent' : 'warn'" [value]="enchantment.turns * 100 / enchantment.join.turnDuration"></mat-progress-bar>
+            <mat-progress-bar [color]="enchantment.from === uid ? 'accent' : 'warn'" [value]="enchantment.turns * 100 / enchantment.spell.turnDuration"></mat-progress-bar>
           </div>
           <div mat-list-avatar [matBadge]="enchantment.turns" matBadgePosition="above after" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
             <img mat-list-avatar src="/assets/images/resources/turn.png">

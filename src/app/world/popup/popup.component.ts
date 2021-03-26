@@ -5,6 +5,9 @@ import { PopupType } from 'src/app/shared/type/common.type';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AdventureComponent } from './adventure.component';
 import { DealComponent } from './deal.component';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-popup',
@@ -24,46 +27,66 @@ export class PopupComponent implements OnInit {
   questTroops: any[] = [];
   questArtifacts: any[] = [];
   PopupType: typeof PopupType = PopupType;
+  subscriptions: Subscription[] = [];
 
   constructor(
     private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
+    private store: Store,
   ) { }
 
   ngOnInit(): void {
-    // kingdom
-    if (this.data.type === PopupType.KINGDOM) {
-      this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
-        this.kingdomTroops = troops;
-      });
-    }
-    // shop
-    if (this.data.type === PopupType.SHOP) {
-      this.angularFirestore.collection<any>(`shops/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(contracts => {
-        this.shopContracts = contracts;
-      });
-      this.angularFirestore.collection<any>(`shops/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
-        this.shopTroops = troops;
-      });
-      this.angularFirestore.collection<any>(`shops/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
-        this.shopArtifacts = artifacts;
-      });
-      this.angularFirestore.collection<any>(`shops/${this.data.id}/charms`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(charms => {
-        this.shopCharms = charms;
-      });
-    }
-    // quest
-    if (this.data.type === PopupType.QUEST) {
-      this.angularFirestore.collection<any>(`quests/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
-        this.questTroops = troops;
-      });
-      this.angularFirestore.collection<any>(`quests/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(contracts => {
-        this.questContracts = contracts;
-      });
-      this.angularFirestore.collection<any>(`quests/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
-        this.questArtifacts = artifacts;
-      });
-    }
+    this.store.select(AuthState.getWorldPopup).pipe(untilDestroyed(this)).subscribe(popup => {
+      if (popup && popup === this.data.id) {
+        // kingdom
+        if (this.data.type === PopupType.KINGDOM) {
+          this.subscriptions.push(this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
+            this.kingdomTroops = troops;
+          }));
+        }
+        // shop
+        if (this.data.type === PopupType.SHOP) {
+          this.subscriptions.push(this.angularFirestore.collection<any>(`shops/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(contracts => {
+            this.shopContracts = contracts;
+          }));
+          this.subscriptions.push(this.angularFirestore.collection<any>(`shops/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
+            this.shopTroops = troops;
+          }));
+          this.subscriptions.push(this.angularFirestore.collection<any>(`shops/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
+            this.shopArtifacts = artifacts;
+          }));
+          this.subscriptions.push(this.angularFirestore.collection<any>(`shops/${this.data.id}/charms`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(charms => {
+            this.shopCharms = charms;
+          }));
+        }
+        // quest
+        if (this.data.type === PopupType.QUEST) {
+          this.subscriptions.push(this.angularFirestore.collection<any>(`quests/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
+            this.questTroops = troops;
+          }));
+          this.subscriptions.push(this.angularFirestore.collection<any>(`quests/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(contracts => {
+            this.questContracts = contracts;
+          }));
+          this.subscriptions.push(this.angularFirestore.collection<any>(`quests/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
+            this.questArtifacts = artifacts;
+          }));
+        }
+      } else {
+        this.kingdomTroops = [];
+        this.shopContracts = [];
+        this.shopTroops = [];
+        this.shopArtifacts = [];
+        this.shopCharms = [];
+        this.questTroops = [];
+        this.questContracts = [];
+        this.questArtifacts = [];
+        // this cannot be done with untilDestroyed because we need to unsuscribe on popup closed, not on component destruction
+        this.subscriptions.forEach((subscription: Subscription) => {
+          subscription.unsubscribe();
+        });
+        this.subscriptions = [];
+      }
+    });
   }
 
   openDealDialog(deal: any): void {

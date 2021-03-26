@@ -13,7 +13,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     <div mat-dialog-content>
       <p>{{ 'kingdom.buy.help' | translate }}</p>
       <mat-list dense>
-        <mat-list-item [ngClass]="{ 'legendary': item | legendary }">
+        <mat-list-item [ngClass]="[item.faction.id, item.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="1" matBadgePosition="above before">
             <img mat-list-avatar [src]="item.image">
           </div>

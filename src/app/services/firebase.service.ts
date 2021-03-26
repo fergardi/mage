@@ -289,7 +289,7 @@ export class FirebaseService {
         // this.addElementsToCollection('stores', this.joinedStores, true);
         this.joinedLocations = JSON.parse(JSON.stringify(this.locations));
         this.joinedLocations.forEach(quest => this.autoJoin(quest));
-        this.addElementsToCollection('locations', this.joinedLocations, true);
+        // this.addElementsToCollection('locations', this.joinedLocations, true);
         this.joinedKingdoms = JSON.parse(JSON.stringify(this.kingdoms));
         this.joinedKingdoms.forEach(kingdom => this.autoJoin(kingdom));
         // this.addElementsToCollection('kingdoms', this.joinedKingdoms, true);

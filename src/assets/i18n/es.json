@@ -74,7 +74,7 @@
     },
     "city": {
       "name": "Gestiona tu capital",
-      "description": "Construye y demole edificios como los nodos, academias, granjas, pueblos... Explora (o roba) más tierras libres para ampliar tu economía y poder permitirte más poder ofensivo (o defensivo)."
+      "description": "Construye y demole edificios como los nodos, academias, granjas, pueblos... Explora (o roba) más Tierras libres para ampliar tu economía y poder permitirte más poder ofensivo (o defensivo)."
     },
     "clan": {
       "name": "Forja alianzas",
@@ -259,7 +259,7 @@
     },
     "adventure": {
       "name": "Aventura",
-      "description": "Para obtener esta recompensa, primero deberás enfrentarte en una batalla contra el enemigo que lo protege, gastando Turnos. Lo harás usando tus héroes, tropas, artefactos y hechizos seleccionados para el ataque. ¿Estás seguro?",
+      "description": "Para obtener esta recompensa, primero deberás enfrentarte en una batalla contra el enemigo que lo protege, gastando Turnos. Lo harás usando tus héroes, tropas, artefactos y hechizos seleccionados para el ataque.",
       "cancel": "Cancelar",
       "start": "Comenzar",
       "success": "La aventura se ha completado",
@@ -267,7 +267,7 @@
     },
     "deal": {
       "name": "Trato",
-      "description": "Estás a punto de adquirir un bien a un comerciante a cambio de Oro. ¿Estás seguro?",
+      "description": "Estás a punto de adquirir un bien a un comerciante a cambio de Oro.",
       "cancel": "Cancelar",
       "trade": "Intercambiar",
       "success": "El intercambio se ha completado",
@@ -278,7 +278,7 @@
     "city": {
       "name": "Ciudad",
       "description": "Administra tu capital",
-      "help": "En la ciudad puedes invertir turnos, oro, y tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino. Ten en cuenta que cuantos más talleres tengas, menos turnos necesitarás.",
+      "help": "En la ciudad puedes invertir Turnos, Oro, y Tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino. Ten en cuenta que cuantos más talleres tengas, menos Turnos necesitarás.",
       "success": "Edificios construidos correctamente",
       "error": "Ha ocurrido un error al construir edificios"
     },
@@ -329,7 +329,7 @@
     },
     "disband": {
       "name": "Desbande",
-      "description": "Puedes desbandar tropas que no quieras seguir manteniendo bajo tu mando, siempre y cuando no estén asignadas al ataque o a la defensa, y que no consuman población por su mantenimiento.",
+      "description": "Puedes desbandar tropas que no quieras seguir manteniendo bajo tu mando, siempre y cuando no estén asignadas al ataque o a la defensa, y que no consuman Población por su mantenimiento.",
       "quantity": "Cantidad",
       "cancel": "Cancelar",
       "disband": "Desbandar",
@@ -362,7 +362,7 @@
       "description": "Recluta tropas básicas",
       "help": "Aqui puedes gastar Oro para adquirir tropas básicas para tus ejércitos. Reclutar no consume Turnos, por lo que es una buena forma de reorganizarse militarmente tras una derrota.",
       "hint": "Debes tener suficiente Oro",
-      "invalid": "No válido",
+      "invalid": "No tienes suficiente Oro",
       "error": "Ha ocurrido un problema",
       "recruit": "Reclutar",
       "cancel": "Cancelar",
@@ -372,9 +372,9 @@
     "dispel": {
       "name": "Desvanecimiento",
       "description": "Romper encantamientos",
-      "help": "Aqui puedes gastar maná para tratar de romper un encantamiento de tu reino. Si el encantamiento es de un enemigo, el éxito dependerá de su protección mágica.",
-      "hint": "Debes tener suficiente maná",
-      "error": "No tienes maná suficiente",
+      "help": "Aqui puedes gastar Maná para tratar de romper un encantamiento de tu reino. Si el encantamiento es de un enemigo, el éxito dependerá de su protección mágica.",
+      "hint": "Debes tener suficiente Maná",
+      "error": "No tienes suficiente Maná",
       "dispel": "Desvanecer",
       "cancel": "Cancelar"
     },
@@ -383,7 +383,7 @@
       "description": "Favorece a un colectivo",
       "help": "Puedes otorgar el favor de tu reinado a un gremio en concreto. Como agradecimiento, dicho gremio te otorgará un bonus adicional en los ataques a otros reinos (Batallas, Pillajes o Asedios). Sólo puedes cambiar de gremio una vez cada cierto tiempo.",
       "hint": "Debes esperar 7 días antes de cambiar de gremio",
-      "error": "No ha pasado tiempo suficiente",
+      "error": "No han pasado suficientes Turnos",
       "select": "Escoge un gremio",
       "favor": "Favorecer",
       "cancel": "Cancelar"
@@ -391,14 +391,14 @@
     "auction": {
       "name": "Subasta",
       "description": "Comercia con otros reinos",
-      "help": "Aquí puedes pujar oro contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar.",
+      "help": "Aquí puedes pujar Oro contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar.",
       "bid": "Pujar",
       "from": "Casa de Subastas"
     },
     "bid": {
       "name": "Puja",
       "description": "Comercia con otros reinos",
-      "help": "Debes pujar como mínimo un 10% más de oro que la puja anterior, y si alguien te sobrepuja, se te devolverá solo el 90% de tu puja original, así que puja con inteligencia.",
+      "help": "Debes pujar como mínimo un 10% más de Oro que la puja anterior, y si alguien te sobrepuja, se te devolverá solo el 90% de tu puja original, así que puja con inteligencia.",
       "cancel": "Cancelar",
       "bid": "Pujar",
       "hint": "Ofrece como mínimo un 10% más Oro que la puja anterior",
@@ -408,15 +408,15 @@
     "sorcery": {
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
-      "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás subir de nivel a tus hechizos, invirtiendo turnos en su investigación.",
+      "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás subir de nivel a tus hechizos, invirtiendo Turnos en su investigación.",
       "maximum": "???",
       "success": "Tus hechizos y artefactos han sido asignados",
       "max": "Máximo"
     },
     "research": {
       "name": "Investigación",
-      "description": "Aqui puedes gastar turnos para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos turnos necesitarás.",
-      "hint": "Invierte turnos en investigar",
+      "description": "Aqui puedes gastar Turnos para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos Turnos necesitarás.",
+      "hint": "Invierte Turnos en investigar",
       "error": "Ha ocurrido un problema",
       "research": "Investigar",
       "cancel": "Cancelar",
@@ -424,8 +424,8 @@
     },
     "conjure": {
       "name": "Conjuración",
-      "description": "Aqui puedes gastar turnos y maná para conjurar tus hechizos investigados. Conjurar hechizos sobre otros reinos no siempre funciona debido a la protección mágica.",
-      "hint": "Debes tener suficientes turnos y maná",
+      "description": "Aqui puedes gastar Turnos y Maná para conjurar tus hechizos investigados. Conjurar hechizos sobre otros reinos no siempre funciona debido a la protección mágica.",
+      "hint": "Debes tener suficientes Turnos y Maná",
       "error": "Ha ocurrido un problema",
       "conjure": "Conjurar",
       "cancel": "Cancelar",
@@ -434,7 +434,7 @@
     },
     "activate": {
       "name": "Activación",
-      "description": "Activa artefactos sobre tu reino o sobre otros reinos. Cada activación consume el artefacto y turnos. Activar artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
+      "description": "Activa artefactos sobre tu reino o sobre otros reinos. Cada activación consume el artefacto y Turnos. Activar artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Selecciona el objetivo",
       "error": "Ha ocurrido un problema",
       "activate": "Activar",
@@ -445,19 +445,19 @@
     "arcanism": {
       "name": "Arcanismo",
       "description": "Organiza tus artimañas ofensivas",
-      "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible.",
+      "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente Maná disponible.",
       "max": "Máximo"
     },
     "protection": {
       "name": "Protección",
       "description": "Organiza tus artimañas defensivas",
-      "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente maná disponible.",
+      "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente Maná disponible.",
       "max": "Máximo"
     },
     "charge": {
       "name": "Meditación",
       "description": "Recarga tus reservas mágicas",
-      "help": "Aquí podrás invertir turnos en reponer los depósitos de maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
+      "help": "Aquí podrás invertir Turnos en reponer los depósitos de Maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Cuantos más nodos tengas, más Maná recargarás",
       "invalid": "No válido",
@@ -468,7 +468,7 @@
     "tax": {
       "name": "Tributo",
       "description": "Engrosa tus arcas",
-      "help": "Aquí podrás invertir turnos en cobrar impuestos a los súbditos de tu reino. El oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
+      "help": "Aquí podrás invertir Turnos en cobrar impuestos a los súbditos de tu reino. El Oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Cuantos más pueblos tengas, más Oro recaudarás",
       "invalid": "No válido",
@@ -479,7 +479,7 @@
     "explore": {
       "name": "Exploración",
       "description": "Anexiona nuevos territorios a tu reino",
-      "help": "Aquí podrás invertir turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas tierras libres. Las tierras libres sirven como espacio para construir nuevos edificios en tu reino.",
+      "help": "Aquí podrás invertir Turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas Tierras libres. Las Tierras libres sirven como espacio para construir nuevos edificios en tu reino.",
       "cancel": "Cancelar",
       "hint": "Cuantas más Tierras tengas, menos encontrarás",
       "error": "Ha ocurrido un problema",
@@ -532,13 +532,13 @@
       "help": "Puedes ofrecer recursos a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
       "hero": "Te han otorgado el héroe '{{ hero }}' de nivel {{ level }}",
       "unit": "Te han otorgado una tropa de {{ quantity }} '{{ unit }}'",
-      "enchantment": "Te han otorgado el encantamiento '{{ enchantment }}' durante {{ turns }} turnos",
+      "enchantment": "Te han otorgado el encantamiento '{{ enchantment }}' durante {{ turns }} Turnos",
       "item": "Te han otorgado el artefacto '{{ item }}'",
-      "gold": "Te han otorgado {{ gold }} oro",
-      "mana": "Te han otorgado {{ mana }} maná",
-      "population": "Te han otorgado {{ population }} población",
-      "land": "Te han otorgado {{ land }} tierras",
-      "turn": "Te han otorgado {{ turn }} turnos"
+      "gold": "Te han otorgado {{ gold }} Oro",
+      "mana": "Te han otorgado {{ mana }} Maná",
+      "population": "Te han otorgado {{ population }} Población",
+      "land": "Te han otorgado {{ land }} Tierras",
+      "turn": "Te han otorgado {{ turn }} Turnos"
     },
     "offer": {
       "name": "Ofrenda",
@@ -559,13 +559,13 @@
     },
     "buy": {
       "name": "Compra",
-      "help": "Vas a adquirir un Artefacto a cambio de varias gemas.",
+      "help": "Vas a adquirir un Artefacto a cambio de varias Gemas.",
       "cancel": "Cancelar",
       "buy": "Comprar"
     },
     "build": {
       "name": "Construcción",
-      "description": "Invierte tierras libres, oro y turnos para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como las batallas o los asedios. Cuantos más talleres tengas, menos turnos gastarás al construir. Otros factores que pueden influir en esto son ciertos encantamientos y héroes aliados.",
+      "description": "Invierte Tierras libres, Oro y Turnos para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como las batallas o los asedios. Cuantos más talleres tengas, menos Turnos gastarás al construir. Otros factores que pueden influir en esto son ciertos encantamientos y héroes aliados.",
       "cancel": "Cancelar",
       "build": "Construir",
       "hint": "Cuantos más Talleres tengas, menos Turnos necesitarás",
@@ -679,7 +679,7 @@
   "resource": {
     "population": {
       "name": "Población",
-      "description": "Cuantas más personas más oro produces"
+      "description": "Cuantas más personas más Oro produces"
     },
     "gold": {
       "name": "Oro",
@@ -881,7 +881,7 @@
       "name": "Yetis",
       "description": ""
     },
-    "carnivorous-plant": {
+    "carnivOrous-plant": {
       "name": "Plantas Carnívoras",
       "description": ""
     },
@@ -1327,9 +1327,9 @@
       "name": "Llamar Caracoles Monstruosos",
       "description": "Convoca una tropa de <giant-snail>"
     },
-    "call-carnivorous-plant": {
+    "call-carnivOrous-plant": {
       "name": "Llamar Plantas Carnívoras",
-      "description": "Convoca una tropa de <carnivorous-plant>"
+      "description": "Convoca una tropa de <carnivOrous-plant>"
     },
     "call-centaur": {
       "name": "Llamar Centauros",
@@ -1688,7 +1688,7 @@
   },
   "item": {
     "treasure-chest": {
-      "name": "Cofre del Tesoro",
+      "name": "Cofre del TesOro",
       "description": "Otorga gran cantidad de <gold>"
     },
     "necronomicon": {
@@ -1768,7 +1768,7 @@
       "description": "Convoca una tropa de <orkish>"
     },
     "crown-thorns": {
-      "name": "Corona de Espinas",
+      "name": "COrona de Espinas",
       "description": "Aplica <weakness> a cada tropa enemiga"
     },
     "voodoo-doll": {
@@ -1832,7 +1832,7 @@
       "description": "Convoca una tropa de <reptile>"
     },
     "treasure-map": {
-      "name": "Mapa del Tesoro",
+      "name": "Mapa del TesOro",
       "description": "Encuentra un artefacto aleatorio"
     },
     "valhalla-horn": {

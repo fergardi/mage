@@ -27,3 +27,8 @@ export class LogoutAction {
   public static readonly type = '[User] Logout user';
   constructor() {}
 }
+
+export class SetPopupAction {
+  public static readonly type = '[World] Set Popup status';
+  constructor(public uid: string | null) {}
+}

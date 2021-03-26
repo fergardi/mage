@@ -13,7 +13,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     <div mat-dialog-content>
       <p>{{ 'kingdom.discharge.description' | translate }}</p>
       <mat-list dense>
-        <mat-list-item [ngClass]="[contract.hero.faction, (contract.hero | legendary) ? 'legendary' : 'common']">
+        <mat-list-item [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.hero.image">
           </div>

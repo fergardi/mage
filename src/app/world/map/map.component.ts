@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MapboxService } from 'src/app/services/mapbox.service';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Store, Select } from '@ngxs/store';
@@ -13,8 +12,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CacheService } from 'src/app/services/cache.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MarkerType, LocationType, StoreType, FactionType } from 'src/app/shared/type/common.type';
-import { ApiService } from 'src/app/services/api.service';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-map',
@@ -34,13 +31,11 @@ export class MapComponent implements OnInit, OnDestroy {
 
   constructor(
     public mapboxService: MapboxService,
-    private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private store: Store,
     private activatedRoute: ActivatedRoute,
     private cacheService: CacheService,
     private notificationService: NotificationService,
-    private apiService: ApiService,
   ) { }
 
   async ngOnInit() {

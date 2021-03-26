@@ -14,7 +14,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     <div mat-dialog-content>
       <p>{{ 'kingdom.disband.description' | translate }}</p>
       <mat-list dense>
-        <mat-list-item [ngClass]="[troop.unit.faction, (troop.unit | legendary) ? 'legendary' : 'common']">
+        <mat-list-item [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.unit.image">
           </div>
