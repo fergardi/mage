@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SorceryComponent } from './sorcery.component';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { FirebaseServiceStub, AngularFirestoreStub, NotificationServiceStub, MatDialogStub, StoreStub, DragDropEventFactory } from 'src/stubs';
+import { AngularFirestoreStub, NotificationServiceStub, MatDialogStub, StoreStub, DragDropEventFactory } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -15,6 +14,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResearchComponent } from './research.component';
 import { ConjureComponent } from './conjure.component';
 import { ActivateComponent } from './activate.component';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
+import { ShortPipe } from 'src/app/pipes/short.pipe';
+import { LongPipe } from 'src/app/pipes/long.pipe';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatBadgeModule } from '@angular/material/badge';
 
 describe('SorceryComponent', () => {
   let component: SorceryComponent;
@@ -29,12 +33,16 @@ describe('SorceryComponent', () => {
         MatIconModule,
         DragDropModule,
         BrowserAnimationsModule,
+        MatProgressBarModule,
+        MatBadgeModule,
       ],
       declarations: [
         SorceryComponent,
+        IconPipe,
+        ShortPipe,
+        LongPipe,
       ],
       providers: [
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MatDialog, useValue: MatDialogStub },

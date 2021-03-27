@@ -9,7 +9,6 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
-import { LoadingService } from 'src/app/services/loading.service';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -36,7 +35,6 @@ export class PopupComponent implements OnInit {
     private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private store: Store,
-    private loadingService: LoadingService,
     private apiService: ApiService,
   ) { }
 
@@ -97,7 +95,6 @@ export class PopupComponent implements OnInit {
 
   async checkRefresh() {
     if (this.data.type !== PopupType.KINGDOM && this.data.visited && moment().isAfter(moment(this.data.visited.toMillis()))) {
-      // this.loadingService.startLoading();
       try {
         await this.data.type === PopupType.SHOP
           ? this.apiService.addShop(this.data.id, this.data.store.id)
@@ -105,7 +102,6 @@ export class PopupComponent implements OnInit {
       } catch (error) {
         console.error(error);
       }
-      // this.loadingService.stopLoading();
     }
   }
 

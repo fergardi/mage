@@ -25,7 +25,9 @@ describe('RecruitComponent', () => {
     description: 'test',
     id: 'skeleton',
     image: '/assets/images/units/black/skeleton.png',
-    faction: 'black',
+    faction: {
+      id: 'black',
+    },
     legendary: false,
     gold: 1,
   };

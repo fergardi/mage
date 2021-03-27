@@ -1,12 +1,11 @@
 import { TestBed, waitForAsync, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { FirebaseService } from './services/firebase.service';
 import { TourService } from 'ngx-tour-core';
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FirebaseServiceStub } from 'src/stubs';
 import { TranslateModule } from '@ngx-translate/core';
+import { routes } from './app-routing.module';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -15,7 +14,7 @@ describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+        RouterTestingModule.withRoutes(routes),
         TourMatMenuModule.forRoot(),
         TranslateModule.forRoot(),
       ],
@@ -24,7 +23,6 @@ describe('AppComponent', () => {
       ],
       providers: [
         TourService,
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,

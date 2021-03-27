@@ -18,7 +18,9 @@ describe('TomeComponent', () => {
     name: 'god.death.name',
     description: 'god.death.description',
     image: '/assets/images/gods/death.png',
-    faction: 'black',
+    faction: {
+      id: 'black',
+    },
     legendary: true,
   };
 

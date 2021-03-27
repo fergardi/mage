@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DischargeComponent } from './discharge.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogRefStub } from 'src/stubs';
+import { DialogRefStub, NotificationServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
 import { TranslateModule } from '@ngx-translate/core';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
@@ -9,15 +9,20 @@ import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { NotificationService } from 'src/app/services/notification.service';
+import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngxs/store';
 
 describe('DischargeComponent', () => {
   let component: DischargeComponent;
   let fixture: ComponentFixture<DischargeComponent>;
   const contract: any = {
-    join: {
+    hero: {
       name: 'test',
       description: 'test',
-      faction: 'red',
+      faction: {
+        id: 'red',
+      },
       image: 'assets/images/heroes/red/dragon-rider.png',
     },
   };
@@ -37,6 +42,9 @@ describe('DischargeComponent', () => {
         IconPipe,
       ],
       providers: [
+        { provide: NotificationService, useValue: NotificationServiceStub },
+        { provide: Store, useValue: StoreStub },
+        { provide: ApiService, useValue: ApiServiceStub },
         { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: MAT_DIALOG_DATA, useValue: contract },
       ],

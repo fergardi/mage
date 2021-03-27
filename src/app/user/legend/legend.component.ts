@@ -4,7 +4,6 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AngularFirestore } from '@angular/fire/firestore';
 // import * as moment from 'moment';
@@ -41,7 +40,6 @@ export class LegendComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
   ) { }
 

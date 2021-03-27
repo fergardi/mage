@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ArmyComponent } from './army.component';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { FirebaseServiceStub, MatDialogStub, ApiServiceStub, LoadingServiceStub, StoreStub, CacheServiceStub, NotificationServiceStub, DragDropEventFactory } from 'src/stubs';
+import { MatDialogStub, ApiServiceStub, LoadingServiceStub, StoreStub, CacheServiceStub, NotificationServiceStub, DragDropEventFactory, AngularFirestoreStub } from 'src/stubs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { CacheService } from 'src/app/services/cache.service';
 import { Store } from '@ngxs/store';
@@ -17,6 +16,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { DisbandComponent } from './disband.component';
 import { RecruitComponent } from './recruit.component';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ShortPipe } from 'src/app/pipes/short.pipe';
+import { LongPipe } from 'src/app/pipes/long.pipe';
+import { MatBadgeModule } from '@angular/material/badge';
 
 describe('ArmyComponent', () => {
   let component: ArmyComponent;
@@ -32,12 +35,15 @@ describe('ArmyComponent', () => {
         MatListModule,
         BrowserAnimationsModule,
         DragDropModule,
+        MatBadgeModule,
       ],
       declarations: [
         ArmyComponent,
+        ShortPipe,
+        LongPipe,
       ],
       providers: [
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: CacheService, useValue: CacheServiceStub },
         { provide: Store, useValue: StoreStub },

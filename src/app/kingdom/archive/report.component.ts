@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
@@ -87,7 +86,6 @@ export class ReportComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public report: any,
     private dialogRef: MatDialogRef<ReportComponent>,
-    // private firebaseService: FirebaseService,
     private apiService: ApiService,
     private store: Store,
   ) { }

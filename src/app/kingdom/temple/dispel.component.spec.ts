@@ -20,11 +20,13 @@ describe('DispelComponent', () => {
   const enchantment = {
     level: 0,
     turns: 0,
-    join: {
+    spell: {
       name: 'spell.death-decay.name',
       description: 'spell.death-decay.description',
       image: '/assets/images/spells/black/death-decay.png',
-      faction: 'black',
+      faction: {
+        id: 'black',
+      },
       turnDuration: 300,
       legendary: false,
     },

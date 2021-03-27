@@ -140,7 +140,8 @@
               "includePaths": [
                 "src/styles"
               ]
-            }
+            },
+            "codeCoverage": true
           }
         },
         "lint": {

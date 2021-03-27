@@ -1,11 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ConjureComponent } from './conjure.component';
 import { NotificationService } from 'src/app/services/notification.service';
-import { NotificationServiceStub, DialogRefStub, StoreStub, ApiServiceStub, FirebaseServiceStub } from 'src/stubs';
+import { NotificationServiceStub, DialogRefStub, StoreStub, ApiServiceStub, AngularFirestoreStub } from 'src/stubs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatBadgeModule } from '@angular/material/badge';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 describe('ConjureComponent', () => {
   let component: ConjureComponent;
@@ -59,7 +59,7 @@ describe('ConjureComponent', () => {
         { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
       ],
     })
     .compileComponents();

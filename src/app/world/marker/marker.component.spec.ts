@@ -7,7 +7,8 @@ describe('MarkerComponent', () => {
   let fixture: ComponentFixture<MarkerComponent>;
   const data: any = {
     type: MarkerType.KINGDOM,
-    join: {
+    faction: {
+      id: 'black',
       image: '',
     },
   };

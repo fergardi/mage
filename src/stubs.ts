@@ -1,5 +1,5 @@
 import { AuthState } from './app/shared/auth/auth.state';
-import { of, Observable } from 'rxjs';
+import { of } from 'rxjs';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from './environments/environment';
 import { CdkDragDrop, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
@@ -30,7 +30,7 @@ export const StoreStub: any = {
   select: (selector: any) => {
     switch (selector) {
       case AuthState.getKingdomGuild:
-        return of(JSON.stringify({ guild: "hunter", guilded: new Date().getTime() }));
+        return of(JSON.stringify({ guild: 'hunter', guilded: new Date().getTime() }));
       default:
         return of(selector);
     }
@@ -60,11 +60,6 @@ export const ApiServiceStub: any = {
   researchCharm: () => null,
   removeLetters: () => null,
   buyEmporium: () => null,
-};
-
-export const FirebaseServiceStub: any = {
-  selfJoin: (a: any) => a,
-  leftJoin: (): Observable<any[]> => of([]),
 };
 
 export const CacheServiceStub: any = {
@@ -98,7 +93,18 @@ export const AngularFirestoreStub: any = {
   collection: () => {
     return {
       get: () => ({ toPromise: () => ({ docs: [] }) }),
-      valueChanges: () => of([{ test: 'test' }]),
+      valueChanges: () => of([{
+        faction: { id: 'grey' },
+        message: { item: { faction: { id: 'grey' } } },
+        item: { faction: { id: 'grey' } },
+        spell: { faction: { id: 'red' } },
+        unit: { faction: { id: 'red' } },
+        hero: { faction: { id: 'red' } },
+        timestamp: { toMillis: () => 0 },
+        id: 'test',
+        name: 'test',
+        turns: 1,
+      }]),
     };
   },
   doc: () => {

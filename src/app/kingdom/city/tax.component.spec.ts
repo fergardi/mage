@@ -22,9 +22,12 @@ describe('TaxComponent', () => {
   let fixture: ComponentFixture<TaxComponent>;
   const village$: Observable<any> = of({
     quantity: 0,
-    join: {
+    structure: {
       name: 'test',
       image: 'assets/images/structures/village.png',
+      faction: {
+        id: 'grey',
+      },
     },
   });
 

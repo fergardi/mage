@@ -21,12 +21,14 @@ describe('DisbandComponent', () => {
   let fixture: ComponentFixture<DisbandComponent>;
   const troop = {
     quantity: 9999,
-    join: {
+    unit: {
       name: 'test',
       description: 'test',
       id: 'skeleton',
       image: '/assets/images/units/black/skeleton.png',
-      faction: 'black',
+      faction: {
+        id: 'black',
+      },
       legendary: false,
     },
   };

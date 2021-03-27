@@ -1,7 +1,7 @@
 import { ShortPipe } from './short.pipe';
 
 describe('ShortPipe', () => {
-  it('create an instance', () => {
+  it('should CREATE the INSTANCE', () => {
     const pipe = new ShortPipe();
     expect(pipe).toBeTruthy();
   });

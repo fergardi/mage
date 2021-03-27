@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MapComponent } from './map.component';
 import { NotificationService } from 'src/app/services/notification.service';
-import { NotificationServiceStub, AngularFirestoreStub, FirebaseServiceStub, MapboxServiceStub, StoreStub, CacheServiceStub, ApiServiceStub } from 'src/stubs';
+import { NotificationServiceStub, AngularFirestoreStub, MapboxServiceStub, StoreStub, CacheServiceStub, ApiServiceStub } from 'src/stubs';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { Store } from '@ngxs/store';
 import { CacheService } from 'src/app/services/cache.service';
@@ -33,7 +32,6 @@ describe('MapComponent', () => {
         { provide: MapboxService, useValue: MapboxServiceStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
         { provide: ActivatedRoute, useValue: {} },
       ],
     })

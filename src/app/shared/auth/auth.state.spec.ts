@@ -3,8 +3,7 @@ import { NgxsModule, Store } from '@ngxs/store';
 import { AuthState, AuthStateModel } from './auth.state';
 import { SetUserAction } from './auth.actions';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireAuthStub, FirebaseServiceStub, AngularFirestoreStub, NotificationServiceStub } from 'src/stubs';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { AngularFireAuthStub, AngularFirestoreStub, NotificationServiceStub } from 'src/stubs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -21,7 +20,6 @@ describe('Auth store', () => {
       ],
       providers: [
         { provide: AngularFireAuth, useValue: AngularFireAuthStub },
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
       ],
@@ -45,10 +43,11 @@ describe('Auth store', () => {
       buildings: [],
       logged: true,
       clock: null,
+      popup: null,
     };
     store.dispatch(new SetUserAction('test'));
     const actual = store.selectSnapshot(AuthState.getAuthState);
-    expect(actual).toEqual(expected);
+    expect(actual.uid).toEqual(expected.uid);
   });
 
 });

@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AuctionComponent } from './auction.component';
-import { MatDialogStub, StoreStub, CacheServiceStub, ApiServiceStub, LoadingServiceStub } from 'src/stubs';
+import { MatDialogStub, StoreStub, CacheServiceStub, ApiServiceStub, LoadingServiceStub, AngularFirestoreStub } from 'src/stubs';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { Store } from '@ngxs/store';
 import { CacheService } from 'src/app/services/cache.service';
 import { ApiService } from 'src/app/services/api.service';
@@ -17,9 +16,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable, of } from 'rxjs';
-import * as firebase from 'firebase/app';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ShortPipe } from 'src/app/pipes/short.pipe';
+import { LongPipe } from 'src/app/pipes/long.pipe';
+import { MatListModule } from '@angular/material/list';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
+import { MatBadgeModule } from '@angular/material/badge';
+import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from 'src/app/app-routing.module';
 
 describe('AuctionComponent', () => {
   let component: AuctionComponent;
@@ -29,6 +35,8 @@ describe('AuctionComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         TranslateModule.forRoot(),
+        TourMatMenuModule.forRoot(),
+        RouterTestingModule.withRoutes(routes),
         BrowserAnimationsModule,
         MatTableModule,
         FormsModule,
@@ -40,17 +48,22 @@ describe('AuctionComponent', () => {
         MatInputModule,
         MatIconModule,
         MatPaginatorModule,
+        MatListModule,
+        MatBadgeModule,
       ],
       declarations: [
         AuctionComponent,
+        ShortPipe,
+        LongPipe,
+        IconPipe,
       ],
       providers: [
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },
         { provide: CacheService, useValue: CacheServiceStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: LoadingService, useValue: LoadingServiceStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
       ],
     })
     .compileComponents();

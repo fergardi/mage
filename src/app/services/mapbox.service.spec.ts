@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { MapboxService } from './mapbox.service';
 import { ComponentService } from './component.service';
-import { FirebaseService } from './firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Store } from '@ngxs/store';
 import { RandomService } from './random.service';
 import { ApiService } from './api.service';
 import { NotificationService } from './notification.service';
-import { FirebaseServiceStub, AngularFirestoreStub, StoreStub, ApiServiceStub, NotificationServiceStub } from 'src/stubs';
+import { AngularFirestoreStub, StoreStub, ApiServiceStub, NotificationServiceStub } from 'src/stubs';
 
 describe('MapboxService', () => {
   let service: MapboxService;
@@ -17,7 +16,6 @@ describe('MapboxService', () => {
       providers: [
         ComponentService,
         RandomService,
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },

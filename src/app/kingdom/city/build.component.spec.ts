@@ -22,11 +22,14 @@ describe('BuildComponent', () => {
   const building: any = {
     fid: 'test',
     quantity: 10,
-    join: {
+    structure: {
       name: 'test',
       image: 'assets/images/structures/academy.png',
       turnRatio: 10,
       goldCost: 1,
+      faction: {
+        id: 'grey',
+      },
     },
   };
 

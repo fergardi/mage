@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TomeComponent } from './tome.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 describe('EncyclopediaComponent', () => {
   let component: EncyclopediaComponent;
@@ -31,6 +32,7 @@ describe('EncyclopediaComponent', () => {
         MatFormFieldModule,
         MatSelectModule,
         MatPaginatorModule,
+        MatBadgeModule,
       ],
       declarations: [
         EncyclopediaComponent,

@@ -21,6 +21,9 @@ describe('BuyComponent', () => {
     name: 'test',
     description: 'test',
     image: 'assets/images/items/magic-compass.png',
+    faction: {
+      id: 'grey',
+    },
     gems: 1,
   };
 

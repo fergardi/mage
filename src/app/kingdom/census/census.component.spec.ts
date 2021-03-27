@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync, inject } from '@angular/core/testing';
 import { CensusComponent } from './census.component';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { FirebaseServiceStub, AngularFirestoreStub, MatDialogStub, StoreStub } from 'src/stubs';
+import { AngularFirestoreStub, MatDialogStub, StoreStub } from 'src/stubs';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,6 +22,10 @@ import { ConjureComponent } from '../sorcery/conjure.component';
 import { LetterComponent } from './letter.component';
 import { routes } from 'src/app/app-routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ShortPipe } from 'src/app/pipes/short.pipe';
+import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
+import { TourMatMenuModule } from 'ngx-tour-md-menu';
 
 describe('CensusComponent', () => {
   let component: CensusComponent;
@@ -33,6 +36,7 @@ describe('CensusComponent', () => {
       imports: [
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes(routes),
+        TourMatMenuModule.forRoot(),
         MatCardModule,
         MatChipsModule,
         MatIconModule,
@@ -43,13 +47,15 @@ describe('CensusComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         MatInputModule,
+        MatListModule,
+        MatBadgeModule,
       ],
       declarations: [
         CensusComponent,
         LongPipe,
+        ShortPipe,
       ],
       providers: [
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },

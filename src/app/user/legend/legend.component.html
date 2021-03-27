@@ -39,10 +39,10 @@
               <mat-list dense>
                 <mat-list-item class="legendary">
                   <div mat-list-avatar [matBadge]="legend.position | long" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="legend.join.image">
+                    <img mat-list-avatar [src]="legend.faction.image">
                   </div>
                   <div mat-line>{{ legend.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle">{{ legend.join.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ legend.faction.name | translate }}</div>
                   <div mat-list-avatar [matBadge]="legend.power | short" matBadgePosition="above after">
                     <img mat-list-avatar src="/assets/images/icons/power.png">
                   </div>

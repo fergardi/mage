@@ -27,28 +27,4 @@ describe('FirebaseService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should JOIN two OBJECTS', () => {
-    const left: any = {
-      name: 'test',
-      right1: 'test',
-      right2: ['test'],
-    };
-    const right: any[] = [
-      { id: 'test' },
-    ];
-    expect(left['join']).toEqual(undefined);
-    service.joinObject(left, 'right1', right);
-    service.joinObject(left, 'right2', right);
-    expect(left['join']).toEqual(right[0]);
-    expect(left['right2'][0]).toEqual(right[0]);
-  });
-
-  it('should SELFJOIN one OBJECT', async () => {
-    const left: any = {
-      faction: 'test',
-    };
-    await service.selfJoin(left);
-    expect(left['join']).toEqual({ id: 'test', name: 'test' });
-  });
-
 });

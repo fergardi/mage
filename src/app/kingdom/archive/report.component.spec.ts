@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReportComponent } from './report.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogRefStub, FirebaseServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { DialogRefStub, ApiServiceStub, StoreStub } from 'src/stubs';
 import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
@@ -17,7 +16,13 @@ describe('ReportComponent', () => {
   let fixture: ComponentFixture<ReportComponent>;
   const report = {
     read: false,
-    from: 'auction',
+    from: {
+      name: 'test',
+      faction: {
+        name: 'test',
+        id: 'grey',
+      },
+    },
     to: 'test',
     join: {
       name: 'test',
@@ -55,7 +60,6 @@ describe('ReportComponent', () => {
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: report },
         { provide: MatDialogRef, useValue: DialogRefStub },
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: Store, useValue: StoreStub },
       ],

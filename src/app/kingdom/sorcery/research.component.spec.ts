@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
 import { ResearchComponent } from './research.component';
 import { NotificationService } from 'src/app/services/notification.service';
 import { NotificationServiceStub, StoreStub, DialogRefStub, ApiServiceStub } from 'src/stubs';
@@ -23,14 +22,14 @@ describe('ResearchComponent', () => {
   let component: ResearchComponent;
   let fixture: ComponentFixture<ResearchComponent>;
   const charm: any = {
-    join: {
+    spell: {
       image: 'assets/images/spells/white/peace-prosperity.png',
-      faction: 'red',
+      faction: { id: 'red' },
       name: 'test',
       level: 3,
       turnResearch: 10,
     },
-    turnResearch: 5,
+    turns: 5,
   };
 
   beforeEach(waitForAsync(() => {

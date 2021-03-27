@@ -4,7 +4,6 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { tap, map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -144,7 +143,6 @@ export class AuthState implements NgxsOnInit {
 
   constructor(
     private angularFireAuth: AngularFireAuth,
-    private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private router: Router,
     private notificationService: NotificationService,

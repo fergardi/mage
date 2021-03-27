@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TempleComponent } from './temple.component';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { FirebaseServiceStub, AngularFirestoreStub, MatDialogStub, StoreStub } from 'src/stubs';
+import { AngularFirestoreStub, MatDialogStub, StoreStub } from 'src/stubs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
@@ -11,6 +10,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { OfferComponent } from './offer.component';
 import { DispelComponent } from './dispel.component';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 describe('TempleComponent', () => {
   let component: TempleComponent;
@@ -23,12 +25,14 @@ describe('TempleComponent', () => {
         BrowserAnimationsModule,
         MatCardModule,
         MatListModule,
+        MatBadgeModule,
+        MatProgressBarModule,
       ],
       declarations: [
         TempleComponent,
+        IconPipe,
       ],
       providers: [
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },

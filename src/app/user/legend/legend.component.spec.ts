@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LegendComponent } from './legend.component';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { FirebaseServiceStub, StoreStub } from 'src/stubs';
+import { StoreStub, AngularFirestoreStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatCardModule } from '@angular/material/card';
@@ -16,6 +15,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ShortPipe } from 'src/app/pipes/short.pipe';
+import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
 
 describe('LegendComponent', () => {
   let component: LegendComponent;
@@ -37,14 +40,17 @@ describe('LegendComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         MatNativeDateModule,
+        MatListModule,
+        MatBadgeModule,
       ],
       declarations: [
         LegendComponent,
         LongPipe,
+        ShortPipe,
       ],
       providers: [
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
         { provide: Store, useValue: StoreStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
       ],
     })
     .compileComponents();

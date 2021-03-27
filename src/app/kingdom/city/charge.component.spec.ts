@@ -22,7 +22,7 @@ describe('ChargeComponent', () => {
   let fixture: ComponentFixture<ChargeComponent>;
   const node$: Observable<any> = of({
     quantity: 0,
-    join: {
+    structure: {
       name: 'test',
       image: 'assets/images/structures/node.png',
     },

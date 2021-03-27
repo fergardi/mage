@@ -15,16 +15,16 @@ describe('DealComponent', () => {
   let component: DealComponent;
   let fixture: ComponentFixture<DealComponent>;
   const data: any = {
-    object: {
-      join: {
-        name: 'test',
-        faction: 'green',
-        image: 'assets/images/units/green/goblin.png',
+    join: {
+      name: 'test',
+      faction: {
+        id: 'green',
       },
-      quantity: 999,
-      gold: 999,
-      increment: 100,
+      image: 'assets/images/units/green/goblin.png',
     },
+    quantity: 999,
+    gold: 999,
+    increment: 100,
   };
 
   beforeEach(waitForAsync(() => {

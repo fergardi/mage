@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ArchiveComponent } from './archive.component';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { FirebaseServiceStub, MatDialogStub, StoreStub, NotificationServiceStub, ApiServiceStub, LoadingServiceStub } from 'src/stubs';
+import { MatDialogStub, StoreStub, NotificationServiceStub, ApiServiceStub, LoadingServiceStub, AngularFirestoreStub } from 'src/stubs';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -22,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReportComponent } from './report.component';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 describe('ArchiveComponent', () => {
   let component: ArchiveComponent;
@@ -50,7 +50,7 @@ describe('ArchiveComponent', () => {
         ArchiveComponent,
       ],
       providers: [
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },
         { provide: NotificationService, useValue: NotificationServiceStub },

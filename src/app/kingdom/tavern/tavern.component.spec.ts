@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TavernComponent } from './tavern.component';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { FirebaseServiceStub, NotificationServiceStub, MatDialogStub, StoreStub, ApiServiceStub } from 'src/stubs';
+import { NotificationServiceStub, MatDialogStub, StoreStub, ApiServiceStub, AngularFirestoreStub } from 'src/stubs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
@@ -14,6 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DischargeComponent } from './discharge.component';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ShortPipe } from 'src/app/pipes/short.pipe';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
+import { MatBadgeModule } from '@angular/material/badge';
 
 describe('TavernComponent', () => {
   let component: TavernComponent;
@@ -29,12 +32,15 @@ describe('TavernComponent', () => {
         BrowserAnimationsModule,
         MatListModule,
         DragDropModule,
+        MatBadgeModule,
       ],
       declarations: [
         TavernComponent,
+        ShortPipe,
+        IconPipe,
       ],
       providers: [
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },

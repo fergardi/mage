@@ -15,16 +15,15 @@ describe('AdventureComponent', () => {
   let component: AdventureComponent;
   let fixture: ComponentFixture<AdventureComponent>;
   const data: any = {
-    object: {
-      join: {
-        name: 'test',
-        faction: 'green',
-        image: 'assets/images/units/green/goblin.png',
+    item: {
+      name: 'test',
+      faction: {
+        id: 'green',
       },
-      quantity: 999,
-      gold: 999,
-      increment: 100,
+      image: 'assets/images/items/treasure-map.png',
+      quantity: 1,
     },
+    turns: 999,
   };
 
   beforeEach(waitForAsync(() => {

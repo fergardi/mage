@@ -1,23 +1,26 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { PopupComponent } from './popup.component';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { FirebaseServiceStub, MatDialogStub } from 'src/stubs';
+import { MatDialogStub, AngularFirestoreStub, StoreStub, ApiServiceStub } from 'src/stubs';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatCardModule } from '@angular/material/card';
 import { PopupType } from 'src/app/shared/type/common.type';
-import { ShopComponent } from './deal.component';
-import { QuestComponent } from './adventure.component';
+import { DealComponent } from './deal.component';
+import { AdventureComponent } from './adventure.component';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Store } from '@ngxs/store';
+import { ApiService } from 'src/app/services/api.service';
 
 describe('PopupComponent', () => {
   let component: PopupComponent;
   let fixture: ComponentFixture<PopupComponent>;
   const data: any = {
     type: PopupType.KINGDOM,
-    join: {
+    faction: {
       name: 'test',
       description: 'test',
       image: 'assets/images/factions/black.png',
+      marker: 'assets/images/factions/black.png',
     },
   };
 
@@ -31,8 +34,10 @@ describe('PopupComponent', () => {
         PopupComponent,
       ],
       providers: [
-        { provide: FirebaseService, useValue: FirebaseServiceStub },
+        { provide: Store, useValue: StoreStub },
+        { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: MatDialog, useValue: MatDialogStub },
+        { provide: ApiService, useValue: ApiServiceStub },
       ],
     })
     .compileComponents();
@@ -52,10 +57,11 @@ describe('PopupComponent', () => {
   it('should CREATE the INSTANCE as KINGDOM popup', () => {
     const kingdom: any = {
       type: PopupType.KINGDOM,
-      join: {
+      faction: {
         name: 'test',
         description: 'test',
         image: 'assets/images/factions/black.png',
+        marker: 'assets/images/factions/black.png',
       },
     };
     fixture = TestBed.createComponent(PopupComponent);
@@ -69,7 +75,7 @@ describe('PopupComponent', () => {
   it('should CREATE the INSTANCE as SHOP popup', () => {
     const shop: any = {
       type: PopupType.SHOP,
-      join: {
+      store: {
         name: 'test',
         description: 'test',
         image: 'assets/images/stores/inn.png',
@@ -86,7 +92,7 @@ describe('PopupComponent', () => {
   it('should CREATE the INSTANCE as QUEST popup', () => {
     const quest: any = {
       type: PopupType.QUEST,
-      join: {
+      location: {
         name: 'test',
         description: 'test',
         image: 'assets/images/locations/volcano.png',
@@ -102,14 +108,14 @@ describe('PopupComponent', () => {
 
   it('should OPEN the SHOP dialog', () => {
     spyOn(MatDialogStub, 'open');
-    component.openShopDialog(null);
-    expect(MatDialogStub.open).toHaveBeenCalledWith(ShopComponent, { panelClass: 'dialog-responsive', data: { object: null } });
+    component.openDealDialog({ hero: {} });
+    expect(MatDialogStub.open).toHaveBeenCalledWith(DealComponent, { panelClass: 'dialog-responsive', data: { hero: {}, join: {} } });
   });
 
   it('should OPEN the QUEST dialog', () => {
     spyOn(MatDialogStub, 'open');
-    component.openQuestDialog(null);
-    expect(MatDialogStub.open).toHaveBeenCalledWith(QuestComponent, { panelClass: 'dialog-responsive', data: { object: null } });
+    component.openAdventureDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(AdventureComponent, { panelClass: 'dialog-responsive', data: null });
   });
 
 });

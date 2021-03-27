@@ -15,7 +15,7 @@ describe('IconPipe', () => {
     domSanitizer = TestBed.inject(DomSanitizer);
   });
 
-  it('create an instance', () => {
+  it('should CREATE the INSTANCE', () => {
     const pipe = new IconPipe(domSanitizer, null);
     expect(pipe).toBeTruthy();
   });
