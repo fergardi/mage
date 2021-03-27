@@ -1,28 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ComponentRef } from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
-import { ComponentService } from '../services/component.service';
+import { ComponentService, InjectableHTML } from '../services/component.service';
 import MapboxCircle from 'mapbox-gl-circle';
-import { FirebaseService } from './firebase.service';
 import { MarkerComponent } from '../world/marker/marker.component';
 import { PopupComponent } from '../world/popup/popup.component';
 import { Store } from '@ngxs/store';
 import { AuthState } from '../shared/auth/auth.state';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { RandomService } from './random.service';
-import * as geofirex from 'geofirex';
-import * as firebase from 'firebase/app';
 import { ApiService } from './api.service';
 import * as _ from 'lodash';
 import { MarkerType, FactionType, StoreType, LocationType } from '../shared/type/common.type';
 import { NotificationService } from './notification.service';
 import { SetPopupAction } from '../shared/auth/auth.actions';
 
-interface Marker {
+export interface Marker {
   id: string;
   type: MarkerType;
   marker: mapboxgl.Marker;
   circle: MapboxCircle;
+  popup: ComponentRef<any>;
 }
 
 @Injectable({
@@ -30,7 +26,6 @@ interface Marker {
 })
 export class MapboxService {
 
-  private geofirex: any = geofirex.init(firebase);
   private mapbox = (mapboxgl as typeof mapboxgl);
   public map: mapboxgl.Map = null;
   private markers: Marker[] = [];
@@ -39,10 +34,7 @@ export class MapboxService {
 
   constructor(
     private componentService: ComponentService,
-    private firebaseService: FirebaseService,
-    private angularFirestore: AngularFirestore,
     private store: Store,
-    private randomService: RandomService,
     private apiService: ApiService,
     private notificationService: NotificationService,
   ) {
@@ -91,62 +83,55 @@ export class MapboxService {
   addBot(type: FactionType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
       await this.apiService.addKingdom(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
-      this.notificationService.warning('world.map.populate');
+      this.notificationService.warning('world.map.update');
     });
   }
 
   addShopByClick(type: StoreType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
       await this.apiService.addShop(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
-      this.notificationService.warning('world.map.populate');
+      this.notificationService.warning('world.map.update');
     });
   }
 
   addQuestByClick(type: LocationType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
       await this.apiService.addQuest(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
-      this.notificationService.warning('world.map.populate');
+      this.notificationService.warning('world.map.update');
     });
   }
 
-  addMarker(data: any, type: MarkerType, popup: boolean = false, radius: boolean = false, fly: boolean = false): mapboxgl.Marker {
+  addMarker(data: any, type: MarkerType, radius: boolean = false, fly: boolean = false): mapboxgl.Marker {
     // remove the old one
-    this.removeMarker(data.fid);
+    this.removeMarker(data.id);
     // size
     const size = type === MarkerType.KINGDOM ? 70 : 44;
-    // markerData
-    const markerData = JSON.parse(JSON.stringify(data));
-    markerData.size = size;
-    markerData.type = type;
-    // popupData
-    const popupData = JSON.parse(JSON.stringify(data));
-    popupData.type = type;
     // marker
-    let marker = new mapboxgl.Marker(this.componentService.injectComponent(MarkerComponent, component => component.data = markerData), { anchor: 'bottom' })
+    const m: InjectableHTML = this.componentService.injectComponent(MarkerComponent, component => component.data = { ...data, size: size, type: type });
+    let marker = new mapboxgl.Marker(m.html, { anchor: 'bottom' })
     .setLngLat({ lat: data.coordinates.latitude, lng: data.coordinates.longitude })
     .addTo(this.map);
     // popup
-    if (popup) {
-      marker = marker.setPopup(new mapboxgl.Popup({
-        offset: [0, -(size + this.offset)],
-        anchor: 'bottom',
-        closeButton: false,
-        closeOnClick: true,
-        closeOnMove: false,
-        maxWidth: 'none',
-      })
-      .setDOMContent(this.componentService.injectComponent(PopupComponent, component => component.data = popupData))
-      .on('open', ($event: any) => {
-        this.store.dispatch(new SetPopupAction(data.id));
-        this.map.easeTo({
-          center: $event.target.getLngLat(),
-          offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],
-        });
-      })
-      .on('close', ($event: any) => {
-        this.store.dispatch(new SetPopupAction(null));
-      }));
-    }
+    const p = this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type });
+    marker = marker.setPopup(new mapboxgl.Popup({
+      offset: [0, -(size + this.offset)],
+      anchor: 'bottom',
+      closeButton: false,
+      closeOnClick: true,
+      closeOnMove: false,
+      maxWidth: 'none',
+    })
+    .setDOMContent(p.html)
+    .on('open', ($event: any) => {
+      this.store.dispatch(new SetPopupAction(data.id));
+      this.map.easeTo({
+        center: $event.target.getLngLat(),
+        offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],
+      });
+    })
+    .on('close', () => {
+      this.store.dispatch(new SetPopupAction(null));
+    }));
     // radius
     let circle = null;
     if (radius) {
@@ -167,7 +152,7 @@ export class MapboxService {
       // marker.togglePopup();
     }
     // add to list for future disposal
-    this.markers.push({ id: data.fid || data.id, marker: marker, circle: circle, type: type });
+    this.markers.push({ id: data.id, marker: marker, circle: circle, type: type, popup: p.ref });
     // return
     return marker;
   }
@@ -190,6 +175,7 @@ export class MapboxService {
     const index = this.markers.findIndex(item => item.id === id);
     if (index !== -1) {
       const found = this.markers[index];
+      if (found.popup) found.popup.destroy();
       if (found.marker) found.marker.remove();
       if (found.circle) found.circle.remove();
       this.markers.splice(index, 1);
@@ -206,9 +192,7 @@ export class MapboxService {
   }
 
   resizeMap() {
-    if (this.map) {
-      this.map.resize();
-    }
+    if (this.map) this.map.resize();
   }
 
   async populateMap() {
@@ -217,7 +201,6 @@ export class MapboxService {
       { type: MarkerType.SHOP, subtype: StoreType.MERCENARY, query: '[amenity=police]', radius: 5000 },
       { type: MarkerType.SHOP, subtype: StoreType.SORCERER, query: '[building=university]', radius: 2000 },
       { type: MarkerType.SHOP, subtype: StoreType.MERCHANT, query: '[shop=mall]', radius: 5000 },
-
       { type: MarkerType.QUEST, subtype: LocationType.GRAVEYARD, query: '[landuse=cemetery]', radius: 5000 },
       { type: MarkerType.QUEST, subtype: LocationType.LAKE, query: '[sport=swimming]', radius: 5000 },
       { type: MarkerType.QUEST, subtype: LocationType.FOREST, query: '[leisure=park]', radius: 1000 },

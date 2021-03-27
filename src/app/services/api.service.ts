@@ -105,7 +105,7 @@ export class ApiService {
     }).toPromise();
   }
 
-  addShop(fid: string, storeType: StoreType, latitude: number, longitude: number, name: string) {
+  addShop(fid: string, storeType: StoreType, latitude?: number, longitude?: number, name?: string) {
     return this.httpClient.put(environment.functions.url + '/world/shop', {
       fid: fid,
       storeType: storeType,
@@ -115,7 +115,7 @@ export class ApiService {
     }).toPromise();
   }
 
-  addQuest(fid: string, locationType: LocationType, latitude: number, longitude: number, name: string) {
+  addQuest(fid: string, locationType: LocationType, latitude?: number, longitude?: number, name?: string) {
     return this.httpClient.put(environment.functions.url + '/world/quest', {
       fid: fid,
       locationType: locationType,

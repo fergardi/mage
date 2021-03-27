@@ -68,15 +68,7 @@ export class AuctionComponent implements OnInit {
       this.filters.faction.options = [...new Set(data.map(auction => auction.join.faction))];
       this.applyFilter();
       const firstAuction: any = auctions[0];
-      if (firstAuction && firstAuction.auctioned && moment().isAfter(moment(firstAuction.auctioned.toMillis()))) {
-        this.loadingService.startLoading();
-        try {
-          await this.apiService.refreshAuction();
-        } catch (error) {
-          console.error(error);
-        }
-        this.loadingService.stopLoading();
-      }
+      if (firstAuction) this.checkRefresh(firstAuction);
     });
   }
 
@@ -95,6 +87,18 @@ export class AuctionComponent implements OnInit {
         && data.join.faction.id.toLowerCase().includes(filters.faction);
     };
     return filterFunction;
+  }
+
+  async checkRefresh(firstAuction: any) {
+    if (moment().isAfter(moment(firstAuction.auctioned.toMillis()))) {
+      this.loadingService.startLoading();
+      try {
+        await this.apiService.refreshAuction();
+      } catch (error) {
+        console.error(error);
+      }
+      this.loadingService.stopLoading();
+    }
   }
 
   openBidDialog(auction: any): void {

@@ -565,6 +565,10 @@ hr {
   max-width: 30vw !important;
 }
 
+.cdk-overlay-container {
+  z-index: 9999; // to show snackbars above loading
+}
+
 // responsive custom table
 @media screen and (max-width: 1280px) {
   .dialog-responsive {

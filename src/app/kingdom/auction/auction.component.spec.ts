@@ -21,10 +21,6 @@ import { Observable, of } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-const FirebaseServiceStub: any = {
-  leftJoin: (a, b, c, d): Observable<any[]> => of([{ id: 'test', name: 'test', gold: 10000, auctioned: firebase.firestore.Timestamp.now(), join: { name: 'test', join: { id: 'test' } } }]),
-};
-
 describe('AuctionComponent', () => {
   let component: AuctionComponent;
   let fixture: ComponentFixture<AuctionComponent>;

@@ -15,10 +15,7 @@ import { NotificationService } from 'src/app/services/notification.service';
           </div>
           <div mat-line>{{ data.item.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="data.item.description | translate | icon:data.item"></div>
-          <div mat-list-avatar *ngIf="data.gold > 0" [matBadge]="data.gold | long" matBadgePosition="above after">
-            <img mat-list-avatar src="/assets/images/resources/gold.png">
-          </div>
-          <div mat-list-avatar *ngIf="data.turns > 0" [matBadge]="data.turns | long" matBadgePosition="above after">
+          <div mat-list-avatar [matBadge]="data.turns | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>

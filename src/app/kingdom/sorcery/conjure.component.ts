@@ -2,11 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { take } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 export enum CharmAssignmentType {
   'none' = 3,
@@ -93,9 +93,9 @@ export class ConjureComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public charm: any,
     private dialogRef: MatDialogRef<ConjureComponent>,
     private store: Store,
-    private firebaseService: FirebaseService,
     private apiService: ApiService,
     private notificationService: NotificationService,
+    private angularFirestore: AngularFirestore,
   ) { }
 
   ngOnInit(): void {
@@ -104,8 +104,8 @@ export class ConjureComponent implements OnInit {
       // this.kingdomCharms = [this.charm];
       this.selectedCharm = this.charm;
     } else {
-      this.firebaseService.leftJoin(`kingdoms/${this.uid}/charms`, 'spells', 'id', 'id').pipe(take(1), untilDestroyed(this)).subscribe(charms => {
-        this.kingdomCharms = charms.filter(charm => !charm.join.battle && !charm.join.self);
+      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/charms`, ref => ref.where('charm.spell.battle', '==', true).where('charm.spell.self', '==', false)).valueChanges({ idField: 'fid' }).pipe(take(1), untilDestroyed(this)).subscribe(charms => {
+        this.kingdomCharms = charms;
       });
     }
   }

@@ -8,6 +8,9 @@ import { DealComponent } from './deal.component';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Subscription } from 'rxjs';
+import * as moment from 'moment';
+import { LoadingService } from 'src/app/services/loading.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-popup',
@@ -33,11 +36,28 @@ export class PopupComponent implements OnInit {
     private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private store: Store,
+    private loadingService: LoadingService,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit(): void {
-    this.store.select(AuthState.getWorldPopup).pipe(untilDestroyed(this)).subscribe(popup => {
+    this.store.select(AuthState.getWorldPopup).pipe(untilDestroyed(this)).subscribe(async popup => {
+      // this cannot be done with untilDestroyed because we need to unsuscribe on popup closed, not on component destruction
+      this.kingdomTroops = [];
+      this.shopContracts = [];
+      this.shopTroops = [];
+      this.shopArtifacts = [];
+      this.shopCharms = [];
+      this.questTroops = [];
+      this.questContracts = [];
+      this.questArtifacts = [];
+      this.subscriptions.forEach((subscription: Subscription) => {
+        subscription.unsubscribe();
+      });
+      this.subscriptions = [];
       if (popup && popup === this.data.id) {
+        // check refresh
+        this.checkRefresh();
         // kingdom
         if (this.data.type === PopupType.KINGDOM) {
           this.subscriptions.push(this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
@@ -71,22 +91,22 @@ export class PopupComponent implements OnInit {
             this.questArtifacts = artifacts;
           }));
         }
-      } else {
-        this.kingdomTroops = [];
-        this.shopContracts = [];
-        this.shopTroops = [];
-        this.shopArtifacts = [];
-        this.shopCharms = [];
-        this.questTroops = [];
-        this.questContracts = [];
-        this.questArtifacts = [];
-        // this cannot be done with untilDestroyed because we need to unsuscribe on popup closed, not on component destruction
-        this.subscriptions.forEach((subscription: Subscription) => {
-          subscription.unsubscribe();
-        });
-        this.subscriptions = [];
       }
     });
+  }
+
+  async checkRefresh() {
+    if (this.data.type !== PopupType.KINGDOM && this.data.visited && moment().isAfter(moment(this.data.visited.toMillis()))) {
+      // this.loadingService.startLoading();
+      try {
+        await this.data.type === PopupType.SHOP
+          ? this.apiService.addShop(this.data.id, this.data.store.id)
+          : this.apiService.addQuest(this.data.id, this.data.location.id);
+      } catch (error) {
+        console.error(error);
+      }
+      // this.loadingService.stopLoading();
+    }
   }
 
   openDealDialog(deal: any): void {

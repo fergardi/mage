@@ -12,6 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 import { CacheService } from 'src/app/services/cache.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MarkerType, LocationType, StoreType, FactionType } from 'src/app/shared/type/common.type';
+import { GeoFireClient } from 'geofirex';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-map',
@@ -21,7 +23,7 @@ import { MarkerType, LocationType, StoreType, FactionType } from 'src/app/shared
 @UntilDestroy()
 export class MapComponent implements OnInit, OnDestroy {
 
-  geofirex: any = geofirex.init(firebase);
+  geofirex: GeoFireClient = geofirex.init(firebase);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   container = 'map';
   locations: any[] = [];
@@ -36,6 +38,7 @@ export class MapComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private cacheService: CacheService,
     private notificationService: NotificationService,
+    private loadingService: LoadingService,
   ) { }
 
   async ngOnInit() {
@@ -44,15 +47,20 @@ export class MapComponent implements OnInit, OnDestroy {
       // resize map in case drawer has changed
       this.mapboxService.resizeMap();
       // pring kingdoms surrounding kingdom
-      this.angularFirestore.collection<any>('kingdoms').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(kingdoms => {
+      this.angularFirestore.collection<any>('kingdoms').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
+        this.loadingService.startLoading();
+        this.notificationService.warning('world.map.update');
+        this.mapboxService.clearMarkers(MarkerType.KINGDOM);
         kingdoms.forEach((kingdom: any) => {
-          this.mapboxService.addMarker(kingdom, MarkerType.KINGDOM, true, kingdom.id === this.uid,
+          this.mapboxService.addMarker(kingdom, MarkerType.KINGDOM, kingdom.id === this.uid,
             this.activatedRoute.snapshot.params.kingdom
               ? this.activatedRoute.snapshot.params.kingdom === kingdom.id
               : kingdom.id === this.uid,
             );
         });
         this.mapboxService.refreshMarkers();
+        await new Promise(resolve => setTimeout(resolve, 500));
+        this.loadingService.stopLoading();
       });
       // print quests surrounding kingdom
       this.kingdom$.pipe(
@@ -64,13 +72,14 @@ export class MapComponent implements OnInit, OnDestroy {
             return of([]);
           }
         }),
-      ).subscribe((quests: Array<any>) => {
+      ).subscribe(async (quests: Array<any>) => {
+        this.loadingService.startLoading();
+        this.notificationService.warning('world.map.update');
         this.mapboxService.clearMarkers(MarkerType.QUEST);
-        quests.forEach((quest: any) => {
-
-          this.mapboxService.addMarker(quest, MarkerType.QUEST, true, false, false);
-        });
+        quests.forEach((quest: any) => this.mapboxService.addMarker(quest, MarkerType.QUEST, false, false));
         this.mapboxService.refreshMarkers();
+        await new Promise(resolve => setTimeout(resolve, 500));
+        this.loadingService.stopLoading();
       });
       // print shops surrounding kingdom
       this.kingdom$.pipe(
@@ -82,13 +91,14 @@ export class MapComponent implements OnInit, OnDestroy {
             return of([]);
           }
         }),
-      ).subscribe((shops: Array<any>) => {
+      ).subscribe(async (shops: Array<any>) => {
+        this.loadingService.startLoading();
+        this.notificationService.warning('world.map.update');
         this.mapboxService.clearMarkers(MarkerType.SHOP);
-        shops.forEach((shop: any) => {
-
-          this.mapboxService.addMarker(shop, MarkerType.SHOP, true, false, false);
-        });
+        shops.forEach((shop: any) => this.mapboxService.addMarker(shop, MarkerType.SHOP, false, false));
         this.mapboxService.refreshMarkers();
+        await new Promise(resolve => setTimeout(resolve, 500));
+        this.loadingService.stopLoading();
       });
     });
     // menus
@@ -119,7 +129,7 @@ export class MapComponent implements OnInit, OnDestroy {
   }
 
   async populateMap() {
-    this.notificationService.warning('world.map.populate');
+    this.notificationService.warning('world.map.update');
     await this.mapboxService.populateMap();
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from './services/firebase.service';
+import { FirebaseService, FixtureType } from './services/firebase.service';
 import { TourService } from 'ngx-tour-md-menu';
 import { LoadingService } from './services/loading.service';
 
@@ -15,30 +15,22 @@ export class AppComponent implements OnInit {
     public tourService: TourService,
     public loadingService: LoadingService,
   ) {
-    // this.firebaseService.importJoin();
-    // this.firebaseService.importCollectionFromJson('factions');
-    // this.firebaseService.importCollectionFromJson('structures');
-    // this.firebaseService.importCollectionFromJson('items');
-    // this.firebaseService.importCollectionFromJson('stores');
-    // this.firebaseService.importCollectionFromJson('heroes');
-    // this.firebaseService.importCollectionFromJson('units');
-    // this.firebaseService.importCollectionFromJson('locations');
-    // this.firebaseService.importCollectionFromJson('resources');
-    // this.firebaseService.importCollectionFromJson('spells');
-    // this.firebaseService.importCollectionFromJson('gods');
-    // this.firebaseService.importCollectionFromJson('skills');
-    // this.firebaseService.importCollectionFromJson('families');
-    // this.firebaseService.importCollectionFromJson('categories');
-    // this.firebaseService.importCollectionFromJson('packs');
-    // this.firebaseService.importCollectionFromJson('guilds');
-    // this.firebaseService.importCollectionFromJson('attacks');
-    // this.firebaseService.importCollectionFromJson('auctions');
-    // this.firebaseService.loadCollectionIntoCollection('items', 'artifacts');
-    // this.firebaseService.loadCollectionIntoCollection('units', 'troops');
-    // this.firebaseService.loadCollectionIntoCollection('heroes', 'contracts');
-    // this.firebaseService.loadCollectionIntoCollection('spells', 'charms');
-    // this.firebaseService.loadCollectionIntoCollection('spells', 'enchantments', ref => ref.where('type', '==', 'enchantment'));
-    // this.firebaseService.loadCollectionIntoCollection('resources', 'supplies');
+    this.firebaseService.joinFixtures([FixtureType.ATTACKS]);
+    // this.firebaseService.joinFixtures([FixtureType.FACTIONS]);
+    // this.firebaseService.joinFixtures([FixtureType.FAMILIES]);
+    // this.firebaseService.joinFixtures([FixtureType.CATEGORIES]);
+    // this.firebaseService.joinFixtures([FixtureType.GODS]);
+    // this.firebaseService.joinFixtures([FixtureType.RESOURCES]);
+    // this.firebaseService.joinFixtures([FixtureType.SKILLS]);
+    // this.firebaseService.joinFixtures([FixtureType.STRUCTURES]);
+    // this.firebaseService.joinFixtures([FixtureType.GUILDS]);
+    // this.firebaseService.joinFixtures([FixtureType.UNITS]);
+    // this.firebaseService.joinFixtures([FixtureType.ITEMS]);
+    // this.firebaseService.joinFixtures([FixtureType.STORES]);
+    // this.firebaseService.joinFixtures([FixtureType.LOCATIONS]);
+    // this.firebaseService.joinFixtures([FixtureType.SPELLS]);
+    // this.firebaseService.joinFixtures([FixtureType.HEROES]);
+    // this.firebaseService.joinFixtures([FixtureType.KINGDOMS]);
   }
 
   ngOnInit(): void {

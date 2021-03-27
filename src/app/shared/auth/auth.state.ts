@@ -225,17 +225,6 @@ export class AuthState implements NgxsOnInit {
         });
       }),
     );
-    /*
-    return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/supplies`, 'resources', 'id', 'id').pipe(
-      map(supplies => {
-        const state = ctx.getState();
-        ctx.setState({
-          ...state,
-          supplies: supplies.sort((a, b) => a.join.sort - b.join.sort),
-        });
-      }),
-    );
-    */
   }
 
   @Action(SetKingdomBuildingsAction)
@@ -249,17 +238,6 @@ export class AuthState implements NgxsOnInit {
         });
       }),
     );
-    /*
-    return this.firebaseService.leftJoin(`kingdoms/${payload.uid}/buildings`, 'structures', 'id', 'id').pipe(
-      map(buildings => {
-        const state = ctx.getState();
-        ctx.setState({
-          ...state,
-          buildings: JSON.parse(JSON.stringify(buildings)),
-        });
-      }),
-    );
-    */
   }
 
   @Action(SetPopupAction)

@@ -3,7 +3,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { fadeInOnEnterAnimation, fadeOutOnLeaveAnimation } from 'angular-animations';
 import { BattleComponent } from './battle.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -47,7 +46,6 @@ export class CensusComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
-    private firebaseService: FirebaseService,
     private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private store: Store,
@@ -55,19 +53,11 @@ export class CensusComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.firebaseService.leftJoin('kingdoms', 'factions', 'faction', 'id', ref => ref.orderBy('power', 'desc')).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
-      const snapshot = await this.angularFirestore.collection<any>('clans').get().toPromise();
-      const clans = snapshot.docs.map(clan => {
-        return {
-          ...clan.data(),
-          fid: clan.id,
-        };
-      });
+    this.angularFirestore.collection<any>('kingdoms', ref => ref.where('player', '==', true)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
       this.data = new MatTableDataSource(kingdoms.sort((a, b) => b.radius - a.radius).map((kingdom, index) => {
         return {
           ...kingdom,
           position: index + 1,
-          clan: clans.find(clan => clan.fid === kingdom.clan),
         };
       }));
       this.data.paginator = this.paginator;

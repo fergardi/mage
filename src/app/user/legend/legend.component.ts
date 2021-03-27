@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AngularFirestore } from '@angular/fire/firestore';
 // import * as moment from 'moment';
 
 @Component({
@@ -41,10 +42,11 @@ export class LegendComponent implements OnInit {
   constructor(
     private store: Store,
     private firebaseService: FirebaseService,
+    private angularFirestore: AngularFirestore,
   ) { }
 
   ngOnInit() {
-    this.firebaseService.leftJoin('legends', 'factions', 'faction', 'id', ref => ref.orderBy('power', 'desc')).pipe(untilDestroyed(this)).subscribe(async legends => {
+    this.angularFirestore.collection<any>('legends').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(legends => {
       this.data = new MatTableDataSource(legends);
       this.data.paginator = this.paginator;
       // this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];

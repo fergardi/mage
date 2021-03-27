@@ -100,13 +100,6 @@ export class ReportComponent implements OnInit {
     if (!this.report.read) {
       this.apiService.readLetter(this.uid, this.report.fid);
     }
-    /*
-    if (this.report.log) {
-      this.report.log = await Promise.all(this.report.log.sort((a: any, b: any) => a.sort - b.sort).map(async (log: any) => {
-        return await this.firebaseService.selfJoin(log);
-      }));
-    }
-    */
   }
 
 }

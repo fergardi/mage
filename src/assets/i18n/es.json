@@ -255,7 +255,7 @@
       "description": "Planifica tu estrategia",
       "localize": "Localizar",
       "add": "Haz click en un punto del mapa para colocar el nuevo marcador",
-      "populate": "Espera mientras se rellena el mapa..."
+      "update": "Espera mientras se actualiza el mapa..."
     },
     "adventure": {
       "name": "Aventura",

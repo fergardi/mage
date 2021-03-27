@@ -6,6 +6,7 @@
     },
     "faction": "grey",
     "id": "auction",
-    "name": "kingdom.auction.from"
+    "name": "kingdom.auction.from",
+    "player": false
   }
 ]
