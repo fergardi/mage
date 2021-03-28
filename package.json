@@ -8,10 +8,11 @@
     "build": "ng build",
     "functions": "npm --prefix functions run build",
     "emulator": "firebase emulators:start --only functions",
-    "test": "ng test --code-coverage",
+    "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "sonar": "sonar-scanner.bat"
+    "sonar": "sonar-scanner",
+    "ci": "npm run test && npm run sonar"
   },
   "private": true,
   "dependencies": {
@@ -84,6 +85,7 @@
     "node-sass": "^5.0.0",
     "node-sass-tilde-importer": "^1.0.2",
     "protractor": "~7.0.0",
+    "sonarqube-scanner": "^2.8.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.1.3"
