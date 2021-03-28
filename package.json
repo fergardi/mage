@@ -10,7 +10,8 @@
     "emulator": "firebase emulators:start --only functions",
     "test": "ng test --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "sonar": "sonar-scanner.bat -Dsonar.organization=fergardi -Dsonar.projectKey=fergardi_mage -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io"
   },
   "private": true,
   "dependencies": {
