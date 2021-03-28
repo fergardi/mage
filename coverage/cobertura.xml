@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="1709" lines-covered="1221" line-rate="0.7145" branches-valid="553" branches-covered="221" branch-rate="0.3996" timestamp="1616922361116" complexity="0" version="0.1">
+<coverage lines-valid="1709" lines-covered="1221" line-rate="0.7145" branches-valid="553" branches-covered="221" branch-rate="0.3996" timestamp="1616922998815" complexity="0" version="0.1">
   <sources>
     <source>C:\entornos\MAGE\workspaces\mage</source>
   </sources>
