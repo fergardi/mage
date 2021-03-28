@@ -1,97 +1,97 @@
-----------------------------|---------|----------|---------|---------|-------------------------------------------------------------------------------------------------------------------------------
-File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                                                             
-----------------------------|---------|----------|---------|---------|-------------------------------------------------------------------------------------------------------------------------------
-All files                   |   66.31 |    40.14 |   59.19 |   69.63 |                                                                                                                               
- src                        |   69.47 |    90.91 |   71.88 |   69.89 |                                                                                                                               
-  stubs.ts                  |   68.48 |    90.91 |   71.88 |   68.89 | 27,38,46,49,52-55,57,60-62,86-87,112,160-173,189-190                                                                          
-  test.ts                   |     100 |      100 |     100 |     100 |                                                                                                                               
- src/app                    |   73.33 |      100 |      50 |      80 |                                                                                                                               
-  app-routing.module.ts     |   55.56 |      100 |   33.33 |      60 | 7-8                                                                                                                           
-  app.component.ts          |     100 |      100 |     100 |     100 |                                                                                                                               
- src/app/kingdom            |     100 |      100 |     100 |     100 |                                                                                                                               
-  kingdom-routing.module.ts |     100 |      100 |     100 |     100 |                                                                                                                               
-  kingdom.module.ts         |     100 |      100 |     100 |     100 |                                                                                                                               
- src/app/kingdom/archive    |   89.83 |       45 |   76.47 |   88.89 |                                                                                                                               
-  archive.component.ts      |   88.64 |     37.5 |   76.92 |    88.1 | 94-100,119-120                                                                                                                
-  report.component.ts       |   93.33 |       75 |      75 |   91.67 | 94                                                                                                                            
- src/app/kingdom/army       |   85.71 |    66.67 |   85.71 |   88.37 |                                                                                                                               
-  army.component.ts         |   81.13 |       50 |   78.95 |   86.05 | 59-64,86-87                                                                                                                   
-  disband.component.ts      |    91.3 |      100 |     100 |   90.91 | 94-95                                                                                                                         
-  recruit.component.ts      |   90.91 |      100 |     100 |   90.48 | 94-95                                                                                                                         
- src/app/kingdom/auction    |   86.15 |    41.18 |    87.5 |   86.44 |                                                                                                                               
-  auction.component.ts      |   82.93 |    23.08 |   83.33 |   83.33 | 94-105                                                                                                                        
-  bid.component.ts          |   91.67 |      100 |     100 |    91.3 | 90-91                                                                                                                         
- src/app/kingdom/census     |    92.5 |    64.29 |   85.19 |   95.89 |                                                                                                                               
-  battle.component.ts       |   93.94 |      100 |     100 |   93.75 | 120-121                                                                                                                       
-  census.component.ts       |   91.43 |     37.5 |   82.35 |     100 | 64-117                                                                                                                        
-  letter.component.ts       |   91.67 |      100 |      80 |   90.91 | 72                                                                                                                            
- src/app/kingdom/city       |   85.38 |      100 |   69.44 |   92.98 |                                                                                                                               
-  build.component.ts        |   93.55 |      100 |     100 |   93.33 | 91-92                                                                                                                         
-  charge.component.ts       |   91.67 |      100 |     100 |    91.3 | 84-85                                                                                                                         
-  city.component.ts         |   59.26 |      100 |   35.29 |     100 |                                                                                                                               
-  explore.component.ts      |   91.67 |      100 |     100 |    91.3 | 82-83                                                                                                                         
-  tax.component.ts          |   91.67 |      100 |     100 |    91.3 | 83-84                                                                                                                         
- src/app/kingdom/clan       |   70.83 |       25 |   46.67 |   72.73 |                                                                                                                               
-  clan.component.ts         |   70.83 |       25 |   46.67 |   72.73 | 65,85-86,110-121                                                                                                              
- src/app/kingdom/emporium   |   88.89 |      100 |      75 |   93.75 |                                                                                                                               
-  buy.component.ts          |   90.48 |      100 |     100 |      90 | 62-63                                                                                                                         
-  emporium.component.ts     |   86.67 |      100 |      60 |     100 |                                                                                                                               
- src/app/kingdom/sorcery    |   82.84 |    57.69 |   80.56 |   84.87 |                                                                                                                               
-  activate.component.ts     |   80.65 |       70 |    62.5 |   85.71 | 101-102,118-119                                                                                                               
-  conjure.component.ts      |   83.87 |     87.5 |   71.43 |   86.21 | 107-108,124-125                                                                                                               
-  research.component.ts     |   91.67 |      100 |     100 |    91.3 | 85-86                                                                                                                         
-  sorcery.component.ts      |   79.17 |       40 |   88.24 |   79.49 | 57,60-62,71,74-76                                                                                                             
- src/app/kingdom/tavern     |   61.82 |       40 |      75 |   56.25 |                                                                                                                               
-  discharge.component.ts    |      50 |      100 |   33.33 |   47.06 | 58-71                                                                                                                         
-  tavern.component.ts       |   67.57 |       40 |   88.89 |   61.29 | 54-70                                                                                                                         
- src/app/kingdom/temple     |   82.43 |    42.86 |      80 |   93.44 |                                                                                                                               
-  dispel.component.ts       |   77.78 |      100 |      50 |      75 | 58-62                                                                                                                         
-  offer.component.ts        |      80 |    42.86 |     100 |      95 | 117-118                                                                                                                       
-  temple.component.ts       |   93.33 |      100 |   85.71 |     100 |                                                                                                                               
- src/app/pipes              |   75.68 |    86.49 |   58.33 |      75 |                                                                                                                               
-  icon.pipe.ts              |   90.91 |      100 |      75 |   88.89 | 19                                                                                                                            
-  legendary.pipe.ts         |     100 |      100 |     100 |     100 |                                                                                                                               
-  long.pipe.ts              |     100 |       75 |     100 |     100 | 15-16                                                                                                                         
-  short.pipe.ts             |   88.89 |       80 |     100 |     100 | 9                                                                                                                             
-  turn.pipe.ts              |   36.36 |        0 |       0 |   33.33 | 15-17,25-28                                                                                                                   
- src/app/services           |   35.08 |    19.69 |   35.67 |   39.38 |                                                                                                                               
-  api.service.ts            |   90.32 |      100 |   88.46 |      90 | 46,99,141                                                                                                                     
-  cache.service.ts          |   51.88 |       68 |   54.29 |   58.62 | 71-97,104-106,113-115,122-124,131-133,141-148,157-165,176-186,194-201,209-216,224-231,239-246,254-261,272-283,296-308,322-336 
-  component.service.ts      |   38.46 |        0 |      50 |   36.36 | 22-28                                                                                                                         
-  dom.service.ts            |   66.67 |    33.33 |   66.67 |      60 | 11,16                                                                                                                         
-  firebase.service.ts       |   25.23 |      2.2 |    4.65 |   29.61 | 73-273                                                                                                                        
-  loading.service.ts        |     100 |      100 |     100 |     100 |                                                                                                                               
-  mapbox.service.ts         |      11 |        0 |     2.7 |    12.5 | 45-244                                                                                                                        
-  notification.service.ts   |   64.29 |     12.5 |      80 |   72.73 | 24-26                                                                                                                         
-  random.service.ts         |   11.76 |        0 |   33.33 |    6.25 | 12-32                                                                                                                         
- src/app/shared             |      80 |      100 |       0 |      75 |                                                                                                                               
-  shared.module.ts          |      80 |      100 |       0 |      75 | 47                                                                                                                            
- src/app/shared/auth        |   62.73 |     9.09 |   34.62 |   68.69 |                                                                                                                               
-  auth.actions.ts           |   91.67 |      100 |   71.43 |   91.67 | 33                                                                                                                            
-  auth.state.ts             |   59.18 |     9.09 |   28.89 |   65.52 | 41,46,51,56-61,66,71,76,81,86,91,96,101,106,111,116,121,136,141,167,174,179-181,222,243-244                                   
- src/app/shared/shell       |      86 |    58.33 |   68.18 |    92.5 |                                                                                                                               
-  shell.component.ts        |      86 |    58.33 |   68.18 |    92.5 | 59-61,66                                                                                                                      
- src/app/shared/type        |     100 |      100 |     100 |     100 |                                                                                                                               
-  common.type.ts            |     100 |      100 |     100 |     100 |                                                                                                                               
- src/app/user               |     100 |       75 |     100 |     100 |                                                                                                                               
-  auth.guard.ts             |     100 |       75 |     100 |     100 | 21                                                                                                                            
- src/app/user/encyclopedia  |   79.41 |        0 |   53.85 |   88.89 |                                                                                                                               
-  encyclopedia.component.ts |   79.31 |        0 |   54.55 |    91.3 | 85-86                                                                                                                         
-  tome.component.ts         |      80 |      100 |      50 |      75 | 99                                                                                                                            
- src/app/user/landing       |     100 |      100 |     100 |     100 |                                                                                                                               
-  landing.component.ts      |     100 |      100 |     100 |     100 |                                                                                                                               
- src/app/user/legend        |     100 |       50 |     100 |     100 |                                                                                                                               
-  legend.component.ts       |     100 |       50 |     100 |     100 | 67                                                                                                                            
- src/app/user/login         |   41.46 |    21.43 |   36.36 |   38.46 |                                                                                                                               
-  login.component.ts        |   41.46 |    21.43 |   36.36 |   38.46 | 51-96                                                                                                                         
- src/app/world/map          |   76.62 |    33.33 |      76 |   80.88 |                                                                                                                               
-  map.component.ts          |   76.62 |    33.33 |      76 |   80.88 | 61-63,69-70,81-82,88-89,100-101,127-128                                                                                       
- src/app/world/marker       |     100 |      100 |     100 |     100 |                                                                                                                               
-  marker.component.ts       |     100 |      100 |     100 |     100 |                                                                                                                               
- src/app/world/popup        |   51.19 |       16 |   41.67 |   48.75 |                                                                                                                               
-  adventure.component.ts    |   38.46 |        0 |      50 |   33.33 | 44-58                                                                                                                         
-  deal.component.ts         |   38.46 |        0 |      50 |   33.33 | 44-58                                                                                                                         
-  popup.component.ts        |    56.9 |    19.05 |    37.5 |   55.36 | 53,58-103                                                                                                                     
- src/environments           |     100 |      100 |     100 |     100 |                                                                                                                               
-  environment.ts            |     100 |      100 |     100 |     100 |                                                                                                                               
-----------------------------|---------|----------|---------|---------|-------------------------------------------------------------------------------------------------------------------------------
+----------------------------|---------|----------|---------|---------|---------------------------------------------------------------------------------------------
+File                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                           
+----------------------------|---------|----------|---------|---------|---------------------------------------------------------------------------------------------
+All files                   |   67.85 |    39.96 |   58.05 |   71.45 |                                                                                             
+ src                        |   69.47 |    90.91 |   71.88 |   69.89 |                                                                                             
+  stubs.ts                  |   68.48 |    90.91 |   71.88 |   68.89 | 27,38,46,49,52-55,57,60-62,86-87,112,160-173,189-190                                        
+  test.ts                   |     100 |      100 |     100 |     100 |                                                                                             
+ src/app                    |   73.33 |      100 |      50 |      80 |                                                                                             
+  app-routing.module.ts     |   55.56 |      100 |   33.33 |      60 | 7-8                                                                                         
+  app.component.ts          |     100 |      100 |     100 |     100 |                                                                                             
+ src/app/kingdom            |     100 |      100 |     100 |     100 |                                                                                             
+  kingdom-routing.module.ts |     100 |      100 |     100 |     100 |                                                                                             
+  kingdom.module.ts         |     100 |      100 |     100 |     100 |                                                                                             
+ src/app/kingdom/archive    |   89.83 |       45 |   76.47 |   88.89 |                                                                                             
+  archive.component.ts      |   88.64 |     37.5 |   76.92 |    88.1 | 94-100,119-120                                                                              
+  report.component.ts       |   93.33 |       75 |      75 |   91.67 | 94                                                                                          
+ src/app/kingdom/army       |   85.71 |    66.67 |   85.71 |   88.37 |                                                                                             
+  army.component.ts         |   81.13 |       50 |   78.95 |   86.05 | 59-64,86-87                                                                                 
+  disband.component.ts      |    91.3 |      100 |     100 |   90.91 | 94-95                                                                                       
+  recruit.component.ts      |   90.91 |      100 |     100 |   90.48 | 94-95                                                                                       
+ src/app/kingdom/auction    |   86.15 |    41.18 |    87.5 |   86.44 |                                                                                             
+  auction.component.ts      |   82.93 |    23.08 |   83.33 |   83.33 | 94-105                                                                                      
+  bid.component.ts          |   91.67 |      100 |     100 |    91.3 | 90-91                                                                                       
+ src/app/kingdom/census     |    92.5 |    64.29 |   85.19 |   95.89 |                                                                                             
+  battle.component.ts       |   93.94 |      100 |     100 |   93.75 | 120-121                                                                                     
+  census.component.ts       |   91.43 |     37.5 |   82.35 |     100 | 64-117                                                                                      
+  letter.component.ts       |   91.67 |      100 |      80 |   90.91 | 72                                                                                          
+ src/app/kingdom/city       |   85.38 |      100 |   69.44 |   92.98 |                                                                                             
+  build.component.ts        |   93.55 |      100 |     100 |   93.33 | 91-92                                                                                       
+  charge.component.ts       |   91.67 |      100 |     100 |    91.3 | 84-85                                                                                       
+  city.component.ts         |   59.26 |      100 |   35.29 |     100 |                                                                                             
+  explore.component.ts      |   91.67 |      100 |     100 |    91.3 | 82-83                                                                                       
+  tax.component.ts          |   91.67 |      100 |     100 |    91.3 | 83-84                                                                                       
+ src/app/kingdom/clan       |   70.83 |       25 |   46.67 |   72.73 |                                                                                             
+  clan.component.ts         |   70.83 |       25 |   46.67 |   72.73 | 65,85-86,110-121                                                                            
+ src/app/kingdom/emporium   |   88.89 |      100 |      75 |   93.75 |                                                                                             
+  buy.component.ts          |   90.48 |      100 |     100 |      90 | 62-63                                                                                       
+  emporium.component.ts     |   86.67 |      100 |      60 |     100 |                                                                                             
+ src/app/kingdom/sorcery    |   82.84 |    57.69 |   80.56 |   84.87 |                                                                                             
+  activate.component.ts     |   80.65 |       70 |    62.5 |   85.71 | 101-102,118-119                                                                             
+  conjure.component.ts      |   83.87 |     87.5 |   71.43 |   86.21 | 107-108,124-125                                                                             
+  research.component.ts     |   91.67 |      100 |     100 |    91.3 | 85-86                                                                                       
+  sorcery.component.ts      |   79.17 |       40 |   88.24 |   79.49 | 57,60-62,71,74-76                                                                           
+ src/app/kingdom/tavern     |   61.82 |       40 |      75 |   56.25 |                                                                                             
+  discharge.component.ts    |      50 |      100 |   33.33 |   47.06 | 58-71                                                                                       
+  tavern.component.ts       |   67.57 |       40 |   88.89 |   61.29 | 54-70                                                                                       
+ src/app/kingdom/temple     |   82.43 |    42.86 |      80 |   93.44 |                                                                                             
+  dispel.component.ts       |   77.78 |      100 |      50 |      75 | 58-62                                                                                       
+  offer.component.ts        |      80 |    42.86 |     100 |      95 | 117-118                                                                                     
+  temple.component.ts       |   93.33 |      100 |   85.71 |     100 |                                                                                             
+ src/app/pipes              |   75.68 |    86.49 |   58.33 |      75 |                                                                                             
+  icon.pipe.ts              |   90.91 |      100 |      75 |   88.89 | 19                                                                                          
+  legendary.pipe.ts         |     100 |      100 |     100 |     100 |                                                                                             
+  long.pipe.ts              |     100 |       75 |     100 |     100 | 15-16                                                                                       
+  short.pipe.ts             |   88.89 |       80 |     100 |     100 | 9                                                                                           
+  turn.pipe.ts              |   36.36 |        0 |       0 |   33.33 | 15-17,25-28                                                                                 
+ src/app/services           |   44.09 |    19.69 |   35.67 |      50 |                                                                                             
+  api.service.ts            |   90.32 |      100 |   88.46 |      90 | 46,99,141                                                                                   
+  cache.service.ts          |   87.97 |       68 |   54.29 |     100 | 70-314                                                                                      
+  component.service.ts      |   38.46 |        0 |      50 |   36.36 | 22-28                                                                                       
+  dom.service.ts            |   66.67 |    33.33 |   66.67 |      60 | 11,16                                                                                       
+  firebase.service.ts       |   25.23 |      2.2 |    4.65 |   29.61 | 73-273                                                                                      
+  loading.service.ts        |     100 |      100 |     100 |     100 |                                                                                             
+  mapbox.service.ts         |      11 |        0 |     2.7 |    12.5 | 45-244                                                                                      
+  notification.service.ts   |   64.29 |     12.5 |      80 |   72.73 | 24-26                                                                                       
+  random.service.ts         |   11.76 |        0 |   33.33 |    6.25 | 12-32                                                                                       
+ src/app/shared             |      80 |      100 |       0 |      75 |                                                                                             
+  shared.module.ts          |      80 |      100 |       0 |      75 | 47                                                                                          
+ src/app/shared/auth        |   62.73 |    11.36 |   34.62 |   68.69 |                                                                                             
+  auth.actions.ts           |   91.67 |      100 |   71.43 |   91.67 | 33                                                                                          
+  auth.state.ts             |   59.18 |    11.36 |   28.89 |   65.52 | 41,46,51,56-61,66,71,76,81,86,91,96,101,106,111,116,121,136,141,167,174,179-181,222,243-244 
+ src/app/shared/shell       |      86 |    58.33 |   68.18 |    92.5 |                                                                                             
+  shell.component.ts        |      86 |    58.33 |   68.18 |    92.5 | 59-61,66                                                                                    
+ src/app/shared/type        |     100 |      100 |     100 |     100 |                                                                                             
+  common.type.ts            |     100 |      100 |     100 |     100 |                                                                                             
+ src/app/user               |     100 |       75 |     100 |     100 |                                                                                             
+  auth.guard.ts             |     100 |       75 |     100 |     100 | 21                                                                                          
+ src/app/user/encyclopedia  |   79.41 |        0 |   53.85 |   88.89 |                                                                                             
+  encyclopedia.component.ts |   79.31 |        0 |   54.55 |    91.3 | 85-86                                                                                       
+  tome.component.ts         |      80 |      100 |      50 |      75 | 99                                                                                          
+ src/app/user/landing       |     100 |      100 |     100 |     100 |                                                                                             
+  landing.component.ts      |     100 |      100 |     100 |     100 |                                                                                             
+ src/app/user/legend        |     100 |       50 |     100 |     100 |                                                                                             
+  legend.component.ts       |     100 |       50 |     100 |     100 | 67                                                                                          
+ src/app/user/login         |   41.46 |    21.43 |   36.36 |   38.46 |                                                                                             
+  login.component.ts        |   41.46 |    21.43 |   36.36 |   38.46 | 51-96                                                                                       
+ src/app/world/map          |   53.25 |        0 |      48 |   55.88 |                                                                                             
+  map.component.ts          |   53.25 |        0 |      48 |   55.88 | 61-63,68-101,127-128                                                                        
+ src/app/world/marker       |     100 |      100 |     100 |     100 |                                                                                             
+  marker.component.ts       |     100 |      100 |     100 |     100 |                                                                                             
+ src/app/world/popup        |   51.19 |       16 |   41.67 |   48.75 |                                                                                             
+  adventure.component.ts    |   38.46 |        0 |      50 |   33.33 | 44-58                                                                                       
+  deal.component.ts         |   38.46 |        0 |      50 |   33.33 | 44-58                                                                                       
+  popup.component.ts        |    56.9 |    19.05 |    37.5 |   55.36 | 53,58-103                                                                                   
+ src/environments           |     100 |      100 |     100 |     100 |                                                                                             
+  environment.ts            |     100 |      100 |     100 |     100 |                                                                                             
+----------------------------|---------|----------|---------|---------|---------------------------------------------------------------------------------------------

@@ -10,6 +10,7 @@ module.exports = function (config) {
       require('karma-spec-reporter'),
       require('karma-coverage'),
       require('karma-scss-preprocessor'),
+      require('karma-sonarqube-unit-reporter'),
     ],
     client: {
       clearContext: false
@@ -26,6 +27,15 @@ module.exports = function (config) {
         importer: require('node-sass-tilde-importer'),
       },
     },
+    sonarQubeUnitReporter: {
+      sonarQubeVersion: 'LATEST',
+      outputFile: 'coverage/sonar.xml',
+      overrideTestDescription: true,
+      testPath: './src',
+      testPaths: ['./src'],
+      testFilePattern: '.spec.ts',
+      useBrowserName: false
+    },
     coverageReporter: {
       dir: 'coverage/',
       reporters: [
@@ -39,7 +49,7 @@ module.exports = function (config) {
         { type: 'text-summary', subdir: '.' }, // to show in console
       ]
     },
-    reporters: ['spec', 'coverage'], // kjhtml, progress, coverage, spec, dots
+    reporters: ['spec', 'sonarqubeUnit', 'coverage'], // kjhtml, progress, coverage, spec, dots
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
