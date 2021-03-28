@@ -2,9 +2,54 @@
 @import url("https://use.typekit.net/jnq3uxd.css");
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Uncial+Antiqua&display=swap');
 
-$custom-typography: mat-typography-config($font-family: "'Open Sans', sans-serif");
+// https://github.com/angular/components/blob/master/src/material/core/typography/_typography.scss
+@function define-typography-level(
+  $font-size,
+  $line-height: $font-size,
+  $font-weight: 400,
+  $font-family: null,
+  $letter-spacing: normal) {
+  @return (
+    font-size: $font-size,
+    line-height: $line-height,
+    font-weight: $font-weight,
+    font-family: $font-family,
+    letter-spacing: $letter-spacing
+  );
+}
+$custom-typography: mat-typography-config(
+  $font-family: "'Open Sans', sans-serif",
+  $display-4: define-typography-level(8rem, 8rem, 300, $letter-spacing: -0.05em),
+  $display-3: define-typography-level(4rem, 4rem, 400, $letter-spacing: -0.02em),
+  $display-2: define-typography-level(3.21rem, 3.42rem, 400, $letter-spacing: -0.005em),
+  $display-1: define-typography-level(2.42rem, 2.85rem, 400),
+  $headline: define-typography-level(1.71rem, 2.28rem, 400),
+  $title: define-typography-level(1.42rem, 2.28rem, 500),
+  $subheading-2: define-typography-level(1.14rem, 2rem, 400),
+  $subheading-1: define-typography-level(1.07rem, 1.71rem, 400),
+  $body-2: define-typography-level(1rem, 1.71rem, 500),
+  $body-1: define-typography-level(1rem, 1.42rem, 400),
+  $caption: define-typography-level(0.85rem, 1.42rem, 400),
+  $button: define-typography-level(1rem, 1rem, 500),
+  $input: define-typography-level(inherit, 1.125, 400),
+);
 @include mat-core($custom-typography);
 
+html {
+  font-size: 14px;
+}
+@media screen and (max-width: 1280px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 960px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+// http://mcg.mbitson.com/
 $md-palette: (
   50 : #f3e0f3,
   100 : #e0b3e1,
@@ -588,11 +633,10 @@ hr {
   .table-responsive {
     .mat-list-item-content {
       padding: 0 8px !important;
-      flex-direction: row-reverse !important;
     }
     .mat-table {
       border: 0;
-      vertical-align: middle
+      vertical-align: middle;
     }
     .mat-table caption {
       font-size: 1em;
@@ -609,28 +653,25 @@ hr {
     .mat-table .mat-cell {
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       display: flex;
-      font-size: 1em;
-      text-align: right;
       justify-content: space-between;
       align-items: center;
-      min-height: 65px;
+      min-height: $list-item-height;
     }
     .mat-table .mat-cell:before {
       content: attr(data-label);
-      // text-transform: uppercase;
       font-weight: normal;
-      font-size: .85em;
+      font-size: 0.85rem;
+      margin-right: auto;
     }
     .mat-table .mat-cell:last-child {
       border-bottom: 0;
     }
+    .mat-list-base {
+      margin-left: 5px;
+    }
     .mat-list-text {
       width: auto !important;
-      align-items: flex-end !important;
-      padding: 0 16px 0 0 !important;
-    }
-    .mat-cell {
-      // padding: 0 12px !important;
+      padding-left: 10px !important;
     }
     .mat-cell:first-of-type, .mat-header-cell:first-of-type, .mat-footer-cell:first-of-type {
       padding-left: 0;
@@ -638,8 +679,8 @@ hr {
     .mat-cell:last-of-type, .mat-header-cell:last-of-type, .mat-footer-cell:last-of-type {
       padding-right: 0;
     }
-    .mat-cell, .mat-header-cell, .mat-footer-cell {
-      justify-content: center;
+    .mat-paginator-range-label {
+      margin: 0;
     }
   }
 }

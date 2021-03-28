@@ -1,5 +1,4 @@
 .map-popup {
-  width: 350px;
   ::ng-deep .mat-card-header-text {
     overflow: hidden !important;
   }
@@ -12,12 +11,5 @@
   }
   .popup-number {
     margin-top: 5px;
-  }
-}
-
-// responsive custom card
-@media screen and (max-width: 960px) {
-  .map-popup {
-    max-width: 85vw !important;
   }
 }

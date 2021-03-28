@@ -66,8 +66,8 @@ export class EncyclopediaComponent implements OnInit {
     this.data = new MatTableDataSource(data);
     this.data.paginator = this.paginator;
     this.data.sort = this.sort;
-    this.filters.faction.options = [...new Set(data.map(row => row.faction))].map(faction => ({ name: 'faction.' + faction + '.name', value: faction }));
-    this.filters.type.options = [...new Set(data.map(row => row.type))].map(type => ({ name: 'type.' + type + '.name', value: type }));
+    this.filters.faction.options = (await this.cacheService.getFactions()).map((faction: any) => ({ name: `faction.${faction.id}.name`, value: faction.id }));
+    this.filters.type.options = [...new Set(data.map(row => row.type))].map((type: any) => ({ name: `type.${type}.name`, value: type }));
     this.data.filterPredicate = this.createFilter();
     this.applyFilter();
   }
@@ -81,10 +81,11 @@ export class EncyclopediaComponent implements OnInit {
   }
 
   createFilter(): (data: any, filter: string) => boolean {
+    const normalize = /[\u0300-\u036f]/g;
     const filterFunction = (data: any, filter: string): boolean => {
       const filters = JSON.parse(filter);
-      return (this.translateService.instant(data.name).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(filters.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
-        || this.translateService.instant(data.description).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(filters.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')))
+      return (this.translateService.instant(data.name).toLowerCase().normalize('NFD').replace(normalize, '').includes(filters.name.toLowerCase().normalize('NFD').replace(normalize, ''))
+        || this.translateService.instant(data.description).toLowerCase().normalize('NFD').replace(normalize, '').includes(filters.name.toLowerCase().normalize('NFD').replace(normalize, '')))
         && data.type.toString().toLowerCase().includes(filters.type)
         && data.faction.id.toLowerCase().includes(filters.faction);
     };

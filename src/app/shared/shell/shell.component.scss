@@ -87,6 +87,10 @@
       ::ng-deep .mat-list-item-content {
         padding: 0 2px !important;
         z-index: 1;
+        .mat-list-avatar {
+          width: 40px !important;
+          height: 40px !important;
+        }
       }
     }
     .mat-toolbar-row, .mat-toolbar-single-row {

@@ -112,7 +112,7 @@ export class MapboxService {
     .setLngLat({ lat: data.coordinates.latitude, lng: data.coordinates.longitude })
     .addTo(this.map);
     // popup
-    const p = this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type });
+    const p: InjectableHTML = this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type });
     marker = marker.setPopup(new mapboxgl.Popup({
       offset: [0, -(size + this.offset)],
       anchor: 'bottom',
@@ -120,6 +120,7 @@ export class MapboxService {
       closeOnClick: true,
       closeOnMove: false,
       maxWidth: 'none',
+      className: 'dialog-responsive',
     })
     .setDOMContent(p.html)
     .on('open', ($event: any) => {
