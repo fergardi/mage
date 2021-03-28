@@ -1,6 +1,6 @@
 <div class="app-landing" >
-  <!-- PARALLAX https://codepen.io/samdbeckham/pen/OPXPNp -->
   <div class="parallax">
+    <!-- PARALLAX https://codepen.io/samdbeckham/pen/OPXPNp -->
     <div class="parallax-layer parallax-layer-1"></div>
     <div class="parallax-layer parallax-layer-2"></div>
     <div class="parallax-layer parallax-layer-3"></div>
@@ -15,24 +15,39 @@
     <div class="parallax-layer parallax-layer-7"></div>
     <div class="parallax-layer parallax-layer-8"></div>
     <div class="parallax-layer parallax-layer-9"></div>
+    <!-- LOGIN -->
     <div class="parallax-layer parallax-layer-10" #login>
       <app-login></app-login>
     </div>
+    <!-- CONTENT -->
     <div class="parallax-content" #content>
       <div class="wrapper">
         <div class="app-landing-content" fxLayout="row wrap" fxLayoutGap="20px grid">
-          <!-- INTRO -->
-          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="0">
-            <h1 class="mat-display-3">{{ 'landing.resurrection.name' | translate }}</h1>
-            <p class="mat-subheading-2">{{ 'landing.resurrection.description' | translate }}</p>
-            <img src="/assets/images/landing/status.png">
+           <!-- REALITY -->
+           <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center" fxFlexOrder.xs="0">
+            <h1 class="mat-display-3">{{ 'landing.reality.name' | translate }}</h1>
+          </div>
+          <!-- RESURRECTION -->
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="10">
+            <img src="/assets/images/landing/resurrection.png">
+          </div>
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="20">
+            <h1 class="mat-h1">{{ 'landing.resurrection.name' | translate }}</h1>
+            <p>{{ 'landing.resurrection.description' | translate }}</p>
+            <div class="image-icons">
+              <img src="/assets/images/categories/melee.png">
+              <img src="/assets/images/categories/psychic.png">
+              <img src="/assets/images/categories/ranged.png">
+              <img src="/assets/images/categories/magic.png">
+              <img src="/assets/images/categories/breath.png">
+            </div>
           </div>
           <!-- FACTIONS -->
-          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center" fxFlexOrder.xs="10">
-            <h1 class="mat-display-3">{{ 'landing.choose.name' | translate }}</h1>
+          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center" fxFlexOrder.xs="30">
+            <h1 class="mat-display-3 margened">{{ 'landing.choose.name' | translate }}</h1>
             <p class="mat-subheading-2">{{ 'landing.choose.description' | translate }}</p>
           </div>
-          <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="20">
+          <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="40">
             <img src="/assets/images/factions/black.png">
             <h1 class="mat-h1">{{ 'faction.black.name' | translate }}</h1>
             <p>{{ 'faction.black.help' | translate }}</p>
@@ -44,7 +59,7 @@
               <img src="/assets/images/spells/black/night-living-dead.png">
             </div>
           </div>
-          <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="30">
+          <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="50">
             <img src="/assets/images/factions/green.png">
             <h1 class="mat-h1">{{ 'faction.green.name' | translate }}</h1>
             <p>{{ 'faction.green.help' | translate }}</p>
@@ -56,7 +71,7 @@
               <img src="/assets/images/spells/green/calm.png">
             </div>
           </div>
-          <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="40">
+          <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="60">
             <img src="/assets/images/factions/blue.png">
             <h1 class="mat-h1">{{ 'faction.blue.name' | translate }}</h1>
             <p>{{ 'faction.blue.help' | translate }}</p>
@@ -68,7 +83,7 @@
               <img src="/assets/images/spells/blue/invisibility.png">
             </div>
           </div>
-          <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="50">
+          <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="70">
             <img src="/assets/images/factions/red.png">
             <h1 class="mat-h1">{{ 'faction.red.name' | translate }}</h1>
             <p>{{ 'faction.red.help' | translate }}</p>
@@ -80,7 +95,7 @@
               <img src="/assets/images/spells/red/battle-chant.png">
             </div>
           </div>
-          <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="60">
+          <div fxFlex.xl="20" fxFlex.lg="20" fxFlex.md="20" fxFlex.sm="20" fxFlex.xs="100" class="image-responsive center" fxFlexOrder.xs="80">
             <img src="/assets/images/factions/white.png">
             <h1 class="mat-h1">{{ 'faction.white.name' | translate }}</h1>
             <p>{{ 'faction.white.help' | translate }}</p>
@@ -93,13 +108,11 @@
             </div>
           </div>
           <!-- DESTINY -->
-          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center image-responsive" fxFlexOrder.xs="70">
+          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center" fxFlexOrder.xs="90">
             <h1 class="mat-display-3 margened">{{ 'landing.destiny.name' | translate }}</h1>
-            <p class="mat-subheading-2">{{ 'landing.destiny.description' | translate }}</p>
-            <img src="/assets/images/landing/destiny.png">
           </div>
           <!-- CITY -->
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="90">
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="110">
             <h1 class="mat-h1">{{ 'landing.city.name' | translate }}</h1>
             <p>{{ 'landing.city.description' | translate }}</p>
             <div class="image-icons">
@@ -110,14 +123,14 @@
               <img src="/assets/images/structures/village.png">
             </div>
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="80">
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="100">
             <img src="/assets/images/landing/city.png">
           </div>
           <!-- CENSUS -->
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="100">
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="120">
             <img src="/assets/images/landing/sorcery.png">
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="110">
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="130">
             <h1 class="mat-h1">{{ 'landing.conjure.name' | translate }}</h1>
             <p>{{ 'landing.conjure.description' | translate }}</p>
             <div class="image-icons">
@@ -128,7 +141,8 @@
               <img src="/assets/images/spells/blue/fog.png">
             </div>
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="130">
+          <!-- ARMY -->
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="150">
             <h1 class="mat-h1">{{ 'landing.army.name' | translate }}</h1>
             <p>{{ 'landing.army.description' | translate }}</p>
             <div class="image-icons">
@@ -139,13 +153,14 @@
               <img src="/assets/images/units/white/paladin.png">
             </div>
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="120">
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="140">
             <img src="/assets/images/landing/army.png">
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="140">
+          <!-- MAP -->
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="160">
             <img src="/assets/images/landing/map.png">
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="150">
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="170">
             <h1 class="mat-h1">{{ 'landing.map.name' | translate }}</h1>
             <p>{{ 'landing.map.description' | translate }}</p>
             <div class="image-icons">
@@ -156,11 +171,13 @@
               <img src="/assets/images/locations/lake.png">
             </div>
           </div>
-          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxFlexOrder.xs="160" class="image-wrapper">
+          <!-- DESKTOP -->
+          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxFlexOrder.xs="180" class="image-wrapper">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#99009C" d="M45.7,-80.2C58.9,-71.5,69.1,-58.6,75.7,-44.6C82.2,-30.5,85.2,-15.3,86.4,0.7C87.6,16.7,87.1,33.3,79.9,46.3C72.7,59.3,58.8,68.5,44.4,76.2C30,83.9,15,90,-0.6,91.1C-16.2,92.1,-32.4,88.2,-44.9,79.4C-57.3,70.6,-66,56.8,-74.4,42.8C-82.8,28.7,-90.9,14.4,-92.7,-1.1C-94.6,-16.5,-90.2,-33.1,-80.3,-44.4C-70.3,-55.7,-54.8,-61.8,-40.5,-69.9C-26.1,-78,-13.1,-88.1,1.6,-90.9C16.2,-93.6,32.5,-89,45.7,-80.2Z" transform="translate(100 100)" /></svg>
             <img class="image-desktop mat-elevation-z8" src="/assets/images/landing/desktop.jpg">
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="180">
+          <!-- TAVERN -->
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="200">
             <h1 class="mat-h1">{{ 'landing.tavern.name' | translate }}</h1>
             <p>{{ 'landing.tavern.description' | translate }}</p>
             <div class="image-icons">
@@ -171,13 +188,14 @@
               <img src="/assets/images/heroes/blue/elementalist.png" class="legendary">
             </div>
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="170">
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="190">
             <img src="/assets/images/landing/tavern.png">
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="190">
+          <!-- AUCTION -->
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="210">
             <img src="/assets/images/landing/auction.png">
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="200">
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="220">
             <h1 class="mat-h1">{{ 'landing.auction.name' | translate }}</h1>
             <p>{{ 'landing.auction.description' | translate }}</p>
             <div class="image-icons">
@@ -188,7 +206,8 @@
               <img src="/assets/images/items/valhalla-horn.png">
             </div>
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="220">
+          <!-- CLAN -->
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="240">
             <h1 class="mat-h1">{{ 'landing.clan.name' | translate }}</h1>
             <p>{{ 'landing.clan.description' | translate }}</p>
             <div class="image-icons">
@@ -199,13 +218,14 @@
               <img src="/assets/images/clans/helmet.png">
             </div>
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="210">
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="230">
             <img src="/assets/images/landing/clan.png">
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="230">
+          <!-- TEMPLE -->
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="250">
             <img src="/assets/images/landing/temple.png">
           </div>
-          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="240">
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="260">
             <h1 class="mat-h1">{{ 'landing.temple.name' | translate }}</h1>
             <p>{{ 'landing.temple.description' | translate }}</p>
             <div class="image-icons">
@@ -216,20 +236,51 @@
               <img src="/assets/images/gods/pestilence.png" class="legendary god-avatar">
             </div>
           </div>
-          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxFlexOrder.xs="250" class="image-wrapper">
+          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxFlexOrder.xs="270" class="image-wrapper">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#99009C" d="M35.5,-58.4C46,-48.6,54.5,-38.6,63,-26.8C71.6,-14.9,80.3,-1,78,10.8C75.6,22.7,62.3,32.6,50.8,41.8C39.3,51,29.7,59.5,16.8,68.3C4,77,-11.9,86,-27.8,85.5C-43.7,85.1,-59.5,75.2,-63.4,60.6C-67.2,46,-59,26.6,-58.3,10.4C-57.6,-5.9,-64.3,-19.2,-62.7,-31.1C-61.1,-43,-51.2,-53.6,-39.3,-62.8C-27.5,-72,-13.7,-79.9,-0.6,-78.9C12.5,-78,25.1,-68.2,35.5,-58.4Z" transform="translate(100 100)" /></svg>
             <img class="image-mobile mat-elevation-z8" src="/assets/images/landing/mobile.jpg">
           </div>
           <!-- VICTORY -->
-          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center image-responsive" fxFlexOrder.xs="260">
+          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center" fxFlexOrder.xs="280">
             <h1 class="mat-display-3 margened">{{ 'landing.victory.name' | translate }}</h1>
-            <p class="mat-subheading-2">{{ 'landing.victory.description' | translate }}</p>
+          </div>
+          <!-- STRATEGY -->
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="300">
+            <h1 class="mat-h1">{{ 'landing.strategy.name' | translate }}</h1>
+            <p>{{ 'landing.strategy.description' | translate }}</p>
+            <div class="image-icons">
+              <img src="/assets/images/resources/gold.png">
+              <img src="/assets/images/resources/mana.png">
+              <img src="/assets/images/resources/population.png">
+              <img src="/assets/images/resources/land.png">
+              <img src="/assets/images/resources/turn.png">
+            </div>
+          </div>
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="290">
+            <img src="/assets/images/landing/strategy.png">
+          </div>
+          <!-- LEGENDARIUM -->
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" class="image-responsive" fxFlexOrder.xs="310">
+            <img src="/assets/images/landing/legendarium.png">
+          </div>
+          <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" fxLayout="column" fxLayoutAlign="center center" class="center" fxFlexOrder.xs="320">
+            <h1 class="mat-h1">{{ 'landing.legendarium.name' | translate }}</h1>
+            <p>{{ 'landing.legendarium.description' | translate }}</p>
+            <div class="image-icons">
+              <img src="/assets/images/categories/fire.png">
+              <img src="/assets/images/categories/holy.png">
+              <img src="/assets/images/categories/lightning.png">
+              <img src="/assets/images/categories/poison.png">
+              <img src="/assets/images/categories/cold.png">
+            </div>
+          </div>
+          <div fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" class="center" fxFlexOrder.xs="330">
             <app-legend style="min-width: 70%;"></app-legend>
-            <img src="/assets/images/landing/census.png">
-            <a mat-raised-button color="primary" class="play-button" (click)="domService.scrollToElement(login)">{{ 'landing.victory.play' | translate }}</a>
+            <a mat-raised-button color="primary" class="play-button" (click)="domService.scrollToElement(login)">{{ 'landing.title.play' | translate }}</a>
           </div>
         </div>
       </div>
+      <!-- FOOTER -->
       <div class="app-landing-footer">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#99009c" fill-opacity="1" d="M0,128L48,144C96,160,192,192,288,213.3C384,235,480,245,576,240C672,235,768,213,864,213.3C960,213,1056,235,1152,208C1248,181,1344,107,1392,69.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
         <div class="retribution" fxLayout="row wrap" fxLayoutAlign="center center">

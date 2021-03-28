@@ -28,7 +28,7 @@ describe('ActivateComponent', () => {
       turns: 1,
       faction: {
         id: 'grey',
-      }
+      },
     },
     quantity: 1,
   };

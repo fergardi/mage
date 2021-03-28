@@ -14,7 +14,7 @@
       </button>
       <!-- title -->
       <span class="fill-space"></span>
-      <span class="logo">{{ (link$ | async)?.name | translate }}</span>
+      <span class="logo">{{ ((link$ | async)?.name || 'landing.title.name') | translate }}</span>
       <span class="fill-space"></span>
       <!-- language -->
       <button mat-icon-button [matMenuTriggerFor]="language">
@@ -29,12 +29,6 @@
     </mat-toolbar>
     <!-- scroll container -->
     <div class="scroll-container" [ngStyle]="{ height: (isHandset$ | async) === false ? 'calc(100% - 64px)' : 'calc(100% - 56px)' }">
-      <!-- image -->
-      <!--
-      <div class="sidenav-logo-container">
-        <img class="sidenav-logo" [src]="(link$ | async)?.image">
-      </div>
-      -->
       <!-- links -->
       <mat-nav-list dense class="router-list">
         <ng-container *ngFor="let group of groups">
@@ -67,8 +61,9 @@
       <button type="button" aria-label="toggle" mat-icon-button (click)="toggle()">
         <mat-icon aria-label="menu">{{ drawer.opened ? 'first_page' : 'last_page' }}</mat-icon>
       </button>
-      <!-- title -->
       <span class="fill-space"></span>
+      <!-- title -->
+      <span class="logo" *ngIf="!(angularFireAuth.authState | async)">{{ 'landing.title.name' | translate }}</span>
       <!-- supply list -->
       <mat-nav-list dense class="supply-list" role="navigation" *ngIf="(angularFireAuth.authState | async)" tourAnchor="tour.supplies">
         <ng-container *ngFor="let supply of kingdomSupplies$ | async; let i = index">
@@ -92,7 +87,7 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #auth="matMenu">
-        <a mat-menu-item (click)="login(main)" *ngIf="(angularFireAuth.authState | async) === (false || null || undefined)"><mat-icon>lock_open</mat-icon>{{ 'user.auth.login' | translate }}</a>
+        <a mat-menu-item (click)="login(main)" *ngIf="!(angularFireAuth.authState | async)"><mat-icon>lock_open</mat-icon>{{ 'user.auth.login' | translate }}</a>
         <a mat-menu-item (click)="logout()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>lock</mat-icon>{{ 'user.auth.logout' | translate }}</a>
         <a mat-menu-item (click)="tour()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>live_help</mat-icon>{{ 'user.auth.tour' | translate }}</a>
       </mat-menu>

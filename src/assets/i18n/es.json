@@ -38,10 +38,15 @@
   "landing": {
     "title": {
       "name": "LëgëndäriüM",
-      "description": "Otro plano de la realidad"
+      "description": "Otro plano de la realidad",
+      "play": "Renacer"
+    },
+    "reality": {
+      "name": "Ötrö plänö dë lä rëälidäd",
+      "description": ""
     },
     "resurrection": {
-      "name": "Häs rënäcidö",
+      "name": "Has renacido",
       "description": "Estás en el más allá, en la más absoluta oscuridad, en otro plano de la realidad. Aquí el mundo es diferente, cargado de partículas mágicas, envuelto en misterio y poder. Lo notas en el agua, lo sientes en la tierra, lo hueles en el aire. Pensabas que era el final, pero en realidad sólo es el principio. Ahora puedes alcanzar tus verdaderos objetivos, desarrollar todo tu potencial, y ser el mejor mago o bruja que ésta desolada tierra haya visto jamás."
     },
     "choose": {
@@ -50,6 +55,10 @@
     },
     "destiny": {
       "name": "Cönstrüyë tü dëstinö",
+      "description": ""
+    },
+    "strategy": {
+      "name": "Escoge una estrategia",
       "description": "Hay muchas maneras distintas de alcanzar la gloria, sólo tienes que encontrar la que más se adapte a tu estilo de juego. La verdadera sabiduría está en mantener un equilibrio perfecto entre todas ellas."
     },
     "conjure": {
@@ -85,9 +94,12 @@
       "description": "Honra y realiza sacrificios a los distintos dioses para que te otorguen su favor y finalmente rompan los cinco sellos del Armagedón, provocando el apocalipsis y finalizando la partida."
     },
     "victory": {
-      "name": "Ënträ ën ël LëgëndäriüM",
-      "description": "Este plano de la realidad es muy cruel con los débiles. Sólo los magos y brujas más sobresalientes tienen una ligera posibilidad de sobrevivir aquí. ¿Eres uno de ellos? Y de entre todos, sólo un reino será digno de ser recordado eternamente en el Legendarium tras el Armagedón. ¿Será el tuyo?",
-      "play": "Renacer"
+      "name": "Älcänzä lä victöriä",
+      "description": ""
+    },
+    "legendarium": {
+      "name": "Entra en el Legendarium",
+      "description": "Este plano de la realidad es muy cruel con los débiles. Sólo los magos y brujas más sobresalientes tienen una ligera posibilidad de sobrevivir aquí. ¿Eres uno de ellos? Y de entre todos, sólo un reino será digno de ser recordado eternamente en el Legendarium tras el Armagedón. ¿Será el tuyo?"
     }
   },
   "user": {
