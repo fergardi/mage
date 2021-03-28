@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="1709" lines-covered="1221" line-rate="0.7145" branches-valid="553" branches-covered="221" branch-rate="0.3996" timestamp="1616918067578" complexity="0" version="0.1">
+<coverage lines-valid="1709" lines-covered="1221" line-rate="0.7145" branches-valid="553" branches-covered="221" branch-rate="0.3996" timestamp="1616922361116" complexity="0" version="0.1">
   <sources>
     <source>C:\entornos\MAGE\workspaces\mage</source>
   </sources>
@@ -4089,9 +4089,9 @@
                 <line number="120" hits="0"/>
               </lines>
             </method>
-            <method name="(anonymous_27)" hits="2" signature="()V">
+            <method name="(anonymous_27)" hits="1" signature="()V">
               <lines>
-                <line number="125" hits="2"/>
+                <line number="125" hits="1"/>
               </lines>
             </method>
             <method name="(anonymous_28)" hits="1" signature="()V">
@@ -4220,7 +4220,7 @@
             <line number="120" hits="1" branch="false"/>
             <line number="121" hits="0" branch="true" condition-coverage="0% (0/2)"/>
             <line number="125" hits="1" branch="false"/>
-            <line number="126" hits="2" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="126" hits="1" branch="true" condition-coverage="100% (2/2)"/>
             <line number="130" hits="1" branch="false"/>
             <line number="131" hits="1" branch="false"/>
             <line number="135" hits="1" branch="false"/>
@@ -4511,40 +4511,40 @@
       <classes>
         <class name="auth.guard.ts" filename="src\app\user\auth.guard.ts" line-rate="1" branch-rate="0.75">
           <methods>
-            <method name="(anonymous_0)" hits="5" signature="()V">
+            <method name="(anonymous_0)" hits="4" signature="()V">
               <lines>
-                <line number="15" hits="5"/>
+                <line number="15" hits="4"/>
               </lines>
             </method>
-            <method name="(anonymous_1)" hits="20" signature="()V">
+            <method name="(anonymous_1)" hits="10" signature="()V">
               <lines>
-                <line number="20" hits="20"/>
+                <line number="20" hits="10"/>
               </lines>
             </method>
-            <method name="(anonymous_2)" hits="2" signature="()V">
+            <method name="(anonymous_2)" hits="1" signature="()V">
               <lines>
-                <line number="20" hits="2"/>
+                <line number="20" hits="1"/>
               </lines>
             </method>
-            <method name="(anonymous_3)" hits="4" signature="()V">
+            <method name="(anonymous_3)" hits="3" signature="()V">
               <lines>
-                <line number="25" hits="4"/>
+                <line number="25" hits="3"/>
               </lines>
             </method>
           </methods>
           <lines>
             <line number="8" hits="1" branch="false"/>
             <line number="13" hits="1" branch="false"/>
-            <line number="16" hits="5" branch="false"/>
-            <line number="17" hits="5" branch="false"/>
-            <line number="18" hits="5" branch="false"/>
-            <line number="20" hits="20" branch="false"/>
-            <line number="21" hits="2" branch="true" condition-coverage="50% (1/2)"/>
-            <line number="26" hits="4" branch="false"/>
-            <line number="27" hits="4" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="16" hits="4" branch="false"/>
+            <line number="17" hits="4" branch="false"/>
+            <line number="18" hits="4" branch="false"/>
+            <line number="20" hits="10" branch="false"/>
+            <line number="21" hits="1" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="26" hits="3" branch="false"/>
+            <line number="27" hits="3" branch="true" condition-coverage="100% (2/2)"/>
             <line number="28" hits="1" branch="false"/>
             <line number="29" hits="1" branch="false"/>
-            <line number="31" hits="4" branch="false"/>
+            <line number="31" hits="3" branch="false"/>
           </lines>
         </class>
       </classes>

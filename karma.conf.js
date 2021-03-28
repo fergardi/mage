@@ -49,13 +49,13 @@ module.exports = function (config) {
         { type: 'text-summary', subdir: '.' }, // to show in console
       ]
     },
-    reporters: ['spec', 'sonarqubeUnit', 'coverage'], // kjhtml, progress, coverage, spec, dots
+    reporters: ['spec', 'sonarqubeUnit', 'coverage'], // kjhtml, progress, coverage, spec, dots, sonarqubeUnit
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['ChromeHeadless'],
-    singleRun: false,
+    singleRun: true,
     restartOnFileChange: true,
   });
 };

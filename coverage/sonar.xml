@@ -1,281 +1,281 @@
 <testExecutions version="1">
-  <file path="src/app/services/loading.service.spec.ts">
-    <testCase name="LoadingService should set LOADING state" duration="8"/>
-    <testCase name="LoadingService should CREATE the INSTANCE" duration="2"/>
-  </file>
-  <file path="src/app/user/login/login.component.spec.ts">
-    <testCase name="LoginComponent should CREATE the INSTANCE" duration="102"/>
-  </file>
-  <file path="src/app/kingdom/army/army.component.spec.ts">
-    <testCase name="ArmyComponent should CREATE the INSTANCE" duration="74"/>
-    <testCase name="ArmyComponent should OPEN the RECRUIT dialog" duration="21"/>
-    <testCase name="ArmyComponent should UPDATE the ARMY" duration="23"/>
-    <testCase name="ArmyComponent should DRAG and DROP" duration="17"/>
-    <testCase name="ArmyComponent should OPEN the DISBAND dialog" duration="19"/>
-  </file>
-  <file path="src/app/services/component.service.spec.ts">
-    <testCase name="ComponentService should CREATE the INSTANCE" duration="2"/>
-  </file>
-  <file path="src/app/world/map/map.component.spec.ts">
-    <testCase name="MapComponent should ADD a KINGDOM" duration="61"/>
-    <testCase name="MapComponent should CREATE the INSTANCE" duration="24"/>
-    <testCase name="MapComponent should POPULATE the MAP" duration="28"/>
-    <testCase name="MapComponent should ADD a SHOP" duration="20"/>
-    <testCase name="MapComponent should ADD a QUEST" duration="22"/>
-  </file>
-  <file path="src/app/kingdom/census/battle.component.spec.ts">
-    <testCase name="BattleComponent should NOT ATTACK another kingdom with NOT ENOUGH TURNS" duration="30"/>
-    <testCase name="BattleComponent should ATTACK another kingdom with ENOUGH TURNS" duration="16"/>
-    <testCase name="BattleComponent should CREATE the INSTANCE" duration="302"/>
-  </file>
-  <file path="src/app/user/landing/landing.component.spec.ts">
-    <testCase name="LandingComponent should CREATE the INSTANCE" duration="506"/>
+  <file path="src/app/kingdom/auction/auction.component.spec.ts">
+    <testCase name="AuctionComponent should CREATE the INSTANCE" duration="280"/>
   </file>
   <file path="src/app/kingdom/army/recruit.component.spec.ts">
-    <testCase name="RecruitComponent should NOT RECRUIT troops with NOT ENOUGH MONEY" duration="76"/>
-    <testCase name="RecruitComponent should RECRUIT troops with ENOUGH MONEY" duration="31"/>
-    <testCase name="RecruitComponent should CREATE the INSTANCE" duration="15"/>
+    <testCase name="RecruitComponent should RECRUIT troops with ENOUGH MONEY" duration="48"/>
+    <testCase name="RecruitComponent should CREATE the INSTANCE" duration="21"/>
+    <testCase name="RecruitComponent should NOT RECRUIT troops with NOT ENOUGH MONEY" duration="16"/>
   </file>
-  <file path="src/app/world/marker/marker.component.spec.ts">
-    <testCase name="MarkerComponent should CREATE the INSTANCE" duration="10"/>
-  </file>
-  <file path="src/app/kingdom/emporium/buy.component.spec.ts">
-    <testCase name="BuyComponent should BUY an ARTIFACT" duration="11"/>
-    <testCase name="BuyComponent should NOT BUY an ARTIFACT" duration="9"/>
-    <testCase name="BuyComponent should CREATE the INSTANCE" duration="11"/>
-  </file>
-  <file path="src/app/kingdom/sorcery/research.component.spec.ts">
-    <testCase name="ResearchComponent should NOT RESEARCH a CHARM" duration="24"/>
-    <testCase name="ResearchComponent should RESEARCH a CHARM" duration="16"/>
-    <testCase name="ResearchComponent should CREATE the INSTANCE" duration="16"/>
-  </file>
-  <file path="src/app/kingdom/archive/report.component.spec.ts">
-    <testCase name="ReportComponent should CREATE the INSTANCE" duration="21"/>
-  </file>
-  <file path="src/app/services/firebase.service.spec.ts">
-    <testCase name="FirebaseService should CREATE the INSTANCE" duration="2"/>
-  </file>
-  <file path="src/app/world/popup/adventure.component.spec.ts">
-    <testCase name="AdventureComponent should CREATE the INSTANCE" duration="12"/>
-  </file>
-  <file path="src/app/kingdom/emporium/emporium.component.spec.ts">
-    <testCase name="EmporiumComponent should CREATE the INSTANCE" duration="16"/>
-    <testCase name="EmporiumComponent should OPEN the BUY dialog" duration="10"/>
-  </file>
-  <file path="src/app/kingdom/clan/clan.component.spec.ts">
-    <testCase name="ClanComponent should CREATE the INSTANCE" duration="59"/>
+  <file path="src/app/kingdom/city/tax.component.spec.ts">
+    <testCase name="TaxComponent should CREATE the INSTANCE" duration="22"/>
+    <testCase name="TaxComponent should NOT TAX some TURNS" duration="14"/>
+    <testCase name="TaxComponent should TAX some TURNS" duration="15"/>
   </file>
   <file path="src/app/kingdom/army/disband.component.spec.ts">
-    <testCase name="DisbandComponent should NOT DISBAND a troop" duration="22"/>
-    <testCase name="DisbandComponent should DISBAND a troop" duration="19"/>
-    <testCase name="DisbandComponent should CREATE the INSTANCE" duration="12"/>
+    <testCase name="DisbandComponent should CREATE the INSTANCE" duration="25"/>
+    <testCase name="DisbandComponent should NOT DISBAND a troop" duration="13"/>
+    <testCase name="DisbandComponent should DISBAND a troop" duration="13"/>
+  </file>
+  <file path="src/app/pipes/long.pipe.spec.ts">
+    <testCase name="LongPipe should CREATE the INSTANCE" duration="1"/>
   </file>
   <file path="src/app/kingdom/sorcery/conjure.component.spec.ts">
-    <testCase name="ConjureComponent should CREATE the INSTANCE" duration="19"/>
-    <testCase name="ConjureComponent should NOT CONJURE a CHARM" duration="13"/>
-    <testCase name="ConjureComponent should CONJURE a CHARM" duration="10"/>
+    <testCase name="ConjureComponent should NOT CONJURE a CHARM" duration="23"/>
+    <testCase name="ConjureComponent should CONJURE a CHARM" duration="11"/>
+    <testCase name="ConjureComponent should CREATE the INSTANCE" duration="10"/>
   </file>
-  <file path="src/app/user/encyclopedia/tome.component.spec.ts">
-    <testCase name="TomeComponent should CREATE the INSTANCE" duration="31"/>
-  </file>
-  <file path="src/app/kingdom/temple/temple.component.spec.ts">
-    <testCase name="TempleComponent should OPEN the OFFER dialog" duration="21"/>
-    <testCase name="TempleComponent should OPEN the DISPEL dialog" duration="12"/>
-    <testCase name="TempleComponent should CREATE the INSTANCE" duration="10"/>
-  </file>
-  <file path="src/app/services/cache.service.spec.ts">
-    <testCase name="CacheService should GET the ATTACKS" duration="2"/>
-    <testCase name="CacheService should GET the UNITS" duration="1"/>
-    <testCase name="CacheService should GET the FACTIONS" duration="1"/>
-    <testCase name="CacheService should GET the ITEMS" duration="1"/>
-    <testCase name="CacheService should CREATE the INSTANCE" duration="1"/>
-    <testCase name="CacheService should GET the STRUCTURES" duration="4"/>
-    <testCase name="CacheService should GET the SKILLS" duration="1"/>
-    <testCase name="CacheService should GET the CATEGORIES" duration="1"/>
-    <testCase name="CacheService should GET the HEROES" duration="1"/>
-    <testCase name="CacheService should GET the SPELLS" duration="1"/>
-    <testCase name="CacheService should GET the GODS" duration="1"/>
-    <testCase name="CacheService should GET the FAMILIES" duration="1"/>
-    <testCase name="CacheService should GET the RESOURCES" duration="1"/>
-    <testCase name="CacheService should GET the GUILDS" duration="1"/>
-    <testCase name="CacheService should GET the FACTIONS" duration="1"/>
-    <testCase name="CacheService should GET the LOCATIONS" duration="4"/>
-    <testCase name="CacheService should GET the STORES" duration="1"/>
-  </file>
-  <file path="src/app/shared/shell/shell.component.spec.ts">
-    <testCase name="ShellComponent should TOGGLE the DRAWER" duration="54"/>
-    <testCase name="ShellComponent should LOGOUT from the APP" duration="44"/>
-    <testCase name="ShellComponent should LOGIN in the APP" duration="37"/>
-    <testCase name="ShellComponent should CREATE the INSTANCE" duration="39"/>
-    <testCase name="ShellComponent should CLOSE the DRAWER" duration="34"/>
-    <testCase name="ShellComponent should START the TOUR" duration="35"/>
-  </file>
-  <file path="src/app/kingdom/temple/offer.component.spec.ts">
-    <testCase name="OfferComponent should OFFER a SACRIFICE" duration="21"/>
-    <testCase name="OfferComponent should NOT OFFER a SACRIFICE" duration="11"/>
-    <testCase name="OfferComponent should CREATE the INSTANCE" duration="16"/>
+  <file path="src/app/kingdom/clan/clan.component.spec.ts">
+    <testCase name="ClanComponent should CREATE the INSTANCE" duration="50"/>
   </file>
   <file path="src/app/pipes/short.pipe.spec.ts">
-    <testCase name="ShortPipe should CREATE the INSTANCE" duration="5"/>
+    <testCase name="ShortPipe should CREATE the INSTANCE" duration="2"/>
   </file>
-  <file path="src/app/user/legend/legend.component.spec.ts">
-    <testCase name="LegendComponent should CREATE the INSTANCE" duration="44"/>
-  </file>
-  <file path="src/app/kingdom/sorcery/sorcery.component.spec.ts">
-    <testCase name="SorceryComponent should ASSIGN a CHARM" duration="39"/>
-    <testCase name="SorceryComponent should OPEN the CONJURE dialog" duration="16"/>
-    <testCase name="SorceryComponent should ASSIGN an ARTIFACT" duration="22"/>
-    <testCase name="SorceryComponent should OPEN the ACTIVATE dialog" duration="14"/>
-    <testCase name="SorceryComponent should OPEN the RESEARCH dialog" duration="18"/>
-    <testCase name="SorceryComponent should CREATE the INSTANCE" duration="15"/>
-  </file>
-  <file path="src/app/services/dom.service.spec.ts">
-    <testCase name="DomService should CREATE the INSTANCE" duration="3"/>
-  </file>
-  <file path="src/app/kingdom/census/census.component.spec.ts">
-    <testCase name="CensusComponent should OPEN the LETTER dialog" duration="44"/>
-    <testCase name="CensusComponent should OPEN the ATTACK dialog" duration="32"/>
-    <testCase name="CensusComponent should CREATE the INSTANCE" duration="25"/>
-    <testCase name="CensusComponent should SHOW in MAP" duration="30"/>
-    <testCase name="CensusComponent should OPEN the CONJURE dialog" duration="31"/>
-    <testCase name="CensusComponent should OPEN the ACTIVATE dialog" duration="30"/>
-  </file>
-  <file path="src/app/user/encyclopedia/encyclopedia.component.spec.ts">
-    <testCase name="EncyclopediaComponent should OPEN the TOME dialog" duration="43"/>
-    <testCase name="EncyclopediaComponent should CREATE the INSTANCE" duration="33"/>
-  </file>
-  <file path="src/app/services/api.service.spec.ts">
-    <testCase name="ApiService should ASSIGN an ARMY" duration="5"/>
-    <testCase name="ApiService should CONJURE a CHARM" duration="1"/>
-    <testCase name="ApiService should CHARGE some MANA" duration="1"/>
-    <testCase name="ApiService should DISBAND some UNITS" duration="6"/>
-    <testCase name="ApiService should ASSIGN a CONTRACT" duration="1"/>
-    <testCase name="ApiService should ACTIVATE an ARTIFACT" duration="1"/>
-    <testCase name="ApiService should BUY an ARTIFACT" duration="1"/>
-    <testCase name="ApiService should EXPLORE some LANDS" duration="1"/>
-    <testCase name="ApiService should BUILD a STRUCTURE" duration="1"/>
-    <testCase name="ApiService should BATTLE a KINGDOM" duration="2"/>
-    <testCase name="ApiService should RESEARCH a CHARM" duration="1"/>
-    <testCase name="ApiService should QUERY a MAP" duration="1"/>
-    <testCase name="ApiService should BID an AUCTION" duration="1"/>
-    <testCase name="ApiService should REFRESH the AUCTION" duration="3"/>
-    <testCase name="ApiService should REMOVE the LETTERS" duration="1"/>
-    <testCase name="ApiService should CREATE the INSTANCE a KINGDOM" duration="1"/>
-    <testCase name="ApiService should ADD a SHOP" duration="1"/>
-    <testCase name="ApiService should ADD a QUEST" duration="1"/>
-    <testCase name="ApiService should OFFER a GOD" duration="2"/>
-    <testCase name="ApiService should READ the LETTER" duration="1"/>
-    <testCase name="ApiService should RECRUIT some UNITS" duration="1"/>
-    <testCase name="ApiService should TAX some GOLD" duration="1"/>
-    <testCase name="ApiService should CREATE the INSTANCE" duration="1"/>
-  </file>
-  <file path="src/app/shared/auth/auth.state.spec.ts">
-    <testCase name="Auth store should DISPATCH the USER action" duration="9"/>
-    <testCase name="Auth store should CREATE the INSTANCE" duration="4"/>
+  <file path="src/app/kingdom/army/army.component.spec.ts">
+    <testCase name="ArmyComponent should OPEN the RECRUIT dialog" duration="60"/>
+    <testCase name="ArmyComponent should CREATE the INSTANCE" duration="20"/>
+    <testCase name="ArmyComponent should UPDATE the ARMY" duration="21"/>
+    <testCase name="ArmyComponent should OPEN the DISBAND dialog" duration="17"/>
+    <testCase name="ArmyComponent should DRAG and DROP" duration="18"/>
   </file>
   <file path="src/app/pipes/legendary.pipe.spec.ts">
     <testCase name="LegendaryPipe should CREATE the INSTANCE" duration="1"/>
   </file>
+  <file path="src/app/kingdom/emporium/buy.component.spec.ts">
+    <testCase name="BuyComponent should NOT BUY an ARTIFACT" duration="9"/>
+    <testCase name="BuyComponent should CREATE the INSTANCE" duration="11"/>
+    <testCase name="BuyComponent should BUY an ARTIFACT" duration="10"/>
+  </file>
   <file path="src/app/kingdom/sorcery/activate.component.spec.ts">
-    <testCase name="ActivateComponent should NOT ACTIVATE an ARTIFACT" duration="13"/>
-    <testCase name="ActivateComponent should CREATE the INSTANCE" duration="7"/>
-    <testCase name="ActivateComponent should ACTIVATE an ARTIFACT" duration="7"/>
+    <testCase name="ActivateComponent should NOT ACTIVATE an ARTIFACT" duration="19"/>
+    <testCase name="ActivateComponent should ACTIVATE an ARTIFACT" duration="9"/>
+    <testCase name="ActivateComponent should CREATE the INSTANCE" duration="9"/>
   </file>
-  <file path="src/app/kingdom/tavern/discharge.component.spec.ts">
-    <testCase name="DischargeComponent should CREATE the INSTANCE" duration="11"/>
+  <file path="src/app/kingdom/city/build.component.spec.ts">
+    <testCase name="BuildComponent should CREATE the INSTANCE" duration="18"/>
+    <testCase name="BuildComponent should BUILD some LANDS" duration="15"/>
+    <testCase name="BuildComponent should NOT BUILD some LANDS" duration="15"/>
   </file>
-  <file path="src/app/pipes/long.pipe.spec.ts">
-    <testCase name="LongPipe should CREATE the INSTANCE" duration="2"/>
+  <file path="src/app/kingdom/census/census.component.spec.ts">
+    <testCase name="CensusComponent should CREATE the INSTANCE" duration="52"/>
+    <testCase name="CensusComponent should OPEN the ATTACK dialog" duration="36"/>
+    <testCase name="CensusComponent should OPEN the CONJURE dialog" duration="33"/>
+    <testCase name="CensusComponent should SHOW in MAP" duration="35"/>
+    <testCase name="CensusComponent should OPEN the LETTER dialog" duration="37"/>
+    <testCase name="CensusComponent should OPEN the ACTIVATE dialog" duration="36"/>
   </file>
-  <file path="src/app/user/auth.guard.spec.ts">
-    <testCase name="AuthGuard should CREATE the INSTANCE" duration="1"/>
-    <testCase name="AuthGuard should PASS a ROUTE" duration="1"/>
-    <testCase name="AuthGuard should BLOCK a ROUTE" duration="1"/>
+  <file path="src/app/kingdom/census/battle.component.spec.ts">
+    <testCase name="BattleComponent should ATTACK another kingdom with ENOUGH TURNS" duration="21"/>
+    <testCase name="BattleComponent should NOT ATTACK another kingdom with NOT ENOUGH TURNS" duration="16"/>
+    <testCase name="BattleComponent should CREATE the INSTANCE" duration="14"/>
+  </file>
+  <file path="src/app/kingdom/city/charge.component.spec.ts">
+    <testCase name="ChargeComponent should CHARGE some TURNS" duration="17"/>
+    <testCase name="ChargeComponent should NOT CHARGE some TURNS" duration="13"/>
+    <testCase name="ChargeComponent should CREATE the INSTANCE" duration="13"/>
+  </file>
+  <file path="src/app/kingdom/census/letter.component.spec.ts">
+    <testCase name="LetterComponent should NOT SEND the letter" duration="20"/>
+    <testCase name="LetterComponent should RESET the letter" duration="12"/>
+    <testCase name="LetterComponent should CREATE the INSTANCE" duration="15"/>
+    <testCase name="LetterComponent should SEND the letter" duration="13"/>
+  </file>
+  <file path="src/app/kingdom/temple/temple.component.spec.ts">
+    <testCase name="TempleComponent should CREATE the INSTANCE" duration="21"/>
+    <testCase name="TempleComponent should OPEN the OFFER dialog" duration="12"/>
+    <testCase name="TempleComponent should OPEN the DISPEL dialog" duration="8"/>
+  </file>
+  <file path="src/app/kingdom/auction/bid.component.spec.ts">
+    <testCase name="BidComponent should NOT BID with NOT ENOUGH MONEY" duration="16"/>
+    <testCase name="BidComponent should BID with ENOUGH MONEY" duration="15"/>
+    <testCase name="BidComponent should CREATE the INSTANCE" duration="13"/>
+  </file>
+  <file path="src/app/kingdom/city/city.component.spec.ts">
+    <testCase name="CityComponent should CREATE the INSTANCE" duration="25"/>
+    <testCase name="CityComponent should OPEN the BUILD dialog" duration="11"/>
+    <testCase name="CityComponent should OPEN the EXPLORE dialog" duration="9"/>
+    <testCase name="CityComponent should OPEN the TAX dialog" duration="14"/>
+    <testCase name="CityComponent should OPEN the CHARGE dialog" duration="11"/>
+  </file>
+  <file path="src/app/world/map/map.component.spec.ts">
+    <testCase name="MapComponent should ADD a KINGDOM" duration="67"/>
+    <testCase name="MapComponent should CREATE the INSTANCE" duration="26"/>
+    <testCase name="MapComponent should ADD a SHOP" duration="23"/>
+    <testCase name="MapComponent should POPULATE the MAP" duration="16"/>
+    <testCase name="MapComponent should ADD a QUEST" duration="18"/>
+  </file>
+  <file path="src/app/world/marker/marker.component.spec.ts">
+    <testCase name="MarkerComponent should CREATE the INSTANCE" duration="45"/>
+  </file>
+  <file path="src/app/kingdom/city/explore.component.spec.ts">
+    <testCase name="ExploreComponent should EXPLORE some TURNS" duration="22"/>
+    <testCase name="ExploreComponent should NOT EXPLORE some TURNS" duration="536"/>
+    <testCase name="ExploreComponent should CREATE the INSTANCE" duration="21"/>
+  </file>
+  <file path="src/app/kingdom/temple/dispel.component.spec.ts">
+    <testCase name="DispelComponent should CREATE the INSTANCE" duration="15"/>
   </file>
   <file path="src/app/services/mapbox.service.spec.ts">
-    <testCase name="MapboxService should CREATE the INSTANCE" duration="1"/>
+    <testCase name="MapboxService should CREATE the INSTANCE" duration="4"/>
   </file>
-  <file path="src/app/pipes/turn.pipe.spec.ts">
-    <testCase name="TurnPipe should CREATE the INSTANCE" duration="2"/>
+  <file path="src/app/services/firebase.service.spec.ts">
+    <testCase name="FirebaseService should CREATE the INSTANCE" duration="4"/>
   </file>
-  <file path="src/app/world/popup/popup.component.spec.ts">
-    <testCase name="PopupComponent should CREATE the INSTANCE as KINGDOM popup" duration="25"/>
-    <testCase name="PopupComponent should CREATE the INSTANCE as QUEST popup" duration="6"/>
-    <testCase name="PopupComponent should CREATE the INSTANCE" duration="5"/>
-    <testCase name="PopupComponent should OPEN the SHOP dialog" duration="10"/>
-    <testCase name="PopupComponent should OPEN the QUEST dialog" duration="4"/>
-    <testCase name="PopupComponent should CREATE the INSTANCE as SHOP popup" duration="8"/>
+  <file path="src/app/services/notification.service.spec.ts">
+    <testCase name="NotificationService should SHOW a WARNING NOTIFICATION" duration="13"/>
+    <testCase name="NotificationService should CREATE the INSTANCE" duration="2"/>
+    <testCase name="NotificationService should SHOW a SUCCESS NOTIFICATION" duration="4"/>
+    <testCase name="NotificationService should SHOW an ERROR NOTIFICATION" duration="7"/>
+  </file>
+  <file path="src/app/kingdom/tavern/tavern.component.spec.ts">
+    <testCase name="TavernComponent should OPEN the DISCHARGE dialog" duration="21"/>
+    <testCase name="TavernComponent should CREATE the INSTANCE" duration="12"/>
+  </file>
+  <file path="src/app/world/popup/deal.component.spec.ts">
+    <testCase name="DealComponent should CREATE the INSTANCE" duration="15"/>
+  </file>
+  <file path="src/app/services/dom.service.spec.ts">
+    <testCase name="DomService should CREATE the INSTANCE" duration="2"/>
   </file>
   <file path="src/app/services/random.service.spec.ts">
     <testCase name="RandomService should CREATE the INSTANCE" duration="1"/>
   </file>
-  <file path="src/app/services/notification.service.spec.ts">
-    <testCase name="NotificationService should SHOW an ERROR NOTIFICATION" duration="8"/>
-    <testCase name="NotificationService should SHOW a WARNING NOTIFICATION" duration="6"/>
-    <testCase name="NotificationService should SHOW a SUCCESS NOTIFICATION" duration="6"/>
-    <testCase name="NotificationService should CREATE the INSTANCE" duration="2"/>
+  <file path="src/app/user/login/login.component.spec.ts">
+    <testCase name="LoginComponent should CREATE the INSTANCE" duration="40"/>
   </file>
-  <file path="src/app/kingdom/city/build.component.spec.ts">
-    <testCase name="BuildComponent should NOT BUILD some LANDS" duration="13"/>
-    <testCase name="BuildComponent should BUILD some LANDS" duration="11"/>
-    <testCase name="BuildComponent should CREATE the INSTANCE" duration="16"/>
+  <file path="src/app/world/popup/adventure.component.spec.ts">
+    <testCase name="AdventureComponent should CREATE the INSTANCE" duration="13"/>
   </file>
-  <file path="src/app/app.component.spec.ts">
-    <testCase name="AppComponent should CREATE the INSTANCE" duration="10"/>
+  <file path="src/app/kingdom/archive/report.component.spec.ts">
+    <testCase name="ReportComponent should CREATE the INSTANCE" duration="13"/>
   </file>
-  <file path="src/app/kingdom/auction/bid.component.spec.ts">
-    <testCase name="BidComponent should NOT BID with NOT ENOUGH MONEY" duration="12"/>
-    <testCase name="BidComponent should BID with ENOUGH MONEY" duration="13"/>
-    <testCase name="BidComponent should CREATE the INSTANCE" duration="10"/>
-  </file>
-  <file path="src/app/kingdom/census/letter.component.spec.ts">
-    <testCase name="LetterComponent should RESET the letter" duration="16"/>
-    <testCase name="LetterComponent should NOT SEND the letter" duration="12"/>
-    <testCase name="LetterComponent should SEND the letter" duration="11"/>
-    <testCase name="LetterComponent should CREATE the INSTANCE" duration="15"/>
-  </file>
-  <file path="src/app/kingdom/city/city.component.spec.ts">
-    <testCase name="CityComponent should OPEN the CHARGE dialog" duration="12"/>
-    <testCase name="CityComponent should OPEN the BUILD dialog" duration="17"/>
-    <testCase name="CityComponent should OPEN the EXPLORE dialog" duration="12"/>
-    <testCase name="CityComponent should OPEN the TAX dialog" duration="13"/>
-    <testCase name="CityComponent should CREATE the INSTANCE" duration="12"/>
-  </file>
-  <file path="src/app/world/popup/deal.component.spec.ts">
-    <testCase name="DealComponent should CREATE the INSTANCE" duration="19"/>
-  </file>
-  <file path="src/app/kingdom/temple/dispel.component.spec.ts">
-    <testCase name="DispelComponent should CREATE the INSTANCE" duration="8"/>
-  </file>
-  <file path="src/app/kingdom/archive/archive.component.spec.ts">
-    <testCase name="ArchiveComponent should OPEN the REPORT dialog" duration="34"/>
-    <testCase name="ArchiveComponent should CREATE the INSTANCE" duration="32"/>
-    <testCase name="ArchiveComponent should NOT REMOVE the LETTERS" duration="31"/>
-    <testCase name="ArchiveComponent should REMOVE the LETTERS" duration="29"/>
-  </file>
-  <file path="src/app/kingdom/auction/auction.component.spec.ts">
-    <testCase name="AuctionComponent should CREATE the INSTANCE" duration="34"/>
-  </file>
-  <file path="src/app/kingdom/city/charge.component.spec.ts">
-    <testCase name="ChargeComponent should NOT CHARGE some TURNS" duration="12"/>
-    <testCase name="ChargeComponent should CHARGE some TURNS" duration="10"/>
-    <testCase name="ChargeComponent should CREATE the INSTANCE" duration="13"/>
-  </file>
-  <file path="src/app/kingdom/tavern/tavern.component.spec.ts">
-    <testCase name="TavernComponent should CREATE the INSTANCE" duration="18"/>
-    <testCase name="TavernComponent should OPEN the DISCHARGE dialog" duration="12"/>
-  </file>
-  <file path="src/app/kingdom/city/tax.component.spec.ts">
-    <testCase name="TaxComponent should CREATE the INSTANCE" duration="10"/>
-    <testCase name="TaxComponent should NOT TAX some TURNS" duration="12"/>
-    <testCase name="TaxComponent should TAX some TURNS" duration="9"/>
+  <file path="src/app/shared/auth/auth.state.spec.ts">
+    <testCase name="Auth store should CREATE the INSTANCE" duration="10"/>
+    <testCase name="Auth store should DISPATCH the USER action" duration="5"/>
   </file>
   <file path="src/app/pipes/icon.pipe.spec.ts">
-    <testCase name="IconPipe should CREATE the INSTANCE" duration="4"/>
+    <testCase name="IconPipe should CREATE the INSTANCE" duration="6"/>
   </file>
-  <file path="src/app/kingdom/city/explore.component.spec.ts">
-    <testCase name="ExploreComponent should NOT EXPLORE some TURNS" duration="12"/>
-    <testCase name="ExploreComponent should CREATE the INSTANCE" duration="11"/>
-    <testCase name="ExploreComponent should EXPLORE some TURNS" duration="10"/>
+  <file path="src/app/services/loading.service.spec.ts">
+    <testCase name="LoadingService should set LOADING state" duration="1"/>
+    <testCase name="LoadingService should CREATE the INSTANCE" duration="1"/>
+  </file>
+  <file path="src/app/kingdom/archive/archive.component.spec.ts">
+    <testCase name="ArchiveComponent should REMOVE the LETTERS" duration="50"/>
+    <testCase name="ArchiveComponent should OPEN the REPORT dialog" duration="37"/>
+    <testCase name="ArchiveComponent should NOT REMOVE the LETTERS" duration="33"/>
+    <testCase name="ArchiveComponent should CREATE the INSTANCE" duration="32"/>
+  </file>
+  <file path="src/app/shared/shell/shell.component.spec.ts">
+    <testCase name="ShellComponent should START the TOUR" duration="47"/>
+    <testCase name="ShellComponent should LOGIN in the APP" duration="52"/>
+    <testCase name="ShellComponent should LOGOUT from the APP" duration="49"/>
+    <testCase name="ShellComponent should TOGGLE the DRAWER" duration="44"/>
+    <testCase name="ShellComponent should CLOSE the DRAWER" duration="44"/>
+    <testCase name="ShellComponent should CREATE the INSTANCE" duration="42"/>
+  </file>
+  <file path="src/app/world/popup/popup.component.spec.ts">
+    <testCase name="PopupComponent should CREATE the INSTANCE as KINGDOM popup" duration="27"/>
+    <testCase name="PopupComponent should CREATE the INSTANCE" duration="7"/>
+    <testCase name="PopupComponent should OPEN the SHOP dialog" duration="4"/>
+    <testCase name="PopupComponent should CREATE the INSTANCE as SHOP popup" duration="10"/>
+    <testCase name="PopupComponent should OPEN the QUEST dialog" duration="6"/>
+    <testCase name="PopupComponent should CREATE the INSTANCE as QUEST popup" duration="7"/>
+  </file>
+  <file path="src/app/kingdom/temple/offer.component.spec.ts">
+    <testCase name="OfferComponent should NOT OFFER a SACRIFICE" duration="14"/>
+    <testCase name="OfferComponent should CREATE the INSTANCE" duration="17"/>
+    <testCase name="OfferComponent should OFFER a SACRIFICE" duration="15"/>
+  </file>
+  <file path="src/app/kingdom/emporium/emporium.component.spec.ts">
+    <testCase name="EmporiumComponent should CREATE the INSTANCE" duration="7"/>
+    <testCase name="EmporiumComponent should OPEN the BUY dialog" duration="9"/>
+  </file>
+  <file path="src/app/user/auth.guard.spec.ts">
+    <testCase name="AuthGuard should BLOCK a ROUTE" duration="1"/>
+    <testCase name="AuthGuard should PASS a ROUTE" duration="1"/>
+    <testCase name="AuthGuard should CREATE the INSTANCE" duration="1"/>
+  </file>
+  <file path="src/app/kingdom/sorcery/research.component.spec.ts">
+    <testCase name="ResearchComponent should CREATE the INSTANCE" duration="10"/>
+    <testCase name="ResearchComponent should RESEARCH a CHARM" duration="12"/>
+    <testCase name="ResearchComponent should NOT RESEARCH a CHARM" duration="19"/>
+  </file>
+  <file path="src/app/app.component.spec.ts">
+    <testCase name="AppComponent should CREATE the INSTANCE" duration="9"/>
+  </file>
+  <file path="src/app/services/api.service.spec.ts">
+    <testCase name="ApiService should BUY an ARTIFACT" duration="3"/>
+    <testCase name="ApiService should BUILD a STRUCTURE" duration="1"/>
+    <testCase name="ApiService should BID an AUCTION" duration="2"/>
+    <testCase name="ApiService should OFFER a GOD" duration="2"/>
+    <testCase name="ApiService should EXPLORE some LANDS" duration="1"/>
+    <testCase name="ApiService should REFRESH the AUCTION" duration="1"/>
+    <testCase name="ApiService should CREATE the INSTANCE a KINGDOM" duration="1"/>
+    <testCase name="ApiService should CREATE the INSTANCE" duration="1"/>
+    <testCase name="ApiService should ADD a SHOP" duration="1"/>
+    <testCase name="ApiService should READ the LETTER" duration="4"/>
+    <testCase name="ApiService should RECRUIT some UNITS" duration="1"/>
+    <testCase name="ApiService should ADD a QUEST" duration="1"/>
+    <testCase name="ApiService should ASSIGN a CONTRACT" duration="1"/>
+    <testCase name="ApiService should REMOVE the LETTERS" duration="1"/>
+    <testCase name="ApiService should BATTLE a KINGDOM" duration="1"/>
+    <testCase name="ApiService should CHARGE some MANA" duration="1"/>
+    <testCase name="ApiService should TAX some GOLD" duration="1"/>
+    <testCase name="ApiService should ASSIGN an ARMY" duration="1"/>
+    <testCase name="ApiService should CONJURE a CHARM" duration="1"/>
+    <testCase name="ApiService should QUERY a MAP" duration="3"/>
+    <testCase name="ApiService should ACTIVATE an ARTIFACT" duration="1"/>
+    <testCase name="ApiService should DISBAND some UNITS" duration="1"/>
+    <testCase name="ApiService should RESEARCH a CHARM" duration="1"/>
+  </file>
+  <file path="src/app/pipes/turn.pipe.spec.ts">
+    <testCase name="TurnPipe should CREATE the INSTANCE" duration="1"/>
+  </file>
+  <file path="src/app/kingdom/tavern/discharge.component.spec.ts">
+    <testCase name="DischargeComponent should CREATE the INSTANCE" duration="8"/>
+  </file>
+  <file path="src/app/services/component.service.spec.ts">
+    <testCase name="ComponentService should CREATE the INSTANCE" duration="2"/>
+  </file>
+  <file path="src/app/user/landing/landing.component.spec.ts">
+    <testCase name="LandingComponent should CREATE the INSTANCE" duration="48"/>
+  </file>
+  <file path="src/app/user/encyclopedia/encyclopedia.component.spec.ts">
+    <testCase name="EncyclopediaComponent should CREATE the INSTANCE" duration="41"/>
+    <testCase name="EncyclopediaComponent should OPEN the TOME dialog" duration="33"/>
+  </file>
+  <file path="src/app/kingdom/sorcery/sorcery.component.spec.ts">
+    <testCase name="SorceryComponent should ASSIGN a CHARM" duration="18"/>
+    <testCase name="SorceryComponent should CREATE the INSTANCE" duration="17"/>
+    <testCase name="SorceryComponent should OPEN the RESEARCH dialog" duration="20"/>
+    <testCase name="SorceryComponent should ASSIGN an ARTIFACT" duration="15"/>
+    <testCase name="SorceryComponent should OPEN the CONJURE dialog" duration="21"/>
+    <testCase name="SorceryComponent should OPEN the ACTIVATE dialog" duration="14"/>
+  </file>
+  <file path="src/app/services/cache.service.spec.ts">
+    <testCase name="CacheService should GET the LOCATIONS" duration="2"/>
+    <testCase name="CacheService should GET the SKILLS" duration="1"/>
+    <testCase name="CacheService should GET the STRUCTURES" duration="1"/>
+    <testCase name="CacheService should GET the SPELLS" duration="1"/>
+    <testCase name="CacheService should GET the FAMILIES" duration="1"/>
+    <testCase name="CacheService should GET the CATEGORIES" duration="1"/>
+    <testCase name="CacheService should GET the RESOURCES" duration="1"/>
+    <testCase name="CacheService should GET the GUILDS" duration="2"/>
+    <testCase name="CacheService should GET the ITEMS" duration="2"/>
+    <testCase name="CacheService should GET the FACTIONS" duration="1"/>
+    <testCase name="CacheService should GET the GODS" duration="1"/>
+    <testCase name="CacheService should GET the FACTIONS" duration="1"/>
+    <testCase name="CacheService should GET the HEROES" duration="1"/>
+    <testCase name="CacheService should CREATE the INSTANCE" duration="1"/>
+    <testCase name="CacheService should GET the ATTACKS" duration="1"/>
+    <testCase name="CacheService should GET the UNITS" duration="1"/>
+    <testCase name="CacheService should GET the STORES" duration="1"/>
+  </file>
+  <file path="src/app/user/encyclopedia/tome.component.spec.ts">
+    <testCase name="TomeComponent should CREATE the INSTANCE" duration="23"/>
+  </file>
+  <file path="src/app/user/legend/legend.component.spec.ts">
+    <testCase name="LegendComponent should CREATE the INSTANCE" duration="39"/>
   </file>
 </testExecutions>
