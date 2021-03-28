@@ -19,7 +19,7 @@ module.exports = function (config) {
       { pattern: 'src/styles/styles.scss' },
     ],
     preprocessors: {
-      'src/**/*.ts': ['coverage'],
+      'src/app/**/*.ts': ['coverage'],
       'src/styles/styles.scss': ['scss'],
     },
     scssPreprocessor: {
