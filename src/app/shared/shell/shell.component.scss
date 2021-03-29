@@ -28,16 +28,6 @@
     top: 0;
     z-index: 1;
   }
-  i {
-    font-style: normal;
-    font-size: 1.25em;
-    margin-right: 16px;
-  }
-  .avatar {
-    width: 1.75em;
-    border-radius: 50%;
-    margin: 0 10px 5px;
-  }
   .mat-drawer-content.mat-sidenav-content {
     overflow: hidden;
   }
@@ -45,18 +35,16 @@
     overflow: hidden auto;
     position: relative;
   }
-  .sidenav-logo {
-    width: 175px;
-    height: 175px;
-    margin: 10px 0;
-  }
-  .sidenav-logo-container {
-    text-align: center;
-  }
   .supply-list {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    ::ng-deep .mat-list-item-content {
+      justify-content: center;
+      padding: 0;
+    }
   }
   .scroll-container {
     overflow: hidden;
@@ -85,16 +73,12 @@
   .app-shell {
     .supply-list {
       ::ng-deep .mat-list-item-content {
-        padding: 0 2px !important;
         z-index: 1;
         .mat-list-avatar {
           width: 40px !important;
           height: 40px !important;
         }
       }
-    }
-    .mat-toolbar-row, .mat-toolbar-single-row {
-      padding: 0 !important;
     }
   }
 }
