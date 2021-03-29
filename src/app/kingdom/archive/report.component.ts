@@ -23,22 +23,28 @@ export enum ReportType {
           <div mat-line class="mat-card-subtitle">{{ report.from.faction.name | translate }}</div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.report.message' | translate }}:</div>
+      <p>{{ report.message | translate }}</p>
+    </div>
+    <div mat-dialog-content *ngIf="report.adquisition">
       <div matSubheader>{{ 'kingdom.report.adquisitions' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item [ngClass]="[report.message.join.id, (report.message.join | legendary) ? 'legendary' : 'common']">
-          <div mat-list-avatar [matBadge]="(report.message.quantity || report.message.level || report.message.join.level) | short" matBadgePosition="ahove before">
-            <img mat-list-avatar [src]="report.message.join.image">
+        <mat-list-item [ngClass]="[report.adquisition.join.id, (report.adquisition.join | legendary) ? 'legendary' : 'common']">
+          <div mat-list-avatar [matBadge]="(report.adquisition.quantity || report.adquisition.level || report.adquisition.join.level) | short" matBadgePosition="ahove before">
+            <img mat-list-avatar [src]="report.adquisition.join.image">
           </div>
-          <div mat-line>{{ report.message.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'enchantment', 'hero', 'item', 'summon', 'sorcery', 'instant'].includes(report.message.join.type)" [innerHTML]="report.message.join.description | translate | icon:report.message.join"></div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(report.message.join.type)">
-            <img [title]="family.name | translate" class="icon" *ngFor="let family of report.message.join.families" [src]="family.image">
-            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of report.message.join.skills" [src]="skill.image">
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of report.message.join.categories" [src]="category.image">
-            <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="report.message.join.legendary" src="/assets/images/icons/legendary.png">
+          <div mat-line>{{ report.adquisition.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'enchantment', 'hero', 'item', 'summon', 'sorcery', 'instant'].includes(report.adquisition.join.type)" [innerHTML]="report.adquisition.join.description | translate | icon:report.adquisition.join"></div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(report.adquisition.join.type)">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of report.adquisition.join.families" [src]="family.image">
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of report.adquisition.join.skills" [src]="skill.image">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of report.adquisition.join.categories" [src]="category.image">
+            <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="report.adquisition.join.legendary" src="/assets/images/icons/legendary.png">
           </div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(report.message.join.type) && report.message.join.categories && report.message.join.categories.length">
-            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of report.message.join.resistances" [src]="category.image">
+          <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(report.adquisition.join.type) && report.adquisition.join.categories && report.adquisition.join.categories.length">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of report.adquisition.join.resistances" [src]="category.image">
           </div>
         </mat-list-item>
       </mat-list>
@@ -62,6 +68,10 @@ export enum ReportType {
     .mat-form-field {
       width: 100%;
     }
+    p {
+      margin: 0;
+    }
+    /*
     ::ng-deep .log-right .mat-list-item-content {
       flex-direction: row-reverse !important;
     }
@@ -76,6 +86,7 @@ export enum ReportType {
       align-items: flex-end;
       justify-content: flex-end;
     }
+    */
   `],
 })
 export class ReportComponent implements OnInit {

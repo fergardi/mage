@@ -1,6 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LoadingService } from 'src/app/services/loading.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 @Component({
   selector: 'app-letter',
@@ -8,12 +13,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     <h1 mat-dialog-title>{{ 'kingdom.letter.name' | translate }}</h1>
     <div mat-dialog-content>
       <mat-list dense>
-        <mat-list-item [ngClass]="kingdom.faction">
+        <mat-list-item [ngClass]="kingdom.faction.id">
           <div mat-list-avatar matBadgePosition="above before">
-            <img mat-list-avatar [src]="kingdom.join.image">
+            <img mat-list-avatar [src]="kingdom.faction.image">
           </div>
           <div mat-line>{{ kingdom.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ kingdom.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ kingdom.faction.name | translate }}</div>
         </mat-list-item>
       </mat-list>
       <form [formGroup]="form" autocomplete="off">
@@ -31,7 +36,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.letter.close' | translate }}</button>
-      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="sendLetter()">{{ 'kingdom.letter.send' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="send()">{{ 'kingdom.letter.send' | translate }}</button>
     </div>
   `,
   styles: [`
@@ -42,13 +47,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class LetterComponent implements OnInit {
 
-  uid: string = null;
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   form: FormGroup = null;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public kingdom: any,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<LetterComponent>,
+    private loadingService: LoadingService,
+    private notificationService: NotificationService,
+    private apiService: ApiService,
+    private store: Store,
   ) { }
 
   ngOnInit(): void {
@@ -58,13 +67,20 @@ export class LetterComponent implements OnInit {
     });
   }
 
-  resetLetter(): void {
-    this.form.reset();
-  }
-
-  sendLetter(): void {
+  async send() {
     if (this.form.valid) {
-      this.dialogRef.close(this.form.value);
+      this.loadingService.startLoading();
+      try {
+        const sent = await this.apiService.sendLetter(this.kingdom.fid, this.form.value.subject, this.form.value.message, this.uid);
+        this.notificationService.success('kingdom.letter.success');
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.letter.error');
+      }
+      this.loadingService.stopLoading();
+    } else {
+      this.notificationService.error('kingdom.letter.error');
     }
   }
 

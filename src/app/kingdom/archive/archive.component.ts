@@ -59,11 +59,7 @@ export class ArchiveComponent implements OnInit {
 
   ngOnInit(): void {
     this.angularFirestore.collection<any>(`kingdoms/${this.uid}/letters`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(letters => {
-      const data = letters.map(letter => {
-        letter.message.join = letter.message.hero || letter.message.item || letter.message.spell || letter.message.unit;
-        return letter;
-      });
-      this.data = new MatTableDataSource(data);
+      this.data = new MatTableDataSource(letters);
       this.data.paginator = this.paginator;
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
@@ -101,6 +97,7 @@ export class ArchiveComponent implements OnInit {
   }
 
   async openReportDialog(report: any) {
+    if (report.adquisition) report.adquisition.join = report.adquisition.hero || report.adquisition.item || report.adquisition.spell || report.adquisition.unit;
     const dialogRef = this.dialog.open(ReportComponent, {
       panelClass: 'dialog-responsive',
       data: report,
@@ -114,14 +111,14 @@ export class ArchiveComponent implements OnInit {
         const fids = this.selection.selected.map(letter => letter.fid);
         await this.apiService.removeLetters(this.uid, fids);
         this.selection.clear();
-        this.notificationService.success('kingdom.letter.deleted');
+        this.notificationService.success('kingdom.archive.success');
       } catch (error) {
         console.error(error);
-        this.notificationService.success('kingdom.letter.error');
+        this.notificationService.success('kingdom.archive.error');
       }
       this.loadingService.stopLoading();
     } else {
-      this.notificationService.success('kingdom.letter.error');
+      this.notificationService.success('kingdom.archive.error');
     }
   }
 

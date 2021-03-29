@@ -258,7 +258,8 @@
       "power": "Poder",
       "position": "Posición",
       "actions": "Acciones",
-      "clan": "Clan"
+      "clan": "Clan",
+      "select": "Seleccionar"
     }
   },
   "world": {
@@ -315,9 +316,9 @@
     },
     "report": {
       "battle": "Reporte de batalla",
-      "auction": "Subasta terminada",
       "from": "De",
       "adquisitions": "Adquisiciones",
+      "message": "Mensaje",
       "close": "Cerrar"
     },
     "battle": {
@@ -403,9 +404,11 @@
     "auction": {
       "name": "Subasta",
       "description": "Comercia con otros reinos",
-      "help": "Aquí puedes pujar Oro contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar.",
+      "help": "Aquí puedes pujar Oro contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de Oro que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de Oro de tu puja original, así que asegúrate de pujar con cuidado.",
       "bid": "Pujar",
-      "from": "Casa de Subastas"
+      "from": "Casa de Subastas",
+      "subject": "Subasta terminada",
+      "message": "La subasta ha terminado. Las nuevas adquisiciones se han enviado a tu reino."
     },
     "bid": {
       "name": "Puja",
@@ -472,7 +475,7 @@
       "help": "Aquí podrás invertir Turnos en reponer los depósitos de Maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Cuantos más nodos tengas, más Maná recargarás",
-      "invalid": "No válido",
+      "invalid": "No dispones de suficientes Turnos",
       "error": "Ha ocurrido un problema",
       "charge": "Meditar",
       "success": "Has recargado {{ mana }} Maná"
@@ -483,7 +486,7 @@
       "help": "Aquí podrás invertir Turnos en cobrar impuestos a los súbditos de tu reino. El Oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Cuantos más pueblos tengas, más Oro recaudarás",
-      "invalid": "No válido",
+      "invalid": "No dispones de suficientes Turnos",
       "error": "Ha ocurrido un problema",
       "tax": "Tributar",
       "success": "Has recaudado {{ gold }} Oro"
@@ -495,7 +498,7 @@
       "cancel": "Cancelar",
       "hint": "Cuantas más Tierras tengas, menos encontrarás",
       "error": "Ha ocurrido un problema",
-      "invalid": "No válido",
+      "invalid": "No dispones de suficientes Turnos",
       "explore": "Explorar",
       "success": "Has encontrado {{ lands }} Tierras"
     },
@@ -511,7 +514,9 @@
       "name": "Archivo",
       "description": "Revisa tu correspondencia",
       "help": "Aqui puedes ver un listado de los mensajes directos, informes de batalla, pujas ganadas o superadas, hechizos, artefactos y encantamientos lanzados contra tu reino.",
-      "new": "Tienes mensajes nuevos"
+      "new": "Tienes mensajes nuevos",
+      "success": "Mensajes borrados",
+      "error": "Ha ocurrido un problema"
     },
     "letter": {
       "name": "Redactar",
@@ -523,11 +528,9 @@
       "to": "Destinatario",
       "message": "Mensaje",
       "send": "Enviar",
-      "sent": "Mensaje enviado",
-      "deleted": "Mensajes borrados",
+      "success": "Mensaje enviado",
       "error": "Ha ocurrido un problema",
-      "invalid": "Campo no válido",
-      "reset": "Limpiar"
+      "invalid": "Texto no válido"
     },
     "clan": {
       "name": "Clan",
@@ -581,7 +584,7 @@
       "cancel": "Cancelar",
       "build": "Construir",
       "hint": "Cuantos más Talleres tengas, menos Turnos necesitarás",
-      "invalid": "No válido",
+      "invalid": "No dispones de suficientes recursos",
       "error": "Ha ocurrido un problema",
       "success": "Has construido {{ quantity }} {{ structure }}"
     },

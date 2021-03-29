@@ -352,11 +352,6 @@ hr {
       margin-left: 16px;
     }
   }
-  .mat-line.mat-card-subtitle {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
   .mat-progress-bar {
     margin-top: 5px;
   }
@@ -405,6 +400,7 @@ hr {
   margin: 0;
   border: 1px solid $primary-color;
   box-sizing: border-box;
+  vertical-align: text-bottom;
   &.grayscale {
     filter: grayscale(100%);
   }
@@ -524,10 +520,6 @@ hr {
         font-size: inherit;
         line-height: 1.25 !important;
       }
-      .mat-line.mat-card-subtitle {
-        display: flex;
-        align-items: center;
-      }
       .mat-line:nth-child(n+2) {
         font-size: 12px;
       }
@@ -605,9 +597,10 @@ hr {
 }
 
 .cdk-overlay-container {
-  z-index: 9999; // to show snackbars above loading
+  // z-index: 9999; // to show snackbars above loading
 }
 
+// responsive dialog
 .dialog-responsive {
   min-width: 30vw !important;
   width: 30vw !important;
@@ -622,9 +615,16 @@ hr {
 }
 @media screen and (max-width: 960px) {
   .dialog-responsive {
-    min-width: 90vw !important;
-    width: 90vw !important;
-    max-width: 90vw !important;
+    min-width: 75vw !important;
+    width: 75vw !important;
+    max-width: 75vw !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .dialog-responsive {
+    min-width: 97.5vw !important;
+    width: 97.5vw !important;
+    max-width: 97.5vw !important;
   }
 }
 
@@ -668,6 +668,10 @@ hr {
     }
     .mat-list-base {
       margin-left: 5px;
+      overflow: visible;
+      .mat-list-item {
+        overflow: visible;
+      }
     }
     .mat-list-text {
       width: auto !important;

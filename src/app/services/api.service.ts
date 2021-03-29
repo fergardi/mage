@@ -129,12 +129,24 @@ export class ApiService {
     return this.httpClient.put(environment.functions.url + `/kingdom/auction`, undefined).toPromise();
   }
 
+  sendLetter(kingdomId: string, subject: string, message: string, fromId: string) {
+    return this.httpClient.post(environment.functions.url + `/kingdom/${kingdomId}/archive`, {
+      subject: subject,
+      message: message,
+      fromId: fromId,
+    }).toPromise();
+  }
+
   readLetter(kingdomId: string, letterId: string) {
     return this.httpClient.patch(environment.functions.url + `/kingdom/${kingdomId}/archive/${letterId}`, undefined).toPromise();
   }
 
   removeLetters(kingdomId: string, letterIds: string[]) { // https://stackoverflow.com/a/63135636/2477303
-    return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/archive`, { body: { letterIds: letterIds } }).toPromise();
+    return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/archive`, {
+      body: {
+        letterIds: letterIds,
+      },
+    }).toPromise();
   }
 
   favorGuild(kingdomId: string, guildId: string) {

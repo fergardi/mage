@@ -108,9 +108,10 @@ api.get('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: 
 api.get('/kingdom/:kingdomId/tavern/:contractId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignContract(req.params.kingdomId, req.params.contractId, parseInt(req.params.assignmentId)))));
 api.get('/kingdom/:kingdomId/tavern/:contractId/discharge', ash(async (req: any, res: any) => res.json(await dischargeContract(req.params.kingdomId, req.params.contractId))));
 api.get('/kingdom/:kingdomId/emporium/:itemId', ash(async (req: any, res: any) => res.json(await buyEmporium(req.params.kingdomId, req.params.itemId))));
+api.post('/kingdom/:kingdomId/archive', ash(async (req: any, res: any) => res.json(await sendLetter(req.params.kingdomId, req.body.subject, req.body.message, req.body.fromId))));
 api.patch('/kingdom/:kingdomId/archive/:letterId', ash(async (req: any, res: any) => res.json(await readLetter(req.params.kingdomId, req.params.letterId))));
-api.patch('/kingdom/:kingdomId/guild/:guildId', ash(async (req: any, res: any) => res.json(await favorGuild(req.params.kingdomId, req.params.guildId))));
 api.delete('/kingdom/:kingdomId/archive', ash(async (req: any, res: any) => res.json(await removeLetters(req.params.kingdomId, req.body.letterIds))));
+api.patch('/kingdom/:kingdomId/guild/:guildId', ash(async (req: any, res: any) => res.json(await favorGuild(req.params.kingdomId, req.params.guildId))));
 api.put('/kingdom/auction', ash(async (req: any, res: any) => res.json(await refreshAuctions())));
 api.post('/world/kingdom', ash(async (req: any, res: any) => res.json(await createKingdom(req.body.kingdomId, req.body.factionId, req.body.name, parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
 api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
@@ -789,22 +790,38 @@ const battleKingdom = async (kingdomId: string, battleId: BattleType, targetId: 
 }
 
 /**
- * add letter to a kingdom from a source
+ * adds letter from kingdom to kingdom
  * @param kingdomId
  * @param subject
  * @param message
+ * @param from
  * @param batch
- * @param fromId
+ * @param adquisition
  */
-const addLetter = async (targetId: string, subject: string, message: object, batch: FirebaseFirestore.WriteBatch, sourceId: any) => {
-  batch.create(angularFirestore.collection(`kingdoms/${targetId}/letters`).doc(), {
-    to: targetId,
+const addLetter = async (kingdomId: string, subject: string, message: string, from: any, batch: FirebaseFirestore.WriteBatch, adquisition?: any) => {
+  batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/letters`).doc(), {
+    to: kingdomId,
     subject: subject,
     message: message,
+    adquisition: adquisition,
     timestamp: admin.firestore.Timestamp.now(),
-    from: sourceId,
+    from: from,
     read: false,
   });
+}
+
+/**
+ * sends letter
+ * @param kingdomId
+ * @param subject
+ * @param message
+ * @param fromId
+ */
+const sendLetter = async (kingdomId: string, subject: string, message: string, fromId: string) => {
+  const batch = angularFirestore.batch();
+  const from = (await angularFirestore.doc(`kingdoms/${fromId}`).get()).data();
+  addLetter(kingdomId, subject, message, from, batch, null);
+  await batch.commit();
 }
 
 /**
@@ -823,7 +840,10 @@ const readLetter = async (kingdomId: string, letterId: string) => {
  */
 const favorGuild = async (kingdomId: string, guildId: string) => {
   const guilded = moment(admin.firestore.Timestamp.now().toMillis()).add(GUILD_TIME, 'seconds');
-  await angularFirestore.doc(`kingdoms/${kingdomId}`).update({ guild: guildId, guilded: guilded });
+  await angularFirestore.doc(`kingdoms/${kingdomId}`).update({
+    guild: guildId,
+    guilded: guilded,
+  });
 }
 
 /**
@@ -1024,7 +1044,7 @@ const refreshAuctions = async () => {
     const auction = kingdomAuction.data();
     if (moment().isAfter(moment(auction.auctioned.toMillis()))) {
       if (auction.kingdom) {
-        const message = {
+        const adquisition = {
           item: auction.item || null,
           spell: auction.spell || null,
           hero: auction.hero || null,
@@ -1032,7 +1052,7 @@ const refreshAuctions = async () => {
           quantity: auction.quantity || null,
           level: auction.level || null,
         };
-        await addLetter(auction.kingdom, 'kingdom.report.auction', message, batch, from);
+        await addLetter(auction.kingdom, 'kingdom.auction.subject', 'kingdom.auction.message', from, batch, adquisition);
       }
       switch (auction.type) {
         case AuctionType.ARTIFACT:
