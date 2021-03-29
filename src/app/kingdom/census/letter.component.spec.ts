@@ -1,20 +1,24 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync, async } from '@angular/core/testing';
 import { LetterComponent } from './letter.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogRefStub } from 'src/stubs';
+import { DialogRefStub, NotificationServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
+import { NotificationService } from 'src/app/services/notification.service';
+import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngxs/store';
 
 describe('LetterComponent', () => {
   let component: LetterComponent;
   let fixture: ComponentFixture<LetterComponent>;
   const kingdom = {
-    join: {
-      image: '',
+    fid: 'fid',
+    faction: {
+      id: 'black',
     },
   };
 
@@ -35,6 +39,9 @@ describe('LetterComponent', () => {
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: kingdom },
         { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: NotificationService, useValue: NotificationServiceStub },
+        { provide: ApiService, useValue: ApiServiceStub },
+        { provide: Store, useValue: StoreStub },
       ],
     })
     .compileComponents();
@@ -51,24 +58,40 @@ describe('LetterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should SEND the letter', () => {
+  it('should SEND the LETTER', async () => {
     component.form.patchValue({
       subject: 'test',
       message: 'test',
     });
     component.form.updateValueAndValidity();
-    component.sendLetter();
     expect(component.form.valid).toBeTruthy();
+    spyOn(ApiServiceStub, 'sendLetter');
+    await component.send();
+    expect(ApiServiceStub.sendLetter).toHaveBeenCalledWith('fid', 'test', 'test', 'uid');
   });
 
-  it('should NOT SEND the letter', () => {
+  it('should SEND the LETTER and CATCH errors', async () => {
+    component.form.patchValue({
+      subject: 'test',
+      message: 'test',
+    });
+    component.form.updateValueAndValidity();
+    expect(component.form.valid).toBeTruthy();
+    spyOn(ApiServiceStub, 'sendLetter').and.throwError(new Error('test'));
+    await component.send();
+    expect(ApiServiceStub.sendLetter).toThrowError('test');
+  });
+
+  it('should NOT SEND the LETTER', async () => {
     component.form.patchValue({
       subject: null,
       message: null,
     });
     component.form.updateValueAndValidity();
-    component.sendLetter();
     expect(component.form.valid).toBeFalsy();
+    spyOn(ApiServiceStub, 'sendLetter');
+    await component.send();
+    expect(ApiServiceStub.sendLetter).not.toHaveBeenCalled();
   });
 
   it('should RESET the letter', () => {
@@ -78,7 +101,7 @@ describe('LetterComponent', () => {
     });
     component.form.updateValueAndValidity();
     expect(component.form.valid).toBeTruthy();
-    component.resetLetter();
+    component.reset();
     component.form.updateValueAndValidity();
     expect(component.form.valid).toBeFalsy();
   });

@@ -60,6 +60,7 @@ export const ApiServiceStub: any = {
   researchCharm: () => null,
   removeLetters: () => null,
   buyEmporium: () => null,
+  sendLetter: () => null,
 };
 
 export const CacheServiceStub: any = {

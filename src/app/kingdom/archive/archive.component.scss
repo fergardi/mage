@@ -12,6 +12,10 @@
   .mat-cell:first-of-type {
     padding-left: 6px !important;
   }
+  .mat-header-cell:first-of-type,
+  .mat-cell:first-of-type {
+    max-width: 5%;
+  }
   .mat-checkbox {
     margin-left: 6px;
   }
@@ -20,6 +24,10 @@
 // responsive custom table
 @media screen and (max-width: 960px) {
   .kingdom-archive {
+    .mat-header-cell:first-of-type,
+    .mat-cell:first-of-type {
+      max-width: 100%;
+    }
     .mat-toolbar {
       .mat-toolbar-row {
         display: flex;

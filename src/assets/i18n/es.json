@@ -513,7 +513,7 @@
     "archive": {
       "name": "Archivo",
       "description": "Revisa tu correspondencia",
-      "help": "Aqui puedes ver un listado de los mensajes directos, informes de batalla, pujas ganadas o superadas, hechizos, artefactos y encantamientos lanzados contra tu reino.",
+      "help": "Aqui puedes ver un listado de todos los mensajes directos que te han enviado otros reinos, así como los informes de batalla, subastas ganadas o sobrepujadas, hechizos, artefactos y encantamientos lanzados contra tu reino.",
       "new": "Tienes mensajes nuevos",
       "success": "Mensajes borrados",
       "error": "Ha ocurrido un problema"

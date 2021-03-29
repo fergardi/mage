@@ -67,6 +67,10 @@ export class LetterComponent implements OnInit {
     });
   }
 
+  reset(): void {
+    this.form.reset();
+  }
+
   async send() {
     if (this.form.valid) {
       this.loadingService.startLoading();

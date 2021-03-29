@@ -59,4 +59,9 @@ describe('AdventureComponent', () => {
   it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should START the ADVENTURE', () => {
+    component.adventure();
+  });
+
 });

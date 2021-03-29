@@ -60,4 +60,9 @@ describe('DealComponent', () => {
   it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should ACCEPT the DEAL', () => {
+    component.deal();
+  });
+
 });
