@@ -13,7 +13,7 @@
       </mat-card-header>
 
       <mat-card-content>
-        <span>{{ 'kingdom.sorcery.help' | translate }}</span>
+        <p>{{ 'kingdom.sorcery.help' | translate }}</p>
         <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
         <mat-action-list dense class="dotted" id="0" tourAnchor="tour.artifacts" #kngdmArtifacts="cdkDropList" [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="kingdomArtifacts">
           <button mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag [cdkDragDisabled]="!artifact.item.battle" [ngClass]="{ 'handle': artifact.item.battle, 'legendary': artifact.item.legendary, 'common': !artifact.item.legendary }" [id]="artifact.fid" (click)="!artifact.item.battle && artifact.item.self ? openActivateDialog(artifact) : null" [disabled]="!artifact.item.battle && !artifact.item.self">
@@ -67,7 +67,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <span>{{ 'kingdom.arcanism.help' | translate }}</span>
+            <p>{{ 'kingdom.arcanism.help' | translate }}</p>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
             <mat-list dense class="dotted" id="1" #atckArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="attackArtifacts">
               <mat-list-item *ngFor="let artifact of attackArtifacts" cdkDrag class="handle" [id]="artifact.fid" [ngClass]="{ 'legendary': artifact.item.legendary }">
@@ -108,7 +108,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <span>{{ 'kingdom.protection.help' | translate }}</span>
+            <p>{{ 'kingdom.protection.help' | translate }}</p>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
             <mat-list dense class="dotted" id="2" #defArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="defenseArtifacts">
               <mat-list-item *ngFor="let artifact of defenseArtifacts" cdkDrag class="handle" [id]="artifact.fid" [ngClass]="{ 'legendary': artifact.item.legendary }">

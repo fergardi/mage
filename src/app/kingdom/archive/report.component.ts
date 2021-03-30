@@ -60,6 +60,12 @@ export enum ReportType {
       </mat-list>
 -->
     </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.report.seal' | translate }}:</div>
+      <mat-chip-list>
+        <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/turn.png">{{ report.timestamp.toMillis() | date:('dateformat.short' | translate) }}</mat-chip>
+      </mat-chip-list>
+    </div>
     <div mat-dialog-actions>
       <button mat-raised-button color="primary" (click)="close()" cdkFocusInitial>{{ 'kingdom.report.close' | translate }}</button>
     </div>

@@ -15,6 +15,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     <h1 mat-dialog-title>{{ 'kingdom.offer.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.offer.description' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.offer.god' | translate }}:</div>
       <mat-list dense>
         <mat-list-item class="legendary">
           <div mat-list-avatar matBadge="∞" matBadgePosition="above before">
@@ -29,6 +30,9 @@ import { LoadingService } from 'src/app/services/loading.service';
           <div mat-list-avatar *ngIf="god.turn > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.turn | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.offer.quantity' | translate }}:</div>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'kingdom.offer.sacrifice' | translate }}</mat-label>
@@ -37,6 +41,16 @@ import { LoadingService } from 'src/app/services/loading.service';
           <mat-error>{{ 'kingdom.offer.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.offer.costs' | translate }}:</div>
+      <mat-chip-list>
+        <mat-chip color="primary" selected *ngIf="god.gold > 0"><img class="icon" src="/assets/images/resources/gold.png">{{ god.increment | long }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="god.mana > 0"><img class="icon" src="/assets/images/resources/mana.png">{{ god.increment | long }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="god.population > 0"><img class="icon" src="/assets/images/resources/population.png">{{ god.increment | long }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="god.land > 0"><img class="icon" src="/assets/images/resources/land.png">{{ god.increment | long }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="god.turn > 0"><img class="icon" src="/assets/images/resources/turn.png">{{ god.increment | long }}</mat-chip>
+      </mat-chip-list>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.offer.cancel' | translate }}</button>

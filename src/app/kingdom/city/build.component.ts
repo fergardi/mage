@@ -13,6 +13,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     <h1 mat-dialog-title>{{ 'kingdom.build.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.build.description' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.build.building' | translate }}:</div>
       <mat-list dense>
         <mat-list-item>
           <div mat-list-avatar [matBadge]="building.quantity" matBadgePosition="above before">
@@ -25,6 +26,9 @@ import { LoadingService } from 'src/app/services/loading.service';
           </div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.build.quantity' | translate }}:</div>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.land.name' | translate }}</mat-label>
@@ -33,6 +37,9 @@ import { LoadingService } from 'src/app/services/loading.service';
           <mat-error>{{ 'kingdom.build.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.build.costs' | translate }}:</div>
       <mat-chip-list>
         <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ gold() | long}}</mat-chip>
         <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/land.png">{{ land() | long }}</mat-chip>

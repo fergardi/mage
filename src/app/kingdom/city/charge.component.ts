@@ -6,7 +6,6 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
-import { calculateTurns } from 'src/app/pipes/turn.pipe';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -15,6 +14,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     <h1 mat-dialog-title>{{ 'kingdom.charge.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.charge.help' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.charge.source' | translate }}:</div>
       <mat-list dense>
         <mat-list-item>
           <div mat-list-avatar [matBadge]="(node$ | async)?.quantity | long" matBadgePosition="above before">
@@ -27,6 +27,9 @@ import { LoadingService } from 'src/app/services/loading.service';
           </div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.charge.quantity' | translate }}:</div>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>

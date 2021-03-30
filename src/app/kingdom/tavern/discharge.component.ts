@@ -12,6 +12,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     <h1 mat-dialog-title>{{ 'kingdom.discharge.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.discharge.description' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.discharge.contract' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
@@ -24,6 +25,9 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
           </div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.discharge.maintenances' | translate }}:</div>
       <mat-chip-list>
         <mat-chip color="primary" selected *ngIf="contract.hero.goldMaintenance > 0"><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldMaintenance' | translate:{ number: (contract.hero.goldMaintenance * contract.level) | long } }}</mat-chip>
         <mat-chip color="primary" selected *ngIf="contract.hero.manaMaintenance > 0"><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaMaintenance' | translate:{ number: (contract.hero.manaMaintenance * contract.level) | long } }}</mat-chip>

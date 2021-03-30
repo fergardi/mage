@@ -8,7 +8,7 @@
     </mat-card-header>
 
     <mat-card-content>
-      <span>{{ "kingdom.archive.help" | translate }}</span>
+      <p>{{ "kingdom.archive.help" | translate }}</p>
       <table mat-table matSort [dataSource]="data" matSortActive="timestamp" matSortDirection="desc" tourAnchor="tour.archive">
 
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">

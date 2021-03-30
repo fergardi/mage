@@ -159,7 +159,8 @@
       "statistics": "Estadísticas",
       "maintenances": "Mantenimientos",
       "costs": "Costes",
-      "characteristics": "Características"
+      "characteristics": "Características",
+      "topic": "Tema"
     }
   },
   "shell": {
@@ -259,7 +260,7 @@
       "position": "Posición",
       "actions": "Acciones",
       "clan": "Clan",
-      "select": "Seleccionar"
+      "select": "Elegir"
     }
   },
   "world": {
@@ -318,6 +319,7 @@
       "battle": "Reporte de batalla",
       "from": "De",
       "adquisitions": "Adquisiciones",
+      "seal": "Sellado",
       "message": "Mensaje",
       "close": "Cerrar"
     },
@@ -348,15 +350,20 @@
       "disband": "Desbandar",
       "hint": "No puedes desbandar unidades que consuman Población",
       "error": "Ha ocurrido un problema",
-      "success": "Has desbandado {{ quantity }} {{ unit }}"
+      "success": "Has desbandado {{ quantity }} {{ unit }}",
+      "troop": "Tropa",
+      "platoon": "Pelotón",
+      "maintenances": "Mantenimientos"
     },
     "discharge": {
       "name": "Despido",
-      "description": "Si no quieres seguir pagando los mantenimientos de un héroe, puedes despedirlo desterrándolo de tu reino.",
+      "description": "Si no quieres seguir pagando los mantenimientos de un héroe, puedes cancelar vuestro contrato y despedirlo desterrándolo de tu reino.",
       "success": "Has despedido al héroe",
       "error": "Ha ocurrido un problema",
       "cancel": "Cancelar",
-      "discharge": "Despedir"
+      "discharge": "Despedir",
+      "contract": "Contrato",
+      "maintenances": "Mantenimientos"
     },
     "attack": {
       "name": "Ataque",
@@ -380,7 +387,10 @@
       "recruit": "Reclutar",
       "cancel": "Cancelar",
       "quantity": "Cantidad",
-      "success": "Has reclutado {{ quantity }} {{ unit }}"
+      "success": "Has reclutado {{ quantity }} {{ unit }}",
+      "troop": "Tropa",
+      "platoon": "Pelotón",
+      "costs": "Costes"
     },
     "dispel": {
       "name": "Desvanecimiento",
@@ -418,7 +428,9 @@
       "bid": "Pujar",
       "hint": "Ofrece como mínimo un 10% más Oro que la puja anterior",
       "error": "La puja no supera el mínimo o no dispones de suficiente Oro",
-      "success": "Puja aceptada"
+      "success": "Puja aceptada",
+      "adquisitions": "Adquisiciones",
+      "quantity": "Cantidad"
     },
     "sorcery": {
       "name": "Magia",
@@ -435,7 +447,9 @@
       "error": "Ha ocurrido un problema",
       "research": "Investigar",
       "cancel": "Cancelar",
-      "success": "Has avanzado la investigación del hechizo"
+      "success": "Has avanzado la investigación del hechizo",
+      "charm": "Hechizo",
+      "quantity": "Cantidad"
     },
     "conjure": {
       "name": "Conjuración",
@@ -445,7 +459,9 @@
       "conjure": "Conjurar",
       "cancel": "Cancelar",
       "select": "Escoge un hechizo",
-      "success": "Conjuro completado"
+      "success": "Conjuro completado",
+      "charm": "Hechizo",
+      "costs": "Costes"
     },
     "activate": {
       "name": "Activación",
@@ -455,7 +471,8 @@
       "activate": "Activar",
       "cancel": "Cancelar",
       "select": "Escoge un artefacto",
-      "success": "Activación completada"
+      "success": "Activación completada",
+      "artifact": "Artefacto"
     },
     "arcanism": {
       "name": "Arcanismo",
@@ -478,7 +495,9 @@
       "invalid": "No dispones de suficientes Turnos",
       "error": "Ha ocurrido un problema",
       "charge": "Meditar",
-      "success": "Has recargado {{ mana }} Maná"
+      "success": "Has recargado {{ mana }} Maná",
+      "source": "Origen",
+      "quantity": "Cantidad"
     },
     "tax": {
       "name": "Tributo",
@@ -489,6 +508,8 @@
       "invalid": "No dispones de suficientes Turnos",
       "error": "Ha ocurrido un problema",
       "tax": "Tributar",
+      "source": "Origen",
+      "quantity": "Cantidad",
       "success": "Has recaudado {{ gold }} Oro"
     },
     "explore": {
@@ -500,7 +521,9 @@
       "error": "Ha ocurrido un problema",
       "invalid": "No dispones de suficientes Turnos",
       "explore": "Explorar",
-      "success": "Has encontrado {{ lands }} Tierras"
+      "success": "Has encontrado {{ lands }} Tierras",
+      "discovery": "Descubrimiento",
+      "quantity": "Cantidad"
     },
     "tavern": {
       "name": "Taberna",
@@ -520,9 +543,8 @@
     },
     "letter": {
       "name": "Redactar",
-      "description": "Envía mensajes a otros reinos",
-      "help": "TODO",
-      "close": "Cerrar",
+      "description": "Desde aquí puedes enviar un respetuoso y cordial mensaje a un reino enemigo, o incluso a tí mismo como método de recordatorio.",
+      "close": "Descartar",
       "create": "Redactar",
       "subject": "Asunto",
       "to": "Destinatario",
@@ -530,7 +552,8 @@
       "send": "Enviar",
       "success": "Mensaje enviado",
       "error": "Ha ocurrido un problema",
-      "invalid": "Texto no válido"
+      "invalid": "Texto no válido",
+      "contents": "Contenido"
     },
     "clan": {
       "name": "Clan",
@@ -563,7 +586,10 @@
       "hint": "Debes ofrecer como mínimo {{ increment }} a tu dios",
       "invalid": "No dispones de suficientes recursos",
       "error": "Ha ocurrido un problema",
-      "sacrifice": "Sacrificio"
+      "sacrifice": "Sacrificio",
+      "costs": "Costes",
+      "quantity": "Cantidad",
+      "god": "Dios"
     },
     "emporium": {
       "name": "Emporio",
@@ -574,15 +600,19 @@
     },
     "buy": {
       "name": "Compra",
-      "help": "Vas a adquirir un Artefacto a cambio de varias Gemas.",
+      "help": "Vas a adquirir un Artefacto a cambio de varias Gemas. ¡No se acepta Oro! ¡No se permiten cambios, ni devoluciones! ¡No se fía!",
       "cancel": "Cancelar",
-      "buy": "Comprar"
+      "buy": "Comprar",
+      "adquisitions": "Adquisiciones"
     },
     "build": {
       "name": "Construcción",
       "description": "Invierte Tierras libres, Oro y Turnos para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como las batallas o los asedios. Cuantos más talleres tengas, menos Turnos gastarás al construir. Otros factores que pueden influir en esto son ciertos encantamientos y héroes aliados.",
       "cancel": "Cancelar",
       "build": "Construir",
+      "costs": "Costes",
+      "building": "Edificio",
+      "quantity": "Cantidad",
       "hint": "Cuantos más Talleres tengas, menos Turnos necesitarás",
       "invalid": "No dispones de suficientes recursos",
       "error": "Ha ocurrido un problema",

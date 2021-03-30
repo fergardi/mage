@@ -19,6 +19,7 @@ export enum ArtifactAssignmentType {
     <h1 mat-dialog-title>{{ 'kingdom.activate.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.activate.description' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.activate.artifact' | translate }}:</div>
       <mat-list dense *ngIf="!kingdomArtifacts">
         <mat-list-item [ngClass]="[selectedArtifact.item.faction.id, selectedArtifact.item.legendary ? 'legendary' : 'common']" *ngIf="selectedArtifact">
           <div mat-list-avatar [matBadge]="selectedArtifact.quantity" matBadgePosition="above before">

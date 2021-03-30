@@ -264,12 +264,10 @@ body {
     flex-wrap: wrap;
   }
   .mat-cell {
-    font-size: 12px !important;
     padding: 0 5px !important;
   }
   .mat-list-base {
     width: 100%;
-    // margin: 6px;
   }
   .mat-form-field-infix {
     width: auto;
@@ -632,7 +630,7 @@ hr {
 @media screen and (max-width: 960px) {
   .table-responsive {
     .mat-list-item-content {
-      padding: 0 8px !important;
+      padding: 0 !important;
     }
     .mat-table {
       border: 0;
@@ -656,18 +654,21 @@ hr {
       justify-content: space-between;
       align-items: center;
       min-height: $list-item-height;
+      overflow: visible;
     }
     .mat-table .mat-cell:before {
       content: attr(data-label);
       font-weight: normal;
       font-size: 0.85rem;
       margin-right: auto;
+      writing-mode: vertical-lr;
+      transform: rotate(-180deg);
+      padding-left: 10px;
     }
     .mat-table .mat-cell:last-child {
       border-bottom: 0;
     }
     .mat-list-base {
-      margin-left: 5px;
       overflow: visible;
       .mat-list-item {
         overflow: visible;

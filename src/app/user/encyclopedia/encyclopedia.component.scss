@@ -1,17 +1,3 @@
 .user-encyclopedia {
   padding: 10px;
-  .mat-header-cell:last-of-type,
-  .mat-cell:last-of-type {
-    max-width: 150px;
-  }
-}
-
-// responsive custom table
-@media screen and (max-width: 960px) {
-  .user-encyclopedia {
-    .mat-header-cell:last-of-type,
-    .mat-cell:last-of-type {
-      max-width: 100%;
-    }
-  }
 }

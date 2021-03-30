@@ -9,7 +9,7 @@
     </mat-card-header>
 
     <mat-card-content>
-      <span>{{ 'kingdom.census.help' | translate }}</span>
+      <p>{{ 'kingdom.census.help' | translate }}</p>
       <table mat-table matSort [dataSource]="data" matSortDisableClear tourAnchor="tour.census">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>

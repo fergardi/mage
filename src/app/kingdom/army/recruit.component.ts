@@ -12,6 +12,7 @@ import { ApiService } from 'src/app/services/api.service';
     <h1 mat-dialog-title>{{ 'kingdom.recruit.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.recruit.help' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.recruit.troop' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[unit.faction.id, unit.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar matBadge="?" matBadgePosition="above before">
@@ -32,6 +33,9 @@ import { ApiService } from 'src/app/services/api.service';
           </div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.recruit.platoon' | translate }}:</div>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'kingdom.recruit.quantity' | translate }}</mat-label>
@@ -40,6 +44,9 @@ import { ApiService } from 'src/app/services/api.service';
           <mat-error>{{ 'kingdom.recruit.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.recruit.costs' | translate }}:</div>
       <mat-chip-list>
         <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/gold.png">{{ gold() | long}}</mat-chip>
       </mat-chip-list>

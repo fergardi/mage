@@ -8,7 +8,7 @@
     </mat-card-header>
 
     <mat-card-content>
-      <span>{{ 'user.encyclopedia.help' | translate }}</span>
+      <p>{{ 'user.encyclopedia.help' | translate }}</p>
       <table mat-table matSort matSortActive="name" matSortDirection="asc" [dataSource]="data">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>

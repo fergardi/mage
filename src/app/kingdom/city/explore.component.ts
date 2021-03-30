@@ -13,6 +13,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     <h1 mat-dialog-title>{{ 'kingdom.explore.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.explore.help' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.explore.discovery' | translate }}:</div>
       <mat-list dense>
         <mat-list-item>
           <div mat-list-avatar [matBadge]="kingdomLand.quantity | long" matBadgePosition="above before">
@@ -25,6 +26,9 @@ import { LoadingService } from 'src/app/services/loading.service';
           </div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.explore.quantity' | translate }}:</div>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>

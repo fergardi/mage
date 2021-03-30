@@ -8,7 +8,7 @@
     </mat-card-header>
 
     <mat-card-content>
-      <span>{{ 'kingdom.auction.help' | translate }}</span>
+      <p>{{ 'kingdom.auction.help' | translate }}</p>
       <table mat-table matSort matSortActive="name" matSortDirection="asc" [dataSource]="data" tourAnchor="tour.auction">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>

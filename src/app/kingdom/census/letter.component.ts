@@ -12,15 +12,20 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
   template: `
     <h1 mat-dialog-title>{{ 'kingdom.letter.name' | translate }}</h1>
     <div mat-dialog-content>
+      <p>{{ 'kingdom.letter.description' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.letter.to' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item [ngClass]="kingdom.faction.id">
-          <div mat-list-avatar matBadgePosition="above before">
+        <mat-list-item [ngClass]="[kingdom.faction.id, kingdom.fid === uid ? 'legendary' : 'common']">
+          <div mat-list-avatar [matBadge]="kingdom.position | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="kingdom.faction.image">
           </div>
           <div mat-line>{{ kingdom.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ kingdom.faction.name | translate }}</div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.letter.contents' | translate }}:</div>
       <form [formGroup]="form" autocomplete="off">
         <mat-form-field>
           <mat-label>{{ 'kingdom.letter.subject' | translate }}</mat-label>

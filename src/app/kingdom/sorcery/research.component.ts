@@ -13,6 +13,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     <h1 mat-dialog-title>{{ 'kingdom.research.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.research.description' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.research.charm' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="charm.spell.level" matBadgePosition="above before">
@@ -28,6 +29,9 @@ import { LoadingService } from 'src/app/services/loading.service';
           </div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.research.quantity' | translate }}:</div>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>

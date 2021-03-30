@@ -13,6 +13,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     <h1 mat-dialog-title>{{ 'kingdom.disband.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.disband.description' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.disband.troop' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
@@ -33,6 +34,9 @@ import { LoadingService } from 'src/app/services/loading.service';
           </div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.disband.platoon' | translate }}:</div>
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'kingdom.disband.quantity' | translate }}</mat-label>
@@ -41,6 +45,9 @@ import { LoadingService } from 'src/app/services/loading.service';
           <mat-error>{{ 'kingdom.disband.error' | translate }}</mat-error>
         </mat-form-field>
       </form>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.disband.maintenances' | translate }}:</div>
       <mat-chip-list>
         <mat-chip color="primary" selected *ngIf="troop.unit.goldMaintenance > 0"><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldMaintenance' | translate:{ number: (troop.unit.goldMaintenance * troop.quantity) | long } }}</mat-chip>
         <mat-chip color="primary" selected *ngIf="troop.unit.manaMaintenance > 0"><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaMaintenance' | translate:{ number: (troop.unit.manaMaintenance * troop.quantity) | long } }}</mat-chip>

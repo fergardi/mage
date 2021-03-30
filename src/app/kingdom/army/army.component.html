@@ -10,7 +10,7 @@
       </mat-card-header>
 
       <mat-card-content>
-        <span>{{ 'kingdom.army.help' | translate }}</span>
+        <p>{{ 'kingdom.army.help' | translate }}</p>
         <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
         <mat-action-list dense class="dotted" id="0" tourAnchor="tour.army" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="kingdomTroops">
           <button mat-list-item *ngFor="let troop of kingdomTroops" cdkDrag class="handle" [id]="troop.fid" (click)="openDisbandDialog(troop)" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']">
@@ -47,7 +47,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <span>{{ 'kingdom.attack.help' | translate }}</span>
+            <p>{{ 'kingdom.attack.help' | translate }}</p>
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
             <mat-list dense class="dotted" id="1" tourAnchor="tour.attack" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="attackTroops">
               <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle" [id]="troop.fid" [ngClass]="troop.unit.faction.id">
@@ -83,7 +83,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <span>{{ 'kingdom.defense.help' | translate }}</span>
+            <p>{{ 'kingdom.defense.help' | translate }}</p>
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
             <mat-list dense class="dotted" id="2" tourAnchor="tour.defense" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="defenseTroops">
               <mat-list-item *ngFor="let troop of defenseTroops" cdkDrag class="handle" [id]="troop.fid" [ngClass]="troop.unit.faction.id">
@@ -117,7 +117,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <span>{{ 'kingdom.recruit.help' | translate }}</span>
+            <p>{{ 'kingdom.recruit.help' | translate }}</p>
             <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.recruit">
               <button mat-list-item *ngFor="let unit of recruitUnits" (click)="openRecruitDialog(unit)" class="common">
