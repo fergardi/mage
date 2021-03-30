@@ -11,6 +11,8 @@ import { MatListModule } from '@angular/material/list';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
+import { LongPipe } from 'src/app/pipes/long.pipe';
+import { MatBadgeModule } from '@angular/material/badge';
 
 describe('LetterComponent', () => {
   let component: LetterComponent;
@@ -32,9 +34,11 @@ describe('LetterComponent', () => {
         MatInputModule,
         BrowserAnimationsModule,
         MatListModule,
+        MatBadgeModule,
       ],
       declarations: [
         LetterComponent,
+        LongPipe,
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: kingdom },

@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 
 describe('OfferComponent', () => {
   let component: OfferComponent;
@@ -40,6 +41,7 @@ describe('OfferComponent', () => {
         BrowserAnimationsModule,
         MatBadgeModule,
         MatButtonModule,
+        MatChipsModule,
       ],
       declarations: [
         OfferComponent,

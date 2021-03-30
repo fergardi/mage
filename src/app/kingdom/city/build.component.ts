@@ -32,7 +32,7 @@ import { LoadingService } from 'src/app/services/loading.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.land.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'resource.land.name' | translate }}" matInput formControlName="quantity">
+          <input currencyMask placeholder="{{ 'resource.land.name' | translate }}" matInput formControlName="quantity">
           <mat-hint>{{ 'kingdom.build.hint' | translate }}</mat-hint>
           <mat-error>{{ 'kingdom.build.invalid' | translate }}</mat-error>
         </mat-form-field>

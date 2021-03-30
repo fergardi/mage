@@ -51,7 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       { developmentMode: !environment.production },
     ),
     NgxsReduxDevtoolsPluginModule.forRoot({
-      name: 'Mage',
+      name: 'Legendarium',
       disabled: environment.production,
     }),
     TourMatMenuModule.forRoot(),

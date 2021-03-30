@@ -40,9 +40,9 @@ import { LoadingService } from 'src/app/services/loading.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.gold.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="gold">
+          <input currencyMask placeholder="{{ 'resource.gold.name' | translate }}" matInput formControlName="gold">
           <mat-hint>{{ 'kingdom.bid.hint' | translate }}</mat-hint>
-          <mat-error>{{ 'kingdom.bid.error' | translate }}</mat-error>
+          <mat-error>{{ 'kingdom.bid.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
     </div>

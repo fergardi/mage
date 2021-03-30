@@ -40,9 +40,9 @@ import { LoadingService } from 'src/app/services/loading.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'kingdom.disband.quantity' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'kingdom.disband.quantity' | translate }}" matInput formControlName="quantity">
+          <input currencyMask placeholder="{{ 'kingdom.disband.quantity' | translate }}" matInput formControlName="quantity">
           <mat-hint>{{ 'kingdom.disband.hint' | translate }}</mat-hint>
-          <mat-error>{{ 'kingdom.disband.error' | translate }}</mat-error>
+          <mat-error>{{ 'kingdom.disband.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
     </div>

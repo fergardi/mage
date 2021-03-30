@@ -10,11 +10,13 @@ import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 
 describe('ReportComponent', () => {
   let component: ReportComponent;
   let fixture: ComponentFixture<ReportComponent>;
   const report = {
+    timestamp: { toMillis: () => 0 },
     read: false,
     from: {
       name: 'test',
@@ -51,6 +53,7 @@ describe('ReportComponent', () => {
         MatBadgeModule,
         MatListModule,
         MatButtonModule,
+        MatChipsModule,
       ],
       declarations: [
         ReportComponent,

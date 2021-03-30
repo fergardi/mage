@@ -36,7 +36,7 @@ import { LoadingService } from 'src/app/services/loading.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'kingdom.offer.sacrifice' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'kingdom.offer.sacrifice' | translate }}" matInput formControlName="sacrifice" autocomplete="off">
+          <input currencyMask placeholder="{{ 'kingdom.offer.sacrifice' | translate }}" matInput formControlName="sacrifice">
           <mat-hint>{{ 'kingdom.offer.hint' | translate:{ increment: god.increment | long } }}</mat-hint>
           <mat-error>{{ 'kingdom.offer.invalid' | translate }}</mat-error>
         </mat-form-field>

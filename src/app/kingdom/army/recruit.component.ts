@@ -39,7 +39,7 @@ import { ApiService } from 'src/app/services/api.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'kingdom.recruit.quantity' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'kingdom.recruit.quantity' | translate }}" matInput formControlName="quantity">
+          <input currencyMask placeholder="{{ 'kingdom.recruit.quantity' | translate }}" matInput formControlName="quantity">
           <mat-hint>{{ 'kingdom.recruit.hint' | translate }}</mat-hint>
           <mat-error>{{ 'kingdom.recruit.invalid' | translate }}</mat-error>
         </mat-form-field>

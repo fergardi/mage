@@ -45,6 +45,7 @@
     "mapbox-gl-circle": "^1.6.5",
     "material-icons": "^0.5.3",
     "moment": "^2.25.3",
+    "ngx-currency": "^2.5.2",
     "ngx-tour-core": "^4.2.0",
     "ngx-tour-md-menu": "^4.2.0",
     "rpg-awesome": "^0.2.0",

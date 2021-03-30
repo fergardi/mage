@@ -17,21 +17,24 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { LongPipe } from 'src/app/pipes/long.pipe';
 
 describe('ConjureComponent', () => {
   let component: ConjureComponent;
   let fixture: ComponentFixture<ConjureComponent>;
   const charm: any = {
-    join: {
+    fid: 'test',
+    spell: {
       name: 'test',
       description: 'test',
-      faction: 'red',
+      faction: {
+        id: 'red',
+      },
       image: 'assets/images/spells/red/fireball.png',
       turnCost: 1,
       manaCost: 1,
+      legendary: false,
     },
-    manaCost: 1,
-    legendary: false,
   };
 
   beforeEach(waitForAsync(() => {
@@ -48,10 +51,12 @@ describe('ConjureComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         MatButtonModule,
+        MatChipsModule,
       ],
       declarations: [
         ConjureComponent,
         IconPipe,
+        LongPipe,
       ],
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },
@@ -76,14 +81,24 @@ describe('ConjureComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should CONJURE a CHARM', () => {
-    component.conjure();
+  it('should CONJURE a CHARM', async () => {
+    spyOn(ApiServiceStub, 'conjureCharm');
+    await component.conjure();
+    expect(ApiServiceStub.conjureCharm).toHaveBeenCalledWith(component.uid, component.charm.fid, component.uid);
   });
 
-  it('should NOT CONJURE a CHARM', () => {
+  it('should CONJURE a CHARM and CATCH the ERROR', async () => {
+    spyOn(ApiServiceStub, 'conjureCharm').and.throwError(new Error('test'));
+    await component.conjure();
+    expect(ApiServiceStub.conjureCharm).toThrowError('test');
+  });
+
+  it('should NOT CONJURE a CHARM', async () => {
     component.kingdomMana.quantity = 0;
     component.kingdomTurn.quantity = 0;
-    component.conjure();
+    spyOn(ApiServiceStub, 'conjureCharm');
+    await component.conjure();
+    expect(ApiServiceStub.conjureCharm).not.toHaveBeenCalled();
   });
 
 });

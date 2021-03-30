@@ -35,9 +35,9 @@ import { LoadingService } from 'src/app/services/loading.service';
       <form [formGroup]="form">
         <mat-form-field>
           <mat-label>{{ 'resource.turn.name' | translate }}</mat-label>
-          <input type="number" placeholder="{{ 'resource.turn.name' | translate }}" matInput formControlName="turns">
+          <input currencyMask placeholder="{{ 'resource.turn.name' | translate }}" matInput formControlName="turns">
           <mat-hint>{{ 'kingdom.research.hint' | translate }}</mat-hint>
-          <mat-error>{{ 'kingdom.research.error' | translate }}</mat-error>
+          <mat-error>{{ 'kingdom.research.invalid' | translate }}</mat-error>
         </mat-form-field>
       </form>
     </div>

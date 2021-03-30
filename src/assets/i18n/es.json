@@ -111,7 +111,7 @@
       "login": "Iniciar sesión",
       "logout": "Cerrar sesión",
       "authorized": "Bienvenido de nuevo!",
-      "error": "Ha ocurrido un error con el servicio de autenticación",
+      "error": "Ha ocurrido un problema",
       "unauthorized": "Debes autenticarte para continuar",
       "tour": "Tutorial",
       "auth/email-already-in-use": "Ese correo electrónico ya está en uso"
@@ -130,7 +130,7 @@
       "invalid": "Debe ser un correo electrónico válido",
       "accept": "Aceptar",
       "check": "Comprueba tu correo",
-      "error": "Ha ocurrido un error en el proceso autenticación",
+      "error": "Ha ocurrido un problema",
       "faction": "Facción",
       "unfactioned": "Debes escoger una facción"
     },
@@ -292,9 +292,7 @@
     "city": {
       "name": "Ciudad",
       "description": "Administra tu capital",
-      "help": "En la ciudad puedes invertir Turnos, Oro, y Tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino. Ten en cuenta que cuantos más talleres tengas, menos Turnos necesitarás.",
-      "success": "Edificios construidos correctamente",
-      "error": "Ha ocurrido un error al construir edificios"
+      "help": "En la ciudad puedes invertir Turnos, Oro, y Tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino. Ten en cuenta que cuantos más talleres tengas, menos Turnos necesitarás."
     },
     "leadership": {
       "name": "Liderazgo",
@@ -349,6 +347,7 @@
       "cancel": "Cancelar",
       "disband": "Desbandar",
       "hint": "No puedes desbandar unidades que consuman Población",
+      "invalid": "No tienes suficientes tropas",
       "error": "Ha ocurrido un problema",
       "success": "Has desbandado {{ quantity }} {{ unit }}",
       "troop": "Tropa",
@@ -427,7 +426,8 @@
       "cancel": "Cancelar",
       "bid": "Pujar",
       "hint": "Ofrece como mínimo un 10% más Oro que la puja anterior",
-      "error": "La puja no supera el mínimo o no dispones de suficiente Oro",
+      "invalid": "La puja no supera el mínimo o no dispones de suficiente Oro",
+      "error": "Ha ocurrido un problema",
       "success": "Puja aceptada",
       "adquisitions": "Adquisiciones",
       "quantity": "Cantidad"
@@ -444,6 +444,7 @@
       "name": "Investigación",
       "description": "Aqui puedes gastar Turnos para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos Turnos necesitarás.",
       "hint": "Invierte Turnos en investigar",
+      "invalid": "No dispones de suficientes Turnos",
       "error": "Ha ocurrido un problema",
       "research": "Investigar",
       "cancel": "Cancelar",
