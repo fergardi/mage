@@ -67,7 +67,7 @@
   },
   {
     "turns": 5,
-    "type": "item",
+    "type": "spell",
     "image": "/assets/images/items/wisdom-tome.png",
     "faction": "grey",
     "name": "item.wisdom-tome.name",
@@ -155,7 +155,7 @@
   },
   {
     "turns": 1,
-    "type": "item",
+    "type": "espionage",
     "image": "/assets/images/items/crystal-ball.png",
     "faction": "grey",
     "name": "item.crystal-ball.name",

@@ -546,9 +546,9 @@ const activateArtifact = async (kingdomId: string, artifactId: string, targetId:
         // summons
         case 'summon':
           let unit = artifact.item.units[Math.floor(Math.random() * artifact.item.units.length)];
-          let quantity = Math.floor(Math.random() * (Math.max(...unit.amount) - Math.min(...unit.amount)) + Math.min(...unit.amount));
-          await addTroop(targetId, unit, quantity, batch);
-          result = { unit: `unit.${unit.id}.name`, quantity: quantity };
+          let size = Math.floor(Math.random() * (Math.max(...unit.amount) - Math.min(...unit.amount)) + Math.min(...unit.amount));
+          await addTroop(targetId, unit, size, batch);
+          result = { unit: `unit.${unit.id}.name`, size: size };
           break;
         // resources
         case 'resource':
@@ -570,15 +570,27 @@ const activateArtifact = async (kingdomId: string, artifactId: string, targetId:
           break;
         // special cases
         case 'item':
-          if (artifact.item.id === 'wisdom-tome') {
-
+          const item = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
+          const quantity = 1;
+          await addArtifact(targetId, item, quantity, batch);
+          result = { item: `item.${item.id}.name`, quantity: quantity };
+          break;
+        case 'spell':
+          let spell: any = false;
+          let tries: number = 0;
+          while (!spell && tries <= 10) {
+            spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 99)).limit(1).get()).docs[0].data();
+            spell = (await angularFirestore.collection(`kingdoms/${targetId}/charms`).where('spell.id', '==', spell.id).limit(1).get()).empty ? spell : false;
+            tries++;
           }
-          if (artifact.item.id === 'crystal-ball') {
-
+          if (spell) {
+            await addCharm(targetId, spell, 0, batch);
+            result = { spell: `spell.${spell.id}.name` };
           }
-          if (artifact.item.id === 'treasure-map') {
-
-          }
+          break;
+        case 'espionage':
+          const from = (await angularFirestore.doc(`kingdoms/${targetId}`).get()).data();
+          await addLetter(kingdomId, 'kingdom.espionage.subject', 'kingdom.espionage.message', from, batch, null);
           break;
       }
       if (targetId !== kingdomId) {
@@ -769,16 +781,17 @@ const buyEmporium = async (kingdomId: string, itemId: string) => {
     let kingdomGem = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gem').limit(1).get()).docs[0].data();
     if (item.gems <= kingdomGem.quantity) {
       const batch = angularFirestore.batch();
+      const quantity = 100;
       const data = {
         item: item,
-        quantity: 1,
+        quantity: quantity,
       };
       const from = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
       await addLetter(kingdomId, 'kingdom.emporium.subject', 'kingdom.emporium.message', from, batch, data);
       await addSupply(kingdomId, 'gem', -item.gems, batch);
-      await addArtifact(kingdomId, item, 1, batch);
+      await addArtifact(kingdomId, item, quantity, batch);
       await batch.commit();
-      return { quantity: 1, item: item.name };
+      return { quantity: quantity, item: item.name };
     } else throw new Error('api.error.emporium');
   } else throw new Error('api.error.emporium');
 }

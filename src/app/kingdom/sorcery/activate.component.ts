@@ -85,7 +85,7 @@ export class ActivateComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
-  kingdomArtifacts: any[] = null;
+  kingdomArtifacts: any[] = [];
   selectedArtifact: any = null;
 
   constructor(
@@ -102,14 +102,10 @@ export class ActivateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.activation.artifact) {
-      this.kingdomArtifacts = [this.activation.artifact];
-      this.selectedArtifact = this.activation.artifact;
-    } else {
-      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`, ref => ref.where('assignment', '==', ArtifactAssignmentType.none).where('item.battle', '==', false).where('item.self', '==', false)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
-        this.kingdomArtifacts = artifacts;
-      });
-    }
+    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`, ref => ref.where('assignment', '==', ArtifactAssignmentType.none).where('item.battle', '==', false).where('item.self', '==', !this.activation.kingdom)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
+      this.kingdomArtifacts = artifacts;
+      if (this.activation.artifact) this.selectedArtifact = this.kingdomArtifacts.find(artifact => artifact.fid === this.activation.artifact.fid);
+    });
   }
 
   close(): void {
@@ -120,11 +116,14 @@ export class ActivateComponent implements OnInit {
     if (this.selectedArtifact.quantity && this.selectedArtifact.item.turns <= this.kingdomTurn.quantity) {
       this.loadingService.startLoading();
       try {
+        const artifact = this.selectedArtifact; // copy because the artifact may be the last one and gets deleted from server
         const activated = await this.apiService.activateArtifact(this.uid, this.selectedArtifact.fid, this.activation.kingdom ? this.activation.kingdom.fid : this.uid);
-        if (this.selectedArtifact.item.type === 'summon') this.notificationService.success('kingdom.activate.summon', activated);
-        if (this.selectedArtifact.item.type === 'resource') this.notificationService.success('kingdom.activate.resource', activated);
-        if (this.selectedArtifact.item.type === 'enchantment' && this.selectedArtifact.item.spells.length) this.notificationService.success('kingdom.activate.enchantment', activated);
-        if (this.selectedArtifact.item.type === 'enchantment' && !this.selectedArtifact.item.spells.length) this.notificationService.success('kingdom.dispel.success');
+        if (artifact.item.type === 'summon') this.notificationService.success('kingdom.activate.summon', activated);
+        if (artifact.item.type === 'resource') this.notificationService.success('kingdom.activate.resource', activated);
+        if (artifact.item.type === 'item') this.notificationService.success('kingdom.activate.item', activated);
+        if (artifact.item.type === 'spell') this.notificationService.success('kingdom.activate.spell', activated);
+        if (artifact.item.type === 'enchantment' && artifact.item.spells.length) this.notificationService.success('kingdom.activate.enchantment', activated);
+        if (artifact.item.type === 'enchantment' && !artifact.item.spells.length) this.notificationService.success('kingdom.dispel.success');
         this.close();
       } catch (error) {
         console.error(error);

@@ -298,13 +298,13 @@
       "name": "Liderazgo",
       "description": "Comanda tus tropas",
       "help": "Los héroes que tengas asignados al Liderazo entrarán en batalla contra cualquier reino al que ataques, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla.",
-      "max": "Máximo"
+      "max": "Max"
     },
     "guard": {
       "name": "Guardia",
       "description": "Vigila tus dominios",
       "help": "Los héroes que tengas asignados a la Guardia entrarán en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla.",
-      "max": "Máximo"
+      "max": "Max"
     },
     "census": {
       "name": "Censo",
@@ -335,7 +335,7 @@
       "name": "Ejército",
       "description": "Gestiona tus tropas",
       "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
-      "max": "Máximo",
+      "max": "Max",
       "maximum": "No caben más tropas",
       "success": "Los cambios de tus tropas se han guardado",
       "error": "Ha ocurrido un problema"
@@ -368,13 +368,13 @@
       "name": "Ataque",
       "description": "Ordena tus fuerzas ofensivas",
       "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha importancia en las batallas.",
-      "max": "Máximo"
+      "max": "Max"
     },
     "defense": {
       "name": "Defensa",
       "description": "Ordena tus fuerzas defensivas",
       "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha importancia en las batallas.",
-      "max": "Máximo"
+      "max": "Max"
     },
     "recruit": {
       "name": "Reclutamiento",
@@ -394,7 +394,7 @@
     "dispel": {
       "name": "Desvanecimiento",
       "description": "Romper encantamientos",
-      "help": "Aqui puedes gastar Maná para tratar de romper un encantamiento de tu propio reino (verde) o de un reino enemigo (rojo). Si el encantamiento es de un enemigo, el éxito dependerá de su protección mágica.",
+      "help": "Aqui puedes gastar Maná para tratar de romper un encantamiento de tu propio reino (verde) o de un reino enemigo (rojo). Si el encantamiento es de un enemigo, el éxito al romperlo dependerá de su protección mágica.",
       "hint": "Debes tener suficiente Maná",
       "invalid": "No tienes suficiente Maná",
       "error": "Ha ocurrido un problema",
@@ -420,7 +420,7 @@
       "help": "Aquí puedes pujar Oro contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de Oro que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de Oro de tu puja original, así que asegúrate de pujar con cuidado.",
       "bid": "Pujar",
       "from": "Casa de Subastas",
-      "subject": "Subasta terminada",
+      "subject": "Subasta Finalizada",
       "message": "La subasta ha terminado. Las nuevas adquisiciones se han enviado a tu reino."
     },
     "bid": {
@@ -442,7 +442,7 @@
       "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás subir de nivel a tus hechizos, invirtiendo Turnos en su investigación.",
       "maximum": "No caben mas hechizos o artefactos",
       "success": "Tus hechizos y artefactos han sido asignados",
-      "max": "Máximo"
+      "max": "Max"
     },
     "research": {
       "name": "Investigación",
@@ -468,6 +468,10 @@
       "charm": "Hechizo",
       "costs": "Costes"
     },
+    "espionage": {
+      "subject": "Reporte de Espionaje",
+      "message": "TODO"
+    },
     "activate": {
       "name": "Activación",
       "description": "Activa artefactos sobre tu reino o sobre otros reinos. Cada activación consume el artefacto y Turnos. Activar artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
@@ -476,24 +480,26 @@
       "activate": "Activar",
       "cancel": "Cancelar",
       "select": "Escoge un artefacto",
-      "summon": "Has invocado {{ quantity }} {{ unit }}",
+      "summon": "Has invocado {{ size }} {{ unit }}",
       "resource": "Has obtenido/destruido {{ amount }} {{ resource }}",
       "enchantment": "Has encantado {{ enchantment }} durante {{ turns }} Turnos",
+      "item": "Has encontrado {{ quantity }} {{ item }}",
+      "spell": "Has descubierto {{ spell }}",
       "artifact": "Artefacto",
-      "subject": "Activación de artefacto",
+      "subject": "Activación de Artefacto",
       "message": "Se ha activado un artefacto enemigo contra tu reino. ¡Ésta osadía no quedará impune!"
     },
     "arcanism": {
       "name": "Arcanismo",
       "description": "Organiza tus artimañas ofensivas",
       "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente Maná disponible.",
-      "max": "Máximo"
+      "max": "Max"
     },
     "protection": {
       "name": "Protección",
       "description": "Organiza tus artimañas defensivas",
       "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente Maná disponible.",
-      "max": "Máximo"
+      "max": "Max"
     },
     "charge": {
       "name": "Meditación",
@@ -540,7 +546,7 @@
       "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores. Puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos. Los héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
       "success": "Tus héroes han sido asignados",
       "error": "Ha ocurrido un problema",
-      "max": "Máximo"
+      "max": "Max"
     },
     "archive": {
       "name": "Archivo",
@@ -1758,7 +1764,7 @@
     },
     "wisdom-tome": {
       "name": "Tomo de Sabiduría",
-      "description": "Aprende un hechizo nuevo de otro color"
+      "description": "Intenta aprender un hechizo nuevo"
     },
     "demon-horn": {
       "name": "Cuerno de Demonio",
