@@ -394,7 +394,7 @@
     "dispel": {
       "name": "Desvanecimiento",
       "description": "Romper encantamientos",
-      "help": "Aqui puedes gastar Maná para tratar de romper un encantamiento de tu propio reino (verde) o de un reino enemigo (rojo). Si el encantamiento es de un enemigo, el éxito al romperlo dependerá de su protección mágica.",
+      "help": "Aqui puedes gastar Maná para rezar y tratar de romper un encantamiento de tu propio reino (verde) o de un reino enemigo (rojo). Si el encantamiento es de un enemigo, el éxito al romperlo dependerá de su protección mágica.",
       "hint": "Debes tener suficiente Maná",
       "invalid": "No tienes suficiente Maná",
       "error": "Ha ocurrido un problema",
