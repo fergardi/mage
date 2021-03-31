@@ -147,12 +147,12 @@ export class FirebaseService {
     if (element.categories) this.joinObject2(element, 'categories', this.categories);
     if (element.resistances) this.joinObject2(element, 'resistances', this.categories);
     if (element.families) this.joinObject2(element, 'families', this.families);
-    if (element.spell) this.joinObject2(element, 'spell', this.spells);
-    if (element.spells) this.joinObject2(element, 'spells', this.spells);
+    if (element.spell) this.joinObject2(element, 'spell', this.joinedSpells);
+    if (element.spells) this.joinObject2(element, 'spells', this.joinedSpells);
     // if (element.hero) this.joinObject2(element, 'hero', await this.cacheService.getHeroes());
     // if (element.item) this.joinObject2(element, 'item', await this.cacheService.getItems());
     // if (element.items) this.joinObject2(element, 'items', await this.cacheService.getItems());
-    if (element.resources) this.joinObject2(element, 'resources', await this.httpClient.get<any[]>('assets/fixtures/resources.json').toPromise());
+    if (element.resources) this.joinObject2(element, 'resources', this.resources);
   }
 
   joinObject2(element: any, subCollection: string, collection: any[]) {
@@ -232,14 +232,14 @@ export class FirebaseService {
         this.joinedUnits = JSON.parse(JSON.stringify(this.units));
         this.joinedUnits.forEach(unit => this.autoJoin(unit));
         if (fixtures.includes(FixtureType.UNITS)) this.addElementsToCollection(FixtureType.UNITS, this.joinedUnits, true);
-        console.log(`Loading ${FixtureType.ITEMS}...`);
-        this.joinedItems = JSON.parse(JSON.stringify(this.items));
-        this.joinedItems.forEach(item => this.autoJoin(item));
-        if (fixtures.includes(FixtureType.ITEMS)) this.addElementsToCollection(FixtureType.ITEMS, this.joinedItems, true);
         console.log(`Loading ${FixtureType.SPELLS}...`);
         this.joinedSpells = JSON.parse(JSON.stringify(this.spells));
         this.joinedSpells.forEach(spell => this.autoJoin(spell));
         if (fixtures.includes(FixtureType.SPELLS)) this.addElementsToCollection(FixtureType.SPELLS, this.joinedSpells, true);
+        console.log(`Loading ${FixtureType.ITEMS}...`);
+        this.joinedItems = JSON.parse(JSON.stringify(this.items));
+        this.joinedItems.forEach(item => this.autoJoin(item));
+        if (fixtures.includes(FixtureType.ITEMS)) this.addElementsToCollection(FixtureType.ITEMS, this.joinedItems, true);
         console.log(`Loading ${FixtureType.HEROES}...`);
         this.joinedHeroes = JSON.parse(JSON.stringify(this.heroes));
         this.joinedHeroes.forEach(hero => this.autoJoin(hero));

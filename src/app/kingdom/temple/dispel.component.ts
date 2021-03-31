@@ -10,9 +10,10 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     <h1 mat-dialog-title>{{ 'kingdom.dispel.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.dispel.help' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.dispel.enchantment' | translate }}:</div>
       <mat-list dense>
         <mat-list-item (click)="dispel()" [ngClass]="[enchantment.spell.faction.id, enchantment.spell.legendary ? 'legendary' : 'common']">
-          <div mat-list-avatar [matBadge]="enchantment.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
+          <div mat-list-avatar [matBadge]="enchantment.spell.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
             <img mat-list-avatar [src]="enchantment.spell.image">
           </div>
           <div mat-line>{{ enchantment.spell.name | translate }}</div>
@@ -25,6 +26,9 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
           </div>
         </mat-list-item>
       </mat-list>
+    </div>
+    <div mat-dialog-content>
+      <div matSubheader>{{ 'kingdom.dispel.costs' | translate }}:</div>
       <mat-chip-list>
         <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/mana.png">{{ 20000 | long }}</mat-chip>
       </mat-chip-list>

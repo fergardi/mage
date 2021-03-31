@@ -123,6 +123,8 @@ export class ActivateComponent implements OnInit {
         const activated = await this.apiService.activateArtifact(this.uid, this.selectedArtifact.fid, this.activation.kingdom ? this.activation.kingdom.fid : this.uid);
         if (this.selectedArtifact.item.type === 'summon') this.notificationService.success('kingdom.activate.summon', activated);
         if (this.selectedArtifact.item.type === 'resource') this.notificationService.success('kingdom.activate.resource', activated);
+        if (this.selectedArtifact.item.type === 'enchantment' && this.selectedArtifact.item.spells.length) this.notificationService.success('kingdom.activate.enchantment', activated);
+        if (this.selectedArtifact.item.type === 'enchantment' && !this.selectedArtifact.item.spells.length) this.notificationService.success('kingdom.dispel.success');
         this.close();
       } catch (error) {
         console.error(error);

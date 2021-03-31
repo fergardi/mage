@@ -67,10 +67,22 @@ const units = ['lightning-elemental', 'wraith', 'bone-dragon', 'nightmare', 'gho
 const items = ['treasure-chest', 'necronomicon', 'enchanted-lamp', 'wisdom-tome', 'demon-horn', 'lightning-orb', 'dragon-egg', 'crystal-ball', 'agility-potion', 'defense-potion', 'cold-orb', 'earth-orb', 'fire-orb', 'mana-potion', 'light-orb', 'strength-potion', 'love-potion', 'spider-web', 'animal-fang', 'bone-necklace', 'crown-thorns', 'voodoo-doll', 'cursed-skull', 'golden-feather', 'golden-idol', 'golem-book', 'letter-thieves', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-beans', 'magic-compass', 'mana-vortex', 'rattle', 'rotten-food', 'snake-eye', 'treasure-map', 'valhalla-horn', 'fairy-wings', 'vampire-teeth', 'holy-grenade', 'powder-barrel', 'vial-venom', 'ancient-rune', 'ice-stone', 'fire-scroll', 'cold-scroll', 'light-scroll', 'earth-scroll', 'lightning-scroll'];
 const heroes = ['dragon-rider', 'demon-prince', 'pyromancer', 'orc-king', 'commander', 'trader', 'colossus', 'engineer', 'beast-master', 'leprechaunt', 'golem-golem', 'swamp-thing', 'shaman', 'elementalist', 'sage', 'illusionist', 'necrophage', 'necromancer', 'soul-reaper', 'crypt-keeper'];
 
+/**
+ * random
+ * @param min
+ * @param max
+ */
 const random = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+/**
+ * calculate remaining turns
+ * @param from
+ * @param to
+ * @param max
+ * @param ratio
+ */
 const calculate = (from: any, to: any, max: number, ratio: number): number => {
   const start = moment(from);
   const end = moment(to);
@@ -303,12 +315,12 @@ const addContract = async (kingdomId: string, hero: any, level: number, batch: F
  * @param turns
  * @param batch
  */
-const addEnchantment = async (kingdomId: string, enchantment: any, level: number, originId: string|null = null, turns: number, batch: FirebaseFirestore.WriteBatch) => {
+const addEnchantment = async (kingdomId: string, enchantment: any, originId: string, turns: number, batch: FirebaseFirestore.WriteBatch) => {
   let kingdomEnchantment = await angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).where('id', '==', enchantment.id).limit(1).get();
   if (kingdomEnchantment.size > 0) {
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${kingdomEnchantment.docs[0].id}`), { from: originId, turns: admin.firestore.FieldValue.increment(turns) });
   } else {
-    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).doc(), { id: enchantment.id, enchantment: enchantment, from: originId, turns: turns, level: level });
+    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).doc(), { id: enchantment.id, spell: enchantment, from: originId, turns: turns });
   }
 }
 
@@ -531,17 +543,42 @@ const activateArtifact = async (kingdomId: string, artifactId: string, targetId:
         batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/artifacts/${artifactId}`));
       }
       switch (artifact.item.type) {
+        // summons
         case 'summon':
           let unit = artifact.item.units[Math.floor(Math.random() * artifact.item.units.length)];
           let quantity = Math.floor(Math.random() * (Math.max(...unit.amount) - Math.min(...unit.amount)) + Math.min(...unit.amount));
           await addTroop(targetId, unit, quantity, batch);
           result = { unit: `unit.${unit.id}.name`, quantity: quantity };
           break;
+        // resources
         case 'resource':
           let resource = artifact.item.resources[0];
           let amount = Math.floor(Math.random() * (Math.max(...artifact.item.amount) - Math.min(...artifact.item.amount)) + Math.min(...artifact.item.amount));
           await addSupply(targetId, resource.id, amount, batch, resource.id === 'turn' ? kingdomTurn.resource.ratio : null);
           result = { resource: `resource.${resource.id}.name`, amount: amount };
+          break;
+        // enchantments
+        case 'enchantment':
+          if (artifact.item.spells.length) {
+            let enchantment = artifact.item.spells[random(0, artifact.item.spells.length - 1)];
+            await addEnchantment(targetId, enchantment, kingdomId, enchantment.turnDuration, batch);
+            result = { enchantment: `spell.${enchantment.id}.name`, turns: enchantment.turnDuration };
+          } else {
+            const kingdomEnchantments = await angularFirestore.collection(`kingdoms/${targetId}/enchantments`).listDocuments();
+            kingdomEnchantments.map(enchantment => batch.delete(enchantment));
+          }
+          break;
+        // special cases
+        case 'item':
+          if (artifact.item.id === 'wisdom-tome') {
+
+          }
+          if (artifact.item.id === 'crystal-ball') {
+
+          }
+          if (artifact.item.id === 'treasure-map') {
+
+          }
           break;
       }
       if (targetId !== kingdomId) {
@@ -653,7 +690,7 @@ const offerGod = async (kingdomId: string, godId: string, sacrifice: number) => 
       switch (reward) {
         case 'enchantment':
           let enchantmentId = enchantments[random(0, enchantments.length - 1)];
-          await addEnchantment(kingdomId, enchantmentId, 10, null, 300, batch);
+          await addEnchantment(kingdomId, enchantmentId, kingdomId, 300, batch);
           result = { enchantment: `spell.${enchantmentId}.name`, turns: 300, level: 10 };
           break;
         case 'contract':
