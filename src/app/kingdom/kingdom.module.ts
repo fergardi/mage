@@ -30,7 +30,7 @@ import { DischargeComponent } from './tavern/discharge.component';
 import { LetterComponent } from './census/letter.component';
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
 import { ClanComponent } from './clan/clan.component';
-import { NgxCurrencyModule, CurrencyMaskInputMode } from 'ngx-currency';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 @NgModule({
   declarations: [
@@ -67,20 +67,7 @@ import { NgxCurrencyModule, CurrencyMaskInputMode } from 'ngx-currency';
     KingdomRoutingModule,
     SharedModule,
     TourMatMenuModule,
-    NgxCurrencyModule.forRoot({
-      align: 'right',
-      allowNegative: false,
-      allowZero: true,
-      decimal: ',',
-      precision: 0,
-      prefix: '',
-      suffix: '',
-      thousands: '.',
-      nullable: true,
-      min: null,
-      max: null,
-      inputMode: CurrencyMaskInputMode.FINANCIAL,
-    }),
+    NgxCurrencyModule,
   ],
 })
 export class KingdomModule { }

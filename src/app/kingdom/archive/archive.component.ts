@@ -97,7 +97,7 @@ export class ArchiveComponent implements OnInit {
   }
 
   async openReportDialog(report: any) {
-    if (report.adquisition) report.adquisition.join = report.adquisition.hero || report.adquisition.item || report.adquisition.spell || report.adquisition.unit;
+    if (report.data) report.data.join = report.data.hero || report.data.item || report.data.spell || report.data.unit;
     const dialogRef = this.dialog.open(ReportComponent, {
       panelClass: 'dialog-responsive',
       data: report,

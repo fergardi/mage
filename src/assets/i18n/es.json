@@ -316,7 +316,7 @@
     "report": {
       "battle": "Reporte de batalla",
       "from": "De",
-      "adquisitions": "Adquisiciones",
+      "data": "Nota",
       "seal": "Sellado",
       "message": "Mensaje",
       "close": "Cerrar"
@@ -429,14 +429,14 @@
       "invalid": "La puja no supera el mínimo o no dispones de suficiente Oro",
       "error": "Ha ocurrido un problema",
       "success": "Puja aceptada",
-      "adquisitions": "Adquisiciones",
+      "data": "Nota",
       "quantity": "Cantidad"
     },
     "sorcery": {
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
       "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás subir de nivel a tus hechizos, invirtiendo Turnos en su investigación.",
-      "maximum": "???",
+      "maximum": "No caben mas hechizos o artefactos",
       "success": "Tus hechizos y artefactos han sido asignados",
       "max": "Máximo"
     },
@@ -472,8 +472,11 @@
       "activate": "Activar",
       "cancel": "Cancelar",
       "select": "Escoge un artefacto",
-      "success": "Activación completada",
-      "artifact": "Artefacto"
+      "summon": "Has invocado {{ quantity }} {{ unit }}",
+      "resource": "Has obtenido/destruido {{ amount }} {{ resource }}",
+      "artifact": "Artefacto",
+      "subject": "Activación de artefacto",
+      "message": "Se ha activado un artefacto enemigo contra tu reino. ¡Ésta osadía no quedará impune!"
     },
     "arcanism": {
       "name": "Arcanismo",
@@ -569,10 +572,10 @@
       "name": "Templo",
       "description": "Complace a los dioses",
       "help": "Puedes ofrecer recursos a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
-      "hero": "Te han otorgado el héroe '{{ hero }}' de nivel {{ level }}",
-      "unit": "Te han otorgado una tropa de {{ quantity }} '{{ unit }}'",
-      "enchantment": "Te han otorgado el encantamiento '{{ enchantment }}' durante {{ turns }} Turnos",
-      "item": "Te han otorgado el artefacto '{{ item }}'",
+      "hero": "Te han otorgado el héroe {{ hero }} de nivel {{ level }}",
+      "unit": "Te han otorgado una tropa de {{ quantity }} {{ unit }}",
+      "enchantment": "Te han otorgado el encantamiento {{ enchantment }} durante {{ turns }} Turnos",
+      "item": "Te han otorgado el artefacto {{ item }}",
       "gold": "Te han otorgado {{ gold }} Oro",
       "mana": "Te han otorgado {{ mana }} Maná",
       "population": "Te han otorgado {{ population }} Población",
@@ -595,16 +598,19 @@
     "emporium": {
       "name": "Emporio",
       "description": "Contrabando del mercado negro",
-      "help": "Puedes gastar tus gemas adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un impulso económico, potenciando el status de tu reino en el ránking.",
+      "help": "Puedes gastar tus gemas adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un importante impulso económico, científico o militar.",
       "success": "Has adquirido {{ quantity }} {{ item }}",
-      "error": "Ha ocurrido un problema"
+      "error": "Ha ocurrido un problema",
+      "subject": "Compra realizada",
+      "message": "La compra se ha realizado. Las nuevas adquisiciones se han enviado a tu reino.",
+      "from": "Mercado Negro"
     },
     "buy": {
       "name": "Compra",
       "help": "Vas a adquirir un Artefacto a cambio de varias Gemas. ¡No se acepta Oro! ¡No se permiten cambios, ni devoluciones! ¡No se fía!",
       "cancel": "Cancelar",
       "buy": "Comprar",
-      "adquisitions": "Adquisiciones"
+      "data": "Nota"
     },
     "build": {
       "name": "Construcción",
@@ -927,7 +933,7 @@
       "name": "Yetis",
       "description": ""
     },
-    "carnivOrous-plant": {
+    "carnivorous-plant": {
       "name": "Plantas Carnívoras",
       "description": ""
     },
@@ -1373,9 +1379,9 @@
       "name": "Llamar Caracoles Monstruosos",
       "description": "Convoca una tropa de <giant-snail>"
     },
-    "call-carnivOrous-plant": {
+    "call-carnivorous-plant": {
       "name": "Llamar Plantas Carnívoras",
-      "description": "Convoca una tropa de <carnivOrous-plant>"
+      "description": "Convoca una tropa de <carnivorous-plant>"
     },
     "call-centaur": {
       "name": "Llamar Centauros",
@@ -1734,7 +1740,7 @@
   },
   "item": {
     "treasure-chest": {
-      "name": "Cofre del TesOro",
+      "name": "Cofre del Tesoro",
       "description": "Otorga gran cantidad de <gold>"
     },
     "necronomicon": {
@@ -1814,7 +1820,7 @@
       "description": "Convoca una tropa de <orkish>"
     },
     "crown-thorns": {
-      "name": "COrona de Espinas",
+      "name": "Corona de Espinas",
       "description": "Aplica <weakness> a cada tropa enemiga"
     },
     "voodoo-doll": {
@@ -1831,7 +1837,7 @@
     },
     "golden-idol": {
       "name": "Ídolo Dorado",
-      "description": "Destruye <gold> del enemigo"
+      "description": "Destruye mucho <gold> del enemigo"
     },
     "golem-book": {
       "name": "Libro de Invocación del Gólem",
@@ -1839,7 +1845,7 @@
     },
     "letter-thieves": {
       "name": "Carta del Gremio de Ladrones",
-      "description": "Roba <gold> al enemigo"
+      "description": "Destruye poco <gold> del enemigo"
     },
     "lucky-coin": {
       "name": "Moneda de la Suerte",
@@ -1863,7 +1869,7 @@
     },
     "mana-vortex": {
       "name": "Vórtice de Maná",
-      "description": "Destruye <mana> del enemigo"
+      "description": "Destruye mucho <mana> del enemigo"
     },
     "rattle": {
       "name": "Cascabel",
@@ -1871,14 +1877,14 @@
     },
     "rotten-food": {
       "name": "Comida Putrefacta",
-      "description": "Destruye <population> del enemigo"
+      "description": "Destruye poca <population> del enemigo"
     },
     "snake-eye": {
       "name": "Ojo de Serpiente",
       "description": "Convoca una tropa de <reptile>"
     },
     "treasure-map": {
-      "name": "Mapa del TesOro",
+      "name": "Mapa del Tesoro",
       "description": "Encuentra un artefacto aleatorio"
     },
     "valhalla-horn": {
@@ -1887,7 +1893,7 @@
     },
     "fairy-wings": {
       "name": "Alas de Hada",
-      "description": "Aplica <flight> a una tropa"
+      "description": "Aplica <flight> a una tropa aliada al azar"
     },
     "vampire-teeth": {
       "name": "Colmillo de Vampiro",

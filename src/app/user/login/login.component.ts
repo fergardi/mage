@@ -7,6 +7,7 @@ import { Store } from '@ngxs/store';
 import { LoginWithGoogleAction } from 'src/app/shared/auth/auth.actions';
 import { ApiService } from 'src/app/services/api.service';
 import { CacheService } from 'src/app/services/cache.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,6 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   types =  ['login', 'signup', 'reset'] as const;
   type = 'login';
-  loading: boolean = false;
   message: string;
   factions: any[] = [];
 
@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
     private store: Store,
     private apiService: ApiService,
     private cacheService: CacheService,
+    private loadingService: LoadingService,
   ) {
     this.createForm();
   }
@@ -67,9 +68,9 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
-    this.loading = true;
     const email = this.form.value.email;
     const password = this.form.value.password;
+    this.loadingService.startLoading();
     try {
       switch (this.type) {
         case 'login':
@@ -86,10 +87,11 @@ export class LoginComponent implements OnInit {
           break;
       }
     } catch (error){
+      await this.angularFireAuth.signOut();
       console.error(error);
-      this.notificationService.error(`user.auth.${error.code}`);
+      this.notificationService.error('user.login.error');
     }
-    this.loading = false;
+    this.loadingService.stopLoading();
   }
 
   async google() {

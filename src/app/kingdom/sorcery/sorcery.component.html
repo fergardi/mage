@@ -24,7 +24,7 @@
             <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item">
             </div>
             <mat-icon *ngIf="artifact.item.battle">open_with</mat-icon>
-            <div mat-list-avatar *ngIf="!artifact.item.battle && artifact.item.self" [matBadge]="1" matBadgePosition="above after">
+            <div mat-list-avatar *ngIf="!artifact.item.battle && artifact.item.self" [matBadge]="artifact.item.turns" matBadgePosition="above after">
               <img mat-list-avatar src="/assets/images/resources/turn.png">
             </div>
           </button>

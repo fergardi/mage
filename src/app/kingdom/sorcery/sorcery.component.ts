@@ -97,7 +97,10 @@ export class SorceryComponent implements OnInit {
   openActivateDialog(artifact: any): void {
     const dialogRef = this.dialog.open(ActivateComponent, {
       panelClass: 'dialog-responsive',
-      data: artifact,
+      data: {
+        artifact: artifact,
+        kingdom: null,
+      },
     });
   }
 

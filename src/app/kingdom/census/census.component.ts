@@ -101,14 +101,17 @@ export class CensusComponent implements OnInit {
   openActivateDialog(kingdom: any): void {
     const dialogRef = this.dialog.open(ActivateComponent, {
       panelClass: 'dialog-responsive',
-      data: null,
+      data: {
+        artifact: null,
+        kingdom: kingdom,
+      },
     });
   }
 
   openConjureDialog(kingdom: any): void {
     const dialogRef = this.dialog.open(ConjureComponent, {
       panelClass: 'dialog-responsive',
-      data: null,
+      data: kingdom,
     });
   }
 

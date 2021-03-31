@@ -31,13 +31,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { NgxCurrencyModule, CurrencyMaskInputMode } from 'ngx-currency';
 
 import { ShellComponent } from './shell/shell.component';
+
 import { ShortPipe } from '../pipes/short.pipe';
 import { IconPipe } from '../pipes/icon.pipe';
-import { MatNativeDateModule } from '@angular/material/core';
 import { LongPipe } from '../pipes/long.pipe';
 import { LegendaryPipe } from '../pipes/legendary.pipe';
 import { TurnPipe } from '../pipes/turn.pipe';
@@ -106,6 +108,20 @@ const modules = [
       isolate: false,
     }),
     TourMatMenuModule,
+    NgxCurrencyModule.forRoot({
+      align: 'right',
+      allowNegative: false,
+      allowZero: true,
+      decimal: ',',
+      precision: 0,
+      prefix: '',
+      suffix: '',
+      thousands: '.',
+      nullable: true,
+      min: null,
+      max: null,
+      inputMode: CurrencyMaskInputMode.FINANCIAL,
+    }),
   ],
   exports: [
     ...components,

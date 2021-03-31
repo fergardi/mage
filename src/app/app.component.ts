@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TourService } from 'ngx-tour-md-menu';
 import { LoadingService } from './services/loading.service';
-// import { FirebaseService, FixtureType } from './services/firebase.service';
+import { FirebaseService, FixtureType } from './services/firebase.service';
 
 @Component({
   selector: 'app-root',
@@ -11,26 +11,11 @@ import { LoadingService } from './services/loading.service';
 export class AppComponent implements OnInit {
 
   constructor(
-    // private firebaseService: FirebaseService,
+    private firebaseService: FirebaseService,
     public tourService: TourService,
     public loadingService: LoadingService,
   ) {
-    // this.firebaseService.joinFixtures([FixtureType.ATTACKS]);
-    // this.firebaseService.joinFixtures([FixtureType.FACTIONS]);
-    // this.firebaseService.joinFixtures([FixtureType.FAMILIES]);
-    // this.firebaseService.joinFixtures([FixtureType.CATEGORIES]);
-    // this.firebaseService.joinFixtures([FixtureType.GODS]);
-    // this.firebaseService.joinFixtures([FixtureType.RESOURCES]);
-    // this.firebaseService.joinFixtures([FixtureType.SKILLS]);
-    // this.firebaseService.joinFixtures([FixtureType.STRUCTURES]);
-    // this.firebaseService.joinFixtures([FixtureType.GUILDS]);
-    // this.firebaseService.joinFixtures([FixtureType.UNITS]);
     // this.firebaseService.joinFixtures([FixtureType.ITEMS]);
-    // this.firebaseService.joinFixtures([FixtureType.STORES]);
-    // this.firebaseService.joinFixtures([FixtureType.LOCATIONS]);
-    // this.firebaseService.joinFixtures([FixtureType.SPELLS]);
-    // this.firebaseService.joinFixtures([FixtureType.HEROES]);
-    // this.firebaseService.joinFixtures([FixtureType.KINGDOMS]);
   }
 
   ngOnInit(): void {

@@ -8,11 +8,12 @@
     "build": "ng build",
     "functions": "npm --prefix functions run build",
     "emulator": "firebase emulators:start --only functions",
-    "test": "ng test",
+    "test": "ng test --watch=true",
+    "karma": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "sonar": "sonar-scanner",
-    "ci": "npm run test && npm run sonar"
+    "ci": "npm run karma && npm run sonar"
   },
   "private": true,
   "dependencies": {

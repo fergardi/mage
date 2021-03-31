@@ -50,7 +50,7 @@
 
               <ng-template [ngIf]="column === 'from'">
                 <mat-list dense>
-                  <mat-list-item [ngClass]="letter['from'].faction.id">
+                  <mat-list-item [ngClass]="[letter['from'].faction.id, letter['from'].id === uid ? 'legendary' : 'common']">
                     <div mat-list-avatar [matBadge]="!letter.read ? '❕' : undefined" matBadgePosition="above before">
                       <img mat-list-avatar [src]="letter['from'].faction.image">
                     </div>

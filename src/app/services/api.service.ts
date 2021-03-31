@@ -13,7 +13,7 @@ export class ApiService {
   ) { }
 
   createKingdom(kingdomId: string, factionId: string, name: string, latitude: number, longitude: number) {
-    return this.httpClient.post(environment.functions.url + `/kingdom`, {
+    return this.httpClient.post(environment.functions.url + `/world/kingdom`, {
       kingdomId: kingdomId,
       name: name,
       factionId: factionId,

@@ -142,8 +142,8 @@ export class FirebaseService {
     if (element.opposites) this.joinObject2(element, 'opposites', this.factions);
     // if (element.location) this.joinObject2(element, 'location', await this.cacheService.getLocations());
     if (element.skills) this.joinObject2(element, 'skills', this.skills);
-    if (element.unit) this.joinObject2(element, 'unit', this.units);
-    if (element.units) this.joinObject2(element, 'units', this.units);
+    if (element.unit) this.joinObject2(element, 'unit', this.joinedUnits);
+    if (element.units) this.joinObject2(element, 'units', this.joinedUnits);
     if (element.categories) this.joinObject2(element, 'categories', this.categories);
     if (element.resistances) this.joinObject2(element, 'resistances', this.categories);
     if (element.families) this.joinObject2(element, 'families', this.families);
@@ -192,86 +192,66 @@ export class FirebaseService {
     this.angularFireAuth.authState.subscribe(async user => {
       if (user && fixtures.length) {
         await this.loadFixtures();
-        if (fixtures.includes(FixtureType.ATTACKS)) {
-          this.joinedAttacks = JSON.parse(JSON.stringify(this.attacks));
-          this.joinedAttacks.forEach(attack => this.autoJoin(attack));
-          this.addElementsToCollection(FixtureType.ATTACKS, this.joinedAttacks, true);
-        }
-        if (fixtures.includes(FixtureType.FACTIONS)) {
-          this.joinedFactions = JSON.parse(JSON.stringify(this.factions));
-          this.joinedFactions.forEach(faction => this.autoJoin(faction));
-          this.addElementsToCollection(FixtureType.FACTIONS, this.joinedFactions, true);
-        }
-        if (fixtures.includes(FixtureType.GUILDS)) {
-          this.joinedGuilds = JSON.parse(JSON.stringify(this.guilds));
-          this.joinedGuilds.forEach(guild => this.autoJoin(guild));
-          this.addElementsToCollection(FixtureType.GUILDS, this.joinedGuilds, true);
-        }
-        if (fixtures.includes(FixtureType.FAMILIES)) {
-          this.joinedFamilies = JSON.parse(JSON.stringify(this.families));
-          this.joinedFamilies.forEach(family => this.autoJoin(family));
-          this.addElementsToCollection(FixtureType.FAMILIES, this.joinedFamilies, true);
-        }
-        if (fixtures.includes(FixtureType.CATEGORIES)) {
-          this.joinedCategories = JSON.parse(JSON.stringify(this.categories));
-          this.joinedCategories.forEach(category => this.autoJoin(category));
-          this.addElementsToCollection(FixtureType.CATEGORIES, this.joinedCategories, true);
-        }
-        if (fixtures.includes(FixtureType.GODS)) {
-          this.joinedGods = JSON.parse(JSON.stringify(this.gods));
-          this.joinedGods.forEach(god => this.autoJoin(god));
-          this.addElementsToCollection(FixtureType.GODS, this.joinedGods, true);
-        }
-        if (fixtures.includes(FixtureType.RESOURCES)) {
-          this.joinedResources = JSON.parse(JSON.stringify(this.resources));
-          this.joinedResources.forEach(resource => this.autoJoin(resource));
-          this.addElementsToCollection(FixtureType.RESOURCES, this.joinedResources, true);
-        }
-        if (fixtures.includes(FixtureType.STRUCTURES)) {
-          this.joinedStructures = JSON.parse(JSON.stringify(this.structures));
-          this.joinedStructures.forEach(structure => this.autoJoin(structure));
-          this.addElementsToCollection(FixtureType.STRUCTURES, this.joinedStructures, true);
-        }
-        if (fixtures.includes(FixtureType.SKILLS)) {
-          this.joinedSkills = JSON.parse(JSON.stringify(this.skills));
-          this.joinedSkills.forEach(skill => this.autoJoin(skill));
-          this.addElementsToCollection(FixtureType.SKILLS, this.joinedSkills, true);
-        }
-        if (fixtures.includes(FixtureType.UNITS)) {
-          this.joinedUnits = JSON.parse(JSON.stringify(this.units));
-          this.joinedUnits.forEach(unit => this.autoJoin(unit));
-          this.addElementsToCollection(FixtureType.UNITS, this.joinedUnits, true);
-        }
-        if (fixtures.includes(FixtureType.ITEMS)) {
-          this.joinedItems = JSON.parse(JSON.stringify(this.items));
-          this.joinedItems.forEach(item => this.autoJoin(item));
-          this.addElementsToCollection(FixtureType.ITEMS, this.joinedItems, true);
-        }
-        if (fixtures.includes(FixtureType.SPELLS)) {
-          this.joinedSpells = JSON.parse(JSON.stringify(this.spells));
-          this.joinedSpells.forEach(spell => this.autoJoin(spell));
-          this.addElementsToCollection(FixtureType.SPELLS, this.joinedSpells, true);
-        }
-        if (fixtures.includes(FixtureType.HEROES)) {
-          this.joinedHeroes = JSON.parse(JSON.stringify(this.heroes));
-          this.joinedHeroes.forEach(hero => this.autoJoin(hero));
-          this.addElementsToCollection(FixtureType.HEROES, this.joinedHeroes, true);
-        }
-        if (fixtures.includes(FixtureType.STORES)) {
-          this.joinedStores = JSON.parse(JSON.stringify(this.stores));
-          this.joinedStores.forEach(store => this.autoJoin(store));
-          this.addElementsToCollection(FixtureType.STORES, this.joinedStores, true);
-        }
-        if (fixtures.includes(FixtureType.LOCATIONS)) {
-          this.joinedLocations = JSON.parse(JSON.stringify(this.locations));
-          this.joinedLocations.forEach(quest => this.autoJoin(quest));
-          this.addElementsToCollection(FixtureType.LOCATIONS, this.joinedLocations, true);
-        }
-        if (fixtures.includes(FixtureType.KINGDOMS)) {
-          this.joinedKingdoms = JSON.parse(JSON.stringify(this.kingdoms));
-          this.joinedKingdoms.forEach(kingdom => this.autoJoin(kingdom));
-          this.addElementsToCollection(FixtureType.KINGDOMS, this.joinedKingdoms, true);
-        }
+        console.log(`Loading ${FixtureType.FACTIONS}...`);
+        this.joinedFactions = JSON.parse(JSON.stringify(this.factions));
+        this.joinedFactions.forEach(faction => this.autoJoin(faction));
+        if (fixtures.includes(FixtureType.FACTIONS)) this.addElementsToCollection(FixtureType.FACTIONS, this.joinedFactions, true);
+        console.log(`Loading ${FixtureType.ATTACKS}...`);
+        this.joinedAttacks = JSON.parse(JSON.stringify(this.attacks));
+        this.joinedAttacks.forEach(attack => this.autoJoin(attack));
+        if (fixtures.includes(FixtureType.ATTACKS)) this.addElementsToCollection(FixtureType.ATTACKS, this.joinedAttacks, true);
+        console.log(`Loading ${FixtureType.GUILDS}...`);
+        this.joinedGuilds = JSON.parse(JSON.stringify(this.guilds));
+        this.joinedGuilds.forEach(guild => this.autoJoin(guild));
+        if (fixtures.includes(FixtureType.GUILDS)) this.addElementsToCollection(FixtureType.GUILDS, this.joinedGuilds, true);
+        console.log(`Loading ${FixtureType.FAMILIES}...`);
+        this.joinedFamilies = JSON.parse(JSON.stringify(this.families));
+        this.joinedFamilies.forEach(family => this.autoJoin(family));
+        if (fixtures.includes(FixtureType.FAMILIES)) this.addElementsToCollection(FixtureType.FAMILIES, this.joinedFamilies, true);
+        console.log(`Loading ${FixtureType.CATEGORIES}...`);
+        this.joinedCategories = JSON.parse(JSON.stringify(this.categories));
+        this.joinedCategories.forEach(category => this.autoJoin(category));
+        if (fixtures.includes(FixtureType.CATEGORIES)) this.addElementsToCollection(FixtureType.CATEGORIES, this.joinedCategories, true);
+        console.log(`Loading ${FixtureType.GODS}...`);
+        this.joinedGods = JSON.parse(JSON.stringify(this.gods));
+        this.joinedGods.forEach(god => this.autoJoin(god));
+        if (fixtures.includes(FixtureType.GODS)) this.addElementsToCollection(FixtureType.GODS, this.joinedGods, true);
+        console.log(`Loading ${FixtureType.RESOURCES}...`);
+        this.joinedResources = JSON.parse(JSON.stringify(this.resources));
+        this.joinedResources.forEach(resource => this.autoJoin(resource));
+        if (fixtures.includes(FixtureType.RESOURCES)) this.addElementsToCollection(FixtureType.RESOURCES, this.joinedResources, true);
+        console.log(`Loading ${FixtureType.STRUCTURES}...`);
+        this.joinedStructures = JSON.parse(JSON.stringify(this.structures));
+        this.joinedStructures.forEach(structure => this.autoJoin(structure));
+        if (fixtures.includes(FixtureType.STRUCTURES)) this.addElementsToCollection(FixtureType.STRUCTURES, this.joinedStructures, true);
+        console.log(`Loading ${FixtureType.SKILLS}...`);
+        this.joinedSkills = JSON.parse(JSON.stringify(this.skills));
+        this.joinedSkills.forEach(skill => this.autoJoin(skill));
+        if (fixtures.includes(FixtureType.SKILLS)) this.addElementsToCollection(FixtureType.SKILLS, this.joinedSkills, true);
+        console.log(`Loading ${FixtureType.UNITS}...`);
+        this.joinedUnits = JSON.parse(JSON.stringify(this.units));
+        this.joinedUnits.forEach(unit => this.autoJoin(unit));
+        if (fixtures.includes(FixtureType.UNITS)) this.addElementsToCollection(FixtureType.UNITS, this.joinedUnits, true);
+        console.log(`Loading ${FixtureType.ITEMS}...`);
+        this.joinedItems = JSON.parse(JSON.stringify(this.items));
+        this.joinedItems.forEach(item => this.autoJoin(item));
+        if (fixtures.includes(FixtureType.ITEMS)) this.addElementsToCollection(FixtureType.ITEMS, this.joinedItems, true);
+        console.log(`Loading ${FixtureType.SPELLS}...`);
+        this.joinedSpells = JSON.parse(JSON.stringify(this.spells));
+        this.joinedSpells.forEach(spell => this.autoJoin(spell));
+        if (fixtures.includes(FixtureType.SPELLS)) this.addElementsToCollection(FixtureType.SPELLS, this.joinedSpells, true);
+        console.log(`Loading ${FixtureType.HEROES}...`);
+        this.joinedHeroes = JSON.parse(JSON.stringify(this.heroes));
+        this.joinedHeroes.forEach(hero => this.autoJoin(hero));
+        if (fixtures.includes(FixtureType.HEROES)) this.addElementsToCollection(FixtureType.HEROES, this.joinedHeroes, true);
+        console.log(`Loading ${FixtureType.STORES}...`);
+        this.joinedStores = JSON.parse(JSON.stringify(this.stores));
+        this.joinedStores.forEach(store => this.autoJoin(store));
+        if (fixtures.includes(FixtureType.STORES)) this.addElementsToCollection(FixtureType.STORES, this.joinedStores, true);
+        console.log(`Loading ${FixtureType.LOCATIONS}...`);
+        this.joinedLocations = JSON.parse(JSON.stringify(this.locations));
+        this.joinedLocations.forEach(quest => this.autoJoin(quest));
+        if (fixtures.includes(FixtureType.LOCATIONS)) this.addElementsToCollection(FixtureType.LOCATIONS, this.joinedLocations, true);
       }
     });
   }

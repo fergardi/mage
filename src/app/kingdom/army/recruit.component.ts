@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-recruit',
@@ -75,6 +76,7 @@ export class RecruitComponent implements OnInit {
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit() {
@@ -93,6 +95,7 @@ export class RecruitComponent implements OnInit {
 
   async recruit() {
     if (this.form.valid && this.gold() <= this.kingdomGold.quantity) {
+      this.loadingService.startLoading();
       try {
         const recruited = await this.apiService.recruitUnit(this.uid, this.unit.id, this.form.value.quantity);
         this.notificationService.success('kingdom.recruit.success', recruited);
@@ -101,6 +104,7 @@ export class RecruitComponent implements OnInit {
         console.error(error);
         this.notificationService.error('kingdom.recruit.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.recruit.error');
     }

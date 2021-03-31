@@ -19,6 +19,7 @@ import { AuthState } from './shared/auth/auth.state';
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorIntl } from './shared/custom/paginator.intl';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 // AOT compilation support
 export function HttpLoaderFactory(http: HttpClient) {
@@ -55,6 +56,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       disabled: environment.production,
     }),
     TourMatMenuModule.forRoot(),
+    NgxCurrencyModule,
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
