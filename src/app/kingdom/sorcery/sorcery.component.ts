@@ -10,6 +10,8 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ConjureComponent, CharmAssignmentType } from './conjure.component';
 import { ActivateComponent, ArtifactAssignmentType } from './activate.component';
+import { ApiService } from 'src/app/services/api.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-sorcery',
@@ -37,6 +39,8 @@ export class SorceryComponent implements OnInit {
     private notificationService: NotificationService,
     private dialog: MatDialog,
     private store: Store,
+    private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit(): void {
@@ -53,31 +57,45 @@ export class SorceryComponent implements OnInit {
   }
 
   async assignArtifact($event: CdkDragDrop<any>) {
-    if ($event.container && $event.previousContainer === $event.container) {
-      moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
-    } else {
-      if ($event.container && (Number($event.container.id) === 0 || $event.container.data.length < this.maximumArtifacts)) {
-        transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
-        await this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`).doc($event.item.element.nativeElement.id).update({ assignment: Number($event.container.id) });
-        this.notificationService.success('kingdom.sorcery.success');
+    this.loadingService.startLoading();
+    try {
+      if ($event.container && $event.previousContainer === $event.container) {
+        moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
-        this.notificationService.error('kingdom.sorcery.maximum');
+        if ($event.container && (Number($event.container.id) === 0 || $event.container.data.length < this.maximumArtifacts)) {
+          transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
+          await this.apiService.assignArtifact(this.uid, $event.item.element.nativeElement.id, $event.container.id);
+          this.notificationService.success('kingdom.sorcery.success');
+        } else {
+          this.notificationService.error('kingdom.sorcery.maximum');
+        }
       }
+    } catch (error) {
+      console.error(error);
+      this.notificationService.error('kingdom.sorcery.error');
     }
+    this.loadingService.stopLoading();
   }
 
   async assignCharm($event: CdkDragDrop<any>) {
-    if ($event.container && $event.previousContainer === $event.container) {
-      moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
-    } else {
-      if ($event.container && (Number($event.container.id) === 3 || $event.container.data.length < this.maximumCharms)) {
-        transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
-        await this.angularFirestore.collection<any>(`kingdoms/${this.uid}/charms`).doc($event.item.element.nativeElement.id).update({ assignment: Number($event.container.id) });
-        this.notificationService.success('kingdom.sorcery.success');
+    this.loadingService.startLoading();
+    try {
+      if ($event.container && $event.previousContainer === $event.container) {
+        moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
       } else {
-        this.notificationService.error('kingdom.sorcery.maximum');
+        if ($event.container && (Number($event.container.id) === 3 || $event.container.data.length < this.maximumCharms)) {
+          transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
+          await this.apiService.assignCharm(this.uid, $event.item.element.nativeElement.id, $event.container.id);
+          this.notificationService.success('kingdom.sorcery.success');
+        } else {
+          this.notificationService.error('kingdom.sorcery.maximum');
+        }
       }
+    } catch (error) {
+      console.error(error);
+      this.notificationService.error('kingdom.sorcery.error');
     }
+    this.loadingService.stopLoading();
   }
 
   openResearchDialog(charm: any): void {

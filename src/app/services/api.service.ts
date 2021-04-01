@@ -170,4 +170,12 @@ export class ApiService {
     return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/clan/${clanId}`, undefined).toPromise();
   }
 
+  assignCharm(kingdomId: string, charmId: string, assignmentId: string) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/sorcery/charm/${charmId}/assign/${assignmentId}`).toPromise();
+  }
+
+  assignArtifact(kingdomId: string, artifactId: string, assignmentId: string) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/sorcery/artifact/${artifactId}/assign/${assignmentId}`).toPromise();
+  }
+
 }
