@@ -850,7 +850,7 @@
     "legendary": false
   },
   {
-    "type": "sorcery",
+    "type": "item",
     "name": "spell.destroy-artifact.name",
     "description": "spell.destroy-artifact.description",
     "id": "destroy-artifact",
@@ -862,9 +862,9 @@
     "units": [],
     "resources": [],
     "heroes": [],
-    "items": [1],
+    "items": [],
     "level": 3,
-    "amount": [1, 10],
+    "amount": [-1],
     "turnCost": 3,
     "turnResearch": 5000,
     "turnDuration": 0,
@@ -878,7 +878,7 @@
     "epidemic": false,
     "dispellable": false,
     "battle": false,
-    "self": true,
+    "self": false,
     "multiple": false,
     "global": false,
     "legendary": false
@@ -1258,7 +1258,7 @@
     "legendary": false
   },
   {
-    "type": "sorcery",
+    "type": "resource",
     "name": "spell.volcano.name",
     "description": "spell.volcano.description",
     "id": "volcano",
@@ -1734,7 +1734,7 @@
     "legendary": false
   },
   {
-    "type": "sorcery",
+    "type": "resource",
     "name": "spell.avarice.name",
     "description": "spell.avarice.description",
     "id": "avarice",
@@ -1972,7 +1972,7 @@
     "legendary": false
   },
   {
-    "type": "sorcery",
+    "type": "espionage",
     "name": "spell.spy.name",
     "description": "spell.spy.description",
     "id": "spy",
@@ -2006,7 +2006,7 @@
     "legendary": false
   },
   {
-    "type": "sorcery",
+    "type": "item",
     "name": "spell.steal-artifact.name",
     "description": "spell.steal-artifact.description",
     "id": "steal-artifact",
@@ -2516,7 +2516,7 @@
     "legendary": false
   },
   {
-    "type": "sorcery",
+    "type": "enchantment",
     "name": "spell.serenity.name",
     "description": "spell.serenity.description",
     "id": "serenity",
@@ -2545,7 +2545,7 @@
     "dispellable": false,
     "battle": false,
     "self": false,
-    "multiple": false,
+    "multiple": true,
     "global": false,
     "legendary": true
   },
@@ -3060,7 +3060,7 @@
     "legendary": false
   },
   {
-    "type": "sorcery",
+    "type": "item",
     "name": "spell.locate-artifact.name",
     "description": "spell.locate-artifact.description",
     "id": "locate-artifact",
@@ -3074,7 +3074,7 @@
     "heroes": [],
     "items": [],
     "level": 2,
-    "amount": [1, 2],
+    "amount": [1],
     "turnCost": 2,
     "turnResearch": 4000,
     "turnDuration": 0,

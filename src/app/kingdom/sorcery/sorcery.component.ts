@@ -108,7 +108,10 @@ export class SorceryComponent implements OnInit {
   openConjureDialog(charm: any): void {
     const dialogRef = this.dialog.open(ConjureComponent, {
       panelClass: 'dialog-responsive',
-      data: charm,
+      data: {
+        charm: charm,
+        kingdom: null,
+      },
     });
   }
 

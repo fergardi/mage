@@ -116,7 +116,10 @@ export class CensusComponent implements OnInit {
     $event.stopPropagation();
     const dialogRef = this.dialog.open(ConjureComponent, {
       panelClass: 'dialog-responsive',
-      data: kingdom,
+      data: {
+        charm: null,
+        kingdom: kingdom,
+      },
     });
   }
 

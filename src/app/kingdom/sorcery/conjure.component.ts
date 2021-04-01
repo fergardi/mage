@@ -3,10 +3,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
-import { take } from 'rxjs/operators';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { LoadingService } from 'src/app/services/loading.service';
 
 export enum CharmAssignmentType {
   'none' = 3,
@@ -27,7 +27,8 @@ export enum CharmAssignmentType {
             <img mat-list-avatar [src]="selectedCharm.spell.image">
           </div>
           <div mat-line>{{ selectedCharm.spell.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="selectedCharm.spell.description | translate | icon:selectedCharm"></div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(selectedCharm.spell.type)">{{ selectedCharm.spell.description | translate }}</div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(selectedCharm.spell.type)" [innerHTML]="selectedCharm.spell.description | translate | icon:selectedCharm.spell"></div>
           <div mat-list-avatar [matBadge]="selectedCharm.spell.turnCost" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
@@ -43,7 +44,8 @@ export enum CharmAssignmentType {
                   <img mat-list-avatar [src]="selectedCharm.spell.image">
                 </div>
                 <div mat-line>{{ selectedCharm.spell.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="selectedCharm.spell.description | translate | icon:selectedCharm"></div>
+                <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(selectedCharm.spell.type)">{{ selectedCharm.spell.description | translate }}</div>
+                <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(selectedCharm.spell.type)" [innerHTML]="selectedCharm.spell.description | translate | icon:selectedCharm.spell"></div>
                 <div mat-list-avatar [matBadge]="selectedCharm.spell.turnCost" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
@@ -57,7 +59,8 @@ export enum CharmAssignmentType {
                   <img mat-list-avatar [src]="charm.spell.image">
                 </div>
                 <div mat-line>{{ charm.spell.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="charm.spell.description | translate | icon:charm"></div>
+                <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(charm.spell.type)">{{ charm.spell.description | translate }}</div>
+                <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(charm.spell.type)" [innerHTML]="charm.spell.description | translate | icon:charm.spell"></div>
                 <div mat-list-avatar [matBadge]="charm.spell.turnCost" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
@@ -95,24 +98,20 @@ export class ConjureComponent implements OnInit {
   selectedCharm: any = null;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public charm: any,
+    @Inject(MAT_DIALOG_DATA) public conjuration: any,
     private dialogRef: MatDialogRef<ConjureComponent>,
     private store: Store,
     private apiService: ApiService,
     private notificationService: NotificationService,
     private angularFirestore: AngularFirestore,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit(): void {
-    // TODO
-    if (this.charm) {
-      // this.kingdomCharms = [this.charm];
-      this.selectedCharm = this.charm;
-    } else {
-      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/charms`, ref => ref.where('charm.spell.battle', '==', true).where('charm.spell.self', '==', false)).valueChanges({ idField: 'fid' }).pipe(take(1), untilDestroyed(this)).subscribe(charms => {
-        this.kingdomCharms = charms;
-      });
-    }
+    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/charms`, ref => ref.where('spell.battle', '==', false).where('spell.self', '==', !this.conjuration.kingdom)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(charms => {
+      this.kingdomCharms = charms;
+      if (this.conjuration.charm) this.selectedCharm = this.kingdomCharms.find(charm => charm.fid === this.conjuration.charm.fid);
+    });
   }
 
   close(): void {
@@ -121,9 +120,15 @@ export class ConjureComponent implements OnInit {
 
   async conjure() {
     if (this.selectedCharm.spell.turnCost <= this.kingdomTurn.quantity && this.selectedCharm.spell.manaCost <= this.kingdomMana.quantity) {
+      this.loadingService.startLoading();
       try {
-        const conjured = await this.apiService.conjureCharm(this.uid, this.selectedCharm.fid, this.uid);
-        this.notificationService.success('kingdom.conjure.success');
+        const conjured = await this.apiService.conjureCharm(this.uid, this.selectedCharm.fid, this.conjuration.kingdom ? this.conjuration.kingdom.fid : this.uid);
+        if (this.selectedCharm.spell.type === 'summon') this.notificationService.success('kingdom.conjure.summon', conjured);
+        if (this.selectedCharm.spell.type === 'resource') this.notificationService.success('kingdom.conjure.resource', conjured);
+        if (this.selectedCharm.spell.type === 'item') this.notificationService.success('kingdom.conjure.item', conjured);
+        if (this.selectedCharm.spell.type === 'spell') this.notificationService.success('kingdom.conjure.spell', conjured);
+        if (this.selectedCharm.spell.type === 'enchantment' && !this.selectedCharm.spell.multiple) this.notificationService.success('kingdom.conjure.enchantment', conjured);
+        if (this.selectedCharm.spell.type === 'enchantment' && this.selectedCharm.spell.multiple) this.notificationService.success('kingdom.dispel.success');
         this.close();
       } catch (error) {
         console.error(error);
@@ -132,6 +137,7 @@ export class ConjureComponent implements OnInit {
     } else {
       this.notificationService.error('kingdom.conjure.error');
     }
+    this.loadingService.stopLoading();
   }
 
 }

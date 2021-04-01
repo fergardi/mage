@@ -31,7 +31,7 @@ export enum ReportType {
     <div mat-dialog-content *ngIf="report.data">
       <div matSubheader>{{ 'kingdom.report.data' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item [ngClass]="[report.data.join.id, (report.data.join | legendary) ? 'legendary' : 'common']">
+        <mat-list-item [ngClass]="[report.data.join.faction.id, report.data.join.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="(report.data.quantity || report.data.level || report.data.join.level) | short" matBadgePosition="ahove before">
             <img mat-list-avatar [src]="report.data.join.image">
           </div>
@@ -113,7 +113,7 @@ export class ReportComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     if (!this.report.read) {
-      this.apiService.readLetter(this.uid, this.report.fid);
+      await this.apiService.readLetter(this.uid, this.report.fid);
     }
   }
 

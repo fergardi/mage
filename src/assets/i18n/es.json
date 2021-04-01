@@ -58,7 +58,7 @@
       "description": ""
     },
     "strategy": {
-      "name": "Escoge una estrategia",
+      "name": "Aplica tu estrategia",
       "description": "Hay muchas maneras distintas de alcanzar la gloria, sólo tienes que encontrar la que más se adapte a tu estilo de juego. La verdadera sabiduría está en mantener un equilibrio perfecto entre todas ellas."
     },
     "conjure": {
@@ -472,9 +472,16 @@
       "conjure": "Conjurar",
       "cancel": "Cancelar",
       "select": "Escoge un hechizo",
+      "summon": "Has invocado {{ size }} {{ unit }}",
+      "resource": "Has obtenido/destruido {{ amount }} {{ resource }}",
+      "enchantment": "Has encantado {{ enchantment }} durante {{ turns }} Turnos",
+      "item": "Has encontrado {{ quantity }} {{ item }}",
+      "spell": "Has descubierto {{ spell }}",
       "success": "Conjuro completado",
       "charm": "Hechizo",
-      "costs": "Costes"
+      "costs": "Costes",
+      "subject": "Conjuración de Hechizo",
+      "message": "Se ha conjurado un hechizo enemigo contra tu reino. ¡Ésta osadía no quedará impune!"
     },
     "espionage": {
       "subject": "Reporte de Espionaje",
