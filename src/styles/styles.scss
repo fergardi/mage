@@ -357,6 +357,8 @@ hr {
 
 .mat-dialog-container {
   position: relative;
+  max-width: 97.5vw !important;
+  max-height: 97.5vh !important;
   .mat-dialog-content {
     padding: 6px 24px !important;
     .mat-chip-list:first-of-type {

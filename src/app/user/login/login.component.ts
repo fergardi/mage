@@ -42,8 +42,9 @@ export class LoginComponent implements OnInit {
   async createForm() {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', this.type !== 'reset' ? [Validators.required, Validators.minLength(6)] : []],
-      password2: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), this.matchValues('password')] : []],
+      username: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(10)] : []],
+      password: ['', this.type !== 'reset' ? [Validators.required, Validators.minLength(6), Validators.maxLength(10)] : []],
+      password2: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(10), this.matchValues('password')] : []],
       faction: [null, this.type === 'signup' ? [Validators.required] : []],
     });
   }
@@ -79,7 +80,7 @@ export class LoginComponent implements OnInit {
         case 'signup':
           const position: any = await this.getCurrentPosition();
           const credentials = await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
-          await this.apiService.createKingdom(credentials.user.uid, this.form.value.faction.id, credentials.user.email, position.coords.latitude, position.coords.longitude);
+          await this.apiService.createKingdom(credentials.user.uid, this.form.value.faction.id, this.form.value.username, position.coords.latitude, position.coords.longitude);
           break;
         case 'reset':
           await this.angularFireAuth.sendPasswordResetEmail(email);

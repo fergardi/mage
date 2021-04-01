@@ -26,6 +26,9 @@
   }
   .mat-card-actions {
     display: flex;
+    .mat-stroked-button {
+      margin: 0 8px !important;
+    }
   }
   div.mat-form-field-wrapper{
     padding-bottom: 1.15em;
@@ -50,5 +53,9 @@
   }
   ::ng-deep .mat-tab-label .mat-tab-label-content {
     white-space: break-spaces;
+  }
+  ::ng-deep .mat-card {
+    max-height: calc(100% - 84px);
+    overflow: auto;
   }
 }

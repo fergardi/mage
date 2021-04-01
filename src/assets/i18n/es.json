@@ -123,6 +123,7 @@
       "signup": "Nuevo jugador",
       "reset": "Recuperar contraseña",
       "email": "Email",
+      "username": "Nombre del jugador",
       "password": "Contraseña",
       "password2": "Confirmar contraseña",
       "mismatch": "Las contraseñas no coinciden",
@@ -603,7 +604,7 @@
       "error": "Ha ocurrido un problema"
     },
     "manifest": {
-      "name": "Manifiesto",
+      "name": "Manifiesto del Clan",
       "clan": "Clan",
       "leader": "Líder",
       "members": "Miembros",

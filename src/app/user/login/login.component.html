@@ -42,6 +42,11 @@
           <mat-error>{{ 'user.login.unfactioned' | translate }}</mat-error>
         </mat-form-field>
 
+        <mat-form-field *ngIf="type === 'signup'">
+          <input matInput type="text" formControlName="username" placeholder="{{ 'user.login.username' | translate }}" autocomplete="off">
+          <mat-error>{{ 'user.login.invalid' | translate }}</mat-error>
+        </mat-form-field>
+
         <mat-form-field>
           <input matInput type="text" formControlName="email" placeholder="{{ 'user.login.email' | translate }}" autocomplete="off">
           <mat-error>{{ 'user.login.invalid' | translate }}</mat-error>
