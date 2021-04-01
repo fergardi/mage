@@ -77,7 +77,7 @@ export class BuildComponent implements OnInit {
     private loadingService: LoadingService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
       quantity: [null, [Validators.required, Validators.min(1), Validators.max(Math.max(this.kingdomTurn.quantity, this.kingdomLand.quantity,  this.kingdomGold.quantity))]],
     });

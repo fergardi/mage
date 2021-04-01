@@ -39,7 +39,7 @@ export class SorceryComponent implements OnInit {
     private store: Store,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
       this.kingdomArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.none || !artifact.assignment).sort((a, b) => a.item.battle === b.item.battle ? 0 : a.item.battle ? -1 : 1);
       this.attackArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.attack);
@@ -58,7 +58,7 @@ export class SorceryComponent implements OnInit {
     } else {
       if ($event.container && (Number($event.container.id) === 0 || $event.container.data.length < this.maximumArtifacts)) {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
-        await this.angularFirestore.collection(`kingdoms/${this.uid}/artifacts`).doc($event.item.element.nativeElement.id).update({ assignment: Number($event.container.id) });
+        await this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`).doc($event.item.element.nativeElement.id).update({ assignment: Number($event.container.id) });
         this.notificationService.success('kingdom.sorcery.success');
       } else {
         this.notificationService.error('kingdom.sorcery.maximum');
@@ -72,7 +72,7 @@ export class SorceryComponent implements OnInit {
     } else {
       if ($event.container && (Number($event.container.id) === 3 || $event.container.data.length < this.maximumCharms)) {
         transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
-        await this.angularFirestore.collection(`kingdoms/${this.uid}/charms`).doc($event.item.element.nativeElement.id).update({ assignment: Number($event.container.id) });
+        await this.angularFirestore.collection<any>(`kingdoms/${this.uid}/charms`).doc($event.item.element.nativeElement.id).update({ assignment: Number($event.container.id) });
         this.notificationService.success('kingdom.sorcery.success');
       } else {
         this.notificationService.error('kingdom.sorcery.maximum');

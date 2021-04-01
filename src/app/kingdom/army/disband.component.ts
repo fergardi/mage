@@ -80,7 +80,7 @@ export class DisbandComponent implements OnInit {
     private loadingService: LoadingService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
       quantity: [this.troop.quantity, [Validators.required, Validators.min(1), Validators.max(this.troop.quantity)]],
     });

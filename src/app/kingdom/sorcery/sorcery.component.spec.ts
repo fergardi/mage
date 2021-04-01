@@ -89,7 +89,7 @@ describe('SorceryComponent', () => {
   it('should OPEN the ACTIVATE dialog', () => {
     spyOn(MatDialogStub, 'open');
     component.openActivateDialog(null);
-    expect(MatDialogStub.open).toHaveBeenCalledWith(ActivateComponent, { panelClass: 'dialog-responsive', data: null });
+    expect(MatDialogStub.open).toHaveBeenCalledWith(ActivateComponent, { panelClass: 'dialog-responsive', data: { artifact: null, kingdom: null } });
   });
 
 });

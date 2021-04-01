@@ -43,7 +43,7 @@ export class LegendComponent implements OnInit {
     private angularFirestore: AngularFirestore,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.angularFirestore.collection<any>('legends').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(legends => {
       this.data = new MatTableDataSource(legends);
       this.data.paginator = this.paginator;

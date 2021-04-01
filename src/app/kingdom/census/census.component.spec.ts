@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync, inject } from '@angular/core/testing';
 import { CensusComponent } from './census.component';
-import { AngularFirestoreStub, MatDialogStub, StoreStub } from 'src/stubs';
+import { AngularFirestoreStub, MatDialogStub, StoreStub, EventStub } from 'src/stubs';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,6 +26,7 @@ import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { DetailComponent } from './detail.component';
 
 describe('CensusComponent', () => {
   let component: CensusComponent;
@@ -76,32 +77,38 @@ describe('CensusComponent', () => {
 
   it('should OPEN the ATTACK dialog', () => {
     spyOn(MatDialogStub, 'open');
-    component.openAttackDialog(null);
+    component.openAttackDialog(null, EventStub);
     expect(MatDialogStub.open).toHaveBeenCalledWith(BattleComponent, { panelClass: 'dialog-responsive', data: null });
   });
 
   it('should OPEN the LETTER dialog', () => {
     spyOn(MatDialogStub, 'open');
-    component.openLetterDialog(null);
+    component.openLetterDialog(null, EventStub);
     expect(MatDialogStub.open).toHaveBeenCalledWith(LetterComponent, { panelClass: 'dialog-responsive', data: null });
   });
 
   it('should OPEN the ACTIVATE dialog', () => {
     spyOn(MatDialogStub, 'open');
-    component.openActivateDialog(null);
-    expect(MatDialogStub.open).toHaveBeenCalledWith(ActivateComponent, { panelClass: 'dialog-responsive', data: null });
+    component.openActivateDialog(null, EventStub);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(ActivateComponent, { panelClass: 'dialog-responsive', data: { artifact: null, kingdom: null } });
   });
 
   it('should OPEN the CONJURE dialog', () => {
     spyOn(MatDialogStub, 'open');
-    component.openConjureDialog(null);
+    component.openConjureDialog(null, EventStub);
     expect(MatDialogStub.open).toHaveBeenCalledWith(ConjureComponent, { panelClass: 'dialog-responsive', data: null });
+  });
+
+  it('should OPEN the DETAIL dialog', () => {
+    spyOn(MatDialogStub, 'open');
+    component.openDetailDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(DetailComponent, { panelClass: 'dialog-responsive', data: null });
   });
 
   it('should SHOW in MAP', inject([Router], async (router: Router) => {
     const kingdom = { fid: 0 };
     spyOn(router, 'navigate').and.stub();
-    await component.showInMap(kingdom);
+    await component.showInMap(kingdom, EventStub);
     expect(router.navigate).toHaveBeenCalledWith([`/world/map/${kingdom.fid}`]);
   }));
 

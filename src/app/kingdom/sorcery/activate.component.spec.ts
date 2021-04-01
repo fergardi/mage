@@ -74,13 +74,19 @@ describe('ActivateComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should ACTIVATE an ARTIFACT', () => {
-    component.activate();
+  it('should ACTIVATE an ARTIFACT', async () => {
+    component.selectedArtifact = artifact;
+    spyOn(ApiServiceStub, 'activateArtifact');
+    await component.activate();
+    expect(ApiServiceStub.activateArtifact).toHaveBeenCalledWith(component.uid, component.selectedArtifact.fid, component.uid);
   });
 
-  it('should NOT ACTIVATE an ARTIFACT', () => {
+  it('should NOT ACTIVATE an ARTIFACT', async () => {
+    component.selectedArtifact = artifact;
     component.kingdomTurn.quantity = 0;
-    component.activate();
+    spyOn(ApiServiceStub, 'activateArtifact');
+    await component.activate();
+    expect(ApiServiceStub.activateArtifact).not.toHaveBeenCalled();
   });
 
 });

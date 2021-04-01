@@ -13,6 +13,10 @@ import * as moment from 'moment';
 import { NotificationService } from 'src/app/services/notification.service';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { map } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { FoundationComponent } from './foundation.component';
+import { Observable } from 'rxjs';
+import { ManifestComponent } from './manifest.component';
 
 @Component({
   selector: 'app-clan',
@@ -28,7 +32,7 @@ export class ClanComponent implements OnInit {
 
   kingdomGuilds: any[] = [];
   kingdomGuild: any = null;
-  kingdomClan: any = this.store.selectSnapshot(AuthState.getKingdomClan);
+  kingdomClan$: Observable<any> = this.store.select(AuthState.getKingdomClan);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomGuilded: any = null;
   columns = ['name', 'actions'];
@@ -49,29 +53,25 @@ export class ClanComponent implements OnInit {
     private apiService: ApiService,
     private loadingService: LoadingService,
     private notificationService: NotificationService,
+    private dialog: MatDialog,
   ) { }
 
-  async ngOnInit() {
-    const guilds = await this.cacheService.getGuilds();
-    this.kingdomGuilds = guilds;
+  async ngOnInit(): Promise<void> {
+    this.angularFirestore.collection<any>('clans').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(clans => {
+      this.data = new MatTableDataSource(clans);
+      this.data.paginator = this.paginator;
+      this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
+      this.data.sort = this.sort;
+      this.data.filterPredicate = this.createFilter();
+      this.applyFilter();
+    });
+    this.kingdomGuilds = await this.cacheService.getGuilds();
     this.store.select(AuthState.getKingdomGuild).pipe(map(data => JSON.parse(data))).pipe(untilDestroyed(this)).subscribe(kingdomGuild => {
       if (kingdomGuild) {
-        this.kingdomGuild = this.kingdomGuilds.find(guild => guild.id === kingdomGuild.guild);
+        this.kingdomGuild = this.kingdomGuilds.find(guild => guild.id === kingdomGuild.guild.id);
         this.kingdomGuilded = kingdomGuild.guilded;
       }
     });
-    const clans = await this.angularFirestore.collection<any>('clans').get().toPromise();
-    this.data = new MatTableDataSource(clans.docs.map((clan: any) => {
-      return {
-        ...clan.data(),
-        fid: clan.id,
-      };
-    }));
-    this.data.paginator = this.paginator;
-    this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
-    this.data.sort = this.sort;
-    this.data.filterPredicate = this.createFilter();
-    this.applyFilter();
   }
 
   applyFilter() {
@@ -88,16 +88,44 @@ export class ClanComponent implements OnInit {
     return filterFunction;
   }
 
-  join(clan: any): void {
-    // TODO
+  async joinClan(clan: any, $event: Event) {
+    $event.stopPropagation();
+    this.loadingService.startLoading();
+    try {
+      const joined = await this.apiService.joinClan(this.uid, clan.fid);
+      this.notificationService.success('kingdom.clan.success');
+    } catch (error) {
+      console.error(error);
+      this.notificationService.error('kingdom.clan.error');
+    }
+    this.loadingService.stopLoading();
   }
 
-  leave(clan: any): void {
-    // TODO
+  async leaveClan(clan: any, $event: Event) {
+    $event.stopPropagation();
+    this.loadingService.startLoading();
+    try {
+      const joined = await this.apiService.leaveClan(this.uid, clan.fid);
+      this.notificationService.success('kingdom.clan.success');
+    } catch (error) {
+      console.error(error);
+      this.notificationService.error('kingdom.clan.error');
+    }
+    this.loadingService.stopLoading();
   }
 
-  foundation(): void {
-    // TODO
+  openManifestDialog(clan: any): void {
+    const dialogRef = this.dialog.open(ManifestComponent, {
+      panelClass: 'dialog-responsive',
+      data: { ...clan, members: [] },
+    });
+  }
+
+  openFoundationDialog(): void {
+    const dialogRef = this.dialog.open(FoundationComponent, {
+      panelClass: 'dialog-responsive',
+      data: null,
+    });
   }
 
   canBeFavored(): boolean {

@@ -88,7 +88,7 @@ export class ShellComponent implements OnInit {
     this.translateService.use(this.langs.map(l => l.lang).includes(browser) ? browser : this.langs[0].lang);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.store.select(AuthState.getUserUID).subscribe(uid => {
       if (uid) {
         this.angularFirestore.collection<any>(`kingdoms/${uid}/letters`, x => x.where('read', '==', false)).valueChanges().subscribe(reports => {

@@ -68,7 +68,7 @@
             </ng-template>
 
             <ng-template [ngIf]="column === 'actions'">
-              <button mat-mini-fab color="primary" title="{{ 'kingdom.auction.bid' | translate }}" [disabled]="auction.kingdom === uid" (click)="openBidDialog(auction)">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.auction.bid' | translate }}" [disabled]="auction.kingdom === uid" (click)="openBidDialog(auction, $event)">
                 <mat-icon>gavel</mat-icon>
               </button>
             </ng-template>
@@ -77,7 +77,7 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let auction; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.bid' : null"></mat-row>
+        <mat-row *matRowDef="let auction; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.bid' : null" (click)="openTomeDialog(auction.join)"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

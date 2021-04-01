@@ -24,7 +24,7 @@ describe('ApiService', () => {
 
   it('should CREATE the INSTANCE a KINGDOM', (async () => {
     const request = service.createKingdom('bot', 'faction', 'name', 0, 0);
-    const mock = httpMock.expectOne(environment.functions.url + `/kingdom`);
+    const mock = httpMock.expectOne(environment.functions.url + `/world/kingdom`);
     mock.flush(null);
     const response = await request;
     expect(mock.request.method).toEqual('POST');

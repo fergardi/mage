@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     const factions = await this.cacheService.getFactions();
     this.factions = factions.filter((faction: any) => faction.id !== 'grey');
   }

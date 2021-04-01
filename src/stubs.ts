@@ -61,6 +61,7 @@ export const ApiServiceStub: any = {
   removeLetters: () => null,
   buyEmporium: () => null,
   sendLetter: () => null,
+  foundateClan: () => null,
 };
 
 export const CacheServiceStub: any = {
@@ -88,6 +89,10 @@ export const MatDialogStub: any = {
       afterClosed: () => of({action: true}),
     };
   },
+};
+
+export const EventStub: any = {
+  stopPropagation: () => null,
 };
 
 export const AngularFirestoreStub: any = {

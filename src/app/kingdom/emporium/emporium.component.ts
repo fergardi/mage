@@ -25,7 +25,7 @@ export class EmporiumComponent implements OnInit {
     private store: Store,
   ) { }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     const items = await this.cacheService.getItems();
     this.emporiumItems = items.filter((item: any) => item.gems > 0);
     const packs = await this.cacheService.getPacks();

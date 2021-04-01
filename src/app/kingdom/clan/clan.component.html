@@ -7,7 +7,7 @@
         <img mat-card-avatar src="/assets/images/cards/clan.png">
         <mat-card-title>{{ 'kingdom.clan.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.clan.description' | translate }}</mat-card-subtitle>
-        <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.found' | translate }}" (click)="foundation()" [disabled]="kingdomClan">
+        <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.found' | translate }}" (click)="openFoundationDialog()" [disabled]="(kingdomClan$ | async)">
           <mat-icon>thumbs_up_down</mat-icon>
         </button>
         <mat-chip-list><mat-chip color="primary" selected><mat-icon>people</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
@@ -34,11 +34,12 @@
 
               <ng-template [ngIf]="column === 'name'">
                 <mat-list dense>
-                  <mat-list-item [ngClass]="{ 'legendary': clan.fid === kingdomClan }">
-                    <div mat-list-avatar [matBadge]="clan.members.length | long" matBadgePosition="above before">
+                  <mat-list-item [ngClass]="{ 'legendary': clan.fid === kingdomClan$ }">
+                    <div mat-list-avatar>
                       <img mat-list-avatar [src]="clan.image">
                     </div>
-                    <div mat-line>{{ clan.name | translate }}</div>
+                    <div mat-line>{{ clan.name }}</div>
+                    <div mat-line class="mat-card-subtitle">{{ clan.description }}</div>
                     <div mat-list-avatar [matBadge]="clan.power | short" matBadgePosition="above after">
                       <img mat-list-avatar src="/assets/images/icons/power.png">
                     </div>
@@ -47,10 +48,10 @@
               </ng-template>
 
               <ng-template [ngIf]="column === 'actions'">
-                <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.join' | translate }}" (click)="join(clan)" [disabled]="clan.fid === kingdomClan">
+                <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.join' | translate }}" (click)="joinClan(clan, $event)" [disabled]="clan.fid === (kingdomClan$ | async)?.fid">
                   <mat-icon>thumb_up</mat-icon>
                 </button>
-                <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.leave' | translate }}" (click)="leave(clan)" [disabled]="clan.fid !== kingdomClan">
+                <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.leave' | translate }}" (click)="leaveClan(clan, $event)" [disabled]="clan.fid !== (kingdomClan$ | async)?.fid">
                   <mat-icon>thumb_down</mat-icon>
                 </button>
               </ng-template>
@@ -59,7 +60,7 @@
           </ng-container>
 
           <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
-          <mat-row *matRowDef="let kingdom; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.kingdom' : null"></mat-row>
+          <mat-row *matRowDef="let clan; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.kingdom' : null" (click)="openManifestDialog(clan)"></mat-row>
         </table>
 
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

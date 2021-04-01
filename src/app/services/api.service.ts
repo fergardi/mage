@@ -153,4 +153,21 @@ export class ApiService {
     return this.httpClient.patch(environment.functions.url + `/kingdom/${kingdomId}/guild/${guildId}`, undefined).toPromise();
   }
 
+  foundateClan(kingdomId: string, name: string, description: string, image: string) {
+    return this.httpClient.post(environment.functions.url + `/world/clan`, {
+      kingdomId: kingdomId,
+      name: name,
+      description: description,
+      image: image,
+    }).toPromise();
+  }
+
+  joinClan(kingdomId: string, clanId: string) {
+    return this.httpClient.patch(environment.functions.url + `/kingdom/${kingdomId}/clan/${clanId}`, undefined).toPromise();
+  }
+
+  leaveClan(kingdomId: string, clanId: string) { // https://stackoverflow.com/a/63135636/2477303
+    return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/clan/${clanId}`, undefined).toPromise();
+  }
+
 }

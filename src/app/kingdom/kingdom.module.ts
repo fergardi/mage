@@ -31,6 +31,9 @@ import { LetterComponent } from './census/letter.component';
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
 import { ClanComponent } from './clan/clan.component';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { FoundationComponent } from './clan/foundation.component';
+import { ManifestComponent } from './clan/manifest.component';
+import { DetailComponent } from './census/detail.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import { NgxCurrencyModule } from 'ngx-currency';
     DischargeComponent,
     LetterComponent,
     ClanComponent,
+    FoundationComponent,
+    ManifestComponent,
+    DetailComponent,
   ],
   imports: [
     CommonModule,

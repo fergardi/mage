@@ -55,7 +55,7 @@ export class DispelComponent implements OnInit {
     private store: Store,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   close(): void {

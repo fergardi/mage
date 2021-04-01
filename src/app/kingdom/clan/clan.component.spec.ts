@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClanComponent } from './clan.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { CacheServiceStub, StoreStub, AngularFirestoreStub, ApiServiceStub, NotificationServiceStub } from 'src/stubs';
+import { CacheServiceStub, StoreStub, AngularFirestoreStub, ApiServiceStub, NotificationServiceStub, MatDialogStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { CacheService } from 'src/app/services/cache.service';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -18,6 +18,13 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ShortPipe } from 'src/app/pipes/short.pipe';
+import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { MatListModule } from '@angular/material/list';
+import { MatBadgeModule } from '@angular/material/badge';
+import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from 'src/app/app-routing.module';
 
 describe('ClanComponent', () => {
   let component: ClanComponent;
@@ -27,6 +34,8 @@ describe('ClanComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         TranslateModule.forRoot(),
+        RouterTestingModule.withRoutes(routes),
+        TourMatMenuModule.forRoot(),
         BrowserAnimationsModule,
         MatCardModule,
         MatTableModule,
@@ -38,10 +47,13 @@ describe('ClanComponent', () => {
         MatIconModule,
         MatChipsModule,
         MatPaginatorModule,
+        MatListModule,
+        MatBadgeModule,
       ],
       declarations: [
         ClanComponent,
         LongPipe,
+        ShortPipe,
       ],
       providers: [
         { provide: CacheService, useValue: CacheServiceStub },
@@ -49,6 +61,7 @@ describe('ClanComponent', () => {
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
+        { provide: MatDialog, useValue: MatDialogStub },
       ],
     })
     .compileComponents();

@@ -68,7 +68,7 @@ export class CacheService {
 
   async getFactions() {
     if (!localStorage.getItem(CollectionType.FACTIONS)) {
-      const snapshot = await this.angularFirestore.collection(CollectionType.FACTIONS).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.FACTIONS).get().toPromise();
       const factions = snapshot.docs.map(faction => faction.data());
       /*
       factions.forEach(faction => {
@@ -101,7 +101,7 @@ export class CacheService {
 
   async getPacks() {
     if (!localStorage.getItem(CollectionType.PACKS)) {
-      const snapshot = await this.angularFirestore.collection(CollectionType.PACKS).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.PACKS).get().toPromise();
       const packs = snapshot.docs.map(faction => faction.data());
       localStorage.setItem(CollectionType.PACKS, JSON.stringify([...packs]));
     }
@@ -110,7 +110,7 @@ export class CacheService {
 
   async getAttacks() {
     if (!localStorage.getItem(CollectionType.ATTACKS)) {
-      const snapshot = await this.angularFirestore.collection(CollectionType.ATTACKS).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.ATTACKS).get().toPromise();
       const attacks = snapshot.docs.map(attack => attack.data());
       localStorage.setItem(CollectionType.ATTACKS, JSON.stringify([...attacks]));
     }
@@ -119,7 +119,7 @@ export class CacheService {
 
   async getGuilds() {
     if (!localStorage.getItem(CollectionType.GUILDS)) {
-      const snapshot = await this.angularFirestore.collection(CollectionType.GUILDS).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.GUILDS).get().toPromise();
       const guilds = snapshot.docs.map(guild => guild.data());
       localStorage.setItem(CollectionType.GUILDS, JSON.stringify([...guilds]));
     }
@@ -128,7 +128,7 @@ export class CacheService {
 
   async getStores() {
     if (!localStorage.getItem(CollectionType.STORES)) {
-      const snapshot = await this.angularFirestore.collection(CollectionType.STORES).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.STORES).get().toPromise();
       const stores = snapshot.docs.map(store => store.data());
       localStorage.setItem(CollectionType.STORES, JSON.stringify([...stores]));
     }
@@ -138,7 +138,7 @@ export class CacheService {
   async getResources() {
     if (!localStorage.getItem(CollectionType.RESOURCES)) {
       // const factions = await this.getFactions();
-      const snapshot = await this.angularFirestore.collection(CollectionType.RESOURCES).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.RESOURCES).get().toPromise();
       const resources = snapshot.docs.map(resource => resource.data());
       /*
       resources.forEach(resource => {
@@ -154,7 +154,7 @@ export class CacheService {
     if (!localStorage.getItem(CollectionType.STRUCTURES)) {
       // const factions = await this.getFactions();
       // const resources = await this.getResources();
-      const snapshot = await this.angularFirestore.collection(CollectionType.STRUCTURES).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.STRUCTURES).get().toPromise();
       const structures = snapshot.docs.map(structure => structure.data());
       /*
       structures.forEach(structure => {
@@ -173,7 +173,7 @@ export class CacheService {
       // const families = await this.getFamilies();
       // const resources = await this.getResources();
       // const categories = await this.getCategories();
-      const snapshot = await this.angularFirestore.collection(CollectionType.HEROES).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.HEROES).get().toPromise();
       const heroes = snapshot.docs.map(hero => hero.data());
       /*
       heroes.forEach(hero => {
@@ -191,7 +191,7 @@ export class CacheService {
   async getGods() {
     if (!localStorage.getItem(CollectionType.GODS)) {
       // const factions = await this.getFactions();
-      const snapshot = await this.angularFirestore.collection(CollectionType.GODS).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.GODS).get().toPromise();
       const gods = snapshot.docs.map(god => god.data());
       /*
       gods.forEach(god => {
@@ -206,7 +206,7 @@ export class CacheService {
   async getSkills() {
     if (!localStorage.getItem(CollectionType.SKILLS)) {
       // const factions = await this.getFactions();
-      const snapshot = await this.angularFirestore.collection(CollectionType.SKILLS).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.SKILLS).get().toPromise();
       const skills = snapshot.docs.map(skill => skill.data());
       /*
       skills.forEach(skill => {
@@ -221,7 +221,7 @@ export class CacheService {
   async getCategories() {
     if (!localStorage.getItem(CollectionType.CATEGORIES)) {
       // const factions = await this.getFactions();
-      const snapshot = await this.angularFirestore.collection(CollectionType.CATEGORIES).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.CATEGORIES).get().toPromise();
       const categories = snapshot.docs.map(category => category.data());
       /*
       categories.forEach(category => {
@@ -236,7 +236,7 @@ export class CacheService {
   async getFamilies() {
     if (!localStorage.getItem(CollectionType.FAMILIES)) {
       // const factions = await this.getFactions();
-      const snapshot = await this.angularFirestore.collection(CollectionType.FAMILIES).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.FAMILIES).get().toPromise();
       const families = snapshot.docs.map(family => family.data());
       /*
       families.forEach(family => {
@@ -251,7 +251,7 @@ export class CacheService {
   async getLocations() {
     if (!localStorage.getItem(CollectionType.LOCATIONS)) {
       // const families = await this.getFamilies();
-      const snapshot = await this.angularFirestore.collection(CollectionType.LOCATIONS).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.LOCATIONS).get().toPromise();
       const locations = snapshot.docs.map(location => location.data());
       /*
       locations.forEach(location => {
@@ -269,7 +269,7 @@ export class CacheService {
       // const skills = await this.getSkills();
       // const families = await this.getFamilies();
       // const categories = await this.getCategories();
-      const snapshot = await this.angularFirestore.collection(CollectionType.UNITS).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.UNITS).get().toPromise();
       const units = snapshot.docs.map(unit => unit.data());
       /*
       units.forEach(unit => {
@@ -293,7 +293,7 @@ export class CacheService {
       // const categories = await this.getCategories();
       // const units = await this.getUnits();
       // const resources = await this.getResources();
-      const snapshot = await this.angularFirestore.collection(CollectionType.SPELLS).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.SPELLS).get().toPromise();
       const spells = snapshot.docs.map(spell => spell.data());
       /*
       spells.forEach(spell => {
@@ -319,7 +319,7 @@ export class CacheService {
       // const units = await this.getUnits();
       // const resources = await this.getResources();
       // const spells = await this.getSpells();
-      const snapshot = await this.angularFirestore.collection(CollectionType.ITEMS).get().toPromise();
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.ITEMS).get().toPromise();
       const items = snapshot.docs.map(item => item.data());
       /*
       items.forEach(item => {

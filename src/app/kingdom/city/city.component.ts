@@ -33,7 +33,7 @@ export class CityComponent implements OnInit {
     private store: Store,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   openBuildDialog(building: any): void {

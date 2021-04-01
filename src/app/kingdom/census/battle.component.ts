@@ -99,7 +99,7 @@ export class BattleComponent implements OnInit {
     private cacheService: CacheService,
   ) { }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     const attacks = await this.cacheService.getAttacks();
     this.attackTypes = attacks;
     this.attackType = this.attackTypes[0];

@@ -27,7 +27,7 @@ export class TempleComponent implements OnInit {
     private store: Store,
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.angularFirestore.collection<any>('gods').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(gods => {
       this.kingdomGods = gods;
     });

@@ -58,7 +58,7 @@ export class PopupComponent implements OnInit {
         this.checkRefresh();
         // kingdom
         if (this.data.type === PopupType.KINGDOM) {
-          this.subscriptions.push(this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
+          this.subscriptions.push(this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`, ref => ref.where('assignment', '==', 2)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
             this.kingdomTroops = troops;
           }));
         }

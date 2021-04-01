@@ -313,6 +313,12 @@
       "protection": "Protegido",
       "report": "Se ha enviado el reporte de batalla"
     },
+    "detail": {
+      "name": "Detalle del Reino",
+      "kingdom": "Reino",
+      "troops": "Tropas",
+      "close": "Cerrar"
+    },
     "report": {
       "battle": "Reporte de batalla",
       "from": "De",
@@ -409,10 +415,11 @@
       "description": "Favorece a un colectivo",
       "help": "Puedes otorgar el favor de tu reinado a un gremio en concreto. Como agradecimiento, dicho gremio te otorgará un bonus adicional en los ataques a otros reinos (Batallas, Pillajes o Asedios). Sólo puedes cambiar de gremio una vez cada cierto tiempo.",
       "hint": "Debes esperar 7 días antes de cambiar de gremio",
-      "error": "No han pasado suficientes Turnos",
       "select": "Escoge un gremio",
       "favor": "Favorecer",
-      "cancel": "Cancelar"
+      "cancel": "Cancelar",
+      "success": "Has favorecido al gremio",
+      "error": "Ha ocurrido un problema"
     },
     "auction": {
       "name": "Subasta",
@@ -577,7 +584,30 @@
       "join": "Unirse",
       "leave": "Marcharse",
       "found": "Fundar",
-      "none": "Ninguno"
+      "none": "Ninguno",
+      "success": "Solicitud aprobada",
+      "error": "Ha ocurrido un problema"
+    },
+    "foundation": {
+      "name": "Fundar nuevo clan",
+      "description": "Para consolidar tu poder puedes crear un clan completamente nuevo y ser considerado su líder absoluto e indiscutible. Deberás pagar una cantidad exorbitante de Oro.",
+      "information": "Información",
+      "image": "Imagen",
+      "rubric": "Rúbrica",
+      "motto": "Lema",
+      "cancel": "Cancelar",
+      "found": "Fundar",
+      "costs": "Costes",
+      "invalid": "Texto demasiado largo",
+      "success": "Clan fundado",
+      "error": "Ha ocurrido un problema"
+    },
+    "manifest": {
+      "name": "Manifiesto",
+      "clan": "Clan",
+      "leader": "Líder",
+      "members": "Miembros",
+      "close": "Cerrar"
     },
     "temple": {
       "name": "Templo",

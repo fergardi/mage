@@ -91,7 +91,7 @@ export class OfferComponent implements OnInit {
     private loadingService: LoadingService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     const max = this.god.gold
       ? this.kingdomGold.quantity
       : this.god.mana

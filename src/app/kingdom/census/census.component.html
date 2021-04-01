@@ -49,34 +49,40 @@
                     <img mat-list-avatar [src]="kingdom.clan.image">
                   </div>
                   <div mat-line>{{ kingdom.clan.name }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ kingdom.clan.description }}</div>
+                  <div mat-list-avatar [matBadge]="kingdom.clan.power | short" matBadgePosition="above after">
+                    <img mat-list-avatar src="/assets/images/icons/power.png">
+                  </div>
                 </mat-list-item>
               </mat-list>
               <span *ngIf="!kingdom.clan" style="margin-left: auto;">{{ 'kingdom.clan.none' | translate }}</span>
             </ng-template>
 
             <ng-template [ngIf]="column === 'actions'">
-              <button mat-mini-fab color="primary" title="{{ 'kingdom.battle.attack' | translate }}" [disabled]="!canBeAttacked(kingdom) || kingdom.fid === uid" (click)="openAttackDialog(kingdom)">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.battle.attack' | translate }}" [disabled]="!canBeAttacked(kingdom) || kingdom.fid === uid" (click)="openAttackDialog(kingdom, $event)">
                 <mat-icon>{{ canBeAttacked(kingdom) ? 'flag' : 'security' }}</mat-icon>
               </button>
-              <button mat-mini-fab color="primary" title="{{ 'kingdom.activate.activate' | translate }}" [disabled]="kingdom.fid === uid" (click)="openActivateDialog(kingdom)">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.activate.activate' | translate }}" [disabled]="kingdom.fid === uid" (click)="openActivateDialog(kingdom, $event)">
                 <mat-icon>api</mat-icon>
               </button>
-              <button mat-mini-fab color="primary" title="{{ 'kingdom.conjure.conjure' | translate }}" [disabled]="kingdom.fid === uid" (click)="openConjureDialog(kingdom)">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.conjure.conjure' | translate }}" [disabled]="kingdom.fid === uid" (click)="openConjureDialog(kingdom, $event)">
                 <mat-icon>whatshot</mat-icon>
               </button>
-              <button mat-mini-fab color="primary" title="{{ 'kingdom.letter.name' | translate }}" (click)="openLetterDialog(kingdom)">
+              <button mat-mini-fab color="primary" title="{{ 'kingdom.letter.name' | translate }}" (click)="openLetterDialog(kingdom, $event)">
                 <mat-icon>mail</mat-icon>
               </button>
-              <button mat-mini-fab color="primary" title="{{ 'world.map.localize' | translate }}" (click)="showInMap(kingdom)">
+              <!--
+              <button mat-mini-fab color="primary" title="{{ 'world.map.localize' | translate }}" (click)="showInMap(kingdom, $event)">
                 <mat-icon>place</mat-icon>
               </button>
+              -->
             </ng-template>
 
           </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let kingdom; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.kingdom' : null"></mat-row>
+        <mat-row *matRowDef="let kingdom; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.kingdom' : null" (click)="openDetailDialog(kingdom)"></mat-row>
       </table>
 
       <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

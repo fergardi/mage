@@ -13,6 +13,7 @@ import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { TomeComponent } from 'src/app/user/encyclopedia/tome.component';
 
 @Component({
   selector: 'app-auction',
@@ -54,7 +55,7 @@ export class AuctionComponent implements OnInit {
     private angularFirestore: AngularFirestore,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.angularFirestore.collection<any>('auctions').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async auctions => {
       const data = auctions.map(auction => {
         auction.join = auction.hero || auction.item || auction.spell || auction.unit;
@@ -101,10 +102,18 @@ export class AuctionComponent implements OnInit {
     }
   }
 
-  openBidDialog(auction: any): void {
+  openBidDialog(auction: any, $event: Event): void {
+    $event.stopPropagation();
     const dialogRef = this.dialog.open(BidComponent, {
       panelClass: 'dialog-responsive',
       data: auction,
+    });
+  }
+
+  openTomeDialog(tome: any): void {
+    const dialogRef = this.dialog.open(TomeComponent, {
+      panelClass: 'dialog-responsive',
+      data: tome,
     });
   }
 

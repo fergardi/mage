@@ -111,7 +111,7 @@ export class ReportComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     if (!this.report.read) {
       this.apiService.readLetter(this.uid, this.report.fid);
     }

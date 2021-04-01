@@ -49,7 +49,7 @@ export class EncyclopediaComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     let data = await Promise.all([
       this.cacheService.getSkills(),
       this.cacheService.getUnits(),

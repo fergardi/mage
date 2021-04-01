@@ -65,7 +65,7 @@ export class ExploreComponent implements OnInit {
     private loadingService: LoadingService,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.formBuilder.group({
       turns: [null, [Validators.required, Validators.min(1), Validators.max(this.kingdomTurn.quantity)]],
     });

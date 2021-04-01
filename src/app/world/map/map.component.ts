@@ -41,7 +41,7 @@ export class MapComponent implements OnInit, OnDestroy {
     private loadingService: LoadingService,
   ) { }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.on('load', () => {
       // resize map in case drawer has changed
@@ -66,7 +66,7 @@ export class MapComponent implements OnInit, OnDestroy {
       this.kingdom$.pipe(
         switchMap(kingdom => {
           if (kingdom) {
-            const quests = this.angularFirestore.collection('quests');
+            const quests = this.angularFirestore.collection<any>('quests');
             return this.geofirex.query(quests.ref).within(kingdom.position, kingdom.power / 1000, 'position');
           } else {
             return of([]);
@@ -85,7 +85,7 @@ export class MapComponent implements OnInit, OnDestroy {
       this.kingdom$.pipe(
         switchMap(kingdom => {
           if (kingdom) {
-            const shops = this.angularFirestore.collection('shops');
+            const shops = this.angularFirestore.collection<any>('shops');
             return this.geofirex.query(shops.ref).within(kingdom.position, kingdom.power / 1000, 'position');
           } else {
             return of([]);

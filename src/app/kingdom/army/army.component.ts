@@ -43,7 +43,7 @@ export class ArmyComponent implements OnInit {
     private loadingService: LoadingService,
   ) {}
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.angularFirestore.collection<any>(`kingdoms/${this.uid}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
       this.kingdomTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopNone || !troop.assignment).sort((a, b) => a.sort - b.sort);
       this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopAttack).sort((a, b) => a.sort - b.sort);

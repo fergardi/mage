@@ -14,6 +14,7 @@ import { ActivateComponent } from '../sorcery/activate.component';
 import { ConjureComponent } from '../sorcery/conjure.component';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { DetailComponent } from './detail.component';
 
 @Component({
   selector: 'app-census',
@@ -52,7 +53,7 @@ export class CensusComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.angularFirestore.collection<any>('kingdoms', ref => ref.where('player', '==', true)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
       this.data = new MatTableDataSource(kingdoms.sort((a, b) => b.radius - a.radius).map((kingdom, index) => {
         return {
@@ -84,21 +85,24 @@ export class CensusComponent implements OnInit {
     return filterFunction;
   }
 
-  openAttackDialog(kingdom: any): void {
+  openAttackDialog(kingdom: any, $event: Event): void {
+    $event.stopPropagation();
     const dialogRef = this.dialog.open(BattleComponent, {
       panelClass: 'dialog-responsive',
       data: kingdom,
     });
   }
 
-  openLetterDialog(kingdom: any): void {
+  openLetterDialog(kingdom: any, $event: Event): void {
+    $event.stopPropagation();
     const dialogRef = this.dialog.open(LetterComponent, {
       panelClass: 'dialog-responsive',
       data: kingdom,
     });
   }
 
-  openActivateDialog(kingdom: any): void {
+  openActivateDialog(kingdom: any, $event: Event): void {
+    $event.stopPropagation();
     const dialogRef = this.dialog.open(ActivateComponent, {
       panelClass: 'dialog-responsive',
       data: {
@@ -108,21 +112,30 @@ export class CensusComponent implements OnInit {
     });
   }
 
-  openConjureDialog(kingdom: any): void {
+  openConjureDialog(kingdom: any, $event: Event): void {
+    $event.stopPropagation();
     const dialogRef = this.dialog.open(ConjureComponent, {
       panelClass: 'dialog-responsive',
       data: kingdom,
     });
   }
 
+  openDetailDialog(kingdom: any): void {
+    const dialogRef = this.dialog.open(DetailComponent, {
+      panelClass: 'dialog-responsive',
+      data: kingdom,
+    });
+  }
+
+  async showInMap(kingdom: any, $event: Event) {
+    $event.stopPropagation();
+    await this.router.navigate([`/world/map/${kingdom.fid}`]);
+  }
+
   canBeAttacked(kingdom: any): boolean {
     return kingdom.attacked
       ? moment(this.clock).isAfter(moment(kingdom.attacked.toMillis()))
       : true;
-  }
-
-  async showInMap(kingdom: any) {
-    await this.router.navigate([`/world/map/${kingdom.fid}`]);
   }
 
 }
