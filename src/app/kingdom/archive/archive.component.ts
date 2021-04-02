@@ -15,6 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-archive',
@@ -52,12 +53,14 @@ export class ArchiveComponent implements OnInit {
     private translateService: TranslateService,
     private apiService: ApiService,
     private loadingService: LoadingService,
+    private dateAdapter: DateAdapter<any>,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit(): void {
+    this.dateAdapter.setLocale(this.translateService.currentLang);
     this.angularFirestore.collection<any>(`kingdoms/${this.uid}/letters`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(letters => {
       this.data = new MatTableDataSource(letters);
       this.data.paginator = this.paginator;

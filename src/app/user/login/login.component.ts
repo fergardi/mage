@@ -42,9 +42,9 @@ export class LoginComponent implements OnInit {
   async createForm() {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      username: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(10)] : []],
-      password: ['', this.type !== 'reset' ? [Validators.required, Validators.minLength(6), Validators.maxLength(10)] : []],
-      password2: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(10), this.matchValues('password')] : []],
+      username: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(12)] : []],
+      password: ['', this.type !== 'reset' ? [Validators.required, Validators.minLength(6), Validators.maxLength(12)] : []],
+      password2: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(12), this.matchValues('password')] : []],
       faction: [null, this.type === 'signup' ? [Validators.required] : []],
     });
   }

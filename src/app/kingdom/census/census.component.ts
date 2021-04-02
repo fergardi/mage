@@ -80,7 +80,9 @@ export class CensusComponent implements OnInit {
     const filterFunction = (data: any, filter: string): boolean => {
       const filters = JSON.parse(filter);
       return data.name.toLowerCase().includes(filters.name)
-        && (!filters.clan || (data.clan && data.clan.name.toLowerCase().includes(filters.clan))); // clan can be null
+        && (!filters.clan
+          || (data.clan && data.clan.name.toLowerCase().includes(filters.clan)))
+          || (data.clan && data.clan.description.toLowerCase().includes(filters.clan));
     };
     return filterFunction;
   }

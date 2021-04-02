@@ -1,11 +1,11 @@
 {
   "paginator": {
-    "itemsPerPageLabel": "Elementos por página",
+    "itemsPerPageLabel": "Mostrar",
     "nextPageLabel": "Siguiente página",
     "previousPageLabel": "Anterior página",
     "firstPageLabel": "Primera página",
     "lastPageLabel": "Última página",
-    "rangeLabelIntl": "Mostrando {{ start }} - {{ end }} de {{ length }} elementos"
+    "rangeLabelIntl": "{{ start }} a {{ end }} de {{ length }}"
   },
   "dateformat": {
     "long": "dd/MM/yyyy HH:mm:ss",
@@ -447,7 +447,7 @@
     "sorcery": {
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
-      "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás subir de nivel a tus hechizos, invirtiendo Turnos en su investigación.",
+      "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás completar investigaciones pendientes para desbloquear nuevos hechizos, invirtiendo Turnos. Para lanzar hechizos agresivos, hazlo desde el Censo.",
       "maximum": "No caben mas hechizos o artefactos",
       "success": "Tus hechizos y artefactos han sido asignados",
       "max": "Max"
@@ -621,12 +621,12 @@
       "name": "Templo",
       "description": "Complace a los dioses",
       "help": "Puedes ofrecer recursos a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
-      "hero": "Te han otorgado el héroe [{{ hero }}] ({{ level }})",
-      "unit": "Te han otorgado la tropa [{{ unit }}] ({{ quantity }})",
-      "enchantment": "Te han encantado con [{{ enchantment }}] ({{ turns }})",
-      "item": "Te han otorgado el artefacto [{{ item }}] ({{ quantity }})",
-      "building": "Te han construido [{{ building }}] ({{ number }})",
-      "spell": "Te han enseñado el hechizo [{{ spell }}] ({{ turns }})",
+      "hero": "Te han otorgado el héroe {{ hero }} ({{ level }})",
+      "unit": "Te han otorgado la tropa {{ unit }} ({{ quantity }})",
+      "enchantment": "Te han encantado con {{ enchantment }} ({{ turns }})",
+      "item": "Te han otorgado el artefacto {{ item }} ({{ quantity }})",
+      "building": "Te han construido {{ building }} ({{ number }})",
+      "spell": "Te han enseñado el hechizo {{ spell }} ({{ turns }})",
       "gold": "Te han otorgado Oro ({{ gold }})",
       "mana": "Te han otorgado Maná ({{ mana }})",
       "population": "Te han otorgado Población ({{ population }})",

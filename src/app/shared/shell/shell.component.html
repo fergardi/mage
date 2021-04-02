@@ -72,7 +72,7 @@
               mat-list-avatar
               (click)="close()"
               [title]="supply.resource.name | translate"
-              [matBadge]="supply.timestamp ? (supply.timestamp | turn:supply.resource.max:supply.resource.ratio | async) : supply.max ? (supply.quantity | short) + ' / ' + (supply.max | short) : supply.quantity | short"
+              [matBadge]="supply.max ? (supply.timestamp ? (supply.timestamp | turn:supply.resource.max:supply.resource.ratio | async) : (supply.quantity | short)) + ' / ' + (supply.max | short) : supply.quantity | short"
               [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
               [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
               matBadgeOverlap="true">
