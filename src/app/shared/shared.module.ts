@@ -43,6 +43,7 @@ import { IconPipe } from '../pipes/icon.pipe';
 import { LongPipe } from '../pipes/long.pipe';
 import { LegendaryPipe } from '../pipes/legendary.pipe';
 import { TurnPipe } from '../pipes/turn.pipe';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
@@ -122,6 +123,7 @@ const modules = [
       max: null,
       inputMode: CurrencyMaskInputMode.FINANCIAL,
     }),
+    ScrollingModule,
   ],
   exports: [
     ...components,

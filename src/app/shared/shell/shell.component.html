@@ -96,6 +96,7 @@
     <main
       #main
       class="main-content"
+      cdkScrollable
       [ngStyle]="{ height: (isHandset$ | async) === false ? 'calc(100vh - 64px)' : 'calc(100vh - 56px)', width: (isHandset$ | async) === false && drawer.opened ? 'calc(100vw - 300px)' : '100vw' }">
       <ng-content></ng-content>
     </main>
