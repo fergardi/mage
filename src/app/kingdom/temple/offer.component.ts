@@ -117,15 +117,16 @@ export class OfferComponent implements OnInit {
       this.loadingService.startLoading();
       try {
         const offered = await this.apiService.offerGod(this.uid, this.god.fid, this.form.value.sacrifice);
-        if (offered.hasOwnProperty('hero')) this.notificationService.success('kingdom.temple.hero', { hero: this.translateService.instant(offered['hero']), level: this.longPipe.transform(offered['level']) });
-        if (offered.hasOwnProperty('item')) this.notificationService.success('kingdom.temple.item', { item: this.translateService.instant(offered['item']) });
-        if (offered.hasOwnProperty('enchantment')) this.notificationService.success('kingdom.temple.enchantment', { enchantment: this.translateService.instant(offered['enchantment']), turns: this.longPipe.transform(offered['turns']) });
-        if (offered.hasOwnProperty('unit')) this.notificationService.success('kingdom.temple.unit', { unit: this.translateService.instant(offered['unit']), quantity: this.longPipe.transform(offered['quantity']) });
-        if (offered.hasOwnProperty('gold')) this.notificationService.success('kingdom.temple.gold', { gold: this.longPipe.transform(offered['gold']) });
-        if (offered.hasOwnProperty('mana')) this.notificationService.success('kingdom.temple.mana', { mana: this.longPipe.transform(offered['mana']) });
-        if (offered.hasOwnProperty('population')) this.notificationService.success('kingdom.temple.population', { population: this.longPipe.transform(offered['population']) });
-        if (offered.hasOwnProperty('land')) this.notificationService.success('kingdom.temple.land', { land: this.longPipe.transform(offered['land']) });
-        if (offered.hasOwnProperty('spell')) this.notificationService.success('kingdom.temple.spell', { spell: this.longPipe.transform(offered['spell']), turns: this.longPipe.transform(offered['turns']) });
+        if (offered.hasOwnProperty('hero')) this.notificationService.success('kingdom.temple.hero', offered);
+        if (offered.hasOwnProperty('item')) this.notificationService.success('kingdom.temple.item', offered);
+        if (offered.hasOwnProperty('enchantment')) this.notificationService.success('kingdom.temple.enchantment', offered);
+        if (offered.hasOwnProperty('unit')) this.notificationService.success('kingdom.temple.unit', offered);
+        if (offered.hasOwnProperty('gold')) this.notificationService.success('kingdom.temple.gold', offered);
+        if (offered.hasOwnProperty('mana')) this.notificationService.success('kingdom.temple.mana', offered);
+        if (offered.hasOwnProperty('population')) this.notificationService.success('kingdom.temple.population', offered);
+        if (offered.hasOwnProperty('land')) this.notificationService.success('kingdom.temple.land', offered);
+        if (offered.hasOwnProperty('spell')) this.notificationService.success('kingdom.temple.spell', offered);
+        if (offered.hasOwnProperty('building')) this.notificationService.success('kingdom.temple.building', offered);
         this.close();
       } catch (error) {
         console.error(error);

@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     public tourService: TourService,
     public loadingService: LoadingService,
   ) {
-    // this.firebaseService.joinFixtures([FixtureType.SPELLS]);
+    // this.firebaseService.joinFixtures([FixtureType.STRUCTURES]);
   }
 
   ngOnInit(): void {
