@@ -62,15 +62,21 @@ export class EncyclopediaComponent implements OnInit {
       this.cacheService.getFamilies(),
       this.cacheService.getCategories(),
     ]);
-    data = data.reduce((a, b) => a.concat(b), []);
+    data = data.reduce((a: any[], b: any) => a.concat(b), []);
     this.data = new MatTableDataSource(data);
     this.data.paginator = this.paginator;
     this.data.sort = this.sort;
+    this.data.sortingDataAccessor = (obj, property) => {
+      if (property === 'name') return this.translateService.instant(obj['name']);
+      if (property === 'faction') return this.translateService.instant(obj['faction']['name']);
+      if (property === 'type') return this.translateService.instant(`type.${obj['type']}.name`);
+      return obj[property];
+    };
     this.filters.faction.options = (await this.cacheService.getFactions()).map((faction: any) => ({ name: `faction.${faction.id}.name`, value: faction.id }));
     const legendary = new Array({ name: 'category.legendary.name', value: true });
     const types = [...new Set(data.map(row => row.type))].map((type: string) => ({ name: `type.${type}.name`, value: type }));
     const subtypes = [...new Set(data.filter(row => row.subtype).map(row => row.subtype))].map((subtype: string) => ({ name: `type.${subtype}.name`, value: subtype }));
-    this.filters.type.options = [legendary, types, subtypes].reduce((accumulator: any[], option) => accumulator.concat(option), []);
+    this.filters.type.options = [legendary, types, subtypes].reduce((a: any[], b: any) => a.concat(b), []);
     this.data.filterPredicate = this.createFilter();
     this.applyFilter();
   }

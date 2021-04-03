@@ -44,26 +44,6 @@
 
           <mat-cell *matCellDef="let row" [attr.data-label]="'table.column.' + column | translate">
 
-            <ng-template [ngIf]="column === 'type'">
-              <mat-chip-list>
-                <mat-chip color="primary" selected><img class="icon" src="/assets/images/icons/type.png">{{ 'type.' + row.type + '.name'  | translate }}</mat-chip>
-                <mat-chip color="primary" selected *ngIf="row.subtype"><img class="icon" src="/assets/images/icons/type.png">{{ 'type.' + row.subtype + '.name'  | translate }}</mat-chip>
-                <mat-chip color="primary" selected *ngIf="row.legendary" class="legendary"><img class="icon" src="/assets/images/icons/legendary.png">{{ 'category.legendary.name' | translate }}</mat-chip>
-              </mat-chip-list>
-            </ng-template>
-
-            <ng-template [ngIf]="column === 'faction'">
-              <mat-list dense>
-                <mat-list-item [ngClass]="row.faction.id">
-                  <div mat-list-avatar>
-                    <img mat-list-avatar [src]="row.faction.image">
-                  </div>
-                  <div mat-line>{{ row.faction.name | translate }}</div>
-                  <div mat-line class="mat-card-subtitle" [innerHTML]="row.faction.description | translate | icon:row.faction"></div>
-                </mat-list-item>
-              </mat-list>
-            </ng-template>
-
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item [ngClass]="[row.faction.id, (row | legendary) ? 'legendary' : 'common']">
@@ -84,6 +64,26 @@
                   </div>
                 </mat-list-item>
               </mat-list>
+            </ng-template>
+
+            <ng-template [ngIf]="column === 'faction'">
+              <mat-list dense>
+                <mat-list-item [ngClass]="row.faction.id">
+                  <div mat-list-avatar>
+                    <img mat-list-avatar [src]="row.faction.image">
+                  </div>
+                  <div mat-line>{{ row.faction.name | translate }}</div>
+                  <div mat-line class="mat-card-subtitle" [innerHTML]="row.faction.description | translate | icon:row.faction"></div>
+                </mat-list-item>
+              </mat-list>
+            </ng-template>
+
+            <ng-template [ngIf]="column === 'type'">
+              <mat-chip-list>
+                <mat-chip color="primary" selected><img class="icon" src="/assets/images/icons/type.png">{{ 'type.' + row.type + '.name'  | translate }}</mat-chip>
+                <mat-chip color="primary" selected *ngIf="row.subtype"><img class="icon" src="/assets/images/icons/type.png">{{ 'type.' + row.subtype + '.name'  | translate }}</mat-chip>
+                <mat-chip color="primary" selected *ngIf="row.legendary" class="legendary"><img class="icon" src="/assets/images/icons/legendary.png">{{ 'category.legendary.name' | translate }}</mat-chip>
+              </mat-chip-list>
             </ng-template>
 
           </mat-cell>

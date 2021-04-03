@@ -128,7 +128,7 @@
       "password2": "Confirmar contraseña",
       "mismatch": "Las contraseñas no coinciden",
       "insecure": "Debe contener al menos 6 caracteres alfanuméricos",
-      "invalid": "Debe ser un correo electrónico válido",
+      "invalid": "Campo no válido",
       "accept": "Aceptar",
       "check": "Comprueba tu correo",
       "error": "Ha ocurrido un problema",
@@ -435,9 +435,9 @@
       "description": "Comercia con otros reinos",
       "help": "Aquí puedes pujar Oro contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de Oro que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de Oro de tu puja original, así que asegúrate de pujar con cuidado.",
       "bid": "Pujar",
-      "from": "Casa de Subastas",
-      "subject": "Subasta Finalizada",
-      "message": "La subasta ha terminado. Las nuevas adquisiciones se han enviado a tu reino."
+      "subject": "Casa de Subastas",
+      "won": "La subasta ha terminado y tú la has ganado. Las nuevas adquisiciones se han enviado a tu reino.",
+      "outbid": "Te han sobrepujado en una subasta. Se te ha devuelto el 90% del Oro de tu puja anterior."
     },
     "bid": {
       "name": "Puja",
@@ -591,7 +591,7 @@
       "send": "Enviar",
       "success": "Mensaje enviado",
       "error": "Ha ocurrido un problema",
-      "invalid": "Texto no válido",
+      "invalid": "Campo no válido",
       "contents": "Contenido"
     },
     "clan": {

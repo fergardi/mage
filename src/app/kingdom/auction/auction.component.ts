@@ -63,13 +63,12 @@ export class AuctionComponent implements OnInit {
       });
       this.data = new MatTableDataSource(data);
       this.data.paginator = this.paginator;
-      this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['gold'] : obj[property];
       this.data.sort = this.sort;
+      this.data.sortingDataAccessor = this.createSorter();
       this.data.filterPredicate = this.createFilter();
       this.filters.faction.options = [...new Set(data.map(auction => auction.join.faction))];
       this.applyFilter();
-      const firstAuction: any = auctions[0];
-      if (firstAuction) this.checkRefresh(firstAuction);
+      this.refreshAuctions();
     });
   }
 
@@ -78,6 +77,15 @@ export class AuctionComponent implements OnInit {
       name: this.filters.name.value,
       faction: this.filters.faction.value,
     });
+  }
+
+  createSorter(): (obj: any, property: string) => any {
+    const sorterFunction = (obj: any, property: string): any => {
+      if (property === 'name') return this.translateService.instant(obj['join']['name']);
+      if (property === 'faction') return this.translateService.instant(obj['join']['faction']['name']);
+      return obj[property];
+    };
+    return sorterFunction;
   }
 
   createFilter(): (data: any, filter: string) => boolean {
@@ -90,8 +98,8 @@ export class AuctionComponent implements OnInit {
     return filterFunction;
   }
 
-  async checkRefresh(firstAuction: any) {
-    if (moment().isAfter(moment(firstAuction.auctioned.toMillis()))) {
+  async refreshAuctions() {
+    if (!this.data.data.length || (this.data.data.length && moment().isAfter(moment(this.data.data[0].auctioned.toMillis())))) {
       this.loadingService.startLoading();
       try {
         await this.apiService.refreshAuction();
