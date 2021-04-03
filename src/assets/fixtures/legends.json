@@ -1,8 +1,7 @@
 [
   {
     "name": "Fergardi el Desarrollador",
-    "faction": {
-      "image": "/assets/images/factions/"
-    }
+    "faction": "dark",
+    "power": 9999999
   }
 ]

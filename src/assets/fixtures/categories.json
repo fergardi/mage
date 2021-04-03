@@ -1,6 +1,7 @@
 [
   {
     "type": "category",
+    "subtype": null,
     "faction": "grey",
     "id": "melee",
     "name": "category.melee.name",
@@ -9,6 +10,7 @@
   },
   {
     "type": "category",
+    "subtype": null,
     "faction": "grey",
     "id": "ranged",
     "name": "category.ranged.name",
@@ -17,6 +19,7 @@
   },
   {
     "type": "category",
+    "subtype": null,
     "faction": "grey",
     "id": "magic",
     "name": "category.magic.name",
@@ -25,6 +28,7 @@
   },
   {
     "type": "category",
+    "subtype": null,
     "faction": "grey",
     "id": "fire",
     "name": "category.fire.name",
@@ -33,6 +37,7 @@
   },
   {
     "type": "category",
+    "subtype": null,
     "faction": "grey",
     "id": "poison",
     "name": "category.poison.name",
@@ -41,6 +46,7 @@
   },
   {
     "type": "category",
+    "subtype": null,
     "faction": "grey",
     "id": "cold",
     "name": "category.cold.name",
@@ -49,6 +55,7 @@
   },
   {
     "type": "category",
+    "subtype": null,
     "faction": "grey",
     "id": "lightning",
     "name": "category.lightning.name",
@@ -57,6 +64,7 @@
   },
   {
     "type": "category",
+    "subtype": null,
     "faction": "grey",
     "id": "holy",
     "name": "category.holy.name",
@@ -65,6 +73,7 @@
   },
   {
     "type": "category",
+    "subtype": null,
     "faction": "grey",
     "id": "psychic",
     "name": "category.psychic.name",
@@ -73,6 +82,7 @@
   },
   {
     "type": "category",
+    "subtype": null,
     "faction": "grey",
     "id": "breath",
     "name": "category.breath.name",

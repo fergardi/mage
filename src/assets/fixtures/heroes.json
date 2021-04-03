@@ -1,6 +1,7 @@
 [
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "red",
     "name": "hero.dragon-rider.name",
     "description": "hero.dragon-rider.description",
@@ -23,6 +24,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "red",
     "name": "hero.demon-prince.name",
     "description": "hero.demon-prince.description",
@@ -45,6 +47,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "red",
     "name": "hero.pyromancer.name",
     "description": "hero.pyromancer.description",
@@ -67,6 +70,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "red",
     "name": "hero.orc-king.name",
     "description": "hero.orc-king.description",
@@ -89,6 +93,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "white",
     "name": "hero.commander.name",
     "description": "hero.commander.description",
@@ -111,6 +116,7 @@
   },
   {
     "type": "hero",
+    "subtype": "resource",
     "faction": "white",
     "name": "hero.trader.name",
     "description": "hero.trader.description",
@@ -133,6 +139,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "white",
     "name": "hero.colossus.name",
     "description": "hero.colossus.description",
@@ -155,6 +162,7 @@
   },
   {
     "type": "hero",
+    "subtype": "resource",
     "faction": "white",
     "name": "hero.engineer.name",
     "description": "hero.engineer.description",
@@ -177,6 +185,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "green",
     "name": "hero.beast-master.name",
     "description": "hero.beast-master.description",
@@ -199,6 +208,7 @@
   },
   {
     "type": "hero",
+    "subtype": "resource",
     "faction": "green",
     "name": "hero.leprechaunt.name",
     "description": "hero.leprechaunt.description",
@@ -221,6 +231,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "green",
     "name": "hero.golem-golem.name",
     "description": "hero.golem-golem.description",
@@ -243,6 +254,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "green",
     "name": "hero.swamp-thing.name",
     "description": "hero.swamp-thing.description",
@@ -265,6 +277,7 @@
   },
   {
     "type": "hero",
+    "subtype": "resource",
     "faction": "blue",
     "name": "hero.shaman.name",
     "description": "hero.shaman.description",
@@ -287,6 +300,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "blue",
     "name": "hero.elementalist.name",
     "description": "hero.elementalist.description",
@@ -309,6 +323,7 @@
   },
   {
     "type": "hero",
+    "subtype": "resource",
     "faction": "blue",
     "name": "hero.sage.name",
     "description": "hero.sage.description",
@@ -331,6 +346,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "blue",
     "name": "hero.illusionist.name",
     "description": "hero.illusionist.description",
@@ -353,6 +369,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "black",
     "name": "hero.necrophage.name",
     "description": "hero.necrophage.description",
@@ -375,6 +392,7 @@
   },
   {
     "type": "hero",
+    "subtype": "resource",
     "faction": "black",
     "name": "hero.necromancer.name",
     "description": "hero.necromancer.description",
@@ -397,6 +415,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "black",
     "name": "hero.soul-reaper.name",
     "description": "hero.soul-reaper.description",
@@ -419,6 +438,7 @@
   },
   {
     "type": "hero",
+    "subtype": "battle",
     "faction": "black",
     "name": "hero.crypt-keeper.name",
     "description": "hero.crypt-keeper.description",

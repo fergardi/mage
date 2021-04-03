@@ -1,6 +1,7 @@
 [
   {
     "type": "skill",
+    "subtype": "battle",
     "faction": "green",
     "id": "regeneration",
     "name": "skill.regeneration.name",
@@ -9,6 +10,7 @@
   },
   {
     "type": "skill",
+    "subtype": "battle",
     "faction": "black",
     "id": "leech",
     "name": "skill.leech.name",
@@ -17,6 +19,7 @@
   },
   {
     "type": "skill",
+    "subtype": "battle",
     "faction": "white",
     "id": "scales",
     "name": "skill.scales.name",
@@ -25,6 +28,7 @@
   },
   {
     "type": "skill",
+    "subtype": "battle",
     "faction": "white",
     "id": "strength",
     "name": "skill.strength.name",
@@ -33,6 +37,7 @@
   },
   {
     "type": "skill",
+    "subtype": "battle",
     "faction": "blue",
     "id": "haste",
     "name": "skill.haste.name",
@@ -41,6 +46,7 @@
   },
   {
     "type": "skill",
+    "subtype": "battle",
     "faction": "red",
     "id": "weakness",
     "name": "skill.weakness.name",
@@ -49,6 +55,7 @@
   },
   {
     "type": "skill",
+    "subtype": "battle",
     "faction": "red",
     "id": "seduction",
     "name": "skill.seduction.name",
@@ -57,6 +64,7 @@
   },
   {
     "type": "skill",
+    "subtype": "battle",
     "faction": "green",
     "id": "slowness",
     "name": "skill.slowness.name",
@@ -65,6 +73,7 @@
   },
   {
     "type": "skill",
+    "subtype": "battle",
     "faction": "blue",
     "id": "flight",
     "name": "skill.flight.name",
@@ -73,6 +82,7 @@
   },
   {
     "type": "skill",
+    "subtype": "battle",
     "faction": "black",
     "id": "fear",
     "name": "skill.fear.name",

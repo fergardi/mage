@@ -1,6 +1,7 @@
 [
   {
     "type": "guild",
+    "subtype": "battle",
     "faction": "grey",
     "name": "guild.assassin.name",
     "description": "guild.assassin.description",
@@ -9,6 +10,7 @@
   },
   {
     "type": "guild",
+    "subtype": "battle",
     "faction": "grey",
     "name": "guild.champion.name",
     "description": "guild.champion.description",
@@ -17,6 +19,7 @@
   },
   {
     "type": "guild",
+    "subtype": "battle",
     "faction": "grey",
     "name": "guild.hunter.name",
     "description": "guild.hunter.description",
@@ -25,6 +28,7 @@
   },
   {
     "type": "guild",
+    "subtype": "battle",
     "faction": "grey",
     "name": "guild.knight.name",
     "description": "guild.knight.description",
@@ -33,6 +37,7 @@
   },
   {
     "type": "guild",
+    "subtype": "battle",
     "faction": "grey",
     "name": "guild.mage.name",
     "description": "guild.mage.description",
@@ -41,6 +46,7 @@
   },
   {
     "type": "guild",
+    "subtype": "battle",
     "faction": "grey",
     "name": "guild.priest.name",
     "description": "guild.priest.description",
@@ -49,6 +55,7 @@
   },
   {
     "type": "guild",
+    "subtype": "battle",
     "faction": "grey",
     "name": "guild.rogue.name",
     "description": "guild.rogue.description",
@@ -57,6 +64,7 @@
   },
   {
     "type": "guild",
+    "subtype": "battle",
     "faction": "grey",
     "name": "guild.warlock.name",
     "description": "guild.warlock.description",
@@ -65,6 +73,7 @@
   },
   {
     "type": "guild",
+    "subtype": "battle",
     "faction": "grey",
     "name": "guild.warrior.name",
     "description": "guild.warrior.description",

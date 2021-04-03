@@ -15,7 +15,23 @@ export class AppComponent implements OnInit {
     public tourService: TourService,
     public loadingService: LoadingService,
   ) {
-    // this.firebaseService.joinFixtures([FixtureType.STRUCTURES]);
+    this.firebaseService.joinFixtures([
+      // FixtureType.FACTIONS,
+      // FixtureType.ATTACKS,
+      // FixtureType.CATEGORIES,
+      // FixtureType.FAMILIES,
+      // FixtureType.GODS,
+      // FixtureType.GUILDS,
+      // FixtureType.RESOURCES,
+      // FixtureType.STRUCTURES,
+      // FixtureType.SKILLS,
+      // FixtureType.UNITS,
+      // FixtureType.SPELLS,
+      // FixtureType.ITEMS,
+      // FixtureType.HEROES,
+      // FixtureType.STORES,
+      // FixtureType.LOCATIONS,
+    ]);
   }
 
   ngOnInit(): void {

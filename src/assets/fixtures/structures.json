@@ -1,6 +1,7 @@
 [
   {
     "type": "structure",
+    "subtype": "resource",
     "name": "structure.barrier.name",
     "description": "structure.barrier.description",
     "id": "barrier",
@@ -24,6 +25,7 @@
   },
   {
     "type": "structure",
+    "subtype": "resource",
     "name": "structure.farm.name",
     "description": "structure.farm.description",
     "id": "farm",
@@ -47,6 +49,7 @@
   },
   {
     "type": "structure",
+    "subtype": "resource",
     "name": "structure.fortress.name",
     "description": "structure.fortress.description",
     "id": "fortress",
@@ -70,6 +73,7 @@
   },
   {
     "type": "structure",
+    "subtype": "resource",
     "name": "structure.academy.name",
     "description": "structure.academy.description",
     "id": "academy",
@@ -93,6 +97,7 @@
   },
   {
     "type": "structure",
+    "subtype": "resource",
     "name": "structure.node.name",
     "description": "structure.node.description",
     "id": "node",
@@ -116,6 +121,7 @@
   },
   {
     "type": "structure",
+    "subtype": "resource",
     "name": "structure.village.name",
     "description": "structure.village.description",
     "id": "village",
@@ -139,6 +145,7 @@
   },
   {
     "type": "structure",
+    "subtype": "resource",
     "name": "structure.workshop.name",
     "description": "structure.workshop.description",
     "id": "workshop",

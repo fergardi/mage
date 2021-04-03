@@ -177,7 +177,7 @@ body {
 .mat-standard-chip {
   min-height: 26px !important;
   padding: 8px !important;
-  margin: 4px !important;
+  margin: 2px !important;
 }
 .mat-chip {
   font-size: 0.85em !important;
@@ -371,12 +371,13 @@ hr {
   .mat-dialog-title {
     display: inline-block !important;
   }
-  .mat-chip-list-wrapper {
-    margin: 0 !important;
-  }
   .mat-chip-list {
     display: block;
   }
+}
+
+.mat-chip-list-wrapper {
+  margin: 0 !important;
 }
 
 // ribbon

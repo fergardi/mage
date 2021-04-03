@@ -1,6 +1,7 @@
 [
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.animate-skeleton.name",
     "description": "spell.animate-skeleton.description",
     "id": "animate-skeleton",
@@ -34,7 +35,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.animate-zombie.name",
     "description": "spell.animate-zombie.description",
     "id": "animate-zombie",
@@ -68,7 +70,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.animate-ghoul.name",
     "description": "spell.animate-ghoul.description",
     "id": "animate-ghoul",
@@ -102,7 +105,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.vampirism.name",
     "description": "spell.vampirism.description",
     "id": "vampirism",
@@ -136,7 +140,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.terror.name",
     "description": "spell.terror.description",
     "id": "terror",
@@ -170,7 +175,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.night-living-dead.name",
     "description": "spell.night-living-dead.description",
     "id": "night-living-dead",
@@ -204,7 +210,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.necromancy.name",
     "description": "spell.necromancy.description",
     "id": "necromancy",
@@ -238,7 +245,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-wraith.name",
     "description": "spell.summon-wraith.description",
     "id": "summon-wraith",
@@ -272,7 +280,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-lich.name",
     "description": "spell.summon-lich.description",
     "id": "summon-lich",
@@ -306,7 +315,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-vampire.name",
     "description": "spell.summon-vampire.description",
     "id": "summon-vampire",
@@ -340,7 +350,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.death-decay.name",
     "description": "spell.death-decay.description",
     "id": "death-decay",
@@ -374,7 +385,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.shroud-darkness.name",
     "description": "spell.shroud-darkness.description",
     "id": "shroud-darkness",
@@ -408,7 +420,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.corruption.name",
     "description": "spell.corruption.description",
     "id": "corruption",
@@ -442,7 +455,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.soul-pact.name",
     "description": "spell.soul-pact.description",
     "id": "soul-pact",
@@ -476,7 +490,8 @@
     "legendary": true
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.chain-lightning.name",
     "description": "spell.chain-lightning.description",
     "id": "chain-lightning",
@@ -510,7 +525,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.full-moon.name",
     "description": "spell.full-moon.description",
     "id": "full-moon",
@@ -544,7 +560,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.witchcraft.name",
     "description": "spell.witchcraft.description",
     "id": "witchcraft",
@@ -578,7 +595,8 @@
     "legendary": true
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.plague.name",
     "description": "spell.plague.description",
     "id": "plague",
@@ -612,7 +630,8 @@
     "legendary": true
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.curse.name",
     "description": "spell.curse.description",
     "id": "curse",
@@ -646,7 +665,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.blood-ritual.name",
     "description": "spell.blood-ritual.description",
     "id": "blood-ritual",
@@ -680,7 +700,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.fireball.name",
     "description": "spell.fireball.description",
     "id": "fireball",
@@ -714,7 +735,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.battle-chant.name",
     "description": "spell.battle-chant.description",
     "id": "battle-chant",
@@ -748,7 +770,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-berserker.name",
     "description": "spell.call-berserker.description",
     "id": "call-berserker",
@@ -782,7 +805,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-orc.name",
     "description": "spell.call-orc.description",
     "id": "call-orc",
@@ -816,7 +840,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.succubus-kiss.name",
     "description": "spell.succubus-kiss.description",
     "id": "succubus-kiss",
@@ -850,7 +875,8 @@
     "legendary": false
   },
   {
-    "type": "item",
+    "type": "spell",
+    "subtype": "item",
     "name": "spell.destroy-artifact.name",
     "description": "spell.destroy-artifact.description",
     "id": "destroy-artifact",
@@ -884,7 +910,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.inferno.name",
     "description": "spell.inferno.description",
     "id": "inferno",
@@ -918,7 +945,8 @@
     "legendary": true
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.flame-shield.name",
     "description": "spell.flame-shield.description",
     "id": "flame-shield",
@@ -952,7 +980,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.flame-blade.name",
     "description": "spell.flame-blade.description",
     "id": "flame-blade",
@@ -986,7 +1015,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.flame-arrow.name",
     "description": "spell.flame-arrow.description",
     "id": "flame-arrow",
@@ -1020,7 +1050,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.gravity.name",
     "description": "spell.gravity.description",
     "id": "gravity",
@@ -1054,7 +1085,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.meteor-storm.name",
     "description": "spell.meteor-storm.description",
     "id": "meteor-storm",
@@ -1088,7 +1120,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.fatigue.name",
     "description": "spell.fatigue.description",
     "id": "fatigue",
@@ -1122,7 +1155,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-minotaur.name",
     "description": "spell.summon-minotaur.description",
     "id": "summon-minotaur",
@@ -1156,7 +1190,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-ogre.name",
     "description": "spell.summon-ogre.description",
     "id": "summon-ogre",
@@ -1190,7 +1225,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-lizardman.name",
     "description": "spell.summon-lizardman.description",
     "id": "summon-lizardman",
@@ -1224,7 +1260,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-cyclop.name",
     "description": "spell.call-cyclop.description",
     "id": "call-cyclop",
@@ -1258,7 +1295,8 @@
     "legendary": false
   },
   {
-    "type": "resource",
+    "type": "spell",
+    "subtype": "resource",
     "name": "spell.volcano.name",
     "description": "spell.volcano.description",
     "id": "volcano",
@@ -1292,7 +1330,8 @@
     "legendary": true
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.fire-wall.name",
     "description": "spell.fire-wall.description",
     "id": "fire-wall",
@@ -1326,7 +1365,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.frenzy.name",
     "description": "spell.frenzy.description",
     "id": "frenzy",
@@ -1360,7 +1400,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-frost-giant.name",
     "description": "spell.call-frost-giant.description",
     "id": "call-frost-giant",
@@ -1394,7 +1435,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-cave-troll.name",
     "description": "spell.call-cave-troll.description",
     "id": "call-cave-troll",
@@ -1428,7 +1470,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-yeti.name",
     "description": "spell.call-yeti.description",
     "id": "call-yeti",
@@ -1462,7 +1505,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-mage.name",
     "description": "spell.summon-mage.description",
     "id": "summon-mage",
@@ -1496,7 +1540,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-medusa.name",
     "description": "spell.summon-medusa.description",
     "id": "summon-medusa",
@@ -1530,7 +1575,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-djinni.name",
     "description": "spell.summon-djinni.description",
     "id": "summon-djinni",
@@ -1564,7 +1610,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.concentration.name",
     "description": "spell.concentration.description",
     "id": "concentration",
@@ -1598,7 +1645,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.confuse.name",
     "description": "spell.confuse.description",
     "id": "confuse",
@@ -1632,7 +1680,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.conjure-elemental.name",
     "description": "spell.conjure-elemental.description",
     "id": "conjure-elemental",
@@ -1666,7 +1715,8 @@
     "legendary": true
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.levitation.name",
     "description": "spell.levitation.description",
     "id": "levitation",
@@ -1700,7 +1750,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.fog.name",
     "description": "spell.fog.description",
     "id": "fog",
@@ -1734,7 +1785,8 @@
     "legendary": false
   },
   {
-    "type": "resource",
+    "type": "spell",
+    "subtype": "resource",
     "name": "spell.avarice.name",
     "description": "spell.avarice.description",
     "id": "avarice",
@@ -1768,7 +1820,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.hallucination.name",
     "description": "spell.hallucination.description",
     "id": "hallucination",
@@ -1802,7 +1855,8 @@
     "legendary": true
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.freeze.name",
     "description": "spell.freeze.description",
     "id": "freeze",
@@ -1836,7 +1890,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.ice-wall.name",
     "description": "spell.ice-wall.description",
     "id": "ice-wall",
@@ -1870,7 +1925,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.invisibility.name",
     "description": "spell.invisibility.description",
     "id": "invisibility",
@@ -1904,7 +1960,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.laziness.name",
     "description": "spell.laziness.description",
     "id": "laziness",
@@ -1938,7 +1995,8 @@
     "legendary": true
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.celerity.name",
     "description": "spell.celerity.description",
     "id": "celerity",
@@ -1972,7 +2030,8 @@
     "legendary": false
   },
   {
-    "type": "espionage",
+    "type": "spell",
+    "subtype": "espionage",
     "name": "spell.spy.name",
     "description": "spell.spy.description",
     "id": "spy",
@@ -2006,7 +2065,8 @@
     "legendary": false
   },
   {
-    "type": "item",
+    "type": "spell",
+    "subtype": "item",
     "name": "spell.steal-artifact.name",
     "description": "spell.steal-artifact.description",
     "id": "steal-artifact",
@@ -2040,7 +2100,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.accuracy.name",
     "description": "spell.accuracy.description",
     "id": "accuracy",
@@ -2074,7 +2135,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.ambush.name",
     "description": "spell.ambush.description",
     "id": "ambush",
@@ -2108,7 +2170,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.druidism.name",
     "description": "spell.druidism.description",
     "id": "druidism",
@@ -2142,7 +2205,8 @@
     "legendary": true
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.beast-council.name",
     "description": "spell.beast-council.description",
     "id": "beast-council",
@@ -2176,7 +2240,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-giant-snail.name",
     "description": "spell.call-giant-snail.description",
     "id": "call-giant-snail",
@@ -2210,7 +2275,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-carnivorous-plant.name",
     "description": "spell.call-carnivorous-plant.description",
     "id": "call-carnivorous-plant",
@@ -2244,7 +2310,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-centaur.name",
     "description": "spell.call-centaur.description",
     "id": "call-centaur",
@@ -2278,7 +2345,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.climate-control.name",
     "description": "spell.climate-control.description",
     "id": "climate-control",
@@ -2312,7 +2380,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.cure.name",
     "description": "spell.cure.description",
     "id": "cure",
@@ -2346,7 +2415,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.growth.name",
     "description": "spell.growth.description",
     "id": "growth",
@@ -2380,7 +2450,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.locust-swarm.name",
     "description": "spell.locust-swarm.description",
     "id": "locust-swarm",
@@ -2414,7 +2485,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.natures-favor.name",
     "description": "spell.natures-favor.description",
     "id": "natures-favor",
@@ -2448,7 +2520,8 @@
     "legendary": true
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.invigorate.name",
     "description": "spell.invigorate.description",
     "id": "invigorate",
@@ -2482,7 +2555,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.calm.name",
     "description": "spell.calm.description",
     "id": "calm",
@@ -2516,7 +2590,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.serenity.name",
     "description": "spell.serenity.description",
     "id": "serenity",
@@ -2550,7 +2625,8 @@
     "legendary": true
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.venom.name",
     "description": "spell.venom.description",
     "id": "venom",
@@ -2584,7 +2660,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-goblin.name",
     "description": "spell.summon-goblin.description",
     "id": "summon-goblin",
@@ -2618,7 +2695,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-werebear.name",
     "description": "spell.summon-werebear.description",
     "id": "summon-werebear",
@@ -2652,7 +2730,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-spider.name",
     "description": "spell.summon-spider.description",
     "id": "summon-spider",
@@ -2686,7 +2765,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.sunray.name",
     "description": "spell.sunray.description",
     "id": "sunray",
@@ -2720,7 +2800,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.wrath.name",
     "description": "spell.wrath.description",
     "id": "wrath",
@@ -2754,7 +2835,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-pegasus.name",
     "description": "spell.call-pegasus.description",
     "id": "call-pegasus",
@@ -2788,7 +2870,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-knight.name",
     "description": "spell.call-knight.description",
     "id": "call-knight",
@@ -2822,7 +2905,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.call-templar.name",
     "description": "spell.call-templar.description",
     "id": "call-templar",
@@ -2856,7 +2940,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.blaze.name",
     "description": "spell.blaze.description",
     "id": "blaze",
@@ -2890,7 +2975,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.prayer.name",
     "description": "spell.prayer.description",
     "id": "prayer",
@@ -2924,7 +3010,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.healing.name",
     "description": "spell.healing.description",
     "id": "healing",
@@ -2958,7 +3045,8 @@
     "legendary": false
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.divine-protection.name",
     "description": "spell.divine-protection.description",
     "id": "divine-protection",
@@ -2992,7 +3080,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.exorcism.name",
     "description": "spell.exorcism.description",
     "id": "exorcism",
@@ -3026,7 +3115,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.endurance.name",
     "description": "spell.endurance.description",
     "id": "endurance",
@@ -3060,7 +3150,8 @@
     "legendary": false
   },
   {
-    "type": "item",
+    "type": "spell",
+    "subtype": "item",
     "name": "spell.locate-artifact.name",
     "description": "spell.locate-artifact.description",
     "id": "locate-artifact",
@@ -3094,7 +3185,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.miracle.name",
     "description": "spell.miracle.description",
     "id": "miracle",
@@ -3128,7 +3220,8 @@
     "legendary": true
   },
   {
-    "type": "enchantment",
+    "type": "spell",
+    "subtype": "enchantment",
     "name": "spell.peace-prosperity.name",
     "description": "spell.peace-prosperity.description",
     "id": "peace-prosperity",
@@ -3162,7 +3255,8 @@
     "legendary": true
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.resurrection.name",
     "description": "spell.resurrection.description",
     "id": "resurrection",
@@ -3196,7 +3290,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.shield-light.name",
     "description": "spell.shield-light.description",
     "id": "shield-light",
@@ -3230,7 +3325,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-angel.name",
     "description": "spell.summon-angel.description",
     "id": "summon-angel",
@@ -3264,7 +3360,8 @@
     "legendary": false
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-titan.name",
     "description": "spell.summon-titan.description",
     "id": "summon-titan",
@@ -3298,7 +3395,8 @@
     "legendary": true
   },
   {
-    "type": "summon",
+    "type": "spell",
+    "subtype": "summon",
     "name": "spell.summon-monk.name",
     "description": "spell.summon-monk.description",
     "id": "summon-monk",
@@ -3332,7 +3430,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.sword-light.name",
     "description": "spell.sword-light.description",
     "id": "sword-light",
@@ -3366,7 +3465,8 @@
     "legendary": false
   },
   {
-    "type": "instant",
+    "type": "spell",
+    "subtype": "battle",
     "name": "spell.tranquility.name",
     "description": "spell.tranquility.description",
     "id": "tranquility",
@@ -3400,7 +3500,8 @@
     "legendary": false
   },
   {
-    "type": "sorcery",
+    "type": "spell",
+    "subtype": "sorcery",
     "name": "spell.armageddon.name",
     "description": "spell.armageddon.description",
     "id": "armageddon",

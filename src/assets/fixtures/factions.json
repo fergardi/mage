@@ -1,6 +1,7 @@
 [
   {
     "type": "faction",
+    "subtype": null,
     "name": "faction.black.name",
     "description": "faction.black.description",
     "image": "/assets/images/factions/black.png",
@@ -11,6 +12,7 @@
   },
   {
     "type": "faction",
+    "subtype": null,
     "name": "faction.blue.name",
     "description": "faction.blue.description",
     "image": "/assets/images/factions/blue.png",
@@ -21,6 +23,7 @@
   },
   {
     "type": "faction",
+    "subtype": null,
     "name": "faction.green.name",
     "description": "faction.green.description",
     "image": "/assets/images/factions/green.png",
@@ -31,6 +34,7 @@
   },
   {
     "type": "faction",
+    "subtype": null,
     "name": "faction.red.name",
     "description": "faction.red.description",
     "image": "/assets/images/factions/red.png",
@@ -41,6 +45,7 @@
   },
   {
     "type": "faction",
+    "subtype": null,
     "name": "faction.white.name",
     "description": "faction.white.description",
     "image": "/assets/images/factions/white.png",
@@ -51,6 +56,7 @@
   },
   {
     "type": "faction",
+    "subtype": null,
     "name": "faction.grey.name",
     "description": "faction.grey.description",
     "image": "/assets/images/factions/grey.png",

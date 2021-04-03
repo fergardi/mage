@@ -1,5 +1,7 @@
 [
   {
+    "type": "store",
+    "subtype": "hero",
     "image": "/assets/images/stores/inn.png",
     "name": "store.inn.name",
     "description": "store.inn.description",
@@ -7,6 +9,8 @@
     "faction": "grey"
   },
   {
+    "type": "store",
+    "subtype": "unit",
     "image": "/assets/images/stores/mercenary.png",
     "name": "store.mercenary.name",
     "description": "store.mercenary.description",
@@ -14,6 +18,8 @@
     "faction": "grey"
   },
   {
+    "type": "store",
+    "subtype": "item",
     "image": "/assets/images/stores/merchant.png",
     "name": "store.merchant.name",
     "description": "store.merchant.description",
@@ -21,6 +27,8 @@
     "faction": "grey"
   },
   {
+    "type": "store",
+    "subtype": "spell",
     "image": "/assets/images/stores/sorcerer.png",
     "name": "store.sorcerer.name",
     "description": "store.sorcerer.description",

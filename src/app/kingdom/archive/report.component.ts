@@ -36,7 +36,7 @@ export enum ReportType {
             <img mat-list-avatar [src]="report.data.join.image">
           </div>
           <div mat-line>{{ report.data.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'enchantment', 'hero', 'item', 'summon', 'sorcery', 'instant', 'resource'].includes(report.data.join.type)" [innerHTML]="report.data.join.description | translate | icon:report.data.join"></div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'hero', 'item', 'resource'].includes(report.data.join.type)" [innerHTML]="report.data.join.description | translate | icon:report.data.join"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(report.data.join.type)">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of report.data.join.families" [src]="family.image">
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of report.data.join.skills" [src]="skill.image">

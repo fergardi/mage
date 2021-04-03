@@ -1,6 +1,7 @@
 [
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.lightning-elemental.name",
     "description": "unit.lightning-elemental.description",
     "id": "lightning-elemental",
@@ -24,6 +25,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.wraith.name",
     "description": "unit.wraith.description",
     "id": "wraith",
@@ -47,6 +49,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.bone-dragon.name",
     "description": "unit.bone-dragon.description",
     "id": "bone-dragon",
@@ -70,6 +73,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.nightmare.name",
     "description": "unit.nightmare.description",
     "id": "nightmare",
@@ -93,6 +97,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.ghoul.name",
     "description": "unit.ghoul.description",
     "id": "ghoul",
@@ -116,6 +121,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.lich.name",
     "description": "unit.lich.description",
     "id": "lich",
@@ -139,6 +145,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.skeleton.name",
     "description": "unit.skeleton.description",
     "id": "skeleton",
@@ -162,6 +169,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.vampire.name",
     "description": "unit.vampire.description",
     "id": "vampire",
@@ -185,6 +193,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.werewolf.name",
     "description": "unit.werewolf.description",
     "id": "werewolf",
@@ -208,6 +217,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.zombie.name",
     "description": "unit.zombie.description",
     "id": "zombie",
@@ -231,6 +241,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.blue-dragon.name",
     "description": "unit.blue-dragon.description",
     "id": "blue-dragon",
@@ -254,6 +265,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.crystal-golem.name",
     "description": "unit.crystal-golem.description",
     "id": "crystal-golem",
@@ -277,6 +289,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.djinni.name",
     "description": "unit.djinni.description",
     "id": "djinni",
@@ -300,6 +313,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.frost-giant.name",
     "description": "unit.frost-giant.description",
     "id": "frost-giant",
@@ -323,6 +337,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.ice-elemental.name",
     "description": "unit.ice-elemental.description",
     "id": "ice-elemental",
@@ -346,6 +361,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.cave-troll.name",
     "description": "unit.cave-troll.description",
     "id": "cave-troll",
@@ -369,6 +385,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.medusa.name",
     "description": "unit.medusa.description",
     "id": "medusa",
@@ -392,6 +409,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.leviathan.name",
     "description": "unit.leviathan.description",
     "id": "leviathan",
@@ -415,6 +433,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.mage.name",
     "description": "unit.mage.description",
     "id": "mage",
@@ -438,6 +457,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.yeti.name",
     "description": "unit.yeti.description",
     "id": "yeti",
@@ -461,6 +481,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.lizardman.name",
     "description": "unit.lizardman.description",
     "id": "lizardman",
@@ -484,6 +505,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.giant-snail.name",
     "description": "unit.giant-snail.description",
     "id": "giant-snail",
@@ -507,6 +529,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.centaur.name",
     "description": "unit.centaur.description",
     "id": "centaur",
@@ -530,6 +553,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.goblin.name",
     "description": "unit.goblin.description",
     "id": "goblin",
@@ -553,6 +577,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.golden-dragon.name",
     "description": "unit.golden-dragon.description",
     "id": "golden-dragon",
@@ -576,6 +601,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.werebear.name",
     "description": "unit.werebear.description",
     "id": "werebear",
@@ -599,6 +625,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.spider.name",
     "description": "unit.spider.description",
     "id": "spider",
@@ -622,6 +649,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.carnivorous-plant.name",
     "description": "unit.carnivorous-plant.description",
     "id": "carnivorous-plant",
@@ -645,6 +673,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.earth-elemental.name",
     "description": "unit.earth-elemental.description",
     "id": "earth-elemental",
@@ -668,6 +697,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.hydra.name",
     "description": "unit.hydra.description",
     "id": "hydra",
@@ -691,6 +721,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.cyclop.name",
     "description": "unit.cyclop.description",
     "id": "cyclop",
@@ -714,6 +745,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.minotaur.name",
     "description": "unit.minotaur.description",
     "id": "minotaur",
@@ -737,6 +769,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.devil.name",
     "description": "unit.devil.description",
     "id": "devil",
@@ -760,6 +793,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.fire-elemental.name",
     "description": "unit.fire-elemental.description",
     "id": "fire-elemental",
@@ -783,6 +817,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.berserker.name",
     "description": "unit.berserker.description",
     "id": "berserker",
@@ -806,6 +841,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.ogre.name",
     "description": "unit.ogre.description",
     "id": "ogre",
@@ -829,6 +865,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.orc.name",
     "description": "unit.orc.description",
     "id": "orc",
@@ -852,6 +889,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.phoenix.name",
     "description": "unit.phoenix.description",
     "id": "phoenix",
@@ -875,6 +913,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.red-dragon.name",
     "description": "unit.red-dragon.description",
     "id": "red-dragon",
@@ -898,6 +937,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.griffon.name",
     "description": "unit.griffon.description",
     "id": "griffon",
@@ -921,6 +961,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.behemoth.name",
     "description": "unit.behemoth.description",
     "id": "behemoth",
@@ -944,6 +985,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.white-dragon.name",
     "description": "unit.white-dragon.description",
     "id": "white-dragon",
@@ -967,6 +1009,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.angel.name",
     "description": "unit.angel.description",
     "id": "angel",
@@ -990,6 +1033,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.knight.name",
     "description": "unit.knight.description",
     "id": "knight",
@@ -1013,6 +1057,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.light-elemental.name",
     "description": "unit.light-elemental.description",
     "id": "light-elemental",
@@ -1036,6 +1081,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.titan.name",
     "description": "unit.titan.description",
     "id": "titan",
@@ -1059,6 +1105,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.monk.name",
     "description": "unit.monk.description",
     "id": "monk",
@@ -1082,6 +1129,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.templar.name",
     "description": "unit.templar.description",
     "id": "templar",
@@ -1105,6 +1153,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.pegasus.name",
     "description": "unit.pegasus.description",
     "id": "pegasus",
@@ -1128,6 +1177,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.paladin.name",
     "description": "unit.paladin.description",
     "id": "paladin",
@@ -1151,6 +1201,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.cavalry.name",
     "description": "unit.cavalry.description",
     "id": "cavalry",
@@ -1174,6 +1225,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.fanatic.name",
     "description": "unit.fanatic.description",
     "id": "fanatic",
@@ -1197,6 +1249,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.pikeman.name",
     "description": "unit.pikeman.description",
     "id": "pikeman",
@@ -1220,6 +1273,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.fighter.name",
     "description": "unit.fighter.description",
     "id": "fighter",
@@ -1243,6 +1297,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.archer.name",
     "description": "unit.archer.description",
     "id": "archer",
@@ -1266,6 +1321,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.frog.name",
     "description": "unit.frog.description",
     "id": "frog",
@@ -1289,6 +1345,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.sheep.name",
     "description": "unit.sheep.description",
     "id": "sheep",
@@ -1312,6 +1369,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.bat.name",
     "description": "unit.bat.description",
     "id": "bat",
@@ -1335,6 +1393,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.rat.name",
     "description": "unit.rat.description",
     "id": "rat",
@@ -1358,6 +1417,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.imp.name",
     "description": "unit.imp.description",
     "id": "imp",
@@ -1381,6 +1441,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.trained-elephant.name",
     "description": "unit.trained-elephant.description",
     "id": "trained-elephant",
@@ -1404,6 +1465,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.wolf.name",
     "description": "unit.wolf.description",
     "id": "wolf",
@@ -1427,6 +1489,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.iron-golem.name",
     "description": "unit.iron-golem.description",
     "id": "iron-golem",
@@ -1450,6 +1513,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.stone-golem.name",
     "description": "unit.stone-golem.description",
     "id": "stone-golem",
@@ -1473,6 +1537,7 @@
   },
   {
     "type": "unit",
+    "subtype": "battle",
     "name": "unit.baby-dragon.name",
     "description": "unit.baby-dragon.description",
     "id": "baby-dragon",

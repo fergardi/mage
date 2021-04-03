@@ -1,6 +1,7 @@
 [
   {
     "type": "family",
+    "subtype": null,
     "faction": "grey",
     "id": "human",
     "name": "family.human.name",
@@ -9,6 +10,7 @@
   },
   {
     "type": "family",
+    "subtype": null,
     "faction": "grey",
     "id": "demon",
     "name": "family.demon.name",
@@ -17,6 +19,7 @@
   },
   {
     "type": "family",
+    "subtype": null,
     "faction": "grey",
     "id": "giant",
     "name": "family.giant.name",
@@ -25,6 +28,7 @@
   },
   {
     "type": "family",
+    "subtype": null,
     "faction": "grey",
     "id": "reptile",
     "name": "family.reptile.name",
@@ -33,6 +37,7 @@
   },
   {
     "type": "family",
+    "subtype": null,
     "faction": "grey",
     "id": "animal",
     "name": "family.animal.name",
@@ -41,6 +46,7 @@
   },
   {
     "type": "family",
+    "subtype": null,
     "faction": "grey",
     "id": "dragon",
     "name": "family.dragon.name",
@@ -49,6 +55,7 @@
   },
   {
     "type": "family",
+    "subtype": null,
     "faction": "grey",
     "id": "elemental",
     "name": "family.elemental.name",
@@ -57,6 +64,7 @@
   },
   {
     "type": "family",
+    "subtype": null,
     "faction": "grey",
     "id": "golem",
     "name": "family.golem.name",
@@ -65,6 +73,7 @@
   },
   {
     "type": "family",
+    "subtype": null,
     "faction": "grey",
     "id": "undead",
     "name": "family.undead.name",
@@ -73,6 +82,7 @@
   },
   {
     "type": "family",
+    "subtype": null,
     "faction": "grey",
     "id": "orkish",
     "name": "family.orkish.name",

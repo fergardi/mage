@@ -1,6 +1,8 @@
 [
   {
     "id": "few",
+    "type": "pack",
+    "subtype": "resource",
     "name": "pack.few.name",
     "description": "pack.few.description",
     "image": "/assets/images/packs/few.png",
@@ -9,6 +11,8 @@
   },
   {
     "id": "many",
+    "type": "pack",
+    "subtype": "resource",
     "name": "pack.many.name",
     "description": "pack.many.description",
     "image": "/assets/images/packs/many.png",
@@ -17,6 +21,8 @@
   },
   {
     "id": "lot",
+    "type": "pack",
+    "subtype": "resource",
     "name": "pack.lot.name",
     "description": "pack.lot.description",
     "image": "/assets/images/packs/lot.png",

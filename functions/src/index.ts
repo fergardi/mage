@@ -492,7 +492,7 @@ const conjureCharm = async (kingdomId: string, charmId: string, targetId: string
       const batch = angularFirestore.batch();
       await addSupply(kingdomId, 'turn', -charm.spell.turnCost, batch, kingdomTurn.resource.ratio);
       await addSupply(kingdomId, 'mana', -charm.spell.manaCost, batch);
-      switch (charm.spell.type) {
+      switch (charm.spell.subtype) {
         case 'summon':
           const unit = charm.spell.units[random(0, charm.spell.units.length - 1)];
           const size = random(Math.min(...unit.amount), Math.max(...unit.amount));
@@ -525,7 +525,7 @@ const conjureCharm = async (kingdomId: string, charmId: string, targetId: string
         case 'armageddon':
           // this is done in the gods section
           break;
-        case 'instant':
+        case 'battle':
           // this is done in the battle section
           break;
       }
@@ -563,7 +563,7 @@ const activateArtifact = async (kingdomId: string, artifactId: string, targetId:
       } else {
         batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/artifacts/${artifactId}`));
       }
-      switch (artifact.item.type) {
+      switch (artifact.item.subtype) {
         case 'summon':
           let unit = artifact.item.units[random(0, artifact.item.units.length - 1)];
           let size = random(Math.min(...unit.amount), Math.max(...unit.amount));
@@ -610,7 +610,7 @@ const activateArtifact = async (kingdomId: string, artifactId: string, targetId:
           // TODO
           await addLetter(kingdomId, 'kingdom.espionage.subject', 'kingdom.espionage.message', from, batch, null);
           break;
-        case 'instant':
+        case 'battle':
           // this is done in the battle section
           break;
       }

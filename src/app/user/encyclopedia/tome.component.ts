@@ -17,7 +17,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
           </div>
           <div mat-line>{{ tome.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(tome.type)">{{ tome.description | translate }}</div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(tome.type)" [innerHTML]="tome.description | translate | icon:tome"></div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'structure', 'location', 'hero', 'item'].includes(tome.type)" [innerHTML]="tome.description | translate | icon:tome"></div>
           <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(tome.type)">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of tome.families" [src]="family.image">
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of tome.skills" [src]="skill.image">
@@ -37,6 +37,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       <div matSubheader>{{ 'user.tome.type' | translate }}:</div>
       <mat-chip-list>
         <mat-chip color="primary" selected><img class="icon" src="/assets/images/icons/type.png">{{ 'type.' + tome.type + '.name'  | translate }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="tome.subtype"><img class="icon" src="/assets/images/icons/type.png">{{ 'type.' + tome.subtype + '.name'  | translate }}</mat-chip>
         <mat-chip color="primary" selected *ngIf="tome.legendary" class="legendary"><img class="icon" src="/assets/images/icons/legendary.png">{{ 'category.legendary.name' | translate }}</mat-chip>
       </mat-chip-list>
     </div>

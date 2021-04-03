@@ -2,6 +2,7 @@
   {
     "id": "population",
     "type": "resource",
+    "subtype": null,
     "faction": "grey",
     "name": "resource.population.name",
     "description": "resource.population.description",
@@ -14,6 +15,7 @@
   {
     "id": "gold",
     "type": "resource",
+    "subtype": null,
     "faction": "grey",
     "name": "resource.gold.name",
     "description": "resource.gold.description",
@@ -26,6 +28,7 @@
   {
     "id": "mana",
     "type": "resource",
+    "subtype": null,
     "faction": "grey",
     "name": "resource.mana.name",
     "description": "resource.mana.description",
@@ -38,6 +41,7 @@
   {
     "id": "gem",
     "type": "resource",
+    "subtype": null,
     "faction": "grey",
     "name": "resource.gem.name",
     "description": "resource.gem.description",
@@ -50,6 +54,7 @@
   {
     "id": "turn",
     "type": "resource",
+    "subtype": null,
     "faction": "grey",
     "name": "resource.turn.name",
     "description": "resource.turn.description",
@@ -62,6 +67,7 @@
   {
     "id": "land",
     "type": "resource",
+    "subtype": null,
     "faction": "grey",
     "name": "resource.land.name",
     "description": "resource.land.description",

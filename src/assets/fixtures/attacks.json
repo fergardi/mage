@@ -1,17 +1,23 @@
 [
   {
+    "type": "attack",
+    "subtype": "battle",
     "id": "assault",
     "name": "attack.assault.name",
     "description": "attack.assault.description",
     "image": "/assets/images/attacks/assault.png"
   },
   {
+    "type": "attack",
+    "subtype": "battle",
     "id": "siege",
     "name": "attack.siege.name",
     "description": "attack.siege.description",
     "image": "/assets/images/attacks/siege.png"
   },
   {
+    "type": "attack",
+    "subtype": "battle",
     "id": "pillage",
     "name": "attack.pillage.name",
     "description": "attack.pillage.description",

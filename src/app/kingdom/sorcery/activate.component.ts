@@ -118,12 +118,12 @@ export class ActivateComponent implements OnInit {
       try {
         const artifact = this.selectedArtifact; // copy because the artifact may be the last one and gets deleted from server
         const activated = await this.apiService.activateArtifact(this.uid, this.selectedArtifact.fid, this.activation.kingdom ? this.activation.kingdom.fid : this.uid);
-        if (artifact.item.type === 'summon') this.notificationService.success('kingdom.activate.summon', activated);
-        if (artifact.item.type === 'resource') this.notificationService.success('kingdom.activate.resource', activated);
-        if (artifact.item.type === 'item') this.notificationService.success('kingdom.activate.item', activated);
-        if (artifact.item.type === 'spell') this.notificationService.success('kingdom.activate.spell', activated);
-        if (artifact.item.type === 'enchantment' && artifact.item.spells.length) this.notificationService.success('kingdom.activate.enchantment', activated);
-        if (artifact.item.type === 'enchantment' && !artifact.item.spells.length) this.notificationService.success('kingdom.dispel.success');
+        if (artifact.item.subtype === 'summon') this.notificationService.success('kingdom.activate.summon', activated);
+        if (artifact.item.subtype === 'resource') this.notificationService.success('kingdom.activate.resource', activated);
+        if (artifact.item.subtype === 'item') this.notificationService.success('kingdom.activate.item', activated);
+        if (artifact.item.subtype === 'spell') this.notificationService.success('kingdom.activate.spell', activated);
+        if (artifact.item.subtype === 'enchantment' && artifact.item.spells.length) this.notificationService.success('kingdom.activate.enchantment', activated);
+        if (artifact.item.subtype === 'enchantment' && !artifact.item.spells.length) this.notificationService.success('kingdom.dispel.success');
         this.close();
       } catch (error) {
         console.error(error);

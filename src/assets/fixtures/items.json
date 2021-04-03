@@ -1,7 +1,8 @@
 [
   {
+    "type": "item",
+    "subtype": "resource",
     "turns": 1,
-    "type": "resource",
     "image": "/assets/images/items/treasure-chest.png",
     "faction": "grey",
     "name": "item.treasure-chest.name",
@@ -22,8 +23,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 2,
-    "type": "summon",
     "image": "/assets/images/items/necronomicon.png",
     "faction": "grey",
     "name": "item.necronomicon.name",
@@ -44,8 +46,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 3,
-    "type": "summon",
     "image": "/assets/images/items/enchanted-lamp.png",
     "faction": "grey",
     "name": "item.enchanted-lamp.name",
@@ -66,8 +69,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "spell",
     "turns": 5,
-    "type": "spell",
     "image": "/assets/images/items/wisdom-tome.png",
     "faction": "grey",
     "name": "item.wisdom-tome.name",
@@ -88,8 +92,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 2,
-    "type": "summon",
     "image": "/assets/images/items/demon-horn.png",
     "faction": "grey",
     "name": "item.demon-horn.name",
@@ -110,8 +115,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 3,
-    "type": "summon",
     "image": "/assets/images/items/lightning-orb.png",
     "faction": "grey",
     "name": "item.lightning-orb.name",
@@ -132,8 +138,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 10,
-    "type": "summon",
     "image": "/assets/images/items/dragon-egg.png",
     "faction": "grey",
     "name": "item.dragon-egg.name",
@@ -154,8 +161,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "espionage",
     "turns": 1,
-    "type": "espionage",
     "image": "/assets/images/items/crystal-ball.png",
     "faction": "grey",
     "name": "item.crystal-ball.name",
@@ -176,8 +184,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/agility-potion.png",
     "faction": "grey",
     "name": "item.agility-potion.name",
@@ -198,8 +207,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/defense-potion.png",
     "faction": "grey",
     "name": "item.defense-potion.name",
@@ -220,8 +230,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 3,
-    "type": "summon",
     "image": "/assets/images/items/cold-orb.png",
     "faction": "grey",
     "name": "item.cold-orb.name",
@@ -242,8 +253,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 3,
-    "type": "summon",
     "image": "/assets/images/items/earth-orb.png",
     "faction": "grey",
     "name": "item.earth-orb.name",
@@ -264,8 +276,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 3,
-    "type": "summon",
     "image": "/assets/images/items/fire-orb.png",
     "faction": "grey",
     "name": "item.fire-orb.name",
@@ -286,8 +299,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/mana-potion.png",
     "faction": "grey",
     "name": "item.mana-potion.name",
@@ -308,8 +322,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 3,
-    "type": "summon",
     "image": "/assets/images/items/light-orb.png",
     "faction": "grey",
     "name": "item.light-orb.name",
@@ -330,8 +345,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/strength-potion.png",
     "faction": "grey",
     "name": "item.strength-potion.name",
@@ -352,8 +368,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "resource",
     "turns": 1,
-    "type": "resource",
     "image": "/assets/images/items/love-potion.png",
     "faction": "grey",
     "name": "item.love-potion.name",
@@ -374,8 +391,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/spider-web.png",
     "faction": "grey",
     "name": "item.spider-web.name",
@@ -396,8 +414,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 2,
-    "type": "summon",
     "image": "/assets/images/items/animal-fang.png",
     "faction": "grey",
     "name": "item.animal-fang.name",
@@ -418,8 +437,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 2,
-    "type": "summon",
     "image": "/assets/images/items/bone-necklace.png",
     "faction": "grey",
     "name": "item.bone-necklace.name",
@@ -440,8 +460,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/crown-thorns.png",
     "faction": "grey",
     "name": "item.crown-thorns.name",
@@ -462,8 +483,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "resource",
     "turns": 5,
-    "type": "resource",
     "image": "/assets/images/items/voodoo-doll.png",
     "faction": "grey",
     "name": "item.voodoo-doll.name",
@@ -484,8 +506,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "enchantment",
     "turns": 1,
-    "type": "enchantment",
     "image": "/assets/images/items/cursed-skull.png",
     "faction": "grey",
     "name": "item.cursed-skull.name",
@@ -506,8 +529,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "enchantment",
     "turns": 1,
-    "type": "enchantment",
     "image": "/assets/images/items/cursed-mask.png",
     "faction": "grey",
     "name": "item.cursed-mask.name",
@@ -528,8 +552,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "enchantment",
     "turns": 1,
-    "type": "enchantment",
     "image": "/assets/images/items/cursed-idol.png",
     "faction": "grey",
     "name": "item.cursed-idol.name",
@@ -550,8 +575,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 3,
-    "type": "summon",
     "image": "/assets/images/items/golem-book.png",
     "faction": "grey",
     "name": "item.golem-book.name",
@@ -572,8 +598,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "resource",
     "turns": 1,
-    "type": "resource",
     "image": "/assets/images/items/letter-thieves.png",
     "faction": "grey",
     "name": "item.letter-thieves.name",
@@ -594,8 +621,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "enchantment",
     "turns": 1,
-    "type": "enchantment",
     "image": "/assets/images/items/lucky-coin.png",
     "faction": "grey",
     "name": "item.lucky-coin.name",
@@ -616,8 +644,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "enchantment",
     "turns": 1,
-    "type": "enchantment",
     "image": "/assets/images/items/lucky-horseshoe.png",
     "faction": "grey",
     "name": "item.lucky-horseshoe.name",
@@ -638,8 +667,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "enchantment",
     "turns": 1,
-    "type": "enchantment",
     "image": "/assets/images/items/lucky-paw.png",
     "faction": "grey",
     "name": "item.lucky-paw.name",
@@ -660,8 +690,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 2,
-    "type": "summon",
     "image": "/assets/images/items/magic-beans.png",
     "faction": "grey",
     "name": "item.magic-beans.name",
@@ -682,8 +713,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "resource",
     "turns": 5,
-    "type": "resource",
     "image": "/assets/images/items/magic-compass.png",
     "faction": "grey",
     "name": "item.magic-compass.name",
@@ -704,8 +736,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/mana-vortex.png",
     "faction": "grey",
     "name": "item.mana-vortex.name",
@@ -726,8 +759,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "enchantment",
     "turns": 1,
-    "type": "enchantment",
     "image": "/assets/images/items/rattle.png",
     "faction": "grey",
     "name": "item.rattle.name",
@@ -748,8 +782,9 @@
     "legendary": true
   },
   {
+    "type": "item",
+    "subtype": "resource",
     "turns": 1,
-    "type": "resource",
     "image": "/assets/images/items/rotten-food.png",
     "faction": "grey",
     "name": "item.rotten-food.name",
@@ -770,8 +805,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 2,
-    "type": "summon",
     "image": "/assets/images/items/snake-eye.png",
     "faction": "grey",
     "name": "item.snake-eye.name",
@@ -792,8 +828,9 @@
     "legendary": false
   },
   {
-    "turns": 1,
     "type": "item",
+    "subtype": "item",
+    "turns": 1,
     "image": "/assets/images/items/treasure-map.png",
     "faction": "grey",
     "name": "item.treasure-map.name",
@@ -814,8 +851,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "summon",
     "turns": 2,
-    "type": "summon",
     "image": "/assets/images/items/valhalla-horn.png",
     "faction": "grey",
     "name": "item.valhalla-horn.name",
@@ -836,8 +874,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/fairy-wings.png",
     "faction": "grey",
     "name": "item.fairy-wings.name",
@@ -858,8 +897,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/vampire-teeth.png",
     "faction": "grey",
     "name": "item.vampire-teeth.name",
@@ -880,8 +920,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/holy-grenade.png",
     "faction": "grey",
     "name": "item.holy-grenade.name",
@@ -902,8 +943,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/powder-barrel.png",
     "faction": "grey",
     "name": "item.powder-barrel.name",
@@ -924,8 +966,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/vial-venom.png",
     "faction": "grey",
     "name": "item.vial-venom.name",
@@ -946,8 +989,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/ancient-rune.png",
     "faction": "grey",
     "name": "item.ancient-rune.name",
@@ -968,8 +1012,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/ice-stone.png",
     "faction": "grey",
     "name": "item.ice-stone.name",
@@ -990,8 +1035,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/fire-scroll.png",
     "faction": "grey",
     "name": "item.fire-scroll.name",
@@ -1012,8 +1058,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/cold-scroll.png",
     "faction": "grey",
     "name": "item.cold-scroll.name",
@@ -1034,8 +1081,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/light-scroll.png",
     "faction": "grey",
     "name": "item.light-scroll.name",
@@ -1056,8 +1104,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/earth-scroll.png",
     "faction": "grey",
     "name": "item.earth-scroll.name",
@@ -1078,8 +1127,9 @@
     "legendary": false
   },
   {
+    "type": "item",
+    "subtype": "battle",
     "turns": 0,
-    "type": "instant",
     "image": "/assets/images/items/lightning-scroll.png",
     "faction": "grey",
     "name": "item.lightning-scroll.name",

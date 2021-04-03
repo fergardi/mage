@@ -28,7 +28,7 @@ export enum CharmAssignmentType {
           </div>
           <div mat-line>{{ selectedCharm.spell.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(selectedCharm.spell.type)">{{ selectedCharm.spell.description | translate }}</div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(selectedCharm.spell.type)" [innerHTML]="selectedCharm.spell.description | translate | icon:selectedCharm.spell"></div>
+          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'item'].includes(selectedCharm.spell.type)" [innerHTML]="selectedCharm.spell.description | translate | icon:selectedCharm.spell"></div>
           <div mat-list-avatar [matBadge]="selectedCharm.spell.turnCost" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
@@ -45,7 +45,7 @@ export enum CharmAssignmentType {
                 </div>
                 <div mat-line>{{ selectedCharm.spell.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(selectedCharm.spell.type)">{{ selectedCharm.spell.description | translate }}</div>
-                <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(selectedCharm.spell.type)" [innerHTML]="selectedCharm.spell.description | translate | icon:selectedCharm.spell"></div>
+                <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'hero', 'item'].includes(selectedCharm.spell.type)" [innerHTML]="selectedCharm.spell.description | translate | icon:selectedCharm.spell"></div>
                 <div mat-list-avatar [matBadge]="selectedCharm.spell.turnCost" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
@@ -60,7 +60,7 @@ export enum CharmAssignmentType {
                 </div>
                 <div mat-line>{{ charm.spell.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(charm.spell.type)">{{ charm.spell.description | translate }}</div>
-                <div mat-line class="mat-card-subtitle" *ngIf="['sorcery', 'enchantment', 'instant', 'summon', 'structure', 'location', 'hero', 'item'].includes(charm.spell.type)" [innerHTML]="charm.spell.description | translate | icon:charm.spell"></div>
+                <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'hero', 'item'].includes(charm.spell.type)" [innerHTML]="charm.spell.description | translate | icon:charm.spell"></div>
                 <div mat-list-avatar [matBadge]="charm.spell.turnCost" matBadgePosition="above after">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
@@ -123,12 +123,12 @@ export class ConjureComponent implements OnInit {
       this.loadingService.startLoading();
       try {
         const conjured = await this.apiService.conjureCharm(this.uid, this.selectedCharm.fid, this.conjuration.kingdom ? this.conjuration.kingdom.fid : this.uid);
-        if (this.selectedCharm.spell.type === 'summon') this.notificationService.success('kingdom.conjure.summon', conjured);
-        if (this.selectedCharm.spell.type === 'resource') this.notificationService.success('kingdom.conjure.resource', conjured);
-        if (this.selectedCharm.spell.type === 'item') this.notificationService.success('kingdom.conjure.item', conjured);
-        if (this.selectedCharm.spell.type === 'spell') this.notificationService.success('kingdom.conjure.spell', conjured);
-        if (this.selectedCharm.spell.type === 'enchantment' && !this.selectedCharm.spell.multiple) this.notificationService.success('kingdom.conjure.enchantment', conjured);
-        if (this.selectedCharm.spell.type === 'enchantment' && this.selectedCharm.spell.multiple) this.notificationService.success('kingdom.dispel.success');
+        if (this.selectedCharm.spell.subtype === 'summon') this.notificationService.success('kingdom.conjure.summon', conjured);
+        if (this.selectedCharm.spell.subtype === 'resource') this.notificationService.success('kingdom.conjure.resource', conjured);
+        if (this.selectedCharm.spell.subtype === 'item') this.notificationService.success('kingdom.conjure.item', conjured);
+        if (this.selectedCharm.spell.subtype === 'spell') this.notificationService.success('kingdom.conjure.spell', conjured);
+        if (this.selectedCharm.spell.subtype === 'enchantment' && !this.selectedCharm.spell.multiple) this.notificationService.success('kingdom.conjure.enchantment', conjured);
+        if (this.selectedCharm.spell.subtype === 'enchantment' && this.selectedCharm.spell.multiple) this.notificationService.success('kingdom.dispel.success');
         this.close();
       } catch (error) {
         console.error(error);
