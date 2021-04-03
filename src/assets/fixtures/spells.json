@@ -2427,7 +2427,7 @@
     "resources": ["+population", "/turn"],
     "heroes": [],
     "items": [],
-    "level": 1,
+    "level": 5,
     "amount": [0.25],
     "turnCost": 8,
     "turnResearch": 30000,

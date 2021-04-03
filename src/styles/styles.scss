@@ -527,15 +527,16 @@ hr {
   }
 }
 
-.mat-list-base.dotted {
-  padding-top: 0;
-  border: 2px dashed $primary-color;
-}
 .mat-list {
   min-height: $list-item-height;
-  max-height: ($list-item-height * 5) + 4;
+  max-height: ($list-item-height * 5);
   overflow: hidden auto;
   box-sizing: border-box;
+  &.dotted {
+    padding-top: 0;
+    border: 2px dashed $primary-color;
+    max-height: ($list-item-height * 5) + 4;
+  }
   .mat-list-item {
     min-height: $list-item-height !important;
     max-height: $list-item-height !important;

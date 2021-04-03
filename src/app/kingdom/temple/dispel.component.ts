@@ -3,6 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { LoadingService } from 'src/app/services/loading.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-dispel',
@@ -47,12 +49,15 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 export class DispelComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomMana: any = this.store.selectSnapshot(AuthState.getKingdomMana);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public enchantment: any,
     private dialogRef: MatDialogRef<DispelComponent>,
     private notificationService: NotificationService,
     private store: Store,
+    private loadingService: LoadingService,
+    private apiService: ApiService,
   ) { }
 
   ngOnInit(): void {
@@ -62,8 +67,22 @@ export class DispelComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  dispel(): void {
-    this.dialogRef.close();
+  async dispel() {
+    if (this.enchantment.spell.manaCost <= this.kingdomMana.quantity) {
+      this.loadingService.startLoading();
+      try {
+        const dispelled = await this.apiService.dispelEnchantment(this.uid, this.enchantment.fid);
+        this.notificationService.success('kingdom.dispel.success');
+        // this.notificationService.success('kingdom.dispel.failure');
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.dispel.error');
+      }
+      this.loadingService.stopLoading();
+    } else {
+      this.notificationService.error('kingdom.dispel.error');
+    }
   }
 
 }

@@ -5,7 +5,7 @@
     "previousPageLabel": "Anterior página",
     "firstPageLabel": "Primera página",
     "lastPageLabel": "Última página",
-    "rangeLabelIntl": "{{ start }} a {{ end }} de {{ length }}"
+    "rangeLabelIntl": "Mostrando {{ start }} a {{ end }} de {{ length }}"
   },
   "dateformat": {
     "long": "dd/MM/yyyy HH:mm:ss",
@@ -226,7 +226,7 @@
       "description": ""
     },
     "item": {
-      "name": "Objeto",
+      "name": "Artefacto",
       "description": ""
     }
   },
@@ -343,7 +343,7 @@
       "description": "Gestiona tus tropas",
       "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
       "max": "Max",
-      "maximum": "No caben más tropas",
+      "maximum": "No puedes superar el máximo",
       "success": "Los cambios de tus tropas se han guardado",
       "error": "Ha ocurrido un problema"
     },
@@ -448,7 +448,7 @@
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
       "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás completar investigaciones pendientes para desbloquear nuevos hechizos, invirtiendo Turnos. Para lanzar hechizos agresivos, hazlo desde el Censo.",
-      "maximum": "No caben mas hechizos o artefactos",
+      "maximum": "No puedes superar el máximo",
       "success": "Tus hechizos y artefactos han sido asignados",
       "max": "Max"
     },
@@ -561,7 +561,8 @@
       "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores. Puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos. Los héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
       "success": "Tus héroes han sido asignados",
       "error": "Ha ocurrido un problema",
-      "max": "Max"
+      "max": "Max",
+      "maximum": "No puedes superar el máximo"
     },
     "archive": {
       "name": "Archivo",

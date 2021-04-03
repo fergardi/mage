@@ -111,6 +111,7 @@ api.get('/kingdom/:kingdomId/sorcery/charm/:charmId/assign/:assignmentId', ash(a
 api.get('/kingdom/:kingdomId/sorcery/artifact/:artifactId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignArtifact(req.params.kingdomId, req.params.artifactId, req.params.assignmentId))));
 api.get('/kingdom/:kingdomId/auction/:auctionId/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdomId, req.params.auctionId, parseInt(req.params.gold)))));
 api.get('/kingdom/:kingdomId/temple/:godId/offer/:resource', ash(async (req: any, res: any) => res.json(await offerGod(req.params.kingdomId, req.params.godId, parseInt(req.params.resource)))));
+api.delete('/kingdom/:kingdomId/temple/:enchantmentId', ash(async (req: any, res: any) => res.json(await dispelEnchantment(req.params.kingdomId, req.params.enchantmentId))));
 api.get('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
 api.get('/kingdom/:kingdomId/tavern/:contractId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignContract(req.params.kingdomId, req.params.contractId, parseInt(req.params.assignmentId)))));
 api.get('/kingdom/:kingdomId/tavern/:contractId/discharge', ash(async (req: any, res: any) => res.json(await dischargeContract(req.params.kingdomId, req.params.contractId))));
@@ -1273,4 +1274,23 @@ const offerGod = async (kingdomId: string, godId: string, sacrifice: number) => 
       return result;
     } else throw new Error('api.error.offer');
   } else throw new Error('api.error.offer');
+}
+
+/**
+ * tries to dispel an enchantment
+ * @param kingdomId
+ * @param enchantmentId
+ */
+const dispelEnchantment = async (kingdomId: string, enchantmentId: string) => {
+  const kingdomEnchantmentRef = angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`);
+  /*
+  const kingdomEnchantment = (await kingdomEnchantmentRef.get()).data();
+  if (kingdomEnchantment?.from !== kingdomId) {
+    const targetKingdom = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
+    const sourceKingdom = (await angularFirestore.doc(`kingdoms/${kingdomEnchantment?.from}`).get()).data();
+     // TODO
+  }
+  */
+  await kingdomEnchantmentRef.delete();
+  return { success: true };
 }
