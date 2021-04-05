@@ -20,7 +20,8 @@
     "manaMaintenance": 110,
     "populationMaintenance": 0,
     "power": 25000,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [2, 3],
     "legendary": false
   },
   {
@@ -44,7 +45,8 @@
     "manaMaintenance": 0.3,
     "populationMaintenance": 0.2,
     "power": 190,
-    "amount": [1, 1000],
+    "level": 2,
+    "amount": [50, 100],
     "legendary": false
   },
   {
@@ -68,7 +70,8 @@
     "manaMaintenance": 125,
     "populationMaintenance": 180,
     "power": 165000,
-    "amount": [1, 1000],
+    "level": 5,
+    "amount": [1, 1],
     "legendary": true
   },
   {
@@ -92,7 +95,8 @@
     "manaMaintenance": 120,
     "populationMaintenance": 70,
     "power": 80000,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [1, 3],
     "legendary": true
   },
   {
@@ -116,7 +120,8 @@
     "manaMaintenance": 0.1,
     "populationMaintenance": 0.03,
     "power": 35,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [100, 500],
     "legendary": false
   },
   {
@@ -140,7 +145,8 @@
     "manaMaintenance": 5,
     "populationMaintenance": 2.5,
     "power": 2000,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [5, 10],
     "legendary": false
   },
   {
@@ -164,7 +170,8 @@
     "manaMaintenance": 0.01,
     "populationMaintenance": 0,
     "power": 10,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -188,7 +195,8 @@
     "manaMaintenance": 2.5,
     "populationMaintenance": 5,
     "power": 2000,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [5, 10],
     "legendary": false
   },
   {
@@ -212,7 +220,8 @@
     "manaMaintenance": 0.3,
     "populationMaintenance": 1,
     "power": 200,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [10, 20],
     "legendary": false
   },
   {
@@ -236,7 +245,8 @@
     "manaMaintenance": 0.02,
     "populationMaintenance": 0,
     "power": 15,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [500, 1000],
     "legendary": false
   },
   {
@@ -260,7 +270,8 @@
     "manaMaintenance": 100,
     "populationMaintenance": 360,
     "power": 165000,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1, 1],
     "legendary": true
   },
   {
@@ -284,7 +295,8 @@
     "manaMaintenance": 0.02,
     "populationMaintenance": 0,
     "power": 40,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [100, 500],
     "legendary": false
   },
   {
@@ -308,7 +320,8 @@
     "manaMaintenance": 5,
     "populationMaintenance": 0,
     "power": 1700,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [5, 10],
     "legendary": false
   },
   {
@@ -332,7 +345,8 @@
     "manaMaintenance": 0.15,
     "populationMaintenance": 0,
     "power": 90,
-    "amount": [1, 1000],
+    "level": 2,
+    "amount": [50, 100],
     "legendary": false
   },
   {
@@ -356,7 +370,8 @@
     "manaMaintenance": 82,
     "populationMaintenance": 0,
     "power": 22000,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [2, 3],
     "legendary": false
   },
   {
@@ -380,7 +395,8 @@
     "manaMaintenance": 0.1,
     "populationMaintenance": 0,
     "power": 50,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [100, 500],
     "legendary": false
   },
   {
@@ -404,7 +420,8 @@
     "manaMaintenance": 0.25,
     "populationMaintenance": 0,
     "power": 200,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [10, 20],
     "legendary": false
   },
   {
@@ -428,7 +445,8 @@
     "manaMaintenance": 150,
     "populationMaintenance": 0,
     "power": 50000,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [1, 3],
     "legendary": true
   },
   {
@@ -452,7 +470,8 @@
     "manaMaintenance": 0.03,
     "populationMaintenance": 0,
     "power": 70,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [100, 500],
     "legendary": false
   },
   {
@@ -476,7 +495,8 @@
     "manaMaintenance": 0.3,
     "populationMaintenance": 0,
     "power": 180,
-    "amount": [1, 1000],
+    "level": 2,
+    "amount": [50, 100],
     "legendary": false
   },
   {
@@ -500,7 +520,8 @@
     "manaMaintenance": 1.8,
     "populationMaintenance": 0,
     "power": 425,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [10, 20],
     "legendary": false
   },
   {
@@ -524,7 +545,8 @@
     "manaMaintenance": 0.25,
     "populationMaintenance": 0,
     "power": 190,
-    "amount": [1, 1000],
+    "level": 2,
+    "amount": [50, 100],
     "legendary": false
   },
   {
@@ -548,7 +570,8 @@
     "manaMaintenance": 0.15,
     "populationMaintenance": 0,
     "power": 65,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [100, 500],
     "legendary": false
   },
   {
@@ -572,7 +595,8 @@
     "manaMaintenance": 0.01,
     "populationMaintenance": 0,
     "power": 10,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -596,7 +620,8 @@
     "manaMaintenance": 100,
     "populationMaintenance": 360,
     "power": 165000,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1, 1],
     "legendary": true
   },
   {
@@ -620,7 +645,8 @@
     "manaMaintenance": 0.3,
     "populationMaintenance": 0,
     "power": 160,
-    "amount": [1, 1000],
+    "level": 2,
+    "amount": [50, 100],
     "legendary": false
   },
   {
@@ -644,7 +670,8 @@
     "manaMaintenance": 0.12,
     "populationMaintenance": 0,
     "power": 70,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [100, 500],
     "legendary": false
   },
   {
@@ -668,7 +695,8 @@
     "manaMaintenance": 1,
     "populationMaintenance": 0,
     "power": 450,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [10, 20],
     "legendary": false
   },
   {
@@ -692,7 +720,8 @@
     "manaMaintenance": 72,
     "populationMaintenance": 0,
     "power": 22000,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [2, 3],
     "legendary": false
   },
   {
@@ -716,7 +745,8 @@
     "manaMaintenance": 5,
     "populationMaintenance": 0,
     "power": 2700,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [5, 10],
     "legendary": true
   },
   {
@@ -740,7 +770,8 @@
     "manaMaintenance": 1.3,
     "populationMaintenance": 0,
     "power": 400,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [10, 20],
     "legendary": false
   },
   {
@@ -764,7 +795,8 @@
     "manaMaintenance": 0.25,
     "populationMaintenance": 0.2,
     "power": 170,
-    "amount": [1, 1000],
+    "level": 2,
+    "amount": [50, 100],
     "legendary": false
   },
   {
@@ -788,7 +820,8 @@
     "manaMaintenance": 0,
     "populationMaintenance": 100,
     "power": 18500,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [1, 3],
     "legendary": false
   },
   {
@@ -812,7 +845,8 @@
     "manaMaintenance": 75,
     "populationMaintenance": 0,
     "power": 21000,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [2, 3],
     "legendary": false
   },
   {
@@ -836,7 +870,8 @@
     "manaMaintenance": 0.03,
     "populationMaintenance": 0,
     "power": 35,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [100, 500],
     "legendary": false
   },
   {
@@ -860,7 +895,8 @@
     "manaMaintenance": 0.23,
     "populationMaintenance": 0,
     "power": 200,
-    "amount": [1, 1000],
+    "level": 2,
+    "amount": [50, 100],
     "legendary": false
   },
   {
@@ -884,7 +920,8 @@
     "manaMaintenance": 0.01,
     "populationMaintenance": 0,
     "power": 10,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -908,7 +945,8 @@
     "manaMaintenance": 150,
     "populationMaintenance": 0,
     "power": 37000,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [1, 3],
     "legendary": true
   },
   {
@@ -932,7 +970,8 @@
     "manaMaintenance": 50,
     "populationMaintenance": 180,
     "power": 165000,
-    "amount": [1, 1000],
+    "level": 5,
+    "amount": [1, 1],
     "legendary": true
   },
   {
@@ -956,7 +995,8 @@
     "manaMaintenance": 1.3,
     "populationMaintenance": 0,
     "power": 400,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [10, 20],
     "legendary": false
   },
   {
@@ -980,7 +1020,8 @@
     "manaMaintenance": 145,
     "populationMaintenance": 0,
     "power": 40000,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [1, 3],
     "legendary": true
   },
   {
@@ -1004,7 +1045,8 @@
     "manaMaintenance": 100,
     "populationMaintenance": 360,
     "power": 165000,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1, 1],
     "legendary": true
   },
   {
@@ -1028,7 +1070,8 @@
     "manaMaintenance": 1.6,
     "populationMaintenance": 0,
     "power": 400,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [10, 20],
     "legendary": false
   },
   {
@@ -1052,7 +1095,8 @@
     "manaMaintenance": 0.02,
     "populationMaintenance": 0,
     "power": 25,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [500, 1000],
     "legendary": false
   },
   {
@@ -1076,7 +1120,8 @@
     "manaMaintenance": 70,
     "populationMaintenance": 0,
     "power": 19500,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [2, 3],
     "legendary": false
   },
   {
@@ -1100,7 +1145,8 @@
     "manaMaintenance": 100,
     "populationMaintenance": 0,
     "power": 50000,
-    "amount": [1, 1000],
+    "level": 4,
+    "amount": [1, 3],
     "legendary": true
   },
   {
@@ -1124,7 +1170,8 @@
     "manaMaintenance": 0.04,
     "populationMaintenance": 0,
     "power": 15,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [500, 1000],
     "legendary": false
   },
   {
@@ -1148,7 +1195,8 @@
     "manaMaintenance": 0.08,
     "populationMaintenance": 0,
     "power": 60,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [100, 500],
     "legendary": false
   },
   {
@@ -1172,7 +1220,8 @@
     "manaMaintenance": 0.01,
     "populationMaintenance": 0,
     "power": 15,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [500, 1000],
     "legendary": false
   },
   {
@@ -1196,7 +1245,8 @@
     "manaMaintenance": 0.04,
     "populationMaintenance": 0,
     "power": 30,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [500, 1000],
     "legendary": false
   },
   {
@@ -1220,7 +1270,8 @@
     "manaMaintenance": 0,
     "populationMaintenance": 0,
     "power": 20,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [500, 1000],
     "legendary": false
   },
   {
@@ -1244,7 +1295,8 @@
     "manaMaintenance": 0.02,
     "populationMaintenance": 0,
     "power": 15,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -1268,7 +1320,8 @@
     "manaMaintenance": 0,
     "populationMaintenance": 0,
     "power": 10,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -1292,7 +1345,8 @@
     "manaMaintenance": 0,
     "populationMaintenance": 0,
     "power": 10,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -1316,7 +1370,8 @@
     "manaMaintenance": 0,
     "populationMaintenance": 0,
     "power": 15,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -1330,7 +1385,7 @@
     "categories": ["melee"],
     "resistances": [],
     "skills": [],
-    "families": ["animal"],
+    "families": ["animal", "reptile"],
     "initiative": 1,
     "attack": 10,
     "defense": 0,
@@ -1340,7 +1395,8 @@
     "manaMaintenance": 0.3,
     "populationMaintenance": 0.001,
     "power": 1,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -1364,7 +1420,8 @@
     "manaMaintenance": 0.05,
     "populationMaintenance": 0.001,
     "power": 1,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -1388,7 +1445,8 @@
     "manaMaintenance": 0.2,
     "populationMaintenance": 0.001,
     "power": 1,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -1412,7 +1470,8 @@
     "manaMaintenance": 0.1,
     "populationMaintenance": 0.002,
     "power": 1,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -1436,7 +1495,8 @@
     "manaMaintenance": 0.05,
     "populationMaintenance": 0.001,
     "power": 1,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [1000, 2000],
     "legendary": false
   },
   {
@@ -1460,7 +1520,8 @@
     "manaMaintenance": 0.1,
     "populationMaintenance": 0,
     "power": 100,
-    "amount": [1, 1000],
+    "level": 2,
+    "amount": [50, 100],
     "legendary": false
   },
   {
@@ -1484,7 +1545,8 @@
     "manaMaintenance": 0.02,
     "populationMaintenance": 0,
     "power": 50,
-    "amount": [1, 1000],
+    "level": 1,
+    "amount": [100, 500],
     "legendary": false
   },
   {
@@ -1508,7 +1570,8 @@
     "manaMaintenance": 10,
     "populationMaintenance": 0,
     "power": 2000,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [5, 10],
     "legendary": true
   },
   {
@@ -1532,7 +1595,8 @@
     "manaMaintenance": 5,
     "populationMaintenance": 0,
     "power": 1000,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [5, 10],
     "legendary": false
   },
   {
@@ -1556,7 +1620,8 @@
     "manaMaintenance": 1,
     "populationMaintenance": 1,
     "power": 450,
-    "amount": [1, 1000],
+    "level": 3,
+    "amount": [10, 20],
     "legendary": false
   }
 ]

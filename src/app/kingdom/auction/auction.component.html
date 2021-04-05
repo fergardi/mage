@@ -34,7 +34,7 @@
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
                 <mat-list-item [ngClass]="[auction.join.faction.id, auction.join.legendary ? 'legendary' : 'common']">
-                  <div mat-list-avatar [matBadge]="(auction.quantity || auction.level) | short" matBadgePosition="above before">
+                  <div mat-list-avatar [matBadge]="(auction.quantity || auction.level || auction.spell.level) | short" matBadgePosition="above before">
                     <img mat-list-avatar [src]="auction.join.image">
                   </div>
                   <div mat-line>{{ auction.join.name | translate:{name:auction.name} }}</div>

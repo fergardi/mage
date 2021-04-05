@@ -322,6 +322,11 @@ body {
   padding: 8px 0 !important;
 }
 
+.mat-subheader,
+.mat-card-subtitle {
+  font-style: italic;
+}
+
 hr {
   border-color: $primary-color;
 }
