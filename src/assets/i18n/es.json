@@ -114,7 +114,8 @@
       "error": "Ha ocurrido un problema",
       "unauthorized": "Debes autenticarte para continuar",
       "tour": "Tutorial",
-      "auth/email-already-in-use": "Ese correo electrónico ya está en uso"
+      "auth/email-already-in-use": "Ese correo electrónico ya está en uso",
+      "status": "Estado"
     },
     "login": {
       "name": "Acceso",
@@ -791,28 +792,28 @@
   "resource": {
     "population": {
       "name": "Población",
-      "description": "Cuantas más personas más Oro produces"
+      "description": "Súbditos que dependen de tu reinado"
     },
     "gold": {
       "name": "Oro",
-      "description": "Principal moneda del reino"
+      "description": "Principal moneda de tu reino"
     },
     "mana": {
       "name": "Maná",
-      "description": "Empleado en el pago de hechizos"
+      "description": "Esencia etérea relacionada con la magia"
     },
     "gem": {
       "name": "Gemas",
-      "description": "Algún uso tendrán..."
+      "description": "Minerales preciosos y muy escasos"
     },
     "turn": {
       "name": "Turnos",
-      "description": "Representan el paso del tiempo",
+      "description": "Representación del inexorable paso del tiempo",
       "ratio": " / turno"
     },
     "land": {
       "name": "Tierras",
-      "description": "Espacio libre para la construcción"
+      "description": "Espacio libre para la construcción de tu reino"
     }
   },
   "card": {

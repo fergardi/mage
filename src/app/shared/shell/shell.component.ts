@@ -14,6 +14,8 @@ import { DomService } from 'src/app/services/dom.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthState } from '../auth/auth.state';
 import { NotificationService } from 'src/app/services/notification.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { StatusComponent } from './status.component';
 
 @Component({
   selector: 'app-shell',
@@ -80,6 +82,7 @@ export class ShellComponent implements OnInit {
     private domService: DomService,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
+    private bottomSheet: MatBottomSheet,
   ) {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));
@@ -129,6 +132,12 @@ export class ShellComponent implements OnInit {
 
   logout() {
     this.store.dispatch(new LogoutAction());
+  }
+
+  status() {
+    const sheetRef = this.bottomSheet.open(StatusComponent, {
+      data: this.kingdomSupplies$,
+    });
   }
 
 }

@@ -32,6 +32,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 import { TourMatMenuModule } from 'ngx-tour-md-menu';
 import { NgxCurrencyModule, CurrencyMaskInputMode } from 'ngx-currency';
@@ -44,6 +45,7 @@ import { LongPipe } from '../pipes/long.pipe';
 import { LegendaryPipe } from '../pipes/legendary.pipe';
 import { TurnPipe } from '../pipes/turn.pipe';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { StatusComponent } from './shell/status.component';
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
@@ -92,11 +94,13 @@ const modules = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatProgressSpinnerModule,
+  MatBottomSheetModule,
 ];
 
 @NgModule({
   declarations: [
     ...components,
+    StatusComponent,
   ],
   imports: [
     ...modules,
