@@ -71,10 +71,10 @@ describe('ArchiveComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should OPEN the REPORT dialog', async () => {
+  it('should OPEN the REPORT dialog', () => {
     const report = { message: null };
     spyOn(MatDialogStub, 'open');
-    await component.openReportDialog(report);
+    component.openReportDialog(report);
     expect(MatDialogStub.open).toHaveBeenCalledWith(ReportComponent, { panelClass: 'dialog-responsive', data: report });
   });
 

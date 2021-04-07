@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     public tourService: TourService,
     public loadingService: LoadingService,
   ) {
-    this.firebaseService.joinFixtures([
+    this.firebaseService.loadFixtures([
       // FixtureType.FACTIONS,
       // FixtureType.ATTACKS,
       // FixtureType.CATEGORIES,

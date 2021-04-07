@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync, inject, fakeAsync } from '@ang
 import { ShellComponent } from './shell.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireAuthStub, StoreStub, MapboxServiceStub, AngularFirestoreStub, NotificationServiceStub } from 'src/stubs';
+import { AngularFireAuthStub, StoreStub, MapboxServiceStub, AngularFirestoreStub, NotificationServiceStub, MatBottomSheetStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -24,6 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
+import { MatBottomSheetModule, MatBottomSheet } from '@angular/material/bottom-sheet';
+import { StatusComponent } from './status.component';
 
 describe('ShellComponent', () => {
   let component: ShellComponent;
@@ -44,6 +46,7 @@ describe('ShellComponent', () => {
         MatIconModule,
         MatButtonModule,
         MatSelectModule,
+        MatBottomSheetModule,
       ],
       declarations: [
         ShellComponent,
@@ -57,6 +60,7 @@ describe('ShellComponent', () => {
         { provide: Store, useValue: StoreStub },
         { provide: MapboxService, useValue: MapboxServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
+        { provide: MatBottomSheet, useValue: MatBottomSheetStub },
       ],
     })
     .compileComponents();
@@ -101,6 +105,12 @@ describe('ShellComponent', () => {
 
   it('should START the TOUR', () => {
     component.tour();
+  });
+
+  it('should OPEN the STATUS sheet', async () => {
+    spyOn(MatBottomSheetStub, 'open');
+    component.openStatusSheet();
+    expect(MatBottomSheetStub.open).toHaveBeenCalledWith(StatusComponent, { data: component.kingdomSupplies$ });
   });
 
 });

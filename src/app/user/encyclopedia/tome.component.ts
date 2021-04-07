@@ -61,6 +61,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
         <mat-chip color="primary" selected *ngIf="tome.turnCost > 0"><img class="icon" src="/assets/images/resources/turn.png">{{ 'user.tome.turnCost' | translate:{ number: tome.turnCost | long } }}</mat-chip>
       </mat-chip-list>
     </div>
+    <div mat-dialog-content *ngIf="tome.goldProduction || tome.manaProduction || tome.populationProduction">
+      <div matSubheader>{{ 'user.tome.production' | translate }}:</div>
+      <mat-chip-list>
+        <mat-chip color="primary" selected *ngIf="tome.goldProduction > 0"><img class="icon" src="/assets/images/resources/gold.png">{{ 'user.tome.goldProduction' | translate:{ number: tome.goldProduction | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="tome.manaProduction > 0"><img class="icon" src="/assets/images/resources/mana.png">{{ 'user.tome.manaProduction' | translate:{ number: tome.manaProduction | long } }}</mat-chip>
+        <mat-chip color="primary" selected *ngIf="tome.populationProduction > 0"><img class="icon" src="/assets/images/resources/population.png">{{ 'user.tome.populationProduction' | translate:{ number: tome.populationProduction | long } }}</mat-chip>
+      </mat-chip-list>
+    </div>
     <div mat-dialog-content *ngIf="tome.goldMaintenance || tome.manaMaintenance || tome.populationMaintenance">
       <div matSubheader>{{ 'user.tome.maintenances' | translate }}:</div>
       <mat-chip-list>

@@ -134,7 +134,7 @@ export class ShellComponent implements OnInit {
     this.store.dispatch(new LogoutAction());
   }
 
-  status() {
+  openStatusSheet() {
     const sheetRef = this.bottomSheet.open(StatusComponent, {
       data: this.kingdomSupplies$,
     });

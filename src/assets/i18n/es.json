@@ -152,6 +152,9 @@
       "goldMaintenance": "{{ number }} al turno",
       "manaMaintenance": "{{ number }} al turno",
       "populationMaintenance": "{{ number }} al turno",
+      "goldProduction": "{{ number }} al turno",
+      "manaProduction": "{{ number }} al turno",
+      "populationProduction": "{{ number }} al turno",
       "attack": "Ataque {{ number }}",
       "defense": "Defensa {{ number }}",
       "health": "Salud {{ number }}",
@@ -161,6 +164,7 @@
       "statistics": "Estadísticas",
       "maintenances": "Mantenimientos",
       "costs": "Costes",
+      "production": "Producción",
       "characteristics": "Características",
       "topic": "Tema"
     }
@@ -409,7 +413,7 @@
     },
     "dispel": {
       "name": "Desvanecimiento",
-      "description": "Romper encantamientos",
+      "description": "Rompe encantamientos",
       "help": "Aqui puedes gastar Maná para rezar y tratar de romper un encantamiento de tu propio reino (verde) o de un reino enemigo (rojo). Si el encantamiento es de un enemigo, el éxito al romperlo dependerá de su protección mágica.",
       "hint": "Debes tener suficiente Maná",
       "invalid": "No tienes suficiente Maná",
@@ -1720,83 +1724,83 @@
   "hero": {
     "dragon-rider": {
       "name": "Jinete de Dragones",
-      "description": "Aumenta el daño de <dragon> +2% por nivel"
+      "description": "Aumenta el daño de <dragon> por nivel"
     },
     "demon-prince": {
       "name": "Príncipe Demonio",
-      "description": "Aumenta el daño de <demon> +2% por nivel"
+      "description": "Aumenta el daño de <demon> por nivel"
     },
     "commander": {
       "name": "Comandante General",
-      "description": "Aumenta la defensa de <human> +2% por nivel"
+      "description": "Aumenta la defensa de <human> por nivel"
     },
     "trader": {
       "name": "Gran Comerciante",
-      "description": "Generas +1% <gold> al <turn> por nivel"
+      "description": "Generas <gold> al <turn> por nivel"
     },
     "beast-master": {
       "name": "Señor de las Bestias",
-      "description": "Aumenta la salud de <animal> y <reptile> +2% por nivel"
+      "description": "Aumenta la salud de <animal> y <reptile> por nivel"
     },
     "shaman": {
       "name": "Chamán Místico",
-      "description": "Generas +1% <mana> al <turn> por nivel"
+      "description": "Generas <mana> al <turn> por nivel"
     },
     "elementalist": {
       "name": "Elementalista Exiliado",
-      "description": "Aumenta el daño de <elemental> +2% por nivel"
+      "description": "Aumenta el daño de <elemental> por nivel"
     },
     "sage": {
       "name": "Sabio Erudito",
-      "description": "Reduce investigaciones -1% <turn> por nivel"
+      "description": "Reduce investigaciones <turn> por nivel"
     },
     "necrophage": {
       "name": "Necrófago Jefe",
-      "description": "Aumenta el daño de <undead> +2% por nivel"
+      "description": "Aumenta el daño de <undead> por nivel"
     },
     "necromancer": {
       "name": "Nigromante Putrefacto",
-      "description": "Generas +1% <population> al <turn> por nivel"
+      "description": "Generas <population> al <turn> por nivel"
     },
     "engineer": {
       "name": "Ingeniero Constructor",
-      "description": "Aumenta el ratio de construcción +1 por nivel"
+      "description": "Aumenta el ratio de construcción por nivel"
     },
     "crypt-keeper": {
       "name": "Guardián de la Cripta",
-      "description": "Resucita +1% por nivel de tus tropas muertas"
+      "description": "Resucita tus tropas muertas en batalla por nivel"
     },
     "orc-king": {
       "name": "Rey de los Orcos",
-      "description": "Aumenta el daño de <orkish> +2% por nivel"
+      "description": "Aumenta el daño de <orkish> por nivel"
     },
     "leprechaunt": {
       "name": "Leprechaunt Avaricioso",
-      "description": "Aumenta la probabilidad de encontrar artefactos +1% por nivel"
+      "description": "Aumenta la probabilidad de encontrar artefactos por nivel"
     },
     "golem-golem": {
       "name": "Gólem de Gólems",
-      "description": "Aumenta el ataque, defensa y vida de <golem> y <giant> +2% por nivel"
+      "description": "Aumenta el ataque, defensa y vida de <golem> y <giant> por nivel"
     },
     "illusionist": {
       "name": "Ilusionista Congelado",
-      "description": "Inflige a cada tropa enemiga 1.000 daño de <cold> por nivel"
+      "description": "Inflige a cada tropa enemiga daño de <cold> por nivel"
     },
     "soul-reaper": {
       "name": "Segador de Almas",
-      "description": "Inflige a cada tropa enemiga 1.000 daño de <lightning> por nivel"
+      "description": "Inflige a cada tropa enemiga daño de <lightning> por nivel"
     },
     "swamp-thing": {
       "name": "Monstruo del Pantano",
-      "description": "Inflige a cada tropa enemiga 1.000 daño de <poison> por nivel"
+      "description": "Inflige a cada tropa enemiga daño de <poison> por nivel"
     },
     "pyromancer": {
       "name": "Piromante Abrasado",
-      "description": "Inflige a cada tropa enemiga 1.000 daño de <fire> por nivel"
+      "description": "Inflige a cada tropa enemiga daño de <fire> por nivel"
     },
     "colossus": {
       "name": "Coloso Imponente",
-      "description": "Inflige a cada tropa enemiga 1.000 daño de <holy> por nivel"
+      "description": "Inflige a cada tropa enemiga daño de <holy> por nivel"
     }
   },
   "item": {

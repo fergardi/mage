@@ -42,6 +42,10 @@ export const DialogRefStub: any = {
   close: () => null,
 };
 
+export const BottomSheetRefStub: any = {
+  close: () => null,
+};
+
 export const ApiServiceStub: any = {
   taxGold: () => null,
   disbandTroop: () => null,
@@ -62,6 +66,9 @@ export const ApiServiceStub: any = {
   buyEmporium: () => null,
   sendLetter: () => null,
   foundateClan: () => null,
+  assignCharm: () => null,
+  assignArtifact: () => null,
+  dispelEnchantment: () => null,
 };
 
 export const CacheServiceStub: any = {
@@ -84,6 +91,14 @@ export const CacheServiceStub: any = {
 };
 
 export const MatDialogStub: any = {
+  open() {
+    return {
+      afterClosed: () => of({action: true}),
+    };
+  },
+};
+
+export const MatBottomSheetStub: any = {
   open() {
     return {
       afterClosed: () => of({action: true}),
@@ -158,6 +173,10 @@ export const MapboxServiceStub: any = {
   addBot: () => null,
   populateMap: () => Promise.resolve(null),
   clearMarkers: () => null,
+};
+
+export const FirebaseServiceStub: any = {
+  loadFixtures: () => null,
 };
 
 export class DragDropEventFactory<T> {

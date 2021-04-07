@@ -13,7 +13,10 @@ module.exports = function (config) {
       require('karma-sonarqube-unit-reporter'),
     ],
     client: {
-      clearContext: false
+      clearContext: false,
+      jasmine: {
+        random: false,
+      },
     },
     files: [
       { pattern: 'src/styles/styles.scss' },

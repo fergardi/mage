@@ -7,6 +7,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { routes } from './app-routing.module';
 import { FirebaseService } from './services/firebase.service';
+import { FirebaseServiceStub } from 'src/stubs';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -24,6 +25,7 @@ describe('AppComponent', () => {
       ],
       providers: [
         TourService,
+        { provide: FirebaseService, useValue: FirebaseServiceStub },
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,

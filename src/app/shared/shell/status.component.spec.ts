@@ -1,14 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { StatusComponent } from './status.component';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { of } from 'rxjs';
+import { BottomSheetRefStub } from 'src/stubs';
+import { MatListModule } from '@angular/material/list';
 
 describe('StatusComponent', () => {
   let component: StatusComponent;
   let fixture: ComponentFixture<StatusComponent>;
+  const supplies = of([]);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StatusComponent ]
+      imports: [
+        MatListModule,
+      ],
+      declarations: [
+        StatusComponent,
+      ],
+      providers: [
+        { provide: MAT_BOTTOM_SHEET_DATA, useValue: supplies },
+        { provide: MatBottomSheetRef, useValue: BottomSheetRefStub },
+      ],
     })
     .compileComponents();
   });
@@ -19,7 +32,8 @@ describe('StatusComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
+
 });

@@ -54,8 +54,8 @@ export class CensusComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.angularFirestore.collection<any>('kingdoms', ref => ref.where('player', '==', true)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
-      this.data = new MatTableDataSource(kingdoms.sort((a, b) => b.radius - a.radius).map((kingdom, index) => {
+    this.angularFirestore.collection<any>('kingdoms').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
+      this.data = new MatTableDataSource(kingdoms.sort((a, b) => b.power - a.power).map((kingdom, index) => {
         return {
           ...kingdom,
           position: index + 1,

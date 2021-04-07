@@ -60,7 +60,7 @@ describe('ConjureComponent', () => {
       ],
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },
-        { provide: MAT_DIALOG_DATA, useValue: charm },
+        { provide: MAT_DIALOG_DATA, useValue: { charm: charm, kingdom: null } },
         { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
@@ -82,12 +82,14 @@ describe('ConjureComponent', () => {
   });
 
   it('should CONJURE a CHARM', async () => {
+    component.selectedCharm = charm;
     spyOn(ApiServiceStub, 'conjureCharm');
     await component.conjure();
-    expect(ApiServiceStub.conjureCharm).toHaveBeenCalledWith(component.uid, component.charm.fid, component.uid);
+    expect(ApiServiceStub.conjureCharm).toHaveBeenCalledWith(component.uid, component.conjuration.charm.fid, component.uid);
   });
 
   it('should CONJURE a CHARM and CATCH the ERROR', async () => {
+    component.selectedCharm = charm;
     spyOn(ApiServiceStub, 'conjureCharm').and.throwError(new Error('test'));
     await component.conjure();
     expect(ApiServiceStub.conjureCharm).toThrowError('test');
@@ -96,6 +98,7 @@ describe('ConjureComponent', () => {
   it('should NOT CONJURE a CHARM', async () => {
     component.kingdomMana.quantity = 0;
     component.kingdomTurn.quantity = 0;
+    component.selectedCharm = charm;
     spyOn(ApiServiceStub, 'conjureCharm');
     await component.conjure();
     expect(ApiServiceStub.conjureCharm).not.toHaveBeenCalled();

@@ -96,7 +96,7 @@ describe('CensusComponent', () => {
   it('should OPEN the CONJURE dialog', () => {
     spyOn(MatDialogStub, 'open');
     component.openConjureDialog(null, EventStub);
-    expect(MatDialogStub.open).toHaveBeenCalledWith(ConjureComponent, { panelClass: 'dialog-responsive', data: null });
+    expect(MatDialogStub.open).toHaveBeenCalledWith(ConjureComponent, { panelClass: 'dialog-responsive', data: { charm: null, kingdom: null } });
   });
 
   it('should OPEN the DETAIL dialog', () => {

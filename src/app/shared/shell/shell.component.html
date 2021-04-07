@@ -66,12 +66,10 @@
       <span class="logo" *ngIf="!(angularFireAuth.authState | async)">{{ 'landing.title.name' | translate }}</span>
       <!-- supply list -->
       <mat-nav-list dense class="supply-list" role="navigation" *ngIf="(angularFireAuth.authState | async)" tourAnchor="tour.supplies">
-        <mat-list-item *ngFor="let supply of kingdomSupplies$ | async; let i = index">
-          <div
-            mat-list-avatar
-            (click)="status()"
+        <mat-list-item *ngFor="let supply of kingdomSupplies$ | async; let i = index" (click)="openStatusSheet()">
+          <div mat-list-avatar
             [title]="supply.resource.name | translate"
-            [matBadge]="supply.max ? (supply.timestamp ? (supply.timestamp | turn:supply.resource.max:supply.resource.ratio | async) : (supply.quantity | short)) + ' / ' + (supply.max | short) : supply.quantity | short"
+            [matBadge]="supply.timestamp ? (supply.timestamp | turn:supply.resource.max:supply.resource.ratio | async) : (supply.quantity | short)"
             [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
             [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
             matBadgeOverlap="true">
@@ -85,7 +83,7 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #auth="matMenu">
-        <a mat-menu-item (click)="status()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>equalizer</mat-icon>{{ 'user.auth.status' | translate }}</a>
+        <!--<a mat-menu-item (click)="status()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>equalizer</mat-icon>{{ 'user.auth.status' | translate }}</a>-->
         <a mat-menu-item (click)="tour()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>live_help</mat-icon>{{ 'user.auth.tour' | translate }}</a>
         <a mat-menu-item (click)="logout()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>lock</mat-icon>{{ 'user.auth.logout' | translate }}</a>
         <a mat-menu-item (click)="login(main)" *ngIf="!(angularFireAuth.authState | async)"><mat-icon>lock_open</mat-icon>{{ 'user.auth.login' | translate }}</a>

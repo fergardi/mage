@@ -8,16 +8,18 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
-import { NotificationServiceStub, StoreStub, DialogRefStub } from 'src/stubs';
+import { NotificationServiceStub, StoreStub, DialogRefStub, ApiServiceStub } from 'src/stubs';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { ApiService } from 'src/app/services/api.service';
 
 describe('DispelComponent', () => {
   let component: DispelComponent;
   let fixture: ComponentFixture<DispelComponent>;
   const enchantment = {
+    fid: 'test',
     level: 0,
     turns: 0,
     spell: {
@@ -29,6 +31,7 @@ describe('DispelComponent', () => {
       },
       turnDuration: 300,
       legendary: false,
+      manaCost: 1,
     },
   };
 
@@ -52,6 +55,7 @@ describe('DispelComponent', () => {
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: enchantment },
         { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: ApiService, useValue: ApiServiceStub },
         { provide: Store, useValue: StoreStub },
       ],
     })
@@ -68,4 +72,25 @@ describe('DispelComponent', () => {
   it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should DISPEL an ENCHANTMENT', async () => {
+    console.log(component.enchantment.spell.manaCost, component.kingdomMana.quantity)
+    spyOn(ApiServiceStub, 'dispelEnchantment');
+    await component.dispel();
+    expect(ApiServiceStub.dispelEnchantment).toHaveBeenCalledWith(component.uid, component.enchantment.fid);
+  });
+
+  it('should DISPEL an ENCHANTMENT and CATCH the ERROR', async () => {
+    spyOn(ApiServiceStub, 'dispelEnchantment').and.throwError(new Error('test'));
+    await component.dispel();
+    expect(ApiServiceStub.dispelEnchantment).toThrowError('test');
+  });
+
+  it('should NOT DISPEL an ENCHANTMENT', async () => {
+    component.enchantment.spell.manaCost = 999999;
+    spyOn(ApiServiceStub, 'dispelEnchantment');
+    await component.dispel();
+    expect(ApiServiceStub.dispelEnchantment).not.toHaveBeenCalled();
+  });
+
 });
