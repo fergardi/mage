@@ -60,7 +60,6 @@ export class FirebaseService {
   joinedLocations: any[] = [];
   joinedSpells: any[] = [];
   joinedHeroes: any[] = [];
-  joinedKingdoms: any[] = [];
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -118,7 +117,6 @@ export class FirebaseService {
     this.locations = await this.httpClient.get<any[]>('assets/fixtures/locations.json').toPromise();
     this.spells = await this.httpClient.get<any[]>('assets/fixtures/spells.json').toPromise();
     this.heroes = await this.httpClient.get<any[]>('assets/fixtures/heroes.json').toPromise();
-    this.kingdoms = await this.httpClient.get<any[]>('assets/fixtures/kingdoms.json').toPromise();
   }
 
   async importFixtures(collection: string, elements: any[], batch: firebase.firestore.WriteBatch) {

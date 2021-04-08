@@ -752,15 +752,15 @@
     },
     "node": {
       "name": "Nodos",
-      "description": "Aumentan el <mana> de tu reino"
+      "description": "Aumentan la capacidad y la generación de <mana> de tu reino"
     },
     "farm": {
       "name": "Granjas",
-      "description": "Otorgan comida a los pueblos de tu reino"
+      "description": "Aumentan la generación de <gold> de tu reino"
     },
     "village": {
       "name": "Pueblos",
-      "description": "Aumentan la <population> y el <gold> de tu reino"
+      "description": "Aumentan la capacidad y la generación de <population> de tu reino"
     },
     "workshop": {
       "name": "Talleres",
@@ -1724,11 +1724,11 @@
   "hero": {
     "dragon-rider": {
       "name": "Jinete de Dragones",
-      "description": "Aumenta el daño de <dragon> por nivel"
+      "description": "Aumenta el ataque, defensa y vida de <dragon> por nivel"
     },
     "demon-prince": {
       "name": "Príncipe Demonio",
-      "description": "Aumenta el daño de <demon> por nivel"
+      "description": "Aumenta el ataque de <demon> por nivel"
     },
     "commander": {
       "name": "Comandante General",
@@ -1736,7 +1736,7 @@
     },
     "trader": {
       "name": "Gran Comerciante",
-      "description": "Generas <gold> al <turn> por nivel"
+      "description": "Aumenta el <gold> al <turn> por nivel"
     },
     "beast-master": {
       "name": "Señor de las Bestias",
@@ -1744,23 +1744,23 @@
     },
     "shaman": {
       "name": "Chamán Místico",
-      "description": "Generas <mana> al <turn> por nivel"
+      "description": "Aumentas el <mana> al <turn> por nivel"
     },
     "elementalist": {
       "name": "Elementalista Exiliado",
-      "description": "Aumenta el daño de <elemental> por nivel"
+      "description": "Aumenta el ataque y vida de <elemental> por nivel"
     },
     "sage": {
       "name": "Sabio Erudito",
-      "description": "Reduce investigaciones <turn> por nivel"
+      "description": "Reduce las investigaciones al <turn> por nivel"
     },
     "necrophage": {
-      "name": "Necrófago Jefe",
-      "description": "Aumenta el daño de <undead> por nivel"
+      "name": "Necrófago Anciano",
+      "description": "Aumenta el ataque de <undead> por nivel"
     },
     "necromancer": {
       "name": "Nigromante Putrefacto",
-      "description": "Generas <population> al <turn> por nivel"
+      "description": "Aumentas la <population> al <turn> por nivel"
     },
     "engineer": {
       "name": "Ingeniero Constructor",
@@ -1768,15 +1768,15 @@
     },
     "crypt-keeper": {
       "name": "Guardián de la Cripta",
-      "description": "Resucita tus tropas muertas en batalla por nivel"
+      "description": "Resucita tropas muertas en batalla por nivel"
     },
     "orc-king": {
       "name": "Rey de los Orcos",
-      "description": "Aumenta el daño de <orkish> por nivel"
+      "description": "Aumenta el ataque de <orkish> por nivel"
     },
     "leprechaunt": {
       "name": "Leprechaunt Avaricioso",
-      "description": "Aumenta la probabilidad de encontrar artefactos por nivel"
+      "description": "Aumenta las <land> exploradas por nivel"
     },
     "golem-golem": {
       "name": "Gólem de Gólems",

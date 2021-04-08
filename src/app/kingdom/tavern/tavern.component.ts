@@ -52,14 +52,14 @@ export class TavernComponent implements OnInit {
   async assignContract($event: CdkDragDrop<any>) {
     if ([0, 3].includes(Number($event.container.id)) || $event.container.data.length < MAXIMUM_CONTRACTS) {
       this.loadingService.startLoading();
-      if ($event.previousContainer === $event.container) {
-        moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
-      } else {
-        transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
-      }
       try {
-        const assigned = await this.apiService.assignContract(this.uid, $event.item.element.nativeElement.id, Number($event.container.id));
-        this.notificationService.success('kingdom.tavern.success');
+        if ($event.previousContainer === $event.container) {
+          // moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
+        } else {
+          transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
+          const assigned = await this.apiService.assignContract(this.uid, $event.item.element.nativeElement.id, Number($event.container.id));
+          this.notificationService.success('kingdom.tavern.success');
+        }
       } catch (error) {
         console.error(error);
         this.notificationService.error('kingdom.tavern.error');
