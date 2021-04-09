@@ -20,6 +20,7 @@ export class TempleComponent implements OnInit {
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomGods: any[] = [];
   kingdomEnchantments: any[] = [];
+  kingdomIncantations: any[] = [];
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -34,6 +35,9 @@ export class TempleComponent implements OnInit {
     this.angularFirestore.collection<any>(`kingdoms/${this.uid}/enchantments`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(enchantments => {
       this.kingdomEnchantments = enchantments.sort((a, b) => a.turns - b.turns);
     });
+    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/incantations`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(incantations => {
+      this.kingdomIncantations = incantations.sort((a, b) => a.turns - b.turns);
+    });
   }
 
   openOfferDialog(god: any): void {
@@ -47,6 +51,13 @@ export class TempleComponent implements OnInit {
     const dialogRef = this.dialog.open(DispelComponent, {
       panelClass: 'dialog-responsive',
       data: enchantment,
+    });
+  }
+
+  openBreakDialog(incantation: any): void {
+    const dialogRef = this.dialog.open(DispelComponent, {
+      panelClass: 'dialog-responsive',
+      data: incantation,
     });
   }
 

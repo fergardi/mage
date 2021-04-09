@@ -13,6 +13,7 @@ import { DispelComponent } from './dispel.component';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ShortPipe } from 'src/app/pipes/short.pipe';
 
 describe('TempleComponent', () => {
   let component: TempleComponent;
@@ -31,6 +32,7 @@ describe('TempleComponent', () => {
       declarations: [
         TempleComponent,
         IconPipe,
+        ShortPipe,
       ],
       providers: [
         { provide: AngularFirestore, useValue: AngularFirestoreStub },

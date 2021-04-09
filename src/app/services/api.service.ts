@@ -178,8 +178,12 @@ export class ApiService {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/sorcery/artifact/${artifactId}/assign/${assignmentId}`).toPromise();
   }
 
-  dispelEnchantment(kingdomId: string, enchantmentId: string) {
-    return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/temple/${enchantmentId}`, undefined).toPromise();
+  dispelIncantation(kingdomId: string, incantationId: string) {
+    return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/temple/${incantationId}/dispel`, undefined).toPromise();
+  }
+
+  breakEnchantment(kingdomId: string, enchantmentId: string) {
+    return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/temple/${enchantmentId}/break`, undefined).toPromise();
   }
 
 }

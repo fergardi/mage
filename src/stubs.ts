@@ -10,6 +10,10 @@ export const NotificationServiceStub: any = {
   error: () => null,
 };
 
+export const SnackBarStub: any = {
+  open: () => {( { afterDismissed: () => of(null) } )},
+};
+
 export const StoreStub: any = {
   selectSnapshot: (selector: any) => {
     switch (selector) {
@@ -116,6 +120,7 @@ export const AngularFirestoreStub: any = {
       get: () => ({ toPromise: () => ({ docs: [] }) }),
       valueChanges: () => of([{
         faction: { id: 'grey' },
+        from: { id: 'test', faction: { id: 'red' } },
         message: { item: { faction: { id: 'grey' } } },
         item: { faction: { id: 'grey' } },
         spell: { faction: { id: 'red' } },

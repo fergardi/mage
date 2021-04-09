@@ -411,18 +411,33 @@
       "platoon": "Pelotón",
       "costs": "Costes"
     },
-    "dispel": {
+    "break": {
       "name": "Desvanecimiento",
       "description": "Rompe encantamientos",
-      "help": "Aqui puedes gastar Maná para rezar y tratar de romper un encantamiento de tu propio reino (verde) o de un reino enemigo (rojo). Si el encantamiento es de un enemigo, el éxito al romperlo dependerá de su protección mágica.",
+      "help": "Aqui puedes gastar Maná para rezar y tratar de desvanecer un encantamiento del que seas objetivo (pero no su fuente). El éxito dependerá de la diferencia de protección mágica entre ambos reinos.",
       "hint": "Debes tener suficiente Maná",
       "invalid": "No tienes suficiente Maná",
       "error": "Ha ocurrido un problema",
-      "dispel": "Desvanecer",
+      "from": "Fuente",
+      "break": "Desvanecer",
       "cancel": "Cancelar",
       "enchantment": "Encantamiento",
       "costs": "Costes",
       "success": "Los encantamientos se han desvanecido"
+    },
+    "dispel": {
+      "name": "Liberación",
+      "description": "Libera maleficios",
+      "help": "Aqui puedes gastar Maná para rezar y tratar de liberar un maleficio del que seas fuente (incluso siendo su objetivo). Siempre se tiene éxito.",
+      "hint": "Debes tener suficiente Maná",
+      "invalid": "No tienes suficiente Maná",
+      "error": "Ha ocurrido un problema",
+      "to": "Objetivo",
+      "dispel": "Liberar",
+      "cancel": "Cancelar",
+      "incantation": "Maleficio",
+      "maintenances": "Mantenimientos",
+      "success": "Los maleficios se han liberado"
     },
     "guild": {
       "name": "Gremio",
@@ -832,6 +847,7 @@
       "packs": "Paquetes",
       "gods": "Dioses",
       "enchantments": "Encantamientos",
+      "incantations": "Maleficios",
       "guilds": "Gremios"
     }
   },
@@ -1333,7 +1349,7 @@
       "description": "Convoca una tropa de <cyclop>"
     },
     "volcano": {
-      "name": "Volcán",
+      "name": "Erupción Volcánica",
       "description": "Destruye <population> y <land> del enemigo"
     },
     "fire-wall": {

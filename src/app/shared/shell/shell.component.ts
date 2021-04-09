@@ -86,7 +86,7 @@ export class ShellComponent implements OnInit {
   ) {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));
-    this.translateService.setDefaultLang(this.langs[0].lang);
+    // this.translateService.setDefaultLang(this.langs[0].lang);
     const browser = this.translateService.getBrowserLang();
     this.translateService.use(this.langs.map(l => l.lang).includes(browser) ? browser : this.langs[0].lang);
   }

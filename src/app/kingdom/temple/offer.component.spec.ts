@@ -16,6 +16,7 @@ import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 describe('OfferComponent', () => {
   let component: OfferComponent;
@@ -42,11 +43,12 @@ describe('OfferComponent', () => {
         MatBadgeModule,
         MatButtonModule,
         MatChipsModule,
+        MatProgressBarModule,
       ],
       declarations: [
         OfferComponent,
-        LongPipe,
         ShortPipe,
+        LongPipe,
       ],
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },

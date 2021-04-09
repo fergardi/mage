@@ -5,7 +5,6 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
-import { TranslateService } from '@ngx-translate/core';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -18,16 +17,17 @@ import { LoadingService } from 'src/app/services/loading.service';
       <div matSubheader>{{ 'kingdom.offer.god' | translate }}:</div>
       <mat-list dense>
         <mat-list-item class="legendary">
-          <div mat-list-avatar matBadge="∞" matBadgePosition="above before">
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar class="god-avatar" [src]="god.image">
           </div>
           <div mat-line>{{ god.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
-          <div mat-list-avatar *ngIf="god.gold > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.gold | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/gold.png"></div>
-          <div mat-list-avatar *ngIf="god.mana > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.mana | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/mana.png"></div>
-          <div mat-list-avatar *ngIf="god.population > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.population | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/population.png"></div>
-          <div mat-list-avatar *ngIf="god.land > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.land | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/land.png"></div>
-          <div mat-list-avatar *ngIf="god.turn > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.turn | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
+          <div mat-line>
+            <mat-progress-bar [value]="god.sacrifice * 100 / (god.gold || god.mana || god.population || god.land || god.turn)"></mat-progress-bar>
+          </div>
+          <div mat-list-avatar [matBadge]="(god.sacrifice | short) + ' / ' + ((god.gold || god.mana || god.population || god.land || god.turn) | short)" matBadgePosition="above after">
+            <img mat-list-avatar [src]="god.gold ? '/assets/images/resources/gold.png' : god.mana ? '/assets/images/resources/gold.png' : god.population ? '/assets/images/resources/population.png' : god.land ? '/assets/images/resources/land.png' : '/assets/images/resources/turn.png'">
+          </div>
         </mat-list-item>
       </mat-list>
     </div>
@@ -65,9 +65,6 @@ import { LoadingService } from 'src/app/services/loading.service';
       border-radius: 4px !important;
     }
   `],
-  providers: [
-    LongPipe,
-  ],
 })
 export class OfferComponent implements OnInit {
 
@@ -86,8 +83,6 @@ export class OfferComponent implements OnInit {
     private notificationService: NotificationService,
     private store: Store,
     private apiService: ApiService,
-    private translateService: TranslateService,
-    private longPipe: LongPipe,
     private loadingService: LoadingService,
   ) { }
 

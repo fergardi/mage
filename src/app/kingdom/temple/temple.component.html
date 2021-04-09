@@ -3,7 +3,6 @@
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
 
     <mat-card>
-
       <mat-card-header>
         <img mat-card-avatar src="/assets/images/cards/temple.png">
         <mat-card-title>{{ 'kingdom.temple.name' | translate }}</mat-card-title>
@@ -20,23 +19,53 @@
             </div>
             <div mat-line>{{ god.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
-            <div mat-list-avatar *ngIf="!god.armageddon && god.gold > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.gold | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/gold.png"></div>
-            <div mat-list-avatar *ngIf="!god.armageddon && god.mana > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.mana | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/mana.png"></div>
-            <div mat-list-avatar *ngIf="!god.armageddon && god.population > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.population | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/population.png"></div>
-            <div mat-list-avatar *ngIf="!god.armageddon && god.land > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.land | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/land.png"></div>
-            <div mat-list-avatar *ngIf="!god.armageddon && god.turn > 0" [matBadge]="(god.sacrifice | short) + ' / ' + (god.turn | short)" matBadgePosition="above after"><img mat-list-avatar src="/assets/images/resources/turn.png"></div>
-            <div mat-list-avatar *ngIf="god.armageddon"><img mat-list-avatar src="/assets/images/spells/grey/armageddon.png"></div>
+            <div mat-line>
+              <mat-progress-bar [value]="god.sacrifice * 100 / (god.gold || god.mana || god.population || god.land || god.turn)"></mat-progress-bar>
+            </div>
+            <div mat-list-avatar [matBadge]="god.armageddon ? null : (god.sacrifice | short) + ' / ' + ((god.gold || god.mana || god.population || god.land || god.turn) | short)" matBadgePosition="above after">
+              <img mat-list-avatar [src]="god.armageddon ? '/assets/images/spells/grey/armageddon.png' : god.gold ? '/assets/images/resources/gold.png' : god.mana ? '/assets/images/resources/mana.png' : god.population ? '/assets/images/resources/population.png' : god.land ? '/assets/images/resources/land.png' : '/assets/images/resources/turn.png'">
+            </div>
           </button>
         </mat-action-list>
       </mat-card-content>
-
     </mat-card>
 
   </div>
-
   <div fxFlex.xl="66" fxFlex.lg="66" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
 
     <div fxLayout="row wrap" fxLayoutGap="10px grid">
+      <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
+
+        <mat-card>
+          <mat-card-header>
+            <img mat-card-avatar src="/assets/images/cards/break.png">
+            <mat-card-title>{{ 'kingdom.break.name' | translate }}</mat-card-title>
+            <mat-card-subtitle>{{ 'kingdom.break.description' | translate }}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>{{ 'kingdom.break.help' | translate }}</p>
+            <div matSubheader>{{ 'card.list.enchantments' | translate }}:</div>
+            <mat-action-list dense tourAnchor="tour.break">
+              <button mat-list-item *ngFor="let enchantment of kingdomEnchantments" (click)="openBreakDialog(enchantment)" [ngClass]="[enchantment.spell.faction.id, enchantment.spell.legendary ? 'legendary' : 'common']" [disabled]="enchantment.from.id === uid">
+                <div mat-list-avatar [matBadge]="enchantment.spell.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from.id === uid ? 'accent' : 'warn'">
+                  <img mat-list-avatar [src]="enchantment.spell.image">
+                </div>
+                <div mat-line>{{ enchantment.spell.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.spell.description | translate | icon:enchantment.spell"></div>
+                <div mat-line>
+                  <mat-progress-bar [color]="enchantment.from.id === uid ? 'accent' : 'warn'" [value]="enchantment.turns * 100 / enchantment.spell.turnDuration"></mat-progress-bar>
+                </div>
+                <div mat-list-avatar [matBadge]="enchantment.turns" matBadgePosition="above after" [matBadgeColor]="enchantment.from.id === uid ? 'accent' : 'warn'">
+                  <img mat-list-avatar src="/assets/images/resources/turn.png">
+                </div>
+              </button>
+            </mat-action-list>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
       <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
 
         <mat-card>
@@ -48,18 +77,18 @@
 
           <mat-card-content>
             <p>{{ 'kingdom.dispel.help' | translate }}</p>
-            <div matSubheader>{{ 'card.list.enchantments' | translate }}:</div>
+            <div matSubheader>{{ 'card.list.incantations' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.dispel">
-              <button mat-list-item *ngFor="let enchantment of kingdomEnchantments" (click)="openDispelDialog(enchantment)" [ngClass]="[enchantment.spell.faction.id, enchantment.spell.legendary ? 'legendary' : 'common']">
-                <div mat-list-avatar [matBadge]="enchantment.spell.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
-                  <img mat-list-avatar [src]="enchantment.spell.image">
+              <button mat-list-item *ngFor="let incantation of kingdomIncantations" (click)="openDispelDialog(incantation)" [ngClass]="[incantation.spell.faction.id, incantation.spell.legendary ? 'legendary' : 'common']">
+                <div mat-list-avatar [matBadge]="incantation.spell.level" matBadgePosition="above before" [matBadgeColor]="incantation.to.id === uid ? 'accent' : 'warn'">
+                  <img mat-list-avatar [src]="incantation.spell.image">
                 </div>
-                <div mat-line>{{ enchantment.spell.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.spell.description | translate | icon:enchantment.spell"></div>
+                <div mat-line>{{ incantation.spell.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="incantation.spell.description | translate | icon:incantation.spell"></div>
                 <div mat-line>
-                  <mat-progress-bar [color]="enchantment.from === uid ? 'accent' : 'warn'" [value]="enchantment.turns * 100 / enchantment.spell.turnDuration"></mat-progress-bar>
+                  <mat-progress-bar [color]="incantation.to.id === uid ? 'accent' : 'warn'" [value]="incantation.turns * 100 / incantation.spell.turnDuration"></mat-progress-bar>
                 </div>
-                <div mat-list-avatar [matBadge]="enchantment.turns" matBadgePosition="above after" [matBadgeColor]="enchantment.from === uid ? 'accent' : 'warn'">
+                <div mat-list-avatar [matBadge]="incantation.turns" matBadgePosition="above after" [matBadgeColor]="incantation.to.id === uid ? 'accent' : 'warn'">
                   <img mat-list-avatar src="/assets/images/resources/turn.png">
                 </div>
               </button>
@@ -70,6 +99,5 @@
       </div>
 
     </div>
-
   </div>
 </div>

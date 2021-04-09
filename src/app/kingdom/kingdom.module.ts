@@ -34,6 +34,7 @@ import { NgxCurrencyModule } from 'ngx-currency';
 import { FoundationComponent } from './clan/foundation.component';
 import { ManifestComponent } from './clan/manifest.component';
 import { DetailComponent } from './census/detail.component';
+import { BreakComponent } from './temple/break.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { DetailComponent } from './census/detail.component';
     FoundationComponent,
     ManifestComponent,
     DetailComponent,
+    BreakComponent,
   ],
   imports: [
     CommonModule,
