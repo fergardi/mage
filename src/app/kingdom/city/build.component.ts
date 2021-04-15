@@ -48,6 +48,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="close()">{{ 'kingdom.build.cancel' | translate }}</button>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="demolish()">{{ 'kingdom.build.demolish' | translate }}</button>
       <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="build()">{{ 'kingdom.build.build' | translate }}</button>
     </div>
   `,
@@ -92,7 +93,24 @@ export class BuildComponent implements OnInit {
       this.loadingService.startLoading();
       try {
         const built = await this.apiService.buildStructure(this.uid, this.building.fid, this.form.value.quantity);
-        this.notificationService.success('kingdom.build.success', built);
+        this.notificationService.success('kingdom.build.built', built);
+        this.close();
+      } catch (error) {
+        console.error(error);
+        this.notificationService.error('kingdom.build.error');
+      }
+      this.loadingService.stopLoading();
+    } else {
+      this.notificationService.error('kingdom.build.error');
+    }
+  }
+
+  async demolish() {
+    if (this.form.valid && this.land() <= this.building.quantity) {
+      this.loadingService.startLoading();
+      try {
+        const demolished = await this.apiService.demolishStructure(this.uid, this.building.fid, this.form.value.quantity);
+        this.notificationService.success('kingdom.build.demolished', demolished);
         this.close();
       } catch (error) {
         console.error(error);

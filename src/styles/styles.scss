@@ -415,7 +415,11 @@ hr {
 .mat-card,
 .mat-dialog-container {
   opacity: 0.975;
-  // background-image: url('assets/images/background/pattern-front.jpg');
+}
+
+.mat-dialog-container {
+  background: url('/assets/images/background/papire.jpg') no-repeat center center; // fixed
+  background-size: cover;
 }
 
 .mat-table,

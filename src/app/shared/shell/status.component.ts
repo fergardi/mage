@@ -5,6 +5,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 @Component({
   selector: 'app-status',
   template: `
+    <div matSubheader>{{ 'card.list.resources' | translate }}:<span class="fill-space"></span>{{ 'card.list.maintenances' | translate }}:</div>
     <mat-list dense class="app-status">
       <ng-container *ngFor="let supply of kingdomSupplies$ | async; let i = index">
         <mat-list-item>

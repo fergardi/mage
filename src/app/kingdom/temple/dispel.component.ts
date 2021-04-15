@@ -14,8 +14,8 @@ import { ApiService } from 'src/app/services/api.service';
       <p>{{ 'kingdom.dispel.help' | translate }}</p>
       <div matSubheader>{{ 'kingdom.dispel.to' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item [ngClass]="[incantation.to.faction.id, incantation.to.fid === uid ? 'legendary' : 'common']">
-          <div mat-list-avatar>
+        <mat-list-item [ngClass]="[incantation.to.faction.id, incantation.to.id === uid ? 'legendary' : 'common']">
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="incantation.to.faction.image">
           </div>
           <div mat-line>{{ incantation.to.name | translate }}</div>
@@ -33,7 +33,7 @@ import { ApiService } from 'src/app/services/api.service';
           <div mat-line>
             <mat-progress-bar [color]="incantation.to.id === uid ? 'accent' : 'warn'" [value]="incantation.turns * 100 / incantation.spell.turnDuration"></mat-progress-bar>
           </div>
-          <div mat-list-avatar [matBadge]="incantation.turns" matBadgePosition="above after" [matBadgeColor]="incantation.to.id === uid ? 'accent' : 'warn'">
+          <div mat-list-avatar [matBadge]="incantation.turns" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>

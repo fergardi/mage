@@ -23,7 +23,7 @@ interface SnackBarQueueItem {
 export class NotificationService {
 
   private options: MatSnackBarConfig = {
-    duration: 3000,
+    duration: 2000,
     horizontalPosition: 'right',
     verticalPosition: 'top',
   };
@@ -67,7 +67,7 @@ export class NotificationService {
   private removeDismissedSnackBar(snackBar: Observable<MatSnackBarDismiss>): void {
     snackBar
     .pipe(
-      delay(0),
+      delay(50),
       take(1),
     )
     .subscribe(() => {

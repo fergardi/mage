@@ -26,7 +26,7 @@ import { LoadingService } from 'src/app/services/loading.service';
             <mat-progress-bar [value]="god.sacrifice * 100 / (god.gold || god.mana || god.population || god.land || god.turn)"></mat-progress-bar>
           </div>
           <div mat-list-avatar [matBadge]="(god.sacrifice | short) + ' / ' + ((god.gold || god.mana || god.population || god.land || god.turn) | short)" matBadgePosition="above after">
-            <img mat-list-avatar [src]="god.gold ? '/assets/images/resources/gold.png' : god.mana ? '/assets/images/resources/gold.png' : god.population ? '/assets/images/resources/population.png' : god.land ? '/assets/images/resources/land.png' : '/assets/images/resources/turn.png'">
+            <img mat-list-avatar [src]="god.gold ? '/assets/images/resources/gold.png' : god.mana ? '/assets/images/resources/mana.png' : god.population ? '/assets/images/resources/population.png' : god.land ? '/assets/images/resources/land.png' : '/assets/images/resources/turn.png'">
           </div>
         </mat-list-item>
       </mat-list>

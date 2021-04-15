@@ -46,8 +46,11 @@ export enum ReportType {
           <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(report.data.join.type) && report.data.join.categories && report.data.join.categories.length">
             <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of report.data.join.resistances" [src]="category.image">
           </div>
-          <div mat-list-avatar [matBadge]="report.data.gold | short" matBadgePosition="ahove after">
+          <div mat-list-avatar *ngIf="report.data.gold" [matBadge]="report.data.gold | short" matBadgePosition="ahove after">
             <img mat-list-avatar src="/assets/images/resources/gold.png">
+          </div>
+          <div mat-list-avatar *ngIf="report.data.gems" [matBadge]="report.data.gems | short" matBadgePosition="ahove after">
+            <img mat-list-avatar src="/assets/images/resources/gem.png">
           </div>
         </mat-list-item>
       </mat-list>

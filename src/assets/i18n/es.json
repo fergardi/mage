@@ -166,7 +166,7 @@
       "costs": "Costes",
       "production": "Producción",
       "characteristics": "Características",
-      "topic": "Tema"
+      "rubric": "Rúbrica"
     }
   },
   "shell": {
@@ -559,7 +559,7 @@
     },
     "tax": {
       "name": "Tributo",
-      "description": "Engrosa tus arcas",
+      "description": "Exprimir a tus súbditos es lo razonable",
       "help": "Aquí podrás invertir Turnos en cobrar impuestos a los súbditos de tu reino. El Oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
       "cancel": "Cancelar",
       "hint": "Cuantos más pueblos tengas, más Oro recaudarás",
@@ -697,13 +697,15 @@
       "description": "Invierte Tierras libres, Oro y Turnos para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como las batallas o los asedios. Cuantos más talleres tengas, menos Turnos gastarás al construir. Otros factores que pueden influir en esto son ciertos encantamientos y héroes aliados.",
       "cancel": "Cancelar",
       "build": "Construir",
+      "demolish": "Demoler",
       "costs": "Costes",
       "building": "Edificio",
       "quantity": "Cantidad",
       "hint": "Cuantos más Talleres tengas, menos Turnos necesitarás",
       "invalid": "No dispones de suficientes recursos",
       "error": "Ha ocurrido un problema",
-      "success": "Has construido {{ quantity }} {{ structure }}"
+      "built": "Has construido {{ quantity }} {{ structure }}",
+      "demolished": "Has demolido {{ quantity }} {{ structure }}"
     },
     "gemology": {
       "name": "Gemología",
@@ -848,7 +850,8 @@
       "gods": "Dioses",
       "enchantments": "Encantamientos",
       "incantations": "Maleficios",
-      "guilds": "Gremios"
+      "guilds": "Gremios",
+      "maintenances": "Mantenimientos"
     }
   },
   "location": {
@@ -2024,23 +2027,23 @@
   "god": {
     "death": {
       "name": "Imagen de la Muerte",
-      "description": "Los cinco sellos del Armagedón"
+      "description": "Guardián del Sello del Tiempo"
     },
     "void": {
       "name": "Encarnación del Vacío",
-      "description": "Los cinco sellos del Armagedón"
+      "description": "Guardián del Sello del Maná"
     },
     "famine": {
       "name": "Símbolo de la Hambruna",
-      "description": "Los cinco sellos del Armagedón"
+      "description": "Guardián del Sello del Oro"
     },
     "war": {
       "name": "Efigie de la Guerra",
-      "description": "Los cinco sellos del Armagedón"
+      "description": "Guardián del Sello de la Tierra"
     },
     "pestilence": {
       "name": "Portador de la Pestilencia",
-      "description": "Los cinco sellos del Armagedón"
+      "description": "Guardián del Sello de la Población"
     }
   },
   "guild": {

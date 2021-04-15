@@ -5,11 +5,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   selector: 'app-tome',
   template: `
     <div class="dialog-title">
-      <h1 mat-dialog-title>{{ tome.name | translate:{name:'???'} }}</h1>
+      <h1 mat-dialog-title>{{ tome.name | translate }}</h1>
     </div>
     <div mat-dialog-content>
       <p>{{ 'user.tome.help' | translate }}</p>
-      <div matSubheader>{{ 'user.tome.topic' | translate }}:</div>
+      <div matSubheader>{{ 'user.tome.rubric' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[tome.faction.id, (tome | legendary) ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="tome.level || '?'" matBadgePosition="above before">

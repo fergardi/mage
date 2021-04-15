@@ -69,6 +69,15 @@ enum AuctionType {
   TROOP = 'troop',
 };
 
+enum SupplyType {
+  GOLD = 'gold',
+  MANA = 'mana',
+  POPULATION = 'population',
+  LAND = 'land',
+  TURN = 'turn',
+  GEM = 'gem',
+};
+
 /**
  * random
  * @param min
@@ -120,8 +129,10 @@ api.get('/kingdom/:kingdomId/sorcery/charm/:charmId/assign/:assignmentId', ash(a
 api.get('/kingdom/:kingdomId/sorcery/artifact/:artifactId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignArtifact(req.params.kingdomId, req.params.artifactId, req.params.assignmentId))));
 api.get('/kingdom/:kingdomId/auction/:auctionId/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdomId, req.params.auctionId, parseInt(req.params.gold)))));
 api.get('/kingdom/:kingdomId/temple/:godId/offer/:resource', ash(async (req: any, res: any) => res.json(await offerGod(req.params.kingdomId, req.params.godId, parseInt(req.params.resource)))));
-api.delete('/kingdom/:kingdomId/temple/:enchantmentId', ash(async (req: any, res: any) => res.json(await dispelEnchantment(req.params.kingdomId, req.params.enchantmentId))));
-api.get('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
+api.delete('/kingdom/:kingdomId/temple/:enchantmentId/dispel', ash(async (req: any, res: any) => res.json(await dispelIncantation(req.params.kingdomId, req.params.enchantmentId))));
+api.delete('/kingdom/:kingdomId/temple/:enchantmentId/break', ash(async (req: any, res: any) => res.json(await breakEnchantment(req.params.kingdomId, req.params.enchantmentId))));
+api.patch('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
+api.patch('/kingdom/:kingdomId/city/:buildingId/demolish/:quantity', ash(async (req: any, res: any) => res.json(await demolishStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
 api.get('/kingdom/:kingdomId/tavern/:contractId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignContract(req.params.kingdomId, req.params.contractId, parseInt(req.params.assignmentId)))));
 api.get('/kingdom/:kingdomId/tavern/:contractId/discharge', ash(async (req: any, res: any) => res.json(await dischargeContract(req.params.kingdomId, req.params.contractId))));
 api.get('/kingdom/:kingdomId/emporium/:itemId', ash(async (req: any, res: any) => res.json(await buyEmporium(req.params.kingdomId, req.params.itemId))));
@@ -285,6 +296,58 @@ const addSupply = async (kingdomId: string, supply: string, quantity: number, ba
 }
 
 /**
+ * balances a supply
+ * @param kingdomId
+ * @param supply
+ * @param balance
+ * @param batch
+ */
+const balanceSupply = async (kingdomId: string, supply: SupplyType, balance: number, batch: FirebaseFirestore.WriteBatch) => {
+  if (balance) {
+    const kingdomSupply = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', supply).limit(1).get()).docs[0];
+    batch.update(kingdomSupply.ref, { balance: admin.firestore.FieldValue.increment(balance) });
+  }
+}
+
+/**
+ * balances the power
+ * @param kingdomId
+ * @param power
+ * @param batch
+ */
+const balancePower = async (kingdomId: string, power: number, batch: FirebaseFirestore.WriteBatch) => {
+  if (power) {
+    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { power: admin.firestore.FieldValue.increment(power) });
+  }
+}
+
+/**
+ * balances a bonus
+ * @param kingdomId
+ * @param type
+ * @param bonus
+ * @param batch
+ */
+const balanceBonus = async (kingdomId: string, type: string, bonus: number, batch: FirebaseFirestore.WriteBatch) => {
+  if (bonus) {
+    switch (type) {
+      case 'explore':
+        const kingdomLand = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'land').limit(1).get()).docs[0];
+        batch.update(kingdomLand.ref, { bonus: admin.firestore.FieldValue.increment(bonus) });
+        break;
+      case 'research':
+        const kingdomAcademy = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'academy').limit(1).get()).docs[0];
+        batch.update(kingdomAcademy.ref, { bonus: admin.firestore.FieldValue.increment(bonus) });
+        break;
+      case 'build':
+        const kingdomWorkshop = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'workshop').limit(1).get()).docs[0];
+        batch.update(kingdomWorkshop.ref, { bonus: admin.firestore.FieldValue.increment(bonus) });
+        break;
+    }
+  }
+}
+
+/**
  * pay the maintenances if turns are spent
  * @param kingdomId
  * @param turns
@@ -323,7 +386,6 @@ const payMaintenance = async (kingdomId: string, turns: number, batch: FirebaseF
  */
 const evictMaintenance = async (kingdomId: string, batch: FirebaseFirestore.WriteBatch) => {
   // enchantments
-  // const kingdomEnchantments = await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('id', '==', unit.id).limit(1).get();
   // units
   // heroes
   // TODO
@@ -343,23 +405,10 @@ const addTroop = async (kingdomId: string, unit: any, quantity: number, batch: F
   } else {
     batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/troops`).doc(), { id: unit.id, quantity: quantity, unit: unit, assignment: 0 });
   }
-  const goldBalance = Math.floor(-unit.goldMaintenance * quantity);
-  if (goldBalance) {
-    const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
-    batch.update(kingdomGold.ref, { balance: admin.firestore.FieldValue.increment(goldBalance) });
-  }
-  const manaBalance = Math.floor(-unit.manaMaintenance * quantity);
-  if (manaBalance) {
-    const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0];
-    batch.update(kingdomMana.ref, { balance: admin.firestore.FieldValue.increment(manaBalance) });
-  }
-  const populationBalance = Math.floor(-unit.populationMaintenance * quantity);
-  if (populationBalance) {
-    const kingdomPopulation = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'population').limit(1).get()).docs[0];
-    batch.update(kingdomPopulation.ref, { balance: admin.firestore.FieldValue.increment(populationBalance) });
-  }
-  const powerBalance = Math.floor(unit.power * quantity);
-  batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { power: admin.firestore.FieldValue.increment(powerBalance) });
+  await balanceSupply(kingdomId, SupplyType.GOLD, -Math.floor(unit.goldMaintenance * quantity), batch);
+  await balanceSupply(kingdomId, SupplyType.MANA, -Math.floor(unit.manaMaintenance * quantity), batch);
+  await balanceSupply(kingdomId, SupplyType.POPULATION, -Math.floor(unit.populationMaintenance * quantity), batch);
+  await balancePower(kingdomId, Math.floor(unit.power * quantity), batch);
 }
 
 /**
@@ -391,105 +440,13 @@ const addContract = async (kingdomId: string, hero: any, level: number, batch: F
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${kingdomContract.docs[0].id}`), { level: admin.firestore.FieldValue.increment(level) });
   } else {
     batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).doc(), { id: hero.id, level: level, hero: hero, assignment: 0 });
-  }
-  const goldBalance = Math.floor((hero.goldProduction - hero.goldMaintenance) * level);
-  if (goldBalance) {
-    const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
-    batch.update(kingdomGold.ref, { balance: admin.firestore.FieldValue.increment(goldBalance) });
-  }
-  const manaBalance = Math.floor((hero.manaProduction - hero.manaMaintenance) * level);
-  if (manaBalance) {
-    const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0];
-    batch.update(kingdomMana.ref, { balance: admin.firestore.FieldValue.increment(manaBalance) });
-  }
-  const populationBalance = Math.floor((hero.populationProduction - hero.populationMaintenance) * level);
-  if (populationBalance) {
-    const kingdomPopulation = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'population').limit(1).get()).docs[0];
-    batch.update(kingdomPopulation.ref, { balance: admin.firestore.FieldValue.increment(populationBalance) });
-  }
-  const exploreBonus = Math.floor(hero.exploreBonus * level);
-  if (exploreBonus) {
-    const kingdomLand = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'land').limit(1).get()).docs[0];
-    batch.update(kingdomLand.ref, { bonus: admin.firestore.FieldValue.increment(exploreBonus) });
-  }
-  const buildBonus = Math.floor(hero.buildBonus * level);
-  if (buildBonus) {
-    const kingdomWorkshop = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'workshop').limit(1).get()).docs[0];
-    batch.update(kingdomWorkshop.ref, { bonus: admin.firestore.FieldValue.increment(buildBonus) });
-  }
-  const researchBonus = Math.floor(hero.researchBonus * level);
-  if (researchBonus) {
-    const kingdomAcademy = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'academy').limit(1).get()).docs[0];
-    batch.update(kingdomAcademy.ref, { bonus: admin.firestore.FieldValue.increment(researchBonus) });
-  }
-  const powerBalance = Math.floor(hero.power * level);
-  batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { power: admin.firestore.FieldValue.increment(powerBalance) });
-}
-
-/**
- * add enchantment to a kingdom
- * @param kingdomId
- * @param spellId
- * @param originId
- * @param turns
- * @param batch
- */
-const addEnchantment = async (kingdomId: string, enchantment: any, originId: string, turns: number, batch: FirebaseFirestore.WriteBatch) => {
-  const kingdomEnchantment = await angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).where('id', '==', enchantment.id).limit(1).get();
-  if (kingdomEnchantment.size > 0) {
-    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${kingdomEnchantment.docs[0].id}`), { turns: admin.firestore.FieldValue.increment(turns) });
-  } else {
-    const kingdomTarget = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
-    batch.create(angularFirestore.collection(`kingdoms/${originId}/incantations`).doc(), { id: enchantment.id, spell: enchantment, to: kingdomTarget, turns: turns });
-    const kingdomOrigin = (await angularFirestore.doc(`kingdoms/${originId}`).get()).data();
-    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).doc(), { id: enchantment.id, spell: enchantment, from: kingdomOrigin, turns: turns });
-    // origin
-    const goldBalanceOrigin = -enchantment.goldMaintenance;
-    if (goldBalanceOrigin) {
-      const kingdomGold = (await angularFirestore.collection(`kingdoms/${originId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
-      batch.update(kingdomGold.ref, { balance: admin.firestore.FieldValue.increment(goldBalanceOrigin) });
-    }
-    const manaBalanceOrigin = -enchantment.manaMaintenance;
-    if (manaBalanceOrigin) {
-      const kingdomMana = (await angularFirestore.collection(`kingdoms/${originId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0];
-      batch.update(kingdomMana.ref, { balance: admin.firestore.FieldValue.increment(manaBalanceOrigin) });
-    }
-    const populationBalanceOrigin = -enchantment.populationMaintenance;
-    if (populationBalanceOrigin) {
-      const kingdomPopulation = (await angularFirestore.collection(`kingdoms/${originId}/supplies`).where('id', '==', 'population').limit(1).get()).docs[0];
-      batch.update(kingdomPopulation.ref, { balance: admin.firestore.FieldValue.increment(populationBalanceOrigin) });
-    }
-    // target
-    const goldBalance = enchantment.goldProduction;
-    if (goldBalance) {
-      const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
-      batch.update(kingdomGold.ref, { balance: admin.firestore.FieldValue.increment(goldBalance) });
-    }
-    const manaBalance = enchantment.manaProduction;
-    if (manaBalance) {
-      const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0];
-      batch.update(kingdomMana.ref, { balance: admin.firestore.FieldValue.increment(manaBalance) });
-    }
-    const populationBalance = enchantment.populationProduction;
-    if (populationBalance) {
-      const kingdomPopulation = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'population').limit(1).get()).docs[0];
-      batch.update(kingdomPopulation.ref, { balance: admin.firestore.FieldValue.increment(populationBalance) });
-    }
-    const landBalance = enchantment.landProduction;
-    if (landBalance) {
-      const kingdomLand = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'land').limit(1).get()).docs[0];
-      batch.update(kingdomLand.ref, { balance: admin.firestore.FieldValue.increment(landBalance) });
-    }
-    const buildBonus = enchantment.buildBonus;
-    if (buildBonus) {
-      const kingdomWorkshop = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'workshop').limit(1).get()).docs[0];
-      batch.update(kingdomWorkshop.ref, { bonus: admin.firestore.FieldValue.increment(buildBonus) });
-    }
-    const researchBonus = enchantment.researchBonus;
-    if (researchBonus) {
-      const kingdomAcademy = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'academy').limit(1).get()).docs[0];
-      batch.update(kingdomAcademy.ref, { bonus: admin.firestore.FieldValue.increment(researchBonus) });
-    }
+    await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor((hero.goldProduction - hero.goldMaintenance) * level), batch);
+    await balanceSupply(kingdomId, SupplyType.MANA, Math.floor((hero.manaProduction - hero.manaMaintenance) * level), batch);
+    await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor((hero.populationProduction - hero.populationMaintenance) * level), batch);
+    await balanceBonus(kingdomId, 'explore', Math.floor(hero.exploreBonus * level), batch);
+    await balanceBonus(kingdomId, 'build', Math.floor(hero.buildBonus * level), batch);
+    await balanceBonus(kingdomId, 'research', Math.floor(hero.researchBonus * level), batch);
+    await balancePower(kingdomId, Math.floor(hero.power * level), batch);
   }
 }
 
@@ -592,23 +549,10 @@ const disbandTroop = async (kingdomId: string, troopId: string, quantity: number
       } else {
         batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`), { quantity: admin.firestore.FieldValue.increment(-quantity) });
       }
-      const goldBalance = Math.floor(unit.goldMaintenance * quantity);
-      if (goldBalance) {
-        const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
-        batch.update(kingdomGold.ref, { balance: admin.firestore.FieldValue.increment(goldBalance) });
-      }
-      const manaBalance = Math.floor(unit.manaMaintenance * quantity);
-      if (manaBalance) {
-        const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0];
-        batch.update(kingdomMana.ref, { balance: admin.firestore.FieldValue.increment(manaBalance) });
-      }
-      const populationBalance = Math.floor(unit.populationMaintenance * quantity);
-      if (populationBalance) {
-        const kingdomPopulation = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'population').limit(1).get()).docs[0];
-        batch.update(kingdomPopulation.ref, { balance: admin.firestore.FieldValue.increment(populationBalance) });
-      }
-      const powerBalance = Math.floor(-unit.power * quantity);
-      batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { power: admin.firestore.FieldValue.increment(powerBalance) });
+      await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor(unit.goldMaintenance * quantity), batch);
+      await balanceSupply(kingdomId, SupplyType.MANA, Math.floor(unit.manaMaintenance * quantity), batch);
+      await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor(unit.populationMaintenance * quantity), batch);
+      await balancePower(kingdomId, -Math.floor(unit.power * quantity), batch);
       await batch.commit();
       return { quantity: quantity, unit: unit.name };
     } else throw new Error('api.error.troop');
@@ -625,38 +569,13 @@ const dischargeContract = async (kingdomId: string, contractId: string) => {
   if (kingdomContract) {
     const batch = angularFirestore.batch();
     batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${contractId}`));
-    const goldBalance = Math.floor((kingdomContract.hero.goldMaintenance - kingdomContract.hero.goldProduction) * kingdomContract.level);
-    if (goldBalance) {
-      const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
-      batch.update(kingdomGold.ref, { balance: admin.firestore.FieldValue.increment(goldBalance) });
-    }
-    const manaBalance = Math.floor((kingdomContract.hero.manaMaintenance - kingdomContract.hero.manaProduction) * kingdomContract.level);
-    if (manaBalance) {
-      const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0];
-      batch.update(kingdomMana.ref, { balance: admin.firestore.FieldValue.increment(manaBalance) });
-    }
-    const populationBalance = Math.floor((kingdomContract.hero.populationMaintenance - kingdomContract.hero.populationProduction) * kingdomContract.level);
-    if (populationBalance) {
-      const kingdomPopulation = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'population').limit(1).get()).docs[0];
-      batch.update(kingdomPopulation.ref, { balance: admin.firestore.FieldValue.increment(populationBalance) });
-    }
-    const exploreBonus = Math.floor(-kingdomContract.hero.exploreBonus * kingdomContract.level);
-    if (exploreBonus) {
-      const kingdomLand = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'land').limit(1).get()).docs[0];
-      batch.update(kingdomLand.ref, { bonus: admin.firestore.FieldValue.increment(exploreBonus) });
-    }
-    const buildBonus = Math.floor(-kingdomContract.hero.buildBonus * kingdomContract.level);
-    if (buildBonus) {
-      const kingdomWorkshop = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'workshop').limit(1).get()).docs[0];
-      batch.update(kingdomWorkshop.ref, { bonus: admin.firestore.FieldValue.increment(buildBonus) });
-    }
-    const researchBonus = Math.floor(-kingdomContract.hero.researchBonus * kingdomContract.level);
-    if (researchBonus) {
-      const kingdomAcademy = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'academy').limit(1).get()).docs[0];
-      batch.update(kingdomAcademy.ref, { bonus: admin.firestore.FieldValue.increment(researchBonus) });
-    }
-    const powerBalance = Math.floor(-kingdomContract.hero.power * kingdomContract.level);
-    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { power: admin.firestore.FieldValue.increment(powerBalance) });
+    await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor((kingdomContract.hero.goldMaintenance - kingdomContract.hero.goldProduction) * kingdomContract.level), batch);
+    await balanceSupply(kingdomId, SupplyType.MANA, Math.floor((kingdomContract.hero.manaMaintenance - kingdomContract.hero.manaProduction) * kingdomContract.level), batch);
+    await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor((kingdomContract.hero.populationMaintenance - kingdomContract.hero.populationProduction) * kingdomContract.level), batch);
+    await balanceBonus(kingdomId, 'explore', -Math.floor(kingdomContract.hero.exploreBonus * kingdomContract.level), batch);
+    await balanceBonus(kingdomId, 'build', -Math.floor(kingdomContract.hero.buildBonus * kingdomContract.level), batch);
+    await balanceBonus(kingdomId, 'research', -Math.floor(kingdomContract.hero.researchBonus * kingdomContract.level), batch);
+    await balancePower(kingdomId, -Math.floor(kingdomContract.hero.power * kingdomContract.level), batch);
     await batch.commit();
   } else throw new Error('api.error.discharge');
 }
@@ -888,7 +807,7 @@ const bidAuction = async (kingdomId: string, auctionId: string, gold: number) =>
 }
 
 /**
- * kingdom builds structures
+ * kingdom builds a structure
  * @param kingdomId
  * @param buildingId
  * @param quantity
@@ -896,17 +815,17 @@ const bidAuction = async (kingdomId: string, auctionId: string, gold: number) =>
 const buildStructure = async (kingdomId: string, buildingId: string, quantity: number) => {
   const kingdomBuilding = (await angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${buildingId}`).get()).data();
   if (kingdomBuilding) {
+    const batch = angularFirestore.batch();
+    const kingdomLand = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'land').limit(1).get()).docs[0].data();
+    const structure = kingdomBuilding.structure;
     const kingdomWorkshop = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'workshop').limit(1).get()).docs[0].data();
     const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0].data();
-    const kingdomLand = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'land').limit(1).get()).docs[0].data();
     const resourceTurn = (await angularFirestore.doc(`resources/turn`).get()).data();
     const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get()).docs[0].data();
-    const structure = kingdomBuilding.structure;
     const gold = structure?.goldCost * quantity;
     const turn = Math.ceil(quantity / Math.ceil((kingdomWorkshop.quantity + 1) / structure?.turnRatio))
     const maxTurns = calculate(kingdomTurn.timestamp.toMillis(), admin.firestore.Timestamp.now().toMillis(), resourceTurn?.max, resourceTurn?.ratio);
-    if (quantity <= kingdomLand.quantity && gold <= kingdomGold.quantity && turn <= maxTurns) {
-      const batch = angularFirestore.batch();
+    if (quantity > 0 && quantity <= kingdomLand.quantity && gold <= kingdomGold.quantity && turn <= maxTurns) {
       await addSupply(kingdomId, 'turn', -turn, batch, resourceTurn?.ratio);
       await addSupply(kingdomId, 'gold', -gold, batch);
       await addSupply(kingdomId, 'land', -quantity, batch);
@@ -915,8 +834,27 @@ const buildStructure = async (kingdomId: string, buildingId: string, quantity: n
       await addBuilding(kingdomId, kingdomBuilding.id, quantity, batch);
       await batch.commit();
       return { quantity: quantity, structure: structure?.name };
-    } else throw new Error('api.error.structure');
-  } else throw new Error('api.error.structure');
+    } else throw new Error('api.error.build');
+  } else throw new Error('api.error.build');
+}
+
+/**
+ * kingdom demolishes a structure
+ * @param kingdomId
+ * @param buildingId
+ * @param quantity
+ */
+const demolishStructure = async (kingdomId: string, buildingId: string, quantity: number) => {
+  const kingdomBuilding = (await angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${buildingId}`).get()).data();
+  if (kingdomBuilding) {
+    if (quantity > 0 && quantity <= kingdomBuilding.quantity) {
+      const batch = angularFirestore.batch();
+      await addBuilding(kingdomId, kingdomBuilding.id, -quantity, batch);
+      await addSupply(kingdomId, 'land', quantity, batch);
+      await batch.commit();
+      return { quantity: quantity, structure: kingdomBuilding.structure.name };
+    } else throw new Error('api.error.demolish');
+  } else throw new Error('api.error.demolish');
 }
 
 /**
@@ -932,23 +870,17 @@ const addBuilding = async (kingdomId: string, buildingId: string, quantity: numb
     const building = kingdomBuilding.data();
     const stack = building.quantity + quantity <= 0 ? 0 : admin.firestore.FieldValue.increment(quantity);
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${kingdomBuilding.id}`), { quantity: stack });
-    const goldBalance = Math.floor((building.structure.goldProduction - building.structure.goldMaintenance) * quantity);
-    if (goldBalance) {
-      const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
-      batch.update(kingdomGold.ref, { balance: admin.firestore.FieldValue.increment(goldBalance) });
+    if (quantity >= 0) {
+      await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor((building.structure.goldProduction - building.structure.goldMaintenance) * quantity), batch);
+      await balanceSupply(kingdomId, SupplyType.MANA, Math.floor((building.structure.manaProduction - building.structure.manaMaintenance) * quantity), batch);
+      await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor((building.structure.populationProduction - building.structure.populationMaintenance) * quantity), batch);
+      await balancePower(kingdomId, Math.floor(building.structure.power * quantity), batch);
+    } else {
+      await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor((building.structure.goldMaintenance - building.structure.goldProduction) * Math.abs(quantity)), batch);
+      await balanceSupply(kingdomId, SupplyType.MANA, Math.floor((building.structure.manaMaintenance - building.structure.manaProduction) * Math.abs(quantity)), batch);
+      await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor((building.structure.populationMaintenance - building.structure.populationProduction) * Math.abs(quantity)), batch);
+      await balancePower(kingdomId, Math.floor(building.structure.power * Math.abs(quantity)), batch);
     }
-    const manaBalance = Math.floor((building.structure.manaProduction - building.structure.manaMaintenance) * quantity);
-    if (manaBalance) {
-      const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0];
-      batch.update(kingdomMana.ref, { balance: admin.firestore.FieldValue.increment(manaBalance) });
-    }
-    const populationBalance = Math.floor((building.structure.populationProduction - building.structure.populationMaintenance) * quantity);
-    if (populationBalance) {
-      const kingdomPopulation = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'population').limit(1).get()).docs[0];
-      batch.update(kingdomPopulation.ref, { balance: admin.firestore.FieldValue.increment(populationBalance) });
-    }
-    const powerBalance = Math.floor(building.structure.power * quantity);
-    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { power: admin.firestore.FieldValue.increment(powerBalance) });
   } else throw new Error('api.error.building');
 }
 
@@ -993,6 +925,7 @@ const buyEmporium = async (kingdomId: string, itemId: string) => {
       const data = {
         item: item,
         quantity: quantity,
+        gems: item.gems,
       };
       const from = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
       await addLetter(kingdomId, 'kingdom.emporium.subject', 'kingdom.emporium.message', from, batch, data);
@@ -1536,63 +1469,100 @@ const offerGod = async (kingdomId: string, godId: string, sacrifice: number) => 
 }
 
 /**
- * tries to dispel an enchantment
+ * add enchantment to a kingdom
+ * @param kingdomId
+ * @param spellId
+ * @param originId
+ * @param turns
+ * @param batch
+ */
+const addEnchantment = async (kingdomId: string, enchantment: any, originId: string, turns: number, batch: FirebaseFirestore.WriteBatch) => {
+  const kingdomEnchantment = await angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).where('id', '==', enchantment.id).limit(1).get();
+  if (kingdomEnchantment.size > 0) {
+    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${kingdomEnchantment.docs[0].id}`), { turns: admin.firestore.FieldValue.increment(turns) });
+    batch.update(angularFirestore.doc(`kingdoms/${originId}/incantations/${kingdomEnchantment.docs[0].id}`), { turns: admin.firestore.FieldValue.increment(turns) });
+  } else {
+    const id = angularFirestore.collection(`kingdoms/${originId}/incantations`).doc().id;
+    const kingdomTarget = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
+    batch.create(angularFirestore.collection(`kingdoms/${originId}/incantations`).doc(id), { id: enchantment.id, spell: enchantment, to: kingdomTarget, turns: turns });
+    const kingdomOrigin = (await angularFirestore.doc(`kingdoms/${originId}`).get()).data();
+    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).doc(id), { id: enchantment.id, spell: enchantment, from: kingdomOrigin, turns: turns });
+    // origin
+    await balanceSupply(originId, SupplyType.GOLD, -enchantment.goldMaintenance, batch);
+    await balanceSupply(originId, SupplyType.MANA, -enchantment.manaMaintenance, batch);
+    await balanceSupply(originId, SupplyType.POPULATION, -enchantment.populationMaintenance, batch);
+    // target
+    await balanceSupply(kingdomId, SupplyType.GOLD, enchantment.goldProduction, batch);
+    await balanceSupply(kingdomId, SupplyType.MANA, enchantment.manaProduction, batch);
+    await balanceSupply(kingdomId, SupplyType.POPULATION, enchantment.populationProduction, batch);
+    await balanceBonus(kingdomId, 'explore', enchantment.landProduction, batch);
+    await balanceBonus(kingdomId, 'build', enchantment.buildBonus, batch);
+    await balanceBonus(kingdomId, 'research', enchantment.researchBonus, batch);
+  }
+}
+
+/**
+ * tries to dispel an incantation owned by the kingdom
  * @param kingdomId
  * @param enchantmentId
  */
-const dispelEnchantment = async (kingdomId: string, enchantmentId: string) => {
+const dispelIncantation = async (kingdomId: string, enchantmentId: string) => {
   const kingdomEnchantment = (await angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`).get()).data();
   if (kingdomEnchantment) {
     const batch = angularFirestore.batch();
-    batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`));
     // origin
-    const goldBalanceOrigin = kingdomEnchantment.spell.goldMaintenance;
-    if (goldBalanceOrigin) {
-      const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomEnchantment.from}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
-      batch.update(kingdomGold.ref, { balance: admin.firestore.FieldValue.increment(goldBalanceOrigin) });
-    }
-    const manaBalanceOrigin = kingdomEnchantment.spell.manaMaintenance;
-    if (manaBalanceOrigin) {
-      const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomEnchantment.from}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0];
-      batch.update(kingdomMana.ref, { balance: admin.firestore.FieldValue.increment(manaBalanceOrigin) });
-    }
-    const populationBalanceOrigin = kingdomEnchantment.spell.populationMaintenance;
-    if (populationBalanceOrigin) {
-      const kingdomPopulation = (await angularFirestore.collection(`kingdoms/${kingdomEnchantment.from}/supplies`).where('id', '==', 'population').limit(1).get()).docs[0];
-      batch.update(kingdomPopulation.ref, { balance: admin.firestore.FieldValue.increment(populationBalanceOrigin) });
-    }
+    batch.delete(angularFirestore.doc(`kingdoms/${kingdomEnchantment.from.id}/incantations/${enchantmentId}`));
+    await balanceSupply(kingdomEnchantment.from.id, SupplyType.GOLD, kingdomEnchantment.spell.goldMaintenance, batch);
+    await balanceSupply(kingdomEnchantment.from.id, SupplyType.MANA, kingdomEnchantment.spell.manaMaintenance, batch);
+    await balanceSupply(kingdomEnchantment.from.id, SupplyType.POPULATION, kingdomEnchantment.spell.populationMaintenance, batch);
     // target
-    const goldBalance = -kingdomEnchantment.spell.goldProduction;
-    if (goldBalance) {
-      const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
-      batch.update(kingdomGold.ref, { balance: admin.firestore.FieldValue.increment(goldBalance) });
-    }
-    const manaBalance = -kingdomEnchantment.spell.manaProduction;
-    if (manaBalance) {
-      const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0];
-      batch.update(kingdomMana.ref, { balance: admin.firestore.FieldValue.increment(manaBalance) });
-    }
-    const populationBalance = -kingdomEnchantment.spell.populationProduction;
-    if (populationBalance) {
-      const kingdomPopulation = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'population').limit(1).get()).docs[0];
-      batch.update(kingdomPopulation.ref, { balance: admin.firestore.FieldValue.increment(populationBalance) });
-    }
-    const landProduction = -kingdomEnchantment.spell.landProduction;
-    if (landProduction) {
-      const kingdomLand = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'land').limit(1).get()).docs[0];
-      batch.update(kingdomLand.ref, { balance: admin.firestore.FieldValue.increment(landProduction) });
-    }
-    const buildBonus = -kingdomEnchantment.spell.buildBonus;
-    if (buildBonus) {
-      const kingdomWorkshop = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'workshop').limit(1).get()).docs[0];
-      batch.update(kingdomWorkshop.ref, { bonus: admin.firestore.FieldValue.increment(buildBonus) });
-    }
-    const researchBonus = -kingdomEnchantment.spell.researchBonus;
-    if (researchBonus) {
-      const kingdomAcademy = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', 'academy').limit(1).get()).docs[0];
-      batch.update(kingdomAcademy.ref, { bonus: admin.firestore.FieldValue.increment(researchBonus) });
-    }
+    batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`));
+    await balanceSupply(kingdomId, SupplyType.GOLD, -kingdomEnchantment.spell.goldProduction, batch);
+    await balanceSupply(kingdomId, SupplyType.MANA, -kingdomEnchantment.spell.manaProduction, batch);
+    await balanceSupply(kingdomId, SupplyType.POPULATION, -kingdomEnchantment.spell.populationProduction, batch);
+    await balanceBonus(kingdomId, 'explore', -kingdomEnchantment.spell.landProduction, batch);
+    await balanceBonus(kingdomId, 'build', -kingdomEnchantment.spell.buildBonus, batch);
+    await balanceBonus(kingdomId, 'research', -kingdomEnchantment.spell.researchBonus, batch);
     batch.commit();
     return { success: true };
   } else throw new Error('api.error.dispel');
+}
+
+/**
+ * tries to break an enchantment not owned by the kingdom
+ * @param kingdomId
+ * @param enchantmentId
+ */
+const breakEnchantment = async (kingdomId: string, enchantmentId: string) => {
+  const kingdomEnchantment = (await angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`).get()).data();
+  if (kingdomEnchantment) {
+    const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0].data();
+    const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get()).docs[0].data();
+    kingdomTurn.quantity = calculate(kingdomTurn.timestamp.toMillis(), admin.firestore.Timestamp.now().toMillis(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
+    if (kingdomEnchantment.spell.manaCost * 2 <= kingdomMana.quantity && kingdomEnchantment.spell.turnCost * 2 <= kingdomTurn.quantity) {
+      const kingdomOrigin = (await angularFirestore.doc(`kingdoms/${kingdomEnchantment.from}`).get()).data();
+      const kingdomTarget = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
+      const chance = 100;
+      if (random(0,100) <= chance) {
+        const batch = angularFirestore.batch();
+        // origin
+        batch.delete(angularFirestore.doc(`kingdoms/${kingdomEnchantment.from.id}/incantations/${enchantmentId}`));
+        await balanceSupply(kingdomEnchantment.from.id, SupplyType.GOLD, kingdomEnchantment.spell.goldMaintenance, batch);
+        await balanceSupply(kingdomEnchantment.from.id, SupplyType.MANA, kingdomEnchantment.spell.manaMaintenance, batch);
+        await balanceSupply(kingdomEnchantment.from.id, SupplyType.POPULATION, kingdomEnchantment.spell.populationMaintenance, batch);
+        // target
+        batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`));
+        await balanceSupply(kingdomId, SupplyType.GOLD, -kingdomEnchantment.spell.goldProduction, batch);
+        await balanceSupply(kingdomId, SupplyType.MANA, -kingdomEnchantment.spell.manaProduction, batch);
+        await balanceSupply(kingdomId, SupplyType.POPULATION, -kingdomEnchantment.spell.populationProduction, batch);
+        await balanceBonus(kingdomId, 'explore', -kingdomEnchantment.spell.landProduction, batch);
+        await balanceBonus(kingdomId, 'build', -kingdomEnchantment.spell.buildBonus, batch);
+        await balanceBonus(kingdomId, 'research', -kingdomEnchantment.spell.researchBonus, batch);
+        batch.commit();
+        return { success: true };
+      } else {
+        return { success: false };
+      }
+    } else throw new Error('api.error.break');
+  } else throw new Error('api.error.break');
 }

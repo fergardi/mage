@@ -67,7 +67,11 @@ export class ApiService {
   }
 
   buildStructure(kingdomId: string, buildingId: string, quantity: number) {
-    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/city/${buildingId}/build/${quantity}`).toPromise();
+    return this.httpClient.patch(environment.functions.url + `/kingdom/${kingdomId}/city/${buildingId}/build/${quantity}`, undefined).toPromise();
+  }
+
+  demolishStructure(kingdomId: string, buildingId: string, quantity: number) {
+    return this.httpClient.patch(environment.functions.url + `/kingdom/${kingdomId}/city/${buildingId}/demolish/${quantity}`, undefined).toPromise();
   }
 
   assignContract(kingdomId: string, contractId: string, assignmentId: number) {

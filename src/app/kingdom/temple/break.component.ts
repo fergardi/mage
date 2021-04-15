@@ -15,7 +15,7 @@ import { ApiService } from 'src/app/services/api.service';
       <div matSubheader>{{ 'kingdom.break.from' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[enchantment.from.faction.id, enchantment.from.fid === uid ? 'legendary' : 'common']">
-          <div mat-list-avatar>
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="enchantment.from.faction.image">
           </div>
           <div mat-line>{{ enchantment.from.name | translate }}</div>
