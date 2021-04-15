@@ -372,7 +372,9 @@
       "success": "Has desbandado {{ quantity }} {{ unit }}",
       "troop": "Tropa",
       "platoon": "Pelotón",
-      "maintenances": "Mantenimientos"
+      "maintenances": "Mantenimientos",
+      "subject": "Abandono",
+      "message": "Tus tropas te han abandonado por no poder pagar debidamente sus mantenimientos..."
     },
     "discharge": {
       "name": "Despido",
@@ -382,7 +384,9 @@
       "cancel": "Cancelar",
       "discharge": "Despedir",
       "contract": "Contrato",
-      "maintenances": "Mantenimientos"
+      "maintenances": "Mantenimientos",
+      "subject": "Abandono",
+      "message": "Tu héroe te ha abandonado por no poder pagar debidamente su mantenimiento..."
     },
     "attack": {
       "name": "Ataque",
@@ -437,7 +441,9 @@
       "cancel": "Cancelar",
       "incantation": "Maleficio",
       "maintenances": "Mantenimientos",
-      "success": "Los maleficios se han liberado"
+      "success": "Los maleficios se han liberado",
+      "subject": "Abandono",
+      "message": "Tu encantamiento se ha liberado por no poder pagar debidamente su mantenimiento..."
     },
     "guild": {
       "name": "Gremio",

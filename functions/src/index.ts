@@ -487,10 +487,44 @@ const payMaintenance = async (kingdomId: string, turns: number, batch: FirebaseF
  * @param batch
  */
 const evictMaintenance = async (kingdomId: string, batch: FirebaseFirestore.WriteBatch) => {
-  // enchantments
+  // letter
+  const from = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
   // units
+  const kingdomTroop = await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).limit(1).get();
+  if (!kingdomTroop.empty) {
+    const troop = kingdomTroop.docs[0].data();
+    await removeTroop(kingdomId, kingdomTroop.docs[0].id, troop.quantity, batch);
+    const data = {
+      unit: troop.unit,
+      quantity: troop.quantity,
+    };
+    await addLetter(kingdomId, 'kingdom.disband.subject', 'kingdom.disband.message', from, batch, data);
+    return;
+  }
   // heroes
-  // TODO
+  const kingdomContract = await angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).limit(1).get();
+  if (!kingdomContract.empty) {
+    const contract = kingdomContract.docs[0].data();
+    await removeContract(kingdomId, kingdomContract.docs[0].id, batch);
+    const data = {
+      hero: contract.hero,
+      level: contract.level,
+    };
+    await addLetter(kingdomId, 'kingdom.discharge.subject', 'kingdom.discharge.message', from, batch, data);
+    return;
+  }
+  // enchantments
+  const kingdomIncantation = await angularFirestore.collection(`kingdoms/${kingdomId}/incantations`).limit(1).get();
+  if (!kingdomIncantation.empty) {
+    const enchantment = kingdomIncantation.docs[0].data();
+    await removeEnchantment(kingdomId, kingdomIncantation.docs[0].id, batch);
+    const data = {
+      spell: enchantment.spell,
+      level: enchantment.level,
+    };
+    await addLetter(kingdomId, 'kingdom.dispel.subject', 'kingdom.dispel.message', from, batch, data);
+    return;
+  }
 }
 
 //========================================================================================
@@ -526,11 +560,24 @@ const addTroop = async (kingdomId: string, unit: any, quantity: number, batch: F
  * @param quantity
  */
 const disbandTroop = async (kingdomId: string, troopId: string, quantity: number) => {
+  const batch = angularFirestore.batch();
+  const response = await removeTroop(kingdomId, troopId, quantity, batch);
+  await batch.commit();
+  return response;
+}
+
+/**
+ * removes a troop
+ * @param kingdomId
+ * @param troopId
+ * @param quantity
+ * @param batch
+ */
+const removeTroop = async (kingdomId: string, troopId: string, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomTroop = (await angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`).get()).data();
   if (kingdomTroop?.quantity > 0) {
     const unit = kingdomTroop?.unit;
-    if (unit.populationMaintenance <= 0) {
-      const batch = angularFirestore.batch();
+    // if (unit.populationMaintenance <= 0) {
       if (quantity >= kingdomTroop?.quantity) {
         quantity = kingdomTroop?.quantity;
         batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`));
@@ -541,9 +588,8 @@ const disbandTroop = async (kingdomId: string, troopId: string, quantity: number
       await balanceSupply(kingdomId, SupplyType.MANA, Math.floor(unit.manaMaintenance * quantity), batch);
       await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor(unit.populationMaintenance * quantity), batch);
       await balancePower(kingdomId, -Math.floor(unit.power * quantity), batch);
-      await batch.commit();
       return { quantity: quantity, unit: unit.name };
-    } else throw new Error('api.error.troop');
+    // } else throw new Error('api.error.troop');
   } else throw new Error('api.error.troop');
 }
 
@@ -614,9 +660,19 @@ const addContract = async (kingdomId: string, hero: any, level: number, batch: F
  * @param contractId
  */
 const dischargeContract = async (kingdomId: string, contractId: string) => {
+  const batch = angularFirestore.batch();
+  await removeContract(kingdomId, contractId, batch);
+  await batch.commit();
+}
+
+/**
+ * removes a contract
+ * @param kingdomId
+ * @param contractId
+ */
+const removeContract = async (kingdomId: string, contractId: string, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomContract = (await angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${contractId}`).get()).data();
   if (kingdomContract) {
-    const batch = angularFirestore.batch();
     batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${contractId}`));
     await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor((kingdomContract.hero.goldMaintenance - kingdomContract.hero.goldProduction) * kingdomContract.level), batch);
     await balanceSupply(kingdomId, SupplyType.MANA, Math.floor((kingdomContract.hero.manaMaintenance - kingdomContract.hero.manaProduction) * kingdomContract.level), batch);
@@ -625,7 +681,6 @@ const dischargeContract = async (kingdomId: string, contractId: string) => {
     await balanceBonus(kingdomId, 'build', -Math.floor(kingdomContract.hero.buildBonus * kingdomContract.level), batch);
     await balanceBonus(kingdomId, 'research', -Math.floor(kingdomContract.hero.researchBonus * kingdomContract.level), batch);
     await balancePower(kingdomId, -Math.floor(kingdomContract.hero.power * kingdomContract.level), batch);
-    await batch.commit();
   } else throw new Error('api.error.discharge');
 }
 
@@ -1546,9 +1601,20 @@ const addEnchantment = async (kingdomId: string, enchantment: any, originId: str
  * @param enchantmentId
  */
 const dispelIncantation = async (kingdomId: string, enchantmentId: string) => {
+  const batch = angularFirestore.batch();
+  const response = await removeEnchantment(kingdomId, enchantmentId, batch);
+  await batch.commit();
+  return response;
+}
+
+/**
+ * removes an enchantment
+ * @param kingdomId
+ * @param enchantmentId
+ */
+const removeEnchantment = async (kingdomId: string, enchantmentId: string, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomEnchantment = (await angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`).get()).data();
   if (kingdomEnchantment) {
-    const batch = angularFirestore.batch();
     // origin
     batch.delete(angularFirestore.doc(`kingdoms/${kingdomEnchantment.from.id}/incantations/${enchantmentId}`));
     await balanceSupply(kingdomEnchantment.from.id, SupplyType.GOLD, kingdomEnchantment.spell.goldMaintenance, batch);
@@ -1562,7 +1628,6 @@ const dispelIncantation = async (kingdomId: string, enchantmentId: string) => {
     await balanceBonus(kingdomId, 'explore', -kingdomEnchantment.spell.landProduction, batch);
     await balanceBonus(kingdomId, 'build', -kingdomEnchantment.spell.buildBonus, batch);
     await balanceBonus(kingdomId, 'research', -kingdomEnchantment.spell.researchBonus, batch);
-    batch.commit();
     return { success: true };
   } else throw new Error('api.error.dispel');
 }
