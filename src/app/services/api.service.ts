@@ -182,12 +182,20 @@ export class ApiService {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/sorcery/artifact/${artifactId}/assign/${assignmentId}`).toPromise();
   }
 
-  dispelIncantation(kingdomId: string, incantationId: string) {
+  dispelIncantation(kingdomId: string, incantationId: string) { // https://stackoverflow.com/a/63135636/2477303
     return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/temple/${incantationId}/dispel`, undefined).toPromise();
   }
 
-  breakEnchantment(kingdomId: string, enchantmentId: string) {
+  breakEnchantment(kingdomId: string, enchantmentId: string) { // https://stackoverflow.com/a/63135636/2477303
     return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/temple/${enchantmentId}/break`, undefined).toPromise();
+  }
+
+  dealGood(kingdomId: string, shopId: string, collectionId: string, dealId: string) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/world/shop/${shopId}/${collectionId}/${dealId}`).toPromise();
+  }
+
+  adventureReward(kingomdId: string, locationId: string) {
+    // TODO
   }
 
 }

@@ -10,6 +10,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { ApiService } from 'src/app/services/api.service';
+import { MapboxService } from 'src/app/services/mapbox.service';
 
 @Component({
   selector: 'app-popup',
@@ -109,14 +110,20 @@ export class PopupComponent implements OnInit {
     deal.join = deal.hero || deal.item || deal.spell || deal.unit;
     const dialogRef = this.dialog.open(DealComponent, {
       panelClass: 'dialog-responsive',
-      data: deal,
+      data: {
+        deal: deal,
+        shop: this.data,
+      },
     });
   }
 
   openAdventureDialog(adventure: any): void {
     const dialogRef = this.dialog.open(AdventureComponent, {
       panelClass: 'dialog-responsive',
-      data: adventure,
+      data: {
+        adventure: adventure,
+        quest: this.data,
+      },
     });
   }
 

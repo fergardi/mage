@@ -12,6 +12,9 @@
     <img mat-card-avatar [src]="data.store.image">
     <mat-card-title>{{ data.store.name | translate }}</mat-card-title>
     <mat-card-subtitle>{{ data.name }}</mat-card-subtitle>
+    <mat-chip-list>
+      <mat-chip color="primary" class="clock" selected><mat-icon>update</mat-icon>{{ data.visited.toMillis() | date:('dateformat.short' | translate) }}</mat-chip>
+    </mat-chip-list>
   </mat-card-header>
 
   <!-- quest -->
@@ -19,6 +22,9 @@
     <img mat-card-avatar [src]="data.location.image">
     <mat-card-title>{{ data.location.name | translate }}</mat-card-title>
     <mat-card-subtitle>{{ data.name }}</mat-card-subtitle>
+    <mat-chip-list>
+      <mat-chip color="primary" class="clock" selected><mat-icon>update</mat-icon>{{ data.visited.toMillis() | date:('dateformat.short' | translate) }}</mat-chip>
+    </mat-chip-list>
   </mat-card-header>
 
   <mat-card-content>
@@ -123,7 +129,7 @@
       <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
       <mat-list dense>
         <mat-list-item *ngFor="let contract of questContracts" [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']">
-          <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="contract.hero.image">
           </div>
           <div mat-line>{{ contract.hero.name | translate }}</div>
@@ -137,7 +143,7 @@
       <div matSubheader>{{ 'card.list.troops' | translate }}:</div>
       <mat-list dense>
         <mat-list-item *ngFor="let troop of questTroops" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']">
-          <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
+          <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar [src]="troop.unit.image">
           </div>
           <div mat-line>{{ troop.unit.name | translate }}</div>
@@ -153,9 +159,9 @@
       </mat-list>
     </ng-template>
 
-    <!-- quest artifacts -->
+    <!-- quest artifacts (rewards) -->
     <ng-template [ngIf]="questArtifacts.length">
-      <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
+      <div matSubheader>{{ 'card.list.rewards' | translate }}:</div>
       <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of questArtifacts" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']" (click)="openAdventureDialog(artifact)">
           <div mat-list-avatar [matBadge]="artifact.quantity | long" matBadgePosition="above before">

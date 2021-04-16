@@ -123,8 +123,9 @@ export class MapboxService {
       className: 'dialog-responsive',
     })
     .setDOMContent(p.html)
-    .on('open', ($event: any) => {
+    .on('open', async ($event: any) => {
       this.store.dispatch(new SetPopupAction(data.id));
+      await new Promise(resolve => setTimeout(resolve, 500)); // to be able to calculate target event clientHeight
       this.map.easeTo({
         center: $event.target.getLngLat(),
         offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],
@@ -136,7 +137,7 @@ export class MapboxService {
     // radius
     let circle = null;
     if (radius) {
-      circle = new MapboxCircle({lat: data.coordinates.latitude, lng: data.coordinates.longitude}, data.power, {
+      circle = new MapboxCircle({ lat: data.coordinates.latitude, lng: data.coordinates.longitude }, data.power, {
         editable: false,
         fillColor: '#99009c',
         fillOpacity: 0.2,
@@ -247,6 +248,10 @@ export class MapboxService {
         }
       }
     });
+  }
+
+  openPopup(latitude: number, longitude: number): void {
+    this.map.fire('click', { lngLat: { lon: longitude, lat: latitude }});
   }
 
 }

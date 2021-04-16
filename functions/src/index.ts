@@ -171,6 +171,7 @@ api.post('/world/kingdom', ash(async (req: any, res: any) => res.json(await crea
 api.post('/world/clan', ash(async (req: any, res: any) => res.json(await foundateClan(req.body.kingdomId, req.body.name, req.body.description, req.body.image))));
 api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
 api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
+api.get('/kingdom/:kingdomId/world/shop/:shopId/:collectionId/:dealId', ash(async (req: any, res: any) => res.json(await buyGoods(req.params.kingdomId, req.params.shopId, req.params.collectionId, req.params.dealId))));
 // error handler
 api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));;
 
@@ -419,7 +420,8 @@ const balanceSupply = async (kingdomId: string, supply: SupplyType, balance: num
  */
 const balancePower = async (kingdomId: string, power: number, batch: FirebaseFirestore.WriteBatch) => {
   if (power) {
-    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { power: admin.firestore.FieldValue.increment(power) });
+    const kingdom = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
+    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { power: kingdom?.power + power <= 0 ? 0 : admin.firestore.FieldValue.increment(power) });
   }
 }
 
@@ -937,7 +939,7 @@ const activateArtifact = async (kingdomId: string, artifactId: string, targetId:
           let spell: any = false;
           let tries: number = 0;
           while (!spell && tries <= 10) {
-            spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 100)).limit(1).get()).docs[0].data();
+            spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 99)).limit(1).get()).docs[0].data();
             spell = (await angularFirestore.collection(`kingdoms/${targetId}/charms`).where('spell.id', '==', spell.id).limit(1).get()).empty ? spell : false;
             tries++;
           }
@@ -1177,7 +1179,7 @@ const removeLetters = async (kingdomId: string, letterIds: string[]) => {
 
 //========================================================================================
 /*                                                                                      *
- *                                         WORLD                                        *
+ *                                         SHOPS                                        *
  *                                                                                      */
 //========================================================================================
 
@@ -1232,13 +1234,71 @@ const checkShop = async (fid?: string, latitude?: number, longitude?: number, ty
       case StoreType.SORCERER:
         const sorcererCharms = await angularFirestore.collection(`shops/${fid}/charms`).listDocuments();
         sorcererCharms.map(charm => batch.delete(charm));
-        const spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 100)).limit(1).get()).docs[0].data();
+        const spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 99)).limit(1).get()).docs[0].data();
         batch.create(angularFirestore.collection(`shops/${fid}/charms`).doc(), { id: spell.id, spell: spell, gold: 1000000 * spell.level });
         break;
     }
   }
   await batch.commit();
 }
+
+/**
+ * kingdom buys a good from a store
+ * @param kingdomId
+ * @param shopId
+ * @param collectionId
+ * @param dealId
+ */
+const buyGoods = async (kingdomId: string, shopId: string, collectionId: string, dealId: string) => {
+  const worldDeal = (await angularFirestore.doc(`shops/${shopId}/${collectionId}/${dealId}`).get()).data();
+  if (worldDeal) {
+    const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0].data();
+    if (worldDeal.gold <= kingdomGold.quantity) {
+      const batch = angularFirestore.batch();
+      await addSupply(kingdomId, 'gold', -worldDeal.gold, batch);
+      let data = {};
+      switch (collectionId) {
+        case 'troops':
+          data = {
+            unit: worldDeal.unit,
+            quantity: worldDeal.quantity,
+          };
+          await addTroop(kingdomId, worldDeal.unit, worldDeal.quantity, batch);
+          break;
+        case 'contracts':
+          data = {
+            hero: worldDeal.hero,
+            level: worldDeal.level,
+          };
+          await addContract(kingdomId, worldDeal.hero, worldDeal.level, batch);
+          break;
+        case 'charms':
+          data = {
+            spell: worldDeal.spell,
+            level: 0,
+          };
+          await addCharm(kingdomId, worldDeal.spell, 0, batch);
+          break;
+        case 'artifacts':
+          data = {
+            artifact: worldDeal.artifact,
+            quantity: worldDeal.quantity,
+          };
+          await addArtifact(kingdomId, worldDeal.item, worldDeal.quantity, batch);
+          break;
+      }
+      const from = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
+      await addLetter(kingdomId, 'world.deal.subject', 'world.deal.message', from, batch, data);
+      await batch.commit();
+    } else throw new Error('api.error.deal');
+  } else throw new Error('api.error.deal');
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                        QUESTS                                        *
+ *                                                                                      */
+//========================================================================================
 
 /**
  * checks a quest in the world

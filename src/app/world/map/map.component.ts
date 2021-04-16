@@ -74,7 +74,7 @@ export class MapComponent implements OnInit, OnDestroy {
         }),
       ).subscribe(async (quests: Array<any>) => {
         this.loadingService.startLoading();
-        this.notificationService.warning('world.map.update');
+        // this.notificationService.warning('world.map.refresh');
         this.mapboxService.clearMarkers(MarkerType.QUEST);
         quests.forEach((quest: any) => this.mapboxService.addMarker(quest, MarkerType.QUEST, false, false));
         this.mapboxService.refreshMarkers();
@@ -93,7 +93,7 @@ export class MapComponent implements OnInit, OnDestroy {
         }),
       ).subscribe(async (shops: Array<any>) => {
         this.loadingService.startLoading();
-        this.notificationService.warning('world.map.update');
+        // this.notificationService.warning('world.map.refresh');
         this.mapboxService.clearMarkers(MarkerType.SHOP);
         shops.forEach((shop: any) => this.mapboxService.addMarker(shop, MarkerType.SHOP, false, false));
         this.mapboxService.refreshMarkers();

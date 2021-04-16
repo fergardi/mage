@@ -38,7 +38,7 @@
     "@ngxs/schematics": "0.0.1-alpha.5",
     "@ngxs/store": "^3.3.2",
     "angular-animations": "0.0.10",
-    "animate.css": "^3.7.2",
+    "animate.css": "^4.1.1",
     "firebase": "^7.14.0",
     "geofirex": "^0.1.0",
     "lodash": "^4.17.20",
