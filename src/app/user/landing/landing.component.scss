@@ -4,6 +4,9 @@
   position: relative;
   background-color: #681194;
   /* PARALLAX */
+  .animated {
+    animation-fill-mode: backwards;
+  }
   .parallax {
     perspective: 100px;
     height: calc(100vh - 64px);

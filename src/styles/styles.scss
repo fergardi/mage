@@ -2,6 +2,12 @@
 @import url("https://use.typekit.net/jnq3uxd.css");
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Uncial+Antiqua&display=swap');
 
+//========================================================================================
+/*                                                                                      *
+ *                                         FONTS                                        *
+ *                                                                                      */
+//========================================================================================
+
 // https://github.com/angular/components/blob/master/src/material/core/typography/_typography.scss
 @function define-typography-level(
   $font-size,
@@ -35,6 +41,16 @@ $custom-typography: mat-typography-config(
 );
 @include mat-core($custom-typography);
 
+// font headings
+.mat-card-header .mat-card-title,
+.mat-card-title,
+.mat-list-text .mat-line:first-of-type,
+.mat-toolbar .logo,
+.mat-dialog-title,
+.mat-button-base,
+.app-landing h1, .app-landing h3 {
+  font-family: 'Uncial Antiqua', cursive !important;
+}
 html {
   font-size: 14px;
 }
@@ -48,6 +64,12 @@ html {
     font-size: 12px;
   }
 }
+
+//========================================================================================
+/*                                                                                      *
+ *                                        COLORS                                        *
+ *                                                                                      */
+//========================================================================================
 
 // http://mcg.mbitson.com/
 $md-palette: (
@@ -110,7 +132,11 @@ $white-color: mat-color($theme-white);
 $common-color: mat-color($theme-common);
 $legendary-color: darkgoldenrod;
 
-$list-item-height: 60px;
+//========================================================================================
+/*                                                                                      *
+ *                                        LAYOUT                                        *
+ *                                                                                      */
+//========================================================================================
 
 html, body {
   height: 100%;
@@ -119,7 +145,17 @@ html, body {
 body {
   margin: 0;
 }
+.mat-select-trigger .mat-select-value {
+  overflow: visible;
+}
 
+//========================================================================================
+/*                                                                                      *
+ *                                         LISTS                                        *
+ *                                                                                      */
+//========================================================================================
+
+$list-item-height: 60px;
 @keyframes legendary {
   0%  {
     background-position: 0% 50%;
@@ -131,11 +167,6 @@ body {
     background-position: 0% 50%;
   }
 }
-
-.mat-select-trigger .mat-select-value {
-  overflow: visible;
-}
-
 .mat-list {
   .mat-list-item .mat-list-item-content {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $common-color 50%, rgba(255,255,255,0) 100%);
@@ -162,18 +193,85 @@ body {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $white-color 50%, rgba(255,255,255,0) 100%);
   }
 }
-
-// font headings
-.mat-card-header .mat-card-title,
-.mat-card-title,
-.mat-list-text .mat-line:first-of-type,
-.mat-toolbar .logo,
-.mat-dialog-title,
-.mat-button-base,
-.app-landing h1, .app-landing h3 {
-  font-family: 'Uncial Antiqua', cursive !important;
+.mat-list-base {
+  padding-top: 0px !important;
+ .mat-list-avatar {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  .mat-subheader:first-child {
+    margin-top: 0 !important;
+  }
+}
+.mat-list-base:not(.mat-nav-list) {
+  img.mat-list-avatar {
+    box-sizing: border-box;
+    border: 2px solid $primary-color;
+  }
+}
+.mat-list-base:not(.supply-list) {
+  .mat-list-item {
+    box-sizing: border-box;
+    &+ .mat-list-item {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+  }
+  .mat-line {
+    white-space: pre-wrap !important;
+    line-height: 1.25 !important;
+  }
+  .mat-list-item-content {
+    .mat-list-avatar:nth-of-type(3) {
+      order: 9999;
+      margin-left: 16px;
+    }
+    .mat-icon {
+      margin-left: 16px;
+    }
+  }
+  .mat-progress-bar {
+    margin-top: 5px;
+  }
+}
+.mat-list {
+  min-height: $list-item-height;
+  max-height: ($list-item-height * 5);
+  overflow: hidden auto;
+  box-sizing: border-box;
+  &.dotted {
+    padding-top: 0;
+    border: 2px dashed $primary-color;
+    max-height: ($list-item-height * 5) + 4;
+  }
+  .mat-list-item {
+    min-height: $list-item-height !important;
+    max-height: $list-item-height !important;
+    height: $list-item-height !important;
+    overflow: hidden;
+    &.handle {
+      &:hover {
+        cursor: move;
+        background-color: rgba(255, 255, 255, 0.04);
+      }
+      &:active {
+        cursor: grabbing;
+      }
+    }
+  }
+}
+.mat-list-item-disabled {
+  opacity: 0.5;
 }
 
+//========================================================================================
+/*                                                                                      *
+ *                                         CHIPS                                        *
+ *                                                                                      */
+//========================================================================================
+
+.mat-chip-list {
+  pointer-events: none;
+}
 .mat-standard-chip {
   min-height: 26px !important;
   padding: 8px !important;
@@ -193,6 +291,15 @@ body {
     background-color: $legendary-color !important;
   }
 }
+.mat-chip-list-wrapper {
+  margin: 0 !important;
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                         CARDS                                        *
+ *                                                                                      */
+//========================================================================================
 
 .mat-card-header {
   .mat-chip-list,
@@ -200,43 +307,78 @@ body {
     margin: auto 10px auto 0;
   }
 }
-
-.fill-space {
-  flex: 1 1 auto;
+.mat-card {
+  .mat-card-header {
+    .mat-card-header-text {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      .mat-card-subtitle {
+        margin-bottom: 0;
+        white-space: pre-wrap !important;
+      }
+    }
+  }
 }
-
-.overflow {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.mat-card.map-popup {
+  .mat-card-avatar {
+    height: 70px !important;
+    width: 70px !important;
+    border: 2px solid $primary-color;
+  }
+}
+.mat-card:not(.map-popup) {
+  .mat-card-header {
+    background-color: #212121;
+    margin: -16px -16px 16px -16px !important;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    .mat-card-avatar {
+      height: 100px;
+      width: auto;
+      border-radius: 0;
+      border-top-left-radius: 4px;
+    }
+  }
+}
+.mat-card-title {
+  line-height: 1.25 !important;
+}
+.mat-card-title::after,
+.mat-dialog-container .mat-dialog-title::after {
+  content: '';
+  border-bottom: 8px solid $primary-color;
+  width: 100%;
   display: block;
-  box-sizing: border-box;
+}
+.mat-card > .mat-card-actions:last-child {
+  margin-bottom: 0 !important;
+}
+.mat-card,
+.mat-dialog-container {
+  opacity: 0.975;
+}
+.mat-card-content {
+  margin-bottom: 0px !important;
+}
+.mat-subheader {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  line-height: 8px;
+  padding: 8px 0 !important;
+}
+.mat-subheader,
+.mat-card-subtitle {
+  font-style: italic;
 }
 
-.mat-dialog-actions {
-  justify-content: flex-end;
-}
-
-.mat-list-item-disabled {
-  opacity: 0.5;
-}
-
-.spinner-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button-container {
-  display: inline-block;
-  position: relative;
-}
+//========================================================================================
+/*                                                                                      *
+ *                                        TABLES                                        *
+ *                                                                                      */
+//========================================================================================
 
 .table-responsive,
 .table-no-responsive {
@@ -273,92 +415,100 @@ body {
     width: auto;
   }
 }
-
-.flag-menu {
-  display: flex !important;
-  align-items: center;
-  img {
-    margin-right: 10px;
-  }
-}
-
 .mat-menu-item.active,
 .mat-list-item.active {
   background-color: rgba(255, 255, 255, 0.04);
 }
+.mat-table,
+.mat-paginator {
+  background: transparent;
+}
+@media screen and (max-width: 960px) {
+  .table-responsive {
+    .mat-list-item-content {
+      padding: 0 !important;
+    }
+    .mat-table {
+      border: 0;
+      vertical-align: middle;
+    }
+    .mat-table caption {
+      font-size: 1em;
+    }
+    .mat-table .mat-row {
+      display: block;
+    }
+    .mat-table .mat-row:not(:last-of-type) {
+      border-bottom: 3px solid #303030;
+    }
+    .mat-row, .mat-footer-row {
+      min-height: auto;
+    }
+    .mat-table .mat-cell {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: $list-item-height;
+      overflow: visible;
+    }
+    .mat-table .mat-cell:before {
+      content: attr(data-label);
+      font-weight: normal;
+      font-size: 0.85rem;
+      margin-right: auto;
+      writing-mode: vertical-lr;
+      transform: rotate(-180deg);
+      padding-left: 10px;
+    }
+    .mat-table .mat-cell:last-child {
+      border-bottom: 0;
+    }
+    .mat-list-base {
+      overflow: visible;
+      .mat-list-item {
+        overflow: visible;
+      }
+    }
+    .mat-list-text {
+      width: auto !important;
+      padding-left: 10px !important;
+    }
+    .mat-cell:first-of-type, .mat-header-cell:first-of-type, .mat-footer-cell:first-of-type {
+      padding-left: 0;
+    }
+    .mat-cell:last-of-type, .mat-header-cell:last-of-type, .mat-footer-cell:last-of-type {
+      padding-right: 0;
+    }
+    .mat-paginator-range-label {
+      margin: 0;
+    }
+  }
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                        BADGES                                        *
+ *                                                                                      */
+//========================================================================================
 
 .mat-badge-content {
   width: auto !important;
   border-radius: 4px;
   padding: 0 5px;
 }
-
 .mat-badge-above .mat-badge-content {
   top: -5px !important;
 }
-
 .mat-badge-below .mat-badge-content {
   bottom: -5px !important;
 }
 
-.mat-card-content {
-  margin-bottom: 0px !important;
-}
-
-.mat-list-base {
-  padding-top: 0px !important;
- .mat-list-avatar {
-    width: 50px !important;
-    height: 50px !important;
-  }
-  .mat-subheader:first-child {
-    margin-top: 0 !important;
-  }
-}
-.mat-subheader {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 12px;
-  line-height: 8px;
-  padding: 8px 0 !important;
-}
-
-.mat-subheader,
-.mat-card-subtitle {
-  font-style: italic;
-}
-
-hr {
-  border-color: $primary-color;
-}
-
-.mat-list-base:not(.mat-nav-list) {
-  img.mat-list-avatar {
-    box-sizing: border-box;
-    border: 2px solid $primary-color;
-  }
-}
-
-.mat-list-base:not(.supply-list) {
-  .mat-list-item + .mat-list-item {
-    // border-top: 1px solid $primary-color;
-  }
-  .mat-line {
-    white-space: pre-wrap !important;
-    line-height: 1.25 !important;
-  }
-  .mat-list-item-content {
-    .mat-list-avatar:nth-of-type(3) {
-      order: 9999;
-      margin-left: 16px;
-    }
-    .mat-icon {
-      margin-left: 16px;
-    }
-  }
-  .mat-progress-bar {
-    margin-top: 5px;
-  }
-}
+//========================================================================================
+/*                                                                                      *
+ *                                        DIALOGS                                       *
+ *                                                                                      */
+//========================================================================================
 
 .mat-dialog-container {
   position: relative;
@@ -380,12 +530,6 @@ hr {
     display: block;
   }
 }
-
-.mat-chip-list-wrapper {
-  margin: 0 !important;
-}
-
-// ribbon
 .mat-dialog-content::after {
   content: "";
   width: 90px;
@@ -398,52 +542,51 @@ hr {
   background-size: contain;
   z-index: -1;
 }
-
-.icon {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  margin: 0;
-  border: 1px solid $primary-color;
-  box-sizing: border-box;
-  vertical-align: text-bottom;
-  &.grayscale {
-    filter: grayscale(100%);
-  }
+.mat-dialog-actions {
+  justify-content: flex-end;
 }
-
-.mat-card,
-.mat-dialog-container {
-  opacity: 0.975;
-}
-
 .mat-dialog-container {
   background: url('/assets/images/background/papire.jpg') no-repeat center center; // fixed
   background-size: cover;
 }
-
-.mat-table,
-.mat-paginator {
-  background: transparent;
+/*
+.cdk-overlay-container {
+  z-index: 9999; // to show snackbars above loading
+}
+*/
+.dialog-responsive {
+  min-width: 30vw !important;
+  width: 30vw !important;
+  max-width: 30vw !important;
+}
+@media screen and (max-width: 1280px) {
+  .dialog-responsive {
+    min-width: 60vw !important;
+    width: 60vw !important;
+    max-width: 60vw !important;
+  }
+}
+@media screen and (max-width: 960px) {
+  .dialog-responsive {
+    min-width: 75vw !important;
+    width: 75vw !important;
+    max-width: 75vw !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .dialog-responsive {
+    min-width: 97.5vw !important;
+    width: 97.5vw !important;
+    max-width: 97.5vw !important;
+  }
 }
 
-.mat-card-title {
-  line-height: 1.25 !important;
-}
+//========================================================================================
+/*                                                                                      *
+ *                                     DRAG AND DROP                                    *
+ *                                                                                      */
+//========================================================================================
 
-.mat-card-title::after,
-.mat-dialog-container .mat-dialog-title::after {
-  content: '';
-  border-bottom: 8px solid $primary-color;
-  width: 100%;
-  display: block;
-}
-
-.mat-card > .mat-card-actions:last-child {
-  margin-bottom: 0 !important;
-}
-
-// DRAG AND DROP
 .cdk-drag-placeholder {
   opacity: 0.5;
   box-sizing: border-box;
@@ -537,168 +680,94 @@ hr {
   }
 }
 
-.mat-list {
-  min-height: $list-item-height;
-  max-height: ($list-item-height * 5);
-  overflow: hidden auto;
-  box-sizing: border-box;
-  &.dotted {
-    padding-top: 0;
-    border: 2px dashed $primary-color;
-    max-height: ($list-item-height * 5) + 4;
-  }
-  .mat-list-item {
-    min-height: $list-item-height !important;
-    max-height: $list-item-height !important;
-    height: $list-item-height !important;
-    overflow: hidden;
-    &.handle {
-      &:hover {
-        cursor: move;
-        background-color: rgba(255, 255, 255, 0.04);
-      }
-      &:active {
-        cursor: grabbing;
-      }
-    }
-  }
-}
+//========================================================================================
+/*                                                                                      *
+ *                                        SELECTS                                       *
+ *                                                                                      */
+//========================================================================================
 
 .mat-select-panel .mat-option {
   height: 60px !important;
 }
 
-.mat-card {
-  .mat-card-header {
-    .mat-card-header-text {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      .mat-card-subtitle {
-        margin-bottom: 0;
-        white-space: pre-wrap !important;
-      }
-    }
+//========================================================================================
+/*                                                                                      *
+ *                                       SPINNERS                                       *
+ *                                                                                      */
+//========================================================================================
+
+.spinner-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                         ICONS                                        *
+ *                                                                                      */
+//========================================================================================
+
+.icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin: 0;
+  border: 1px solid $primary-color;
+  box-sizing: border-box;
+  vertical-align: text-bottom;
+  &.grayscale {
+    filter: grayscale(100%);
   }
 }
 
-.mat-card.map-popup {
-  .mat-card-avatar {
-    height: 70px !important;
-    width: 70px !important;
-    border: 2px solid $primary-color;
+//========================================================================================
+/*                                                                                      *
+ *                                        BUTTONS                                       *
+ *                                                                                      */
+//========================================================================================
+
+.button-container {
+  display: inline-block;
+  position: relative;
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                         MENUS                                        *
+ *                                                                                      */
+//========================================================================================
+
+.flag-menu {
+  display: flex !important;
+  align-items: center;
+  img {
+    margin-right: 10px;
   }
 }
 
-.mat-card:not(.map-popup) {
-  .mat-card-header {
-    background-color: #212121;
-    margin: -16px -16px 16px -16px !important;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    .mat-card-avatar {
-      height: 100px;
-      width: auto;
-      border-radius: 0;
-      border-top-left-radius: 4px;
-    }
-  }
-}
+//========================================================================================
+/*                                                                                      *
+ *                                        HELPERS                                       *
+ *                                                                                      */
+//========================================================================================
 
-.cdk-overlay-container {
-  // z-index: 9999; // to show snackbars above loading
+.fill-space {
+  flex: 1 1 auto;
 }
-
-// responsive dialog
-.dialog-responsive {
-  min-width: 30vw !important;
-  width: 30vw !important;
-  max-width: 30vw !important;
+.overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  box-sizing: border-box;
 }
-@media screen and (max-width: 1280px) {
-  .dialog-responsive {
-    min-width: 60vw !important;
-    width: 60vw !important;
-    max-width: 60vw !important;
-  }
-}
-@media screen and (max-width: 960px) {
-  .dialog-responsive {
-    min-width: 75vw !important;
-    width: 75vw !important;
-    max-width: 75vw !important;
-  }
-}
-@media screen and (max-width: 600px) {
-  .dialog-responsive {
-    min-width: 97.5vw !important;
-    width: 97.5vw !important;
-    max-width: 97.5vw !important;
-  }
-}
-
-// responsive custom table
-@media screen and (max-width: 960px) {
-  .table-responsive {
-    .mat-list-item-content {
-      padding: 0 !important;
-    }
-    .mat-table {
-      border: 0;
-      vertical-align: middle;
-    }
-    .mat-table caption {
-      font-size: 1em;
-    }
-    .mat-table .mat-row {
-      display: block;
-    }
-    .mat-table .mat-row:not(:last-of-type) {
-      border-bottom: 3px solid #303030;
-    }
-    .mat-row, .mat-footer-row {
-      min-height: auto;
-    }
-    .mat-table .mat-cell {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      min-height: $list-item-height;
-      overflow: visible;
-    }
-    .mat-table .mat-cell:before {
-      content: attr(data-label);
-      font-weight: normal;
-      font-size: 0.85rem;
-      margin-right: auto;
-      writing-mode: vertical-lr;
-      transform: rotate(-180deg);
-      padding-left: 10px;
-    }
-    .mat-table .mat-cell:last-child {
-      border-bottom: 0;
-    }
-    .mat-list-base {
-      overflow: visible;
-      .mat-list-item {
-        overflow: visible;
-      }
-    }
-    .mat-list-text {
-      width: auto !important;
-      padding-left: 10px !important;
-    }
-    .mat-cell:first-of-type, .mat-header-cell:first-of-type, .mat-footer-cell:first-of-type {
-      padding-left: 0;
-    }
-    .mat-cell:last-of-type, .mat-header-cell:last-of-type, .mat-footer-cell:last-of-type {
-      padding-right: 0;
-    }
-    .mat-paginator-range-label {
-      margin: 0;
-    }
-  }
+hr {
+  border-color: $primary-color;
 }

@@ -169,7 +169,7 @@
           </div>
           <div mat-line>{{ artifact.item.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item"></div>
-          <div mat-list-avatar [matBadge]="artifact.turns | long" matBadgePosition="above after">
+          <div mat-list-avatar [matBadge]="data.turns | long" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </button>

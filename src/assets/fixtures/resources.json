@@ -8,6 +8,7 @@
     "description": "resource.population.description",
     "sort": 3,
     "image": "/assets/images/resources/population.png",
+    "status": "/assets/images/resources/population-chest.png",
     "route": "/kingdom/army",
     "ratio": null,
     "max": null
@@ -21,6 +22,7 @@
     "description": "resource.gold.description",
     "sort": 1,
     "image": "/assets/images/resources/gold.png",
+    "status": "/assets/images/resources/gold-chest.png",
     "route": "/kingdom/auction",
     "ratio": null,
     "max": null
@@ -34,6 +36,7 @@
     "description": "resource.mana.description",
     "sort": 2,
     "image": "/assets/images/resources/mana.png",
+    "status": "/assets/images/resources/mana-chest.png",
     "route": "/kingdom/sorcery",
     "ratio": null,
     "max": null
@@ -47,6 +50,7 @@
     "description": "resource.gem.description",
     "sort": 6,
     "image": "/assets/images/resources/gem.png",
+    "status": "/assets/images/resources/gem-chest.png",
     "route": "/kingdom/emporium",
     "ratio": null,
     "max": null
@@ -60,6 +64,7 @@
     "description": "resource.turn.description",
     "sort": 5,
     "image": "/assets/images/resources/turn.png",
+    "status": "/assets/images/resources/turn-chest.png",
     "route": "/kingdom/temple",
     "ratio": 1,
     "max": 300
@@ -73,6 +78,7 @@
     "description": "resource.land.description",
     "sort": 4,
     "image": "/assets/images/resources/land.png",
+    "status": "/assets/images/resources/land-chest.png",
     "route": "/kingdom/city",
     "ratio": null,
     "max": null

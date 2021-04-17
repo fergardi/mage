@@ -302,7 +302,7 @@
       "success": "El intercambio se ha completado",
       "error": "Ha ocurrido un problema",
       "subject": "Trato cerrado",
-      "message": "La compra se ha realizado. Las nuevas adquisiciones se han enviado a tu reino."
+      "message": "La compra se ha realizado correctamente. Las nuevas adquisiciones se han enviado a tu reino."
     }
   },
   "kingdom": {
@@ -691,7 +691,7 @@
       "success": "Has adquirido {{ quantity }} {{ item }}",
       "error": "Ha ocurrido un problema",
       "subject": "Compra realizada",
-      "message": "La compra se ha realizado. Las nuevas adquisiciones se han enviado a tu reino.",
+      "message": "La compra se ha realizado correctamente. Las nuevas adquisiciones se han enviado a tu reino.",
       "from": "Mercado Negro"
     },
     "buy": {

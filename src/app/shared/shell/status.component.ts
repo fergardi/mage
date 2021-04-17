@@ -23,7 +23,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
             [matBadge]="(supply.balance | short) + ('resource.turn.ratio' | translate)"
             [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
             matBadgePosition="above after">
-            <img mat-list-avatar [src]="supply.resource.image">
+            <img mat-list-avatar [src]="supply.status">
           </div>
         </mat-list-item>
       </ng-container>
