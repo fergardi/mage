@@ -9,10 +9,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { LoadingService } from 'src/app/services/loading.service';
 
 export enum ArtifactAssignmentType {
-  'none' = 0,
-  'attack' = 1,
-  'defense' = 2,
-}
+  NONE,
+  ATTACK,
+  DEFENSE,
+};
 
 @Component({
   selector: 'app-activate',
@@ -21,20 +21,6 @@ export enum ArtifactAssignmentType {
     <div mat-dialog-content>
       <p>{{ 'kingdom.activate.description' | translate }}</p>
       <div matSubheader>{{ 'kingdom.activate.artifact' | translate }}:</div>
-      <!--
-      <mat-list dense *ngIf="!kingdomArtifacts">
-        <mat-list-item [ngClass]="[selectedArtifact.item.faction.id, selectedArtifact.item.legendary ? 'legendary' : 'common']" *ngIf="selectedArtifact">
-          <div mat-list-avatar [matBadge]="selectedArtifact.quantity" matBadgePosition="above before">
-            <img mat-list-avatar [src]="selectedArtifact.item.image">
-          </div>
-          <div mat-line>{{ selectedArtifact.item.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" [innerHTML]="selectedArtifact.item.description | translate | icon:selectedArtifact.item"></div>
-          <div mat-list-avatar [matBadge]="selectedArtifact.item.turns" matBadgePosition="above after">
-            <img mat-list-avatar src="/assets/images/resources/turn.png">
-          </div>
-        </mat-list-item>
-      </mat-list>
-      -->
       <mat-form-field *ngIf="kingdomArtifacts">
         <mat-label>{{ 'kingdom.activate.select' | translate }}</mat-label>
         <mat-select [(ngModel)]="selectedArtifact">
@@ -102,7 +88,7 @@ export class ActivateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`, ref => ref.where('assignment', '==', ArtifactAssignmentType.none).where('item.battle', '==', false).where('item.self', '==', !this.activation.kingdom)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
+    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`, ref => ref.where('assignment', '==', ArtifactAssignmentType.NONE).where('item.battle', '==', false).where('item.self', '==', !this.activation.kingdom)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
       this.kingdomArtifacts = artifacts;
       if (this.activation.artifact) this.selectedArtifact = this.kingdomArtifacts.find(artifact => artifact.fid === this.activation.artifact.fid);
     });

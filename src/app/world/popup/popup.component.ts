@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import * as moment from 'moment';
 import { ApiService } from 'src/app/services/api.service';
 import { MapboxService } from 'src/app/services/mapbox.service';
+import { TroopAssignmentType } from 'src/app/kingdom/army/army.component';
 
 @Component({
   selector: 'app-popup',
@@ -59,8 +60,8 @@ export class PopupComponent implements OnInit {
         this.checkRefresh();
         // kingdom
         if (this.data.type === PopupType.KINGDOM) {
-          this.subscriptions.push(this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`, ref => ref.where('assignment', '==', 2)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
-            this.kingdomTroops = troops;
+          this.subscriptions.push(this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
+            this.kingdomTroops = troops.sort((a, b) => a.sort - b.sort);
           }));
         }
         // shop
@@ -80,8 +81,8 @@ export class PopupComponent implements OnInit {
         }
         // quest
         if (this.data.type === PopupType.QUEST) {
-          this.subscriptions.push(this.angularFirestore.collection<any>(`quests/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
-            this.questTroops = troops;
+          this.subscriptions.push(this.angularFirestore.collection<any>(`quests/${this.data.id}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
+            this.questTroops = troops.sort((a, b) => a.sort - b.sort);
           }));
           this.subscriptions.push(this.angularFirestore.collection<any>(`quests/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(contracts => {
             this.questContracts = contracts;

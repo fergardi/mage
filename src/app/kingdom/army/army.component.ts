@@ -13,8 +13,10 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 export enum TroopAssignmentType {
-  'troopNone', 'troopAttack', 'troopDefense',
-}
+  NONE,
+  ATTACK,
+  DEFENSE,
+};
 
 const MAXIMUM_TROOPS = 5;
 
@@ -45,9 +47,9 @@ export class ArmyComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.angularFirestore.collection<any>(`kingdoms/${this.uid}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
-      this.kingdomTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopNone || !troop.assignment).sort((a, b) => a.sort - b.sort);
-      this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopAttack).sort((a, b) => a.sort - b.sort);
-      this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.troopDefense).sort((a, b) => a.sort - b.sort);
+      this.kingdomTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.NONE || !troop.assignment).sort((a, b) => a.sort - b.sort);
+      this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.ATTACK).sort((a, b) => a.sort - b.sort);
+      this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.DEFENSE).sort((a, b) => a.sort - b.sort);
     });
     this.angularFirestore.collection<any>(`units`, ref => ref.where('gold', '>', 0)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(units => {
       this.recruitUnits = units;
@@ -72,13 +74,13 @@ export class ArmyComponent implements OnInit {
     try {
       const army = [];
       this.kingdomTroops.forEach((kingdomTroop, index) => {
-        army.push({ troopId: kingdomTroop.fid, sort: 1000 + index, assignment: TroopAssignmentType.troopNone });
+        army.push({ troopId: kingdomTroop.fid, sort: 1000 + index, assignment: TroopAssignmentType.NONE });
       });
       this.attackTroops.forEach((attackTroop, index) => {
-        army.push({ troopId: attackTroop.fid, sort: 2000 + index, assignment: TroopAssignmentType.troopAttack });
+        army.push({ troopId: attackTroop.fid, sort: 2000 + index, assignment: TroopAssignmentType.ATTACK });
       });
       this.defenseTroops.forEach((defenseTroop, index) => {
-        army.push({ troopId: defenseTroop.fid, sort: 3000 + index, assignment: TroopAssignmentType.troopDefense });
+        army.push({ troopId: defenseTroop.fid, sort: 3000 + index, assignment: TroopAssignmentType.DEFENSE });
       });
       const assigned = await this.apiService.assignArmy(this.uid, army);
       this.notificationService.success('kingdom.army.success');

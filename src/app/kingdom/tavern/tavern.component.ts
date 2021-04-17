@@ -12,8 +12,10 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 export enum ContractAssignmentType {
-  'contractNone', 'contractAttack', 'contractDefense',
-}
+  NONE,
+  ATTACK,
+  DEFENSE,
+};
 
 const MAXIMUM_CONTRACTS = 3;
 
@@ -43,9 +45,9 @@ export class TavernComponent implements OnInit {
 
   ngOnInit(): void {
     this.angularFirestore.collection<any>(`kingdoms/${this.uid}/contracts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(contracts => {
-      this.kingdomContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.contractNone || !contract.assignment);
-      this.attackContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.contractAttack);
-      this.defenseContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.contractDefense);
+      this.kingdomContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.NONE || !contract.assignment);
+      this.attackContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.ATTACK);
+      this.defenseContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.DEFENSE);
     });
   }
 
