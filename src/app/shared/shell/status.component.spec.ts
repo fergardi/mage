@@ -4,6 +4,7 @@ import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bott
 import { of } from 'rxjs';
 import { BottomSheetRefStub } from 'src/stubs';
 import { MatListModule } from '@angular/material/list';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('StatusComponent', () => {
   let component: StatusComponent;
@@ -14,6 +15,7 @@ describe('StatusComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MatListModule,
+        TranslateModule.forRoot(),
       ],
       declarations: [
         StatusComponent,

@@ -314,13 +314,13 @@
     "leadership": {
       "name": "Liderazgo",
       "description": "Comanda tus tropas",
-      "help": "Los héroes que tengas asignados al Liderazo entrarán en batalla contra cualquier reino al que ataques, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla.",
+      "help": "Los héroes que tengas asignados al Liderazo entrarán en batalla contra cualquier reino que ataques o aventura que emprendas, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
       "max": "Max"
     },
     "guard": {
       "name": "Guardia",
       "description": "Vigila tus dominios",
-      "help": "Los héroes que tengas asignados a la Guardia entrarán en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla.",
+      "help": "Los héroes que tengas asignados a la Guardia entrarán en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
       "max": "Max"
     },
     "census": {
@@ -359,7 +359,7 @@
       "description": "Gestiona tus tropas",
       "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
       "max": "Max",
-      "maximum": "No puedes superar el máximo",
+      "maximum": "Tu ejército está al completo",
       "success": "Los cambios de tus tropas se han guardado",
       "error": "Ha ocurrido un problema"
     },
@@ -394,13 +394,13 @@
     "attack": {
       "name": "Ataque",
       "description": "Ordena tus fuerzas ofensivas",
-      "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha importancia en las batallas.",
+      "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha relevancia en las batallas.",
       "max": "Max"
     },
     "defense": {
       "name": "Defensa",
       "description": "Ordena tus fuerzas defensivas",
-      "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha importancia en las batallas.",
+      "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha relevancia en las batallas.",
       "max": "Max"
     },
     "recruit": {
@@ -595,11 +595,11 @@
     "tavern": {
       "name": "Taberna",
       "description": "Asigna a tus héroes",
-      "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores. Puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos. Los héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
+      "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores de batalla. Puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos. Los héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
       "success": "Tus héroes han sido asignados",
       "error": "Ha ocurrido un problema",
       "max": "Max",
-      "maximum": "No puedes superar el máximo"
+      "maximum": "Tu ejército está al completo"
     },
     "archive": {
       "name": "Archivo",

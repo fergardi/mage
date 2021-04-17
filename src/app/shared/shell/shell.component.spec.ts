@@ -80,11 +80,11 @@ describe('ShellComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should TOGGLE the DRAWER', fakeAsync(() => {
+  it('should TOGGLE the DRAWER', async () => {
     const opened = component.drawer.opened;
-    component.toggle();
+    await component.toggle();
     expect(component.drawer.opened).toBe(!opened);
-  }));
+  });
 
   it('should CLOSE the DRAWER', () => {
     component.close();

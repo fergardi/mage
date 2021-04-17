@@ -15,7 +15,7 @@ export enum ContractAssignmentType {
   'contractNone', 'contractAttack', 'contractDefense',
 }
 
-const MAXIMUM_CONTRACTS = 5;
+const MAXIMUM_CONTRACTS = 3;
 
 @Component({
   selector: 'app-tavern',

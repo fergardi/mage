@@ -30,7 +30,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
             <img mat-list-avatar [src]="clan.leader.faction.image">
           </div>
           <div mat-line>{{ clan.leader.name }}</div>
-          <div mat-line class="mat-card-subtitle">{{ clan.leader.faction.name }}</div>
+          <div mat-line class="mat-card-subtitle">{{ clan.leader.faction.name | translate }}</div>
           <div mat-list-avatar [matBadge]="clan.leader.power | short" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/icons/power.png">
           </div>
@@ -45,7 +45,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
             <img mat-list-avatar [src]="member.faction.image">
           </div>
           <div mat-line>{{ member.name }}</div>
-          <div mat-line class="mat-card-subtitle">{{ member.faction.name }}</div>
+          <div mat-line class="mat-card-subtitle">{{ member.faction.name | translate }}</div>
           <div mat-list-avatar [matBadge]="member.power | short" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/icons/power.png">
           </div>

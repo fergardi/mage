@@ -10,6 +10,8 @@ import { AdventureComponent } from './adventure.component';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('PopupComponent', () => {
   let component: PopupComponent;
@@ -22,6 +24,9 @@ describe('PopupComponent', () => {
       image: 'assets/images/factions/black.png',
       marker: 'assets/images/factions/black.png',
     },
+    visited: {
+      toMillis: () => 0,
+    },
   };
 
   beforeEach(waitForAsync(() => {
@@ -29,6 +34,8 @@ describe('PopupComponent', () => {
       imports: [
         TranslateModule.forRoot(),
         MatCardModule,
+        MatChipsModule,
+        MatIconModule,
       ],
       declarations: [
         PopupComponent,
@@ -63,6 +70,9 @@ describe('PopupComponent', () => {
         image: 'assets/images/factions/black.png',
         marker: 'assets/images/factions/black.png',
       },
+      visited: {
+        toMillis: () => 0,
+      },
     };
     fixture = TestBed.createComponent(PopupComponent);
     component = fixture.componentInstance;
@@ -79,6 +89,9 @@ describe('PopupComponent', () => {
         name: 'test',
         description: 'test',
         image: 'assets/images/stores/inn.png',
+      },
+      visited: {
+        toMillis: () => 0,
       },
     };
     fixture = TestBed.createComponent(PopupComponent);
@@ -97,6 +110,9 @@ describe('PopupComponent', () => {
         description: 'test',
         image: 'assets/images/locations/volcano.png',
       },
+      visited: {
+        toMillis: () => 0,
+      },
     };
     fixture = TestBed.createComponent(PopupComponent);
     component = fixture.componentInstance;
@@ -109,13 +125,13 @@ describe('PopupComponent', () => {
   it('should OPEN the SHOP dialog', () => {
     spyOn(MatDialogStub, 'open');
     component.openDealDialog({ hero: {} });
-    expect(MatDialogStub.open).toHaveBeenCalledWith(DealComponent, { panelClass: 'dialog-responsive', data: { hero: {}, join: {} } });
+    expect(MatDialogStub.open).toHaveBeenCalledWith(DealComponent, { panelClass: 'dialog-responsive', data: { deal: { hero: {}, join: {} }, shop: data } });
   });
 
   it('should OPEN the QUEST dialog', () => {
     spyOn(MatDialogStub, 'open');
     component.openAdventureDialog(null);
-    expect(MatDialogStub.open).toHaveBeenCalledWith(AdventureComponent, { panelClass: 'dialog-responsive', data: null });
+    expect(MatDialogStub.open).toHaveBeenCalledWith(AdventureComponent, { panelClass: 'dialog-responsive', data: { reward: null, quest: data } });
   });
 
 });

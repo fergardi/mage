@@ -117,11 +117,11 @@ export class PopupComponent implements OnInit {
     });
   }
 
-  openAdventureDialog(adventure: any): void {
+  openAdventureDialog(reward: any): void {
     const dialogRef = this.dialog.open(AdventureComponent, {
       panelClass: 'dialog-responsive',
       data: {
-        adventure: adventure,
+        reward: reward,
         quest: this.data,
       },
     });

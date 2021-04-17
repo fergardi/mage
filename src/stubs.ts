@@ -72,7 +72,8 @@ export const ApiServiceStub: any = {
   foundateClan: () => null,
   assignCharm: () => null,
   assignArtifact: () => null,
-  dispelEnchantment: () => null,
+  breakEnchantment: () => null,
+  dispelIncantation: () => null,
 };
 
 export const CacheServiceStub: any = {
@@ -121,6 +122,7 @@ export const AngularFirestoreStub: any = {
       valueChanges: () => of([{
         faction: { id: 'grey' },
         from: { id: 'test', faction: { id: 'red' } },
+        to: { id: 'test', faction: { id: 'red' } },
         message: { item: { faction: { id: 'grey' } } },
         item: { faction: { id: 'grey' } },
         spell: { faction: { id: 'red' } },

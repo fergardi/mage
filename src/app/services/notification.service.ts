@@ -45,7 +45,7 @@ export class NotificationService {
       }),
       map(queue => queue[0]),
       takeUntil(this.ngDestroy),
-    ).subscribe(snackBar => this.showSnackbar(snackBar.message, snackBar.type));
+    ).subscribe((notification: SnackBarQueueItem) => this.showSnackbar(notification.message, notification.type));
   }
 
   private showSnackbar(message: string, type: SnackBarType): void {
@@ -61,7 +61,7 @@ export class NotificationService {
         matSnackBarRef = this.snackBar.open(message, '❌', {...this.options, panelClass: ['mat-toolbar', 'mat-warn']});
         break;
     }
-    this.removeDismissedSnackBar(matSnackBarRef.afterDismissed());
+    if (matSnackBarRef) this.removeDismissedSnackBar(matSnackBarRef.afterDismissed());
   }
 
   private removeDismissedSnackBar(snackBar: Observable<MatSnackBarDismiss>): void {

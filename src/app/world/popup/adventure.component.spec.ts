@@ -15,15 +15,19 @@ describe('AdventureComponent', () => {
   let component: AdventureComponent;
   let fixture: ComponentFixture<AdventureComponent>;
   const data: any = {
-    item: {
-      name: 'test',
-      faction: {
-        id: 'green',
+    reward: {
+      item: {
+        name: 'test',
+        faction: {
+          id: 'green',
+        },
+        image: 'assets/images/items/treasure-map.png',
       },
-      image: 'assets/images/items/treasure-map.png',
       quantity: 1,
     },
-    turns: 999,
+    quest: {
+      turns: 3,
+    },
   };
 
   beforeEach(waitForAsync(() => {

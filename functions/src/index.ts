@@ -84,6 +84,12 @@ enum SupplyType {
   GEM = 'gem',
 };
 
+enum AssignmentType {
+  NONE,
+  ATTACK,
+  DEFENSE,
+};
+
 //========================================================================================
 /*                                                                                      *
  *                                        HELPERS                                       *
@@ -171,7 +177,7 @@ api.post('/world/kingdom', ash(async (req: any, res: any) => res.json(await crea
 api.post('/world/clan', ash(async (req: any, res: any) => res.json(await foundateClan(req.body.kingdomId, req.body.name, req.body.description, req.body.image))));
 api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
 api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
-api.get('/kingdom/:kingdomId/world/shop/:shopId/:collectionId/:dealId', ash(async (req: any, res: any) => res.json(await buyGoods(req.params.kingdomId, req.params.shopId, req.params.collectionId, req.params.dealId))));
+api.get('/kingdom/:kingdomId/world/shop/:shopId/:collectionId/:dealId', ash(async (req: any, res: any) => res.json(await tradeDeal(req.params.kingdomId, req.params.shopId, req.params.collectionId, req.params.dealId))));
 // error handler
 api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));;
 
@@ -1057,65 +1063,6 @@ const addBuilding = async (kingdomId: string, buildingId: string, quantity: numb
 
 //========================================================================================
 /*                                                                                      *
- *                                        BATTLES                                       *
- *                                                                                      */
-//========================================================================================
-
-/**
- * kingdom attacks another kingdom with a battle type
- * @param kingdomId
- * @param targetId
- * @param battleId
- */
-const battleKingdom = async (kingdomId: string, battleId: BattleType, targetId: string) => {
-  const sourceKingdom = await angularFirestore.doc(`kingdoms/${kingdomId}`).get();
-  const targetKingdom = await angularFirestore.doc(`kingdoms/${targetId}`).get();
-  if (targetKingdom.exists && sourceKingdom.exists) {
-    const sourceArmy = await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('assignment', '==', 2).limit(5).get();
-    // let sourceCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('assignment', '==', 2).limit(1).get();
-    // let sourceArtifact = await angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).where('assignment', '==', 2).limit(1).get();
-    // let targetArmy = await angularFirestore.collection(`kingdoms/${targetId}/troops`).where('assignment', '==', 2).limit(5).get();
-    // let targetCharm = await angularFirestore.collection(`kingdoms/${targetId}/charms`).where('assignment', '==', 2).limit(1).get();
-    // let targetArtifact = await angularFirestore.collection(`kingdoms/${targetId}/artifacts`).where('assignment', '==', 2).limit(1).get();
-    if (!sourceArmy.empty) {
-      const batch = angularFirestore.batch();
-      switch (battleId) {
-        case 'attack':
-          break;
-        case 'pillage':
-          break;
-        case 'siege':
-          break;
-      }
-      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/letters`).doc(), {
-        from: kingdomId,
-        to: targetId,
-        subject: 'kingdom.report.battle',
-        message: 'kingdom.report.description',
-        timestamp: admin.firestore.Timestamp.now(),
-        log: [
-          { side: 'left', sort: 1, spell: 'fireball', quantity: 123, text: 'texto de prueba' },
-          { side: 'left', sort: 2, item: 'mana-vortex', quantity: 123, text: 'texto de prueba' },
-          { side: 'left', sort: 3, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
-          { side: 'right', sort: 4, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
-          { side: 'left', sort: 5, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
-          { side: 'right', sort: 6, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
-          { side: 'left', sort: 7, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
-          { side: 'right', sort: 8, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
-          { side: 'left', sort: 9, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
-          { side: 'right', sort: 10, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
-          { side: 'left', sort: 11, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
-        ],
-      });
-      batch.update(angularFirestore.doc(`kingdoms/${targetId}`), { attacked: moment(admin.firestore.Timestamp.now().toMillis()).add(PROTECTION_TIME, 'seconds') });
-      await addSupply(kingdomId, 'turn', -BATTLE_TURNS, batch);
-      await batch.commit();
-    } else throw new Error('api.error.battle');
-  } else throw new Error('api.error.battle');
-}
-
-//========================================================================================
-/*                                                                                      *
  *                                        LETTERS                                       *
  *                                                                                      */
 //========================================================================================
@@ -1243,13 +1190,13 @@ const checkShop = async (fid?: string, latitude?: number, longitude?: number, ty
 }
 
 /**
- * kingdom buys a good from a store
+ * kingdom buys a deal from a shop
  * @param kingdomId
  * @param shopId
  * @param collectionId
  * @param dealId
  */
-const buyGoods = async (kingdomId: string, shopId: string, collectionId: string, dealId: string) => {
+const tradeDeal = async (kingdomId: string, shopId: string, collectionId: string, dealId: string) => {
   const worldDeal = (await angularFirestore.doc(`shops/${shopId}/${collectionId}/${dealId}`).get()).data();
   if (worldDeal) {
     const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0].data();
@@ -1290,6 +1237,7 @@ const buyGoods = async (kingdomId: string, shopId: string, collectionId: string,
       const from = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
       await addLetter(kingdomId, 'world.deal.subject', 'world.deal.message', from, batch, data);
       await batch.commit();
+      await checkShop(shopId);
     } else throw new Error('api.error.deal');
   } else throw new Error('api.error.deal');
 }
@@ -1404,18 +1352,116 @@ const checkQuest = async (fid?: string, latitude?: number, longitude?: number, t
     questItems = _.shuffle(questItems);
     for (const i of [0]) {
       const hero = (await angularFirestore.doc(`heroes/${questHeroes[i]}`).get()).data();
-      batch.create(angularFirestore.collection(`quests/${fid}/contracts`).doc(), { id: hero?.id, hero: hero, level: random(1, 20) });
+      batch.create(angularFirestore.collection(`quests/${fid}/contracts`).doc(), { id: hero?.id, hero: hero, level: random(1, 20), assignment: AssignmentType.DEFENSE });
     };
     for (const j of [0,1,2]) {
       const unit = (await angularFirestore.doc(`units/${questUnits[j]}`).get()).data();
-      batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: unit?.id, unit: unit, quantity: random(Math.min(...unit?.amount), Math.max(...unit?.amount)) });
+      batch.create(angularFirestore.collection(`quests/${fid}/troops`).doc(), { id: unit?.id, unit: unit, quantity: random(Math.min(...unit?.amount), Math.max(...unit?.amount)), sort: j, assignment: AssignmentType.DEFENSE });
     }
     for (const k of [0]) {
       const item = (await angularFirestore.doc(`items/${questItems[k]}`).get()).data();
-      batch.create(angularFirestore.collection(`quests/${fid}/artifacts`).doc(), { id: item?.id, item: item, quantity: random(1, 3), turns: random(1, 5) });
+      batch.create(angularFirestore.collection(`quests/${fid}/artifacts`).doc(), { id: item?.id, item: item, quantity: random(1, 3), turns: random(1, 5), assignment: AssignmentType.NONE });
     }
   }
   await batch.commit();
+}
+
+/**
+ * kingdom adventures on a quest
+ * @param kingdomId
+ * @param questId
+ */
+const adventureQuest = async (kingdomId: string, questId: string) => {
+  const worldQuest = (await angularFirestore.doc(`quests/${questId}`).get()).data();
+  if (worldQuest) {
+    const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get()).docs[0].data();
+    kingdomTurn.quantity = calculate(kingdomTurn.timestamp.toMillis(), admin.firestore.Timestamp.now().toMillis(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
+    if (worldQuest.turns <= kingdomTurn.quantity) {
+      // const kingdomContracts = await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('assignment', '==', AssignmentType.ATTACK).limit(5).get();
+      const kingdomTroops = (await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('assignment', '==', AssignmentType.ATTACK).orderBy('sort', 'asc').limit(5).get()).docs.map(troop => troop.data());
+      // const kingdomArtifact = await angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).where('assignment', '==', AssignmentType.ATTACK).limit(1).get();
+      // const kingdomCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('assignment', '==', AssignmentType.ATTACK).limit(1).get();
+      // const questContracts = await angularFirestore.collection(`quests/${questId}/contracts`).where('assignment', '==', AssignmentType.DEFENSE).limit(1).get();
+      const questTroops = (await angularFirestore.collection(`quests/${questId}/troops`).where('assignment', '==', AssignmentType.DEFENSE).orderBy('sort', 'asc').limit(3).get()).docs.map(troop => troop.data());
+      // const questArtifact = await angularFirestore.collection(`quests/${questId}/artifacts`).where('assignment', '==', AssignmentType.NONE).limit(1).get();
+      /*
+      if (kingdomCharm) {
+        const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0].data();
+        if (kingdomCharm.spell.manaCost)
+      }
+      */
+
+
+      while (true) {
+        let attacker = kingdomTroops[0];
+        let defender = questTroops[0];
+        let attack = attacker.quantity * attacker.attack;
+        let defense
+      }
+      const batch = angularFirestore.batch();
+      await batch.commit();
+      await checkQuest(questId);
+    } else throw new Error('api.error.adventure');
+  } else throw new Error('api.error.adventure');
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                        BATTLES                                       *
+ *                                                                                      */
+//========================================================================================
+
+/**
+ * kingdom attacks another kingdom with a battle type
+ * @param kingdomId
+ * @param targetId
+ * @param battleId
+ */
+const battleKingdom = async (kingdomId: string, battleId: BattleType, targetId: string) => {
+  const sourceKingdom = await angularFirestore.doc(`kingdoms/${kingdomId}`).get();
+  const targetKingdom = await angularFirestore.doc(`kingdoms/${targetId}`).get();
+  if (targetKingdom.exists && sourceKingdom.exists) {
+    const sourceArmy = await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('assignment', '==', 2).limit(5).get();
+    // let sourceCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('assignment', '==', 2).limit(1).get();
+    // let sourceArtifact = await angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).where('assignment', '==', 2).limit(1).get();
+    // let targetArmy = await angularFirestore.collection(`kingdoms/${targetId}/troops`).where('assignment', '==', 2).limit(5).get();
+    // let targetCharm = await angularFirestore.collection(`kingdoms/${targetId}/charms`).where('assignment', '==', 2).limit(1).get();
+    // let targetArtifact = await angularFirestore.collection(`kingdoms/${targetId}/artifacts`).where('assignment', '==', 2).limit(1).get();
+    if (!sourceArmy.empty) {
+      const batch = angularFirestore.batch();
+      switch (battleId) {
+        case 'attack':
+          break;
+        case 'pillage':
+          break;
+        case 'siege':
+          break;
+      }
+      batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/letters`).doc(), {
+        from: kingdomId,
+        to: targetId,
+        subject: 'kingdom.report.battle',
+        message: 'kingdom.report.description',
+        timestamp: admin.firestore.Timestamp.now(),
+        log: [
+          { side: 'left', sort: 1, spell: 'fireball', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 2, item: 'mana-vortex', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 3, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'right', sort: 4, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 5, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'right', sort: 6, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 7, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'right', sort: 8, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 9, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'right', sort: 10, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+          { side: 'left', sort: 11, unit: 'skeleton', quantity: 123, text: 'texto de prueba' },
+        ],
+      });
+      batch.update(angularFirestore.doc(`kingdoms/${targetId}`), { attacked: moment(admin.firestore.Timestamp.now().toMillis()).add(PROTECTION_TIME, 'seconds') });
+      await addSupply(kingdomId, 'turn', -BATTLE_TURNS, batch);
+      await batch.commit();
+    } else throw new Error('api.error.battle');
+  } else throw new Error('api.error.battle');
 }
 
 //========================================================================================
@@ -1704,8 +1750,8 @@ const breakEnchantment = async (kingdomId: string, enchantmentId: string) => {
     const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get()).docs[0].data();
     kingdomTurn.quantity = calculate(kingdomTurn.timestamp.toMillis(), admin.firestore.Timestamp.now().toMillis(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
     if (kingdomEnchantment.spell.manaCost * 2 <= kingdomMana.quantity && kingdomEnchantment.spell.turnCost * 2 <= kingdomTurn.quantity) {
-      const kingdomOrigin = (await angularFirestore.doc(`kingdoms/${kingdomEnchantment.from}`).get()).data();
-      const kingdomTarget = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
+      // const kingdomOrigin = (await angularFirestore.doc(`kingdoms/${kingdomEnchantment.from}`).get()).data();
+      // const kingdomTarget = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
       const chance = 100;
       if (random(0,100) <= chance) {
         const batch = angularFirestore.batch();

@@ -126,7 +126,7 @@ describe('ApiService', () => {
     const mock = httpMock.expectOne(environment.functions.url + `/kingdom/bot/city/node/build/10`);
     mock.flush(null);
     const response = await request;
-    expect(mock.request.method).toEqual('GET');
+    expect(mock.request.method).toEqual('PATCH');
     expect(response).toBe(null);
   }));
 
