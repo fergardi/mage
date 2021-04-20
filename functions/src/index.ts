@@ -178,6 +178,7 @@ api.post('/world/clan', ash(async (req: any, res: any) => res.json(await foundat
 api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
 api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
 api.get('/kingdom/:kingdomId/world/shop/:shopId/:collectionId/:dealId', ash(async (req: any, res: any) => res.json(await tradeDeal(req.params.kingdomId, req.params.shopId, req.params.collectionId, req.params.dealId))));
+api.get('/kingdom/:kingdomId/world/quest/:questId', ash(async (req: any, res: any) => res.json(await adventureQuest(req.params.kingdomId, req.params.questId))));
 // error handler
 api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));;
 
@@ -581,24 +582,36 @@ const disbandTroop = async (kingdomId: string, troopId: string, quantity: number
  * @param quantity
  * @param batch
  */
-const removeTroop = async (kingdomId: string, troopId: string, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
-  const kingdomTroop = (await angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`).get()).data();
-  if (kingdomTroop?.quantity > 0) {
-    const unit = kingdomTroop?.unit;
-    // if (unit.populationMaintenance <= 0) {
-      if (quantity >= kingdomTroop?.quantity) {
-        quantity = kingdomTroop?.quantity;
-        batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`));
+const removeTroop = async (kingdomId: string, troopId: string, quantity: number, batch: FirebaseFirestore.WriteBatch, questId?: string) => {
+  if (!questId) {
+    const kingdomTroop = (await angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`).get()).data();
+    if (kingdomTroop) {
+      const unit = kingdomTroop?.unit;
+      // if (unit.populationMaintenance <= 0) {
+        if (quantity >= kingdomTroop?.quantity) {
+          quantity = kingdomTroop?.quantity;
+          batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`));
+        } else {
+          batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`), { quantity: admin.firestore.FieldValue.increment(-quantity) });
+        }
+        await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor(unit.goldMaintenance * quantity), batch);
+        await balanceSupply(kingdomId, SupplyType.MANA, Math.floor(unit.manaMaintenance * quantity), batch);
+        await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor(unit.populationMaintenance * quantity), batch);
+        await balancePower(kingdomId, -Math.floor(unit.power * quantity), batch);
+        return { quantity: quantity, unit: unit.name };
+      // } else throw new Error('api.error.troop');
+    } else throw new Error('api.error.troop');
+  } else {
+    const questTroop = (await angularFirestore.doc(`quests/${questId}/troops/${troopId}`).get()).data();
+    if (questTroop) {
+      if (quantity >= questTroop?.quantity) {
+        batch.delete(angularFirestore.doc(`quests/${questId}/troops/${troopId}`));
       } else {
-        batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`), { quantity: admin.firestore.FieldValue.increment(-quantity) });
+        batch.update(angularFirestore.doc(`quests/${questId}/troops/${troopId}`), { quantity: admin.firestore.FieldValue.increment(-quantity) });
       }
-      await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor(unit.goldMaintenance * quantity), batch);
-      await balanceSupply(kingdomId, SupplyType.MANA, Math.floor(unit.manaMaintenance * quantity), batch);
-      await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor(unit.populationMaintenance * quantity), batch);
-      await balancePower(kingdomId, -Math.floor(unit.power * quantity), batch);
-      return { quantity: quantity, unit: unit.name };
-    // } else throw new Error('api.error.troop');
-  } else throw new Error('api.error.troop');
+      return;
+    } else throw new Error('api.error.troop');
+  }
 }
 
 /**
@@ -1265,12 +1278,12 @@ const checkQuest = async (fid?: string, latitude?: number, longitude?: number, t
   const quest = (await angularFirestore.doc(`quests/${fid}`).get()).data();
   if (quest) {
     if (moment().isAfter(moment(quest?.visited.toMillis()))) {
-      batch.update(angularFirestore.doc(`quests/${fid}`), { visited: visited });
+      batch.update(angularFirestore.doc(`quests/${fid}`), { visited: visited, turns: random(1, 3) });
       update = true;
     }
   } else {
     const location = (await angularFirestore.doc(`locations/${type}`).get()).data();
-    batch.create(angularFirestore.doc(`quests/${fid}`), { location: location, position: geopoint, coordinates: { latitude: latitude, longitude: longitude }, name: name, visited: visited });
+    batch.create(angularFirestore.doc(`quests/${fid}`), { location: location, position: geopoint, coordinates: { latitude: latitude, longitude: longitude }, name: name, turns: random(1, 3), visited: visited });
     update = true;
   }
   if (update) {
@@ -1377,30 +1390,27 @@ const adventureQuest = async (kingdomId: string, questId: string) => {
     const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get()).docs[0].data();
     kingdomTurn.quantity = calculate(kingdomTurn.timestamp.toMillis(), admin.firestore.Timestamp.now().toMillis(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
     if (worldQuest.turns <= kingdomTurn.quantity) {
-      // const kingdomContracts = await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('assignment', '==', AssignmentType.ATTACK).limit(5).get();
-      const kingdomTroops = (await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('assignment', '==', AssignmentType.ATTACK).orderBy('sort', 'asc').limit(5).get()).docs.map(troop => troop.data());
-      // const kingdomArtifact = await angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).where('assignment', '==', AssignmentType.ATTACK).limit(1).get();
-      // const kingdomCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('assignment', '==', AssignmentType.ATTACK).limit(1).get();
-      // const questContracts = await angularFirestore.collection(`quests/${questId}/contracts`).where('assignment', '==', AssignmentType.DEFENSE).limit(1).get();
-      const questTroops = (await angularFirestore.collection(`quests/${questId}/troops`).where('assignment', '==', AssignmentType.DEFENSE).orderBy('sort', 'asc').limit(3).get()).docs.map(troop => troop.data());
-      // const questArtifact = await angularFirestore.collection(`quests/${questId}/artifacts`).where('assignment', '==', AssignmentType.NONE).limit(1).get();
-      /*
-      if (kingdomCharm) {
-        const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0].data();
-        if (kingdomCharm.spell.manaCost)
-      }
-      */
-
-
-      while (true) {
-        let attacker = kingdomTroops[0];
-        let defender = questTroops[0];
-        let attack = attacker.quantity * attacker.attack;
-        let defense
-      }
-      const batch = angularFirestore.batch();
-      await batch.commit();
-      await checkQuest(questId);
+      const kingdomContracts = (await angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).where('assignment', '==', AssignmentType.ATTACK).limit(3).get()).docs.map(contract => ({ ...contract.data(), fid: contract.id }));
+      const kingdomTroops = (await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('assignment', '==', AssignmentType.ATTACK).orderBy('sort', 'asc').limit(5).get()).docs.map(troop => ({ ...troop.data(), fid: troop.id, initialQuantity: troop.data().quantity }));
+      const kingdomArtifacts = (await angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).where('assignment', '==', AssignmentType.ATTACK).limit(1).get()).docs.map(artifact => ({ ...artifact.data(), fid: artifact.id }));
+      const kingdomCharms = (await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('assignment', '==', AssignmentType.ATTACK).limit(1).get()).docs.map(charm => ({ ...charm.data(), fid: charm.id }));
+      const questContracts = (await angularFirestore.collection(`quests/${questId}/contracts`).where('assignment', '==', AssignmentType.DEFENSE).limit(1).get()).docs.map(contract => ({ ...contract.data(), fid: contract.id }));
+      const questTroops = (await angularFirestore.collection(`quests/${questId}/troops`).where('assignment', '==', AssignmentType.DEFENSE).orderBy('sort', 'asc').limit(3).get()).docs.map(troop => ({ ...troop.data(), fid: troop.id, initialQuantity: troop.data().quantity }));
+      const questArtifact = (await angularFirestore.collection(`quests/${questId}/artifacts`).where('assignment', '==', AssignmentType.NONE).limit(1).get()).docs[0].data();
+      if (kingdomTroops.length && questTroops.length) {
+        const batch = angularFirestore.batch();
+        const battle = await resolveBattle(kingdomContracts, kingdomTroops, kingdomArtifacts, kingdomCharms, questContracts, questTroops, [], [], kingdomId, batch, undefined, questId);
+        const from = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
+        const data = {
+          logs: battle.logs,
+          item: questArtifact.item,
+          quantity: questArtifact.quantity,
+        };
+        await addLetter(kingdomId, 'world.adventure.subject', 'world.adventure.victory', from, batch, data);
+        // await addSupply(kingdomId, 'turn', -worldQuest.turns, batch);
+        await batch.commit();
+        // await checkQuest(questId);
+      } else throw new Error('api.error.adventure');
     } else throw new Error('api.error.adventure');
   } else throw new Error('api.error.adventure');
 }
@@ -1410,6 +1420,141 @@ const adventureQuest = async (kingdomId: string, questId: string) => {
  *                                        BATTLES                                       *
  *                                                                                      */
 //========================================================================================
+
+/**
+ * resolves a battle
+ * @param attackerTroops
+ * @param defenderArmy
+ * @param batch
+ */
+const resolveBattle = async (attackerContracts: any[], attackerTroops: any[], attackerArtifacts: any[], attackerCharms: any[], defenderContracts: any[], defenderTroops: any[], defenderArtifacts: any[], defenderCharms: any[], attackerId: string, batch: FirebaseFirestore.WriteBatch, defenderId?: string, questId?: string): Promise<any> => {
+  // logs
+  let logs: any[] = [];
+  // artifacts
+  attackerArtifacts.forEach((artifact: any) => {
+    logs.push({
+      attackerArtifact: artifact,
+    });
+  });
+  defenderArtifacts.forEach((artifact: any) => {
+    logs.push({
+      defenderArtifact: artifact,
+    });
+  });
+  // charms
+  attackerCharms.forEach((charm: any) => {
+    logs.push({
+      attackerCharm: charm,
+    });
+  });
+  defenderCharms.forEach((charm: any) => {
+    logs.push({
+      defenderCharm: charm,
+    });
+  });
+  // contracts
+  attackerContracts.forEach((contract: any) => {
+    logs.push({
+      attackerContract: contract,
+    });
+  });
+  defenderContracts.forEach((contract: any) => {
+    logs.push({
+      defenderContract: contract,
+    });
+  });
+  // power
+  let attackerPower = 0;
+  let defenderPower = 0;
+  // rounds
+  const rounds = Math.min(Math.max(attackerTroops.length, defenderTroops.length), 5);
+  let attackerIndex = 0;
+  let defenderIndex = 0;
+  for (let round = 0; round < rounds; round++) {
+    // troops
+    let attackerTroop = attackerTroops[attackerIndex];
+    let defenderTroop = defenderTroops[defenderIndex];
+    // data
+    let attackerCasualties = 0;
+    let defenderCasualties = 0;
+    let attackerQuantity = 0;
+    let defenderQuantity = 0;
+    // attacker is faster or slower than defender
+    if (attackerTroop.unit.initiative > defenderTroop.unit.initiative) {
+      // attacker attacks defender
+      defenderQuantity = defenderTroop.quantity;
+      defenderCasualties = Math.max(0, Math.min(defenderTroop.quantity, Math.floor((attackerTroop.unit.attack * attackerTroop.quantity - defenderTroop.unit.defense * defenderTroop.quantity) / defenderTroop.unit.health)));
+      console.log('attacker -> defender', attackerTroop.unit.attack * attackerTroop.quantity, defenderTroop.unit.defense * defenderTroop.quantity, defenderTroop.unit.health, defenderQuantity, defenderCasualties, defenderTroop.quantity);
+      console.log('before', defenderTroop.quantity)
+      defenderTroop.quantity -= defenderCasualties;
+      console.log('after', defenderTroop.quantity)
+      defenderPower += defenderCasualties * defenderTroop.unit.power;
+      // defender counterattacks attacker
+      attackerQuantity = attackerTroop.quantity;
+      attackerCasualties = Math.max(0, Math.min(attackerTroop.quantity, Math.floor((defenderTroop.unit.attack * defenderTroop.quantity - attackerTroop.unit.defense * attackerTroop.quantity) / attackerTroop.unit.health)));
+      console.log('defender -> attacker', defenderTroop.unit.attack * defenderTroop.quantity, attackerTroop.unit.defense * attackerTroop.quantity, attackerTroop.unit.health, attackerQuantity, attackerCasualties, attackerTroop.quantity);
+      console.log('before', attackerTroop.quantity)
+      attackerTroop.quantity -= attackerCasualties;
+      console.log('after', attackerTroop.quantity)
+      attackerPower += attackerCasualties * attackerTroop.unit.power;
+      // log
+      logs.push({
+        attackerTroop: JSON.parse(JSON.stringify(attackerTroop)),
+        attackerQuantity: attackerQuantity,
+        attackerCasualties: attackerCasualties,
+        defenderTroop: JSON.parse(JSON.stringify(defenderTroop)),
+        defenderQuantity: defenderQuantity,
+        defenderCasualties: defenderCasualties,
+        direction: 'attacker-vs-defender',
+      });
+    } else {
+      // defender attacks attacker
+      attackerQuantity = attackerTroop.quantity;
+      attackerCasualties = Math.max(0, Math.min(attackerTroop.quantity, Math.floor((defenderTroop.unit.attack * defenderTroop.quantity - attackerTroop.unit.defense * attackerTroop.quantity) / attackerTroop.unit.health)));
+      console.log('defender -> attacker', defenderTroop.unit.attack * defenderTroop.quantity, attackerTroop.unit.defense * attackerTroop.quantity, attackerTroop.unit.health, attackerQuantity, attackerCasualties, attackerTroop.quantity);
+      console.log('before', attackerTroop.quantity)
+      attackerTroop.quantity -= attackerCasualties;
+      console.log('after', attackerTroop.quantity)
+      attackerPower += attackerCasualties * attackerTroop.unit.power;
+      // attacker counterattacks defender
+      defenderQuantity = defenderTroop.quantity;
+      defenderCasualties = Math.max(0, Math.min(defenderTroop.quantity, Math.floor((attackerTroop.unit.attack * attackerTroop.quantity - defenderTroop.unit.defense * defenderTroop.quantity) / defenderTroop.unit.health)));
+      console.log('attacker -> defender', attackerTroop.unit.attack * attackerTroop.quantity, defenderTroop.unit.defense * defenderTroop.quantity, defenderTroop.unit.health, defenderQuantity, defenderCasualties, defenderTroop.quantity);
+      console.log('before', defenderTroop.quantity)
+      defenderTroop.quantity -= defenderCasualties;
+      console.log('after', defenderTroop.quantity)
+      defenderPower += defenderCasualties * defenderTroop.unit.power;
+      // log
+      logs.push({
+        attackerTroop: JSON.parse(JSON.stringify(attackerTroop)),
+        attackerQuantity: attackerQuantity,
+        attackerCasualties: attackerCasualties,
+        defenderTroop: JSON.parse(JSON.stringify(defenderTroop)),
+        defenderQuantity: defenderQuantity,
+        defenderCasualties: defenderCasualties,
+        direction: 'defender-vs-attacker',
+      });
+    }
+    /*
+    // updates
+    if (attackerCasualties > 0) {
+      if (attackerId) await removeTroop(attackerId, attackerTroop.fid, attackerCasualties, batch);
+    }
+    if (defenderCasualties > 0) {
+      if (defenderId) await removeTroop(defenderId, defenderTroop.fid, defenderCasualties, batch);
+      else await removeTroop(attackerId, defenderTroop.fid, defenderCasualties, batch, questId);
+    }
+    */
+    // deaths
+    if (attackerTroop.quantity <= 0) attackerTroops.splice(attackerIndex, 1);
+    if (defenderTroop.quantity <= 0) defenderTroops.splice(defenderIndex, 1);
+    // next round
+    attackerIndex = attackerTroops[attackerIndex + 1] !== undefined ? attackerIndex + 1 : random(0, attackerTroops.length - 1);
+    defenderIndex = defenderTroops[defenderIndex + 1] !== undefined ? defenderIndex + 1 : random(0, defenderTroops.length - 1);
+    if (attackerTroops[attackerIndex] === undefined || defenderTroops[defenderIndex] === undefined) break;
+  }
+  return { logs: logs, attackerPower: attackerPower, defenderPower: defenderPower };
+}
 
 /**
  * kingdom attacks another kingdom with a battle type
@@ -1440,8 +1585,8 @@ const battleKingdom = async (kingdomId: string, battleId: BattleType, targetId: 
       batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/letters`).doc(), {
         from: kingdomId,
         to: targetId,
-        subject: 'kingdom.report.battle',
-        message: 'kingdom.report.description',
+        subject: 'kingdom.report.subject',
+        message: 'kingdom.report.message',
         timestamp: admin.firestore.Timestamp.now(),
         log: [
           { side: 'left', sort: 1, spell: 'fireball', quantity: 123, text: 'texto de prueba' },

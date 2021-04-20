@@ -145,9 +145,6 @@ html, body {
 body {
   margin: 0;
 }
-.mat-select-trigger .mat-select-value {
-  overflow: visible;
-}
 
 //========================================================================================
 /*                                                                                      *
@@ -241,7 +238,7 @@ $list-item-height: 60px;
   &.dotted {
     padding-top: 0;
     border: 2px dashed $primary-color;
-    max-height: ($list-item-height * 5) + 4;
+    max-height: ($list-item-height * 5);
     box-sizing: content-box;
   }
   .mat-list-item {
@@ -356,6 +353,12 @@ $list-item-height: 60px;
 }
 .mat-card > .mat-card-actions:last-child {
   margin-bottom: 0 !important;
+}
+.mat-card,
+.mat-bottom-sheet-container,
+.mat-drawer {
+  background: url('/assets/images/background/tablet.jpg') no-repeat center center; // fixed
+  background-size: cover;
 }
 .mat-card,
 .mat-dialog-container {
@@ -689,6 +692,9 @@ $list-item-height: 60px;
 
 .mat-select-panel .mat-option {
   height: 60px !important;
+}
+.mat-select-trigger .mat-select-value {
+  overflow: visible;
 }
 
 //========================================================================================

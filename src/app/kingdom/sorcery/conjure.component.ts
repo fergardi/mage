@@ -9,10 +9,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { LoadingService } from 'src/app/services/loading.service';
 
 export enum CharmAssignmentType {
-  NONE = 3,
-  ATTACK = 4,
-  DEFENSE = 5,
-};
+  NONE,
+  ATTACK,
+  DEFENSE,
+}
 
 @Component({
   selector: 'app-conjure',

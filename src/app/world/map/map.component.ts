@@ -15,12 +15,12 @@ import { MarkerType, LocationType, StoreType, FactionType } from 'src/app/shared
 import { GeoFireClient } from 'geofirex';
 import { LoadingService } from 'src/app/services/loading.service';
 
+@UntilDestroy()
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
 })
-@UntilDestroy()
 export class MapComponent implements OnInit, OnDestroy {
 
   geofirex: GeoFireClient = geofirex.init(firebase);
@@ -43,13 +43,14 @@ export class MapComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.mapboxService.initialize(this.container);
-    this.mapboxService.map.on('load', () => {
+    this.mapboxService.map.on('load', async () => {
       // resize map in case drawer has changed
       this.mapboxService.resizeMap();
-      // pring kingdoms surrounding kingdom
-      this.angularFirestore.collection<any>('kingdoms').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
+      // print kingdoms surrounding kingdom
+      try {
         this.loadingService.startLoading();
         this.notificationService.warning('world.map.update');
+        const kingdoms = (await this.angularFirestore.collection<any>('kingdoms').get().toPromise()).docs.map(k => k.data());
         this.mapboxService.clearMarkers(MarkerType.KINGDOM);
         kingdoms.forEach((kingdom: any) => {
           this.mapboxService.addMarker(kingdom, MarkerType.KINGDOM, kingdom.id === this.uid,
@@ -61,18 +62,20 @@ export class MapComponent implements OnInit, OnDestroy {
         this.mapboxService.refreshMarkers();
         await new Promise(resolve => setTimeout(resolve, 500));
         this.loadingService.stopLoading();
-      });
+      } catch (error) {
+        console.error(error);
+      }
       // print quests surrounding kingdom
       this.kingdom$.pipe(
         switchMap(kingdom => {
           if (kingdom) {
             const quests = this.angularFirestore.collection<any>('quests');
-            return this.geofirex.query(quests.ref).within(kingdom.position, kingdom.power / 1000, 'position');
+            return this.geofirex.query(quests.ref).within(kingdom.position, Math.max(1000, kingdom.power) / 1000, 'position');
           } else {
             return of([]);
           }
         }),
-      ).subscribe(async (quests: Array<any>) => {
+      ).pipe(untilDestroyed(this)).subscribe(async (quests: Array<any>) => {
         this.loadingService.startLoading();
         // this.notificationService.warning('world.map.refresh');
         this.mapboxService.clearMarkers(MarkerType.QUEST);
@@ -86,12 +89,12 @@ export class MapComponent implements OnInit, OnDestroy {
         switchMap(kingdom => {
           if (kingdom) {
             const shops = this.angularFirestore.collection<any>('shops');
-            return this.geofirex.query(shops.ref).within(kingdom.position, kingdom.power / 1000, 'position');
+            return this.geofirex.query(shops.ref).within(kingdom.position, Math.max(1000, kingdom.power) / 1000, 'position');
           } else {
             return of([]);
           }
         }),
-      ).subscribe(async (shops: Array<any>) => {
+      ).pipe(untilDestroyed(this)).subscribe(async (shops: Array<any>) => {
         this.loadingService.startLoading();
         // this.notificationService.warning('world.map.refresh');
         this.mapboxService.clearMarkers(MarkerType.SHOP);
@@ -104,8 +107,7 @@ export class MapComponent implements OnInit, OnDestroy {
     // menus
     this.stores = await this.cacheService.getStores();
     this.locations = await this.cacheService.getLocations();
-    this.factions = await this.cacheService.getFactions();
-    this.factions = this.factions.filter((faction: any) => faction.id !== 'grey');
+    this.factions = (await this.cacheService.getFactions()).filter((faction: any) => faction.id !== 'grey');
   }
 
   addShop(type: StoreType) {

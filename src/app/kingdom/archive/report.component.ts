@@ -4,10 +4,6 @@ import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 
-export enum ReportType {
-  'battle', 'auction', 'message',
-}
-
 @Component({
   selector: 'app-report',
   template: `
@@ -24,12 +20,112 @@ export enum ReportType {
         </mat-list-item>
       </mat-list>
     </div>
+    <!-- MESSAGE -->
     <div mat-dialog-content>
       <div matSubheader>{{ 'kingdom.report.message' | translate }}:</div>
       <p>{{ report.message | translate }}</p>
     </div>
-    <div mat-dialog-content *ngIf="report.data">
-      <div matSubheader>{{ 'kingdom.report.data' | translate }}:</div>
+    <!-- BATTLE -->
+    <div mat-dialog-content *ngIf="report.data && report.data.logs">
+      <div matSubheader>{{ 'kingdom.report.battle' | translate }}:</div>
+      <mat-list dense>
+        <ng-container *ngFor="let log of report.data.logs">
+          <!-- ARTIFACTS -->
+          <mat-list-item [ngClass]="[log.attackerArtifact.item.faction.id, log.attackerArtifact.item.legendary ? 'legendary' : 'common', 'lefted']" *ngIf="log.attackerArtifact">
+            <div mat-list-avatar [matBadge]="1" matBadgePosition="above before">
+              <img mat-list-avatar [src]="log.attackerArtifact.item.image">
+            </div>
+            <div mat-line>{{ log.attackerArtifact.item.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.item' }}</div>
+            <mat-icon>done</mat-icon>
+          </mat-list-item>
+          <mat-list-item [ngClass]="[log.defenderArtifact.item.faction.id, log.defenderArtifact.item.legendary ? 'legendary' : 'common', 'righted']" *ngIf="log.defenderArtifact">
+            <div mat-list-avatar [matBadge]="log.defenderArtifact.level | short" matBadgePosition="above after">
+              <img mat-list-avatar [src]="log.defenderArtifact.item.image">
+            </div>
+            <div mat-line>{{ log.defenderArtifact.item.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.item' }}</div>
+            <mat-icon>done</mat-icon>
+          </mat-list-item>
+          <!-- CHARMS -->
+          <mat-list-item [ngClass]="[log.attackerCharm.spell.faction.id, log.attackerCharm.spell.legendary ? 'legendary' : 'common', 'lefted']" *ngIf="log.attackerCharm">
+            <div mat-list-avatar [matBadge]="1" matBadgePosition="above before">
+              <img mat-list-avatar [src]="log.attackerCharm.spell.image">
+            </div>
+            <div mat-line>{{ log.attackerCharm.spell.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.spell' }}</div>
+            <mat-icon>done</mat-icon>
+          </mat-list-item>
+          <mat-list-item [ngClass]="[log.defenderCharm.spell.faction.id, log.defenderCharm.spell.legendary ? 'legendary' : 'common', 'righted']" *ngIf="log.defenderCharm">
+            <div mat-list-avatar [matBadge]="log.defenderCharm.level | short" matBadgePosition="above after">
+              <img mat-list-avatar [src]="log.defenderCharm.spell.image">
+            </div>
+            <div mat-line>{{ log.defenderCharm.spell.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.spell' }}</div>
+            <mat-icon>done</mat-icon>
+          </mat-list-item>
+          <!-- CONTRACTS -->
+          <mat-list-item [ngClass]="[log.attackerContract.hero.faction.id, log.attackerContract.hero.legendary ? 'legendary' : 'common', 'lefted']" *ngIf="log.attackerContract">
+            <div mat-list-avatar [matBadge]="log.attackerContract.level | short" matBadgePosition="above before">
+              <img mat-list-avatar [src]="log.attackerContract.hero.image">
+            </div>
+            <div mat-line>{{ log.attackerContract.hero.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.hero' }}</div>
+            <mat-icon>done</mat-icon>
+          </mat-list-item>
+          <mat-list-item [ngClass]="[log.defenderContract.hero.faction.id, log.defenderContract.hero.legendary ? 'legendary' : 'common', 'righted']" *ngIf="log.defenderContract">
+            <div mat-list-avatar [matBadge]="log.defenderContract.level | short" matBadgePosition="above after">
+              <img mat-list-avatar [src]="log.defenderContract.hero.image">
+            </div>
+            <div mat-line>{{ log.defenderContract.hero.name | translate }}</div>
+            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.hero' }}</div>
+            <mat-icon>done</mat-icon>
+          </mat-list-item>
+          <!-- TROOPS -->
+          <ng-container *ngIf="log.attackerTroop && log.defenderTroop">
+            <ng-container *ngIf="log.direction === 'attacker-vs-defender'">
+              <mat-list-item [ngClass]="[log.attackerTroop.unit.faction.id, log.attackerTroop.unit.legendary ? 'legendary' : 'common', 'lefted']">
+                <div mat-list-avatar [matBadge]="(log.attackerTroop.quantity | long) + ' / ' + (log.attackerQuantity | long)" matBadgePosition="above before">
+                  <img mat-list-avatar [src]="log.attackerTroop.unit.image">
+                </div>
+                <div mat-line>{{ log.attackerTroop.unit.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.attack' | translate:{ quantity: log.attackerQuantity | long, initiative: log.attackerTroop.unit.initiative, attack: (log.attackerTroop.unit.attack * log.attackerQuantity) | long, defense: (log.defenderTroop.unit.defense * log.defenderQuantity) | long, casualties: log.defenderCasualties | long } }}</div>
+                <mat-icon style="transform: rotate(-90deg)">subdirectory_arrow_left</mat-icon>
+              </mat-list-item>
+              <mat-list-item [ngClass]="[log.defenderTroop.unit.faction.id, log.defenderTroop.unit.legendary ? 'legendary' : 'common', 'righted']">
+                <mat-icon style="transform: rotate(90deg)">subdirectory_arrow_left</mat-icon>
+                <div mat-line>{{ log.defenderTroop.unit.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.counterattack' | translate:{ quantity: log.defenderTroop.quantity | long, initiative: log.defenderTroop.unit.initiative, attack: (log.defenderTroop.unit.attack * log.defenderTroop.quantity) | long, defense: (log.attackerTroop.unit.defense * log.attackerQuantity) | long, casualties: log.attackerCasualties | long } }}</div>
+                <div mat-list-avatar [matBadge]="(log.defenderTroop.quantity | long) + ' / ' + (log.defenderQuantity | long)" matBadgePosition="above after">
+                  <img mat-list-avatar [src]="log.defenderTroop.unit.image">
+                </div>
+              </mat-list-item>
+            </ng-container>
+            <ng-container *ngIf="log.direction === 'defender-vs-attacker'">
+            <mat-list-item [ngClass]="[log.defenderTroop.unit.faction.id, log.defenderTroop.unit.legendary ? 'legendary' : 'common', 'righted']">
+                <div mat-list-avatar [matBadge]="(log.defenderTroop.quantity | long) + ' / ' + (log.defenderQuantity | long)" matBadgePosition="above after">
+                  <img mat-list-avatar [src]="log.defenderTroop.unit.image">
+                </div>
+                <div mat-line>{{ log.defenderTroop.unit.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.attack' | translate:{ quantity: log.defenderQuantity | long, initiative: log.defenderTroop.unit.initiative, attack: (log.defenderTroop.unit.attack * log.defenderQuantity) | long, defense: (log.attackerTroop.unit.defense * log.attackerQuantity) | long, casualties: log.attackerCasualties | long } }}</div>
+                <mat-icon style="transform: rotate(90deg)">subdirectory_arrow_right</mat-icon>
+              </mat-list-item>
+              <mat-list-item [ngClass]="[log.attackerTroop.unit.faction.id, log.attackerTroop.unit.legendary ? 'legendary' : 'common', 'lefted']">
+                <mat-icon style="transform: rotate(-90deg)">subdirectory_arrow_right</mat-icon>
+                <div mat-line>{{ log.attackerTroop.unit.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.counterattack' | translate:{ quantity: log.attackerTroop.quantity | long, initiative: log.attackerTroop.unit.initiative, attack: (log.attackerTroop.unit.attack * log.attackerTroop.quantity) | long, defense: (log.defenderTroop.unit.defense * log.defenderQuantity) | long, casualties: log.defenderCasualties | long } }}</div>
+                <div mat-list-avatar [matBadge]="(log.attackerTroop.quantity | long) + ' / ' + (log.attackerQuantity | long)" matBadgePosition="above before">
+                  <img mat-list-avatar [src]="log.attackerTroop.unit.image">
+                </div>
+              </mat-list-item>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </mat-list>
+    </div>
+    <!-- ATTACHMENTS -->
+    <div mat-dialog-content *ngIf="report.data && report.data.join">
+      <div matSubheader>{{ 'kingdom.report.attachment' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[report.data.join.faction.id, report.data.join.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="(report.data.quantity || report.data.level || report.data.join.level) | short" matBadgePosition="ahove before">
@@ -54,20 +150,9 @@ export enum ReportType {
           </div>
         </mat-list-item>
       </mat-list>
-<!--
-      <mat-list dense *ngIf="report.log">
-        <mat-list-item *ngFor="let log of report.log" [ngClass]="['log-' + log.side, (log.join | legendary) ? 'legendary' : '']">
-          <div mat-list-avatar [matBadge]="log.quantity | long" [matBadgePosition]="log.side === 'left' ? 'above before' : 'above after'">
-            <img mat-list-avatar *ngIf="log.join" [src]="log.join.image">
-          </div>
-          <div mat-line *ngIf="log.join">{{ log.join.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ log.text | translate }}</div>
-        </mat-list-item>
-      </mat-list>
--->
     </div>
     <div mat-dialog-content>
-      <div matSubheader>{{ 'kingdom.report.seal' | translate }}:</div>
+      <div matSubheader>{{ 'kingdom.report.date' | translate }}:</div>
       <mat-chip-list>
         <mat-chip color="primary" selected><img class="icon" src="/assets/images/resources/turn.png">{{ report.timestamp.toMillis() | date:('dateformat.short' | translate) }}</mat-chip>
       </mat-chip-list>
@@ -83,35 +168,35 @@ export enum ReportType {
     p {
       margin: 0;
     }
-    /*
-    ::ng-deep .log-right .mat-list-item-content {
+    ::ng-deep .mat-list-base .mat-list-item.righted .mat-list-item-content {
       flex-direction: row-reverse !important;
     }
-    ::ng-deep .log-right .mat-list-text {
-      padding: 0 16px 0 0 !important;
+    ::ng-deep .mat-list-base .mat-list-item.righted .mat-list-item-content .mat-list-text {
+      text-align: right !important;
     }
-    ::ng-deep .log-right .mat-line,
-    ::ng-deep .log-right .mat-line.mat-card-subtitle {
-      text-align: right;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: flex-end;
+    ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content .mat-list-text {
+      padding-right: 16px !important;
     }
-    */
+    ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content .mat-icon {
+      margin: 0 16px !important;
+    }
+    @media screen and (max-width: 960px) {
+      ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content .mat-icon {
+        margin: 0 !important;
+      }
+    }
   `],
 })
 export class ReportComponent implements OnInit {
 
   uid = this.store.selectSnapshot(AuthState.getUserUID);
-  reportType: typeof ReportType = ReportType;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public report: any,
     private dialogRef: MatDialogRef<ReportComponent>,
     private apiService: ApiService,
     private store: Store,
-  ) { }
+  ) { console.log(this.report)}
 
   close() {
     this.dialogRef.close();

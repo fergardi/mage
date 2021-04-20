@@ -292,7 +292,10 @@
       "cancel": "Cancelar",
       "start": "Comenzar",
       "success": "La aventura se ha completado",
-      "error": "Ha ocurrido un problema"
+      "error": "Ha ocurrido un problema",
+      "subject": "Reporte de Aventura",
+      "victory": "Tu ejército ha completado la aventura con éxito. Se adjunta el reporte de batalla y las recompensas de la victoria se han enviado a tu reino.",
+      "defeat": "Tu ejército ha sido derrotado durante la aventura. Se adjunta el reporte de batalla y no has obtenido ninguna recompensa."
     },
     "deal": {
       "name": "Trato",
@@ -337,22 +340,27 @@
       "close": "Cerrar"
     },
     "report": {
-      "battle": "Reporte de batalla",
+      "subject": "Reporte de Batalla",
       "from": "De",
-      "data": "Nota",
-      "seal": "Sellado",
+      "attachment": "Anexo",
+      "date": "Fecha",
       "message": "Mensaje",
-      "close": "Cerrar"
+      "close": "Cerrar",
+      "battle": "Batalla",
+      "attack": "Atacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño contra {{ defense }} defensa y causan {{ casualties }} bajas",
+      "counterattack": "Contraatacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño contra {{ defense }} defensa y causan {{ casualties }} bajas"
     },
     "battle": {
       "name": "Batalla",
-      "description": "Declara la guerra a un reino enemigo. El asedio se centra en destruir, el pillaje en robar recursos, y el ataque en una mezcla de ambas cosas. Usarás las tropas, hechizos y artefactos que tengas asociadas al ataque.",
+      "description": "Declara la guerra a un reino enemigo. El asedio se centra en destruir edificios, el pillaje en robar recursos, y el asalto en diezmar ejércitos. Usarás las tropas, héroes, hechizos y artefactos que tengas asignadas al ataque.",
       "attack": "Atacar",
       "cancel": "Cancelar",
       "select": "Tipo de ataque",
       "hint": "Selecciona el objetivo",
       "success": "Has recibido un mensaje",
-      "error": "Ha ocurrido un problema"
+      "error": "Ha ocurrido un problema",
+      "victory": "Tu ejército ha salido victorioso del combate. Se adjunta el reporte de batalla y las recompensas de la victoria se han enviado a tu reino.",
+      "defeat": "Tu ejército ha sido derrotado en combate. Se adjunta el reporte de batalla y no has obtenido ninguna recompensa."
     },
     "army": {
       "name": "Ejército",

@@ -5,22 +5,20 @@ import { PopupType } from 'src/app/shared/type/common.type';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AdventureComponent } from './adventure.component';
 import { DealComponent } from './deal.component';
-import { Store } from '@ngxs/store';
-import { AuthState } from 'src/app/shared/auth/auth.state';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import * as moment from 'moment';
 import { ApiService } from 'src/app/services/api.service';
-import { MapboxService } from 'src/app/services/mapbox.service';
 import { TroopAssignmentType } from 'src/app/kingdom/army/army.component';
 
+@UntilDestroy()
 @Component({
   selector: 'app-popup',
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.scss'],
 })
-@UntilDestroy()
 export class PopupComponent implements OnInit {
 
+  opened: BehaviorSubject<boolean> = new BehaviorSubject(false);
   data: any = null;
   shopContracts: any[] = [];
   shopArtifacts: any[] = [];
@@ -31,68 +29,59 @@ export class PopupComponent implements OnInit {
   questTroops: any[] = [];
   questArtifacts: any[] = [];
   PopupType: typeof PopupType = PopupType;
-  subscriptions: Subscription[] = [];
 
   constructor(
     private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
-    private store: Store,
     private apiService: ApiService,
   ) { }
 
   ngOnInit(): void {
-    this.store.select(AuthState.getWorldPopup).pipe(untilDestroyed(this)).subscribe(async popup => {
-      // this cannot be done with untilDestroyed because we need to unsuscribe on popup closed, not on component destruction
-      this.kingdomTroops = [];
-      this.shopContracts = [];
-      this.shopTroops = [];
-      this.shopArtifacts = [];
-      this.shopCharms = [];
-      this.questTroops = [];
-      this.questContracts = [];
-      this.questArtifacts = [];
-      this.subscriptions.forEach((subscription: Subscription) => {
-        subscription.unsubscribe();
+    // check refresh
+    this.checkRefresh();
+    // kingdom
+    if (this.data.type === PopupType.KINGDOM) {
+      combineLatest([
+        this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }),
+      ])
+      .pipe(untilDestroyed(this))
+      .subscribe(([troops]) => {
+        this.kingdomTroops = troops.sort((a, b) => a.sort - b.sort);
+        this.opened.next(true);
       });
-      this.subscriptions = [];
-      if (popup && popup === this.data.id) {
-        // check refresh
-        this.checkRefresh();
-        // kingdom
-        if (this.data.type === PopupType.KINGDOM) {
-          this.subscriptions.push(this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
-            this.kingdomTroops = troops.sort((a, b) => a.sort - b.sort);
-          }));
-        }
-        // shop
-        if (this.data.type === PopupType.SHOP) {
-          this.subscriptions.push(this.angularFirestore.collection<any>(`shops/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(contracts => {
-            this.shopContracts = contracts;
-          }));
-          this.subscriptions.push(this.angularFirestore.collection<any>(`shops/${this.data.id}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
-            this.shopTroops = troops;
-          }));
-          this.subscriptions.push(this.angularFirestore.collection<any>(`shops/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
-            this.shopArtifacts = artifacts;
-          }));
-          this.subscriptions.push(this.angularFirestore.collection<any>(`shops/${this.data.id}/charms`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(charms => {
-            this.shopCharms = charms;
-          }));
-        }
-        // quest
-        if (this.data.type === PopupType.QUEST) {
-          this.subscriptions.push(this.angularFirestore.collection<any>(`quests/${this.data.id}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
-            this.questTroops = troops.sort((a, b) => a.sort - b.sort);
-          }));
-          this.subscriptions.push(this.angularFirestore.collection<any>(`quests/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(contracts => {
-            this.questContracts = contracts;
-          }));
-          this.subscriptions.push(this.angularFirestore.collection<any>(`quests/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
-            this.questArtifacts = artifacts;
-          }));
-        }
-      }
-    });
+    }
+    // shop
+    if (this.data.type === PopupType.SHOP) {
+      combineLatest([
+        this.angularFirestore.collection<any>(`shops/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }),
+        this.angularFirestore.collection<any>(`shops/${this.data.id}/troops`).valueChanges({ idField: 'fid' }),
+        this.angularFirestore.collection<any>(`shops/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }),
+        this.angularFirestore.collection<any>(`shops/${this.data.id}/charms`).valueChanges({ idField: 'fid' }),
+      ])
+      .pipe(untilDestroyed(this))
+      .subscribe(([contracts, troops, artifacts, charms]) => {
+        this.shopContracts = contracts;
+        this.shopTroops = troops;
+        this.shopArtifacts = artifacts;
+        this.shopCharms = charms;
+        this.opened.next(true);
+      });
+    }
+    // quest
+    if (this.data.type === PopupType.QUEST) {
+      combineLatest([
+        this.angularFirestore.collection<any>(`quests/${this.data.id}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }),
+        this.angularFirestore.collection<any>(`quests/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }),
+        this.angularFirestore.collection<any>(`quests/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }),
+      ])
+      .pipe(untilDestroyed(this))
+      .subscribe(([troops, contracts, artifacts]) => {
+        this.questTroops = troops.sort((a, b) => a.sort - b.sort);
+        this.questContracts = contracts;
+        this.questArtifacts = artifacts;
+        this.opened.next(true);
+      });
+    }
   }
 
   async checkRefresh() {

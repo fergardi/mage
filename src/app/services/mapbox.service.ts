@@ -1,4 +1,4 @@
-import { Injectable, ComponentRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import * as mapboxgl from 'mapbox-gl';
 import { ComponentService, InjectableHTML } from '../services/component.service';
@@ -11,14 +11,13 @@ import { ApiService } from './api.service';
 import * as _ from 'lodash';
 import { MarkerType, FactionType, StoreType, LocationType } from '../shared/type/common.type';
 import { NotificationService } from './notification.service';
-import { SetPopupAction } from '../shared/auth/auth.actions';
 
 export interface Marker {
   id: string;
   type: MarkerType;
   marker: mapboxgl.Marker;
   circle: MapboxCircle;
-  popup: ComponentRef<any>;
+  //popup: ComponentRef<any>;
 }
 
 @Injectable({
@@ -112,7 +111,7 @@ export class MapboxService {
     .setLngLat({ lat: data.coordinates.latitude, lng: data.coordinates.longitude })
     .addTo(this.map);
     // popup
-    const p: InjectableHTML = this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type });
+    let p: InjectableHTML = null;
     marker = marker.setPopup(new mapboxgl.Popup({
       offset: [0, -(size + this.offset)],
       anchor: 'bottom',
@@ -122,22 +121,32 @@ export class MapboxService {
       maxWidth: 'none',
       className: 'dialog-responsive',
     })
-    .setDOMContent(p.html)
-    .on('open', async ($event: any) => {
-      this.store.dispatch(new SetPopupAction(data.id));
-      await new Promise(resolve => setTimeout(resolve, 500)); // to be able to calculate target event clientHeight
-      this.map.easeTo({
-        center: $event.target.getLngLat(),
-        offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],
+    .setDOMContent(document.createElement('div') as HTMLDivElement)
+    .on('open', ($event: any) => {
+      p = this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type });
+      p.ref.changeDetectorRef.detectChanges();
+      marker.getPopup().setDOMContent(p.html);
+      (p.ref.instance as PopupComponent).opened.asObservable().subscribe(async open => {
+        if (open) {
+          await new Promise(resolve => setTimeout(resolve, 0));
+          this.map.easeTo({
+            center: $event.target.getLngLat(),
+            offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],
+          });
+        }
       });
     })
     .on('close', () => {
-      this.store.dispatch(new SetPopupAction(null));
+      marker.getPopup().setDOMContent(document.createElement('div') as HTMLDivElement);
+      if (p && p.ref) {
+        p.ref.destroy();
+        p = null;
+      }
     }));
     // radius
     let circle = null;
     if (radius) {
-      circle = new MapboxCircle({ lat: data.coordinates.latitude, lng: data.coordinates.longitude }, data.power, {
+      circle = new MapboxCircle({ lat: data.coordinates.latitude, lng: data.coordinates.longitude }, Math.max(1000, data.power), {
         editable: false,
         fillColor: '#99009c',
         fillOpacity: 0.2,
@@ -154,7 +163,7 @@ export class MapboxService {
       // marker.togglePopup();
     }
     // add to list for future disposal
-    this.markers.push({ id: data.id, marker: marker, circle: circle, type: type, popup: p.ref });
+    this.markers.push({ id: data.id, marker: marker, circle: circle, type: type, /*popup: p.ref*/ });
     // return
     return marker;
   }
@@ -177,7 +186,7 @@ export class MapboxService {
     const index = this.markers.findIndex(item => item.id === id);
     if (index !== -1) {
       const found = this.markers[index];
-      if (found.popup) found.popup.destroy();
+      //if (found.popup) found.popup.destroy();
       if (found.marker) found.marker.remove();
       if (found.circle) found.circle.remove();
       this.markers.splice(index, 1);

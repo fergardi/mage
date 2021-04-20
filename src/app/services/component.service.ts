@@ -1,4 +1,5 @@
 import { Injectable, Injector, ApplicationRef, ComponentFactoryResolver, ComponentRef, Type } from '@angular/core';
+import { UntilDestroy } from '@ngneat/until-destroy';
 
 export interface InjectableHTML {
   html: HTMLDivElement;
@@ -20,6 +21,7 @@ export class ComponentService {
 
   public injectComponent<T>(component: Type<T>, propertySetter?: (type: T) => void): InjectableHTML {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+    UntilDestroy()(component);
     this.componentRef = componentFactory.create(this.injector);
     if (propertySetter) propertySetter(this.componentRef.instance);
     this.applicationRef.attachView(this.componentRef.hostView);

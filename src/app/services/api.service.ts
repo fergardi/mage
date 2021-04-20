@@ -174,11 +174,11 @@ export class ApiService {
     return this.httpClient.request('delete', environment.functions.url + `/kingdom/${kingdomId}/clan/${clanId}`, undefined).toPromise();
   }
 
-  assignCharm(kingdomId: string, charmId: string, assignmentId: string) {
+  assignCharm(kingdomId: string, charmId: string, assignmentId: number) {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/sorcery/charm/${charmId}/assign/${assignmentId}`).toPromise();
   }
 
-  assignArtifact(kingdomId: string, artifactId: string, assignmentId: string) {
+  assignArtifact(kingdomId: string, artifactId: string, assignmentId: number) {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/sorcery/artifact/${artifactId}/assign/${assignmentId}`).toPromise();
   }
 
@@ -194,8 +194,8 @@ export class ApiService {
     return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/world/shop/${shopId}/${collectionId}/${dealId}`).toPromise();
   }
 
-  adventureReward(kingomdId: string, locationId: string) {
-    // TODO
+  adventureReward(kingdomId: string, questId: string) {
+    return this.httpClient.get(environment.functions.url + `/kingdom/${kingdomId}/world/quest/${questId}`).toPromise();
   }
 
 }

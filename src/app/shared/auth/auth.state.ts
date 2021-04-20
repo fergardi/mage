@@ -1,10 +1,10 @@
 import { State, Action, Selector, StateContext, NgxsOnInit } from '@ngxs/store';
-import { SetUserAction, SetKingdomAction, SetKingdomSuppliesAction, SetKingdomBuildingsAction, LoginWithGoogleAction, LogoutAction, SetPopupAction } from './auth.actions';
+import { SetUserAction, SetKingdomAction, SetKingdomSuppliesAction, SetKingdomBuildingsAction, LoginWithGoogleAction, LogoutAction } from './auth.actions';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap, map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { calculateTurns } from 'src/app/pipes/turn.pipe';
@@ -136,11 +136,6 @@ export class AuthState implements NgxsOnInit {
     return state && state.clock;
   }
 
-  @Selector()
-  public static getWorldPopup(state: AuthStateModel): string | null {
-    return state && state.popup;
-  }
-
   constructor(
     private angularFireAuth: AngularFireAuth,
     private angularFirestore: AngularFirestore,
@@ -236,15 +231,6 @@ export class AuthState implements NgxsOnInit {
         });
       }),
     );
-  }
-
-  @Action(SetPopupAction)
-  popup(ctx: StateContext<AuthStateModel>, payload: SetPopupAction) {
-    const state = ctx.getState();
-    ctx.setState({
-      ...state,
-      popup: payload.uid,
-    });
   }
 
 }

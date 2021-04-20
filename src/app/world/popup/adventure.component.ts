@@ -1,6 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification.service';
+import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-adventure',
@@ -32,6 +36,9 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class AdventureComponent implements OnInit {
 
+  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
       reward: any,
@@ -39,6 +46,9 @@ export class AdventureComponent implements OnInit {
     },
     private dialogRef: MatDialogRef<AdventureComponent>,
     private notificationService: NotificationService,
+    private apiService: ApiService,
+    private store: Store,
+    private loadingService: LoadingService,
   ) { }
 
   ngOnInit(): void {
@@ -48,16 +58,18 @@ export class AdventureComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  adventure(): void {
-    if (true) {
+  async adventure() {
+    if (this.data.quest.turns <= this.kingdomTurn.quantity) {
+      this.loadingService.startLoading();
       try {
-        // TODO
+        const dealt = await this.apiService.adventureReward(this.uid, this.data.quest.id);
         this.notificationService.success('world.adventure.success');
         this.close();
       } catch (error) {
         console.error(error);
         this.notificationService.error('world.adventure.error');
       }
+      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('world.adventure.error');
     }

@@ -64,7 +64,7 @@ export class SorceryComponent implements OnInit {
       } else {
         if ($event.container && (Number($event.container.id) === 0 || $event.container.data.length < this.maximumArtifacts)) {
           transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
-          await this.apiService.assignArtifact(this.uid, $event.item.element.nativeElement.id, $event.container.id);
+          await this.apiService.assignArtifact(this.uid, $event.item.element.nativeElement.id, Number($event.container.id)); // ids 0,1,2
           this.notificationService.success('kingdom.sorcery.success');
         } else {
           this.notificationService.error('kingdom.sorcery.maximum');
@@ -85,7 +85,7 @@ export class SorceryComponent implements OnInit {
       } else {
         if ($event.container && (Number($event.container.id) === 3 || $event.container.data.length < this.maximumCharms)) {
           transferArrayItem($event.previousContainer.data, $event.container.data, $event.previousIndex, $event.currentIndex);
-          await this.apiService.assignCharm(this.uid, $event.item.element.nativeElement.id, $event.container.id);
+          await this.apiService.assignCharm(this.uid, $event.item.element.nativeElement.id, Number($event.container.id) - 3); // ids 3,4,5
           this.notificationService.success('kingdom.sorcery.success');
         } else {
           this.notificationService.error('kingdom.sorcery.maximum');

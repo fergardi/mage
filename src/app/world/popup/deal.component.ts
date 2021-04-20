@@ -69,7 +69,6 @@ export class DealComponent implements OnInit {
   }
 
   async deal(): Promise<void> {
-    console.log(this.data)
     if (this.data.deal.gold <= this.kingdomGold.quantity) {
       this.loadingService.startLoading();
       try {
