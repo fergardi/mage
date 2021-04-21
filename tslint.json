@@ -1,6 +1,7 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "no-implicit-dependencies": [true, "dev"],
     "object-literal-shorthand": false,
     "no-string-literal": false,
     "align": {

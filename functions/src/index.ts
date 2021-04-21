@@ -1427,29 +1427,52 @@ const adventureQuest = async (kingdomId: string, questId: string) => {
  * @param defenderArmy
  * @param batch
  */
-const resolveBattle = async (attackerContracts: any[], attackerTroops: any[], attackerArtifacts: any[], attackerCharms: any[], defenderContracts: any[], defenderTroops: any[], defenderArtifacts: any[], defenderCharms: any[], attackerId: string, batch: FirebaseFirestore.WriteBatch, defenderId?: string, questId?: string): Promise<any> => {
+export const resolveBattle = async (
+  attackerContracts: any[],
+  attackerTroops: any[],
+  attackerArtifacts: any[],
+  attackerCharms: any[],
+  defenderContracts: any[],
+  defenderTroops: any[],
+  defenderArtifacts: any[],
+  defenderCharms: any[],
+  attackerId: string,
+  batch: FirebaseFirestore.WriteBatch,
+  defenderId?: string,
+  questId?: string,
+): Promise<any> => {
   // logs
   let logs: any[] = [];
   // artifacts
   attackerArtifacts.forEach((artifact: any) => {
-    logs.push({
-      attackerArtifact: artifact,
-    });
+    if (artifact.item.battle) {
+      logs.push({
+        attackerArtifact: artifact,
+        success: false,
+      });
+    }
   });
   defenderArtifacts.forEach((artifact: any) => {
-    logs.push({
-      defenderArtifact: artifact,
-    });
+    if (artifact.item.battle) {
+      logs.push({
+        defenderArtifact: artifact,
+        success: true,
+      });
+    }
   });
   // charms
   attackerCharms.forEach((charm: any) => {
-    logs.push({
-      attackerCharm: charm,
-    });
+    if (charm.spell.battle) {
+      logs.push({
+        attackerCharm: charm,
+        success: false,
+      });
+    }
   });
   defenderCharms.forEach((charm: any) => {
     logs.push({
       defenderCharm: charm,
+      success: true,
     });
   });
   // contracts

@@ -8,7 +8,9 @@
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "npm run build && firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "test2": "mocha -r ts-node/register test/**/*.ts --reporter spec",
+    "test": "jest --watchAll --silent"
   },
   "engines": {
     "node": "12"
@@ -27,7 +29,10 @@
   "devDependencies": {
     "@types/cors": "^2.8.9",
     "@types/express": "^4.17.11",
-    "firebase-functions-test": "^0.1.6",
+    "@types/jest": "^26.0.22",
+    "firebase-functions-test": "^0.1.7",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.5",
     "tslint": "^5.12.0",
     "typescript": "^3.9.9"
   },
