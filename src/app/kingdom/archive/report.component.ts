@@ -27,7 +27,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     </div>
     <!-- BATTLE -->
     <div mat-dialog-content *ngIf="report.data && report.data.logs">
-      <div matSubheader>{{ 'kingdom.report.battle' | translate }}:</div>
+      <div matSubheader>{{ 'kingdom.report.attacker' | translate }}:<span class="fill-space"></span>{{ 'kingdom.report.defender' | translate }}:</div>
       <mat-list dense>
         <ng-container *ngFor="let log of report.data.logs">
           <!-- ARTIFACTS -->
@@ -36,16 +36,16 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
               <img mat-list-avatar [src]="log.attackerArtifact.item.image">
             </div>
             <div mat-line>{{ log.attackerArtifact.item.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.item' }}</div>
-            <mat-icon>done</mat-icon>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="log.attackerArtifact.item.description | translate | icon:log.attackerArtifact.item"></div>
+            <mat-icon>{{ log.success ? 'check' : 'block' }}</mat-icon>
           </mat-list-item>
           <mat-list-item [ngClass]="[log.defenderArtifact.item.faction.id, log.defenderArtifact.item.legendary ? 'legendary' : 'common', 'righted']" *ngIf="log.defenderArtifact">
             <div mat-list-avatar [matBadge]="log.defenderArtifact.level | short" matBadgePosition="above after">
               <img mat-list-avatar [src]="log.defenderArtifact.item.image">
             </div>
             <div mat-line>{{ log.defenderArtifact.item.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.item' }}</div>
-            <mat-icon>done</mat-icon>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="log.defenderArtifact.item.description | translate | icon:log.defenderArtifact.item"></div>
+            <mat-icon>{{ log.success ? 'check' : 'block' }}</mat-icon>
           </mat-list-item>
           <!-- CHARMS -->
           <mat-list-item [ngClass]="[log.attackerCharm.spell.faction.id, log.attackerCharm.spell.legendary ? 'legendary' : 'common', 'lefted']" *ngIf="log.attackerCharm">
@@ -53,16 +53,16 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
               <img mat-list-avatar [src]="log.attackerCharm.spell.image">
             </div>
             <div mat-line>{{ log.attackerCharm.spell.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.spell' }}</div>
-            <mat-icon>done</mat-icon>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="log.attackerCharm.spell.description | translate | icon:log.attackerCharm.spell"></div>
+            <mat-icon>{{ log.success ? 'check' : 'block' }}</mat-icon>
           </mat-list-item>
           <mat-list-item [ngClass]="[log.defenderCharm.spell.faction.id, log.defenderCharm.spell.legendary ? 'legendary' : 'common', 'righted']" *ngIf="log.defenderCharm">
             <div mat-list-avatar [matBadge]="log.defenderCharm.level | short" matBadgePosition="above after">
               <img mat-list-avatar [src]="log.defenderCharm.spell.image">
             </div>
             <div mat-line>{{ log.defenderCharm.spell.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.spell' }}</div>
-            <mat-icon>done</mat-icon>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="log.defenderCharm.spell.description | translate | icon:log.defenderCharm.spell"></div>
+            <mat-icon>{{ log.success ? 'check' : 'block' }}</mat-icon>
           </mat-list-item>
           <!-- CONTRACTS -->
           <mat-list-item [ngClass]="[log.attackerContract.hero.faction.id, log.attackerContract.hero.legendary ? 'legendary' : 'common', 'lefted']" *ngIf="log.attackerContract">
@@ -70,16 +70,16 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
               <img mat-list-avatar [src]="log.attackerContract.hero.image">
             </div>
             <div mat-line>{{ log.attackerContract.hero.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.hero' }}</div>
-            <mat-icon>done</mat-icon>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="log.attackerContract.hero.description | translate | icon:log.attackerContract.hero"></div>
+            <mat-icon>star</mat-icon>
           </mat-list-item>
           <mat-list-item [ngClass]="[log.defenderContract.hero.faction.id, log.defenderContract.hero.legendary ? 'legendary' : 'common', 'righted']" *ngIf="log.defenderContract">
             <div mat-list-avatar [matBadge]="log.defenderContract.level | short" matBadgePosition="above after">
               <img mat-list-avatar [src]="log.defenderContract.hero.image">
             </div>
             <div mat-line>{{ log.defenderContract.hero.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.hero' }}</div>
-            <mat-icon>done</mat-icon>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="log.defenderContract.hero.description | translate | icon:log.defenderContract.hero"></div>
+            <mat-icon>star</mat-icon>
           </mat-list-item>
           <!-- TROOPS -->
           <ng-container *ngIf="log.attackerTroop && log.defenderTroop">
@@ -89,13 +89,13 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
                   <img mat-list-avatar [src]="log.attackerTroop.unit.image">
                 </div>
                 <div mat-line>{{ log.attackerTroop.unit.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.attack' | translate:{ quantity: log.attackerQuantity | long, initiative: log.attackerTroop.unit.initiative, attack: (log.attackerTroop.unit.attack * log.attackerQuantity) | long, defense: (log.defenderTroop.unit.defense * log.defenderQuantity) | long, casualties: log.defenderCasualties | long } }}</div>
+                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.attack' | translate:{ quantity: log.attackerQuantity | long, initiative: log.attackerTroop.unit.initiative, attack: (log.attackerTroop.unit.attack * log.attackerQuantity) | long, defense: (log.defenderTroop.unit.defense * log.defenderQuantity) | long, health: (log.defenderTroop.unit.health * log.defenderQuantity) | long, casualties: log.defenderCasualties | long } }}</div>
                 <mat-icon style="transform: rotate(-90deg)">subdirectory_arrow_left</mat-icon>
               </mat-list-item>
               <mat-list-item [ngClass]="[log.defenderTroop.unit.faction.id, log.defenderTroop.unit.legendary ? 'legendary' : 'common', 'righted']">
                 <mat-icon style="transform: rotate(90deg)">subdirectory_arrow_left</mat-icon>
                 <div mat-line>{{ log.defenderTroop.unit.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.counterattack' | translate:{ quantity: log.defenderTroop.quantity | long, initiative: log.defenderTroop.unit.initiative, attack: (log.defenderTroop.unit.attack * log.defenderTroop.quantity) | long, defense: (log.attackerTroop.unit.defense * log.attackerQuantity) | long, casualties: log.attackerCasualties | long } }}</div>
+                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.counterattack' | translate:{ quantity: log.defenderTroop.quantity | long, initiative: log.defenderTroop.unit.initiative, attack: (log.defenderTroop.unit.attack * log.defenderTroop.quantity) | long, defense: (log.attackerTroop.unit.defense * log.attackerQuantity) | long, health: (log.attackerTroop.unit.health * log.attackerQuantity) | long, casualties: log.attackerCasualties | long } }}</div>
                 <div mat-list-avatar [matBadge]="(log.defenderTroop.quantity | long) + ' / ' + (log.defenderQuantity | long)" matBadgePosition="above after">
                   <img mat-list-avatar [src]="log.defenderTroop.unit.image">
                 </div>
@@ -107,13 +107,13 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
                   <img mat-list-avatar [src]="log.defenderTroop.unit.image">
                 </div>
                 <div mat-line>{{ log.defenderTroop.unit.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.attack' | translate:{ quantity: log.defenderQuantity | long, initiative: log.defenderTroop.unit.initiative, attack: (log.defenderTroop.unit.attack * log.defenderQuantity) | long, defense: (log.attackerTroop.unit.defense * log.attackerQuantity) | long, casualties: log.attackerCasualties | long } }}</div>
+                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.attack' | translate:{ quantity: log.defenderQuantity | long, initiative: log.defenderTroop.unit.initiative, attack: (log.defenderTroop.unit.attack * log.defenderQuantity) | long, defense: (log.attackerTroop.unit.defense * log.attackerQuantity) | long, health: (log.attackerTroop.unit.health * log.attackerQuantity) | long, casualties: log.attackerCasualties | long } }}</div>
                 <mat-icon style="transform: rotate(90deg)">subdirectory_arrow_right</mat-icon>
               </mat-list-item>
               <mat-list-item [ngClass]="[log.attackerTroop.unit.faction.id, log.attackerTroop.unit.legendary ? 'legendary' : 'common', 'lefted']">
                 <mat-icon style="transform: rotate(-90deg)">subdirectory_arrow_right</mat-icon>
                 <div mat-line>{{ log.attackerTroop.unit.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.counterattack' | translate:{ quantity: log.attackerTroop.quantity | long, initiative: log.attackerTroop.unit.initiative, attack: (log.attackerTroop.unit.attack * log.attackerTroop.quantity) | long, defense: (log.defenderTroop.unit.defense * log.defenderQuantity) | long, casualties: log.defenderCasualties | long } }}</div>
+                <div mat-line class="mat-card-subtitle">{{ 'kingdom.report.counterattack' | translate:{ quantity: log.attackerTroop.quantity | long, initiative: log.attackerTroop.unit.initiative, attack: (log.attackerTroop.unit.attack * log.attackerTroop.quantity) | long, defense: (log.defenderTroop.unit.defense * log.defenderQuantity) | long, health: (log.defenderTroop.unit.health * log.defenderQuantity) | long, casualties: log.defenderCasualties | long } }}</div>
                 <div mat-list-avatar [matBadge]="(log.attackerTroop.quantity | long) + ' / ' + (log.attackerQuantity | long)" matBadgePosition="above before">
                   <img mat-list-avatar [src]="log.attackerTroop.unit.image">
                 </div>

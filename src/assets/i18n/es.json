@@ -346,9 +346,10 @@
       "date": "Fecha",
       "message": "Mensaje",
       "close": "Cerrar",
-      "battle": "Batalla",
-      "attack": "Atacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño contra {{ defense }} defensa y causan {{ casualties }} bajas",
-      "counterattack": "Contraatacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño contra {{ defense }} defensa y causan {{ casualties }} bajas"
+      "attacker": "Atacante",
+      "attack": "Atacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas",
+      "defender": "Defensor",
+      "counterattack": "Contraatacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas"
     },
     "battle": {
       "name": "Batalla",
@@ -1204,7 +1205,7 @@
       "description": ""
     },
     "iron-golem": {
-      "name": "Gólems de Acero",
+      "name": "Gólems de Hierro",
       "description": ""
     },
     "stone-golem": {
