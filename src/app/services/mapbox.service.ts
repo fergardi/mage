@@ -11,13 +11,14 @@ import { ApiService } from './api.service';
 import * as _ from 'lodash';
 import { MarkerType, FactionType, StoreType, LocationType } from '../shared/type/common.type';
 import { NotificationService } from './notification.service';
+import { distinctUntilChanged } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 export interface Marker {
   id: string;
   type: MarkerType;
   marker: mapboxgl.Marker;
   circle: MapboxCircle;
-  //popup: ComponentRef<any>;
 }
 
 @Injectable({
@@ -112,6 +113,7 @@ export class MapboxService {
     .addTo(this.map);
     // popup
     let p: InjectableHTML = null;
+    let s: Subscription = null;
     marker = marker.setPopup(new mapboxgl.Popup({
       offset: [0, -(size + this.offset)],
       anchor: 'bottom',
@@ -126,7 +128,10 @@ export class MapboxService {
       p = this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type });
       p.ref.changeDetectorRef.detectChanges();
       marker.getPopup().setDOMContent(p.html);
-      (p.ref.instance as PopupComponent).opened.asObservable().subscribe(async open => {
+      s = (p.ref.instance as PopupComponent).opened
+      .asObservable()
+      .pipe(distinctUntilChanged())
+      .subscribe(async open => {
         if (open) {
           await new Promise(resolve => setTimeout(resolve, 0));
           this.map.easeTo({
@@ -141,6 +146,10 @@ export class MapboxService {
       if (p && p.ref) {
         p.ref.destroy();
         p = null;
+      }
+      if (s) {
+        s.unsubscribe();
+        s = null;
       }
     }));
     // radius
@@ -160,10 +169,9 @@ export class MapboxService {
     // center
     if (fly) {
       this.goTo(data.coordinates.latitude, data.coordinates.longitude, true);
-      // marker.togglePopup();
     }
     // add to list for future disposal
-    this.markers.push({ id: data.id, marker: marker, circle: circle, type: type, /*popup: p.ref*/ });
+    this.markers.push({ id: data.id, marker: marker, circle: circle, type: type });
     // return
     return marker;
   }
@@ -186,7 +194,6 @@ export class MapboxService {
     const index = this.markers.findIndex(item => item.id === id);
     if (index !== -1) {
       const found = this.markers[index];
-      //if (found.popup) found.popup.destroy();
       if (found.marker) found.marker.remove();
       if (found.circle) found.circle.remove();
       this.markers.splice(index, 1);

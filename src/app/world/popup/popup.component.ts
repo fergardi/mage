@@ -9,6 +9,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 import * as moment from 'moment';
 import { ApiService } from 'src/app/services/api.service';
 import { TroopAssignmentType } from 'src/app/kingdom/army/army.component';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @UntilDestroy()
 @Component({
@@ -34,11 +35,12 @@ export class PopupComponent implements OnInit {
     private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private apiService: ApiService,
+    private loadingService: LoadingService,
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     // check refresh
-    this.checkRefresh();
+    await this.checkRefresh();
     // kingdom
     if (this.data.type === PopupType.KINGDOM) {
       combineLatest([
@@ -86,6 +88,7 @@ export class PopupComponent implements OnInit {
 
   async checkRefresh() {
     if (this.data.type !== PopupType.KINGDOM && this.data.visited && moment().isAfter(moment(this.data.visited.toMillis()))) {
+      this.loadingService.startLoading();
       try {
         await this.data.type === PopupType.SHOP
           ? this.apiService.addShop(this.data.id, this.data.store.id)
@@ -93,6 +96,7 @@ export class PopupComponent implements OnInit {
       } catch (error) {
         console.error(error);
       }
+      this.loadingService.stopLoading();
     }
   }
 
