@@ -16,6 +16,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DateAdapter } from '@angular/material/core';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-archive',
@@ -54,6 +55,7 @@ export class ArchiveComponent implements OnInit {
     private apiService: ApiService,
     private loadingService: LoadingService,
     private dateAdapter: DateAdapter<any>,
+    public tutorialService: TutorialService,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -67,6 +69,7 @@ export class ArchiveComponent implements OnInit {
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
+      this.tutorialService.ready();
     });
   }
 

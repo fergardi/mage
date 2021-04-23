@@ -300,9 +300,12 @@ $list-item-height: 60px;
 //========================================================================================
 
 .mat-card-header {
-  .mat-chip-list,
-  .mat-button-base {
-    margin: auto 10px auto 0;
+  .mat-card-extras {
+    margin: 10px 10px 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
   }
 }
 .mat-card {

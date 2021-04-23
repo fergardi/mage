@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { combineLatest } from 'rxjs';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 export enum TroopAssignmentType {
   NONE,
@@ -43,16 +45,21 @@ export class ArmyComponent implements OnInit {
     private dialog: MatDialog,
     private apiService: ApiService,
     private loadingService: LoadingService,
+    public tutorialService: TutorialService,
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/troops`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
+    combineLatest([
+      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/troops`).valueChanges({ idField: 'fid' }),
+      this.angularFirestore.collection<any>(`units`, ref => ref.where('gold', '>', 0)).valueChanges({ idField: 'fid' }),
+    ])
+    .pipe(untilDestroyed(this))
+    .subscribe(([troops, units]) => {
       this.kingdomTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.NONE || !troop.assignment).sort((a, b) => a.sort - b.sort);
       this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.ATTACK).sort((a, b) => a.sort - b.sort);
       this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.DEFENSE).sort((a, b) => a.sort - b.sort);
-    });
-    this.angularFirestore.collection<any>(`units`, ref => ref.where('gold', '>', 0)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(units => {
       this.recruitUnits = units;
+      this.tutorialService.ready();
     });
   }
 

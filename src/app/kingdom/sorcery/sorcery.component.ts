@@ -12,6 +12,8 @@ import { ConjureComponent, CharmAssignmentType } from './conjure.component';
 import { ActivateComponent, ArtifactAssignmentType } from './activate.component';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { TutorialService } from 'src/app/services/tutorial.service';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-sorcery',
@@ -41,18 +43,23 @@ export class SorceryComponent implements OnInit {
     private store: Store,
     private apiService: ApiService,
     private loadingService: LoadingService,
+    public tutorialService: TutorialService,
   ) { }
 
   ngOnInit(): void {
-    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
+    combineLatest([
+      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`).valueChanges({ idField: 'fid' }),
+      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/charms`).valueChanges({ idField: 'fid' }),
+    ])
+    .pipe(untilDestroyed(this))
+    .subscribe(([artifacts, charms]) => {
       this.kingdomArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.NONE || !artifact.assignment).sort((a, b) => a.item.battle === b.item.battle ? 0 : a.item.battle ? -1 : 1);
       this.attackArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.ATTACK);
       this.defenseArtifacts = artifacts.filter(artifact => artifact.assignment === ArtifactAssignmentType.DEFENSE);
-    });
-    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/charms`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(charms => {
       this.kingdomCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.NONE || !charm.assignment).sort((a, b) => (a.turns >= a.spell.research) === (b.turns >= b.spell.research) ? 0 : (a.turns >= a.spell.research) ? -1 : 1);
       this.attackCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.ATTACK);
       this.defenseCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.DEFENSE);
+      this.tutorialService.ready();
     });
   }
 

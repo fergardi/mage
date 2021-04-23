@@ -6,7 +6,10 @@
         <img mat-card-avatar src="/assets/images/cards/army.png">
         <mat-card-title>{{ 'kingdom.army.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.army.description' | translate }}</mat-card-subtitle>
-        <mat-chip-list><mat-chip color="primary" selected><mat-icon>filter_9_plus</mat-icon>{{ 'kingdom.army.max' | translate }}</mat-chip></mat-chip-list>
+        <div class="mat-card-extras">
+          <button mat-icon-button (click)="this.tutorialService.start('tour.army')"><mat-icon>help</mat-icon></button>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>filter_9_plus</mat-icon>{{ 'kingdom.army.max' | translate }}</mat-chip></mat-chip-list>
+        </div>
       </mat-card-header>
 
       <mat-card-content>
@@ -43,7 +46,10 @@
             <img mat-card-avatar src="/assets/images/cards/attack.png">
             <mat-card-title>{{ 'kingdom.attack.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.attack.description' | translate }}</mat-card-subtitle>
-            <mat-chip-list><mat-chip color="primary" selected><mat-icon>filter_5</mat-icon>{{ 'kingdom.attack.max' | translate }}</mat-chip></mat-chip-list>
+            <div class="mat-card-extras">
+              <button mat-icon-button (click)="this.tutorialService.start('tour.attack')"><mat-icon>help</mat-icon></button>
+              <mat-chip-list><mat-chip color="primary"><mat-icon>filter_5</mat-icon>{{ 'kingdom.attack.max' | translate }}</mat-chip></mat-chip-list>
+            </div>
           </mat-card-header>
 
           <mat-card-content>
@@ -79,7 +85,10 @@
             <img mat-card-avatar src="/assets/images/cards/defense.png">
             <mat-card-title>{{ 'kingdom.defense.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.defense.description' | translate }}</mat-card-subtitle>
-            <mat-chip-list><mat-chip color="primary" selected><mat-icon>filter_5</mat-icon>{{ 'kingdom.defense.max' | translate }}</mat-chip></mat-chip-list>
+            <div class="mat-card-extras">
+              <button mat-icon-button (click)="this.tutorialService.start('tour.defense')"><mat-icon>help</mat-icon></button>
+              <mat-chip-list><mat-chip color="primary"><mat-icon>filter_5</mat-icon>{{ 'kingdom.defense.max' | translate }}</mat-chip></mat-chip-list>
+            </div>
           </mat-card-header>
 
           <mat-card-content>
@@ -114,6 +123,10 @@
             <img mat-card-avatar src="/assets/images/cards/recruit.png">
             <mat-card-title>{{ 'kingdom.recruit.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.recruit.description' | translate }}</mat-card-subtitle>
+            <div class="mat-card-extras">
+              <button mat-icon-button (click)="this.tutorialService.start('tour.recruit')"><mat-icon>help</mat-icon></button>
+              <mat-chip-list><mat-chip color="primary"><mat-icon>list</mat-icon>{{ recruitUnits.length | long }}</mat-chip></mat-chip-list>
+            </div>
           </mat-card-header>
 
           <mat-card-content>

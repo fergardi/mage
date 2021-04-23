@@ -23,7 +23,7 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatListModule } from '@angular/material/list';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
-import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
 

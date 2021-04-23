@@ -16,7 +16,7 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AuthState } from './shared/auth/auth.state';
-import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorIntl } from './shared/custom/paginator.intl';
 import { NgxCurrencyModule } from 'ngx-currency';

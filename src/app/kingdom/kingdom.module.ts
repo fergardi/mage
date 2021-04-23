@@ -28,7 +28,7 @@ import { BuyComponent } from './emporium/buy.component';
 import { DisbandComponent } from './army/disband.component';
 import { DischargeComponent } from './tavern/discharge.component';
 import { LetterComponent } from './census/letter.component';
-import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { ClanComponent } from './clan/clan.component';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { FoundationComponent } from './clan/foundation.component';

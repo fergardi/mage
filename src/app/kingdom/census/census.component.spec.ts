@@ -25,7 +25,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
-import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { DetailComponent } from './detail.component';
 
 describe('CensusComponent', () => {

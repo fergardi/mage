@@ -15,8 +15,9 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { FoundationComponent } from './foundation.component';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { ManifestComponent } from './manifest.component';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-clan',
@@ -54,23 +55,28 @@ export class ClanComponent implements OnInit {
     private loadingService: LoadingService,
     private notificationService: NotificationService,
     private dialog: MatDialog,
+    public tutorialService: TutorialService,
   ) { }
 
   async ngOnInit(): Promise<void> {
-    this.angularFirestore.collection<any>('clans').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(clans => {
+    this.kingdomGuilds = await this.cacheService.getGuilds();
+    combineLatest([
+      this.angularFirestore.collection<any>('clans').valueChanges({ idField: 'fid' }),
+      this.store.select(AuthState.getKingdomGuild).pipe(map(data => JSON.parse(data))),
+    ])
+    .pipe(untilDestroyed(this))
+    .subscribe(([clans, kingdomGuild]) => {
       this.data = new MatTableDataSource(clans);
       this.data.paginator = this.paginator;
       this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
-    });
-    this.kingdomGuilds = await this.cacheService.getGuilds();
-    this.store.select(AuthState.getKingdomGuild).pipe(map(data => JSON.parse(data))).pipe(untilDestroyed(this)).subscribe(kingdomGuild => {
       if (kingdomGuild) {
         this.kingdomGuild = this.kingdomGuilds.find(guild => guild.id === kingdomGuild.guild.id);
         this.kingdomGuilded = kingdomGuild.guilded;
       }
+      this.tutorialService.ready();
     });
   }
 

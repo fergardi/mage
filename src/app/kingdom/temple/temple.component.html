@@ -7,6 +7,10 @@
         <img mat-card-avatar src="/assets/images/cards/temple.png">
         <mat-card-title>{{ 'kingdom.temple.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.temple.description' | translate }}</mat-card-subtitle>
+        <div class="mat-card-extras">
+          <button mat-icon-button (click)="this.tutorialService.start('tour.temple')"><mat-icon>help</mat-icon></button>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>notifications</mat-icon>{{ kingdomGods.length | long }}</mat-chip></mat-chip-list>
+        </div>
       </mat-card-header>
 
       <mat-card-content>
@@ -41,6 +45,10 @@
             <img mat-card-avatar src="/assets/images/cards/break.png">
             <mat-card-title>{{ 'kingdom.break.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.break.description' | translate }}</mat-card-subtitle>
+            <div class="mat-card-extras">
+              <button mat-icon-button (click)="this.tutorialService.start('tour.break')"><mat-icon>help</mat-icon></button>
+              <mat-chip-list><mat-chip color="primary"><mat-icon>trending_down</mat-icon>{{ kingdomEnchantments.length | long }}</mat-chip></mat-chip-list>
+            </div>
           </mat-card-header>
 
           <mat-card-content>
@@ -73,6 +81,10 @@
             <img mat-card-avatar src="/assets/images/cards/dispel.png">
             <mat-card-title>{{ 'kingdom.dispel.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.dispel.description' | translate }}</mat-card-subtitle>
+            <div class="mat-card-extras">
+              <button mat-icon-button (click)="this.tutorialService.start('tour.dispel')"><mat-icon>help</mat-icon></button>
+              <mat-chip-list><mat-chip color="primary"><mat-icon>trending_up</mat-icon>{{ kingdomIncantations.length | long }}</mat-chip></mat-chip-list>
+            </div>
           </mat-card-header>
 
           <mat-card-content>

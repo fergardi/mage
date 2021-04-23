@@ -1,0 +1,9 @@
+.tour-step {
+  &.mat-menu-panel {
+    max-width: none;
+  }
+  .mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

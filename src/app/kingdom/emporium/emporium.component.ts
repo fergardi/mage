@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { BuyComponent } from './buy.component';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { LoadingService } from 'src/app/services/loading.service';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-emporium',
@@ -23,13 +25,13 @@ export class EmporiumComponent implements OnInit {
     private cacheService: CacheService,
     private dialog: MatDialog,
     private store: Store,
+    public tutorialService: TutorialService,
   ) { }
 
   async ngOnInit(): Promise<void> {
-    const items = await this.cacheService.getItems();
-    this.emporiumItems = items.filter((item: any) => item.gems > 0);
-    const packs = await this.cacheService.getPacks();
-    this.emporiumPacks = packs.sort((a, b) => a.quantity - b.quantity);
+    this.emporiumItems = (await this.cacheService.getItems()).filter((item: any) => item.gems > 0);
+    this.emporiumPacks = (await this.cacheService.getPacks()).sort((a, b) => a.quantity - b.quantity);
+    this.tutorialService.ready();
   }
 
   openBuyDialog(item: any): void {

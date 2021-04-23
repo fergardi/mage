@@ -7,6 +7,8 @@ import { fadeInOnEnterAnimation } from 'angular-animations';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { DispelComponent } from './dispel.component';
+import { combineLatest } from 'rxjs';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-temple',
@@ -26,17 +28,21 @@ export class TempleComponent implements OnInit {
     private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private store: Store,
+    public tutorialService: TutorialService,
   ) {}
 
   ngOnInit(): void {
-    this.angularFirestore.collection<any>('gods').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(gods => {
+    combineLatest([
+      this.angularFirestore.collection<any>('gods').valueChanges({ idField: 'fid' }),
+      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/enchantments`).valueChanges({ idField: 'fid' }),
+      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/incantations`).valueChanges({ idField: 'fid' }),
+    ])
+    .pipe(untilDestroyed(this))
+    .subscribe(([gods, enchantments, incantations]) => {
       this.kingdomGods = gods;
-    });
-    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/enchantments`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(enchantments => {
       this.kingdomEnchantments = enchantments.sort((a, b) => a.turns - b.turns);
-    });
-    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/incantations`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(incantations => {
       this.kingdomIncantations = incantations.sort((a, b) => a.turns - b.turns);
+      this.tutorialService.ready();
     });
   }
 

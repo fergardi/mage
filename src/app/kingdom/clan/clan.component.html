@@ -7,10 +7,10 @@
         <img mat-card-avatar src="/assets/images/cards/clan.png">
         <mat-card-title>{{ 'kingdom.clan.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.clan.description' | translate }}</mat-card-subtitle>
-        <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.found' | translate }}" (click)="openFoundationDialog()" [disabled]="(kingdomClan$ | async)">
-          <mat-icon>thumbs_up_down</mat-icon>
-        </button>
-        <mat-chip-list><mat-chip color="primary" selected><mat-icon>people</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
+        <div class="mat-card-extras">
+          <button mat-icon-button (click)="this.tutorialService.start('tour.clan')"><mat-icon>help</mat-icon></button>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>people</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
+        </div>
       </mat-card-header>
 
       <mat-card-content>
@@ -63,7 +63,13 @@
           <mat-row *matRowDef="let clan; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.kingdom' : null" (click)="openManifestDialog(clan)"></mat-row>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <mat-toolbar>
+          <mat-toolbar-row>
+            <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.found' | translate }}" (click)="openFoundationDialog()" [disabled]="(kingdomClan$ | async)"><mat-icon>thumbs_up_down</mat-icon></button>
+            <span class="fill-space"></span>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </mat-toolbar-row>
+        </mat-toolbar>
 
       </mat-card-content>
     </mat-card>
@@ -77,12 +83,16 @@
         <img mat-card-avatar src="/assets/images/cards/guild.png">
         <mat-card-title>{{ 'kingdom.guild.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.guild.description' | translate }}</mat-card-subtitle>
+        <div class="mat-card-extras">
+          <button mat-icon-button (click)="this.tutorialService.start('tour.guild')"><mat-icon>help</mat-icon></button>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>shield</mat-icon>{{ kingdomGuilds.length | long }}</mat-chip></mat-chip-list>
+        </div>
       </mat-card-header>
 
       <mat-card-content>
         <p>{{ 'kingdom.guild.help' | translate }}</p>
         <div matSubheader>{{ 'card.list.guilds' | translate }}:</div>
-        <mat-form-field>
+        <mat-form-field tourAnchor="tour.guild">
           <mat-label>{{ 'kingdom.guild.select' | translate }}</mat-label>
           <mat-select [(ngModel)]="kingdomGuild">
             <mat-select-trigger *ngIf="kingdomGuild">

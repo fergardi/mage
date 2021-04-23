@@ -5,11 +5,15 @@
       <img mat-card-avatar src="/assets/images/cards/encyclopedia.png">
       <mat-card-title>{{ 'user.encyclopedia.name' | translate }}</mat-card-title>
       <mat-card-subtitle>{{ 'user.encyclopedia.description' | translate }}</mat-card-subtitle>
+      <div class="mat-card-extras">
+        <button mat-icon-button (click)="this.tutorialService.start('tour.encyclopedia')"><mat-icon>help</mat-icon></button>
+        <mat-chip-list><mat-chip color="primary"><mat-icon>description</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
+      </div>
     </mat-card-header>
 
     <mat-card-content>
       <p>{{ 'user.encyclopedia.help' | translate }}</p>
-      <table mat-table matSort matSortActive="name" matSortDirection="asc" [dataSource]="data">
+      <table mat-table matSort matSortActive="name" matSortDirection="asc" [dataSource]="data" tourAnchor="tour.encyclopedia">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>
             <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>

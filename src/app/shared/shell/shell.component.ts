@@ -9,13 +9,13 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { Store, Select } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
-import { TourService } from 'ngx-tour-md-menu';
 import { DomService } from 'src/app/services/dom.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthState } from '../auth/auth.state';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { StatusComponent } from './status.component';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-shell',
@@ -78,7 +78,7 @@ export class ShellComponent implements OnInit {
     private router: Router,
     private mapboxService: MapboxService,
     private store: Store,
-    private tourService: TourService,
+    private tutorialService: TutorialService,
     private domService: DomService,
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
@@ -86,7 +86,6 @@ export class ShellComponent implements OnInit {
   ) {
     // i18n
     this.translateService.addLangs(this.langs.map(l => l.lang));
-    // this.translateService.setDefaultLang(this.langs[0].lang);
     const browser = this.translateService.getBrowserLang();
     this.translateService.use(this.langs.map(l => l.lang).includes(browser) ? browser : this.langs[0].lang);
   }
@@ -121,8 +120,7 @@ export class ShellComponent implements OnInit {
   }
 
   tour() {
-    // if (!this.drawer.opened) await this.drawer.open();
-    this.tourService.start();
+    this.tutorialService.start();
   }
 
   login($element: any) {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntilDestroy } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { BuildComponent } from './build.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,15 +8,16 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { TaxComponent } from './tax.component';
 import { ChargeComponent } from './charge.component';
 import { ExploreComponent } from './explore.component';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
+@UntilDestroy()
 @Component({
   selector: 'app-city',
   templateUrl: './city.component.html',
   styleUrls: ['./city.component.scss'],
   animations: [fadeInOnEnterAnimation({ duration: 250, delay: 250 })],
 })
-@UntilDestroy()
 export class CityComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
@@ -31,9 +32,22 @@ export class CityComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private store: Store,
+    public tutorialService: TutorialService,
   ) {}
 
   ngOnInit(): void {
+    combineLatest([
+      this.kingdomBuildings$,
+      this.village$,
+      this.node$,
+      this.workshop$,
+      this.land$,
+      this.turn$,
+    ])
+    .pipe(untilDestroyed(this))
+    .subscribe(() => {
+      this.tutorialService.ready();
+    });
   }
 
   openBuildDialog(building: any): void {

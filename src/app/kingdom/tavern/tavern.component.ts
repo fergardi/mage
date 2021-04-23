@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 export enum ContractAssignmentType {
   NONE,
@@ -41,6 +42,7 @@ export class TavernComponent implements OnInit {
     private store: Store,
     private apiService: ApiService,
     private loadingService: LoadingService,
+    public tutorialService: TutorialService,
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +50,7 @@ export class TavernComponent implements OnInit {
       this.kingdomContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.NONE || !contract.assignment);
       this.attackContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.ATTACK);
       this.defenseContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.DEFENSE);
+      this.tutorialService.ready();
     });
   }
 

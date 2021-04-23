@@ -5,6 +5,10 @@
       <img mat-card-avatar src="/assets/images/cards/auction.png">
       <mat-card-title>{{ 'kingdom.auction.name' | translate }}</mat-card-title>
       <mat-card-subtitle>{{ 'kingdom.auction.description' | translate }}</mat-card-subtitle>
+      <div class="mat-card-extras">
+        <button mat-icon-button (click)="this.tutorialService.start('tour.auction')"><mat-icon>help</mat-icon></button>
+        <mat-chip-list><mat-chip color="primary"><mat-icon>gavel</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
+      </div>
     </mat-card-header>
 
     <mat-card-content>

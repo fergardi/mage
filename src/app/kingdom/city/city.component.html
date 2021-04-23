@@ -7,6 +7,10 @@
         <img mat-card-avatar src="/assets/images/cards/city.png">
         <mat-card-title>{{ 'kingdom.city.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.city.description' | translate }}</mat-card-subtitle>
+        <div class="mat-card-extras">
+          <button mat-icon-button (click)="this.tutorialService.start('tour.city')"><mat-icon>help</mat-icon></button>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>store</mat-icon>{{ (kingdomBuildings$ | async)?.length | long }}</mat-chip></mat-chip-list>
+        </div>
       </mat-card-header>
 
       <mat-card-content>
@@ -40,6 +44,10 @@
             <img mat-card-avatar src="/assets/images/cards/tax.png">
             <mat-card-title>{{ 'kingdom.tax.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.tax.description' | translate }}</mat-card-subtitle>
+            <div class="mat-card-extras">
+              <button mat-icon-button (click)="this.tutorialService.start('tour.tax')"><mat-icon>help</mat-icon></button>
+              <mat-chip-list><mat-chip color="primary"><mat-icon>store</mat-icon>1</mat-chip></mat-chip-list>
+            </div>
           </mat-card-header>
 
           <mat-card-content>
@@ -69,6 +77,10 @@
             <img mat-card-avatar src="/assets/images/cards/charge.png">
             <mat-card-title>{{ 'kingdom.charge.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.charge.description' | translate }}</mat-card-subtitle>
+            <div class="mat-card-extras">
+              <button mat-icon-button (click)="this.tutorialService.start('tour.charge')"><mat-icon>help</mat-icon></button>
+              <mat-chip-list><mat-chip color="primary"><mat-icon>store</mat-icon>1</mat-chip></mat-chip-list>
+            </div>
           </mat-card-header>
 
           <mat-card-content>
@@ -98,6 +110,10 @@
             <img mat-card-avatar src="/assets/images/cards/explore.png">
             <mat-card-title>{{ 'kingdom.explore.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.explore.description' | translate }}</mat-card-subtitle>
+            <div class="mat-card-extras">
+              <button mat-icon-button (click)="this.tutorialService.start('tour.explore')"><mat-icon>help</mat-icon></button>
+              <mat-chip-list><mat-chip color="primary"><mat-icon>store</mat-icon>1</mat-chip></mat-chip-list>
+            </div>
           </mat-card-header>
 
           <mat-card-content>

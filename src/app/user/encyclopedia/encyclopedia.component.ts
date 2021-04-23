@@ -7,6 +7,7 @@ import { CacheService } from 'src/app/services/cache.service';
 import { TranslateService } from '@ngx-translate/core';
 import { TomeComponent } from './tome.component';
 import { MatDialog } from '@angular/material/dialog';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-encyclopedia',
@@ -38,12 +39,13 @@ export class EncyclopediaComponent implements OnInit {
       options: [],
     },
   };
-  data: MatTableDataSource<any> = null;
+  data: MatTableDataSource<any> = new MatTableDataSource([]);
 
   constructor(
     private cacheService: CacheService,
     private translateService: TranslateService,
     private dialog: MatDialog,
+    public tutorialService: TutorialService,
   ) { }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -79,6 +81,7 @@ export class EncyclopediaComponent implements OnInit {
     this.filters.type.options = [legendary, types, subtypes].reduce((a: any[], b: any) => a.concat(b), []);
     this.data.filterPredicate = this.createFilter();
     this.applyFilter();
+    this.tutorialService.ready();
   }
 
   applyFilter() {

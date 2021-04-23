@@ -15,6 +15,8 @@ import { ConjureComponent } from '../sorcery/conjure.component';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DetailComponent } from './detail.component';
+import { TourService } from 'ngx-ui-tour-core';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-census',
@@ -51,6 +53,7 @@ export class CensusComponent implements OnInit {
     private dialog: MatDialog,
     private store: Store,
     private router: Router,
+    public tutorialService: TutorialService,
   ) { }
 
   ngOnInit(): void {
@@ -66,6 +69,7 @@ export class CensusComponent implements OnInit {
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
+      this.tutorialService.ready();
     });
   }
 

@@ -7,6 +7,10 @@
         <img mat-card-avatar src="/assets/images/cards/emporium.png">
         <mat-card-title>{{ 'kingdom.emporium.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.emporium.description' | translate }}</mat-card-subtitle>
+        <div class="mat-card-extras">
+          <button mat-icon-button (click)="this.tutorialService.start('tour.emporium')"><mat-icon>help</mat-icon></button>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>sell</mat-icon>{{ emporiumItems.length | long }}</mat-chip></mat-chip-list>
+        </div>
       </mat-card-header>
 
       <mat-card-content>
@@ -36,6 +40,10 @@
         <img mat-card-avatar src="/assets/images/cards/gemology.png">
         <mat-card-title>{{ 'kingdom.gemology.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.gemology.description' | translate }}</mat-card-subtitle>
+        <div class="mat-card-extras">
+          <button mat-icon-button (click)="this.tutorialService.start('tour.packs')"><mat-icon>help</mat-icon></button>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>loyalty</mat-icon>{{ emporiumPacks.length | long }}</mat-chip></mat-chip-list>
+        </div>
       </mat-card-header>
 
       <mat-card-content>

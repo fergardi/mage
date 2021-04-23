@@ -34,7 +34,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
-import { TourMatMenuModule } from 'ngx-tour-md-menu';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { NgxCurrencyModule, CurrencyMaskInputMode } from 'ngx-currency';
 
 import { ShellComponent } from './shell/shell.component';
@@ -46,6 +46,7 @@ import { LegendaryPipe } from '../pipes/legendary.pipe';
 import { TurnPipe } from '../pipes/turn.pipe';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { StatusComponent } from './shell/status.component';
+import { TourComponent } from './tour/tour.component';
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient) {
@@ -59,6 +60,7 @@ const components = [
   LongPipe,
   LegendaryPipe,
   TurnPipe,
+  TourComponent,
 ];
 const modules = [
   CommonModule,

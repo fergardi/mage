@@ -14,6 +14,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { TomeComponent } from 'src/app/user/encyclopedia/tome.component';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
   selector: 'app-auction',
@@ -40,7 +41,7 @@ export class AuctionComponent implements OnInit {
       options: [],
     },
   };
-  data: MatTableDataSource<any> = null;
+  data: MatTableDataSource<any> = new MatTableDataSource([]);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -53,6 +54,7 @@ export class AuctionComponent implements OnInit {
     private apiService: ApiService,
     private loadingService: LoadingService,
     private angularFirestore: AngularFirestore,
+    public tutorialService: TutorialService,
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +70,8 @@ export class AuctionComponent implements OnInit {
       this.data.filterPredicate = this.createFilter();
       this.filters.faction.options = [...new Set(data.map(auction => auction.join.faction))];
       this.applyFilter();
-      this.refreshAuctions();
+      await this.refreshAuctions();
+      this.tutorialService.ready();
     });
   }
 
