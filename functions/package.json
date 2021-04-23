@@ -10,7 +10,7 @@
     "deploy": "npm run build && firebase deploy --only functions",
     "logs": "firebase functions:log",
     "test2": "mocha -r ts-node/register test/**/*.ts --reporter spec",
-    "test": "jest --watchAll --silent"
+    "test": "jest --watchAll"
   },
   "engines": {
     "node": "12"

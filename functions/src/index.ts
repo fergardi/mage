@@ -9,6 +9,73 @@ import * as _ from 'lodash';
 
 //========================================================================================
 /*                                                                                      *
+ *                                       FIRESTORE                                      *
+ *                                                                                      */
+//========================================================================================
+
+// firestore
+admin.initializeApp({ credential: admin.credential.cert(require('../credentials/key.json')) });
+const angularFirestore: FirebaseFirestore.Firestore = admin.firestore();
+const geo: any = require('geofirex');
+const geofirex: any = geo.init(admin);
+
+//========================================================================================
+/*                                                                                      *
+ *                                        EXPRESS                                       *
+ *                                                                                      */
+//========================================================================================
+
+// express
+const api = express();
+api.use(cors({ origin: true }));
+api.use(express.json());
+
+// endpoints
+api.get('/kingdom/:kingdomId/explore/:turns', ash(async (req: any, res: any) => res.json(await exploreLands(req.params.kingdomId, parseInt(req.params.turns)))));
+api.get('/kingdom/:kingdomId/charge/:turns', ash(async (req: any, res: any) => res.json(await chargeMana(req.params.kingdomId, parseInt(req.params.turns)))));
+api.get('/kingdom/:kingdomId/tax/:turns', ash(async (req: any, res: any) => res.json(await taxGold(req.params.kingdomId, parseInt(req.params.turns)))));
+api.get('/kingdom/:kingdomId/army/:unitId/recruit/:quantity', ash(async (req: any, res: any) => res.json(await recruitUnit(req.params.kingdomId, req.params.unitId, parseInt(req.params.quantity)))));
+api.get('/kingdom/:kingdomId/army/:troopId/disband/:quantity', ash(async (req: any, res: any) => res.json(await disbandTroop(req.params.kingdomId, req.params.troopId, parseInt(req.params.quantity)))));
+api.post('/kingdom/:kingdomId/army', ash(async (req: any, res: any) => res.json(await assignArmy(req.params.kingdomId, req.body.army))));
+api.get('/kingdom/:kingdomId/battle/:battleId/target/:targetId', ash(async (req: any, res: any) => res.json(await battleKingdom(req.params.kingdomId, req.params.battleId, req.params.targetId))));
+api.get('/kingdom/:kingdomId/sorcery/:charmId/research/:turns', ash(async (req: any, res: any) => res.json(await researchCharm(req.params.kingdomId, req.params.charmId, parseInt(req.params.turns)))));
+api.get('/kingdom/:kingdomId/sorcery/:charmId/conjure/:targetId', ash(async (req: any, res: any) => res.json(await conjureCharm(req.params.kingdomId, req.params.charmId, req.params.targetId))));
+api.get('/kingdom/:kingdomId/sorcery/:artifactId/activate/:targetId', ash(async (req: any, res: any) => res.json(await activateArtifact(req.params.kingdomId, req.params.artifactId, req.params.targetId))));
+api.get('/kingdom/:kingdomId/sorcery/charm/:charmId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignCharm(req.params.kingdomId, req.params.charmId, req.params.assignmentId))));
+api.get('/kingdom/:kingdomId/sorcery/artifact/:artifactId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignArtifact(req.params.kingdomId, req.params.artifactId, req.params.assignmentId))));
+api.get('/kingdom/:kingdomId/auction/:auctionId/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdomId, req.params.auctionId, parseInt(req.params.gold)))));
+api.get('/kingdom/:kingdomId/temple/:godId/offer/:resource', ash(async (req: any, res: any) => res.json(await offerGod(req.params.kingdomId, req.params.godId, parseInt(req.params.resource)))));
+api.delete('/kingdom/:kingdomId/temple/:enchantmentId/dispel', ash(async (req: any, res: any) => res.json(await dispelIncantation(req.params.kingdomId, req.params.enchantmentId))));
+api.delete('/kingdom/:kingdomId/temple/:enchantmentId/break', ash(async (req: any, res: any) => res.json(await breakEnchantment(req.params.kingdomId, req.params.enchantmentId))));
+api.patch('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
+api.patch('/kingdom/:kingdomId/city/:buildingId/demolish/:quantity', ash(async (req: any, res: any) => res.json(await demolishStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
+api.get('/kingdom/:kingdomId/tavern/:contractId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignContract(req.params.kingdomId, req.params.contractId, parseInt(req.params.assignmentId)))));
+api.get('/kingdom/:kingdomId/tavern/:contractId/discharge', ash(async (req: any, res: any) => res.json(await dischargeContract(req.params.kingdomId, req.params.contractId))));
+api.get('/kingdom/:kingdomId/emporium/:itemId', ash(async (req: any, res: any) => res.json(await buyEmporium(req.params.kingdomId, req.params.itemId))));
+api.post('/kingdom/:kingdomId/archive', ash(async (req: any, res: any) => res.json(await sendLetter(req.params.kingdomId, req.body.subject, req.body.message, req.body.fromId))));
+api.patch('/kingdom/:kingdomId/archive/:letterId', ash(async (req: any, res: any) => res.json(await readLetter(req.params.kingdomId, req.params.letterId))));
+api.delete('/kingdom/:kingdomId/archive', ash(async (req: any, res: any) => res.json(await removeLetters(req.params.kingdomId, req.body.letterIds))));
+api.patch('/kingdom/:kingdomId/guild/:guildId', ash(async (req: any, res: any) => res.json(await favorGuild(req.params.kingdomId, req.params.guildId))));
+api.patch('/kingdom/:kingdomId/clan/:clanId', ash(async (req: any, res: any) => res.json(await joinClan(req.params.kingdomId, req.params.clanId))));
+api.delete('/kingdom/:kingdomId/clan/:clanId', ash(async (req: any, res: any) => res.json(await leaveClan(req.params.kingdomId, req.params.clanId))));
+api.put('/kingdom/auction', ash(async (req: any, res: any) => res.json(await refreshAuctions())));
+api.post('/world/kingdom', ash(async (req: any, res: any) => res.json(await createKingdom(req.body.kingdomId, req.body.factionId, req.body.name, parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
+api.post('/world/clan', ash(async (req: any, res: any) => res.json(await foundateClan(req.body.kingdomId, req.body.name, req.body.description, req.body.image))));
+api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
+api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
+api.get('/kingdom/:kingdomId/world/shop/:shopId/:collectionId/:dealId', ash(async (req: any, res: any) => res.json(await tradeDeal(req.params.kingdomId, req.params.shopId, req.params.collectionId, req.params.dealId))));
+api.get('/kingdom/:kingdomId/world/quest/:questId', ash(async (req: any, res: any) => res.json(await adventureQuest(req.params.kingdomId, req.params.questId))));
+// error handler
+api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));;
+
+// https
+exports.api = functions
+.region('europe-west1')
+.https
+.onRequest(api);
+
+//========================================================================================
+/*                                                                                      *
  *                                       DEFAULTS                                       *
  *                                                                                      */
 //========================================================================================
@@ -17,6 +84,8 @@ const MAX_TURNS: number = 300;
 const MIN_LANDS: number = 1;
 const MAX_LANDS: number = 3500;
 const BATTLE_TURNS: number = 2;
+const BATTLE_ROUNDS: number = 5;
+const BATTLE_POWER: number = 20;
 const PROTECTION_TIME: number = 60;
 const VISITATION_TIME: number = 60;
 const AUCTION_TIME: number = 60;
@@ -32,10 +101,11 @@ enum KingdomType {
   GREY = 'grey',
 }
 
-enum BattleType {
+export enum BattleType {
   SIEGE = 'siege',
   PILLAGE = 'pillage',
   ATTACK = 'attack',
+  ADVENTURE = 'adventure',
 }
 
 enum StoreType {
@@ -101,7 +171,7 @@ enum AssignmentType {
  * @param min
  * @param max
  */
-const random = (min: number, max: number): number => {
+export const random = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
@@ -120,73 +190,6 @@ const calculate = (from: any, to: any, max: number, ratio: number): number => {
     ? Math.min(max, Math.floor(minutes / ratio))
     : Math.floor(minutes / ratio);
 };
-
-//========================================================================================
-/*                                                                                      *
- *                                       FIRESTORE                                      *
- *                                                                                      */
-//========================================================================================
-
-// firestore
-admin.initializeApp({ credential: admin.credential.cert(require('../credentials/key.json')) });
-const angularFirestore: FirebaseFirestore.Firestore = admin.firestore();
-const geo: any = require('geofirex');
-const geofirex: any = geo.init(admin);
-
-//========================================================================================
-/*                                                                                      *
- *                                        EXPRESS                                       *
- *                                                                                      */
-//========================================================================================
-
-// express
-const api = express();
-api.use(cors({ origin: true }));
-api.use(express.json());
-
-// endpoints
-api.get('/kingdom/:kingdomId/explore/:turns', ash(async (req: any, res: any) => res.json(await exploreLands(req.params.kingdomId, parseInt(req.params.turns)))));
-api.get('/kingdom/:kingdomId/charge/:turns', ash(async (req: any, res: any) => res.json(await chargeMana(req.params.kingdomId, parseInt(req.params.turns)))));
-api.get('/kingdom/:kingdomId/tax/:turns', ash(async (req: any, res: any) => res.json(await taxGold(req.params.kingdomId, parseInt(req.params.turns)))));
-api.get('/kingdom/:kingdomId/army/:unitId/recruit/:quantity', ash(async (req: any, res: any) => res.json(await recruitUnit(req.params.kingdomId, req.params.unitId, parseInt(req.params.quantity)))));
-api.get('/kingdom/:kingdomId/army/:troopId/disband/:quantity', ash(async (req: any, res: any) => res.json(await disbandTroop(req.params.kingdomId, req.params.troopId, parseInt(req.params.quantity)))));
-api.post('/kingdom/:kingdomId/army', ash(async (req: any, res: any) => res.json(await assignArmy(req.params.kingdomId, req.body.army))));
-api.get('/kingdom/:kingdomId/battle/:battleId/target/:targetId', ash(async (req: any, res: any) => res.json(await battleKingdom(req.params.kingdomId, req.params.battleId, req.params.targetId))));
-api.get('/kingdom/:kingdomId/sorcery/:charmId/research/:turns', ash(async (req: any, res: any) => res.json(await researchCharm(req.params.kingdomId, req.params.charmId, parseInt(req.params.turns)))));
-api.get('/kingdom/:kingdomId/sorcery/:charmId/conjure/:targetId', ash(async (req: any, res: any) => res.json(await conjureCharm(req.params.kingdomId, req.params.charmId, req.params.targetId))));
-api.get('/kingdom/:kingdomId/sorcery/:artifactId/activate/:targetId', ash(async (req: any, res: any) => res.json(await activateArtifact(req.params.kingdomId, req.params.artifactId, req.params.targetId))));
-api.get('/kingdom/:kingdomId/sorcery/charm/:charmId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignCharm(req.params.kingdomId, req.params.charmId, req.params.assignmentId))));
-api.get('/kingdom/:kingdomId/sorcery/artifact/:artifactId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignArtifact(req.params.kingdomId, req.params.artifactId, req.params.assignmentId))));
-api.get('/kingdom/:kingdomId/auction/:auctionId/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdomId, req.params.auctionId, parseInt(req.params.gold)))));
-api.get('/kingdom/:kingdomId/temple/:godId/offer/:resource', ash(async (req: any, res: any) => res.json(await offerGod(req.params.kingdomId, req.params.godId, parseInt(req.params.resource)))));
-api.delete('/kingdom/:kingdomId/temple/:enchantmentId/dispel', ash(async (req: any, res: any) => res.json(await dispelIncantation(req.params.kingdomId, req.params.enchantmentId))));
-api.delete('/kingdom/:kingdomId/temple/:enchantmentId/break', ash(async (req: any, res: any) => res.json(await breakEnchantment(req.params.kingdomId, req.params.enchantmentId))));
-api.patch('/kingdom/:kingdomId/city/:buildingId/build/:quantity', ash(async (req: any, res: any) => res.json(await buildStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
-api.patch('/kingdom/:kingdomId/city/:buildingId/demolish/:quantity', ash(async (req: any, res: any) => res.json(await demolishStructure(req.params.kingdomId, req.params.buildingId, parseInt(req.params.quantity)))));
-api.get('/kingdom/:kingdomId/tavern/:contractId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignContract(req.params.kingdomId, req.params.contractId, parseInt(req.params.assignmentId)))));
-api.get('/kingdom/:kingdomId/tavern/:contractId/discharge', ash(async (req: any, res: any) => res.json(await dischargeContract(req.params.kingdomId, req.params.contractId))));
-api.get('/kingdom/:kingdomId/emporium/:itemId', ash(async (req: any, res: any) => res.json(await buyEmporium(req.params.kingdomId, req.params.itemId))));
-api.post('/kingdom/:kingdomId/archive', ash(async (req: any, res: any) => res.json(await sendLetter(req.params.kingdomId, req.body.subject, req.body.message, req.body.fromId))));
-api.patch('/kingdom/:kingdomId/archive/:letterId', ash(async (req: any, res: any) => res.json(await readLetter(req.params.kingdomId, req.params.letterId))));
-api.delete('/kingdom/:kingdomId/archive', ash(async (req: any, res: any) => res.json(await removeLetters(req.params.kingdomId, req.body.letterIds))));
-api.patch('/kingdom/:kingdomId/guild/:guildId', ash(async (req: any, res: any) => res.json(await favorGuild(req.params.kingdomId, req.params.guildId))));
-api.patch('/kingdom/:kingdomId/clan/:clanId', ash(async (req: any, res: any) => res.json(await joinClan(req.params.kingdomId, req.params.clanId))));
-api.delete('/kingdom/:kingdomId/clan/:clanId', ash(async (req: any, res: any) => res.json(await leaveClan(req.params.kingdomId, req.params.clanId))));
-api.put('/kingdom/auction', ash(async (req: any, res: any) => res.json(await refreshAuctions())));
-api.post('/world/kingdom', ash(async (req: any, res: any) => res.json(await createKingdom(req.body.kingdomId, req.body.factionId, req.body.name, parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
-api.post('/world/clan', ash(async (req: any, res: any) => res.json(await foundateClan(req.body.kingdomId, req.body.name, req.body.description, req.body.image))));
-api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
-api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
-api.get('/kingdom/:kingdomId/world/shop/:shopId/:collectionId/:dealId', ash(async (req: any, res: any) => res.json(await tradeDeal(req.params.kingdomId, req.params.shopId, req.params.collectionId, req.params.dealId))));
-api.get('/kingdom/:kingdomId/world/quest/:questId', ash(async (req: any, res: any) => res.json(await adventureQuest(req.params.kingdomId, req.params.questId))));
-// error handler
-api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));;
-
-// https
-exports.api = functions
-.region('europe-west1')
-.https
-.onRequest(api);
 
 //========================================================================================
 /*                                                                                      *
@@ -1398,15 +1401,16 @@ const adventureQuest = async (kingdomId: string, questId: string) => {
       const questTroops = (await angularFirestore.collection(`quests/${questId}/troops`).where('assignment', '==', AssignmentType.DEFENSE).orderBy('sort', 'asc').limit(3).get()).docs.map(troop => ({ ...troop.data(), fid: troop.id, initialQuantity: troop.data().quantity }));
       const questArtifact = (await angularFirestore.collection(`quests/${questId}/artifacts`).where('assignment', '==', AssignmentType.NONE).limit(1).get()).docs[0].data();
       if (kingdomTroops.length && questTroops.length) {
+        let logs: any[] = [];
         const batch = angularFirestore.batch();
-        const battle = await resolveBattle(kingdomContracts, kingdomTroops, kingdomArtifacts, kingdomCharms, questContracts, questTroops, [], [], kingdomId, batch, undefined, questId);
+        const victory = await resolveBattle(BattleType.ADVENTURE, logs, kingdomContracts, kingdomTroops, kingdomArtifacts, kingdomCharms, questContracts, questTroops, [], [], kingdomId, batch, undefined, questId);
         const from = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
         const data = {
-          logs: battle.logs,
-          item: questArtifact.item,
-          quantity: questArtifact.quantity,
+          logs: logs,
+          item: victory ? questArtifact.item : null,
+          quantity: victory ? questArtifact.quantity : null,
         };
-        await addLetter(kingdomId, 'world.adventure.subject', 'world.adventure.victory', from, batch, data);
+        await addLetter(kingdomId, 'world.adventure.subject', victory ? 'world.adventure.victory' : 'world.adventure.defeat', from, batch, data);
         // await addSupply(kingdomId, 'turn', -worldQuest.turns, batch);
         await batch.commit();
         // await checkQuest(questId);
@@ -1428,6 +1432,8 @@ const adventureQuest = async (kingdomId: string, questId: string) => {
  * @param batch
  */
 export const resolveBattle = async (
+  battleType: BattleType,
+  logs: any[],
   attackerContracts: any[],
   attackerTroops: any[],
   attackerArtifacts: any[],
@@ -1436,147 +1442,184 @@ export const resolveBattle = async (
   defenderTroops: any[],
   defenderArtifacts: any[],
   defenderCharms: any[],
-  attackerId: string,
-  batch: FirebaseFirestore.WriteBatch,
-  defenderId?: string,
-  questId?: string,
+  attackerId: string | undefined,
+  batch: FirebaseFirestore.WriteBatch | undefined,
+  defenderId: string | undefined,
+  questId: string | undefined,
 ): Promise<any> => {
-  // logs
-  let logs: any[] = [];
-  // artifacts
-  attackerArtifacts.forEach((artifact: any) => {
-    if (artifact.item.battle) {
-      logs.push({
-        attackerArtifact: artifact,
-        success: false,
-      });
-    }
-  });
-  defenderArtifacts.forEach((artifact: any) => {
-    if (artifact.item.battle) {
-      logs.push({
-        defenderArtifact: artifact,
-        success: true,
-      });
-    }
-  });
-  // charms
-  attackerCharms.forEach((charm: any) => {
-    if (charm.spell.battle) {
-      logs.push({
-        attackerCharm: charm,
-        success: false,
-      });
-    }
-  });
-  defenderCharms.forEach((charm: any) => {
-    logs.push({
-      defenderCharm: charm,
-      success: true,
-    });
-  });
-  // contracts
-  attackerContracts.forEach((contract: any) => {
-    logs.push({
-      attackerContract: contract,
-    });
-  });
-  defenderContracts.forEach((contract: any) => {
-    logs.push({
-      defenderContract: contract,
-    });
-  });
+  // variables
+  let victory = false;
+  let discovered = true;
   // power
   let attackerPower = 0;
   let defenderPower = 0;
-  // rounds
-  const rounds = Math.min(Math.max(attackerTroops.length, defenderTroops.length), 5);
-  let attackerIndex = 0;
-  let defenderIndex = 0;
-  for (let round = 0; round < rounds; round++) {
-    // troops
-    let attackerTroop = attackerTroops[attackerIndex];
-    let defenderTroop = defenderTroops[defenderIndex];
-    // data
-    let attackerCasualties = 0;
-    let defenderCasualties = 0;
-    let attackerQuantity = 0;
-    let defenderQuantity = 0;
-    // attacker is faster or slower than defender
-    if (attackerTroop.unit.initiative > defenderTroop.unit.initiative) {
-      // attacker attacks defender
-      defenderQuantity = defenderTroop.quantity;
-      defenderCasualties = Math.max(0, Math.min(defenderTroop.quantity, Math.floor((attackerTroop.unit.attack * attackerTroop.quantity - defenderTroop.unit.defense * defenderTroop.quantity) / defenderTroop.unit.health)));
-      console.log('attacker -> defender', attackerTroop.unit.attack * attackerTroop.quantity, defenderTroop.unit.defense * defenderTroop.quantity, defenderTroop.unit.health, defenderQuantity, defenderCasualties, defenderTroop.quantity);
-      console.log('before', defenderTroop.quantity)
-      defenderTroop.quantity -= defenderCasualties;
-      console.log('after', defenderTroop.quantity)
-      defenderPower += defenderCasualties * defenderTroop.unit.power;
-      // defender counterattacks attacker
-      attackerQuantity = attackerTroop.quantity;
-      attackerCasualties = Math.max(0, Math.min(attackerTroop.quantity, Math.floor((defenderTroop.unit.attack * defenderTroop.quantity - attackerTroop.unit.defense * attackerTroop.quantity) / attackerTroop.unit.health)));
-      console.log('defender -> attacker', defenderTroop.unit.attack * defenderTroop.quantity, attackerTroop.unit.defense * attackerTroop.quantity, attackerTroop.unit.health, attackerQuantity, attackerCasualties, attackerTroop.quantity);
-      console.log('before', attackerTroop.quantity)
-      attackerTroop.quantity -= attackerCasualties;
-      console.log('after', attackerTroop.quantity)
-      attackerPower += attackerCasualties * attackerTroop.unit.power;
-      // log
+  // pillage
+  if (defenderTroops.length <= 0 || (battleType === BattleType.PILLAGE && !discovered)) {
+    victory = true;
+  } else {
+    // artifacts
+    attackerArtifacts.forEach((artifact: any) => {
+      if (artifact.item.battle) {
+        logs.push({
+          attackerArtifact: artifact,
+          success: false,
+        });
+      }
+    });
+    defenderArtifacts.forEach((artifact: any) => {
+      if (artifact.item.battle) {
+        logs.push({
+          defenderArtifact: artifact,
+          success: true,
+        });
+      }
+    });
+    // charms
+    attackerCharms.forEach((charm: any) => {
+      if (charm.spell.battle) {
+        logs.push({
+          attackerCharm: charm,
+          success: false,
+        });
+      }
+    });
+    defenderCharms.forEach((charm: any) => {
       logs.push({
-        attackerTroop: JSON.parse(JSON.stringify(attackerTroop)),
-        attackerQuantity: attackerQuantity,
-        attackerCasualties: attackerCasualties,
-        defenderTroop: JSON.parse(JSON.stringify(defenderTroop)),
-        defenderQuantity: defenderQuantity,
-        defenderCasualties: defenderCasualties,
-        direction: 'attacker-vs-defender',
+        defenderCharm: charm,
+        success: true,
       });
-    } else {
-      // defender attacks attacker
-      attackerQuantity = attackerTroop.quantity;
-      attackerCasualties = Math.max(0, Math.min(attackerTroop.quantity, Math.floor((defenderTroop.unit.attack * defenderTroop.quantity - attackerTroop.unit.defense * attackerTroop.quantity) / attackerTroop.unit.health)));
-      console.log('defender -> attacker', defenderTroop.unit.attack * defenderTroop.quantity, attackerTroop.unit.defense * attackerTroop.quantity, attackerTroop.unit.health, attackerQuantity, attackerCasualties, attackerTroop.quantity);
-      console.log('before', attackerTroop.quantity)
-      attackerTroop.quantity -= attackerCasualties;
-      console.log('after', attackerTroop.quantity)
-      attackerPower += attackerCasualties * attackerTroop.unit.power;
-      // attacker counterattacks defender
-      defenderQuantity = defenderTroop.quantity;
-      defenderCasualties = Math.max(0, Math.min(defenderTroop.quantity, Math.floor((attackerTroop.unit.attack * attackerTroop.quantity - defenderTroop.unit.defense * defenderTroop.quantity) / defenderTroop.unit.health)));
-      console.log('attacker -> defender', attackerTroop.unit.attack * attackerTroop.quantity, defenderTroop.unit.defense * defenderTroop.quantity, defenderTroop.unit.health, defenderQuantity, defenderCasualties, defenderTroop.quantity);
-      console.log('before', defenderTroop.quantity)
-      defenderTroop.quantity -= defenderCasualties;
-      console.log('after', defenderTroop.quantity)
-      defenderPower += defenderCasualties * defenderTroop.unit.power;
-      // log
+    });
+    // contracts
+    attackerContracts.forEach((attackerContract: any) => {
+      if (attackerContract.hero.battle) {
+        if (attackerContract.hero.self) {
+          if (attackerContract.hero.families.length) {
+            attackerContract.hero.families.forEach((family: any) => {
+              attackerTroops.forEach(attackerTroop => {
+                attackerTroop.unit.families.forEach((f: any) => {
+                  if (family.id === f.id) {
+                    attackerTroop.unit.attackBonus = (attackerTroop.unit.attackBonus || 0) + attackerContract.hero.attackBonus * attackerContract.level;
+                    attackerTroop.unit.defenseBonus = (attackerTroop.unit.defenseBonus || 0) + attackerContract.hero.defenseBonus * attackerContract.level;
+                    attackerTroop.unit.healthBonus = (attackerTroop.unit.healthBonus || 0) + attackerContract.hero.healthBonus * attackerContract.level;
+                  }
+                });
+              });
+            });
+            logs.push({
+              attackerContract: JSON.parse(JSON.stringify(attackerContract)),
+            });
+          }
+        } else {
+          let totalCasualties = 0;
+          defenderTroops.forEach(defenderTroop => {
+            const defenderCasualties = Math.max(0, Math.min(defenderTroop.quantity, Math.floor((attackerContract.hero.attack * attackerContract.hero.level - defenderTroop.unit.defense * defenderTroop.quantity) / defenderTroop.unit.health)));
+            defenderTroop.quantity -= defenderCasualties;
+            defenderPower += defenderCasualties * defenderTroop.unit.power;
+            totalCasualties += defenderCasualties;
+          });
+          logs.push({
+            attackerContract: JSON.parse(JSON.stringify(attackerContract)),
+            totalCasualties: totalCasualties,
+          });
+        }
+      } else {
+        logs.push({
+          attackerContract: JSON.parse(JSON.stringify(attackerContract)),
+        });
+      }
+    });
+    defenderContracts.forEach((contract: any) => {
       logs.push({
-        attackerTroop: JSON.parse(JSON.stringify(attackerTroop)),
-        attackerQuantity: attackerQuantity,
-        attackerCasualties: attackerCasualties,
-        defenderTroop: JSON.parse(JSON.stringify(defenderTroop)),
-        defenderQuantity: defenderQuantity,
-        defenderCasualties: defenderCasualties,
-        direction: 'defender-vs-attacker',
+        defenderContract: contract,
       });
+    });
+    // rounds
+    const rounds = Math.min(Math.max(attackerTroops.length, defenderTroops.length), BATTLE_ROUNDS);
+    let attackerIndex = 0;
+    let defenderIndex = 0;
+    for (let round = 0; round < rounds; round++) {
+      // troops
+      let attackerTroop = attackerTroops[attackerIndex];
+      let defenderTroop = defenderTroops[defenderIndex];
+      // data
+      let attackerCasualties = 0;
+      let defenderCasualties = 0;
+      let attackerQuantity = 0;
+      let defenderQuantity = 0;
+      // attacker is faster or slower than defender by initiative, if draw attacker wins except on sieges
+      if (attackerTroop.unit.initiative >= (defenderTroop.unit.initiative + (battleType === BattleType.SIEGE ? 1 : 0))) {
+        // attacker attacks defender
+        defenderQuantity = defenderTroop.quantity;
+        defenderCasualties = Math.max(0, Math.min(defenderTroop.quantity, Math.floor((attackerTroop.unit.attack * attackerTroop.quantity - defenderTroop.unit.defense * defenderTroop.quantity) / defenderTroop.unit.health)));
+        // console.log('attacker -> defender', attackerTroop.unit.attack * attackerTroop.quantity, defenderTroop.unit.defense * defenderTroop.quantity, defenderTroop.unit.health, defenderQuantity, defenderCasualties, defenderTroop.quantity);
+        defenderTroop.quantity -= defenderCasualties;
+        defenderPower += defenderCasualties * defenderTroop.unit.power;
+        // defender counterattacks attacker
+        attackerQuantity = attackerTroop.quantity;
+        attackerCasualties = Math.max(0, Math.min(attackerTroop.quantity, Math.floor((defenderTroop.unit.attack * defenderTroop.quantity - attackerTroop.unit.defense * attackerTroop.quantity) / attackerTroop.unit.health)));
+        // console.log('defender -> attacker', defenderTroop.unit.attack * defenderTroop.quantity, attackerTroop.unit.defense * attackerTroop.quantity, attackerTroop.unit.health, attackerQuantity, attackerCasualties, attackerTroop.quantity);
+        attackerTroop.quantity -= attackerCasualties;
+        attackerPower += attackerCasualties * attackerTroop.unit.power;
+        // log
+        logs.push({
+          attackerTroop: JSON.parse(JSON.stringify(attackerTroop)),
+          attackerQuantity: attackerQuantity,
+          attackerCasualties: attackerCasualties,
+          defenderTroop: JSON.parse(JSON.stringify(defenderTroop)),
+          defenderQuantity: defenderQuantity,
+          defenderCasualties: defenderCasualties,
+          direction: 'attacker-vs-defender',
+        });
+      } else {
+        // defender attacks attacker
+        attackerQuantity = attackerTroop.quantity;
+        attackerCasualties = Math.max(0, Math.min(attackerTroop.quantity, Math.floor((defenderTroop.unit.attack * defenderTroop.quantity - attackerTroop.unit.defense * attackerTroop.quantity) / attackerTroop.unit.health)));
+        // console.log('defender -> attacker', defenderTroop.unit.attack * defenderTroop.quantity, attackerTroop.unit.defense * attackerTroop.quantity, attackerTroop.unit.health, attackerQuantity, attackerCasualties, attackerTroop.quantity);
+        attackerTroop.quantity -= attackerCasualties;
+        attackerPower += attackerCasualties * attackerTroop.unit.power;
+        // attacker counterattacks defender
+        defenderQuantity = defenderTroop.quantity;
+        defenderCasualties = Math.max(0, Math.min(defenderTroop.quantity, Math.floor((attackerTroop.unit.attack * attackerTroop.quantity - defenderTroop.unit.defense * defenderTroop.quantity) / defenderTroop.unit.health)));
+        // console.log('attacker -> defender', attackerTroop.unit.attack * attackerTroop.quantity, defenderTroop.unit.defense * defenderTroop.quantity, defenderTroop.unit.health, defenderQuantity, defenderCasualties, defenderTroop.quantity);
+        defenderTroop.quantity -= defenderCasualties;
+        defenderPower += defenderCasualties * defenderTroop.unit.power;
+        // log
+        logs.push({
+          attackerTroop: JSON.parse(JSON.stringify(attackerTroop)),
+          attackerQuantity: attackerQuantity,
+          attackerCasualties: attackerCasualties,
+          defenderTroop: JSON.parse(JSON.stringify(defenderTroop)),
+          defenderQuantity: defenderQuantity,
+          defenderCasualties: defenderCasualties,
+          direction: 'defender-vs-attacker',
+        });
+      }
+      // updates
+      if (batch) {
+        if (attackerCasualties > 0) {
+          if (attackerId) await removeTroop(attackerId, attackerTroop.fid, attackerCasualties, batch);
+        }
+        if (defenderCasualties > 0) {
+          if (defenderId) await removeTroop(defenderId, defenderTroop.fid, defenderCasualties, batch);
+          else if (attackerId) await removeTroop(attackerId, defenderTroop.fid, defenderCasualties, batch, questId);
+        }
+      }
+      // deaths
+      if (attackerTroop.quantity <= 0) attackerTroops.splice(attackerIndex, 1);
+      if (defenderTroop.quantity <= 0) defenderTroops.splice(defenderIndex, 1);
+      // next round
+      attackerIndex = attackerTroops[attackerIndex + 1] !== undefined ? attackerIndex + 1 : random(0, attackerTroops.length - 1);
+      defenderIndex = defenderTroops[defenderIndex + 1] !== undefined ? defenderIndex + 1 : random(0, defenderTroops.length - 1);
+      if (attackerTroops[attackerIndex] === undefined || defenderTroops[defenderIndex] === undefined) break;
     }
-    /*
-    // updates
-    if (attackerCasualties > 0) {
-      if (attackerId) await removeTroop(attackerId, attackerTroop.fid, attackerCasualties, batch);
-    }
-    if (defenderCasualties > 0) {
-      if (defenderId) await removeTroop(defenderId, defenderTroop.fid, defenderCasualties, batch);
-      else await removeTroop(attackerId, defenderTroop.fid, defenderCasualties, batch, questId);
-    }
-    */
-    // deaths
-    if (attackerTroop.quantity <= 0) attackerTroops.splice(attackerIndex, 1);
-    if (defenderTroop.quantity <= 0) defenderTroops.splice(defenderIndex, 1);
-    // next round
-    attackerIndex = attackerTroops[attackerIndex + 1] !== undefined ? attackerIndex + 1 : random(0, attackerTroops.length - 1);
-    defenderIndex = defenderTroops[defenderIndex + 1] !== undefined ? defenderIndex + 1 : random(0, defenderTroops.length - 1);
-    if (attackerTroops[attackerIndex] === undefined || defenderTroops[defenderIndex] === undefined) break;
+    // victory conditions
+    victory = attackerTroops.length > 0
+      ? defenderTroops.length > 0
+        ? defenderPower > attackerPower * (1 + (BATTLE_POWER / 100))
+        : true
+      : false;
   }
-  return { logs: logs, attackerPower: attackerPower, defenderPower: defenderPower };
+  return victory;
 }
 
 /**

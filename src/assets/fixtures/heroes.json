@@ -30,7 +30,9 @@
     "goldMaintenance": 5000,
     "manaMaintenance": 0,
     "populationMaintenance": 10,
-    "legendary": true
+    "legendary": true,
+    "battle": true,
+    "self": true
   },
   {
     "type": "hero",
@@ -63,7 +65,9 @@
     "goldMaintenance": 1000,
     "manaMaintenance": 2.5,
     "populationMaintenance": 2.5,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": true
   },
   {
     "type": "hero",
@@ -96,7 +100,9 @@
     "goldMaintenance": 100,
     "manaMaintenance": 5,
     "populationMaintenance": 2.5,
-    "legendary": true
+    "legendary": true,
+    "battle": true,
+    "self": false
   },
   {
     "type": "hero",
@@ -129,7 +135,9 @@
     "goldMaintenance": 1000,
     "manaMaintenance": 2.5,
     "populationMaintenance": 2.5,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": true
   },
   {
     "type": "hero",
@@ -162,7 +170,9 @@
     "goldMaintenance": 2500,
     "manaMaintenance": 2.5,
     "populationMaintenance": 0,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": true
   },
   {
     "type": "hero",
@@ -195,7 +205,9 @@
     "goldMaintenance": 0,
     "manaMaintenance": 10,
     "populationMaintenance": 0,
-    "legendary": true
+    "legendary": true,
+    "battle": false,
+    "self": false
   },
   {
     "type": "hero",
@@ -228,7 +240,9 @@
     "goldMaintenance": 100,
     "manaMaintenance": 0,
     "populationMaintenance": 0,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": false
   },
   {
     "type": "hero",
@@ -261,7 +275,9 @@
     "goldMaintenance": 1000,
     "manaMaintenance": 5,
     "populationMaintenance": 0,
-    "legendary": true
+    "legendary": true,
+    "battle": false,
+    "self": true
   },
   {
     "type": "hero",
@@ -294,7 +310,9 @@
     "goldMaintenance": 1000,
     "manaMaintenance": 5,
     "populationMaintenance": 0,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": true
   },
   {
     "type": "hero",
@@ -327,7 +345,9 @@
     "goldMaintenance": 2000,
     "manaMaintenance": 10,
     "populationMaintenance": 0,
-    "legendary": true
+    "legendary": true,
+    "battle": false,
+    "self": true
   },
   {
     "type": "hero",
@@ -360,7 +380,9 @@
     "goldMaintenance": 1000,
     "manaMaintenance": 20,
     "populationMaintenance": 0,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": true
   },
   {
     "type": "hero",
@@ -393,7 +415,9 @@
     "goldMaintenance": 1000,
     "manaMaintenance": 5,
     "populationMaintenance": 0,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": false
   },
   {
     "type": "hero",
@@ -426,7 +450,9 @@
     "goldMaintenance": 100,
     "manaMaintenance": 5,
     "populationMaintenance": 0,
-    "legendary": true
+    "legendary": true,
+    "battle": false,
+    "self": true
   },
   {
     "type": "hero",
@@ -459,7 +485,9 @@
     "goldMaintenance": 1000,
     "manaMaintenance": 10,
     "populationMaintenance": 0,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": true
   },
   {
     "type": "hero",
@@ -492,7 +520,9 @@
     "goldMaintenance": 100,
     "manaMaintenance": 25,
     "populationMaintenance": 0,
-    "legendary": false
+    "legendary": false,
+    "battle": false,
+    "self": true
   },
   {
     "type": "hero",
@@ -525,7 +555,9 @@
     "goldMaintenance": 1000,
     "manaMaintenance": 5,
     "populationMaintenance": 0,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": false
   },
   {
     "type": "hero",
@@ -558,7 +590,9 @@
     "goldMaintenance": 1000,
     "manaMaintenance": 5,
     "populationMaintenance": 5,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": true
   },
   {
     "type": "hero",
@@ -591,7 +625,9 @@
     "goldMaintenance": 100,
     "manaMaintenance": 5,
     "populationMaintenance": 5,
-    "legendary": true
+    "legendary": true,
+    "battle": false,
+    "self": true
   },
   {
     "type": "hero",
@@ -624,7 +660,9 @@
     "goldMaintenance": 100,
     "manaMaintenance": 5,
     "populationMaintenance": 2.5,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": false
   },
   {
     "type": "hero",
@@ -657,6 +695,8 @@
     "goldMaintenance": 500,
     "manaMaintenance": 5,
     "populationMaintenance": 5,
-    "legendary": false
+    "legendary": false,
+    "battle": true,
+    "self": true
   }
 ]
