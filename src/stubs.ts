@@ -1,5 +1,5 @@
 import { AuthState } from './app/shared/auth/auth.state';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from './environments/environment';
 import { CdkDragDrop, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
@@ -15,7 +15,7 @@ export const SnackBarStub: any = {
 };
 
 export const StoreStub: any = {
-  selectSnapshot: (selector: any) => {
+  selectSnapshot: (selector: any): any => {
     switch (selector) {
       case AuthState.getKingdomTurn:
       case AuthState.getKingdomLand:
@@ -23,18 +23,34 @@ export const StoreStub: any = {
       case AuthState.getKingdomGem:
       case AuthState.getKingdomMana:
       case AuthState.getKingdomGold:
+        return { quantity: 10, resource: { faction: { id: 'test' } } };
       case AuthState.getKingdomWorkshop:
-        return { quantity: 10 };
+      case AuthState.getKingdomAcademy:
+      case AuthState.getKingdomVillage:
+      case AuthState.getKingdomNode:
+        return { quantity: 10, structure: { faction: { id: 'test' } } };
       case AuthState.getUserUID:
         return 'uid';
       case AuthState.getUserLoggedIn:
         return true;
     }
   },
-  select: (selector: any) => {
+  select: (selector: any): Observable<any> => {
     switch (selector) {
+      case AuthState.getKingdomTurn:
+      case AuthState.getKingdomLand:
+      case AuthState.getKingdomPopulation:
+      case AuthState.getKingdomGem:
+      case AuthState.getKingdomMana:
+      case AuthState.getKingdomGold:
+        return of({ quantity: 10, resource: { faction: { id: 'test' } } });
       case AuthState.getKingdomGuild:
         return of(JSON.stringify({ guild: 'hunter', guilded: new Date().getTime() }));
+      case AuthState.getKingdomWorkshop:
+      case AuthState.getKingdomAcademy:
+      case AuthState.getKingdomVillage:
+      case AuthState.getKingdomNode:
+        return of({ quantity: 10, structure: { faction: { id: 'test' } } });
       default:
         return of(selector);
     }
@@ -74,6 +90,10 @@ export const ApiServiceStub: any = {
   assignArtifact: () => null,
   breakEnchantment: () => null,
   dispelIncantation: () => null,
+  adventureReward: () => null,
+  dealGood: () => null,
+  addShop: () => null,
+  addQuest: () => null,
 };
 
 export const CacheServiceStub: any = {
@@ -156,6 +176,14 @@ export const AngularFireAuthStub: any = {
     signOut: Promise.resolve(),
   }),
   authState: of<object>({ uid: 'test', displayName: 'test', isAnonymous: true }),
+};
+
+export const NgxmTourServiceStub: any = {
+
+};
+
+export const TutorialServiceStub: any = {
+
 };
 
 export const MapboxServiceStub: any = {

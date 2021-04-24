@@ -12,6 +12,8 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 
 describe('BuyComponent', () => {
   let component: BuyComponent;
@@ -34,6 +36,8 @@ describe('BuyComponent', () => {
         MatListModule,
         MatBadgeModule,
         MatButtonModule,
+        MatIconModule,
+        MatChipsModule,
       ],
       declarations: [
         BuyComponent,

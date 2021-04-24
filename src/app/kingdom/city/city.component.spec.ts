@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { CityComponent } from './city.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatDialogStub, StoreStub } from 'src/stubs';
+import { MatDialogStub, StoreStub, TutorialServiceStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +15,9 @@ import { BuildComponent } from './build.component';
 import { TaxComponent } from './tax.component';
 import { ChargeComponent } from './charge.component';
 import { ExploreComponent } from './explore.component';
+import { TutorialService } from 'src/app/services/tutorial.service';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('CityComponent', () => {
   let component: CityComponent;
@@ -28,6 +31,8 @@ describe('CityComponent', () => {
         MatCardModule,
         MatListModule,
         MatBadgeModule,
+        MatChipsModule,
+        MatIconModule,
       ],
       declarations: [
         CityComponent,
@@ -37,6 +42,7 @@ describe('CityComponent', () => {
       providers: [
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },
+        { provide: TutorialService, useValue: TutorialServiceStub },
       ],
     })
     .compileComponents();

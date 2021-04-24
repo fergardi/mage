@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { EncyclopediaComponent } from './encyclopedia.component';
-import { CacheServiceStub, MatDialogStub } from 'src/stubs';
+import { CacheServiceStub, MatDialogStub, TutorialServiceStub } from 'src/stubs';
 import { CacheService } from 'src/app/services/cache.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,6 +14,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TomeComponent } from './tome.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { TutorialService } from 'src/app/services/tutorial.service';
+import { LongPipe } from 'src/app/pipes/long.pipe';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('EncyclopediaComponent', () => {
   let component: EncyclopediaComponent;
@@ -33,13 +37,17 @@ describe('EncyclopediaComponent', () => {
         MatSelectModule,
         MatPaginatorModule,
         MatBadgeModule,
+        MatChipsModule,
+        MatIconModule,
       ],
       declarations: [
         EncyclopediaComponent,
+        LongPipe,
       ],
       providers: [
         { provide: CacheService, useValue: CacheServiceStub },
         { provide: MatDialog, useValue: MatDialogStub },
+        { provide: TutorialService, useValue: TutorialServiceStub },
       ],
     })
     .compileComponents();

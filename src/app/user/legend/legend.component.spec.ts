@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LegendComponent } from './legend.component';
-import { StoreStub, AngularFirestoreStub } from 'src/stubs';
+import { StoreStub, AngularFirestoreStub, TutorialServiceStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatCardModule } from '@angular/material/card';
@@ -19,6 +19,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 describe('LegendComponent', () => {
   let component: LegendComponent;
@@ -49,6 +50,7 @@ describe('LegendComponent', () => {
         ShortPipe,
       ],
       providers: [
+        { provide: TutorialService, useValue: TutorialServiceStub },
         { provide: Store, useValue: StoreStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
       ],

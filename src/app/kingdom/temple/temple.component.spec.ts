@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TempleComponent } from './temple.component';
-import { AngularFirestoreStub, MatDialogStub, StoreStub } from 'src/stubs';
+import { AngularFirestoreStub, MatDialogStub, StoreStub, TutorialServiceStub } from 'src/stubs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
@@ -14,6 +14,10 @@ import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
+import { TutorialService } from 'src/app/services/tutorial.service';
+import { LongPipe } from 'src/app/pipes/long.pipe';
+import { MatIconModule } from '@angular/material/icon';
+import { MatChipsModule } from '@angular/material/chips';
 
 describe('TempleComponent', () => {
   let component: TempleComponent;
@@ -28,16 +32,20 @@ describe('TempleComponent', () => {
         MatListModule,
         MatBadgeModule,
         MatProgressBarModule,
+        MatIconModule,
+        MatChipsModule,
       ],
       declarations: [
         TempleComponent,
         IconPipe,
         ShortPipe,
+        LongPipe,
       ],
       providers: [
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },
+        { provide: TutorialService, useValue: TutorialServiceStub },
       ],
     })
     .compileComponents();

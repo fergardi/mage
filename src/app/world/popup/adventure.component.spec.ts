@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AdventureComponent } from './adventure.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogRefStub, NotificationServiceStub } from 'src/stubs';
+import { DialogRefStub, NotificationServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
@@ -10,6 +10,8 @@ import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
+import { ApiService } from 'src/app/services/api.service';
+import { Store } from '@ngxs/store';
 
 describe('AdventureComponent', () => {
   let component: AdventureComponent;
@@ -46,6 +48,8 @@ describe('AdventureComponent', () => {
       ],
       providers: [
         { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: Store, useValue: StoreStub },
+        { provide: ApiService, useValue: ApiServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: data },
         { provide: NotificationService, useValue: NotificationServiceStub },
       ],
@@ -64,8 +68,17 @@ describe('AdventureComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should START the ADVENTURE', () => {
-    component.adventure();
+  it('should START an ADVENTURE', async () => {
+    spyOn(ApiServiceStub, 'adventureReward');
+    await component.adventure();
+    expect(ApiServiceStub.adventureReward).toHaveBeenCalledWith(component.uid, component.data.quest.id);
+  });
+
+  it('should NOT START an ADVENTURE', async () => {
+    component.kingdomTurn.quantity = 0;
+    spyOn(ApiServiceStub, 'adventureReward');
+    await component.adventure();
+    expect(ApiServiceStub.adventureReward).not.toHaveBeenCalled();
   });
 
 });

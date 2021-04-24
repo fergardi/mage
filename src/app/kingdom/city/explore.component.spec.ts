@@ -3,7 +3,7 @@ import { ExploreComponent } from './explore.component';
 import { ApiService } from 'src/app/services/api.service';
 import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
 import { NotificationService } from 'src/app/services/notification.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -11,9 +11,9 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatBadgeModule } from '@angular/material/badge';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 describe('ExploreComponent', () => {
   let component: ExploreComponent;
@@ -36,6 +36,7 @@ describe('ExploreComponent', () => {
         LongPipe,
       ],
       providers: [
+        { provide: MAT_DIALOG_DATA, useValue: StoreStub.select(AuthState.getKingdomLand) },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MatDialogRef, useValue: DialogRefStub },

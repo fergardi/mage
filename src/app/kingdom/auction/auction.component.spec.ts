@@ -26,6 +26,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
+import { MatChipsModule } from '@angular/material/chips';
 
 describe('AuctionComponent', () => {
   let component: AuctionComponent;
@@ -50,6 +51,7 @@ describe('AuctionComponent', () => {
         MatPaginatorModule,
         MatListModule,
         MatBadgeModule,
+        MatChipsModule,
       ],
       declarations: [
         AuctionComponent,

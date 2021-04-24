@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SorceryComponent } from './sorcery.component';
-import { AngularFirestoreStub, NotificationServiceStub, MatDialogStub, StoreStub, DragDropEventFactory, ApiServiceStub } from 'src/stubs';
+import { AngularFirestoreStub, NotificationServiceStub, MatDialogStub, StoreStub, DragDropEventFactory, ApiServiceStub, TutorialServiceStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -20,6 +20,7 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ApiService } from 'src/app/services/api.service';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 describe('SorceryComponent', () => {
   let component: SorceryComponent;
@@ -49,6 +50,7 @@ describe('SorceryComponent', () => {
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: Store, useValue: StoreStub },
+        { provide: TutorialService, useValue: TutorialServiceStub },
       ],
     })
     .compileComponents();

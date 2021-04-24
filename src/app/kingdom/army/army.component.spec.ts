@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ArmyComponent } from './army.component';
-import { MatDialogStub, ApiServiceStub, LoadingServiceStub, StoreStub, CacheServiceStub, NotificationServiceStub, DragDropEventFactory, AngularFirestoreStub } from 'src/stubs';
+import { MatDialogStub, ApiServiceStub, LoadingServiceStub, StoreStub, CacheServiceStub, NotificationServiceStub, DragDropEventFactory, AngularFirestoreStub, TutorialServiceStub } from 'src/stubs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { CacheService } from 'src/app/services/cache.service';
 import { Store } from '@ngxs/store';
@@ -20,6 +20,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 describe('ArmyComponent', () => {
   let component: ArmyComponent;
@@ -50,6 +51,7 @@ describe('ArmyComponent', () => {
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: LoadingService, useValue: LoadingServiceStub },
+        { provide: TutorialService, useValue: TutorialServiceStub },
       ],
     })
     .compileComponents();

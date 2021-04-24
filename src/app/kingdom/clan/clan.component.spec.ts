@@ -25,6 +25,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 describe('ClanComponent', () => {
   let component: ClanComponent;
@@ -49,6 +50,7 @@ describe('ClanComponent', () => {
         MatPaginatorModule,
         MatListModule,
         MatBadgeModule,
+        MatToolbarModule,
       ],
       declarations: [
         ClanComponent,

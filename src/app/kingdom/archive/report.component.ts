@@ -196,7 +196,7 @@ export class ReportComponent implements OnInit {
     private dialogRef: MatDialogRef<ReportComponent>,
     private apiService: ApiService,
     private store: Store,
-  ) { console.log(this.report)}
+  ) { }
 
   close() {
     this.dialogRef.close();

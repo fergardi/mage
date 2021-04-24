@@ -26,12 +26,15 @@ describe('DealComponent', () => {
         },
         image: 'assets/images/units/green/goblin.png',
       },
-      quantity: 999,
-      gold: 999,
+      quantity: 1,
+      gold: 1,
     },
     shop: {
       id: 'test',
-    }
+      store: {
+        id: 'test',
+      },
+    },
   };
 
   beforeEach(waitForAsync(() => {
@@ -70,8 +73,17 @@ describe('DealComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should ACCEPT the DEAL', () => {
-    component.deal();
+  it('should DEAL a GOOD', async () => {
+    spyOn(ApiServiceStub, 'dealGood');
+    await component.deal();
+    expect(ApiServiceStub.dealGood).toHaveBeenCalledWith(component.uid, component.data.shop.id, 'charms', component.data.deal.fid);
+  });
+
+  it('should NOT DEAL an GOOD', async () => {
+    component.kingdomGold.quantity = 0;
+    spyOn(ApiServiceStub, 'dealGood');
+    await component.deal();
+    expect(ApiServiceStub.dealGood).not.toHaveBeenCalled();
   });
 
 });

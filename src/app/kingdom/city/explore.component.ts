@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-explore',
@@ -15,8 +16,8 @@ import { LoadingService } from 'src/app/services/loading.service';
       <p>{{ 'kingdom.explore.help' | translate }}</p>
       <div matSubheader>{{ 'kingdom.explore.discovery' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item [ngClass]="kingdomLand.resource.faction.id">
-          <div mat-list-avatar [matBadge]="kingdomLand.quantity | long" matBadgePosition="above before">
+        <mat-list-item [ngClass]="(land$ | async).resource.faction.id">
+          <div mat-list-avatar [matBadge]="(land$ | async).quantity | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/land.png">
           </div>
           <div mat-line>{{ 'resource.land.name' | translate }}</div>
@@ -54,9 +55,9 @@ export class ExploreComponent implements OnInit {
   form: FormGroup = null;
   uid = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
-  kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public land$: Observable<any>,
     private dialogRef: MatDialogRef<ExploreComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,

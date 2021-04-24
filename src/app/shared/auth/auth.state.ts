@@ -9,8 +9,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { calculateTurns } from 'src/app/pipes/turn.pipe';
 
-const HOME_ROUTE: string = '/kingdom/city';
-
 export interface AuthStateModel {
   kingdom: any;
   uid: string | null;
@@ -156,7 +154,7 @@ export class AuthState implements NgxsOnInit {
         ctx.dispatch(new SetKingdomSuppliesAction(user.uid));
         ctx.dispatch(new SetKingdomBuildingsAction(user.uid));
         this.notificationService.success('user.auth.authorized');
-        const route = localStorage.getItem('route') || HOME_ROUTE;
+        const route = localStorage.getItem('route') || '/kingdom/city';
         this.router.navigate([route]);
       } else {
         this.router.navigate(['/user/landing']);

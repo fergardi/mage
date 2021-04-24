@@ -9,7 +9,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { LoadingService } from 'src/app/services/loading.service';
 import { DomService } from 'src/app/services/dom.service';
-import { TourService } from 'ngx-tour-core';
+import { TourService } from 'ngx-ui-tour-core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';

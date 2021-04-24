@@ -83,7 +83,6 @@ describe('DispelComponent', () => {
   });
 
   it('should DISPEL an INCANTATION', async () => {
-    console.log(component.incantation.spell.manaCost, component.kingdomMana.quantity)
     spyOn(ApiServiceStub, 'dispelIncantation');
     await component.dispel();
     expect(ApiServiceStub.dispelIncantation).toHaveBeenCalledWith(component.uid, component.incantation.fid);

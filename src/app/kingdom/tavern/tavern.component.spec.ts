@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TavernComponent } from './tavern.component';
-import { NotificationServiceStub, MatDialogStub, StoreStub, ApiServiceStub, AngularFirestoreStub } from 'src/stubs';
+import { NotificationServiceStub, MatDialogStub, StoreStub, ApiServiceStub, AngularFirestoreStub, TutorialServiceStub } from 'src/stubs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
@@ -17,6 +17,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 describe('TavernComponent', () => {
   let component: TavernComponent;
@@ -45,6 +46,7 @@ describe('TavernComponent', () => {
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
+        { provide: TutorialService, useValue: TutorialServiceStub },
       ],
     })
     .compileComponents();

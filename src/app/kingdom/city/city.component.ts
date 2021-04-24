@@ -21,12 +21,12 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 export class CityComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  @Select((state: any) => state.auth.buildings) kingdomBuildings$: Observable<any[]>;
-  @Select((state: any) => state.auth.buildings.find((building: any) => building.id === 'village')) village$: Observable<any>;
-  @Select((state: any) => state.auth.buildings.find((building: any) => building.id === 'node')) node$: Observable<any>;
-  @Select((state: any) => state.auth.buildings.find((building: any) => building.id === 'workshop')) workshop$: Observable<any>;
-  @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'land')) land$: Observable<any>;
-  @Select((state: any) => state.auth.supplies.find((supply: any) => supply.id === 'turn')) turn$: Observable<any>;
+  @Select(AuthState.getKingdomBuildings) kingdomBuildings$: Observable<any[]>;
+  @Select(AuthState.getKingdomVillage) village$: Observable<any>;
+  @Select(AuthState.getKingdomNode) node$: Observable<any>;
+  @Select(AuthState.getKingdomWorkshop) workshop$: Observable<any>;
+  @Select(AuthState.getKingdomLand) land$: Observable<any>;
+  @Select(AuthState.getKingdomTurn) turn$: Observable<any>;
   Math: any = Math;
 
   constructor(

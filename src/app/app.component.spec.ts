@@ -1,7 +1,7 @@
 import { TestBed, waitForAsync, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { TourService } from 'ngx-tour-core';
+import { TourService } from 'ngx-ui-tour-core';
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
