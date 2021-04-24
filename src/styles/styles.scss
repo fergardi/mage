@@ -165,14 +165,9 @@ $list-item-height: 60px;
   }
 }
 .mat-list {
-  .mat-list-item .mat-list-item-content {
+  .mat-list-item.grey .mat-list-item-content,
+  .mat-list-item.common .mat-list-item-content {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $common-color 50%, rgba(255,255,255,0) 100%);
-  }
-  .mat-list-item.legendary {
-    .mat-list-avatar.mat-badge-before img.mat-list-avatar {
-      box-shadow: 0px 0px 10px 5px $legendary-color;
-      border-color: $legendary-color;
-    }
   }
   .mat-list-item.black .mat-list-item-content {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $black-color 50%, rgba(255,255,255,0) 100%);
@@ -188,6 +183,12 @@ $list-item-height: 60px;
   }
   .mat-list-item.white .mat-list-item-content {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $white-color 50%, rgba(255,255,255,0) 100%);
+  }
+  .mat-list-item.legendary {
+    .mat-list-avatar.mat-badge-before img.mat-list-avatar {
+      box-shadow: 0px 0px 10px 5px $legendary-color;
+      border-color: $legendary-color;
+    }
   }
 }
 .mat-list-base {
@@ -616,14 +617,9 @@ $list-item-height: 60px;
   background-color: #424242;
   color: white;
   font-size: 12px;
-  .mat-list-item-content {
+  &.grey .mat-list-item-content,
+  &.common .mat-list-item-content {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $common-color 50%, rgba(255,255,255,0) 100%);
-  }
-  &.legendary {
-    .mat-list-avatar.mat-badge-before img.mat-list-avatar {
-      box-shadow: 0px 0px 10px 5px $legendary-color;
-      border-color: $legendary-color;
-    }
   }
   &.black .mat-list-item-content {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $black-color 50%, rgba(255,255,255,0) 100%);
@@ -639,6 +635,12 @@ $list-item-height: 60px;
   }
   &.white .mat-list-item-content {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $white-color 50%, rgba(255,255,255,0) 100%);
+  }
+  &.legendary {
+    .mat-list-avatar.mat-badge-before img.mat-list-avatar {
+      box-shadow: 0px 0px 10px 5px $legendary-color;
+      border-color: $legendary-color;
+    }
   }
   .mat-list-item-content {
     display: flex;

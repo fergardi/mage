@@ -27,8 +27,18 @@
 
             <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'select'">
               <mat-select [(ngModel)]="filters[column].value" (selectionChange)="applyFilter()">
-                <mat-option value="">{{ 'table.filter.any' | translate }}</mat-option>
-                <mat-option *ngFor="let option of filters[column].options" [value]="option.value">{{ option.name | translate }}</mat-option>
+                <!--<mat-option value="">{{ 'table.filter.any' | translate }}</mat-option>-->
+                <!--<mat-option *ngFor="let option of filters[column].options" [value]="option.value">{{ option.name | translate }}</mat-option>-->
+                <mat-option *ngFor="let option of filters[column].options" [value]="option">
+                  <mat-list dense>
+                    <mat-list-item [ngClass]="option.id">
+                      <div mat-list-avatar>
+                        <img mat-list-avatar [src]="option.image">
+                      </div>
+                      <div mat-line>{{ option.name | translate }}</div>
+                    </mat-list-item>
+                  </mat-list>
+                </mat-option>
               </mat-select>
             </mat-form-field>
 

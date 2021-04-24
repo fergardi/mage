@@ -74,7 +74,12 @@ export class EncyclopediaComponent implements OnInit {
       if (property === 'type') return this.translateService.instant(`type.${obj['type']}.name`);
       return obj[property];
     };
-    this.filters.faction.options = (await this.cacheService.getFactions()).map((faction: any) => ({ name: `faction.${faction.id}.name`, value: faction.id }));
+    // this.filters.faction.options = (await this.cacheService.getFactions()).map((faction: any) => ({ name: `faction.${faction.id}.name`, value: faction.id }));
+    this.filters.faction.options = this.filters.faction.options.concat(
+      [{ id: '', name: 'table.filter.any', image: '/assets/images/factions/grey.png' }],
+      await this.cacheService.getFactions(),
+    );
+    this.filters.faction.value = this.filters.faction.options[0];
     const legendary = new Array({ name: 'category.legendary.name', value: true });
     const types = [...new Set(data.map(row => row.type))].map((type: string) => ({ name: `type.${type}.name`, value: type }));
     const subtypes = [...new Set(data.filter(row => row.subtype).map(row => row.subtype))].map((subtype: string) => ({ name: `type.${subtype}.name`, value: subtype }));
@@ -98,7 +103,7 @@ export class EncyclopediaComponent implements OnInit {
       return (this.translateService.instant(data.name).toLowerCase().normalize('NFD').replace(normalize, '').includes(filters.name.toLowerCase().normalize('NFD').replace(normalize, ''))
         || this.translateService.instant(data.description).toLowerCase().normalize('NFD').replace(normalize, '').includes(filters.name.toLowerCase().normalize('NFD').replace(normalize, '')))
         && (!filters.type.length || filters.type.every(element => [data.type, data.subtype, data.legendary].includes(element)))
-        && data.faction.id.toLowerCase().includes(filters.faction);
+        && (!filters.faction || data.faction.id.toLowerCase().includes(filters.faction.id));
     };
     return filterFunction;
   }

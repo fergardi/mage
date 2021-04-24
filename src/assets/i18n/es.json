@@ -1007,8 +1007,8 @@
       "name": "Dragones Azules",
       "description": ""
     },
-    "crystal-golem": {
-      "name": "Gólems de Cristal",
+    "siren": {
+      "name": "Sirenas",
       "description": ""
     },
     "djinni": {
@@ -1219,8 +1219,28 @@
       "name": "Gólems de Piedra",
       "description": ""
     },
+    "crystal-golem": {
+      "name": "Gólems de Cristal",
+      "description": ""
+    },
+    "wood-golem": {
+      "name": "Gólems de Madera",
+      "description": ""
+    },
+    "meat-golem": {
+      "name": "Gólems de Carne",
+      "description": ""
+    },
     "baby-dragon": {
-      "name": "Bebés Dragón",
+      "name": "Dragones Jóvenes",
+      "description": ""
+    },
+    "air-elemental": {
+      "name": "Elementales de Aire",
+      "description": ""
+    },
+    "water-elemental": {
+      "name": "Elementales de Agua",
       "description": ""
     }
   },
@@ -1824,7 +1844,7 @@
       "description": "Aumenta las <land> exploradas por nivel"
     },
     "golem-golem": {
-      "name": "Gólem de Gólems",
+      "name": "Gólem de Todo",
       "description": "Aumenta el ataque, defensa y vida de <golem> y <giant> por nivel"
     },
     "illusionist": {
