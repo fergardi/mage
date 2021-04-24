@@ -24,7 +24,7 @@ const CLAN_COST = 1000000;
           <mat-select formControlName="image">
             <mat-select-trigger>
               <mat-list dense>
-                <mat-list-item>
+                <mat-list-item class="common">
                   <div mat-list-avatar>
                     <img mat-list-avatar [src]="form.value.image">
                   </div>
@@ -35,7 +35,7 @@ const CLAN_COST = 1000000;
             </mat-select-trigger>
             <mat-option *ngFor="let image of images" [value]="image">
               <mat-list dense>
-                <mat-list-item>
+                <mat-list-item class="common">
                   <div mat-list-avatar>
                     <img mat-list-avatar [src]="image">
                   </div>

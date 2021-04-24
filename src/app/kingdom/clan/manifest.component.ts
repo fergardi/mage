@@ -10,7 +10,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
     <div mat-dialog-content>
       <div matSubheader>{{ 'kingdom.manifest.clan' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item class="common">
           <div mat-list-avatar>
             <img mat-list-avatar [src]="clan.image">
           </div>

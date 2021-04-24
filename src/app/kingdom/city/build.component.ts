@@ -15,7 +15,7 @@ import { LoadingService } from 'src/app/services/loading.service';
       <p>{{ 'kingdom.build.description' | translate }}</p>
       <div matSubheader>{{ 'kingdom.build.building' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item [ngClass]="building.structure.faction.id">
           <div mat-list-avatar [matBadge]="building.quantity" matBadgePosition="above before">
             <img mat-list-avatar [src]="building.structure.image">
           </div>

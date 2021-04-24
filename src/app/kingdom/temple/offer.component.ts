@@ -5,7 +5,6 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
-import { LongPipe } from 'src/app/pipes/long.pipe';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -16,7 +15,7 @@ import { LoadingService } from 'src/app/services/loading.service';
       <p>{{ 'kingdom.offer.description' | translate }}</p>
       <div matSubheader>{{ 'kingdom.offer.god' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item class="legendary">
+        <mat-list-item class="grey legendary">
           <div mat-list-avatar matBadge="?" matBadgePosition="above before">
             <img mat-list-avatar class="god-avatar" [src]="god.image">
           </div>

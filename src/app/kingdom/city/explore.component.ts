@@ -15,7 +15,7 @@ import { LoadingService } from 'src/app/services/loading.service';
       <p>{{ 'kingdom.explore.help' | translate }}</p>
       <div matSubheader>{{ 'kingdom.explore.discovery' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item [ngClass]="kingdomLand.resource.faction.id">
           <div mat-list-avatar [matBadge]="kingdomLand.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar src="/assets/images/resources/land.png">
           </div>

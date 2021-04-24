@@ -34,7 +34,7 @@
 
               <ng-template [ngIf]="column === 'name'">
                 <mat-list dense>
-                  <mat-list-item [ngClass]="{ 'legendary': clan.fid === kingdomClan$ }">
+                  <mat-list-item [ngClass]="clan.fid === kingdomClan$ ? 'legendary': 'common'">
                     <div mat-list-avatar>
                       <img mat-list-avatar [src]="clan.image">
                     </div>
@@ -97,7 +97,7 @@
           <mat-select [(ngModel)]="kingdomGuild">
             <mat-select-trigger *ngIf="kingdomGuild">
               <mat-list dense>
-                <mat-list-item>
+                <mat-list-item [ngClass]="kingdomGuild.faction.id">
                   <div mat-list-avatar>
                     <img mat-list-avatar [src]="kingdomGuild.image">
                   </div>
@@ -108,7 +108,7 @@
             </mat-select-trigger>
             <mat-option *ngFor="let guild of kingdomGuilds" [value]="guild">
               <mat-list dense>
-                <mat-list-item>
+                <mat-list-item [ngClass]="guild.faction.id">
                   <div mat-list-avatar>
                     <img mat-list-avatar [src]="guild.image">
                   </div>

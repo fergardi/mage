@@ -16,7 +16,7 @@ import { LoadingService } from 'src/app/services/loading.service';
       <p>{{ 'kingdom.tax.help' | translate }}</p>
       <div matSubheader>{{ 'kingdom.tax.source' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item>
+        <mat-list-item [ngClass]="(village$ | async)?.structure.faction.id">
           <div mat-list-avatar [matBadge]="(village$ | async)?.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="(village$ | async)?.structure.image">
           </div>
