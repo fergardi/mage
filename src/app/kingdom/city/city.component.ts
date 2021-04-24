@@ -36,6 +36,7 @@ export class CityComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    /*
     combineLatest([
       this.kingdomBuildings$,
       this.village$,
@@ -46,8 +47,9 @@ export class CityComponent implements OnInit {
     ])
     .pipe(untilDestroyed(this))
     .subscribe(() => {
-      this.tutorialService.ready();
+      this.tutorialService.ready('city');
     });
+    */
   }
 
   openBuildDialog(building: any): void {

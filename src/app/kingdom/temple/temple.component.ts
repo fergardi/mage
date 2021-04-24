@@ -42,7 +42,6 @@ export class TempleComponent implements OnInit {
       this.kingdomGods = gods;
       this.kingdomEnchantments = enchantments.sort((a, b) => a.turns - b.turns);
       this.kingdomIncantations = incantations.sort((a, b) => a.turns - b.turns);
-      this.tutorialService.ready();
     });
   }
 

@@ -71,7 +71,6 @@ export class AuctionComponent implements OnInit {
       this.filters.faction.options = [...new Set(data.map(auction => auction.join.faction))];
       this.applyFilter();
       await this.refreshAuctions();
-      this.tutorialService.ready();
     });
   }
 

@@ -11,30 +11,6 @@
     "long": "dd/MM/yyyy HH:mm:ss",
     "short": "MMM d, y, h:mm:ss"
   },
-  "tour": {
-    "end": "Terminar",
-    "supplies": {
-      "name": "Recursos",
-      "description": "En verde si tienes superávit. En rojo si tienes déficit. En morado si no hay cambios."
-    },
-    "city": {
-      "name": "",
-      "description": ""
-    },
-    "tax": {
-      "name": "",
-      "description": ""
-    },
-    "charge": {
-      "name": "",
-
-      "description": ""
-    },
-    "explore": {
-      "name": "",
-      "description": ""
-    }
-  },
   "landing": {
     "title": {
       "name": "LëgëndäriüM",
@@ -100,73 +76,6 @@
     "legendarium": {
       "name": "Entra en el Legendarium",
       "description": "Este plano de la realidad es muy cruel con los débiles. Sólo los magos y brujas más sobresalientes tienen una ligera posibilidad de sobrevivir aquí. ¿Eres uno de ellos? Y de entre todos, sólo un reino será digno de ser recordado eternamente en el Legendarium tras el Armagedón. ¿Será el tuyo?"
-    }
-  },
-  "user": {
-    "legend": {
-      "name": "Legendarium",
-      "description": "Listado de mágos y brujas célebres"
-    },
-    "auth": {
-      "login": "Iniciar sesión",
-      "logout": "Cerrar sesión",
-      "authorized": "Bienvenido de nuevo!",
-      "error": "Ha ocurrido un problema",
-      "unauthorized": "Debes autenticarte para continuar",
-      "tour": "Tutorial",
-      "auth/email-already-in-use": "Ese correo electrónico ya está en uso",
-      "status": "Estado"
-    },
-    "login": {
-      "name": "Acceso",
-      "description": "Iniciar sesión",
-      "login": "Iniciar sesión",
-      "signup": "Nuevo jugador",
-      "reset": "Recuperar contraseña",
-      "email": "Email",
-      "username": "Nombre del jugador",
-      "password": "Contraseña",
-      "password2": "Confirmar contraseña",
-      "mismatch": "Las contraseñas no coinciden",
-      "insecure": "Debe contener al menos 6 caracteres alfanuméricos",
-      "invalid": "Campo no válido",
-      "accept": "Aceptar",
-      "check": "Comprueba tu correo",
-      "error": "Ha ocurrido un problema",
-      "faction": "Facción",
-      "unfactioned": "Debes escoger una facción"
-    },
-    "encyclopedia": {
-      "name": "Enciclopedia",
-      "description": "Conocimiento ilimitado",
-      "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc."
-    },
-    "tome": {
-      "help": "Tus eruditos encuentran un viejo y polvoriento pergamino en la antigua biblioteca real. Los grabados, descoloridos por el paso del tiempo pero todavía legibles, contienen todo lo necesario para calmar tu sed de sabiduría. Sonríes, pues el conocimiento es la mitad de la batalla.",
-      "close": "Cerrar",
-      "goldCost": "{{ number }}",
-      "manaCost": "{{ number }}",
-      "populationCost": "{{ number }}",
-      "turnCost": "{{ number }} para lanzar",
-      "turnResearch": "{{ number }} de investigación",
-      "goldMaintenance": "{{ number }} al turno",
-      "manaMaintenance": "{{ number }} al turno",
-      "populationMaintenance": "{{ number }} al turno",
-      "goldProduction": "{{ number }} al turno",
-      "manaProduction": "{{ number }} al turno",
-      "populationProduction": "{{ number }} al turno",
-      "attack": "Ataque {{ number }}",
-      "defense": "Defensa {{ number }}",
-      "health": "Salud {{ number }}",
-      "initiative": "Iniciativa {{ number }}",
-      "power": "Poder {{ number }}",
-      "type": "Tipo",
-      "statistics": "Estadísticas",
-      "maintenances": "Mantenimientos",
-      "costs": "Costes",
-      "production": "Producción",
-      "characteristics": "Características",
-      "rubric": "Rúbrica"
     }
   },
   "shell": {
@@ -277,6 +186,75 @@
       "select": "Elegir"
     }
   },
+  "user": {
+    "legend": {
+      "name": "Legendarium",
+      "description": "Listado de mágos y brujas célebres",
+      "tour": ""
+    },
+    "auth": {
+      "login": "Iniciar sesión",
+      "logout": "Cerrar sesión",
+      "authorized": "Bienvenido de nuevo!",
+      "error": "Ha ocurrido un problema",
+      "unauthorized": "Debes autenticarte para continuar",
+      "tour": "Tutorial",
+      "auth/email-already-in-use": "Ese correo electrónico ya está en uso",
+      "status": "Estado"
+    },
+    "login": {
+      "name": "Acceso",
+      "description": "Iniciar sesión",
+      "login": "Iniciar sesión",
+      "signup": "Nuevo jugador",
+      "reset": "Recuperar contraseña",
+      "email": "Email",
+      "username": "Nombre del jugador",
+      "password": "Contraseña",
+      "password2": "Confirmar contraseña",
+      "mismatch": "Las contraseñas no coinciden",
+      "insecure": "Debe contener al menos 6 caracteres alfanuméricos",
+      "invalid": "Campo no válido",
+      "accept": "Aceptar",
+      "check": "Comprueba tu correo",
+      "error": "Ha ocurrido un problema",
+      "faction": "Facción",
+      "unfactioned": "Debes escoger una facción"
+    },
+    "encyclopedia": {
+      "name": "Enciclopedia",
+      "description": "Conocimiento ilimitado",
+      "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc.",
+      "tour": ""
+    },
+    "tome": {
+      "name": "Tomo",
+      "help": "Tus eruditos encuentran un viejo y polvoriento pergamino en la antigua biblioteca real. Los grabados, descoloridos por el paso del tiempo pero todavía legibles, contienen todo lo necesario para calmar tu sed de sabiduría. Sonríes, pues el conocimiento es la mitad de la batalla.",
+      "close": "Cerrar",
+      "goldCost": "{{ number }}",
+      "manaCost": "{{ number }}",
+      "populationCost": "{{ number }}",
+      "turnCost": "{{ number }} para lanzar",
+      "turnResearch": "{{ number }} de investigación",
+      "goldMaintenance": "{{ number }} al turno",
+      "manaMaintenance": "{{ number }} al turno",
+      "populationMaintenance": "{{ number }} al turno",
+      "goldProduction": "{{ number }} al turno",
+      "manaProduction": "{{ number }} al turno",
+      "populationProduction": "{{ number }} al turno",
+      "attack": "Ataque {{ number }}",
+      "defense": "Defensa {{ number }}",
+      "health": "Salud {{ number }}",
+      "initiative": "Iniciativa {{ number }}",
+      "power": "Poder {{ number }}",
+      "type": "Tipo",
+      "statistics": "Estadísticas",
+      "maintenances": "Mantenimientos",
+      "costs": "Costes",
+      "production": "Producción",
+      "characteristics": "Características"
+    }
+  },
   "world": {
     "map": {
       "name": "Mapa",
@@ -309,27 +287,36 @@
     }
   },
   "kingdom": {
+    "supplies": {
+      "name": "Recursos",
+      "description": "",
+      "tour": ""
+    },
     "city": {
       "name": "Ciudad",
       "description": "Administra tu capital",
-      "help": "En la ciudad puedes invertir Turnos, Oro, y Tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino. Ten en cuenta que cuantos más talleres tengas, menos Turnos necesitarás."
+      "help": "En la ciudad puedes invertir Turnos, Oro, y Tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino. Ten en cuenta que cuantos más talleres tengas, menos Turnos necesitarás.",
+      "tour": ""
     },
     "leadership": {
       "name": "Liderazgo",
       "description": "Comanda tus tropas",
       "help": "Los héroes que tengas asignados al Liderazo entrarán en batalla contra cualquier reino que ataques o aventura que emprendas, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
+      "tour": "",
       "max": "Max"
     },
     "guard": {
       "name": "Guardia",
       "description": "Vigila tus dominios",
       "help": "Los héroes que tengas asignados a la Guardia entrarán en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
+      "tour": "",
       "max": "Max"
     },
     "census": {
       "name": "Censo",
       "description": "Conoce a tus enemigos",
       "help": "En el censo puedes ver una lista completa de todos los reinos que comparten este plano de la realidad, ordenados por poder. Desde aquí puedes realizar la mayoría de acciones ofensivas, como activar artefactos o lanzar hechizos, o iniciar batallas. También puedes mandar mensajes a otros reinos.",
+      "tour": "",
       "protection": "Protegido",
       "report": "Se ha enviado el reporte de batalla"
     },
@@ -367,6 +354,7 @@
       "name": "Ejército",
       "description": "Gestiona tus tropas",
       "help": "Aquí podrás ver un listado de todas tus tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
+      "tour": "",
       "max": "Max",
       "maximum": "Tu ejército está al completo",
       "success": "Los cambios de tus tropas se han guardado",
@@ -404,18 +392,21 @@
       "name": "Ataque",
       "description": "Ordena tus fuerzas ofensivas",
       "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha relevancia en las batallas.",
+      "tour": "",
       "max": "Max"
     },
     "defense": {
       "name": "Defensa",
       "description": "Ordena tus fuerzas defensivas",
       "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha relevancia en las batallas.",
+      "tour": "",
       "max": "Max"
     },
     "recruit": {
       "name": "Reclutamiento",
       "description": "Recluta tropas básicas",
       "help": "Aqui puedes gastar Oro para adquirir tropas básicas para tus ejércitos. Reclutar no consume Turnos, por lo que es una buena forma de reorganizarse militarmente tras una derrota.",
+      "tour": "",
       "hint": "Debes tener suficiente Oro",
       "invalid": "No tienes suficiente Oro",
       "error": "Ha ocurrido un problema",
@@ -431,6 +422,7 @@
       "name": "Desvanecimiento",
       "description": "Rompe encantamientos",
       "help": "Aqui puedes gastar Maná para rezar y tratar de desvanecer un encantamiento del que seas objetivo (pero no su fuente). El éxito dependerá de la diferencia de protección mágica entre ambos reinos.",
+      "tour": "",
       "hint": "Debes tener suficiente Maná",
       "invalid": "No tienes suficiente Maná",
       "error": "Ha ocurrido un problema",
@@ -445,6 +437,7 @@
       "name": "Liberación",
       "description": "Libera maleficios",
       "help": "Aqui puedes gastar Maná para rezar y tratar de liberar un maleficio del que seas fuente (incluso siendo su objetivo). Siempre se tiene éxito.",
+      "tour": "",
       "hint": "Debes tener suficiente Maná",
       "invalid": "No tienes suficiente Maná",
       "error": "Ha ocurrido un problema",
@@ -461,6 +454,7 @@
       "name": "Gremio",
       "description": "Favorece a un colectivo",
       "help": "Puedes otorgar el favor de tu reinado a un gremio en concreto. Como agradecimiento, dicho gremio te otorgará un bonus adicional en los ataques a otros reinos (Batallas, Pillajes o Asedios). Sólo puedes cambiar de gremio una vez cada cierto tiempo.",
+      "tour": "",
       "hint": "Debes esperar 7 días antes de cambiar de gremio",
       "select": "Escoge un gremio",
       "favor": "Favorecer",
@@ -472,6 +466,7 @@
       "name": "Subasta",
       "description": "Comercia con otros reinos",
       "help": "Aquí puedes pujar Oro contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de Oro que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de Oro de tu puja original, así que asegúrate de pujar con cuidado.",
+      "tour": "",
       "bid": "Pujar",
       "subject": "Casa de Subastas",
       "won": "La subasta ha terminado y tu reino ha resultado ganador. Las nuevas adquisiciones se han enviado a tu reino.",
@@ -494,6 +489,7 @@
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
       "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás completar investigaciones pendientes para desbloquear nuevos hechizos, invirtiendo Turnos. Para lanzar hechizos agresivos, hazlo desde el Censo.",
+      "tour": "",
       "maximum": "No puedes superar el máximo",
       "success": "Tus hechizos y artefactos han sido asignados",
       "max": "Max"
@@ -554,18 +550,21 @@
       "name": "Arcanismo",
       "description": "Organiza tus artimañas ofensivas",
       "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente Maná disponible.",
+      "tour": "",
       "max": "Max"
     },
     "protection": {
       "name": "Protección",
       "description": "Organiza tus artimañas defensivas",
       "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente Maná disponible.",
+      "tour": "",
       "max": "Max"
     },
     "charge": {
       "name": "Meditación",
       "description": "Recarga tus reservas mágicas",
       "help": "Aquí podrás invertir Turnos en reponer los depósitos de Maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
+      "tour": "",
       "cancel": "Cancelar",
       "hint": "Cuantos más nodos tengas, más Maná recargarás",
       "invalid": "No dispones de suficientes Turnos",
@@ -579,6 +578,7 @@
       "name": "Tributo",
       "description": "Exprimir a tus súbditos es lo razonable",
       "help": "Aquí podrás invertir Turnos en cobrar impuestos a los súbditos de tu reino. El Oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
+      "tour": "",
       "cancel": "Cancelar",
       "hint": "Cuantos más pueblos tengas, más Oro recaudarás",
       "invalid": "No dispones de suficientes Turnos",
@@ -592,6 +592,7 @@
       "name": "Exploración",
       "description": "Anexiona nuevos territorios a tu reino",
       "help": "Aquí podrás invertir Turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas Tierras libres. Las Tierras libres sirven como espacio para construir nuevos edificios en tu reino.",
+      "tour": "",
       "cancel": "Cancelar",
       "hint": "Cuantas más Tierras tengas, menos encontrarás",
       "error": "Ha ocurrido un problema",
@@ -605,6 +606,7 @@
       "name": "Taberna",
       "description": "Asigna a tus héroes",
       "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores de batalla. Puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos. Los héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
+      "tour": "",
       "success": "Tus héroes han sido asignados",
       "error": "Ha ocurrido un problema",
       "max": "Max",
@@ -614,6 +616,7 @@
       "name": "Archivo",
       "description": "Revisa tu correspondencia",
       "help": "Aqui puedes ver un listado de todos los mensajes directos que te han enviado otros reinos, así como los informes de batalla, subastas ganadas o sobrepujadas, hechizos, artefactos y encantamientos lanzados contra tu reino.",
+      "tour": "",
       "new": "Tienes mensajes nuevos",
       "success": "Mensajes borrados",
       "error": "Ha ocurrido un problema"
@@ -636,6 +639,7 @@
       "name": "Clan",
       "description": "Forja alianzas",
       "help": "Puedes unirte a un clan ya existente o fundar tu propio clan para que otros magos y brujas se unan. Un clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio...",
+      "tour": "",
       "join": "Unirse",
       "leave": "Marcharse",
       "found": "Fundar",
@@ -668,6 +672,7 @@
       "name": "Templo",
       "description": "Complace a los dioses",
       "help": "Puedes ofrecer recursos a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
+      "tour": "",
       "hero": "Te han otorgado el héroe {{ hero }} ({{ level }})",
       "unit": "Te han otorgado la tropa {{ unit }} ({{ quantity }})",
       "enchantment": "Te han encantado con {{ enchantment }} ({{ turns }})",
@@ -697,6 +702,7 @@
       "name": "Emporio",
       "description": "Contrabando del mercado negro",
       "help": "Puedes gastar tus gemas adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un importante impulso económico, científico o militar.",
+      "tour": "",
       "success": "Has adquirido {{ quantity }} {{ item }}",
       "error": "Ha ocurrido un problema",
       "subject": "Compra realizada",
@@ -728,7 +734,8 @@
     "gemology": {
       "name": "Gemología",
       "description": "Extraer gemas de la tierra",
-      "help": "Puedes pagar a unos amables gnomos para que extraigan gemas de las profundas minas bajo tu reino a cambio de dinero real."
+      "help": "Puedes pagar a unos amables gnomos para que extraigan gemas de las profundas minas bajo tu reino a cambio de dinero real.",
+      "tour": ""
     }
   },
   "faction": {

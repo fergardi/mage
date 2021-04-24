@@ -32,7 +32,6 @@ const MAXIMUM_TROOPS = 5;
 export class ArmyComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-
   kingdomTroops: any[] = [];
   attackTroops: any[] = [];
   defenseTroops: any[] = [];
@@ -48,18 +47,17 @@ export class ArmyComponent implements OnInit {
     public tutorialService: TutorialService,
   ) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     combineLatest([
       this.angularFirestore.collection<any>(`kingdoms/${this.uid}/troops`).valueChanges({ idField: 'fid' }),
-      this.angularFirestore.collection<any>(`units`, ref => ref.where('gold', '>', 0)).valueChanges({ idField: 'fid' }),
+      this.angularFirestore.collection<any>(`units`, ref => ref.where('recruitable', '==', true)).valueChanges({ idField: 'fid' }),
     ])
     .pipe(untilDestroyed(this))
     .subscribe(([troops, units]) => {
       this.kingdomTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.NONE || !troop.assignment).sort((a, b) => a.sort - b.sort);
       this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.ATTACK).sort((a, b) => a.sort - b.sort);
       this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.DEFENSE).sort((a, b) => a.sort - b.sort);
-      this.recruitUnits = units;
-      this.tutorialService.ready();
+      this.recruitUnits = units.sort((a, b) => a.gold - b.gold);
     });
   }
 

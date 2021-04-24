@@ -31,7 +31,6 @@ export class EmporiumComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.emporiumItems = (await this.cacheService.getItems()).filter((item: any) => item.gems > 0);
     this.emporiumPacks = (await this.cacheService.getPacks()).sort((a, b) => a.quantity - b.quantity);
-    this.tutorialService.ready();
   }
 
   openBuyDialog(item: any): void {

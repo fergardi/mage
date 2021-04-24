@@ -59,7 +59,6 @@ export class SorceryComponent implements OnInit {
       this.kingdomCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.NONE || !charm.assignment).sort((a, b) => (a.turns >= a.spell.research) === (b.turns >= b.spell.research) ? 0 : (a.turns >= a.spell.research) ? -1 : 1);
       this.attackCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.ATTACK);
       this.defenseCharms = charms.filter(charm => charm.assignment === CharmAssignmentType.DEFENSE);
-      this.tutorialService.ready();
     });
   }
 

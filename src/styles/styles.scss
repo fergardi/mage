@@ -346,6 +346,7 @@ $list-item-height: 60px;
 }
 .mat-card-title {
   line-height: 1.25 !important;
+  display: inline-block !important;
 }
 .mat-card-title::after,
 .mat-dialog-container .mat-dialog-title::after {

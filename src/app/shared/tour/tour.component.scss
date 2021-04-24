@@ -1,9 +1,19 @@
 .tour-step {
   &.mat-menu-panel {
-    max-width: none;
+    min-width: 30vw !important;
+    width: 30vw !important;
+    max-width: 30vw !important;
   }
   .mat-card-actions {
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .tour-step.mat-menu-panel {
+    min-width: 90vw !important;
+    width: 90vw !important;
+    max-width: 90vw !important;
   }
 }

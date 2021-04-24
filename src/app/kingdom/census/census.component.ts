@@ -69,7 +69,6 @@ export class CensusComponent implements OnInit {
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
-      this.tutorialService.ready();
     });
   }
 

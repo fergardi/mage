@@ -81,7 +81,6 @@ export class EncyclopediaComponent implements OnInit {
     this.filters.type.options = [legendary, types, subtypes].reduce((a: any[], b: any) => a.concat(b), []);
     this.data.filterPredicate = this.createFilter();
     this.applyFilter();
-    this.tutorialService.ready();
   }
 
   applyFilter() {

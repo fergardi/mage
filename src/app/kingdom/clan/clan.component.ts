@@ -76,7 +76,6 @@ export class ClanComponent implements OnInit {
         this.kingdomGuild = this.kingdomGuilds.find(guild => guild.id === kingdomGuild.guild.id);
         this.kingdomGuilded = kingdomGuild.guilded;
       }
-      this.tutorialService.ready();
     });
   }
 

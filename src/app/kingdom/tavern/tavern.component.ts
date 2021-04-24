@@ -50,7 +50,6 @@ export class TavernComponent implements OnInit {
       this.kingdomContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.NONE || !contract.assignment);
       this.attackContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.ATTACK);
       this.defenseContracts = contracts.filter(contract => contract.assignment === ContractAssignmentType.DEFENSE);
-      this.tutorialService.ready();
     });
   }
 

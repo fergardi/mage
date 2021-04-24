@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { TutorialService } from 'src/app/services/tutorial.service';
 // import * as moment from 'moment';
 
 @Component({
@@ -41,6 +42,7 @@ export class LegendComponent implements OnInit {
   constructor(
     private store: Store,
     private angularFirestore: AngularFirestore,
+    public tutorialService: TutorialService,
   ) { }
 
   ngOnInit(): void {

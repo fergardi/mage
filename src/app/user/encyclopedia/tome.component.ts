@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
     </div>
     <div mat-dialog-content>
       <p>{{ 'user.tome.help' | translate }}</p>
-      <div matSubheader>{{ 'user.tome.rubric' | translate }}:</div>
+      <div matSubheader>{{ 'user.tome.name' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[tome.faction.id, (tome | legendary) ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="tome.level || '?'" matBadgePosition="above before">
