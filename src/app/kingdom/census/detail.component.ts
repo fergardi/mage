@@ -48,7 +48,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     </div>
   `,
   styles: [
-  ]
+  ],
 })
 @UntilDestroy()
 export class DetailComponent implements OnInit {

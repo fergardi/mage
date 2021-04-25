@@ -33,7 +33,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
     .app-status.mat-list.mat-list-base {
       max-height: 100%;
     }
-  `]
+  `],
 })
 export class StatusComponent {
 

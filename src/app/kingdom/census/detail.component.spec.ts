@@ -39,7 +39,7 @@ describe('DetailComponent', () => {
         { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: Store, useValue: StoreStub },
-      ]
+      ],
     })
     .compileComponents();
   });

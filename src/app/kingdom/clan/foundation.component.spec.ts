@@ -44,7 +44,7 @@ describe('FoundationComponent', () => {
         { provide: LoadingService, useValue: LoadingServiceStub },
         { provide: MatDialogRef, useValue: DialogRefStub },
         { provide: Store, useValue: StoreStub },
-      ]
+      ],
     })
     .compileComponents();
   });

@@ -11,7 +11,11 @@ export const NotificationServiceStub: any = {
 };
 
 export const SnackBarStub: any = {
-  open: () => {( { afterDismissed: () => of(null) } )},
+  open: () => {
+    return {
+      afterDismissed: () => of(null),
+    };
+  },
 };
 
 export const StoreStub: any = {
@@ -43,28 +47,6 @@ export const StoreStub: any = {
     return of(StoreStub.selectSnapshot(selector));
   },
   dispatch: (a: any) => of(a),
-  /*
-  select: (selector: any): Observable<any> => {
-    switch (selector) {
-      case AuthState.getKingdomTurn:
-      case AuthState.getKingdomLand:
-      case AuthState.getKingdomPopulation:
-      case AuthState.getKingdomGem:
-      case AuthState.getKingdomMana:
-      case AuthState.getKingdomGold:
-        return of({ quantity: 10, resource: { faction: { id: 'test' } } });
-      case AuthState.getKingdomGuild:
-        return of(JSON.stringify({ guild: 'hunter', guilded: new Date().getTime() }));
-      case AuthState.getKingdomWorkshop:
-      case AuthState.getKingdomAcademy:
-      case AuthState.getKingdomVillage:
-      case AuthState.getKingdomNode:
-        return of({ quantity: 10, structure: { faction: { id: 'test' } } });
-      default:
-        return of(selector);
-    }
-  },
-  */
 };
 
 export const DialogRefStub: any = {

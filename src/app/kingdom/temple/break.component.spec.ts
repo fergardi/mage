@@ -39,7 +39,7 @@ describe('BreakComponent', () => {
       faction: {
         id: 'test',
       },
-    }
+    },
   };
 
   beforeEach(waitForAsync(() => {

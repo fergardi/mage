@@ -1,7 +1,7 @@
 {
   "extends": "tslint:recommended",
   "rules": {
-    "no-implicit-dependencies": [true, "dev"],
+    "no-implicit-dependencies": [true, "dev", ["src"]],
     "object-literal-shorthand": false,
     "no-string-literal": false,
     "align": {
@@ -152,7 +152,7 @@
     "no-output-rename": true,
     "no-outputs-metadata-property": true,
     "template-banana-in-box": true,
-    "template-no-negated-async": true,
+    "template-no-negated-async": false,
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true
   },

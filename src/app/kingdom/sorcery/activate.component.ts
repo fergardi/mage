@@ -12,7 +12,7 @@ export enum ArtifactAssignmentType {
   NONE,
   ATTACK,
   DEFENSE,
-};
+}
 
 @Component({
   selector: 'app-activate',

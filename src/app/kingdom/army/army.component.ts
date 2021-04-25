@@ -18,7 +18,7 @@ export enum TroopAssignmentType {
   NONE,
   ATTACK,
   DEFENSE,
-};
+}
 
 const MAXIMUM_TROOPS = 5;
 

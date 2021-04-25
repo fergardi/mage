@@ -16,7 +16,7 @@ export enum ContractAssignmentType {
   NONE,
   ATTACK,
   DEFENSE,
-};
+}
 
 const MAXIMUM_CONTRACTS = 3;
 
