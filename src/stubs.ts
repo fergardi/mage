@@ -33,8 +33,17 @@ export const StoreStub: any = {
         return 'uid';
       case AuthState.getUserLoggedIn:
         return true;
+      case AuthState.getKingdomGuild:
+        return JSON.stringify({ guild: 'hunter', guilded: new Date().getTime() });
+      default:
+        return selector;
     }
   },
+  select: (selector: any): Observable<any> => {
+    return of(StoreStub.selectSnapshot(selector));
+  },
+  dispatch: (a: any) => of(a),
+  /*
   select: (selector: any): Observable<any> => {
     switch (selector) {
       case AuthState.getKingdomTurn:
@@ -55,7 +64,7 @@ export const StoreStub: any = {
         return of(selector);
     }
   },
-  dispatch: (a: any) => of(a),
+  */
 };
 
 export const DialogRefStub: any = {

@@ -79,7 +79,7 @@ describe('DealComponent', () => {
     expect(ApiServiceStub.dealGood).toHaveBeenCalledWith(component.uid, component.data.shop.id, 'charms', component.data.deal.fid);
   });
 
-  it('should NOT DEAL an GOOD', async () => {
+  it('should NOT DEAL a GOOD', async () => {
     component.kingdomGold.quantity = 0;
     spyOn(ApiServiceStub, 'dealGood');
     await component.deal();
