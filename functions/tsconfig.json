@@ -6,11 +6,12 @@
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2019",
+    "skipLibCheck": true
   },
   "compileOnSave": true,
   "include": [
-    "src/**/*.ts",
-    "tests/**/*.ts"
+    "index.ts",
+    "index.spec.ts"
   ]
 }

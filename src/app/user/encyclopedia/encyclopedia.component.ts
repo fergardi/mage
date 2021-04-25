@@ -83,7 +83,7 @@ export class EncyclopediaComponent implements OnInit {
     const legendary = new Array({ name: 'category.legendary.name', value: true });
     const types = [...new Set(data.map(row => row.type))].map((type: string) => ({ name: `type.${type}.name`, value: type }));
     const subtypes = [...new Set(data.filter(row => row.subtype).map(row => row.subtype))].map((subtype: string) => ({ name: `type.${subtype}.name`, value: subtype }));
-    this.filters.type.options = [legendary, types, subtypes].reduce((a: any[], b: any) => a.concat(b), []);
+    this.filters.type.options = [legendary, types, subtypes].reduce((a: any[], b: any) => a.concat(b), []); // TODO fix duplicates with types and subtypes
     this.data.filterPredicate = this.createFilter();
     this.applyFilter();
   }

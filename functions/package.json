@@ -9,7 +9,6 @@
     "start": "npm run shell",
     "deploy": "npm run build && firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "test2": "mocha -r ts-node/register test/**/*.ts --reporter spec",
     "test": "jest --watchAll"
   },
   "engines": {
@@ -21,7 +20,7 @@
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
     "firebase-admin": "^8.13.0",
-    "firebase-functions": "^3.13.1",
+    "firebase-functions": "^3.13.2",
     "geofirex": "^0.1.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1"
