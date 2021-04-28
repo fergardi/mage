@@ -71,7 +71,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
             </div>
             <div mat-line>{{ log.attackerContract.hero.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="log.attackerContract.hero.description | translate | icon:log.attackerContract.hero"></div>
-            <mat-icon>{{ log.attackerContract.hero.battle ? 'star' : 'star_half' }}</mat-icon>
+            <mat-icon>{{ log.attackerContract.hero.battle ? 'star' : 'star_border' }}</mat-icon>
           </mat-list-item>
           <mat-list-item [ngClass]="[log.defenderContract.hero.faction.id, log.defenderContract.hero.legendary ? 'legendary' : 'common', 'righted']" *ngIf="log.defenderContract">
             <div mat-list-avatar [matBadge]="log.defenderContract.level | short" matBadgePosition="above after">
@@ -79,7 +79,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
             </div>
             <div mat-line>{{ log.defenderContract.hero.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="log.defenderContract.hero.description | translate | icon:log.defenderContract.hero"></div>
-            <mat-icon>{{ log.defenderContract.hero.battle ? 'star' : 'star_half' }}</mat-icon>
+            <mat-icon>{{ log.defenderContract.hero.battle ? 'star' : 'star_border' }}</mat-icon>
           </mat-list-item>
           <!-- TROOPS -->
           <ng-container *ngIf="log.attackerTroop && log.defenderTroop">

@@ -280,7 +280,7 @@
     "manaMaintenance": 100,
     "populationMaintenance": 360,
     "power": 165000,
-    "level": 1,
+    "level": 5,
     "amount": [1, 1],
     "recruitable": false,
     "legendary": true
@@ -644,7 +644,7 @@
     "manaMaintenance": 100,
     "populationMaintenance": 360,
     "power": 165000,
-    "level": 1,
+    "level": 5,
     "amount": [1, 1],
     "recruitable": false,
     "legendary": true
@@ -1086,7 +1086,7 @@
     "manaMaintenance": 100,
     "populationMaintenance": 360,
     "power": 165000,
-    "level": 1,
+    "level": 5,
     "amount": [1, 1],
     "recruitable": false,
     "legendary": true

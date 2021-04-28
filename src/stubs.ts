@@ -3,6 +3,7 @@ import { of, Observable } from 'rxjs';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from './environments/environment';
 import { CdkDragDrop, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
+import { IStepOption } from 'ngx-ui-tour-core';
 
 export const NotificationServiceStub: any = {
   success: () => null,
@@ -169,12 +170,16 @@ export const AngularFireAuthStub: any = {
   authState: of<object>({ uid: 'test', displayName: 'test', isAnonymous: true }),
 };
 
-export const NgxmTourServiceStub: any = {
-
+export const TourServiceStub: any = {
+  disableHotkeys: () => null,
+  initialize: (steps: IStepOption[], stepDefaults?: IStepOption) => null,
+  start: () => null,
+  startAt: () => null,
 };
 
 export const TutorialServiceStub: any = {
-
+  initialize: () => null,
+  start: () => null,
 };
 
 export const MapboxServiceStub: any = {

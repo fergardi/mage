@@ -31,6 +31,7 @@
     "manaMaintenance": 0,
     "populationMaintenance": 10,
     "legendary": true,
+    "multiple": false,
     "battle": true,
     "self": true
   },
@@ -66,6 +67,7 @@
     "manaMaintenance": 2.5,
     "populationMaintenance": 2.5,
     "legendary": false,
+    "multiple": false,
     "battle": true,
     "self": true
   },
@@ -101,6 +103,7 @@
     "manaMaintenance": 5,
     "populationMaintenance": 2.5,
     "legendary": true,
+    "multiple": true,
     "battle": true,
     "self": false
   },
@@ -136,6 +139,7 @@
     "manaMaintenance": 2.5,
     "populationMaintenance": 2.5,
     "legendary": false,
+    "multiple": false,
     "battle": true,
     "self": true
   },
@@ -171,6 +175,7 @@
     "manaMaintenance": 2.5,
     "populationMaintenance": 0,
     "legendary": false,
+    "multiple": false,
     "battle": true,
     "self": true
   },
@@ -206,6 +211,7 @@
     "manaMaintenance": 10,
     "populationMaintenance": 0,
     "legendary": true,
+    "multiple": false,
     "battle": false,
     "self": false
   },
@@ -241,6 +247,7 @@
     "manaMaintenance": 0,
     "populationMaintenance": 0,
     "legendary": false,
+    "multiple": true,
     "battle": true,
     "self": false
   },
@@ -276,6 +283,7 @@
     "manaMaintenance": 5,
     "populationMaintenance": 0,
     "legendary": true,
+    "multiple": false,
     "battle": false,
     "self": true
   },
@@ -311,6 +319,7 @@
     "manaMaintenance": 5,
     "populationMaintenance": 0,
     "legendary": false,
+    "multiple": false,
     "battle": true,
     "self": true
   },
@@ -346,6 +355,7 @@
     "manaMaintenance": 10,
     "populationMaintenance": 0,
     "legendary": true,
+    "multiple": false,
     "battle": false,
     "self": true
   },
@@ -381,6 +391,7 @@
     "manaMaintenance": 20,
     "populationMaintenance": 0,
     "legendary": false,
+    "multiple": false,
     "battle": true,
     "self": true
   },
@@ -416,6 +427,7 @@
     "manaMaintenance": 5,
     "populationMaintenance": 0,
     "legendary": false,
+    "multiple": true,
     "battle": true,
     "self": false
   },
@@ -451,6 +463,7 @@
     "manaMaintenance": 5,
     "populationMaintenance": 0,
     "legendary": true,
+    "multiple": false,
     "battle": false,
     "self": true
   },
@@ -486,6 +499,7 @@
     "manaMaintenance": 10,
     "populationMaintenance": 0,
     "legendary": false,
+    "multiple": false,
     "battle": true,
     "self": true
   },
@@ -521,6 +535,7 @@
     "manaMaintenance": 25,
     "populationMaintenance": 0,
     "legendary": false,
+    "multiple": false,
     "battle": false,
     "self": true
   },
@@ -556,6 +571,7 @@
     "manaMaintenance": 5,
     "populationMaintenance": 0,
     "legendary": false,
+    "multiple": true,
     "battle": true,
     "self": false
   },
@@ -591,6 +607,7 @@
     "manaMaintenance": 5,
     "populationMaintenance": 5,
     "legendary": false,
+    "multiple": false,
     "battle": true,
     "self": true
   },
@@ -626,6 +643,7 @@
     "manaMaintenance": 5,
     "populationMaintenance": 5,
     "legendary": true,
+    "multiple": false,
     "battle": false,
     "self": true
   },
@@ -661,6 +679,7 @@
     "manaMaintenance": 5,
     "populationMaintenance": 2.5,
     "legendary": false,
+    "multiple": true,
     "battle": true,
     "self": false
   },
@@ -696,6 +715,7 @@
     "manaMaintenance": 5,
     "populationMaintenance": 5,
     "legendary": false,
+    "multiple": false,
     "battle": true,
     "self": true
   }
