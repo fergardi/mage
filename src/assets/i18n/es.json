@@ -336,7 +336,9 @@
       "attacker": "Atacante",
       "attack": "Atacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas",
       "defender": "Defensor",
-      "counterattack": "Contraatacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas"
+      "counterattack": "Contraatacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas",
+      "bonus": "Aumenta un {{ attack }} % el ataque, un {{ defense }} % la defensa y un {{ health}} % la salud de las tropas correspondientes",
+      "damage": "Inflige {{ damage }} daño y causa {{ casualties }} bajas"
     },
     "battle": {
       "name": "Batalla",
@@ -1688,7 +1690,7 @@
       "description": "Constructos animados mediante magia poderosa"
     },
     "undead": {
-      "name": "NoMuertos",
+      "name": "Malditos",
       "description": "Cadáveres reanimados por las artes oscuras"
     },
     "orkish": {
@@ -1701,47 +1703,47 @@
       "name": "Legendario"
     },
     "resistance": {
-      "name": "Resistencia a "
+      "name": "Resiste +75% a "
     },
     "melee": {
       "name": "Físico",
-      "description": "Tipo de daño cuerpo a cuerpo"
+      "description": "Daño cuerpo a cuerpo, sin efectos adicionales"
     },
     "ranged": {
       "name": "Distancia",
-      "description": "Tipo de daño de rango"
+      "description": "Daño de rango, sin efectos adicionales"
     },
     "magic": {
       "name": "Magia",
-      "description": "Tipo de daño mágico"
-    },
-    "fire": {
-      "name": "Fuego",
-      "description": "Tipo de daño ígneo"
-    },
-    "poison": {
-      "name": "Veneno",
-      "description": "Tipo de daño venenoso"
-    },
-    "cold": {
-      "name": "Frío",
-      "description": "Tipo de daño helado"
-    },
-    "lightning": {
-      "name": "Rayo",
-      "description": "Tipo de daño eléctrico"
-    },
-    "holy": {
-      "name": "Sagrado",
-      "description": "Tipo de daño santo"
+      "description": "Daño mágico, sin efectos adicionales"
     },
     "psychic": {
       "name": "Psíquico",
-      "description": "Tipo de daño mental"
+      "description": "Daño mental, sin efectos adicionales"
+    },
+    "fire": {
+      "name": "Fuego",
+      "description": "Daño ígneo, aumenta en +10% el ataque del aliado"
+    },
+    "cold": {
+      "name": "Frío",
+      "description": "Daño helado, disminuye en -10% el ataque del enemigo"
+    },
+    "lightning": {
+      "name": "Rayo",
+      "description": "Daño eléctrico, disminuye en -1 la iniciativa del enemigo"
+    },
+    "holy": {
+      "name": "Sagrado",
+      "description": "Daño luminoso, aumenta en +10% la salud del aliado"
+    },
+    "poison": {
+      "name": "Veneno",
+      "description": "Daño corrosivo, disminuye en -10% la salud del enemigo"
     },
     "breath": {
       "name": "Aliento",
-      "description": "Tipo de daño múltiple"
+      "description": "Daño destructivo, disminuye en -25% la defensa del enemigo"
     }
   },
   "skill": {
@@ -1779,7 +1781,7 @@
     },
     "flight": {
       "name": "Vuelo",
-      "description": "Invulnerable al daño físico"
+      "description": "Aumenta su ataque, defensa y salud en +15%"
     },
     "fear": {
       "name": "Miedo",
@@ -1789,7 +1791,7 @@
   "hero": {
     "dragon-rider": {
       "name": "Jinete de Dragones",
-      "description": "Aumenta el ataque, defensa y vida de <dragon> por nivel"
+      "description": "Aumenta el ataque, defensa y salud de <dragon> por nivel"
     },
     "demon-prince": {
       "name": "Príncipe Demonio",
@@ -1813,7 +1815,7 @@
     },
     "elementalist": {
       "name": "Elementalista Exiliado",
-      "description": "Aumenta el ataque y vida de <elemental> por nivel"
+      "description": "Aumenta el ataque y salud de <elemental> por nivel"
     },
     "sage": {
       "name": "Sabio Erudito",
@@ -1845,7 +1847,7 @@
     },
     "golem-golem": {
       "name": "Gólem de Todo",
-      "description": "Aumenta el ataque, defensa y vida de <golem> y <giant> por nivel"
+      "description": "Aumenta el ataque, defensa y salud de <golem> y <giant> por nivel"
     },
     "illusionist": {
       "name": "Ilusionista Congelado",

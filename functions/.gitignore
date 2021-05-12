@@ -3,4 +3,4 @@ lib
 ## others
 node_modules/
 credentials/
-firebase-debug.log
+*.log

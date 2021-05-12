@@ -320,6 +320,7 @@ $list-item-height: 60px;
       .mat-card-subtitle {
         margin-bottom: 0;
         white-space: pre-wrap !important;
+        line-height: 1.1;
       }
     }
   }
@@ -564,9 +565,16 @@ $list-item-height: 60px;
 }
 */
 .dialog-responsive {
-  min-width: 30vw !important;
-  width: 30vw !important;
-  max-width: 30vw !important;
+  min-width: 35vw !important;
+  width: 35vw !important;
+  max-width: 35vw !important;
+}
+@media screen and (max-width: 1440px) {
+  .dialog-responsive {
+    min-width: 45vw !important;
+    width: 45vw !important;
+    max-width: 45vw !important;
+  }
 }
 @media screen and (max-width: 1280px) {
   .dialog-responsive {

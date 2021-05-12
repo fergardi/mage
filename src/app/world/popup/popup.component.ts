@@ -10,6 +10,8 @@ import * as moment from 'moment';
 import { ApiService } from 'src/app/services/api.service';
 import { TroopAssignmentType } from 'src/app/kingdom/army/army.component';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Store } from '@ngxs/store';
+import { AuthState } from 'src/app/shared/auth/auth.state';
 
 @UntilDestroy()
 @Component({
@@ -19,6 +21,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class PopupComponent implements OnInit {
 
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   opened: BehaviorSubject<boolean> = new BehaviorSubject(false);
   data: any = null;
   shopContracts: any[] = [];
@@ -30,18 +33,22 @@ export class PopupComponent implements OnInit {
   questTroops: any[] = [];
   questArtifacts: any[] = [];
   PopupType: typeof PopupType = PopupType;
+  canAttack: boolean = false;
 
   constructor(
     private angularFirestore: AngularFirestore,
     private dialog: MatDialog,
     private apiService: ApiService,
     private loadingService: LoadingService,
+    private store: Store,
   ) { }
 
   async ngOnInit() {
     // check refresh
     await this.checkRefresh();
-    // kingdom
+    // attack enabled
+    this.canAttack = (await this.angularFirestore.collection<any>(`kingdoms/${this.uid}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.ATTACK)).get().toPromise()).docs.length !== 0;
+    // kingdoms
     if (this.data.type === PopupType.KINGDOM) {
       combineLatest([
         this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }),
@@ -91,8 +98,8 @@ export class PopupComponent implements OnInit {
       this.loadingService.startLoading();
       try {
         await this.data.type === PopupType.SHOP
-          ? this.apiService.addShop(this.data.id, this.data.store.id)
-          : this.apiService.addQuest(this.data.id, this.data.location.id);
+        ? this.apiService.addShop(this.data.id, this.data.store.id)
+        : this.apiService.addQuest(this.data.id, this.data.location.id);
       } catch (error) {
         console.error(error);
       }

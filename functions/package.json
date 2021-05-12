@@ -5,6 +5,7 @@
     "build": "tsc",
     "watch": "tsc -w",
     "serve": "firebase serve --only functions -p 5001",
+    "debug": "firebase emulators:start --inspect-functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "npm run build && firebase deploy --only functions",

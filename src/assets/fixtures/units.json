@@ -488,7 +488,7 @@
     "manaMaintenance": 0.03,
     "populationMaintenance": 0,
     "power": 70,
-    "level": 1,
+    "level": 3,
     "amount": [100, 500],
     "recruitable": false,
     "legendary": false

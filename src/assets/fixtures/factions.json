@@ -61,8 +61,8 @@
     "description": "faction.grey.description",
     "image": "/assets/images/factions/grey.png",
     "marker": "/assets/images/factions/grey-marker.png",
-    "opposites": ["black", "red", "blue", "green", "white"],
-    "adjacents": [],
+    "opposites": [],
+    "adjacents": ["black", "red", "blue", "green", "white"],
     "id": "grey"
   }
 ]

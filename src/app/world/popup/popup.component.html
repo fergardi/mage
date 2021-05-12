@@ -163,7 +163,7 @@
     <ng-template [ngIf]="questArtifacts.length">
       <div matSubheader>{{ 'card.list.rewards' | translate }}:</div>
       <mat-action-list dense>
-        <button mat-list-item *ngFor="let artifact of questArtifacts" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']" (click)="openAdventureDialog(artifact)">
+        <button mat-list-item *ngFor="let artifact of questArtifacts" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']" (click)="openAdventureDialog(artifact)" [disabled]="!canAttack">
           <div mat-list-avatar [matBadge]="artifact.quantity | long" matBadgePosition="above before">
             <img mat-list-avatar [src]="artifact.item.image">
           </div>

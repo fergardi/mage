@@ -6,7 +6,12 @@
     "id": "regeneration",
     "name": "skill.regeneration.name",
     "description": "skill.regeneration.description",
-    "image": "/assets/images/skills/regeneration.png"
+    "image": "/assets/images/skills/regeneration.png",
+    "resurrectionBonus": 25,
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "initiativeBonus": 0
   },
   {
     "type": "skill",
@@ -15,7 +20,12 @@
     "id": "leech",
     "name": "skill.leech.name",
     "description": "skill.leech.description",
-    "image": "/assets/images/skills/leech.png"
+    "image": "/assets/images/skills/leech.png",
+    "resurrectionBonus": 0,
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 25,
+    "initiativeBonus": 0
   },
   {
     "type": "skill",
@@ -24,7 +34,12 @@
     "id": "scales",
     "name": "skill.scales.name",
     "description": "skill.scales.description",
-    "image": "/assets/images/skills/scales.png"
+    "image": "/assets/images/skills/scales.png",
+    "resurrectionBonus": 0,
+    "attackBonus": 0,
+    "defenseBonus": 25,
+    "healthBonus": 0,
+    "initiativeBonus": 0
   },
   {
     "type": "skill",
@@ -33,7 +48,12 @@
     "id": "strength",
     "name": "skill.strength.name",
     "description": "skill.strength.description",
-    "image": "/assets/images/skills/strength.png"
+    "image": "/assets/images/skills/strength.png",
+    "resurrectionBonus": 0,
+    "attackBonus": 25,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "initiativeBonus": 0
   },
   {
     "type": "skill",
@@ -42,7 +62,12 @@
     "id": "haste",
     "name": "skill.haste.name",
     "description": "skill.haste.description",
-    "image": "/assets/images/skills/haste.png"
+    "image": "/assets/images/skills/haste.png",
+    "resurrectionBonus": 0,
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "initiativeBonus": 1
   },
   {
     "type": "skill",
@@ -51,7 +76,12 @@
     "id": "weakness",
     "name": "skill.weakness.name",
     "description": "skill.weakness.description",
-    "image": "/assets/images/skills/weakness.png"
+    "image": "/assets/images/skills/weakness.png",
+    "resurrectionBonus": 0,
+    "attackBonus": 0,
+    "defenseBonus": -25,
+    "healthBonus": 0,
+    "initiativeBonus": 0
   },
   {
     "type": "skill",
@@ -60,7 +90,12 @@
     "id": "seduction",
     "name": "skill.seduction.name",
     "description": "skill.seduction.description",
-    "image": "/assets/images/skills/seduction.png"
+    "image": "/assets/images/skills/seduction.png",
+    "resurrectionBonus": 0,
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": -25,
+    "initiativeBonus": 0
   },
   {
     "type": "skill",
@@ -69,7 +104,12 @@
     "id": "slowness",
     "name": "skill.slowness.name",
     "description": "skill.slowness.description",
-    "image": "/assets/images/skills/slowness.png"
+    "image": "/assets/images/skills/slowness.png",
+    "resurrectionBonus": 0,
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "initiativeBonus": -1
   },
   {
     "type": "skill",
@@ -78,7 +118,12 @@
     "id": "flight",
     "name": "skill.flight.name",
     "description": "skill.flight.description",
-    "image": "/assets/images/skills/flight.png"
+    "image": "/assets/images/skills/flight.png",
+    "resurrectionBonus": 0,
+    "attackBonus": 15,
+    "defenseBonus": 15,
+    "healthBonus": 15,
+    "initiativeBonus": 0
   },
   {
     "type": "skill",
@@ -87,6 +132,11 @@
     "id": "fear",
     "name": "skill.fear.name",
     "description": "skill.fear.description",
-    "image": "/assets/images/skills/fear.png"
+    "image": "/assets/images/skills/fear.png",
+    "resurrectionBonus": 0,
+    "attackBonus": -25,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "initiativeBonus": 0
   }
 ]
