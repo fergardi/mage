@@ -1728,11 +1728,23 @@ const applyContract = (contract: any, targets: any[], targetType: TargetType, re
     if (contract.hero.multiple) {
       let powerLost = 0;
       let totalCasualties = 0;
-      targets.forEach(target => {
-        const targetCasualties = Math.max(0, Math.min(target.quantity, Math.floor((contract.hero.attack * contract.level - target.unit.defense * target.quantity) / target.unit.health)));
-        target.quantity -= targetCasualties;
+      const attackerCategory = contract.hero.categories[0];
+      let damage = contract.hero.attack * contract.level;
+      targets.forEach(defenderTroop => {
+        // damage
+        if (contract.hero.faction.opposites.find((faction: any) => faction.id === defenderTroop.unit.faction.id)) {
+          damage *= FACTION_MULTIPLIER;
+        }
+        // resistance
+        const defenderResistance = defenderTroop.unit.resistances.find((resistance: any) => resistance.id === attackerCategory.id);
+        const property = attackerCategory.id + 'Resistance';
+        const reduction = defenderResistance && defenderResistance.hasOwnProperty(property) ? defenderResistance[property] : 0;
+        damage *= (100 - reduction) / 100;
+        // casualties
+        const targetCasualties = Math.max(0, Math.min(defenderTroop.quantity, Math.floor((damage - defenderTroop.unit.defense * defenderTroop.quantity) / defenderTroop.unit.health)));
+        defenderTroop.quantity -= targetCasualties;
         totalCasualties += targetCasualties;
-        powerLost += targetCasualties * target.unit.power
+        powerLost += targetCasualties * defenderTroop.unit.power
       });
       if (targetType === TargetType.ATTACKER) {
         report.attackerPowerLost += powerLost;
@@ -1898,70 +1910,74 @@ export const applyWave = (
   report: BattleReport,
   battleType: BattleType,
 ) => {
+  // variables
+  let attackerCategory = null;
+  let defenderQuantity = null;
+  let attackerDamage = null;
+  let defenderCasualties = null;
+  let defenderCategory = null;
+  let attackerQuantity = null;
+  let defenderDamage = null;
+  let attackerCasualties = null;
+  let direction = null;
   // attacker statistics
   attackerTroop.unit.attackWave = attackerTroop.unit.attack * ((100 + (attackerTroop.unit.attackBonus || 0)) / 100);
   attackerTroop.unit.defenseWave = attackerTroop.unit.defense * ((100 + (attackerTroop.unit.defenseBonus || 0)) / 100);
   attackerTroop.unit.healthWave = attackerTroop.unit.health * ((100 + (attackerTroop.unit.healthBonus || 0)) / 100);
+  attackerTroop.unit.initiativeWave = attackerTroop.unit.initiative + (attackerTroop.unit.initiativeBonus || 0);
   // defender statistics
   defenderTroop.unit.attackWave = defenderTroop.unit.attack * ((100 + (defenderTroop.unit.attackBonus || 0)) / 100);
   defenderTroop.unit.defenseWave = defenderTroop.unit.defense * ((100 + (defenderTroop.unit.defenseBonus || 0)) / 100);
   defenderTroop.unit.healthWave = defenderTroop.unit.health * ((100 + (defenderTroop.unit.healthBonus || 0)) / 100);
+  defenderTroop.unit.initiativeWave = defenderTroop.unit.initiative + (defenderTroop.unit.initiativeBonus || 0);
   // initiative check
-  if (attackerTroop.unit.initiative + (attackerTroop.unit.initiativeBonus || 0) >= (defenderTroop.unit.initiative + (defenderTroop.unit.initiativeBonus || 0) + (battleType === BattleType.SIEGE ? 1 : 0))) {
+  if (attackerTroop.unit.initiativeWave >= (defenderTroop.unit.initiativeWave + (battleType === BattleType.SIEGE ? 1 : 0))) {
+    direction = 'attacker-vs-defender';
     // attacker attacks defender
-    const attackerCategory = attackerTroop.unit.categories[random(0, attackerTroop.unit.categories.length - 1)];
-    const defenderQuantity = defenderTroop.quantity;
-    const attackerDamage = applyDamage(attackerTroop, defenderTroop, attackerCategory);
-    const defenderCasualties = applyCasualties(attackerTroop, defenderTroop, attackerDamage);
+    attackerCategory = attackerTroop.unit.categories[random(0, attackerTroop.unit.categories.length - 1)];
+    defenderQuantity = defenderTroop.quantity;
+    attackerDamage = applyDamage(attackerTroop, defenderTroop, attackerCategory);
+    defenderCasualties = applyCasualties(attackerTroop, defenderTroop, attackerDamage);
     defenderTroop.quantity -= defenderCasualties;
     report.defenderPowerLost += defenderCasualties * defenderTroop.unit.power;
     // defender counterattacks attacker
-    const defenderCategory = defenderTroop.unit.categories[random(0, defenderTroop.unit.categories.length - 1)];
-    const attackerQuantity = attackerTroop.quantity;
-    const defenderDamage = applyDamage(defenderTroop, attackerTroop, defenderCategory);
-    const attackerCasualties = applyCasualties(defenderTroop, attackerTroop, defenderDamage);
+    defenderCategory = defenderTroop.unit.categories[random(0, defenderTroop.unit.categories.length - 1)];
+    attackerQuantity = attackerTroop.quantity;
+    defenderDamage = applyDamage(defenderTroop, attackerTroop, defenderCategory);
+    attackerCasualties = applyCasualties(defenderTroop, attackerTroop, defenderDamage);
     attackerTroop.quantity -= attackerCasualties;
     report.attackerPowerLost += attackerCasualties * attackerTroop.unit.power;
-    // log
-    report.logs.push({
-      attackerTroop: JSON.parse(JSON.stringify(attackerTroop)),
-      attackerCategory: attackerCategory,
-      attackerQuantity: attackerQuantity,
-      attackerCasualties: attackerCasualties,
-      defenderTroop: JSON.parse(JSON.stringify(defenderTroop)),
-      defenderCategory: defenderCategory,
-      defenderQuantity: defenderQuantity,
-      defenderCasualties: defenderCasualties,
-      direction: 'attacker-vs-defender',
-    });
   } else {
+    direction = 'defender-vs-attacker';
     // defender attacks attacker
-    const defenderCategory = defenderTroop.unit.categories[random(0, defenderTroop.unit.categories.length - 1)];
-    const attackerQuantity = attackerTroop.quantity;
-    const defenderDamage = applyDamage(defenderTroop, attackerTroop, defenderCategory);
-    const attackerCasualties = applyCasualties(defenderTroop, attackerTroop, defenderDamage);
+    defenderCategory = defenderTroop.unit.categories[random(0, defenderTroop.unit.categories.length - 1)];
+    attackerQuantity = attackerTroop.quantity;
+    defenderDamage = applyDamage(defenderTroop, attackerTroop, defenderCategory);
+    attackerCasualties = applyCasualties(defenderTroop, attackerTroop, defenderDamage);
     attackerTroop.quantity -= attackerCasualties;
     report.attackerPowerLost += attackerCasualties * attackerTroop.unit.power;
     // attacker counterattacks defender
-    const attackerCategory = attackerTroop.unit.categories[random(0, attackerTroop.unit.categories.length - 1)];
-    const defenderQuantity = defenderTroop.quantity;
-    const attackerDamage = applyDamage(attackerTroop, defenderTroop, attackerCategory);
-    const defenderCasualties = applyCasualties(attackerTroop, defenderTroop, attackerDamage);
+    attackerCategory = attackerTroop.unit.categories[random(0, attackerTroop.unit.categories.length - 1)];
+    defenderQuantity = defenderTroop.quantity;
+    attackerDamage = applyDamage(attackerTroop, defenderTroop, attackerCategory);
+    defenderCasualties = applyCasualties(attackerTroop, defenderTroop, attackerDamage);
     defenderTroop.quantity -= defenderCasualties;
     report.defenderPowerLost += defenderCasualties * defenderTroop.unit.power;
-    // log
-    report.logs.push({
-      attackerTroop: JSON.parse(JSON.stringify(attackerTroop)),
-      attackerCategory: attackerCategory,
-      attackerQuantity: attackerQuantity,
-      attackerCasualties: attackerCasualties,
-      defenderTroop: JSON.parse(JSON.stringify(defenderTroop)),
-      defenderCategory: defenderCategory,
-      defenderQuantity: defenderQuantity,
-      defenderCasualties: defenderCasualties,
-      direction: 'defender-vs-attacker',
-    });
   }
+  // log
+  report.logs.push({
+    attackerTroop: JSON.parse(JSON.stringify(attackerTroop)),
+    attackerCategory: attackerCategory,
+    attackerDamage: attackerDamage,
+    attackerQuantity: attackerQuantity,
+    attackerCasualties: attackerCasualties,
+    defenderTroop: JSON.parse(JSON.stringify(defenderTroop)),
+    defenderCategory: defenderCategory,
+    defenderDamage: defenderDamage,
+    defenderQuantity: defenderQuantity,
+    defenderCasualties: defenderCasualties,
+    direction: direction,
+  });
 }
 
 /**

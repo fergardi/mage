@@ -334,11 +334,11 @@
       "message": "Mensaje",
       "close": "Cerrar",
       "attacker": "Atacante",
-      "attack": "Atacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas",
+      "attack": "Atacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño de {{ category }} (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas",
       "defender": "Defensor",
-      "counterattack": "Contraatacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas",
+      "counterattack": "Contraatacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño de {{ category }} (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas",
       "bonus": "Aumenta un {{ attack }} % el ataque, un {{ defense }} % la defensa y un {{ health}} % la salud de las tropas correspondientes",
-      "damage": "Inflige {{ damage }} daño y causa {{ casualties }} bajas"
+      "damage": "Inflige {{ damage }} daño de {{ category }} y causa {{ casualties }} bajas"
     },
     "battle": {
       "name": "Batalla",
