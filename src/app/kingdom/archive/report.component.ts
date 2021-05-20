@@ -71,8 +71,8 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
             </div>
             <div mat-line>{{ log.attackerContract.hero.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" *ngIf="!log.attackerContract.hero.battle" [innerHTML]="log.defenderContract.hero.description | translate | icon:log.defenderContract.hero"></div>
-            <div mat-line class="mat-card-subtitle" *ngIf="log.attackerContract.hero.battle && log.attackerContract.hero.self" [innerHTML]="'kingdom.report.bonus' | translate:{ attack: log.attackerContract.hero.attackBonus * log.attackerContract.level, defense: log.attackerContract.hero.defenseBonus * log.attackerContract.level, healths: log.attackerContract.hero.healthBonus * log.attackerContract.level }"></div>
-            <div mat-line class="mat-card-subtitle" *ngIf="log.attackerContract.hero.battle && !log.attackerContract.hero.self" [innerHTML]="'kingdom.report.damage' | translate:{ category: '<'+log.attackerContract.hero.categories[0].id+'>', damage: log.attackerContract.hero.attack * log.attackerContract.level, casualties: log.totalCasualties | long } | icon:log.attackerContract.hero"></div>
+            <div mat-line class="mat-card-subtitle" *ngIf="log.attackerContract.hero.battle && log.attackerContract.hero.self" [innerHTML]="'kingdom.report.bonus' | translate:{ family: this.getFamilies(log.attackerContract), attack: log.attackerContract.hero.attackBonus * log.attackerContract.level, defense: log.attackerContract.hero.defenseBonus * log.attackerContract.level, healths: log.attackerContract.hero.healthBonus * log.attackerContract.level } | icon:log.attackerContract.hero"></div>
+            <div mat-line class="mat-card-subtitle" *ngIf="log.attackerContract.hero.battle && !log.attackerContract.hero.self" [innerHTML]="'kingdom.report.damage' | translate:{ category: this.getCategories(log.attackerContract), damage: log.attackerContract.hero.attack * log.attackerContract.level, casualties: log.totalCasualties | long } | icon:log.attackerContract.hero"></div>
             <mat-icon>{{ log.attackerContract.hero.battle ? 'star' : 'star_border' }}</mat-icon>
           </mat-list-item>
           <mat-list-item [ngClass]="[log.defenderContract.hero.faction.id, log.defenderContract.hero.legendary ? 'legendary' : 'common', 'righted']" *ngIf="log.defenderContract">
@@ -81,8 +81,8 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
             </div>
             <div mat-line>{{ log.defenderContract.hero.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" *ngIf="!log.defenderContract.hero.battle" [innerHTML]="log.defenderContract.hero.description | translate | icon:log.defenderContract.hero"></div>
-            <div mat-line class="mat-card-subtitle" *ngIf="log.defenderContract.hero.battle && log.defenderContract.hero.self" [innerHTML]="'kingdom.report.bonus' | translate:{ attack: (log.defenderContract.hero.attackBonus * log.defenderContract.level) | long, defense: log.defenderContract.hero.defenseBonus * log.defenderContract.level, health: log.defenderContract.hero.healthBonus * log.defenderContract.level }"></div>
-            <div mat-line class="mat-card-subtitle" *ngIf="log.defenderContract.hero.battle && !log.defenderContract.hero.self" [innerHTML]="'kingdom.report.damage' | translate:{ category: '<'+log.defenderContract.hero.categories[0].id+'>', damage: (log.defenderContract.hero.attack * log.defenderContract.level) | long, casualties: log.totalCasualties | long } | icon:log.defenderContract.hero"></div>
+            <div mat-line class="mat-card-subtitle" *ngIf="log.defenderContract.hero.battle && log.defenderContract.hero.self" [innerHTML]="'kingdom.report.bonus' | translate:{ family: this.getFamilies(log.defenderContract), attack: (log.defenderContract.hero.attackBonus * log.defenderContract.level) | long, defense: log.defenderContract.hero.defenseBonus * log.defenderContract.level, health: log.defenderContract.hero.healthBonus * log.defenderContract.level } | icon:log.defenderContract.hero"></div>
+            <div mat-line class="mat-card-subtitle" *ngIf="log.defenderContract.hero.battle && !log.defenderContract.hero.self" [innerHTML]="'kingdom.report.damage' | translate:{ category: this.getCategories(log.defenderContract), damage: (log.defenderContract.hero.attack * log.defenderContract.level) | long, casualties: log.totalCasualties | long } | icon:log.defenderContract.hero"></div>
             <mat-icon>{{ log.defenderContract.hero.battle ? 'star' : 'star_border' }}</mat-icon>
           </mat-list-item>
           <!-- TROOPS -->
@@ -210,6 +210,14 @@ export class ReportComponent implements OnInit {
     if (!this.report.read) {
       await this.apiService.readLetter(this.uid, this.report.fid);
     }
+  }
+
+  getFamilies(contract: any): string {
+    return contract.hero.families.map((family: any) => `<${family.id}>`).join(', ');
+  }
+
+  getCategories(contract: any): string {
+    return contract.hero.categories.map((category: any) => `<${category.id}>`).join(', ');
   }
 
 }
