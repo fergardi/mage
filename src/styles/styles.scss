@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 @import url("https://use.typekit.net/jnq3uxd.css");
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Uncial+Antiqua&display=swap');
 
@@ -23,7 +23,7 @@
     letter-spacing: $letter-spacing
   );
 }
-$custom-typography: mat-typography-config(
+$custom-typography: mat.define-typography-config(
   $font-family: "'Open Sans', sans-serif",
   $display-4: define-typography-level(8rem, 8rem, 300, $letter-spacing: -0.05em),
   $display-3: define-typography-level(4rem, 4rem, 400, $letter-spacing: -0.02em),
@@ -39,7 +39,7 @@ $custom-typography: mat-typography-config(
   $button: define-typography-level(1rem, 1rem, 500),
   $input: define-typography-level(inherit, 1.125, 400),
 );
-@include mat-core($custom-typography);
+@include mat.core($custom-typography);
 
 // font headings
 .mat-card-header .mat-card-title,
@@ -105,31 +105,31 @@ $md-palette: (
   )
 );
 
-$theme-primary: mat-palette($md-palette);
-$theme-accent: mat-palette($mat-green, 800);
-$theme-warn: mat-palette($mat-red, 800);
-$theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
-@include angular-material-theme($theme);
+$theme-primary: mat.define-palette($md-palette);
+$theme-accent: mat.define-palette(mat.$green-palette, 800);
+$theme-warn: mat.define-palette(mat.$red-palette, 800);
+$theme: mat.define-dark-theme($theme-primary, $theme-accent, $theme-warn);
+@include mat.all-component-themes($theme);
 
-$theme-black: mat-palette($mat-purple, 900);
-$theme-red: mat-palette($mat-red, 900);
-$theme-green: mat-palette($mat-green, 900);
-$theme-blue: mat-palette($mat-blue, 900);
-$theme-white: mat-palette($mat-blue-grey, 200);
-$theme-common: mat-palette($mat-brown, 900);
+$theme-black: mat.define-palette(mat.$purple-palette, 900);
+$theme-red: mat.define-palette(mat.$red-palette, 900);
+$theme-green: mat.define-palette(mat.$green-palette, 900);
+$theme-blue: mat.define-palette(mat.$blue-palette, 900);
+$theme-white: mat.define-palette(mat.$blue-grey-palette, 200);
+$theme-common: mat.define-palette(mat.$brown-palette, 900);
 
-$primary-color: mat-color($theme-primary);
-$accent-color: mat-color($theme-accent);
-$warn-color: mat-color($theme-warn);
+$primary-color: mat.get-color-from-palette($theme-primary);
+$accent-color: mat.get-color-from-palette($theme-accent);
+$warn-color: mat.get-color-from-palette($theme-warn);
 
-$black-color: mat-color($theme-black);
-$red-color: mat-color($theme-red);
-$green-color: mat-color($theme-green);
-$blue-color: mat-color($theme-blue);
-$white-color: mat-color($theme-white);
+$black-color: mat.get-color-from-palette($theme-black);
+$red-color: mat.get-color-from-palette($theme-red);
+$green-color: mat.get-color-from-palette($theme-green);
+$blue-color: mat.get-color-from-palette($theme-blue);
+$white-color: mat.get-color-from-palette($theme-white);
 
 // $common-color: #373638;
-$common-color: mat-color($theme-common);
+$common-color: mat.get-color-from-palette($theme-common);
 $legendary-color: darkgoldenrod;
 
 //========================================================================================

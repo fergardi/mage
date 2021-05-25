@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TourComponent } from './tour.component';
-import { TourService } from 'ngx-ui-tour-md-menu';
+import { TourService, TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { TourServiceStub } from 'src/stubs';
+import { MatCardModule } from '@angular/material/card';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('TourComponent', () => {
   let component: TourComponent;
@@ -9,6 +12,12 @@ describe('TourComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        TourMatMenuModule.forRoot(),
+        MatCardModule,
+        TranslateModule.forRoot(),
+        MatIconModule,
+      ],
       declarations: [
         TourComponent,
       ],

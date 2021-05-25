@@ -9,7 +9,7 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma'),
       require('karma-spec-reporter'),
       require('karma-coverage'),
-      require('karma-scss-preprocessor'),
+      // require('karma-scss-preprocessor'),
       require('karma-sonarqube-unit-reporter'),
     ],
     client: {
@@ -19,15 +19,15 @@ module.exports = function (config) {
       },
     },
     files: [
-      { pattern: 'src/styles/styles.scss' },
+      // { pattern: 'src/styles/styles.scss' },
     ],
     preprocessors: {
       'src/app/**/*.ts': ['coverage'],
-      'src/styles/styles.scss': ['scss'],
+      // 'src/styles/styles.scss': ['scss'],
     },
     scssPreprocessor: {
       options: {
-        importer: require('node-sass-tilde-importer'),
+        // importer: require('node-sass-tilde-importer'),
       },
     },
     sonarQubeUnitReporter: {
@@ -53,12 +53,48 @@ module.exports = function (config) {
       ]
     },
     reporters: ['spec', 'sonarqubeUnit', 'coverage'], // kjhtml, progress, coverage, spec, dots, sonarqubeUnit
+    specReporter: {
+      suppressSkipped: true, // do not print information about skipped tests
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['ChromeHeadless'],
     singleRun: true,
     restartOnFileChange: true,
+    browsers: ['ChromeHeadless'],
+    /*
+    customLaunchers: {
+      ChromeDebugger: {
+        base: 'Chrome',
+        flags: [
+          '--remote-debugging-address=127.0.0.1',
+          '--remote-debugging-port=9333',
+          "--disable-session-crashed-bubble",
+          "--disable-infobars",
+        ],
+        debug: true
+      },
+      ChromeTester: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--no-sandbox',
+          '--disable-gpu',
+          '--enable-logging',
+          '--no-default-browser-check',
+          '--no-first-run',
+          '--disable-default-apps',
+          '--disable-popup-blocking',
+          '--disable-translate',
+          '--disable-background-timer-throttling',
+          '--disable-renderer-backgrounding',
+          '--disable-device-discovery-notifications',
+          '--remote-debugging-address=127.0.0.1',
+          '--remote-debugging-port=9222',
+          '--disable-web-security',
+        ]
+      }
+    },
+    */
   });
 };

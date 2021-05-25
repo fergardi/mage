@@ -175,6 +175,8 @@ export const TourServiceStub: any = {
   initialize: (steps: IStepOption[], stepDefaults?: IStepOption) => null,
   start: () => null,
   startAt: () => null,
+  hasPrev: () => true,
+  hasNext: () => true,
 };
 
 export const TutorialServiceStub: any = {
@@ -238,6 +240,7 @@ export class DragDropEventFactory<T> {
       previousContainer: undefined,
       isPointerOverContainer: true,
       distance: { x: 0, y: 0 },
+      dropPoint: { x: 0, y: 0 },
     };
   }
 
