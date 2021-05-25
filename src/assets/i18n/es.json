@@ -81,7 +81,7 @@
   "shell": {
     "group": {
       "merchant": "Gremio de Mercaderes",
-      "squire": "Gremio de Escuderos",
+      "militia": "Gremio de Milicianos",
       "spy": "Gremio de Espías",
       "scholar": "Gremio de Eruditos"
     }

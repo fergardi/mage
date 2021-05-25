@@ -30,7 +30,7 @@
     "@types/cors": "^2.8.9",
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.23",
-    "firebase-functions-test": "^0.1.7",
+    "firebase-functions-test": "^0.2.3",
     "firebase-tools": "^9.11.0",
     "jest": "^27.0.1",
     "ts-jest": "^27.0.0-next.12",

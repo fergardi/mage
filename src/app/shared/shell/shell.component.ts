@@ -36,7 +36,7 @@ export class ShellComponent implements OnInit {
         { url: '/kingdom/emporium', name: 'kingdom.emporium.name', description: 'kingdom.emporium.description', image: '/assets/images/cards/emporium.png' },
       ],
     },
-    { name: 'shell.group.squire', image: '/assets/images/cards/squire.png', links: [
+    { name: 'shell.group.militia', image: '/assets/images/cards/militia.png', links: [
         { url: '/world/map', name: 'world.map.name', description: 'world.map.description', image: '/assets/images/cards/map.png' },
         { url: '/kingdom/army', name: 'kingdom.army.name', description: 'kingdom.army.description', image: '/assets/images/cards/army.png' },
         { url: '/kingdom/tavern', name: 'kingdom.tavern.name', description: 'kingdom.tavern.description', image: '/assets/images/cards/tavern.png' },
