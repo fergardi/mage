@@ -2083,7 +2083,7 @@ export const resolveBattle = async (
       case BattleType.ATTACK:
         report.victory = attackerTroops.length > 0 // if attacker still has an army
           ? defenderTroops.length > 0 // if defender still has an army
-            ? report.defenderPowerLost > report.attackerPowerLost * (1 + (BATTLE_POWER / 100)) // if defender loses more power than attacker by +20%
+            ? report.defenderPowerLost > report.attackerPowerLost * (1 + (BATTLE_POWER / 100)) // if defender loses more power than attacker by X%
             : true
           : false;
         break;

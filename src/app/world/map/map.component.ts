@@ -48,9 +48,9 @@ export class MapComponent implements OnInit, OnDestroy {
       combineLatest([
         this.angularFirestore.collection<any>('kingdoms').valueChanges({ idField: 'fid' }),
         this.angularFirestore.doc<any>(`kingdoms/${this.uid}`).valueChanges()
-        .pipe(switchMap(kingdom => this.geofirex.query(this.angularFirestore.collection<any>('quests').ref).within(kingdom.position, Math.max(1000, kingdom.power) / 1000, 'position'))),
+        .pipe(switchMap((kingdom: any) => this.geofirex.query(this.angularFirestore.collection<any>('quests').ref).within(kingdom.position, Math.max(1000, kingdom.power) / 1000, 'position'))),
         this.angularFirestore.doc<any>(`kingdoms/${this.uid}`).valueChanges()
-        .pipe(switchMap(kingdom => this.geofirex.query(this.angularFirestore.collection<any>('shops').ref).within(kingdom.position, Math.max(1000, kingdom.power) / 1000, 'position'))),
+        .pipe(switchMap((kingdom: any) => this.geofirex.query(this.angularFirestore.collection<any>('shops').ref).within(kingdom.position, Math.max(1000, kingdom.power) / 1000, 'position'))),
       ])
       .pipe(untilDestroyed(this))
       .subscribe(([kingdoms, quests, shops]) => {

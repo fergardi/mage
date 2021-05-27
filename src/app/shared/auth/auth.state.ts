@@ -195,7 +195,7 @@ export class AuthState implements NgxsOnInit {
   @Action(SetKingdomAction)
   setKingdom(ctx: StateContext<AuthStateModel>, payload: SetKingdomAction) {
     return this.angularFirestore.doc<any>(`kingdoms/${payload.uid}`).valueChanges().pipe(
-      tap(kingdom => {
+      tap((kingdom: any) => {
         const state = ctx.getState();
         ctx.setState({
           ...state,
@@ -208,7 +208,7 @@ export class AuthState implements NgxsOnInit {
   @Action(SetKingdomSuppliesAction)
   setKingdomSupplies(ctx: StateContext<AuthStateModel>, payload: SetKingdomSuppliesAction) {
     return this.angularFirestore.collection<any>(`kingdoms/${payload.uid}/supplies`).valueChanges({ idField: 'fid' }).pipe(
-      tap(supplies => {
+      tap((supplies: any[]) => {
         const state = ctx.getState();
         ctx.setState({
           ...state,
@@ -221,7 +221,7 @@ export class AuthState implements NgxsOnInit {
   @Action(SetKingdomBuildingsAction)
   setKingdomBuildings(ctx: StateContext<AuthStateModel>, payload: SetKingdomBuildingsAction) {
     return this.angularFirestore.collection<any>(`kingdoms/${payload.uid}/buildings`).valueChanges({ idField: 'fid' }).pipe(
-      tap(buildings => {
+      tap((buildings: any[]) => {
         const state = ctx.getState();
         ctx.setState({
           ...state,

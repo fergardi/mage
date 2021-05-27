@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay, filter } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { Store, Select } from '@ngxs/store';
@@ -58,14 +58,14 @@ export class ShellComponent implements OnInit {
   @Select((state: any) => state.auth.supplies) kingdomSupplies$: Observable<any[]>;
   link$: Observable<any> = this.router.events
   .pipe(
-    filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-    map(event => {
+    filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd),
+    map((event: NavigationEnd) => {
       return this.groups.reduce((a, b) => a.concat(b.links), []).find((link: any) => link.url === event.url);
     }),
   );
   isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset])
   .pipe(
-    map(result => result.matches),
+    map((result: any) => result.matches),
     shareReplay(),
   );
   public reports: number = 0;

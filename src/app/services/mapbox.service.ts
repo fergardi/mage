@@ -31,6 +31,9 @@ export class MapboxService {
   private markers: Marker[] = [];
   private offset: number = 10;
   private uid: string;
+  private primaryColor: string = null;
+  // private idle: boolean = false;
+  // private timeout: NodeJS.Timeout = undefined;
 
   constructor(
     private componentService: ComponentService,
@@ -42,21 +45,80 @@ export class MapboxService {
   }
 
   initialize(container: string) {
+    this.primaryColor = window.getComputedStyle(document.body).getPropertyValue('--primary-color');
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.map = new mapboxgl.Map({
       container: container,
       style: environment.mapbox.style + '?optimize=true',
-      zoom: environment.mapbox.zoom,
       center: [environment.mapbox.lng, environment.mapbox.lat],
       pitch: environment.mapbox.pitch,
+      zoom: environment.mapbox.zoom,
+      antialias: false,
+      dragPan: true,
+      dragRotate: true,
       attributionControl: true,
       interactive: true,
     });
+    // https://docs.mapbox.com/mapbox-gl-js/example/add-terrain/
+    this.map.on('load', () => {
+      // add the DEM source as a terrain layer
+      this.map.addSource('mapbox-dem', {
+        type: 'raster-dem',
+        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        tileSize: 512,
+        maxzoom: environment.mapbox.zoom,
+      });
+      // add the DEM source as a terrain layer with exaggerated height
+      this.map.setTerrain({
+        source: 'mapbox-dem',
+        exaggeration: 1.5,
+      });
+      // add a sky layer that will show when the map is highly pitched
+      this.map.addLayer({
+        id: 'sky',
+        type: 'sky',
+        paint: {
+          'sky-type': 'atmosphere',
+          'sky-atmosphere-color': this.primaryColor,
+          'sky-atmosphere-halo-color': '#000000',
+          'sky-atmosphere-sun': [270.0, 90.0],
+          'sky-atmosphere-sun-intensity': 10,
+        },
+      });
+      /*
+      const rotateCamera = (timestamp: number) => {
+        if (this.idle) this.map.rotateTo((timestamp / 1000) % 360, { animate: true, easing: (t) => t, duration: 0 });
+        window.requestAnimationFrame((t) => rotateCamera(0));
+      }
+      rotateCamera(this.map.getBearing());
+      */
+    });
+    /*
+    this.map.on('idle', () => {
+      if (!this.idle && !this.timeout) {
+        this.timeout = setTimeout(() => {
+          this.idle = true;
+          clearTimeout(this.timeout);
+          this.timeout = undefined;
+        }, 10000);
+      }
+    });
+    this.map.on('click', () => this.idle = false);
+    this.map.on('mousedown', () => this.idle = false);
+    this.map.on('touchstart', () => this.idle = false);
+    this.map.on('boxzoomstart', () => this.idle = false);
+    this.map.on('drag', () => this.idle = false);
+    this.map.on('zoomstart', () => this.idle = false);
+    this.map.on('wheel', () => this.idle = false);
+    */
     this.map.on('moveend', () => this.refreshMarkers());
   }
 
   markerVisible(marker: Marker): boolean {
-    return this.map.getBounds().contains(marker.marker.getLngLat());
+    const lngLat: mapboxgl.LngLat = marker.marker.getLngLat()
+    return lngLat && lngLat.lat && lngLat.lng
+      ? this.map.getBounds().contains(lngLat)
+      : false;
   }
 
   refreshMarkers(): void {
@@ -157,9 +219,9 @@ export class MapboxService {
     if (radius) {
       circle = new MapboxCircle({ lat: data.coordinates.latitude, lng: data.coordinates.longitude }, Math.max(1000, data.power), {
         editable: false,
-        fillColor: '#99009c',
+        fillColor: this.primaryColor,
         fillOpacity: 0.2,
-        strokeColor: '#99009c',
+        strokeColor: this.primaryColor,
         strokeWeight: 1,
         strokeOpacity: 1,
         refineStroke : false,

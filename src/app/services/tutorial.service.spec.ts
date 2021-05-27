@@ -10,7 +10,7 @@ describe('TutorialService', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: TourService, useValue: TourServiceStub },
-      ]
+      ],
     });
     service = TestBed.inject(TutorialService);
   });

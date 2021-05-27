@@ -128,9 +128,15 @@ $green-color: mat.get-color-from-palette($theme-green);
 $blue-color: mat.get-color-from-palette($theme-blue);
 $white-color: mat.get-color-from-palette($theme-white);
 
-// $common-color: #373638;
 $common-color: mat.get-color-from-palette($theme-common);
 $legendary-color: darkgoldenrod;
+
+// https://sass-lang.com/documentation/breaking-changes/css-vars
+:root { // to extract with JS and use with external libraries (chartjs, mapboxgljs, etc)
+  --primary-color: #{$primary-color};
+  --accent-color: #{$accent-color};
+  --warn-color: #{$warn-color};
+}
 
 //========================================================================================
 /*                                                                                      *
