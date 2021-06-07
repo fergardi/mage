@@ -61,28 +61,37 @@ export class MapboxService {
     });
     // https://docs.mapbox.com/mapbox-gl-js/example/add-terrain/
     this.map.on('load', () => {
+      // add fog
+      /*
+      this.map.setFog({
+        range: [-1, 1.5],
+        color: 'white',
+        'horizon-blend': 0.1,
+      });
+      */
       // add the DEM source as a terrain layer
       this.map.addSource('mapbox-dem', {
         type: 'raster-dem',
-        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
+        url: 'mapbox://mapbox.terrain-rgb',
         tileSize: 512,
         maxzoom: environment.mapbox.zoom,
       });
       // add the DEM source as a terrain layer with exaggerated height
       this.map.setTerrain({
         source: 'mapbox-dem',
-        exaggeration: 1.5,
+        exaggeration: 2.5,
       });
       // add a sky layer that will show when the map is highly pitched
       this.map.addLayer({
-        id: 'sky',
+        id: 'sky-day',
         type: 'sky',
         paint: {
           'sky-type': 'atmosphere',
-          'sky-atmosphere-color': this.primaryColor,
-          'sky-atmosphere-halo-color': '#000000',
+          'sky-atmosphere-halo-color': 'rgba(255, 255, 255, 0.5)',
+          'sky-atmosphere-color': 'rgba(255, 255, 255, 0.2)',
           'sky-atmosphere-sun': [270.0, 90.0],
-          'sky-atmosphere-sun-intensity': 10,
+          'sky-atmosphere-sun-intensity': 2,
+          // 'sky-opacity-transition': { 'duration': 500 },
         },
       });
       /*
