@@ -8,5 +8,9 @@ module.exports = {
 	testPathIgnorePatterns: ['lib/', 'node_modules/'],
 	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 	testEnvironment: 'node',
-	rootDir: '.',
+  rootDir: './',
+  coverageReporters: [
+    ["lcov", {"projectRoot": "../"}],
+    "text-summary",
+  ],
 };
