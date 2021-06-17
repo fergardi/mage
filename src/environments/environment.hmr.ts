@@ -20,7 +20,7 @@ export const environment = {
     lat: 42.618060799999995,
     lng: -5.5508992,
     zoom: 12,
-    pitch: 75,
+    pitch: 80,
   },
   functions: {
     url: 'http://localhost:5001/mage-c4259/europe-west1/api',
