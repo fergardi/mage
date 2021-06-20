@@ -9,6 +9,7 @@ module.exports = {
 	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 	testEnvironment: 'node',
   rootDir: './',
+  collectCoverage: true,
   coverageReporters: [
     ["lcov", {"projectRoot": "../"}],
     "text-summary",

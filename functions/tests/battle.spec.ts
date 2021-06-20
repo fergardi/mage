@@ -1,12 +1,12 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import { applyArtifacts, applyContracts, applyCharms, applyWave, BattleType, BattleReport, resolveBattle, applyBonuses, applyDamage, CategoryType, applyCasualties } from './index';
+import { applyArtifacts, applyContracts, applyCharms, applyWave, BattleType, BattleReport, resolveBattle, applyBonuses, applyDamage, CategoryType, applyCasualties } from '../index';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
   projectId: 'mage-c4259',
-  credential: admin.credential.cert(require('./credentials/test.json')),
+  credential: admin.credential.cert(require('../credentials/test.json')),
 };
 const tester = functions(config);
 
@@ -14,7 +14,7 @@ const ITEMS_QUANTITY: number = 1;
 const UNITS_QUANTITY: number = 100;
 const HERO_LEVEL: number = 10;
 
-describe('API', () => {
+describe.skip('BATTLE', () => {
   // report
   let report: BattleReport;
   // troops
