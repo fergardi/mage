@@ -341,7 +341,7 @@ $list-item-height: 60px;
 .mat-card:not(.map-popup) {
   .mat-card-header {
     background-color: #212121;
-    margin: -16px -16px 16px -16px !important;
+    margin: -16px -16px 0px -16px !important;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     .mat-card-avatar {
@@ -377,7 +377,10 @@ $list-item-height: 60px;
   opacity: 0.975;
 }
 .mat-card-content {
-  margin-bottom: 0px !important;
+  margin: 16px 0 0 0 !important;
+}
+.mat-card-image {
+  margin: 0 -16px 0 -16px !important;
 }
 .mat-subheader {
   color: rgba(255, 255, 255, 0.7);
@@ -797,4 +800,16 @@ $list-item-height: 60px;
 }
 hr {
   border-color: $primary-color;
+}
+ul {
+  list-style: none;
+}
+ul li::before {
+  content: "● ";
+  color: $primary-color;
+  font-weight: bold;
+
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
 }
