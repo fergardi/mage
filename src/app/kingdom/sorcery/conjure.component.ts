@@ -19,7 +19,7 @@ export enum CharmAssignmentType {
   template: `
     <h1 mat-dialog-title>{{ 'kingdom.conjure.name' | translate }}</h1>
     <div mat-dialog-content>
-      <p>{{ 'kingdom.conjure.description' | translate }}</p>
+      <p [innerHTML]="'kingdom.conjure.description' | translate | icon"></p>
       <div matSubheader>{{ 'kingdom.conjure.charm' | translate }}:</div>
       <mat-list dense *ngIf="!kingdomCharms && selectedCharm">
         <mat-list-item [ngClass]="[selectedCharm.spell.faction.id, selectedCharm.spell.legendary ? 'legendary' : 'common']">

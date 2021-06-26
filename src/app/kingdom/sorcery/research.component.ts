@@ -12,7 +12,7 @@ import { LoadingService } from 'src/app/services/loading.service';
   template: `
     <h1 mat-dialog-title>{{ 'kingdom.research.name' | translate }}</h1>
     <div mat-dialog-content>
-      <p>{{ 'kingdom.research.description' | translate }}</p>
+      <p [innerHTML]="'kingdom.research.description' | translate | icon"></p>
       <div matSubheader>{{ 'kingdom.research.charm' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']">

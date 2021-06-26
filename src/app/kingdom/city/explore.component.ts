@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
   template: `
     <h1 mat-dialog-title>{{ 'kingdom.explore.name' | translate }}</h1>
     <div mat-dialog-content>
-      <p>{{ 'kingdom.explore.help' | translate }}</p>
+      <p [innerHTML]="'kingdom.explore.help' | translate | icon"></p>
       <div matSubheader>{{ 'kingdom.explore.discovery' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="(land$ | async).resource.faction.id">

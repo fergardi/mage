@@ -224,7 +224,7 @@
     "encyclopedia": {
       "name": "Enciclopedia",
       "description": "Conocimiento ilimitado",
-      "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc.",
+      "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc. Si lo que buscas no está en esta biblioteca, es que no existe.",
       "tour": "En la enciclopedia encontrarás todo lo que necesites para aprender a jugar, así como las estadísticas de todo lo que existe en mundo mágico de Legendarium."
     },
     "tome": {
@@ -296,20 +296,20 @@
     "city": {
       "name": "Ciudad",
       "description": "Administra tu capital",
-      "help": "En la ciudad puedes invertir Turnos, Oro, y Tierras en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino. Ten en cuenta que cuantos más talleres tengas, menos Turnos necesitarás.",
+      "help": "En la ciudad puedes invertir <turn>, <gold>, y <land> en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu reino. Ten en cuenta que cuantos más talleres tengas, menos <turn> necesitarás.",
       "tour": "La ciudad es el punto más importante de tu reino a tener en cuenta. En tu capital serás capaz de obtener <gold> de tus súbditos, cargar <mana> en casos de extrema necesidad, explorar territorios para obtener nuevas <land>, y finalmente utilizarlas para construir nuevos edificios que mejoren permanentemente tus estadísticas económicas, como por ejemplo:<ul><li>Incrementar tu producción de <gold>, <mana> y <population> al turno</li><li>Incrementar tu velocidad de construcción y de investigación</li><li>Incrementar tu defensa física y mágica</li><li>Incrementar tu cantidad de <land></li></ul>"
     },
     "leadership": {
       "name": "Liderazgo",
       "description": "Comanda tus tropas",
-      "help": "Los héroes que tengas asignados al Liderazo entrarán en batalla contra cualquier reino que ataques o aventura que emprendas, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
+      "help": "Los héroes que tengas asignados al Liderazo irán al <attack> en batalla contra cualquier reino que ataques o aventura que emprendas, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
       "tour": "",
       "max": "Max"
     },
     "guard": {
       "name": "Guardia",
       "description": "Vigila tus dominios",
-      "help": "Los héroes que tengas asignados a la Guardia entrarán en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
+      "help": "Los héroes que tengas asignados a la Guardia irán en <defense> en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
       "tour": "",
       "max": "Max"
     },
@@ -356,7 +356,7 @@
     "army": {
       "name": "Ejército",
       "description": "Gestiona tus tropas",
-      "help": "En el ejército podrás ver un listado de todas tus Tropas en espera, sin asignar ni al ataque ni a la defensa. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que consumen recursos al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
+      "help": "En el ejército podrás ver un listado de todas tus Tropas en espera, sin asignar ni al <attack> ni a la <defense>. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que pueden consumir <gold>, <mana> o <population> al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
       "tour": "El ejército se compone de Tropas, y son tu principal motor en las conquistas territoriales, permitiendo robar <gold>, <mana>, <population>, <land>, además de reducir <power> enemigo. Puedes asignarlas para:<ul><li>Nada, ni atacan ni defienden, pero consumen recursos igualmente</li><li>Atacar manualmente, hasta 5 Tropas diferentes y en el orden especificado</li><li>Defender automáticamente, hasta 5 Tropas diferentes y en el orden especificado</li></ul>También las puedes desbandar.",
       "max": "Max",
       "maximum": "Tu ejército está al completo",
@@ -365,11 +365,11 @@
     },
     "disband": {
       "name": "Desbande",
-      "description": "Puedes desbandar tropas que no quieras seguir manteniendo bajo tu mando, siempre y cuando no estén asignadas al ataque o a la defensa, y que no consuman Población por su mantenimiento.",
+      "description": "Puedes desbandar tropas que no quieras seguir manteniendo bajo tu mando, siempre y cuando no estén asignadas al <attack> o a la <defense>, y que no consuman <population> por su mantenimiento.",
       "quantity": "Cantidad",
       "cancel": "Cancelar",
       "disband": "Desbandar",
-      "hint": "Puedes desbandar unidades que consuman Población",
+      "hint": "No puedes desbandar unidades que consuman Población",
       "invalid": "No tienes suficientes tropas",
       "error": "Ha ocurrido un problema",
       "success": "Has desbandado {{ quantity }} {{ unit }}",
@@ -408,7 +408,7 @@
     "recruit": {
       "name": "Reclutamiento",
       "description": "Recluta tropas básicas",
-      "help": "Aqui puedes gastar Oro para adquirir tropas básicas para tus ejércitos. Reclutar no consume Turnos, por lo que es una buena forma de reorganizarse militarmente tras una derrota.",
+      "help": "Aqui puedes gastar <gold> para adquirir tropas básicas para tus ejércitos. Reclutar no consume <turn>, por lo que es una buena forma de reorganizarse militarmente tras una derrota.",
       "tour": "",
       "hint": "Debes tener suficiente Oro",
       "invalid": "No tienes suficiente Oro",
@@ -424,7 +424,7 @@
     "break": {
       "name": "Desvanecimiento",
       "description": "Rompe encantamientos",
-      "help": "Aqui puedes gastar Maná para rezar y tratar de desvanecer un encantamiento del que seas objetivo (pero no su fuente). El éxito dependerá de la diferencia de protección mágica entre ambos reinos.",
+      "help": "Aqui puedes gastar <mana> para rezar y tratar de desvanecer un encantamiento del que seas objetivo (pero no su fuente). El éxito dependerá de la diferencia de protección mágica entre ambos reinos.",
       "tour": "",
       "hint": "Debes tener suficiente Maná",
       "invalid": "No tienes suficiente Maná",
@@ -439,7 +439,7 @@
     "dispel": {
       "name": "Liberación",
       "description": "Libera maleficios",
-      "help": "Aqui puedes gastar Maná para rezar y tratar de liberar un maleficio del que seas fuente (incluso siendo su objetivo). Siempre se tiene éxito.",
+      "help": "Aqui puedes gastar <mana> para rezar y tratar de liberar un maleficio del que seas fuente (incluso siendo su objetivo). Siempre se tiene éxito.",
       "tour": "",
       "hint": "Debes tener suficiente Maná",
       "invalid": "No tienes suficiente Maná",
@@ -468,7 +468,7 @@
     "auction": {
       "name": "Subasta",
       "description": "Comercia con otros reinos",
-      "help": "En la subasta puedes pujar Oro contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de Oro que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de Oro de tu puja original, así que asegúrate de pujar con cuidado.",
+      "help": "En la subasta puedes pujar <gold> contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de <gold> que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de <gold> de tu puja original, así que asegúrate de pujar con cuidado.",
       "tour": "La subasta es el único lugar en el que puedes adquirir bienes a cambio de <gold>, además del mapa del mundo, pero a diferencia de éste son independientes de la zona geográfica pues son comunes para todos los jugadores:<ul><li>Son renovadas periódicamente</li><li>Debes pujar mínimo un 10% más de <gold> que el anterior</li><li>Solo recibirás el 90% de tu <gold> si te sobrepujan</li><li>No puedes subastar tus propios bienes</li><li>Ls Hechizos se adquieren sin investigar</li><li>Los Héroes repetidos aumentan sus niveles</li></ul>",
       "bid": "Pujar",
       "subject": "Casa de Subastas",
@@ -478,7 +478,7 @@
     "bid": {
       "name": "Puja",
       "description": "Comercia con otros reinos",
-      "help": "Debes pujar como mínimo un 10% más de Oro que la puja anterior, y si alguien te sobrepuja, se te devolverá solo el 90% de tu puja original, así que puja con inteligencia.",
+      "help": "Debes pujar como mínimo un 10% más de <gold> que la puja anterior, y si alguien te sobrepuja, se te devolverá solo el 90% de tu <gold> original, así que puja con inteligencia.",
       "cancel": "Cancelar",
       "bid": "Pujar",
       "hint": "Ofrece como mínimo un 10% más Oro que la puja anterior",
@@ -491,7 +491,7 @@
     "sorcery": {
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
-      "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al ataque ni a la defensa. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas. También podrás completar investigaciones pendientes para desbloquear nuevos hechizos, invirtiendo Turnos. Para lanzar hechizos agresivos, hazlo desde el Censo.",
+      "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al <attack> ni a la <defense>. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas y tengas <mana>. También podrás completar investigaciones pendientes para desbloquear nuevos hechizos, invirtiendo <turn>. Para lanzar hechizos agresivos, hazlo desde el Censo.",
       "tour": "La magia te permite invertir turnos en la investigación de nuevos y poderosos Hechizos, activar tus Artefactos, y gestionar cuales de ellos se usarán tanto en el ataque como en la defensa de tu reino:<ul><li>Atacar manualmente, hasta 1 Artefacto y 1 Hechizo (si puedes pagar su <mana>)</li><li>Defender automáticamente, hasta 1 Artefacto y 1 Hechizo (si puedes pagar su <mana>)",
       "maximum": "No puedes superar el máximo",
       "success": "Tus hechizos y artefactos han sido asignados",
@@ -499,7 +499,7 @@
     },
     "research": {
       "name": "Investigación",
-      "description": "Aqui puedes gastar Turnos para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos Turnos necesitarás.",
+      "description": "Aqui puedes invertir <turn> para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos <turn> necesitarás.",
       "hint": "Invierte Turnos en investigar",
       "invalid": "No dispones de suficientes Turnos",
       "error": "Ha ocurrido un problema",
@@ -511,7 +511,7 @@
     },
     "conjure": {
       "name": "Conjuración",
-      "description": "Aqui puedes gastar Turnos y Maná para conjurar tus hechizos investigados. Conjurar hechizos sobre otros reinos no siempre funciona debido a la protección mágica.",
+      "description": "Aqui puedes gastar <turn> y <mana> para conjurar tus hechizos investigados. Conjurar hechizos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Debes tener suficientes Turnos y Maná",
       "error": "Ha ocurrido un problema",
       "conjure": "Conjurar",
@@ -534,7 +534,7 @@
     },
     "activate": {
       "name": "Activación",
-      "description": "Activa artefactos sobre tu reino o sobre otros reinos. Cada activación consume el artefacto y Turnos. Activar artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
+      "description": "Activa artefactos sobre tu reino o sobre otros reinos. Cada activación consume el artefacto y <turn>. Activar artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Selecciona el objetivo",
       "error": "Ha ocurrido un problema",
       "activate": "Activar",
@@ -552,21 +552,21 @@
     "arcanism": {
       "name": "Arcanismo",
       "description": "Organiza tus artimañas ofensivas",
-      "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al ataque, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente Maná disponible.",
+      "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al <attack>, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente <mana> disponible.",
       "tour": "",
       "max": "Max"
     },
     "protection": {
       "name": "Protección",
       "description": "Organiza tus artimañas defensivas",
-      "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la defensa, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente Maná disponible.",
+      "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la <defense>, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente <mana> disponible.",
       "tour": "",
       "max": "Max"
     },
     "charge": {
       "name": "Meditación",
       "description": "Recarga tus reservas mágicas",
-      "help": "Aquí podrás invertir Turnos en reponer los depósitos de Maná de tu reino. El mana se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
+      "help": "Aquí podrás invertir <turn> en reponer los depósitos de <mana> de tu reino. El <mana> se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
       "tour": "",
       "cancel": "Cancelar",
       "hint": "Cuantos más nodos tengas, más Maná recargarás",
@@ -580,7 +580,7 @@
     "tax": {
       "name": "Tributo",
       "description": "Exprimir a tus súbditos es lo razonable",
-      "help": "Aquí podrás invertir Turnos en cobrar impuestos a los súbditos de tu reino. El Oro se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
+      "help": "Aquí podrás invertir <turn> en cobrar <gold> a los súbditos de tu reino. El <gold> se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
       "tour": "",
       "cancel": "Cancelar",
       "hint": "Cuantos más pueblos tengas, más Oro recaudarás",
@@ -594,7 +594,7 @@
     "explore": {
       "name": "Exploración",
       "description": "Anexiona nuevos territorios a tu reino",
-      "help": "Aquí podrás invertir Turnos en explorar los vastos terrenos a tu alrededor para obtener nuevas Tierras libres. Las Tierras libres sirven como espacio para construir nuevos edificios en tu reino.",
+      "help": "Aquí podrás invertir <turn> en explorar los vastos terrenos a tu alrededor para obtener nuevas <land> libres. Las <land> libres sirven como espacio para construir nuevos edificios en tu reino.",
       "tour": "",
       "cancel": "Cancelar",
       "hint": "Cuantas más Tierras tengas, menos encontrarás",
@@ -608,7 +608,7 @@
     "tavern": {
       "name": "Taberna",
       "description": "Asigna a tus héroes",
-      "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores de batalla. Puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos. Los héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
+      "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores de batalla ni al <attack> ni a la <defense>. Puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos. Los héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
       "tour": "La taberna alberga a los Héroes que contrates en tu reino. Proporcionan pequeños bonuses que pueden ir desde incrementar la producción de recursos hasta aumentar las estadísticas de tus Tropas en la batalla. Puedes asignarlos para:<ul><li>Nada, ni atacan ni defienden, consumen mantenimientos pero proporcionan bonuses pasivos</li><li>Atacar manualmente, hasta 3 Héroes diferentes y su orden es irrelevante</li><li>Defender automáticamente, hasta 3 Héroes diferentes y su orden es irrelevante</li></ul>También los puedes despedir.",
       "success": "Tus héroes han sido asignados",
       "error": "Ha ocurrido un problema",
@@ -674,7 +674,7 @@
     "temple": {
       "name": "Templo",
       "description": "Complace a los dioses",
-      "help": "Puedes ofrecer recursos a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
+      "help": "Puedes ofrecer <gold>, <mana>, <population>, <turn> y <land> a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
       "tour": "En el templo se ofrecen recursos a los dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar a un dios, obtendrás su favor, que puede ir desde regalar un Artefacto hasta maldecir tu reino con el más terrible de los encantamientos. También puedes ver los encantamientos de tu reino y tratar de romperlos, si así lo deseas.",
       "hero": "Te han otorgado el héroe {{ hero }} ({{ level }})",
       "unit": "Te han otorgado la tropa {{ unit }} ({{ quantity }})",
@@ -704,7 +704,7 @@
     "emporium": {
       "name": "Emporio",
       "description": "Contrabando del mercado negro",
-      "help": "En el emporio pueeds gastar tus gemas adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un importante impulso económico, científico o militar.",
+      "help": "En el emporio puedes gastar tus <gem> adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un importante impulso económico, científico o militar.",
       "tour": "El emporio es el lugar para gastar las <gem> que hayas conseguido jugando (o a cambio de dinero real) para comprar diversos Artefactos que te ofrecerán:<ul><li>Recursos</li><li>Tropas</li><li>Encantamientos</li><li>Conjuros de batalla</li></ul>",
       "success": "Has adquirido {{ quantity }} {{ item }}",
       "error": "Ha ocurrido un problema",
@@ -714,14 +714,14 @@
     },
     "buy": {
       "name": "Compra",
-      "help": "Vas a adquirir un Artefacto a cambio de varias Gemas. ¡No se acepta Oro! ¡No se permiten cambios, ni devoluciones! ¡No se fía!",
+      "help": "Vas a adquirir un Artefacto a cambio de varias <gem>.",
       "cancel": "Cancelar",
       "buy": "Comprar",
       "artifact": "Artefacto"
     },
     "build": {
       "name": "Construcción",
-      "description": "Invierte Tierras libres, Oro y Turnos para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como las batallas o los asedios. Cuantos más talleres tengas, menos Turnos gastarás al construir. Otros factores que pueden influir en esto son ciertos encantamientos y héroes aliados.",
+      "description": "Invierte <land>, <gold> y <turn> para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como las batallas o los asedios. Cuantos más talleres tengas, menos <turn> gastarás al construir. Otros factores que pueden influir en esto son ciertos encantamientos y héroes aliados. También puedes demoler edificios si así lo deseas.",
       "cancel": "Cancelar",
       "build": "Construir",
       "demolish": "Demoler",
@@ -737,7 +737,7 @@
     "gemology": {
       "name": "Gemología",
       "description": "Extraer gemas de la tierra",
-      "help": "Puedes pagar a unos amables gnomos para que extraigan gemas de las profundas minas bajo tu reino a cambio de dinero real.",
+      "help": "Puedes pagar a unos amables gnomos para que extraigan <gem> de las profundas minas bajo tu reino, a cambio de dinero real.",
       "tour": ""
     }
   },

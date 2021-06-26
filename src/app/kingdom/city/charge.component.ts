@@ -13,7 +13,7 @@ import { LoadingService } from 'src/app/services/loading.service';
   template: `
     <h1 mat-dialog-title>{{ 'kingdom.charge.name' | translate }}</h1>
     <div mat-dialog-content>
-      <p>{{ 'kingdom.charge.help' | translate }}</p>
+      <p [innerHTML]="'kingdom.charge.help' | translate | icon"></p>
       <div matSubheader>{{ 'kingdom.charge.source' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="(node$ | async)?.structure.faction.id">

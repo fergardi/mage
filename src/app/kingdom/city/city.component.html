@@ -14,7 +14,7 @@
       </mat-card-header>
 
       <mat-card-content>
-        <p>{{ 'kingdom.city.help' | translate }}</p>
+        <p [innerHTML]="'kingdom.city.help' | translate | icon"></p>
         <div matSubheader>{{ 'card.list.buildings' | translate }}:</div>
         <mat-action-list dense tourAnchor="tour.city">
           <button mat-list-item *ngFor="let building of kingdomBuildings$ | async" (click)="openBuildDialog(building)" class="common">
@@ -51,7 +51,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <p>{{ 'kingdom.tax.help' | translate }}</p>
+            <p [innerHTML]="'kingdom.tax.help' | translate | icon"></p>
             <div matSubheader>{{ 'kingdom.tax.tax' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.tax">
               <button mat-list-item *ngIf="village$" (click)="openTaxDialog(village$)" class="common">
@@ -84,7 +84,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <p>{{ 'kingdom.charge.help' | translate }}</p>
+            <p [innerHTML]="'kingdom.charge.help' | translate | icon"></p>
             <div matSubheader>{{ 'kingdom.charge.charge' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.charge">
               <button mat-list-item *ngIf="node$" (click)="openChargeDialog(node$)" class="common">
@@ -117,7 +117,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <p>{{ 'kingdom.explore.help' | translate }}</p>
+            <p [innerHTML]="'kingdom.explore.help' | translate | icon"></p>
             <div matSubheader>{{ 'kingdom.explore.explore' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.explore">
               <button mat-list-item *ngIf="land$ | async" (click)="openExploreDialog(land$)" class="common">

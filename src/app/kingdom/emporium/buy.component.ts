@@ -11,7 +11,7 @@ import { LoadingService } from 'src/app/services/loading.service';
   template: `
     <h1 mat-dialog-title>{{ 'kingdom.buy.name' | translate }}</h1>
     <div mat-dialog-content>
-      <p>{{ 'kingdom.buy.help' | translate }}</p>
+      <p [innerHTML]="'kingdom.buy.help' | translate | icon"></p>
       <div matSubheader>{{ 'kingdom.buy.artifact' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[item.faction.id, item.legendary ? 'legendary' : 'common']">

@@ -13,7 +13,7 @@
       </mat-card-header>
 
       <mat-card-content>
-        <p>{{ 'kingdom.sorcery.help' | translate }}</p>
+        <p [innerHTML]="'kingdom.sorcery.help' | translate | icon"></p>
         <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
         <div tourAnchor="tour.sorcery">
           <mat-action-list dense class="dotted" id="0" #kngdmArtifacts="cdkDropList" [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="kingdomArtifacts">
@@ -69,7 +69,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <p>{{ 'kingdom.arcanism.help' | translate }}</p>
+            <p [innerHTML]="'kingdom.arcanism.help' | translate | icon"></p>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
             <div tourAnchor="tour.arcanism">
               <mat-list dense class="dotted" id="1" #atckArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="attackArtifacts">
@@ -112,7 +112,7 @@
           </mat-card-header>
 
           <mat-card-content>
-            <p>{{ 'kingdom.protection.help' | translate }}</p>
+            <p [innerHTML]="'kingdom.protection.help' | translate | icon"></p>
             <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
             <div tourAnchor="tour.protection">
               <mat-list dense class="dotted" id="2" #defArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="defenseArtifacts">

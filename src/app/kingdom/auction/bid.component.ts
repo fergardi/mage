@@ -12,7 +12,7 @@ import { LoadingService } from 'src/app/services/loading.service';
   template: `
     <h1 mat-dialog-title>{{ 'kingdom.bid.name' | translate }}</h1>
     <div mat-dialog-content>
-      <p>{{ 'kingdom.bid.help' | translate }}</p>
+      <p [innerHTML]="'kingdom.bid.help' | translate | icon"></p>
       <div matSubheader>{{ 'kingdom.bid.data' | translate }}:</div>
       <mat-list dense>
         <mat-list-item [ngClass]="[auction.join.faction.id, auction.join.legendary ? 'legendary' : 'common']">
