@@ -3,6 +3,7 @@
     "type": "attack",
     "subtype": "battle",
     "id": "assault",
+    "faction": "grey",
     "name": "attack.assault.name",
     "description": "attack.assault.description",
     "image": "/assets/images/attacks/assault.png"
@@ -11,6 +12,7 @@
     "type": "attack",
     "subtype": "battle",
     "id": "siege",
+    "faction": "grey",
     "name": "attack.siege.name",
     "description": "attack.siege.description",
     "image": "/assets/images/attacks/siege.png"
@@ -19,6 +21,7 @@
     "type": "attack",
     "subtype": "battle",
     "id": "pillage",
+    "faction": "grey",
     "name": "attack.pillage.name",
     "description": "attack.pillage.description",
     "image": "/assets/images/attacks/pillage.png"

@@ -154,6 +154,10 @@
     "guild": {
       "name": "Gremio",
       "description": ""
+    },
+    "attack": {
+      "name": "Ataque",
+      "description": ""
     }
   },
   "attack": {
@@ -229,7 +233,7 @@
       "name": "Enciclopedia",
       "description": "Conocimiento ilimitado",
       "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc. Si lo que buscas no está en esta biblioteca, es que no existe.",
-      "tour": "En la enciclopedia encontrarás todo lo que necesites para aprender a jugar, así como las estadísticas de todo lo que existe en mundo mágico de Legendarium."
+      "tour": "En la enciclopedia encontrarás todo lo que necesites para aprender a jugar, así como las estadísticas de todo lo que existe en este mundo mágico.<br><br>Si aún así tienes más dudas, tienes a tu disposición el Tutorial del juego. Recuerda que a jugar se aprende jugando."
     },
     "tome": {
       "name": "Tomo",
@@ -679,7 +683,7 @@
       "name": "Templo",
       "description": "Complace a los dioses",
       "help": "Puedes ofrecer <gold>, <mana>, <population>, <turn> y <land> a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
-      "tour": "En el templo se puede ofrecer <gold>, <mana>, <population>, <land> o <turn> a los dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar a un dios, obtendrás su favor, que puede ir desde regalar un Artefacto hasta maldecir tu reino con el más terrible de los encantamientos. También puedes ver los encantamientos de tu reino y tratar de romperlos usando <mana>, si así lo deseas.",
+      "tour": "En el templo se puede ofrecer <gold>, <mana>, <population>, <land> o <turn> a los dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar a un dios, obtendrás su favor, que puede ir desde regalar un Artefacto hasta maldecir tu reino con el más terrible de los encantamientos.<br><br>También puedes ver los encantamientos de tu reino y tratar de romperlos usando <mana>, si así lo deseas:<ul><li>De tu reino a tu reino</li><li>De tu reino a otro reino</li><li>De otro reino a tu reino</li></ul>",
       "hero": "Te han otorgado el héroe {{ hero }} ({{ level }})",
       "unit": "Te han otorgado la tropa {{ unit }} ({{ quantity }})",
       "enchantment": "Te han encantado con {{ enchantment }} ({{ turns }})",
@@ -709,7 +713,7 @@
       "name": "Emporio",
       "description": "Contrabando del mercado negro",
       "help": "En el emporio puedes gastar tus <gem> adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un importante impulso económico, científico o militar.",
-      "tour": "El emporio es el lugar para gastar las <gem> que hayas conseguido jugando (o a cambio de dinero real) para comprar diversos Artefactos que te ofrecerán:<ul><li>Recursos</li><li>Tropas</li><li>Encantamientos</li><li>Conjuros de batalla</li></ul>",
+      "tour": "El emporio es el lugar para gastar las <gem> que hayas conseguido para comprar diversos Artefactos que te ofrecerán muy diversas bonificaciones:<ul><li>Recursos</li><li>Tropas</li><li>Hechizos</li><li>Encantamientos</li><li>Instantáneos</li><li>Habilidades</li></ul>También puedes comprar más <gem> con dinero real.",
       "success": "Has adquirido {{ quantity }} {{ item }}",
       "error": "Ha ocurrido un problema",
       "subject": "Compra realizada",

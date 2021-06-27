@@ -65,7 +65,7 @@
                       <img mat-list-avatar [src]="row.image">
                     </div>
                     <div mat-line>{{ row.name | translate:{name:'?'} }}</div>
-                    <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category', 'guild'].includes(row.type)">{{ row.description | translate }}</div>
+                    <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category', 'guild', 'attack'].includes(row.type)">{{ row.description | translate }}</div>
                     <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'structure', 'location', 'hero', 'item'].includes(row.type)" [innerHTML]="row.description | translate | icon:row"></div>
                     <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(row.type)">
                       <img [title]="family.name | translate" class="icon" *ngFor="let family of row.families" [src]="family.image">
@@ -107,7 +107,13 @@
           <mat-row *matRowDef="let tome; columns: columns;" (click)="openTomeDialog(tome)"></mat-row>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <mat-toolbar>
+          <mat-toolbar-row>
+            <button mat-mini-fab color="primary" (click)="clearFilter()"><mat-icon>clear</mat-icon></button>
+            <span class="fill-space"></span>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </mat-toolbar-row>
+        </mat-toolbar>
 
       </mat-card-content>
     </mat-card>
