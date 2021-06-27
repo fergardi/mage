@@ -150,6 +150,10 @@
     "item": {
       "name": "Artefacto",
       "description": ""
+    },
+    "guild": {
+      "name": "Gremio",
+      "description": ""
     }
   },
   "attack": {
@@ -469,7 +473,7 @@
       "name": "Subasta",
       "description": "Comercia con otros reinos",
       "help": "En la subasta puedes pujar <gold> contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de <gold> que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de <gold> de tu puja original, así que asegúrate de pujar con cuidado.",
-      "tour": "La subasta es el único lugar en el que puedes adquirir bienes a cambio de <gold>, además del mapa del mundo, pero a diferencia de éste son independientes de la zona geográfica pues son comunes para todos los jugadores:<ul><li>Son renovadas periódicamente</li><li>Debes pujar mínimo un 10% más de <gold> que el anterior</li><li>Solo recibirás el 90% de tu <gold> si te sobrepujan</li><li>No puedes subastar tus propios bienes</li><li>Ls Hechizos se adquieren sin investigar</li><li>Los Héroes repetidos aumentan sus niveles</li></ul>",
+      "tour": "La subasta es el único lugar en el que puedes adquirir bienes a cambio de <gold>, además del mapa del mundo, pero a diferencia de éste son independientes de la zona geográfica pues son comunes para todos los jugadores:<ul><li>Son renovadas periódicamente</li><li>Debes pujar mínimo un 10% más de <gold> que el anterior</li><li>Solo recibirás el 90% de tu <gold> si te sobrepujan</li><li>No puedes subastar tus propios bienes</li><li>Los Hechizos se adquieren sin investigar</li><li>Los Héroes repetidos aumentan sus niveles</li></ul>",
       "bid": "Pujar",
       "subject": "Casa de Subastas",
       "won": "La subasta ha terminado y tu reino ha resultado ganador. Las nuevas adquisiciones se han enviado a tu reino.",
@@ -492,7 +496,7 @@
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
       "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al <attack> ni a la <defense>. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas y tengas <mana>. También podrás completar investigaciones pendientes para desbloquear nuevos hechizos, invirtiendo <turn>. Para lanzar hechizos agresivos, hazlo desde el Censo.",
-      "tour": "La magia te permite invertir turnos en la investigación de nuevos y poderosos Hechizos, activar tus Artefactos, y gestionar cuales de ellos se usarán tanto en el ataque como en la defensa de tu reino:<ul><li>Atacar manualmente, hasta 1 Artefacto y 1 Hechizo (si puedes pagar su <mana>)</li><li>Defender automáticamente, hasta 1 Artefacto y 1 Hechizo (si puedes pagar su <mana>)",
+      "tour": "La magia te permite invertir turnos en la investigación de nuevos y poderosos Hechizos, activar tus Artefactos, y gestionar cuales de ellos se usarán tanto en el ataque como en la defensa de tu reino. Puedes asignarlos para:<ul><li>Atacar manualmente, hasta 1 Artefacto y 1 Hechizo (si puedes pagar su <mana>)</li><li>Defender automáticamente, hasta 1 Artefacto y 1 Hechizo (si puedes pagar su <mana>)",
       "maximum": "No puedes superar el máximo",
       "success": "Tus hechizos y artefactos han sido asignados",
       "max": "Max"
@@ -619,7 +623,7 @@
       "name": "Archivo",
       "description": "Revisa tu correspondencia",
       "help": "Aqui puedes ver un listado de todos los mensajes directos que te han enviado otros reinos, así como los informes de batalla, subastas ganadas o sobrepujadas, hechizos, artefactos y encantamientos lanzados contra tu reino.",
-      "tour": "En el archivo puedes consultar los mensajes que llegan diariamente a tu reino:<ul><li>Reportes de batalla</li><li>Movimientos de subasta</li><li>Mensajes de otros reinos</li><li>Activaciones de artifactos</li><li>Conjuraciones de hechizos y encantamientos</li></ul>",
+      "tour": "En el archivo puedes consultar los mensajes que llegan diariamente a tu reino:<ul><li>Reportes de batalla</li><li>Movimientos de subasta</li><li>Mensajes de otros reinos</li><li>Activaciones de artifactos</li><li>Conjuraciones de hechizos y encantamientos</li></ul>También los puedes borrar.",
       "new": "Tienes mensajes nuevos",
       "success": "Mensajes borrados",
       "error": "Ha ocurrido un problema"
@@ -675,7 +679,7 @@
       "name": "Templo",
       "description": "Complace a los dioses",
       "help": "Puedes ofrecer <gold>, <mana>, <population>, <turn> y <land> a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
-      "tour": "En el templo se ofrecen recursos a los dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar a un dios, obtendrás su favor, que puede ir desde regalar un Artefacto hasta maldecir tu reino con el más terrible de los encantamientos. También puedes ver los encantamientos de tu reino y tratar de romperlos, si así lo deseas.",
+      "tour": "En el templo se puede ofrecer <gold>, <mana>, <population>, <land> o <turn> a los dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar a un dios, obtendrás su favor, que puede ir desde regalar un Artefacto hasta maldecir tu reino con el más terrible de los encantamientos. También puedes ver los encantamientos de tu reino y tratar de romperlos usando <mana>, si así lo deseas.",
       "hero": "Te han otorgado el héroe {{ hero }} ({{ level }})",
       "unit": "Te han otorgado la tropa {{ unit }} ({{ quantity }})",
       "enchantment": "Te han encantado con {{ enchantment }} ({{ turns }})",

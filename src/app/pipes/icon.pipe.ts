@@ -20,7 +20,7 @@ export class IconPipe implements PipeTransform {
       });
       return this.domSanitizer.bypassSecurityTrustHtml(text);
     } else {
-      return text
+      return (text || '')
       .replace(/<gold>/g, `<img class="icon" title="${this.translateService.instant('resource.gold.name')}" src="/assets/images/resources/gold.png">`)
       .replace(/<mana>/g, `<img class="icon" title="${this.translateService.instant('resource.mana.name')}" src="/assets/images/resources/mana.png">`)
       .replace(/<population>/g, `<img class="icon" title="${this.translateService.instant('resource.population.name')}" src="/assets/images/resources/population.png">`)

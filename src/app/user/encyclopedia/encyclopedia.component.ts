@@ -39,7 +39,8 @@ export class EncyclopediaComponent implements OnInit {
       options: [],
     },
   };
-  data: MatTableDataSource<any> = new MatTableDataSource([]);
+  table: MatTableDataSource<any> = new MatTableDataSource([]);
+  topics: any[] = [];
 
   constructor(
     private cacheService: CacheService,
@@ -63,12 +64,13 @@ export class EncyclopediaComponent implements OnInit {
       this.cacheService.getResources(),
       this.cacheService.getFamilies(),
       this.cacheService.getCategories(),
+      this.cacheService.getGuilds(),
     ]);
     data = data.reduce((a: any[], b: any) => a.concat(b), []);
-    this.data = new MatTableDataSource(data);
-    this.data.paginator = this.paginator;
-    this.data.sort = this.sort;
-    this.data.sortingDataAccessor = (obj, property) => {
+    this.table = new MatTableDataSource(data);
+    this.table.paginator = this.paginator;
+    this.table.sort = this.sort;
+    this.table.sortingDataAccessor = (obj, property) => {
       if (property === 'name') return this.translateService.instant(obj['name']);
       if (property === 'faction') return this.translateService.instant(obj['faction']['name']);
       if (property === 'type') return this.translateService.instant(`type.${obj['type']}.name`);
@@ -84,12 +86,28 @@ export class EncyclopediaComponent implements OnInit {
     const types = [...new Set(data.map(row => row.type))].map((type: string) => ({ name: `type.${type}.name`, value: type }));
     const subtypes = [...new Set(data.filter(row => row.subtype).map(row => row.subtype))].map((subtype: string) => ({ name: `type.${subtype}.name`, value: subtype }));
     this.filters.type.options = [legendary, types, subtypes].reduce((a: any[], b: any) => a.concat(b), []); // TODO fix duplicates with types and subtypes
-    this.data.filterPredicate = this.createFilter();
+    this.table.filterPredicate = this.createFilter();
     this.applyFilter();
+    // topics
+    this.topics = [
+      { surname: 'kingdom', name: 'city', examples: this.table.data.filter((item: any) => ['barrier', 'node'].includes(item.id)), suffix: '/assets/images/resources/land.png' },
+      { surname: 'kingdom', name: 'auction', examples: this.table.data.filter((item: any) => ['shield-light', 'crypt-keeper'].includes(item.id)), suffix: '/assets/images/resources/gold.png' },
+      { surname: 'kingdom', name: 'emporium', examples: this.table.data.filter((item: any) => ['magic-compass', 'dragon-egg'].includes(item.id)), suffix: '/assets/images/resources/gem.png' },
+      { surname: 'world', name: 'map', examples: this.table.data.filter((item: any) => ['skeleton', 'treasure-chest'].includes(item.id)), suffix: '/assets/images/resources/turn.png' },
+      { surname: 'kingdom', name: 'army', examples: this.table.data.filter((item: any) => ['bone-dragon', 'hydra'].includes(item.id)) },
+      { surname: 'kingdom', name: 'tavern', examples: this.table.data.filter((item: any) => ['dragon-rider', 'sage'].includes(item.id)) },
+      { surname: 'kingdom', name: 'census', examples: [{ name: 'Bot 1', description: '', type: 'player', image: '/assets/images/factions/black.png', faction: { id: 'black' } }, { name: 'Bot 2', description: '', type: 'player', image: '/assets/images/factions/white.png', faction: { id: 'white' } }], suffix: '/assets/images/icons/power.png' },
+      { surname: 'kingdom', name: 'archive', examples: [{ name: 'Bot 3', description: 'kingdom.report.subject', type: 'report', image: '/assets/images/factions/green.png', faction: { id: 'green' } }, { name: 'Bot 4', description: 'kingdom.auction.subject', type: 'report', image: '/assets/images/factions/blue.png', faction: { id: 'blue' } }] },
+      { surname: 'kingdom', name: 'clan', examples: this.table.data.filter((item: any) => ['hunter', 'warrior'].includes(item.id)) },
+      { surname: 'kingdom', name: 'sorcery', examples: this.table.data.filter((item: any) => ['fireball', 'locust-swarm'].includes(item.id)), suffix: '/assets/images/resources/mana.png' },
+      { surname: 'kingdom', name: 'temple', examples: this.table.data.filter((item: any) => ['death', 'armageddon'].includes(item.id)), suffix: '/assets/images/resources/population.png' },
+      { surname: 'user', name: 'encyclopedia', examples: this.table.data.filter((item: any) => ['breath', 'dragon'].includes(item.id)) },
+    ];
+    console.log(this.topics)
   }
 
   applyFilter() {
-    this.data.filter = JSON.stringify({
+    this.table.filter = JSON.stringify({
       name: this.filters.name.value,
       type: this.filters.type.value,
       faction: this.filters.faction.value,
@@ -113,6 +131,11 @@ export class EncyclopediaComponent implements OnInit {
       panelClass: 'dialog-responsive',
       data: tome,
     });
+  }
+
+  getTome(id: string): any {
+    console.log(this.table.data)
+    return this.table.data.find(item => item.id === id);
   }
 
 }
