@@ -80,7 +80,7 @@ exports.api = functions
  *                                                                                      */
 //========================================================================================
 
-const MAX_TURNS: number = 300;
+export const MAX_TURNS: number = 300;
 const MIN_LANDS: number = 1;
 const MAX_LANDS: number = 3500;
 // const BATTLE_TURNS: number = 2;
@@ -622,8 +622,9 @@ export const removeTroop = async (kingdomId: string, troopId: string, quantity: 
     const kingdomTroop = (await angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`).get()).data();
     if (kingdomTroop) {
       const unit = kingdomTroop?.unit;
-      // if (unit.populationMaintenance <= 0) {
+      if (unit.populationMaintenance <= 0) {
         if (quantity >= kingdomTroop?.quantity) {
+          // tslint:disable-next-line: no-parameter-reassignment
           quantity = kingdomTroop?.quantity;
           batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`));
         } else {
@@ -634,7 +635,7 @@ export const removeTroop = async (kingdomId: string, troopId: string, quantity: 
         await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor(unit.populationMaintenance * quantity), batch);
         await balancePower(kingdomId, -Math.floor(unit.power * quantity), batch);
         return { quantity: quantity, unit: unit.name };
-      // } else throw new Error('api.error.troop');
+      } else throw new Error('api.error.troop');
     } else throw new Error('api.error.troop');
   } else {
     const questTroop = (await angularFirestore.doc(`quests/${questId}/troops/${troopId}`).get()).data();
@@ -655,7 +656,7 @@ export const removeTroop = async (kingdomId: string, troopId: string, quantity: 
  * @param unitId
  * @param quantity
  */
-const recruitUnit = async (kingdomId: string, unitId: string, quantity: number) => {
+export const recruitUnit = async (kingdomId: string, unitId: string, quantity: number) => {
   const unit = (await angularFirestore.doc(`units/${unitId}`).get()).data();
   if (unit?.gold > 0) {
     const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0].data();
@@ -675,7 +676,7 @@ const recruitUnit = async (kingdomId: string, unitId: string, quantity: number) 
  * @param kingdomId
  * @param army
  */
-const assignArmy = async (kingdomId: string, army: any[]) => {
+export const assignArmy = async (kingdomId: string, army: any[]) => {
   const batch = angularFirestore.batch();
   army.forEach(troop => batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troop.troopId}`), { sort: troop.sort, assignment: troop.assignment }));
   await batch.commit();
@@ -694,10 +695,11 @@ const assignArmy = async (kingdomId: string, army: any[]) => {
  * @param level
  * @param batch
  */
-const addContract = async (kingdomId: string, hero: any, level: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addContract = async (kingdomId: string, hero: any, level: number, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomContract = await angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).where('id', '==', hero.id).limit(1).get();
   if (kingdomContract.size > 0) {
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${kingdomContract.docs[0].id}`), { level: admin.firestore.FieldValue.increment(level) });
+    // TODO update balances with leveling
   } else {
     batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).doc(), { id: hero.id, level: level, hero: hero, assignment: 0 });
     await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor((hero.goldProduction - hero.goldMaintenance) * level), batch);
@@ -715,7 +717,7 @@ const addContract = async (kingdomId: string, hero: any, level: number, batch: F
  * @param kingdomId
  * @param contractId
  */
-const dischargeContract = async (kingdomId: string, contractId: string) => {
+export const dischargeContract = async (kingdomId: string, contractId: string) => {
   const batch = angularFirestore.batch();
   await removeContract(kingdomId, contractId, batch);
   await batch.commit();
@@ -726,7 +728,7 @@ const dischargeContract = async (kingdomId: string, contractId: string) => {
  * @param kingdomId
  * @param contractId
  */
-const removeContract = async (kingdomId: string, contractId: string, batch: FirebaseFirestore.WriteBatch) => {
+export const removeContract = async (kingdomId: string, contractId: string, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomContract = (await angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${contractId}`).get()).data();
   if (kingdomContract) {
     batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${contractId}`));
@@ -746,7 +748,7 @@ const removeContract = async (kingdomId: string, contractId: string, batch: Fire
  * @param contractId
  * @param assignmentId
  */
-const assignContract = async (kingdomId: string, contractId: string, assignmentId: number) => {
+export const assignContract = async (kingdomId: string, contractId: string, assignmentId: number) => {
   const kingdomContract = (await angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${contractId}`).get()).data();
   if (kingdomContract) {
     const batch = angularFirestore.batch();
@@ -946,7 +948,7 @@ const assignArtifact = async (kingdomId: string, artifactId: string, assignmentI
  * @param artifactId
  * @param targetId
  */
-const activateArtifact = async (kingdomId: string, artifactId: string, targetId: string) => {
+export const activateArtifact = async (kingdomId: string, artifactId: string, targetId: string) => {
   let result = {};
   const artifact = (await angularFirestore.doc(`kingdoms/${kingdomId}/artifacts/${artifactId}`).get()).data();
   if (artifact && !artifact.item.battle) {
