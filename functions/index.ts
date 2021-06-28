@@ -41,8 +41,8 @@ api.get('/kingdom/:kingdomId/battle/:battleId/target/:targetId', ash(async (req:
 api.get('/kingdom/:kingdomId/sorcery/:charmId/research/:turns', ash(async (req: any, res: any) => res.json(await researchCharm(req.params.kingdomId, req.params.charmId, parseInt(req.params.turns)))));
 api.get('/kingdom/:kingdomId/sorcery/:charmId/conjure/:targetId', ash(async (req: any, res: any) => res.json(await conjureCharm(req.params.kingdomId, req.params.charmId, req.params.targetId))));
 api.get('/kingdom/:kingdomId/sorcery/:artifactId/activate/:targetId', ash(async (req: any, res: any) => res.json(await activateArtifact(req.params.kingdomId, req.params.artifactId, req.params.targetId))));
-api.get('/kingdom/:kingdomId/sorcery/charm/:charmId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignCharm(req.params.kingdomId, req.params.charmId, req.params.assignmentId))));
-api.get('/kingdom/:kingdomId/sorcery/artifact/:artifactId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignArtifact(req.params.kingdomId, req.params.artifactId, req.params.assignmentId))));
+api.get('/kingdom/:kingdomId/sorcery/charm/:charmId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignCharm(req.params.kingdomId, req.params.charmId, parseInt(req.params.assignmentId)))));
+api.get('/kingdom/:kingdomId/sorcery/artifact/:artifactId/assign/:assignmentId', ash(async (req: any, res: any) => res.json(await assignArtifact(req.params.kingdomId, req.params.artifactId, parseInt(req.params.assignmentId)))));
 api.get('/kingdom/:kingdomId/auction/:auctionId/bid/:gold', ash(async (req: any, res: any) => res.json(await bidAuction(req.params.kingdomId, req.params.auctionId, parseInt(req.params.gold)))));
 api.get('/kingdom/:kingdomId/temple/:godId/offer/:resource', ash(async (req: any, res: any) => res.json(await offerGod(req.params.kingdomId, req.params.godId, parseInt(req.params.resource)))));
 api.delete('/kingdom/:kingdomId/temple/:enchantmentId/dispel', ash(async (req: any, res: any) => res.json(await dispelIncantation(req.params.kingdomId, req.params.enchantmentId))));
@@ -287,7 +287,7 @@ export const createKingdom = async (kingdomId: string, factionId: KingdomType, n
     }
     case KingdomType.BLUE: {
       troops = ['mage'];
-      charms = ['summon-mage', 'ice-shock'];
+      charms = ['summon-mage', 'freeze'];
       break;
     }
     case KingdomType.WHITE: {
@@ -770,7 +770,7 @@ export const assignContract = async (kingdomId: string, contractId: string, assi
  * @param turns
  * @param batch
  */
-const addCharm = async (kingdomId: string, spell: any, turns: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addCharm = async (kingdomId: string, spell: any, turns: number, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('id', '==', spell.id).limit(1).get();
   if (kingdomCharm.size > 0) {
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/charms/${kingdomCharm.docs[0].id}`), {
@@ -788,7 +788,7 @@ const addCharm = async (kingdomId: string, spell: any, turns: number, batch: Fir
  * @param charmId
  * @param turns
  */
-const researchCharm = async (kingdomId: string, charmId: string, turns: number) => {
+export const researchCharm = async (kingdomId: string, charmId: string, turns: number) => {
   const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get()).docs[0].data();
   kingdomTurn.quantity = calculate(kingdomTurn.timestamp.toMillis(), admin.firestore.Timestamp.now().toMillis(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
   if (turns <= kingdomTurn.quantity) {
@@ -807,9 +807,9 @@ const researchCharm = async (kingdomId: string, charmId: string, turns: number) 
  * @param charmId
  * @param assignmentId
  */
-const assignCharm = async (kingdomId: string, charmId: string, assignmentId: string) => {
+export const assignCharm = async (kingdomId: string, charmId: string, assignmentId: number) => {
   const batch = angularFirestore.batch();
-  batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`), { assignment: Number(assignmentId) });
+  batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`), { assignment: assignmentId });
   await batch.commit();
 }
 
@@ -819,7 +819,7 @@ const assignCharm = async (kingdomId: string, charmId: string, assignmentId: str
  * @param charmId
  * @param targetId
  */
-const conjureCharm = async (kingdomId: string, charmId: string, targetId: string) => {
+export const conjureCharm = async (kingdomId: string, charmId: string, targetId: string) => {
   let result = {};
   const charm = (await angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`).get()).data();
   if (charm) {
@@ -936,9 +936,9 @@ const addArtifact = async (kingdomId: string, item: any, quantity: number, batch
  * @param artifactId
  * @param assignmentId
  */
-const assignArtifact = async (kingdomId: string, artifactId: string, assignmentId: string) => {
+const assignArtifact = async (kingdomId: string, artifactId: string, assignmentId: number) => {
   const batch = angularFirestore.batch();
-  batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/artifacts/${artifactId}`), { assignment: Number(assignmentId) });
+  batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/artifacts/${artifactId}`), { assignment: assignmentId });
   await batch.commit();
 }
 

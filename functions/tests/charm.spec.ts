@@ -1,7 +1,7 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import { createKingdom, KingdomType } from '../index';
+import { createKingdom, KingdomType, addCharm, researchCharm, assignCharm, conjureCharm } from '../index';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -10,10 +10,11 @@ const config: admin.AppOptions = {
 };
 const tester = functions(config);
 
-const KINGDOM = 'contract';
-// const SPELL = 'animate-skeleton';
+const KINGDOM = 'charm';
+const SPELL = 'animate-skeleton';
 
 describe('CHARM', () => {
+
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 
@@ -26,12 +27,45 @@ describe('CHARM', () => {
   });
 
   it('should CREATE the KINGDOM', async () => {
-    await createKingdom(KINGDOM, KingdomType.RED, KINGDOM, 0, 0);
+    await createKingdom(KINGDOM, KingdomType.BLUE, KINGDOM, 0, 0);
     const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
     expect(kingdom.exists).toBe(true);
   });
 
-  // TODO
+  it('should ADD the CHARM', async () => {
+    const spell = (await admin.firestore().doc(`spells/${SPELL}`).get()).data();
+    jest.spyOn(batch, 'create');
+    await addCharm(KINGDOM, spell, 0, batch);
+    expect(batch.create).toHaveBeenCalled();
+    await batch.commit();
+    batch = admin.firestore().batch();
+    jest.spyOn(batch, 'update');
+    await addCharm(KINGDOM, spell, 10, batch);
+    expect(batch.update).toHaveBeenCalled();
+    await batch.commit();
+  });
+
+  it('should RESEARCH the CHARM', async () => {
+    const charmBefore = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
+    expect(charmBefore.data().turns).toBe(10);
+    await researchCharm(KINGDOM, charmBefore.id, 10);
+    const charmAfter = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
+    expect(charmAfter.data().turns).toBe(20);
+  });
+
+  it('should ASSIGN the CHARM', async () => {
+    const charmBefore = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
+    expect(charmBefore.data().assignment).toBe(0);
+    await assignCharm(KINGDOM, charmBefore.id, 2);
+    const charmAfter = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
+    expect(charmAfter.data().assignment).toBe(2);
+  });
+
+  it('should CONJURE the CHARM', async () => {
+    const charm = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
+    await conjureCharm(KINGDOM, charm.id, KINGDOM);
+    // TODO
+  })
 
   it('should DELETE the KINGDOM', async () => {
     const artifacts = await admin.firestore().collection(`kingdoms/${KINGDOM}/artifacts`).listDocuments();
@@ -44,6 +78,8 @@ describe('CHARM', () => {
     troops.forEach(troop => batch.delete(troop));
     const supplies = await admin.firestore().collection(`kingdoms/${KINGDOM}/supplies`).listDocuments();
     supplies.forEach(supply => batch.delete(supply));
+    const charms = await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).listDocuments();
+    charms.forEach(charm => batch.delete(charm));
     batch.delete(admin.firestore().doc(`kingdoms/${KINGDOM}`));
     await batch.commit();
     const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
