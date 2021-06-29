@@ -60,7 +60,7 @@ export class ShellComponent implements OnInit {
   .pipe(
     filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd),
     map((event: NavigationEnd) => {
-      return this.groups.reduce((a, b) => a.concat(b.links), []).find((link: any) => link.url === event.url);
+      return this.groups.reduce((a, b) => a.concat(b.links), []).find((link: any) => event.url.includes(link.url));
     }),
   );
   isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset])

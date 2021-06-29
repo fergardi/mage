@@ -206,9 +206,15 @@
       "authorized": "Bienvenido de nuevo!",
       "error": "Ha ocurrido un problema",
       "unauthorized": "Debes autenticarte para continuar",
+      "auth/email-already-in-use": "Ese correo electrónico ya está en uso"
+    },
+    "menu": {
+      "help": "Ayuda",
       "tour": "Tutorial",
-      "auth/email-already-in-use": "Ese correo electrónico ya está en uso",
-      "status": "Estado"
+      "changelog": "Cambios",
+      "store": "Tienda",
+      "login": "Entrar",
+      "logout": "Salir"
     },
     "login": {
       "name": "Acceso",
@@ -261,6 +267,18 @@
       "costs": "Costes",
       "production": "Producción",
       "characteristics": "Características"
+    },
+    "changelog": {
+      "name": "Cambios",
+      "description": "Listado de versiones",
+      "help": "A continuación se detallan todos los cambios que han ocurrido en este plano de la realidad desde el principio de los tiempos.",
+      "tour": ""
+    },
+    "bonfire": {
+      "name": "Hoguera",
+      "description": "Comparte tu historia",
+      "help": "¿Tienes una sugerencia? ¿Algo no funciona bien? ¿Has encontrado un error? Ponlo en los comentarios.",
+      "tour": ""
     }
   },
   "world": {
@@ -742,8 +760,8 @@
       "built": "Has construido {{ quantity }} {{ structure }}",
       "demolished": "Has demolido {{ quantity }} {{ structure }}"
     },
-    "gemology": {
-      "name": "Gemología",
+    "mining": {
+      "name": "Minería",
       "description": "Extraer gemas de la tierra",
       "help": "Puedes pagar a unos amables gnomos para que extraigan <gem> de las profundas minas bajo tu reino, a cambio de dinero real.",
       "tour": ""

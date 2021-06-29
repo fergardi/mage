@@ -119,7 +119,7 @@
     </mat-card>
   </div>
 
-  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" *ngFor="let topic of topics">
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" *ngFor="let topic, let i = index of topics" [attr.id]="i === 0 ? 'help' : ''">
     <mat-card>
       <mat-card-header>
         <img mat-card-avatar [src]="'/assets/images/cards/' + topic.name + '.png'">
@@ -154,6 +154,46 @@
       </mat-card-content>
       <mat-card-content>
         <p [innerHTML]="topic.surname + '.' + topic.name + '.tour' | translate | icon"></p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" id="changelog">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/cards/changelog.png">
+        <mat-card-title>{{ 'user.changelog.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'user.changelog.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ 'user.changelog.help' | translate }}</p>
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel [expanded]="false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>Version 1.0.0</mat-panel-title>
+              <mat-panel-description>Alfa</mat-panel-description>
+            </mat-expansion-panel-header>
+            <ul>
+              <li>Test</li>
+              <li>Test</li>
+              <li>Test</li>
+              <li>Test</li>
+            </ul>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/cards/bonfire.png">
+        <mat-card-title>{{ 'user.bonfire.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'user.bonfire.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ 'user.bonfire.help' | translate }}</p>
       </mat-card-content>
     </mat-card>
   </div>

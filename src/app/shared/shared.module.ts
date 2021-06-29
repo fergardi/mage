@@ -1,3 +1,4 @@
+// angular
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -6,7 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+// material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -33,12 +34,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-
+import { MatExpansionModule } from '@angular/material/expansion';
+// plugins
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { NgxCurrencyModule, CurrencyMaskInputMode } from 'ngx-currency';
-
+// components
 import { ShellComponent } from './shell/shell.component';
-
+// pipes
 import { ShortPipe } from '../pipes/short.pipe';
 import { IconPipe } from '../pipes/icon.pipe';
 import { LongPipe } from '../pipes/long.pipe';
@@ -97,6 +99,7 @@ const modules = [
   MatNativeDateModule,
   MatProgressSpinnerModule,
   MatBottomSheetModule,
+  MatExpansionModule,
 ];
 
 @NgModule({

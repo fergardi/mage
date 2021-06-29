@@ -23,7 +23,7 @@ interface SnackBarQueueItem {
 export class NotificationService {
 
   private options: MatSnackBarConfig = {
-    duration: 2000,
+    duration: 2500,
     horizontalPosition: 'right',
     verticalPosition: 'top',
   };
@@ -37,7 +37,7 @@ export class NotificationService {
   ) {
     this.snackBarQueue$
     .pipe(
-      filter(queue => queue.length > 0 && !queue[0].showing),
+      filter((queue: SnackBarQueueItem[]) => queue.length > 0 && !queue[0].showing),
       tap(() => {
         const updatedQueue = this.snackBarQueue.value;
         updatedQueue[0].showing = true;

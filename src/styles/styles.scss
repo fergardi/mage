@@ -146,7 +146,6 @@ $legendary-color: darkgoldenrod;
 
 html, body {
   height: 100%;
-  scroll-behavior: smooth;
 }
 body {
   margin: 0;
@@ -369,6 +368,7 @@ $list-item-height: 60px;
 }
 .mat-card,
 .mat-bottom-sheet-container,
+.mat-expansion-panel,
 .mat-drawer {
   background: url('/assets/images/background/tablet.jpg') no-repeat center center; // fixed
   background-size: cover;
@@ -783,6 +783,30 @@ $list-item-height: 60px;
   img {
     margin-right: 10px;
   }
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                        PANELS                                        *
+ *                                                                                      */
+//========================================================================================
+
+.mat-expansion-panel-header.mat-expanded:focus,
+.mat-expansion-panel-header.mat-expanded:hover {
+  background: transparent !important;
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                       SNACKBARS                                      *
+ *                                                                                      */
+//========================================================================================
+
+.cdk-overlay-pane .mat-snack-bar-container { // desktop
+  margin-top: 70px;
+}
+.cdk-overlay-pane.mat-snack-bar-handset .mat-snack-bar-container { // mobile
+  margin-top: 8px;
 }
 
 //========================================================================================

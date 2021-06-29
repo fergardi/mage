@@ -155,7 +155,12 @@ export class AuthState implements NgxsOnInit {
         ctx.dispatch(new SetKingdomBuildingsAction(user.uid));
         this.notificationService.success('user.auth.authorized');
         const route = localStorage.getItem('route') || '/kingdom/city';
-        this.router.navigate([route]);
+        // fix to use #fragments
+        let tree = this.router.parseUrl(route);
+        const fragment = tree.fragment;
+        tree.queryParams = {};
+        tree.fragment = null;
+        this.router.navigate([tree.toString()], { fragment: fragment });
       } else {
         this.router.navigate(['/user/landing']);
       }

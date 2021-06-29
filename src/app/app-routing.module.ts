@@ -11,7 +11,14 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled', relativeLinkResolution: 'legacy' } )],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'top',
+      // relativeLinkResolution: 'legacy',
+      onSameUrlNavigation: 'reload',
+      anchorScrolling: 'enabled', // not working https://github.com/angular/angular/issues/33240
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

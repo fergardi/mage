@@ -83,16 +83,23 @@
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #auth="matMenu">
-        <!--<a mat-menu-item (click)="status()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>equalizer</mat-icon>{{ 'user.auth.status' | translate }}</a>-->
-        <a mat-menu-item (click)="tour()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>live_help</mat-icon>{{ 'user.auth.tour' | translate }}</a>
-        <a mat-menu-item (click)="logout()" *ngIf="(angularFireAuth.authState | async)"><mat-icon>lock</mat-icon>{{ 'user.auth.logout' | translate }}</a>
-        <a mat-menu-item (click)="login(main)" *ngIf="!(angularFireAuth.authState | async)"><mat-icon>lock_open</mat-icon>{{ 'user.auth.login' | translate }}</a>
+        <ng-container *ngIf="(angularFireAuth.authState | async); else notLogged">
+          <a mat-menu-item routerLink="/user/encyclopedia" fragment="help"><mat-icon>help</mat-icon>{{ 'user.menu.help' | translate }}</a>
+          <a mat-menu-item (click)="tour()"><mat-icon>info</mat-icon>{{ 'user.menu.tour' | translate }}</a>
+          <a mat-menu-item routerLink="/kingdom/emporium"><mat-icon>local_mall</mat-icon>{{ 'user.menu.store' | translate }}</a>
+          <a mat-menu-item routerLink="/user/encyclopedia" fragment="changelog"><mat-icon>equalizer</mat-icon>{{ 'user.menu.changelog' | translate }}</a>
+          <a mat-menu-item (click)="logout()"><mat-icon>lock</mat-icon>{{ 'user.menu.logout' | translate }}</a>
+        </ng-container>
+        <ng-template #notLogged>
+          <a mat-menu-item (click)="login(main)"><mat-icon>lock_open</mat-icon>{{ 'user.menu.login' | translate }}</a>
+        </ng-template>
       </mat-menu>
     </mat-toolbar>
     <!-- main content -->
     <main
       #main
       class="main-content"
+      id="scroll"
       cdkScrollable
       [ngStyle]="{ height: (isHandset$ | async) === false ? 'calc(100vh - 64px)' : 'calc(100vh - 56px)', width: (isHandset$ | async) === false && drawer.opened ? 'calc(100vw - 300px)' : '100vw' }">
       <ng-content></ng-content>

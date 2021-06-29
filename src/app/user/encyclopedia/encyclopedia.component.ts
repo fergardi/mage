@@ -77,7 +77,6 @@ export class EncyclopediaComponent implements OnInit {
       if (property === 'type') return this.translateService.instant(`type.${obj['type']}.name`);
       return obj[property];
     };
-    // this.filters.faction.options = (await this.cacheService.getFactions()).map((faction: any) => ({ name: `faction.${faction.id}.name`, value: faction.id }));
     this.filters.faction.options = this.filters.faction.options.concat(
       [{ id: '', name: 'table.filter.any', image: '/assets/images/factions/grey.png' }],
       await this.cacheService.getFactions(),
