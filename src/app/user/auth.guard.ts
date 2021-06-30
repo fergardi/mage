@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     private router: Router,
   ) {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
-      if (event.url !== LANDING_ROUTE) localStorage.setItem('route', event.url);
+      localStorage.setItem('route', event.url);
     });
   }
 
