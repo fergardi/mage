@@ -7,7 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { TutorialService } from 'src/app/services/tutorial.service';
-// import * as moment from 'moment';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-legend',
@@ -18,18 +18,16 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 export class LegendComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  columns = ['name', /*'clan',*/ 'timestamp'];
+  columns = ['name', 'clan', 'timestamp'];
   filters: any = {
     name: {
       type: 'text',
       value: '',
     },
-    /*
     clan: {
       type: 'text',
       value: '',
     },
-    */
     timestamp: {
       type: 'timestamp',
       value: null,
@@ -49,7 +47,7 @@ export class LegendComponent implements OnInit {
     this.angularFirestore.collection<any>('legends').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(legends => {
       this.data = new MatTableDataSource(legends);
       this.data.paginator = this.paginator;
-      // this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
+      this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
       this.data.sort = this.sort;
       this.data.filterPredicate = this.createFilter();
       this.applyFilter();
@@ -59,7 +57,7 @@ export class LegendComponent implements OnInit {
   applyFilter() {
     this.data.filter = JSON.stringify({
       name: this.filters.name.value,
-      // clan: this.filters.clan.value,
+      clan: this.filters.clan.value,
     });
   }
 
@@ -67,7 +65,7 @@ export class LegendComponent implements OnInit {
     const filterFunction = (data: any, filter: string): boolean => {
       const filters = JSON.parse(filter);
       return data.name.toLowerCase().includes(filters.name)
-        // && (!filters.timestamp || moment(data.timestamp.toMillis()).isBetween(moment(filters.timestamp).startOf('day'), moment(filters.timestamp).endOf('day'), 'days', '[]'))
+        && (!filters.timestamp || moment(data.timestamp.toMillis()).isBetween(moment(filters.timestamp).startOf('day'), moment(filters.timestamp).endOf('day'), 'days', '[]'))
         && (!filters.clan || (data.clan && data.clan.name.toLowerCase().includes(filters.clan))); // clan can be null
     };
     return filterFunction;

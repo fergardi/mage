@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { HttpClient } from '@angular/common/http';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
+import * as moment from 'moment';
 
 export enum FixtureType {
   'ATTACKS' = 'attacks',
@@ -21,6 +22,7 @@ export enum FixtureType {
   'SPELLS' = 'spells',
   'HEROES' = 'heroes',
   'KINGDOMS' = 'kingdoms',
+  'LEGENDS' = 'legends',
 }
 
 @Injectable({
@@ -44,6 +46,7 @@ export class FirebaseService {
   spells: any[] = [];
   heroes: any[] = [];
   kingdoms: any[] = [];
+  legends: any[] = [];
 
   joinedAttacks: any[] = [];
   joinedFactions: any[] = [];
@@ -60,6 +63,7 @@ export class FirebaseService {
   joinedLocations: any[] = [];
   joinedSpells: any[] = [];
   joinedHeroes: any[] = [];
+  joinedLegends: any[] = [];
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -68,26 +72,26 @@ export class FirebaseService {
   ) { }
 
   async joinFixtures(element: any) {
-    // if (element.store) this.joinObject2(element, 'store', await this.cacheService.getStores());
-    if (element.faction) this.joinObject2(element, 'faction', this.joinedFactions);
-    if (element.adjacents) this.joinObject2(element, 'adjacents', this.factions);
-    if (element.opposites) this.joinObject2(element, 'opposites', this.factions);
-    // if (element.location) this.joinObject2(element, 'location', await this.cacheService.getLocations());
-    if (element.skills) this.joinObject2(element, 'skills', this.skills);
-    if (element.unit) this.joinObject2(element, 'unit', this.joinedUnits);
-    if (element.units) this.joinObject2(element, 'units', this.joinedUnits);
-    if (element.categories) this.joinObject2(element, 'categories', this.categories);
-    if (element.resistances) this.joinObject2(element, 'resistances', this.categories);
-    if (element.families) this.joinObject2(element, 'families', this.families);
-    if (element.spell) this.joinObject2(element, 'spell', this.joinedSpells);
-    if (element.spells) this.joinObject2(element, 'spells', this.joinedSpells);
-    // if (element.hero) this.joinObject2(element, 'hero', await this.cacheService.getHeroes());
-    // if (element.item) this.joinObject2(element, 'item', await this.cacheService.getItems());
-    // if (element.items) this.joinObject2(element, 'items', await this.cacheService.getItems());
-    if (element.resources) this.joinObject2(element, 'resources', this.resources);
+    // if (element.store) this.joinObject(element, 'store', await this.cacheService.getStores());
+    if (element.faction) this.joinObject(element, 'faction', this.joinedFactions);
+    if (element.adjacents) this.joinObject(element, 'adjacents', this.factions);
+    if (element.opposites) this.joinObject(element, 'opposites', this.factions);
+    // if (element.location) this.joinObject(element, 'location', await this.cacheService.getLocations());
+    if (element.skills) this.joinObject(element, 'skills', this.skills);
+    if (element.unit) this.joinObject(element, 'unit', this.joinedUnits);
+    if (element.units) this.joinObject(element, 'units', this.joinedUnits);
+    if (element.categories) this.joinObject(element, 'categories', this.categories);
+    if (element.resistances) this.joinObject(element, 'resistances', this.categories);
+    if (element.families) this.joinObject(element, 'families', this.families);
+    if (element.spell) this.joinObject(element, 'spell', this.joinedSpells);
+    if (element.spells) this.joinObject(element, 'spells', this.joinedSpells);
+    // if (element.hero) this.joinObject(element, 'hero', await this.cacheService.getHeroes());
+    // if (element.item) this.joinObject(element, 'item', await this.cacheService.getItems());
+    // if (element.items) this.joinObject(element, 'items', await this.cacheService.getItems());
+    if (element.resources) this.joinObject(element, 'resources', this.resources);
   }
 
-  joinObject2(element: any, subCollection: string, collection: any[]) {
+  joinObject(element: any, subCollection: string, collection: any[]) {
     if (element[subCollection] instanceof Array) {
       element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
         if (typeof subElement === 'string') {
@@ -117,11 +121,16 @@ export class FirebaseService {
     this.locations = await this.httpClient.get<any[]>('assets/fixtures/locations.json').toPromise();
     this.spells = await this.httpClient.get<any[]>('assets/fixtures/spells.json').toPromise();
     this.heroes = await this.httpClient.get<any[]>('assets/fixtures/heroes.json').toPromise();
+    this.legends = await this.httpClient.get<any[]>('assets/fixtures/legends.json').toPromise();
   }
 
   async importFixtures(collection: string, elements: any[], batch: firebase.firestore.WriteBatch) {
     elements.forEach((element: any, index: number) => {
       element.random = index;
+      if (element.timestamp) {
+        element.timestamp = moment(element.timestamp, 'DD/MM/YYYY', true).toDate();
+        console.log('timestamping', element.timestamp);
+      }
       batch.set(this.angularFirestore.collection(collection).doc(element.id).ref, element);
     });
   }
@@ -221,7 +230,14 @@ export class FirebaseService {
           console.log(`Loading ${FixtureType.LOCATIONS}...`);
           this.importFixtures(FixtureType.LOCATIONS, this.joinedLocations, batch);
         }
+        this.joinedLegends = JSON.parse(JSON.stringify(this.legends));
+        this.joinedLegends.forEach(legend => this.joinFixtures(legend));
+        if (fixtures.includes(FixtureType.LEGENDS)) {
+          console.log(`Loading ${FixtureType.LEGENDS}...`);
+          this.importFixtures(FixtureType.LEGENDS, this.joinedLegends, batch);
+        }
         await batch.commit();
+        console.log('Fixtures loaded!');
       }
     });
   }

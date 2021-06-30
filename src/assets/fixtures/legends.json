@@ -1,7 +1,14 @@
 [
   {
-    "name": "Fergardi el Desarrollador",
-    "faction": "dark",
-    "power": 9999999
+    "id": "s00",
+    "name": "Fergardi",
+    "faction": "black",
+    "clan": {
+      "name": "Legendarium",
+      "description": "Mitos y Leyendas",
+      "image": "/assets/images/clans/rip.png"
+    },
+    "power": 666,
+    "timestamp": "29/08/1986"
   }
 ]

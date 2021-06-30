@@ -40,7 +40,7 @@
 
             <ng-template [ngIf]="column === 'name'">
               <mat-list dense>
-                <mat-list-item class="legendary">
+                <mat-list-item [ngClass]="[legend.faction.id, 'legendary']">
                   <div mat-list-avatar [matBadge]="legend.position | long" matBadgePosition="above before">
                     <img mat-list-avatar [src]="legend.faction.image">
                   </div>
@@ -52,7 +52,7 @@
                 </mat-list-item>
               </mat-list>
             </ng-template>
-<!--
+
             <ng-template [ngIf]="column === 'clan'">
               <mat-list dense *ngIf="legend.clan">
                 <mat-list-item>
@@ -60,10 +60,11 @@
                     <img mat-list-avatar [src]="legend.clan.image">
                   </div>
                   <div mat-line>{{ legend.clan.name }}</div>
+                  <div mat-line class="mat-card-subtitle">{{ legend.clan.description }}</div>
                 </mat-list-item>
               </mat-list>
             </ng-template>
--->
+
             <ng-template [ngIf]="column === 'timestamp'">
               {{ legend.timestamp.toMillis() | date }}
             </ng-template>

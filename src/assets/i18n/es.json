@@ -73,9 +73,9 @@
       "name": "Älcänzä lä victöriä",
       "description": ""
     },
-    "legendarium": {
-      "name": "Entra en el Legendarium",
-      "description": "Este plano de la realidad es muy cruel con los débiles. Sólo los magos y brujas más sobresalientes tienen una ligera posibilidad de sobrevivir aquí. ¿Eres uno de ellos? Y de entre todos, sólo un reino será digno de ser recordado eternamente en el Legendarium tras el Armagedón. ¿Será el tuyo?"
+    "legend": {
+      "name": "Conviértete en leyenda",
+      "description": "Este plano de la realidad es muy cruel con los débiles. Sólo los magos y brujas más sobresalientes tienen una ligera posibilidad de sobrevivir aquí. ¿Eres uno de ellos? Y de entre todos, sólo un reino será digno de ser recordado eternamente en el compendio de leyendas tras el Armagedón. ¿Será el tuyo?"
     }
   },
   "shell": {
@@ -196,8 +196,8 @@
   },
   "user": {
     "legend": {
-      "name": "Legendarium",
-      "description": "Listado de mágos y brujas célebres",
+      "name": "Leyendas",
+      "description": "Listado de magos y brujas célebres",
       "tour": ""
     },
     "auth": {
@@ -214,7 +214,9 @@
       "changelog": "Cambios",
       "store": "Tienda",
       "login": "Entrar",
-      "logout": "Salir"
+      "logout": "Salir",
+      "bonfire": "Comentarios",
+      "legend": "Leyendas"
     },
     "login": {
       "name": "Acceso",
@@ -912,7 +914,7 @@
       "enchantments": "Encantamientos",
       "incantations": "Maleficios",
       "guilds": "Gremios",
-      "maintenances": "Mantenimientos"
+      "production": "Producción"
     }
   },
   "location": {
