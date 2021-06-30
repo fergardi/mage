@@ -773,12 +773,14 @@ export const assignContract = async (kingdomId: string, contractId: string, assi
 export const addCharm = async (kingdomId: string, spell: any, turns: number, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('id', '==', spell.id).limit(1).get();
   if (kingdomCharm.size > 0) {
+    const charm = kingdomCharm.docs[0]?.data();
+    console.log(charm.turns, turns, spell?.turnResearch)
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/charms/${kingdomCharm.docs[0].id}`), {
       turns: admin.firestore.FieldValue.increment(turns),
-      completed: (kingdomCharm.docs[0]?.data().turns + turns) >= spell?.turnResearch,
+      completed: (charm.turns + turns) >= spell?.turnResearch,
     });
   } else {
-    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: spell.id, spell: spell, turns: 0, assignment: 0, completed: true });
+    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: spell.id, spell: spell, turns: turns, assignment: 0, completed: false });
   }
 }
 

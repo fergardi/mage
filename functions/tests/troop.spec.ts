@@ -115,6 +115,8 @@ describe.skip('TROOP', () => {
     supplies.forEach(supply => batch.delete(supply));
     const charms = await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).listDocuments();
     charms.forEach(charm => batch.delete(charm));
+    const letters = await admin.firestore().collection(`kingdoms/${KINGDOM}/letters`).listDocuments();
+    letters.forEach(letter => batch.delete(letter));
     batch.delete(admin.firestore().doc(`kingdoms/${KINGDOM}`));
     await batch.commit();
     const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();

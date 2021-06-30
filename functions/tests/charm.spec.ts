@@ -35,22 +35,24 @@ describe('CHARM', () => {
   it('should ADD the CHARM', async () => {
     const spell = (await admin.firestore().doc(`spells/${SPELL}`).get()).data();
     jest.spyOn(batch, 'create');
-    await addCharm(KINGDOM, spell, 0, batch);
+    await addCharm(KINGDOM, spell, 200, batch);
     expect(batch.create).toHaveBeenCalled();
     await batch.commit();
     batch = admin.firestore().batch();
     jest.spyOn(batch, 'update');
-    await addCharm(KINGDOM, spell, 10, batch);
+    await addCharm(KINGDOM, spell, 200, batch);
     expect(batch.update).toHaveBeenCalled();
     await batch.commit();
   });
 
   it('should RESEARCH the CHARM', async () => {
     const charmBefore = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
-    expect(charmBefore.data().turns).toBe(10);
-    await researchCharm(KINGDOM, charmBefore.id, 10);
+    expect(charmBefore.data().turns).toBe(400);
+    expect(charmBefore.data().completed).toBe(false);
+    await researchCharm(KINGDOM, charmBefore.id, 100);
     const charmAfter = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
-    expect(charmAfter.data().turns).toBe(20);
+    expect(charmAfter.data().turns).toBe(500);
+    expect(charmAfter.data().completed).toBe(true);
   });
 
   it('should ASSIGN the CHARM', async () => {
@@ -80,6 +82,8 @@ describe('CHARM', () => {
     supplies.forEach(supply => batch.delete(supply));
     const charms = await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).listDocuments();
     charms.forEach(charm => batch.delete(charm));
+    const letters = await admin.firestore().collection(`kingdoms/${KINGDOM}/letters`).listDocuments();
+    letters.forEach(letter => batch.delete(letter));
     batch.delete(admin.firestore().doc(`kingdoms/${KINGDOM}`));
     await batch.commit();
     const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
