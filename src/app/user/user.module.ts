@@ -9,6 +9,7 @@ import { TomeComponent } from './encyclopedia/tome.component';
 import { LandingComponent } from './landing/landing.component';
 import { LegendComponent } from './legend/legend.component';
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
+import { DisqusModule } from 'ngx-disqus';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
     UserRoutingModule,
     ReactiveFormsModule,
     TourMatMenuModule,
+    DisqusModule,
   ],
 })
 export class UserModule { }

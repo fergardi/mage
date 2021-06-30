@@ -20,6 +20,7 @@ import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorIntl } from './shared/custom/paginator.intl';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { DisqusModule } from "ngx-disqus";
 
 // AOT compilation support
 export function httpLoaderFactory(http: HttpClient) {
@@ -65,6 +66,7 @@ export function appInitializerFactory(translateService: TranslateService): () =>
     }),
     TourMatMenuModule.forRoot(),
     NgxCurrencyModule,
+    DisqusModule.forRoot('legendarium-test'),
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },

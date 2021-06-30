@@ -46,6 +46,7 @@
     "material-icons": "^0.7.1",
     "moment": "^2.29.1",
     "ngx-currency": "^2.5.2",
+    "ngx-disqus": "^2.4.3",
     "ngx-ui-tour-core": "^6.0.0",
     "ngx-ui-tour-md-menu": "^6.0.0",
     "rpg-awesome": "^0.2.0",
