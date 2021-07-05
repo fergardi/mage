@@ -321,7 +321,7 @@ describe.skip('BATTLE', () => {
   });
 
   it('should DAMAGE a TROOP with OPPOSITES factions', async () => {
-    attackerUnits = ['skeleton', 'orc', 'siren', 'paladin', 'goblin', 'fanatic'];
+    attackerUnits = ['skeleton', 'orc', 'siren', 'paladin', 'elf', 'fanatic'];
     defenderUnits = ['skeleton', 'skeleton', 'skeleton', 'skeleton', 'skeleton', 'skeleton'];
     await prepareTest();
     for (let i = 0; i < attackerUnits.length; i++) {

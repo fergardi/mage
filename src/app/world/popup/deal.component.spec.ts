@@ -24,7 +24,7 @@ describe('DealComponent', () => {
         faction: {
           id: 'green',
         },
-        image: 'assets/images/units/green/goblin.png',
+        image: 'assets/images/units/green/elf.png',
       },
       quantity: 1,
       gold: 1,

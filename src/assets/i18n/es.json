@@ -1084,16 +1084,16 @@
       "name": "Plantas Carnívoras",
       "description": ""
     },
-    "giant-snail": {
-      "name": "Caracoles Monstruosos",
+    "elf": {
+      "name": "Elfos",
       "description": ""
     },
     "centaur": {
       "name": "Centauros",
       "description": ""
     },
-    "goblin": {
-      "name": "Goblins",
+    "druid": {
+      "name": "Druidas",
       "description": ""
     },
     "golden-dragon": {
@@ -1542,9 +1542,9 @@
       "name": "Concilio de las Bestias",
       "description": "Convoca una tropa de <animal> o <reptile> al azar"
     },
-    "call-giant-snail": {
-      "name": "Llamar Caracoles Monstruosos",
-      "description": "Convoca una tropa de <giant-snail>"
+    "call-elf": {
+      "name": "Llamar Elfos",
+      "description": "Convoca una tropa de <elf>"
     },
     "call-carnivorous-plant": {
       "name": "Llamar Plantas Carnívoras",
@@ -1590,9 +1590,9 @@
       "name": "Calma",
       "description": "Elimina <fear>,<slowness>,<weakness>,<seduction>,<leech> a una tropa aliada al azar"
     },
-    "summon-goblin": {
-      "name": "Invocar Goblins",
-      "description": "Convoca una tropa de <goblin>"
+    "summon-druid": {
+      "name": "Invocar Druidas",
+      "description": "Convoca una tropa de <druid>"
     },
     "summon-werebear": {
       "name": "Invocar Hombres Oso",

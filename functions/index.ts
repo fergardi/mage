@@ -276,8 +276,8 @@ export const createKingdom = async (kingdomId: string, factionId: KingdomType, n
       break;
     }
     case KingdomType.GREEN: {
-      troops = ['goblin'];
-      charms = ['summon-goblin', 'cure'];
+      troops = ['elf'];
+      charms = ['call-elf', 'cure'];
       break;
     }
     case KingdomType.RED: {
@@ -1347,7 +1347,7 @@ const checkQuest = async (fid?: string, latitude?: number, longitude?: number, t
       case LocationType.CAVE:
       case LocationType.MINE:
         questHeroes = ['orc-king'];
-        questUnits = ['cave-troll', 'centaur', 'goblin', 'ogre', 'orc'];
+        questUnits = ['cave-troll', 'centaur', 'druid', 'ogre', 'orc'];
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.MOUNTAIN:
@@ -1365,13 +1365,13 @@ const checkQuest = async (fid?: string, latitude?: number, longitude?: number, t
       case LocationType.SHRINE:
       case LocationType.FOREST:
         questHeroes = ['beast-master'];
-        questUnits = ['werewolf', 'giant-snail', 'werebear', 'spider', 'carnivorous-plant', 'griffon', 'pegasus', 'cavalry', 'trained-elephant', 'wolf'];
+        questUnits = ['werewolf', 'werebear', 'spider', 'carnivorous-plant', 'griffon', 'pegasus', 'cavalry', 'trained-elephant', 'wolf', 'elf', 'druid'];
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.LAKE:
       case LocationType.SHIP:
         questHeroes = ['illusionist', 'swamp-thing'];
-        questUnits = ['medusa', 'leviathan', 'lizardman', 'hydra'];
+        questUnits = ['medusa', 'leviathan', 'lizardman', 'hydra', 'siren'];
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.NEST:
@@ -1389,7 +1389,7 @@ const checkQuest = async (fid?: string, latitude?: number, longitude?: number, t
       case LocationType.BARRACK:
       case LocationType.ISLAND:
         questHeroes = ['golem-golem'];
-        questUnits = ['frost-giant', 'leviathan', 'yeti', 'giant-snail', 'carnivorous-plant', 'hydra', 'cyclop', 'ogre', 'titan'];
+        questUnits = ['frost-giant', 'leviathan', 'yeti', 'spider', 'carnivorous-plant', 'hydra', 'cyclop', 'ogre', 'titan'];
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.GRAVEYARD:
