@@ -16,11 +16,7 @@ export class AuthGuard implements CanActivate {
     private notificationService: NotificationService,
     private store: Store,
     private router: Router,
-  ) {
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
-      localStorage.setItem('route', event.url);
-    });
-  }
+  ) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const logged = this.store.selectSnapshot(AuthState.getUserLoggedIn);
