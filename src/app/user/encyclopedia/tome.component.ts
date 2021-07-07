@@ -13,7 +13,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
       <mat-list dense>
         <mat-list-item [ngClass]="[tome.faction.id, (tome | legendary) ? 'legendary' : 'common']">
           <div mat-list-avatar [matBadge]="tome.level || '?'" matBadgePosition="above before">
-            <img mat-list-avatar [src]="tome.image">
+            <img mat-list-avatar [src]="tome.image" [ngClass]="tome.type === 'god' ? 'squared' : ''">
           </div>
           <div mat-line>{{ tome.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category', 'guild', 'attack'].includes(tome.type)">{{ tome.description | translate }}</div>

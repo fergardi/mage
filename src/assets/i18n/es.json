@@ -123,6 +123,10 @@
       "name": "Lugar",
       "description": ""
     },
+    "store": {
+      "name": "Tienda",
+      "description": ""
+    },
     "skill": {
       "name": "Habilidad",
       "description": ""
@@ -859,7 +863,7 @@
     },
     "mercenary": {
       "name": "Campamento de Mercenarios",
-      "description": "Incorpora tropas para tu ejército"
+      "description": "Incorpora tropas a tu ejército"
     },
     "sorcerer": {
       "name": "Escuela de Magia",
@@ -920,83 +924,83 @@
   "location": {
     "cave": {
       "name": "Cueva Oscura",
-      "description": ""
+      "description": "El hábitat natural de los <orkish>"
     },
     "graveyard": {
       "name": "Necrópolis Terrorífica",
-      "description": ""
+      "description": "Lugar destinado a enterramientos de <undead>"
     },
     "dungeon": {
       "name": "Mazmorra Olvidada",
-      "description": ""
+      "description": "Vagando por sus pasillos esperan <golem> y <undead>"
     },
     "mine": {
       "name": "Mina Profunda",
-      "description": ""
+      "description": "En sus abismos se pueden encontrar <elemental>"
     },
     "forest": {
       "name": "Bosque Salvaje",
-      "description": ""
+      "description": "Por sus caminos pululan <animal>, <reptile> y <orkish>"
     },
     "cathedral": {
       "name": "Catedral Antigua",
-      "description": ""
+      "description": "En estos monumentos son venerados por <human>"
     },
     "mountain": {
       "name": "Montaña Lejana",
-      "description": ""
+      "description": "Por sus altas y frías cimas patrullan <giant>"
     },
     "volcano": {
       "name": "Volcán Ardiente",
-      "description": ""
+      "description": "De sus infiernos abrasadores se expulsan <demon>"
     },
     "lake": {
       "name": "Lago Misterioso",
-      "description": ""
+      "description": "Por sus profunidades pululan <reptile>"
     },
     "nest": {
       "name": "Nido Dracónido",
-      "description": ""
+      "description": "En sus alturas duermen <dragon>"
     },
     "castle": {
       "name": "Castillo Fortificado",
-      "description": ""
+      "description": "Tras sus murallas se atrincheran <human> y <dragon>"
     },
     "barrack": {
       "name": "Barracones Amurallados",
-      "description": ""
+      "description": "En sus cuarteles se aprovisionan <human>"
     },
     "island": {
       "name": "Isla Remota",
-      "description": ""
+      "description": "Dentro de sus junglas se ocultan <animal> y <dragon>"
     },
     "monolith": {
       "name": "Monolito Perdido",
-      "description": ""
+      "description": "Alrededor de su magia se concentran <golem> y <giant>"
     },
     "ruin": {
       "name": "Ruinas Derruidas",
-      "description": ""
+      "description": "Ocultos tras sus escombros acampan <giant> y <demon>"
     },
     "ship": {
       "name": "Navío Naufragado",
-      "description": ""
+      "description": "Por sus restos flotantes se arrastran <reptile>"
     },
     "town": {
       "name": "Ciudad Fantasma",
-      "description": ""
+      "description": "En sus casas se pueden encontrar <human> y <undead>"
     },
     "shrine": {
       "name": "Santuario Profanado",
-      "description": ""
+      "description": "Atraídos por su poder se congregan <dragon> y <elemental>"
     },
     "totem": {
       "name": "Tótem Maldito",
-      "description": ""
+      "description": "Alrededor de su magia oscura se juntan <orkish> y <giant>"
     },
     "pyramid": {
       "name": "Pirámide Faraónica",
-      "description": ""
+      "description": "En sus oscuras cámaras esperan <undead>"
     }
   },
   "unit": {
@@ -1105,7 +1109,7 @@
       "description": ""
     },
     "spider": {
-      "name": "Arañas",
+      "name": "Arañas Gigantes",
       "description": ""
     },
     "lizardman": {
@@ -1735,10 +1739,12 @@
   },
   "category": {
     "legendary": {
-      "name": "Legendario"
+      "name": "Legendario",
+      "description": ""
     },
     "resistance": {
-      "name": "Resiste +75% a "
+      "name": "Resiste +75% a ",
+      "description": ""
     },
     "melee": {
       "name": "Físico",
@@ -1826,15 +1832,15 @@
   "hero": {
     "dragon-rider": {
       "name": "Jinete de Dragones",
-      "description": "Aumenta el ataque, defensa y salud de <dragon> por nivel"
+      "description": "Aumenta el <attack>, <defense> y <health> de <dragon> por nivel"
     },
     "demon-prince": {
       "name": "Príncipe Demonio",
-      "description": "Aumenta el ataque de <demon> por nivel"
+      "description": "Aumenta el <attack> de <demon> por nivel"
     },
     "commander": {
       "name": "Comandante General",
-      "description": "Aumenta la defensa de <human> por nivel"
+      "description": "Aumenta la <defense> de <human> por nivel"
     },
     "trader": {
       "name": "Gran Comerciante",
@@ -1842,7 +1848,7 @@
     },
     "beast-master": {
       "name": "Señor de las Bestias",
-      "description": "Aumenta la salud de <animal> y <reptile> por nivel"
+      "description": "Aumenta la <health> de <animal> y <reptile> por nivel"
     },
     "shaman": {
       "name": "Chamán Místico",
@@ -1850,7 +1856,7 @@
     },
     "elementalist": {
       "name": "Elementalista Exiliado",
-      "description": "Aumenta el ataque y salud de <elemental> por nivel"
+      "description": "Aumenta el <attack> y <health> de <elemental> por nivel"
     },
     "sage": {
       "name": "Sabio Erudito",
@@ -1858,23 +1864,23 @@
     },
     "necrophage": {
       "name": "Necrófago Anciano",
-      "description": "Aumenta el ataque de <undead> por nivel"
+      "description": "Aumenta el <attack> de <undead> por nivel"
     },
-    "necromancer": {
-      "name": "Nigromante Putrefacto",
-      "description": "Aumentas la <population> al <turn> por nivel"
+    "crypt-keeper": {
+      "name": "Guardián de la Cripta",
+      "description": "Aumenta la <population> al <turn> por nivel"
     },
     "engineer": {
       "name": "Ingeniero Constructor",
       "description": "Aumenta el ratio de construcción por nivel"
     },
-    "crypt-keeper": {
-      "name": "Guardián de la Cripta",
-      "description": "Resucita tropas muertas en batalla por nivel"
+    "necromancer": {
+      "name": "Nigromante Putrefacto",
+      "description": "Resucita tropas muertas como <skeleton> por nivel"
     },
     "orc-king": {
       "name": "Rey de los Orcos",
-      "description": "Aumenta el ataque de <orkish> por nivel"
+      "description": "Aumenta el <attack> de <orkish> por nivel"
     },
     "leprechaunt": {
       "name": "Leprechaunt Avaricioso",
@@ -1882,7 +1888,7 @@
     },
     "golem-golem": {
       "name": "Gólem de Todo",
-      "description": "Aumenta el ataque, defensa y salud de <golem> y <giant> por nivel"
+      "description": "Aumenta el <attack>, <defense> y <health> de <golem> y <giant> por nivel"
     },
     "illusionist": {
       "name": "Ilusionista Congelado",

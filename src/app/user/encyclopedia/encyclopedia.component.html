@@ -62,11 +62,11 @@
                 <mat-list dense>
                   <mat-list-item [ngClass]="[row.faction.id, (row | legendary) ? 'legendary' : 'common']">
                     <div mat-list-avatar [matBadge]="row.level || '?'" matBadgePosition="above before">
-                      <img mat-list-avatar [src]="row.image">
+                      <img mat-list-avatar [src]="row.image" [ngClass]="row.type === 'god' ? 'squared' : ''">
                     </div>
-                    <div mat-line>{{ row.name | translate:{name:'?'} }}</div>
+                    <div mat-line>{{ row.name | translate }}</div>
                     <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category', 'guild', 'attack'].includes(row.type)">{{ row.description | translate }}</div>
-                    <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'structure', 'location', 'hero', 'item'].includes(row.type)" [innerHTML]="row.description | translate | icon:row"></div>
+                    <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'structure', 'location', 'store', 'hero', 'item'].includes(row.type)" [innerHTML]="row.description | translate | icon:row"></div>
                     <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(row.type)">
                       <img [title]="family.name | translate" class="icon" *ngFor="let family of row.families" [src]="family.image">
                       <img [title]="skill.name | translate" class="icon" *ngFor="let skill of row.skills" [src]="skill.image">
@@ -130,12 +130,12 @@
         <mat-list dense>
           <ng-container *ngFor="let example of topic.examples">
             <mat-list-item [ngClass]="[example.faction.id, example.legendary ? 'legendary' : 'common']">
-              <div mat-list-avatar matBadge="?" matBadgePosition="above before">
+              <div mat-list-avatar [matBadge]="example.type === 'report' ? '!' : '?'" matBadgePosition="above before">
                 <img mat-list-avatar [src]="example.image">
               </div>
               <div mat-line>{{ example.name | translate }}</div>
               <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category', 'guild', 'player', 'report'].includes(example.type)">{{ example.description | translate }}</div>
-              <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'structure', 'location', 'hero', 'item'].includes(example.type)" [innerHTML]="example.description | translate | icon:example"></div>
+              <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'structure', 'location', 'store', 'hero', 'item'].includes(example.type)" [innerHTML]="example.description | translate | icon:example"></div>
               <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(example.type)">
                 <img [title]="family.name | translate" class="icon" *ngFor="let family of example.families" [src]="family.image">
                 <img [title]="skill.name | translate" class="icon" *ngFor="let skill of example.skills" [src]="skill.image">

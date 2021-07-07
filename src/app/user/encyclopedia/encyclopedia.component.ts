@@ -66,6 +66,8 @@ export class EncyclopediaComponent implements OnInit {
       this.cacheService.getCategories(),
       this.cacheService.getGuilds(),
       this.cacheService.getAttacks(),
+      this.cacheService.getLocations(),
+      this.cacheService.getStores(),
     ]);
     data = data.reduce((a: any[], b: any) => a.concat(b), []);
     this.table = new MatTableDataSource(data);
@@ -93,7 +95,7 @@ export class EncyclopediaComponent implements OnInit {
       { surname: 'kingdom', name: 'city', examples: this.table.data.filter((item: any) => ['barrier', 'node'].includes(item.id)), suffix: '/assets/images/resources/land.png' },
       { surname: 'kingdom', name: 'auction', examples: this.table.data.filter((item: any) => ['shield-light', 'crypt-keeper'].includes(item.id)), suffix: '/assets/images/resources/gold.png' },
       { surname: 'kingdom', name: 'emporium', examples: this.table.data.filter((item: any) => ['magic-compass', 'dragon-egg'].includes(item.id)), suffix: '/assets/images/resources/gem.png' },
-      { surname: 'world', name: 'map', examples: this.table.data.filter((item: any) => ['skeleton', 'treasure-chest'].includes(item.id)), suffix: '/assets/images/resources/turn.png' },
+      { surname: 'world', name: 'map', examples: [{ name: 'location.graveyard.name', description: 'location.graveyard.description', type: 'location', image: '/assets/images/locations/graveyard.png', faction: { id: 'grey' } }, { name: 'store.merchant.name', description: 'store.merchant.description', type: 'store', image: '/assets/images/stores/merchant.png', faction: { id: 'grey' } }] },
       { surname: 'kingdom', name: 'army', examples: this.table.data.filter((item: any) => ['bone-dragon', 'hydra'].includes(item.id)) },
       { surname: 'kingdom', name: 'tavern', examples: this.table.data.filter((item: any) => ['dragon-rider', 'sage'].includes(item.id)) },
       { surname: 'kingdom', name: 'census', examples: [{ name: 'Bot 1', description: 'Bots', type: 'player', image: '/assets/images/factions/black.png', faction: { id: 'black' } }, { name: 'Bot 2', description: 'Bots', type: 'player', image: '/assets/images/factions/white.png', faction: { id: 'white' } }], suffix: '/assets/images/icons/power.png' },

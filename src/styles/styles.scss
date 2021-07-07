@@ -202,6 +202,10 @@ $list-item-height: 60px;
  .mat-list-avatar {
     width: 50px !important;
     height: 50px !important;
+    border-radius: 50%;
+    &.squared {
+      border-radius: 0 !important;
+    }
   }
   .mat-subheader:first-child {
     margin-top: 0 !important;
