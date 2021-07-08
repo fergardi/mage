@@ -16,15 +16,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
             <img mat-list-avatar [src]="tome.image" [ngClass]="tome.type === 'god' ? 'squared' : ''">
           </div>
           <div mat-line>{{ tome.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category', 'guild', 'attack'].includes(tome.type)">{{ tome.description | translate }}</div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['spell', 'structure', 'location', 'hero', 'item'].includes(tome.type)" [innerHTML]="tome.description | translate | icon:tome"></div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(tome.type)">
+          <div mat-line class="mat-card-subtitle" *ngIf="tome.type !== 'unit'" [innerHTML]="tome.description | translate | icon:tome"></div>
+          <div mat-line class="mat-card-subtitle" *ngIf="tome.type === 'unit'">
             <img [title]="family.name | translate" class="icon" *ngFor="let family of tome.families" [src]="family.image">
             <img [title]="skill.name | translate" class="icon" *ngFor="let skill of tome.skills" [src]="skill.image">
             <img [title]="category.name | translate" class="icon" *ngFor="let category of tome.categories" [src]="category.image">
             <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="tome.legendary" src="/assets/images/icons/legendary.png">
           </div>
-          <div mat-line class="mat-card-subtitle" *ngIf="['unit'].includes(tome.type) && tome.categories && tome.categories.length">
+          <div mat-line class="mat-card-subtitle" *ngIf="tome.type === 'unit' && tome.categories && tome.categories.length">
             <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of tome.resistances" [src]="category.image">
           </div>
           <div mat-list-avatar *ngIf="tome.join">

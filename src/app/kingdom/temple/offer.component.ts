@@ -20,7 +20,7 @@ import { LoadingService } from 'src/app/services/loading.service';
             <img mat-list-avatar class="god-avatar" [src]="god.image">
           </div>
           <div mat-line>{{ god.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="god.description | translate | icon:god"></div>
           <div mat-line>
             <mat-progress-bar [value]="god.sacrifice * 100 / (god.gold || god.mana || god.population || god.land || god.turn)"></mat-progress-bar>
           </div>

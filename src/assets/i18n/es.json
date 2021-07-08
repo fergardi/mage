@@ -524,9 +524,10 @@
       "name": "Magia",
       "description": "Conjura tus hechizos y artefactos",
       "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al <attack> ni a la <defense>. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas y tengas <mana>. También podrás completar investigaciones pendientes para desbloquear nuevos hechizos, invirtiendo <turn>. Para lanzar hechizos agresivos, hazlo desde el Censo.",
-      "tour": "La magia te permite invertir turnos en la investigación de nuevos y poderosos Hechizos, activar tus Artefactos, y gestionar cuales de ellos se usarán tanto en el ataque como en la defensa de tu reino. Puedes asignarlos para:<ul><li>Atacar manualmente, hasta 1 Artefacto y 1 Hechizo (si puedes pagar su <mana>)</li><li>Defender automáticamente, hasta 1 Artefacto y 1 Hechizo (si puedes pagar su <mana>)",
+      "tour": "La magia te permite invertir turnos en la investigación de nuevos y poderosos Hechizos, activar tus Artefactos, y gestionar cuales de ellos se usarán tanto en el ataque como en la defensa de tu reino. Puedes asignarlos para:<ul><li>Atacar manualmente, hasta 1 Artefacto y 1 Hechizo, si puedes pagar su <mana></li><li>Defender automáticamente, hasta 1 Artefacto y 1 Hechizo, si puedes pagar su <mana>",
       "maximum": "No puedes superar el máximo",
       "success": "Tus hechizos y artefactos han sido asignados",
+      "error": "Ha ocurrido un problema",
       "max": "Max"
     },
     "research": {
@@ -1692,7 +1693,7 @@
     },
     "armageddon": {
       "name": "Armagedón",
-      "description": "Convoca la destrucción total"
+      "description": "Convoca el fin de los tiempos"
     }
   },
   "family": {
@@ -1764,27 +1765,27 @@
     },
     "fire": {
       "name": "Fuego",
-      "description": "Daño ígneo, aumenta en +10% el ataque del aliado"
+      "description": "Daño ígneo, aumenta en +10% el <attack> del aliado"
     },
     "cold": {
       "name": "Frío",
-      "description": "Daño helado, disminuye en -10% el ataque del enemigo"
+      "description": "Daño helado, disminuye en -10% el <attack> del enemigo"
     },
     "lightning": {
       "name": "Rayo",
-      "description": "Daño eléctrico, disminuye en -1 la iniciativa del enemigo"
+      "description": "Daño eléctrico, disminuye en -1 la <initiative> del enemigo"
     },
     "holy": {
       "name": "Sagrado",
-      "description": "Daño luminoso, aumenta en +10% la salud del aliado"
+      "description": "Daño luminoso, aumenta en +10% la <health> del aliado"
     },
     "poison": {
       "name": "Veneno",
-      "description": "Daño corrosivo, disminuye en -10% la salud del enemigo"
+      "description": "Daño corrosivo, disminuye en -10% la <health> del enemigo"
     },
     "breath": {
       "name": "Aliento",
-      "description": "Daño destructivo, disminuye en -25% la defensa del enemigo"
+      "description": "Daño destructivo, disminuye en -25% la <defense> del enemigo"
     }
   },
   "skill": {
@@ -1794,39 +1795,39 @@
     },
     "leech": {
       "name": "Robar Vida",
-      "description": "Aumenta su salud en +25%"
+      "description": "Aumenta su <health> en +25%"
     },
     "scales": {
       "name": "Placas",
-      "description": "Aumenta su defensa en +25%"
+      "description": "Aumenta su <defense> en +25%"
     },
     "strength": {
       "name": "Fuerza",
-      "description": "Aumenta su ataque en +25%"
+      "description": "Aumenta su <attack> en +25%"
     },
     "haste": {
       "name": "Prisa",
-      "description": "Aumenta su iniciativa en +1"
+      "description": "Aumenta su <initiative> en +1"
     },
     "weakness": {
       "name": "Debilidad",
-      "description": "Disminuye su defensa en -25%"
+      "description": "Disminuye su <defense> en -25%"
     },
     "seduction": {
       "name": "Seducción",
-      "description": "Disminuye su salud en -25%"
+      "description": "Disminuye su <health> en -25%"
     },
     "slowness": {
       "name": "Lentitud",
-      "description": "Disminuye su iniciativa en -1"
+      "description": "Disminuye su <initiative> en -1"
     },
     "flight": {
       "name": "Vuelo",
-      "description": "Aumenta su ataque, defensa y salud en +15%"
+      "description": "Aumenta su <attack>, <defense> y <health> en +15%"
     },
     "fear": {
       "name": "Miedo",
-      "description": "Disminuye su ataque en -25%"
+      "description": "Disminuye su <attack> en -25%"
     }
   },
   "hero": {
@@ -2116,61 +2117,61 @@
   "god": {
     "death": {
       "name": "Imagen de la Muerte",
-      "description": "Guardián del Sello del Tiempo"
+      "description": "Guardián del Sello de <turn>"
     },
     "void": {
       "name": "Encarnación del Vacío",
-      "description": "Guardián del Sello del Maná"
+      "description": "Guardián del Sello de <mana>"
     },
     "famine": {
       "name": "Símbolo de la Hambruna",
-      "description": "Guardián del Sello del Oro"
+      "description": "Guardián del Sello de <gold>"
     },
     "war": {
       "name": "Efigie de la Guerra",
-      "description": "Guardián del Sello de la Tierra"
+      "description": "Guardián del Sello de <land>"
     },
     "pestilence": {
       "name": "Portador de la Pestilencia",
-      "description": "Guardián del Sello de la Población"
+      "description": "Guardián del Sello de <population>"
     }
   },
   "guild": {
     "knight": {
       "name": "Gremio de Caballeros",
-      "description": "Obtienes +10% Ataque en las Batallas"
+      "description": "Obtienes +10% de <attack> en las Batallas"
     },
     "priest": {
       "name": "Gremio de Sanadores",
-      "description": "Obtienes +10% Salud en las Batallas"
+      "description": "Obtienes +10% de <health< en las Batallas"
     },
     "champion": {
       "name": "Gremio de Campeones",
-      "description": "Obtienes +10% Defensa en las Batallas"
+      "description": "Obtienes +10% de <defense> en las Batallas"
     },
     "hunter": {
       "name": "Gremio de Cazadores",
-      "description": "Robas +10% Población en los Pillajes"
+      "description": "Robas +10% de <population> en los Pillajes"
     },
     "rogue": {
       "name": "Gremio de Ladrones",
-      "description": "Robas +10% Oro en los Pillajes"
+      "description": "Robas +10% de <gold> en los Pillajes"
     },
     "mage": {
       "name": "Gremio de Magos",
-      "description": "Robas +10% Maná en los Pillajes"
+      "description": "Robas +10% de <mana> en los Pillajes"
     },
     "warrior": {
       "name": "Gremio de Guerreros",
-      "description": "Destruyes +10% Edificios en los Asedios"
+      "description": "Destruyes +10% de Edificios en los Asedios"
     },
     "assassin": {
       "name": "Gremio de Asesinos",
-      "description": "Destruyes +10% Tropas en los Asedios"
+      "description": "Destruyes +10% de Tropas en los Asedios"
     },
     "warlock": {
       "name": "Gremio de Brujos",
-      "description": "Destruyes +10% Recursos en los Asedios"
+      "description": "Destruyes +10% de Recursos en los Asedios"
     }
   }
 }

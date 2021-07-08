@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     // anchors
     this.router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationEnd) {
-        localStorage.setItem('route', event.url);
+        if (event.url !== '/user/landing') localStorage.setItem('route', event.url);
       }
       if (event instanceof Scroll && event.anchor && isPlatformBrowser(this.platformId)) {
         setTimeout(() => {
@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
         }, 1000);
       }
     });
+    // fixtures
     this.tutorialService.initialize();
     this.firebaseService.loadFixtures([
       // FixtureType.FACTIONS,

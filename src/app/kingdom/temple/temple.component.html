@@ -22,7 +22,7 @@
               <img mat-list-avatar [src]="god.image" class="squared">
             </div>
             <div mat-line>{{ god.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ god.description | translate }}</div>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="god.description | translate | icon:god"></div>
             <div mat-line>
               <mat-progress-bar [value]="god.sacrifice * 100 / (god.gold || god.mana || god.population || god.land || god.turn)"></mat-progress-bar>
             </div>
