@@ -14,7 +14,7 @@
       </mat-card-header>
 
       <mat-card-content>
-        <p>{{ 'kingdom.clan.help' | translate }}</p>
+        <p [innerHTML]="'kingdom.clan.help' | translate"></p>
         <table mat-table matSort [dataSource]="data" matSortDisableClear tourAnchor="tour.clan">
           <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
             <mat-header-cell class="table-header" *matHeaderCellDef>
@@ -90,7 +90,7 @@
       </mat-card-header>
 
       <mat-card-content>
-        <p>{{ 'kingdom.guild.help' | translate }}</p>
+        <p [innerHTML]="'kingdom.guild.help' | translate"></p>
         <div matSubheader>{{ 'card.list.guilds' | translate }}:</div>
         <mat-form-field tourAnchor="tour.guild">
           <mat-label>{{ 'kingdom.guild.select' | translate }}</mat-label>

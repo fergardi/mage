@@ -14,7 +14,6 @@
       </mat-card-header>
 
       <mat-card-content>
-        <p [innerHTML]="'kingdom.temple.help' | translate | icon"></p>
         <div matSubheader>{{ 'card.list.gods' | translate }}:</div>
         <mat-action-list dense tourAnchor="tour.temple">
           <button mat-list-item *ngFor="let god of kingdomGods" [disabled]="god.armageddon" (click)="openOfferDialog(god)" class="grey legendary">
@@ -31,6 +30,9 @@
             </div>
           </button>
         </mat-action-list>
+      </mat-card-content>
+      <mat-card-content>
+        <p [innerHTML]="'kingdom.temple.help' | translate | icon"></p>
       </mat-card-content>
     </mat-card>
 
@@ -52,7 +54,6 @@
           </mat-card-header>
 
           <mat-card-content>
-            <p [innerHTML]="'kingdom.break.help' | translate | icon"></p>
             <div matSubheader>{{ 'card.list.enchantments' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.break">
               <button mat-list-item *ngFor="let enchantment of kingdomEnchantments" (click)="openBreakDialog(enchantment)" [ngClass]="[enchantment.spell.faction.id, enchantment.spell.legendary ? 'legendary' : 'common']" [disabled]="enchantment.from.id === uid">
@@ -69,6 +70,9 @@
                 </div>
               </button>
             </mat-action-list>
+          </mat-card-content>
+          <mat-card-content>
+            <p [innerHTML]="'kingdom.break.help' | translate | icon"></p>
           </mat-card-content>
         </mat-card>
 
@@ -88,7 +92,6 @@
           </mat-card-header>
 
           <mat-card-content>
-            <p [innerHTML]="'kingdom.dispel.help' | translate | icon"></p>
             <div matSubheader>{{ 'card.list.incantations' | translate }}:</div>
             <mat-action-list dense tourAnchor="tour.dispel">
               <button mat-list-item *ngFor="let incantation of kingdomIncantations" (click)="openDispelDialog(incantation)" [ngClass]="[incantation.spell.faction.id, incantation.spell.legendary ? 'legendary' : 'common']">
@@ -105,6 +108,9 @@
                 </div>
               </button>
             </mat-action-list>
+          </mat-card-content>
+          <mat-card-content>
+            <p [innerHTML]="'kingdom.dispel.help' | translate | icon"></p>
           </mat-card-content>
         </mat-card>
 
