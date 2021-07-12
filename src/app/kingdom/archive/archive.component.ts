@@ -119,11 +119,11 @@ export class ArchiveComponent implements OnInit {
         this.notificationService.success('kingdom.archive.success');
       } catch (error) {
         console.error(error);
-        this.notificationService.success('kingdom.archive.error');
+        this.notificationService.error('kingdom.archive.error');
       }
       this.loadingService.stopLoading();
     } else {
-      this.notificationService.success('kingdom.archive.error');
+      this.notificationService.error('kingdom.archive.error');
     }
   }
 

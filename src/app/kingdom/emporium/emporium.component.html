@@ -51,7 +51,7 @@
       <mat-card-content>
         <div matSubheader>{{ 'card.list.packs' | translate }}:</div>
         <mat-action-list dense tourAnchor="tour.packs">
-          <button mat-list-item *ngFor="let pack of emporiumPacks" class="common">
+          <button mat-list-item *ngFor="let pack of emporiumPacks" class="common" disabled>
             <div mat-list-avatar [matBadge]="pack.quantity" matBadgePosition="above before">
               <img mat-list-avatar [src]="pack.image">
             </div>

@@ -23,20 +23,22 @@ const BATTLE_TURNS = 2;
     <h1 mat-dialog-title>{{ 'kingdom.battle.name' | translate }}</h1>
     <div mat-dialog-content>
       <p>{{ 'kingdom.battle.description' | translate }}</p>
+      <div matSubheader>{{ 'kingdom.battle.target' | translate }}:</div>
       <mat-list dense>
-        <mat-list-item [ngClass]="[kingdom.faction, kingdom.fid === uid ? 'legendary' : 'common']">
+        <mat-list-item [ngClass]="kingdom.faction.id">
           <div mat-list-avatar [matBadge]="kingdom.position | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="kingdom.join.image">
+            <img mat-list-avatar [src]="kingdom.faction.image">
           </div>
           <div mat-line>{{ kingdom.name | translate }}</div>
-          <div mat-line class="mat-card-subtitle">{{ kingdom.join.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">{{ kingdom.faction.name | translate }}</div>
           <div mat-list-avatar [matBadge]="BATTLE_TURNS" matBadgePosition="above after">
             <img mat-list-avatar src="/assets/images/resources/turn.png">
           </div>
         </mat-list-item>
       </mat-list>
+      <div matSubheader>{{ 'kingdom.battle.select' | translate }}:</div>
       <mat-form-field>
-        <mat-label>{{ 'kingdom.battle.select' | translate }}</mat-label>
+        <mat-label>{{ 'kingdom.battle.type' | translate }}</mat-label>
         <mat-select [(ngModel)]="attackType">
           <mat-select-trigger>
             <mat-list dense>

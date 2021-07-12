@@ -758,7 +758,7 @@ $list-item-height: 60px;
   margin: 0;
   border: 1px solid $primary-color;
   box-sizing: border-box;
-  vertical-align: text-bottom;
+  vertical-align: top;
   &.grayscale {
     filter: grayscale(100%);
   }

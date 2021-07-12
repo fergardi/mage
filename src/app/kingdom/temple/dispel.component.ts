@@ -82,7 +82,6 @@ export class DispelComponent {
       try {
         const dispelled = await this.apiService.dispelIncantation(this.uid, this.incantation.fid);
         this.notificationService.success('kingdom.dispel.success');
-        // this.notificationService.success('kingdom.dispel.failure');
         this.close();
       } catch (error) {
         console.error(error);

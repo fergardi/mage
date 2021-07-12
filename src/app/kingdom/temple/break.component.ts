@@ -80,7 +80,6 @@ export class BreakComponent {
       try {
         const broken = await this.apiService.breakEnchantment(this.uid, this.enchantment.fid);
         this.notificationService.success('kingdom.break.success');
-        // this.notificationService.success('kingdom.break.failure');
         this.close();
       } catch (error) {
         console.error(error);
