@@ -2,7 +2,7 @@
 
 .app-landing {
   position: relative;
-  background-color: #681194;
+  background-color: #681194; // fixed color of last layer
   /* PARALLAX */
   .animated {
     animation-fill-mode: backwards;
@@ -63,7 +63,7 @@
   }
   $parallax-layers: 10;
   @for $i from 1 through $parallax-layers {
-    $x: ($parallax-layers - $i) / 2;
+    $x: ($parallax-layers - $i) * 0.5;
     .parallax-layer-#{$i} {
       transform: translateZ(-100px * $x) scale($x + 1);
     }
