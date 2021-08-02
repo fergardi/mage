@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
 
 describe('BidComponent', () => {
   let component: BidComponent;
@@ -54,6 +55,7 @@ describe('BidComponent', () => {
         LegendaryPipe,
         ShortPipe,
         LongPipe,
+        IconPipe,
       ],
       providers: [
         { provide: ApiService, useValue: ApiServiceStub },

@@ -10,7 +10,8 @@
     "start": "npm run shell",
     "deploy": "npm run build && firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "test": "jest --watchAll --runInBand --silent"
+    "test": "jest --watchAll --runInBand --testTimeout=30000 --silent",
+    "ci": "cd ../ && npm run ci"
   },
   "engines": {
     "node": "14"

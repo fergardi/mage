@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
@@ -18,6 +19,10 @@ describe('AuthGuard', () => {
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: Store, useValue: StoreStub },
+      ],
+      schemas: [
+        CUSTOM_ELEMENTS_SCHEMA, // ignore all
+        NO_ERRORS_SCHEMA, // disqus
       ],
     });
     guard = TestBed.inject(AuthGuard);

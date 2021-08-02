@@ -17,7 +17,7 @@ export class IconPipe implements PipeTransform {
       const terms = [object.skills || [], object.families || [], object.categories || [], object.units || [], object.resources || [], object.spells || [], object.adjacents || [], object.opposites || [], object.resistances || []].reduce((a, b) => a.concat(b), []);
       terms.forEach((term: any) => text = text.replace(`<${term.id}>`, `<img class="icon" title="${this.translateService.instant(term.name)}" src="${term.image}">`));
     }
-    text = text
+    text = (text || '')
     .replace(/<gold>/g, `<img class="icon" title="${this.translateService.instant('resource.gold.name')}" src="/assets/images/resources/gold.png">`)
     .replace(/<mana>/g, `<img class="icon" title="${this.translateService.instant('resource.mana.name')}" src="/assets/images/resources/mana.png">`)
     .replace(/<population>/g, `<img class="icon" title="${this.translateService.instant('resource.population.name')}" src="/assets/images/resources/population.png">`)

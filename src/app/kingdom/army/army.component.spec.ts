@@ -21,6 +21,7 @@ import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
 
 describe('ArmyComponent', () => {
   let component: ArmyComponent;
@@ -42,6 +43,7 @@ describe('ArmyComponent', () => {
         ArmyComponent,
         ShortPipe,
         LongPipe,
+        IconPipe,
       ],
       providers: [
         { provide: AngularFirestore, useValue: AngularFirestoreStub },

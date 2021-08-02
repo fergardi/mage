@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatBadgeModule } from '@angular/material/badge';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
 
 describe('ExploreComponent', () => {
   let component: ExploreComponent;
@@ -34,6 +35,7 @@ describe('ExploreComponent', () => {
       declarations: [
         ExploreComponent,
         LongPipe,
+        IconPipe,
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: StoreStub.select(AuthState.getKingdomLand) },

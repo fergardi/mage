@@ -8,6 +8,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
 
 describe('TomeComponent', () => {
   let component: TomeComponent;
@@ -37,6 +38,7 @@ describe('TomeComponent', () => {
       declarations: [
         LegendaryPipe,
         TomeComponent,
+        IconPipe,
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: tome },

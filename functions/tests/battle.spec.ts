@@ -14,7 +14,7 @@ const ITEMS_QUANTITY: number = 1;
 const UNITS_QUANTITY: number = 100;
 const HERO_LEVEL: number = 10;
 
-describe.skip('BATTLE', () => {
+describe('BATTLE', () => {
   // report
   let report: BattleReport;
   // troops

@@ -272,27 +272,27 @@ export const createKingdom = async (kingdomId: string, factionId: KingdomType, n
   switch (factionId) {
     case KingdomType.BLACK: {
       troops = ['skeleton'];
-      charms = ['animate-skeleton', 'terror'];
+      charms = ['animate-skeleton', 'animate-zombie', 'animate-ghoul', 'vampirism', 'terror', 'night-living-dead', 'necromancy', 'summon-wraith', 'summon-lich', 'summon-vampire', 'death-decay', 'shroud-darkness', 'corruption', 'soul-pact', 'chain-lightning', 'full-moon', 'witchcraft', 'plague', 'curse', 'blood-ritual'];
       break;
     }
     case KingdomType.GREEN: {
       troops = ['elf'];
-      charms = ['call-elf', 'cure'];
+      charms = ['accuracy', 'ambush', 'druidism', 'beast-council', 'summon-spider', 'call-carnivorous-plant', 'call-centaur', 'climate-control', 'cure', 'growth', 'locust-swarm', 'natures-favor', 'invigorate', 'calm', 'serenity', 'venom', 'call-elf', 'summon-werebear', 'summon-druid', 'sunray'];
       break;
     }
     case KingdomType.RED: {
       troops = ['orc'];
-      charms = ['call-orc', 'fireball'];
+      charms = ['fireball', 'battle-chant', 'call-berserker', 'call-orc', 'succubus-kiss', 'destroy-artifact', 'inferno', 'flame-shield', 'flame-blade', 'flame-arrow', 'gravity', 'meteor-storm', 'fatigue', 'summon-minotaur', 'summon-ogre', 'summon-lizardman', 'call-cyclop', 'volcano', 'fire-wall', 'frenzy'];
       break;
     }
     case KingdomType.BLUE: {
       troops = ['mage'];
-      charms = ['summon-mage', 'freeze'];
+      charms = ['call-frost-giant', 'call-cave-troll', 'call-yeti', 'summon-mage', 'summon-medusa', 'summon-djinni', 'concentration', 'confuse', 'conjure-elemental', 'levitation', 'fog', 'avarice', 'hallucination', 'freeze', 'ice-wall', 'invisibility', 'laziness', 'celerity', 'spy', 'steal-artifact'];
       break;
     }
     case KingdomType.WHITE: {
-      troops = ['pegasus'];
-      charms = ['call-pegasus', 'healing-hand'];
+      troops = ['knight'];
+      charms = ['wrath', 'call-pegasus', 'call-knight', 'call-templar', 'blaze', 'prayer', 'healing', 'divine-protection', 'exorcism', 'endurance', 'locate-artifact', 'miracle', 'peace-prosperity', 'resurrection', 'shield-light', 'summon-angel', 'summon-titan', 'summon-monk', 'sword-light', 'tranquility'];
       break;
     }
   }
@@ -774,13 +774,12 @@ export const addCharm = async (kingdomId: string, spell: any, turns: number, bat
   const kingdomCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('id', '==', spell.id).limit(1).get();
   if (kingdomCharm.size > 0) {
     const charm = kingdomCharm.docs[0]?.data();
-    console.log(charm.turns, turns, spell?.turnResearch)
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/charms/${kingdomCharm.docs[0].id}`), {
       turns: admin.firestore.FieldValue.increment(turns),
-      completed: (charm.turns + turns) >= spell?.turnResearch,
+      completed: (charm.turns + turns) >= spell.turnResearch,
     });
   } else {
-    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: spell.id, spell: spell, turns: turns, assignment: 0, completed: false });
+    batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/charms`).doc(), { id: spell.id, spell: spell, turns: turns, assignment: 0, completed: turns >= spell.turnResearch });
   }
 }
 
@@ -794,10 +793,10 @@ export const researchCharm = async (kingdomId: string, charmId: string, turns: n
   const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get()).docs[0].data();
   kingdomTurn.quantity = calculate(kingdomTurn.timestamp.toMillis(), admin.firestore.Timestamp.now().toMillis(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
   if (turns <= kingdomTurn.quantity) {
-    const spell = (await angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`).get()).data();
+    const charm = (await angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`).get()).data();
     const batch = angularFirestore.batch();
     await addSupply(kingdomId, 'turn', -turns, batch, kingdomTurn.resource.ratio);
-    await addCharm(kingdomId, spell, turns, batch);
+    await addCharm(kingdomId, charm?.spell, turns, batch);
     await batch.commit();
     return { turns: turns };
   } else throw new Error('api.error.research');
@@ -810,9 +809,12 @@ export const researchCharm = async (kingdomId: string, charmId: string, turns: n
  * @param assignmentId
  */
 export const assignCharm = async (kingdomId: string, charmId: string, assignmentId: number) => {
-  const batch = angularFirestore.batch();
-  batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`), { assignment: assignmentId });
-  await batch.commit();
+  const charm = (await angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`).get()).data();
+  if (charm && charm.completed) {
+    const batch = angularFirestore.batch();
+    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`), { assignment: assignmentId });
+    await batch.commit();
+  } else throw new Error('api.error.charm');
 }
 
 /**
@@ -894,13 +896,13 @@ export const conjureCharm = async (kingdomId: string, charmId: string, targetId:
  * @param kingdomId
  * @param itemId
  */
-const buyEmporium = async (kingdomId: string, itemId: string) => {
+export const buyEmporium = async (kingdomId: string, itemId: string) => {
   const item = (await angularFirestore.doc(`items/${itemId}`).get()).data();
   if (item) {
     const kingdomGem = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gem').limit(1).get()).docs[0].data();
     if (item.gems <= kingdomGem.quantity) {
       const batch = angularFirestore.batch();
-      const quantity = 100;
+      const quantity = 1;
       const data = {
         item: item,
         quantity: quantity,
@@ -923,7 +925,7 @@ const buyEmporium = async (kingdomId: string, itemId: string) => {
  * @param quantity
  * @param batch
  */
-const addArtifact = async (kingdomId: string, item: any, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addArtifact = async (kingdomId: string, item: any, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomArtifact = await angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).where('id', '==', item.id).limit(1).get();
   if (kingdomArtifact.size > 0) {
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/artifacts/${kingdomArtifact.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(quantity) });
@@ -938,7 +940,7 @@ const addArtifact = async (kingdomId: string, item: any, quantity: number, batch
  * @param artifactId
  * @param assignmentId
  */
-const assignArtifact = async (kingdomId: string, artifactId: string, assignmentId: number) => {
+export const assignArtifact = async (kingdomId: string, artifactId: string, assignmentId: number) => {
   const batch = angularFirestore.batch();
   batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/artifacts/${artifactId}`), { assignment: assignmentId });
   await batch.commit();
@@ -1041,7 +1043,7 @@ export const activateArtifact = async (kingdomId: string, artifactId: string, ta
  * @param buildingId
  * @param quantity
  */
-const buildStructure = async (kingdomId: string, buildingId: string, quantity: number) => {
+export const buildStructure = async (kingdomId: string, buildingId: string, quantity: number) => {
   const kingdomBuilding = (await angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${buildingId}`).get()).data();
   if (kingdomBuilding) {
     const batch = angularFirestore.batch();
@@ -1073,7 +1075,7 @@ const buildStructure = async (kingdomId: string, buildingId: string, quantity: n
  * @param buildingId
  * @param quantity
  */
-const demolishStructure = async (kingdomId: string, buildingId: string, quantity: number) => {
+export const demolishStructure = async (kingdomId: string, buildingId: string, quantity: number) => {
   const kingdomBuilding = (await angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${buildingId}`).get()).data();
   if (kingdomBuilding) {
     if (quantity > 0 && quantity <= kingdomBuilding.quantity) {
@@ -1093,7 +1095,7 @@ const demolishStructure = async (kingdomId: string, buildingId: string, quantity
  * @param quantity
  * @param batch
  */
-const addBuilding = async (kingdomId: string, buildingId: string, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addBuilding = async (kingdomId: string, buildingId: string, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomBuilding = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', buildingId).limit(1).get()).docs[0];
   if (kingdomBuilding) {
     const building = kingdomBuilding.data();
@@ -1128,7 +1130,7 @@ const addBuilding = async (kingdomId: string, buildingId: string, quantity: numb
  * @param batch
  * @param data
  */
-const addLetter = async (kingdomId: string, subject: string, message: string, from: any, batch: FirebaseFirestore.WriteBatch, data?: any) => {
+export const addLetter = async (kingdomId: string, subject: string, message: string, from: any, batch: FirebaseFirestore.WriteBatch, data?: any) => {
   batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/letters`).doc(), {
     to: kingdomId,
     subject: subject,
@@ -1147,7 +1149,7 @@ const addLetter = async (kingdomId: string, subject: string, message: string, fr
  * @param message
  * @param fromId
  */
-const sendLetter = async (kingdomId: string, subject: string, message: string, fromId: string) => {
+export const sendLetter = async (kingdomId: string, subject: string, message: string, fromId: string) => {
   const batch = angularFirestore.batch();
   const from = (await angularFirestore.doc(`kingdoms/${fromId}`).get()).data();
   await addLetter(kingdomId, subject, message, from, batch, null);
@@ -1159,7 +1161,7 @@ const sendLetter = async (kingdomId: string, subject: string, message: string, f
  * @param kingdomId
  * @param letterId
  */
-const readLetter = async (kingdomId: string, letterId: string) => {
+export const readLetter = async (kingdomId: string, letterId: string) => {
   await angularFirestore.doc(`kingdoms/${kingdomId}/letters/${letterId}`).update({ read: true });
 }
 
@@ -1168,7 +1170,7 @@ const readLetter = async (kingdomId: string, letterId: string) => {
  * @param kingdomId
  * @param letterIds
  */
-const removeLetters = async (kingdomId: string, letterIds: string[]) => {
+export const removeLetters = async (kingdomId: string, letterIds: string[]) => {
   const batch = angularFirestore.batch();
   letterIds.forEach(letterId => {
     batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/letters/${letterId}`));
@@ -1337,68 +1339,118 @@ const checkQuest = async (fid?: string, latitude?: number, longitude?: number, t
     let questItems: string[] = [];
     const legendaries: string[] = ['wisdom-tome', 'dragon-egg', 'voodoo-doll', 'golden-feather', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-compass', 'magic-scroll', 'rattle'];
     const items: string[] = ['treasure-chest', 'necronomicon', 'enchanted-lamp', 'wisdom-tome', 'demon-horn', 'lightning-orb', 'dragon-egg', 'crystal-ball', 'agility-potion', 'defense-potion', 'cold-orb', 'earth-orb', 'fire-orb', 'mana-potion', 'light-orb', 'strength-potion', 'love-potion', 'spider-web', 'animal-fang', 'bone-necklace', 'crown-thorns', 'voodoo-doll', 'cursed-skull', 'cursed-mask', 'cursed-idol', 'golem-book', 'letter-thieves', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-beans', 'magic-compass', 'mana-vortex', 'rattle', 'rotten-food', 'snake-eye', 'treasure-map', 'valhalla-horn', 'fairy-wings', 'vampire-teeth', 'holy-grenade', 'powder-barrel', 'vial-venom', 'ancient-rune', 'ice-stone', 'fire-scroll', 'cold-scroll', 'light-scroll', 'earth-scroll', 'lightning-scroll'];
+    const demon = ['nightmare', 'medusa', 'cyclop', 'minotaur', 'devil', 'ogre', 'imp'];
+    const undead = ['wraith', 'bone-dragon', 'nightmare', 'ghoul', 'lich', 'skeleton', 'vampire', 'werewolf', 'zombie', 'rat'];
+    const golem = ['iron-golem', 'stone-golem', 'meat-golem', 'wood-golem', 'crystal-golem'];
+    const orkish = ['cave-troll', 'centaur', 'druid', 'ogre', 'orc'];
+    const elemental = ['lightning-elemental', 'djinni', 'ice-elemental', 'earth-elemental', 'fire-elemental', 'phoenix', 'light-elemental', 'bat', 'air-elemental', 'water-elemental'];
+    const giant = ['frost-giant', 'leviathan', 'yeti', 'spider', 'carnivorous-plant', 'hydra', 'cyclop', 'ogre', 'titan'];
+    const dragon = ['bone-dragon', 'blue-dragon', 'golden-dragon', 'hydra', 'red-dragon', 'behemoth', 'white-dragon', 'baby-dragon'];
+    const animal = ['werewolf', 'spider', 'centaur', 'elf', 'werebear', 'carnivorous-plant', 'griffon', 'pegasus', 'cavalry', 'frog', 'sheep', 'bat', 'rat', 'imp', 'trained-elephant', 'wolf'];
+    const reptile = ['siren', 'medusa', 'leviathan', 'lizardman', 'hydra', 'frog'];
+    const human = ['werewolf', 'siren', 'mage', 'lizardman', 'elf', 'werebear', 'druid', 'berserker', 'angel', 'knight', 'monk', 'templar', 'pegasus', 'paladin', 'cavalry', 'fanatic', 'pikeman', 'fighter', 'archer', 'sheep'];
     switch (type) {
       case LocationType.VOLCANO:
+        questHeroes = ['demon-prince', 'pyromancer'];
+        questUnits = demon;
+        questItems = _.difference(items, legendaries);
+        break;
       case LocationType.DUNGEON:
-        questHeroes = ['demon-prince'];
-        questUnits = ['nightmare', 'medusa', 'cyclop', 'minotaur', 'devil', 'ogre', 'imp'];
+        questHeroes = ['necrophage', 'golem-golem'];
+        questUnits = undead.concat(golem);
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.CAVE:
+        questHeroes = ['orc-king', 'illusionist'];
+        questUnits = orkish;
+        questItems = _.difference(items, legendaries);
+        break;
       case LocationType.MINE:
-        questHeroes = ['orc-king'];
-        questUnits = ['cave-troll', 'centaur', 'druid', 'ogre', 'orc'];
+        questHeroes = ['elementalist'];
+        questUnits = elemental;
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.MOUNTAIN:
+        questHeroes = ['golem-golem', 'colossus'];
+        questUnits = giant;
+        questItems = _.difference(items, legendaries);
+        break;
       case LocationType.RUIN:
-        questHeroes = ['golem-golem'];
-        questUnits = ['crystal-golem', 'iron-golem', 'stone-golem'];
+        questHeroes = ['golem-golem', 'demon-prince', 'pyromancer'];
+        questUnits = giant.concat(demon);
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.MONOLITH:
+        questHeroes = ['golem-golem'];
+        questUnits = giant.concat(golem);
+        questItems = _.difference(items, legendaries);
+        break;
       case LocationType.PYRAMID:
-        questHeroes = ['elementalist'];
-        questUnits = ['lightning-elemental', 'djinni', 'ice-elemental', 'earth-elemental', 'fire-elemental', 'phoenix', 'light-elemental'];
+        questHeroes = ['necrophage', 'soul-reaper'];
+        questUnits = undead;
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.SHRINE:
+        questHeroes = ['necrophage', 'dragon-rider'];
+        questUnits = elemental.concat(dragon);
+        questItems = legendaries;
       case LocationType.FOREST:
-        questHeroes = ['beast-master'];
-        questUnits = ['werewolf', 'werebear', 'spider', 'carnivorous-plant', 'griffon', 'pegasus', 'cavalry', 'trained-elephant', 'wolf', 'elf', 'druid'];
+        questHeroes = ['beast-master', 'swamp-thing'];
+        questUnits = animal.concat(reptile);
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.LAKE:
+        questHeroes = ['beast-master', 'illusionist'];
+        questUnits = reptile;
+        questItems = _.difference(items, legendaries);
+        break;
       case LocationType.SHIP:
-        questHeroes = ['illusionist', 'swamp-thing'];
-        questUnits = ['medusa', 'leviathan', 'lizardman', 'hydra', 'siren'];
+        questHeroes = ['beast-master'];
+        questUnits = reptile;
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.NEST:
-      case LocationType.TOTEM:
         questHeroes = ['dragon-rider'];
-        questUnits = ['bone-dragon', 'blue-dragon', 'white-dragon', 'red-dragon', 'golden-dragon', 'baby-dragon'];
+        questUnits = dragon;
         questItems = legendaries;
         break;
-      case LocationType.CATHEDRAL:
-      case LocationType.CASTLE:
-        questHeroes = ['commander', 'colossus'];
-        questUnits = ['angel', 'knight', 'monk', 'templar', 'pegasus', 'paladin', 'cavalry', 'fanatic', 'pikeman', 'fighter', 'archer'];
+      case LocationType.TOTEM:
+        questHeroes = ['orc-king', 'golem-golem'];
+        questUnits = orkish.concat(giant);
         questItems = _.difference(items, legendaries);
         break;
+      case LocationType.CATHEDRAL:
+        questHeroes = ['commander', 'colossus'];
+        questUnits = human;
+        questItems = _.difference(items, legendaries);
+        break;
+      case LocationType.CASTLE:
+        questHeroes = ['commander', 'dragon-rider'];
+        questUnits = human.concat(dragon);
+        questItems = legendaries;
+        break;
       case LocationType.BARRACK:
+        questHeroes = ['commander'];
+        questUnits = human;
+        questItems = _.difference(items, legendaries);
+        break;
       case LocationType.ISLAND:
-        questHeroes = ['golem-golem'];
-        questUnits = ['frost-giant', 'leviathan', 'yeti', 'spider', 'carnivorous-plant', 'hydra', 'cyclop', 'ogre', 'titan'];
+        questHeroes = ['beast-master', 'swamp-thing'];
+        questUnits = animal.concat(reptile);
         questItems = _.difference(items, legendaries);
         break;
       case LocationType.GRAVEYARD:
-      case LocationType.TOWN:
         questHeroes = ['necrophage', 'soul-reaper'];
+        questUnits = undead;
         questItems = _.difference(items, legendaries);
-        questUnits = ['wraith', 'bone-dragon', 'nightmare', 'ghoul', 'lich', 'skeleton', 'vampire', 'werewolf', 'zombie'];
+        break;
+      case LocationType.TOWN:
+        questHeroes = ['necrophage', 'commander'];
+        questUnits = undead.concat(human);
+        questItems = _.difference(items, legendaries);
         break;
     }
+    // shuffle
     questHeroes = _.shuffle(questHeroes);
     questUnits = _.shuffle(questUnits);
     questItems = _.shuffle(questItems);

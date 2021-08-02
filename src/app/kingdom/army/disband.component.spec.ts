@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatChipsModule } from '@angular/material/chips';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
 
 describe('DisbandComponent', () => {
   let component: DisbandComponent;
@@ -50,6 +51,7 @@ describe('DisbandComponent', () => {
         DisbandComponent,
         LegendaryPipe,
         LongPipe,
+        IconPipe,
       ],
       providers: [
         { provide: ApiService, useValue: ApiServiceStub },

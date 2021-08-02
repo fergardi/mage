@@ -5,6 +5,7 @@ import { TourServiceStub } from 'src/stubs';
 import { MatCardModule } from '@angular/material/card';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
 
 describe('TourComponent', () => {
   let component: TourComponent;
@@ -20,6 +21,7 @@ describe('TourComponent', () => {
       ],
       declarations: [
         TourComponent,
+        IconPipe,
       ],
       providers: [
         { provide: TourService, useValue: TourServiceStub },

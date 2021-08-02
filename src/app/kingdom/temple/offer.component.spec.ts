@@ -17,6 +17,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
 
 describe('OfferComponent', () => {
   let component: OfferComponent;
@@ -49,6 +50,7 @@ describe('OfferComponent', () => {
         OfferComponent,
         ShortPipe,
         LongPipe,
+        IconPipe,
       ],
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },

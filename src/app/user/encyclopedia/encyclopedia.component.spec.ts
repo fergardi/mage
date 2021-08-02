@@ -18,6 +18,9 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('EncyclopediaComponent', () => {
   let component: EncyclopediaComponent;
@@ -39,6 +42,8 @@ describe('EncyclopediaComponent', () => {
         MatBadgeModule,
         MatChipsModule,
         MatIconModule,
+        MatToolbarModule,
+        MatExpansionModule,
       ],
       declarations: [
         EncyclopediaComponent,
@@ -48,6 +53,9 @@ describe('EncyclopediaComponent', () => {
         { provide: CacheService, useValue: CacheServiceStub },
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: TutorialService, useValue: TutorialServiceStub },
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA, // disqus
       ],
     })
     .compileComponents();

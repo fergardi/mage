@@ -13,7 +13,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "sonar": "sonar-scanner",
-    "ci": "npm run karma && npm run sonar"
+    "ci": "npm run karma && npm run sonar",
+    "update": "npm-check -u"
   },
   "private": true,
   "dependencies": {

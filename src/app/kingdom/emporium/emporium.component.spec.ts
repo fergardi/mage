@@ -13,6 +13,7 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
 
 describe('EmporiumComponent', () => {
   let component: EmporiumComponent;
@@ -31,6 +32,7 @@ describe('EmporiumComponent', () => {
       declarations: [
         EmporiumComponent,
         LongPipe,
+        IconPipe,
       ],
       providers: [
         { provide: CacheService, useValue: CacheServiceStub },

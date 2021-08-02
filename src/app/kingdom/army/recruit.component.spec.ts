@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
 
 describe('RecruitComponent', () => {
   let component: RecruitComponent;
@@ -50,6 +51,7 @@ describe('RecruitComponent', () => {
         LegendaryPipe,
         LongPipe,
         RecruitComponent,
+        IconPipe,
       ],
       providers: [
         { provide: ApiService, useValue: ApiServiceStub },
