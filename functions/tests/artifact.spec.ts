@@ -11,11 +11,11 @@ const config: admin.AppOptions = {
 };
 const tester = functions(config);
 
-const KINGDOM = 'artifact';
+const KINGDOM = 'ARTIFACT';
 const COLOR = KingdomType.WHITE;
 const ITEM = 'treasure-chest';
 
-describe('ARTIFACT', () => {
+describe.skip(KINGDOM, () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 

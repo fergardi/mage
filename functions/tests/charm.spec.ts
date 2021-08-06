@@ -13,11 +13,11 @@ const config: admin.AppOptions = {
 };
 const tester = functions(config);
 
-const KINGDOM = 'charm';
+const KINGDOM = 'CHARM';
 const COLOR = KingdomType.BLUE;
 const SPELL = 'animate-skeleton';
 
-describe('CHARM', () => {
+describe.skip(KINGDOM, () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 

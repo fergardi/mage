@@ -11,12 +11,12 @@ const config: admin.AppOptions = {
 };
 const tester = functions(config);
 
-const KINGDOM = 'artifact';
+const KINGDOM = 'LETTER';
 const COLOR = KingdomType.GREEN;
 const SUBJECT = 'lorem ipsum';
 const MESSAGE = 'lorem ipsum dolor sit amet';
 
-describe('LETTER', () => {
+describe.skip(KINGDOM, () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 

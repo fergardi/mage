@@ -2,7 +2,7 @@ import 'jest';
 import { random, calculate, MAX_TURNS } from '../index';
 import * as moment from 'moment';
 
-describe('HELPER', () => {
+describe.skip('HELPER', () => {
 
   it('should RETURN a RANDOM number', () => {
     const n = random(0, 10);

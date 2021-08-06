@@ -11,13 +11,13 @@ const config: admin.AppOptions = {
 };
 const tester = functions(config);
 
-const KINGDOM = 'troop';
+const KINGDOM = 'TROOP';
 const COLOR = KingdomType.GREEN;
 const UNIT = 'archer';
 const UNIT_UNRECRUITABLE = 'vampire';
 const UNIT_UNDISBANDABLE = 'devil';
 
-describe('TROOP', () => {
+describe.skip(KINGDOM, () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 

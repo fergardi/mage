@@ -11,11 +11,11 @@ const config: admin.AppOptions = {
 };
 const tester = functions(config);
 
-const KINGDOM = 'contract';
+const KINGDOM = 'CONTRACT';
 const COLOR = KingdomType.RED;
 const HERO = 'dragon-rider';
 
-describe('CONTRACT', () => {
+describe.skip(KINGDOM, () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 

@@ -10,11 +10,12 @@ const config: admin.AppOptions = {
 };
 const tester = functions(config);
 
+const KINGDOM = 'BATTLE';
 const ITEMS_QUANTITY: number = 1;
 const UNITS_QUANTITY: number = 100;
 const HERO_LEVEL: number = 10;
 
-describe('BATTLE', () => {
+describe.skip(KINGDOM, () => {
   // report
   let report: BattleReport;
   // troops
