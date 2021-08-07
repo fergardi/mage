@@ -12,7 +12,7 @@
     "logs": "firebase functions:log",
     "test": "jest --runInBand --testTimeout=30000 --silent --watchAll",
     "jest": "jest --runInBand --testTimeout=30000 --silent",
-    "ci": "cd ../ && npm run ci",
+    "ci": "npm run jest && cd ../ && npm run ci",
     "update": "npm-check -u"
   },
   "engines": {

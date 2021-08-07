@@ -89,6 +89,8 @@ const BATTLE_POWER: number = 20;
 // const PROTECTION_TIME: number = 60;
 const VISITATION_TIME: number = 60;
 const AUCTION_TIME: number = 60;
+export const BID_RATIO: number = 1.10;
+export const OUTBID_RATIO: number = 0.90;
 const GUILD_TIME: number = 60;
 const CLAN_COST: number = 1000000;
 const FACTION_MULTIPLIER: number = 2;
@@ -2257,12 +2259,13 @@ export const bidAuction = async (kingdomId: string, auctionId: string, gold: num
   const auction = (await angularFirestore.doc(`auctions/${auctionId}`).get()).data();
   if (auction) {
     const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0].data();
-    if (gold <= kingdomGold.quantity && gold >= Math.floor(auction.gold * 1.10) && kingdomId !== auction.kingdom) {
+    if (gold <= kingdomGold.quantity && gold >= Math.floor(auction.gold * BID_RATIO) && kingdomId !== auction.kingdom) {
       const batch = angularFirestore.batch();
       await addSupply(kingdomId, 'gold', -gold, batch);
       if (auction.kingdom) {
+        const bid = Math.ceil(auction.gold * OUTBID_RATIO);
+        await addSupply(auction.kingdom, 'gold', bid, batch);
         const from = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
-        const bid = Math.ceil(auction.gold * 0.90);
         const data = {
           item: auction.item || null,
           spell: auction.spell || null,
@@ -2273,7 +2276,6 @@ export const bidAuction = async (kingdomId: string, auctionId: string, gold: num
           gold: bid || null,
         };
         await addLetter(auction.kingdom, 'kingdom.auction.subject', 'kingdom.auction.outbid', from, batch, data);
-        await addSupply(auction.kingdom, 'gold', bid, batch);
       }
       batch.update(angularFirestore.doc(`auctions/${auctionId}`), { kingdom: kingdomId, gold: gold });
       await batch.commit();
@@ -2294,7 +2296,7 @@ export const bidAuction = async (kingdomId: string, auctionId: string, gold: num
  * @param godId
  * @param sacrifice
  */
-const offerGod = async (kingdomId: string, godId: string, sacrifice: number) => {
+export const offerGod = async (kingdomId: string, godId: string, sacrifice: number, reward?: string) => {
   let result = {};
   const kingdomGod = (await angularFirestore.doc(`gods/${godId}`).get()).data();
   if (kingdomGod) {
@@ -2313,11 +2315,14 @@ const offerGod = async (kingdomId: string, godId: string, sacrifice: number) => 
       const batch = angularFirestore.batch();
       batch.update(angularFirestore.doc(`gods/${godId}`), { sacrifice: admin.firestore.FieldValue.increment(sacrifice), armageddon: (kingdomGod.sacrifice + sacrifice) >= kingdomGod[offering] });
       await addSupply(kingdomId, offering, -sacrifice, batch, offering === 'turn' ? kingdomSupply.resource.ratio : null);
-      const rewards = ['supply', 'artifact', 'contract', 'enchantment', 'troop', 'building', 'charm'];
-      const reward = rewards[random(0, rewards.length - 1)];
+      if (!reward) {
+        const rewards = ['supply', 'artifact', 'contract', 'enchantment', 'troop', 'building', 'charm'];
+        // tslint:disable-next-line: no-parameter-reassignment
+        reward = rewards[random(0, rewards.length - 1)];
+      }
       switch (reward) {
         case 'enchantment':
-          const enchantments = (await angularFirestore.collection('spells').where('type', '==', 'enchantment').where('multiple', '==', false).get());
+          const enchantments = (await angularFirestore.collection('spells').where('subtype', '==', 'enchantment').where('multiple', '==', false).get());
           const enchantment = enchantments.docs[random(0, enchantments.docs.length - 1)].data();
           await addEnchantment(kingdomId, enchantment, kingdomId, enchantment.turnDuration, batch);
           result = { enchantment: `spell.${enchantment.id}.name`, turns: enchantment.turnDuration };
@@ -2385,7 +2390,7 @@ const offerGod = async (kingdomId: string, godId: string, sacrifice: number) => 
  * @param turns
  * @param batch
  */
-const addEnchantment = async (kingdomId: string, enchantment: any, originId: string, turns: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addEnchantment = async (kingdomId: string, enchantment: any, originId: string, turns: number, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomEnchantment = await angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).where('id', '==', enchantment.id).limit(1).get();
   if (kingdomEnchantment.size > 0) {
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${kingdomEnchantment.docs[0].id}`), { turns: admin.firestore.FieldValue.increment(turns) });

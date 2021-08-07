@@ -1,11 +1,11 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import { createKingdom, KingdomType, refreshAuctions } from '../index';
+import { createKingdom, KingdomType, refreshAuctions, bidAuction, BID_RATIO } from '../index';
 import { deleteKingdom } from '../fixtures';
+import * as moment from 'moment';
 // tslint:disable-next-line: no-duplicate-imports
 import * as backend from '../index';
-import * as moment from 'moment';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -17,7 +17,7 @@ const tester = functions(config);
 const KINGDOM = 'AUCTION';
 const COLOR = KingdomType.RED;
 
-describe(KINGDOM, () => {
+describe.skip(KINGDOM, () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 
@@ -55,8 +55,11 @@ describe(KINGDOM, () => {
   });
 
   it('should BID the AUCTION', async () => {
-    // TODO
-    // await bidAuction();
+    const auction = (await admin.firestore().collection(`auctions`).get()).docs[0];
+    const bid = Math.ceil(auction.data().gold * BID_RATIO);
+    const gold = (await admin.firestore().collection(`kingdoms/${KINGDOM}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
+    await admin.firestore().doc(`kingdoms/${KINGDOM}/supplies/${gold.id}`).update({ quantity: 999999999 });
+    expect((await bidAuction(KINGDOM, auction.id, bid)).gold).toBe(bid);
   });
 
   it('should DELETE the KINGDOM', async () => {

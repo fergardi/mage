@@ -90,7 +90,7 @@ describe.skip(KINGDOM, () => {
         level: HERO_LEVEL,
       });
     }
-  }
+  };
 
   beforeEach(() => {
     // report

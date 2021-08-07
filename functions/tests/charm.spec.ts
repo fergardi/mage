@@ -4,8 +4,6 @@ import * as admin from 'firebase-admin';
 import { createKingdom, KingdomType, addCharm, researchCharm, assignCharm, conjureCharm } from '../index';
 import { deleteKingdom } from '../fixtures';
 
-jest.setTimeout(30000);
-
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
   projectId: 'mage-c4259',

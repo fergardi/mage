@@ -48,8 +48,8 @@ describe.skip(KINGDOM, () => {
     await batch.commit();
   });
 
-  it('should NOT ADD the TROOP', () => {
-    expect(async () => await recruitUnit(KINGDOM, UNIT_UNRECRUITABLE, 100)).rejects.toThrowError();
+  it('should NOT ADD the TROOP', async () => {
+    await expect(recruitUnit(KINGDOM, UNIT_UNRECRUITABLE, 100)).rejects.toThrowError();
   });
 
   it('should REMOVE the TROOP', async () => {
@@ -75,7 +75,7 @@ describe.skip(KINGDOM, () => {
     const troop = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT).limit(1).get()).docs[0];
     const troopBefore = troop.data();
     expect(troopBefore.assignment).toBe(0);
-    expect(troopBefore.sort).toBe(undefined);
+    expect(troopBefore.sort).toBe(0);
     troopBefore.troopId = troop.id;
     troopBefore.assignment = 2;
     troopBefore.sort = 1;
@@ -101,7 +101,7 @@ describe.skip(KINGDOM, () => {
 
   it('should NOT DISBAND the TROOP', async () => {
     const troop = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT_UNDISBANDABLE).limit(1).get()).docs[0];
-    expect(async () => await disbandTroop(KINGDOM, troop.id, 100)).rejects.toThrowError();
+    await expect(disbandTroop(KINGDOM, troop.id, 100)).rejects.toThrowError();
   });
 
   it('should DELETE the KINGDOM', async () => {
