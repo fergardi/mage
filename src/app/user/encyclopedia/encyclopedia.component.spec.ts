@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
 
 describe('EncyclopediaComponent', () => {
   let component: EncyclopediaComponent;
@@ -48,6 +49,7 @@ describe('EncyclopediaComponent', () => {
       declarations: [
         EncyclopediaComponent,
         LongPipe,
+        IconPipe,
       ],
       providers: [
         { provide: CacheService, useValue: CacheServiceStub },
@@ -75,6 +77,12 @@ describe('EncyclopediaComponent', () => {
     spyOn(MatDialogStub, 'open');
     component.openTomeDialog(null);
     expect(MatDialogStub.open).toHaveBeenCalledWith(TomeComponent, { panelClass: 'dialog-responsive', data: null });
+  });
+
+  it('should CLEAR the FILTER', () => {
+    component.clearFilter();
+    expect(component.filters.name.value).toBe('');
+    expect(component.filters.type.value).toEqual([]);
   });
 
 });

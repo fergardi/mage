@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
-import { calculateTurns } from 'src/app/pipes/turn.pipe';
+import { calculate } from 'src/app/pipes/turn.pipe';
 
 export interface AuthStateModel {
   kingdom: any;
@@ -53,7 +53,7 @@ export class AuthState implements NgxsOnInit {
   public static getKingdomTurn(state: AuthStateModel): any {
     if (state) {
       const kingdomTurn = JSON.parse(JSON.stringify(state.supplies.find(supply => supply.id === 'turn')));
-      kingdomTurn.quantity = calculateTurns(kingdomTurn.timestamp.seconds * 1000, Date.now(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
+      kingdomTurn.quantity = calculate(kingdomTurn.timestamp.seconds * 1000, Date.now(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
       return kingdomTurn;
     }
     return null;
@@ -105,7 +105,7 @@ export class AuthState implements NgxsOnInit {
   }
 
   @Selector()
-  public static getKingdomGuild(state: AuthStateModel): any {
+  public static getKingdomGuild(state: AuthStateModel): string | boolean {
     return state && state.kingdom && JSON.stringify({ guild: state.kingdom.guild, guilded: state.kingdom.guilded.toMillis() });
   }
 

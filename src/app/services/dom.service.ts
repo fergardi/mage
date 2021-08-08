@@ -7,11 +7,11 @@ export class DomService {
 
   constructor() { }
 
-  public scrollToElement($element: any) {
+  public scrollToElement($element: HTMLElement) {
     $element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
   }
 
-  public scrollToTop($element: any = null) {
+  public scrollToTop($element: HTMLElement = null) {
     if ($element) {
       $element.scroll(0, 0);
     } else {

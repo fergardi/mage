@@ -39,7 +39,7 @@ export const StoreStub: any = {
       case AuthState.getUserLoggedIn:
         return true;
       case AuthState.getKingdomGuild:
-        return JSON.stringify({ guild: 'hunter', guilded: new Date().getTime() });
+        return JSON.stringify({ guild: { id: 'hunter' }, guilded: new Date().getTime() });
       default:
         return selector;
     }
@@ -86,25 +86,29 @@ export const ApiServiceStub: any = {
   dealGood: () => null,
   addShop: () => null,
   addQuest: () => null,
+  dischargeContract: () => null,
+  favorGuild: () => null,
+  joinClan: () => null,
+  leaveClan: () => null,
 };
 
 export const CacheServiceStub: any = {
-  getSkills: () => [],
-  getUnits: () => [],
-  getSpells: () => [],
-  getItems: () => [],
-  getGods: () => [],
-  getStructures: () => [],
-  getHeroes: () => [],
-  getResources: () => [],
-  getFamilies: () => [],
-  getCategories: () => [],
-  getGuilds: () => [],
-  getAttacks: () => [],
-  getFactions: () => [{ id: 'test', name: 'test' }],
-  getStores: () => [],
-  getLocations: () => [],
-  getPacks: () => [],
+  getSkills: () => Promise.resolve([]),
+  getUnits: () => Promise.resolve([]),
+  getSpells: () => Promise.resolve([]),
+  getItems: () => Promise.resolve([]),
+  getGods: () => Promise.resolve([]),
+  getStructures: () => Promise.resolve([]),
+  getHeroes: () => Promise.resolve([]),
+  getResources: () => Promise.resolve([]),
+  getFamilies: () => Promise.resolve([]),
+  getCategories: () => Promise.resolve([]),
+  getGuilds: () => Promise.resolve([{ id: 'hunter', name: 'test', faction: { id: 'grey' } }]),
+  getAttacks: () => Promise.resolve([]),
+  getFactions: () => Promise.resolve([{ id: 'test', name: 'test' }]),
+  getStores: () => Promise.resolve([]),
+  getLocations: () => Promise.resolve([]),
+  getPacks: () => Promise.resolve([]),
 };
 
 export const MatDialogStub: any = {

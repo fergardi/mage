@@ -81,9 +81,8 @@ describe('BreakComponent', () => {
   it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
-/*
+
   it('should BREAK an ENCHANTMENT', async () => {
-    console.log(component.enchantment.spell.manaCost, component.kingdomMana.quantity)
     spyOn(ApiServiceStub, 'breakEnchantment');
     await component.break();
     expect(ApiServiceStub.breakEnchantment).toHaveBeenCalledWith(component.uid, component.enchantment.fid);
@@ -96,9 +95,10 @@ describe('BreakComponent', () => {
   });
 
   it('should NOT BREAK an ENCHANTMENT', async () => {
+    component.kingdomMana.quantity = 0;
     spyOn(ApiServiceStub, 'breakEnchantment');
     await component.break();
     expect(ApiServiceStub.breakEnchantment).not.toHaveBeenCalled();
   });
-*/
+
 });

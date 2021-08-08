@@ -26,10 +26,18 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ManifestComponent } from './manifest.component';
+import { FoundationComponent } from './foundation.component';
 
 describe('ClanComponent', () => {
   let component: ClanComponent;
   let fixture: ComponentFixture<ClanComponent>;
+  const clan: any = {
+    fid: 'test',
+    name: 'test',
+    description: 'test',
+    image: 'test',
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -78,4 +86,66 @@ describe('ClanComponent', () => {
   it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should OPEN the MANIFEST dialog', () => {
+    spyOn(MatDialogStub, 'open');
+    component.openManifestDialog(clan);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(ManifestComponent, { panelClass: 'dialog-responsive', data: { ...clan, members: [] } });
+  });
+
+  it('should OPEN the FOUNDATION dialog', () => {
+    spyOn(MatDialogStub, 'open');
+    component.openFoundationDialog();
+    expect(MatDialogStub.open).toHaveBeenCalledWith(FoundationComponent, { panelClass: 'dialog-responsive', data: null });
+  });
+
+  it('should JOIN the CLAN', async () => {
+    component.kingdomGuild = { id: 'hunter' };
+    spyOn(component, 'canBeFavored').and.returnValue(true);
+    spyOn(ApiServiceStub, 'joinClan');
+    await component.joinClan(clan, new Event('click'));
+    expect(ApiServiceStub.joinClan).toHaveBeenCalledWith(component.uid, clan.fid);
+  });
+
+  it('should JOIN the CLAN and CATCH the ERROR', async () => {
+    spyOn(ApiServiceStub, 'joinClan').and.throwError(new Error('test'));
+    await component.joinClan(clan, new Event('click'));
+    expect(ApiServiceStub.joinClan).toThrowError('test');
+  });
+
+  it('should LEAVE the CLAN', async () => {
+    spyOn(ApiServiceStub, 'leaveClan');
+    await component.leaveClan(clan, new Event('click'));
+    expect(ApiServiceStub.leaveClan).toHaveBeenCalledWith(component.uid, clan.fid);
+  });
+
+  it('should LEAVE the CLAN and CATCH the ERROR', async () => {
+    spyOn(ApiServiceStub, 'leaveClan').and.throwError(new Error('test'));
+    await component.leaveClan(clan, new Event('click'));
+    expect(ApiServiceStub.leaveClan).toThrowError('test');
+  });
+
+  it('should FAVOR the GUILD', async () => {
+    component.kingdomGuild = { id: 'hunter' };
+    spyOn(component, 'canBeFavored').and.returnValue(true);
+    spyOn(ApiServiceStub, 'favorGuild');
+    await component.favorGuild();
+    expect(ApiServiceStub.favorGuild).toHaveBeenCalledWith(component.uid, component.kingdomGuild.id);
+  });
+
+  it('should FAVOR the GUILD and CATCH the ERROR', async () => {
+    component.kingdomGuild = { id: 'hunter' };
+    spyOn(component, 'canBeFavored').and.returnValue(true);
+    spyOn(ApiServiceStub, 'favorGuild').and.throwError(new Error('test'));
+    await component.favorGuild();
+    expect(ApiServiceStub.favorGuild).toThrowError('test');
+  });
+
+  it('should NOT FAVOR the GUILD', async () => {
+    spyOn(component, 'canBeFavored').and.returnValue(false);
+    spyOn(ApiServiceStub, 'favorGuild');
+    await component.favorGuild();
+    expect(ApiServiceStub.favorGuild).not.toHaveBeenCalled();
+  });
+
 });

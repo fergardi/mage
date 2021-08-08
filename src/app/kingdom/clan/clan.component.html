@@ -123,7 +123,7 @@
 
       <mat-card-actions>
         <span class="fill-space"></span>
-        <button mat-raised-button color="primary" [disabled]="!kingdomGuild || !canBeFavored()" (click)="favor()" cdkFocusInitial>
+        <button mat-raised-button color="primary" [disabled]="!kingdomGuild || !canBeFavored()" (click)="favorGuild()" cdkFocusInitial>
           {{ canBeFavored() ? ('kingdom.guild.favor' | translate) : kingdomGuilded | date:('dateformat.short' | translate) }}
         </button>
       </mat-card-actions>

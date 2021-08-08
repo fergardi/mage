@@ -14,14 +14,14 @@ export class TurnPipe implements PipeTransform {
   transform(timestamp: any, max: number, ratio: number): Observable<number> {
     return this.clock$.pipe(
       map(time => {
-        return calculateTurns(timestamp.toMillis(), time, max, ratio);
+        return calculate(timestamp.toMillis(), time, max, ratio);
       }),
     );
   }
 
 }
 
-export const calculateTurns = (from: any, to: any, max: number, ratio: number): number => {
+export const calculate = (from: any, to: any, max: number, ratio: number): number => {
   const start = moment(from);
   const end = moment(to);
   const minutes = moment.duration(end.diff(start)).asMinutes();

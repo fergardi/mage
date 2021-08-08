@@ -107,7 +107,7 @@ export class EncyclopediaComponent implements OnInit {
     ];
   }
 
-  applyFilter() {
+  applyFilter(): void {
     this.table.filter = JSON.stringify({
       name: this.filters.name.value,
       type: this.filters.type.value,
@@ -127,7 +127,7 @@ export class EncyclopediaComponent implements OnInit {
     return filterFunction;
   }
 
-  openTomeDialog(tome: any) {
+  openTomeDialog(tome: any): void {
     const dialogRef = this.dialog.open(TomeComponent, {
       panelClass: 'dialog-responsive',
       data: tome,
@@ -138,14 +138,18 @@ export class EncyclopediaComponent implements OnInit {
     this.filters.name.value = '';
     this.filters.faction.value = this.filters.faction.options[0];
     this.filters.type.value = [];
-    this.table.paginator.pageSize = this.table.paginator.pageSizeOptions[0];
-    this.table.paginator.pageIndex = 0;
-    if (this.table.sort.active !== 'name' && this.table.sort.direction !== 'asc') {
-      this.table.sort.sort({
-        id: 'name',
-        start: 'asc',
-        disableClear: false,
-      });
+    if (this.table.paginator) {
+      this.table.paginator.pageSize = this.table.paginator.pageSizeOptions[0];
+      this.table.paginator.pageIndex = 0;
+    }
+    if (this.table.sort) {
+      if (this.table.sort.active !== 'name' && this.table.sort.direction !== 'asc') {
+        this.table.sort.sort({
+          id: 'name',
+          start: 'asc',
+          disableClear: false,
+        });
+      }
     }
     this.applyFilter();
   }

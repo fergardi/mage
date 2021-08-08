@@ -62,7 +62,7 @@ export class ClanComponent implements OnInit {
     this.kingdomGuilds = await this.cacheService.getGuilds();
     combineLatest([
       this.angularFirestore.collection<any>('clans').valueChanges({ idField: 'fid' }),
-      this.store.select(AuthState.getKingdomGuild).pipe(map(data => JSON.parse(data))),
+      this.store.select(AuthState.getKingdomGuild).pipe(map(((data: string) => JSON.parse(data)))),
     ])
     .pipe(untilDestroyed(this))
     .subscribe(([clans, kingdomGuild]) => {
@@ -79,7 +79,7 @@ export class ClanComponent implements OnInit {
     });
   }
 
-  applyFilter() {
+  applyFilter(): void {
     this.data.filter = JSON.stringify({
       name: this.filters.name.value,
     });
@@ -139,8 +139,8 @@ export class ClanComponent implements OnInit {
       : false;
   }
 
-  async favor() {
-    if (this.kingdomGuild) {
+  async favorGuild() {
+    if (this.kingdomGuild && this.canBeFavored()) {
       this.loadingService.startLoading();
       try {
         const favored = await this.apiService.favorGuild(this.uid, this.kingdomGuild.id);

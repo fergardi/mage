@@ -17,6 +17,7 @@ describe('DischargeComponent', () => {
   let component: DischargeComponent;
   let fixture: ComponentFixture<DischargeComponent>;
   const contract: any = {
+    fid: 'test',
     hero: {
       name: 'test',
       description: 'test',
@@ -61,5 +62,17 @@ describe('DischargeComponent', () => {
 
   it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should DISCHARGE the CONTRACT', async () => {
+    spyOn(ApiServiceStub, 'dischargeContract');
+    await component.discharge();
+    expect(ApiServiceStub.dischargeContract).toHaveBeenCalledWith(component.uid, component.contract.fid);
+  });
+
+  it('should DISCHARGE the CONTRACT and CATCH the ERROR', async () => {
+    spyOn(ApiServiceStub, 'dischargeContract').and.throwError(new Error('test'));
+    await component.discharge();
+    expect(ApiServiceStub.dischargeContract).toThrowError('test');
   });
 });
