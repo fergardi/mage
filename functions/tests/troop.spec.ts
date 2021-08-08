@@ -1,8 +1,7 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import { createKingdom, KingdomType, addTroop, removeTroop, recruitUnit, disbandTroop, assignArmy } from '../index';
-import { deleteKingdom } from '../fixtures';
+import * as backend from '../index';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -12,62 +11,60 @@ const config: admin.AppOptions = {
 const tester = functions(config);
 
 const KINGDOM = 'TROOP';
-const COLOR = KingdomType.GREEN;
 const UNIT = 'archer';
 const UNIT_UNRECRUITABLE = 'vampire';
 const UNIT_UNDISBANDABLE = 'devil';
 
-describe.skip(KINGDOM, () => {
+describe(KINGDOM, () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
+
+  beforeAll(async () => {
+    await backend.createKingdom(KINGDOM, backend.KingdomType.GREEN, KINGDOM, 0, 0);
+  });
 
   beforeEach(() => {
     batch = admin.firestore().batch();
   });
 
-  afterAll(() => {
+  afterAll(async () => {
+    await backend.deleteKingdom(KINGDOM);
     tester.cleanup();
-  });
-
-  it('should CREATE the KINGDOM', async () => {
-    await createKingdom(KINGDOM, COLOR, KINGDOM, 0, 0);
-    const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
-    expect(kingdom.exists).toBe(true);
   });
 
   it('should ADD the TROOP', async () => {
     const troop = (await admin.firestore().doc(`units/${UNIT}`).get()).data();
     jest.spyOn(batch, 'create');
-    await addTroop(KINGDOM, troop, 100, batch);
+    await backend.addTroop(KINGDOM, troop, 100, batch);
     expect(batch.create).toHaveBeenCalled();
     await batch.commit();
     batch = admin.firestore().batch();
     jest.spyOn(batch, 'update');
-    await addTroop(KINGDOM, troop, 100, batch);
+    await backend.addTroop(KINGDOM, troop, 100, batch);
     expect(batch.update).toHaveBeenCalled();
     await batch.commit();
   });
 
   it('should NOT ADD the TROOP', async () => {
-    await expect(recruitUnit(KINGDOM, UNIT_UNRECRUITABLE, 100)).rejects.toThrowError();
+    await expect(backend.recruitUnit(KINGDOM, UNIT_UNRECRUITABLE, 100)).rejects.toThrowError();
   });
 
   it('should REMOVE the TROOP', async () => {
     const troop = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT).limit(1).get()).docs[0];
     expect(troop.data().quantity).toBe(200);
     jest.spyOn(batch, 'update');
-    await removeTroop(KINGDOM, troop.id, 100, batch);
+    await backend.removeTroop(KINGDOM, troop.id, 100, batch);
     expect(batch.update).toHaveBeenCalled();
     await batch.commit();
     batch = admin.firestore().batch();
     jest.spyOn(batch, 'delete');
-    await removeTroop(KINGDOM, troop.id, 100, batch);
+    await backend.removeTroop(KINGDOM, troop.id, 100, batch);
     expect(batch.delete).toHaveBeenCalled();
     await batch.commit();
   });
 
   it('should RECRUIT the TROOP', async () => {
-    const result = await recruitUnit(KINGDOM, UNIT, 100);
+    const result = await backend.recruitUnit(KINGDOM, UNIT, 100);
     expect(result.quantity).toBe(100);
   });
 
@@ -79,7 +76,7 @@ describe.skip(KINGDOM, () => {
     troopBefore.troopId = troop.id;
     troopBefore.assignment = 2;
     troopBefore.sort = 1;
-    await assignArmy(KINGDOM, [troopBefore]);
+    await backend.assignArmy(KINGDOM, [troopBefore]);
     const troopAfter = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT).limit(1).get()).docs[0].data();
     expect(troopAfter.assignment).toBe(2);
     expect(troopAfter.sort).toBe(1);
@@ -87,27 +84,21 @@ describe.skip(KINGDOM, () => {
 
   it('should DISBAND the TROOP', async () => {
     const troop = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT).limit(1).get()).docs[0];
-    const result = await disbandTroop(KINGDOM, troop.id, 100);
+    const result = await backend.disbandTroop(KINGDOM, troop.id, 100);
     expect(result?.quantity).toBe(100);
   });
 
   it('should ADD the TROOP', async () => {
     const troop = (await admin.firestore().doc(`units/${UNIT_UNDISBANDABLE}`).get()).data();
     jest.spyOn(batch, 'create');
-    await addTroop(KINGDOM, troop, 100, batch);
+    await backend.addTroop(KINGDOM, troop, 100, batch);
     expect(batch.create).toHaveBeenCalled();
     await batch.commit();
   });
 
   it('should NOT DISBAND the TROOP', async () => {
     const troop = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT_UNDISBANDABLE).limit(1).get()).docs[0];
-    await expect(disbandTroop(KINGDOM, troop.id, 100)).rejects.toThrowError();
-  });
-
-  it('should DELETE the KINGDOM', async () => {
-    await deleteKingdom(KINGDOM, admin.firestore());
-    const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
-    expect(kingdom.exists).toBe(false);
+    await expect(backend.disbandTroop(KINGDOM, troop.id, 100)).rejects.toThrowError();
   });
 
 });

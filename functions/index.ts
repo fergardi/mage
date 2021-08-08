@@ -336,6 +336,7 @@ export const createKingdom = async (kingdomId: string, factionId: KingdomType, n
     id: kingdomId,
     faction: faction,
     guild: guild,
+    clan: null,
     guilded: moment(admin.firestore.Timestamp.now().toMillis()),
     position: geofirex.point(latitude,longitude),
     coordinates: { latitude: latitude, longitude: longitude },
@@ -344,6 +345,30 @@ export const createKingdom = async (kingdomId: string, factionId: KingdomType, n
   });
   // commit
   return batch.commit();
+};
+
+export const deleteKingdom = async (KINGDOM: string): Promise<void> => {
+  const batch: FirebaseFirestore.WriteBatch = angularFirestore.batch();
+  const artifacts = await angularFirestore.collection(`kingdoms/${KINGDOM}/artifacts`).listDocuments();
+  artifacts.forEach(artifact => batch.delete(artifact));
+  const contracts = await angularFirestore.collection(`kingdoms/${KINGDOM}/contracts`).listDocuments();
+  contracts.forEach(contract => batch.delete(contract));
+  const buildings = await angularFirestore.collection(`kingdoms/${KINGDOM}/buildings`).listDocuments();
+  buildings.forEach(building => batch.delete(building));
+  const troops = await angularFirestore.collection(`kingdoms/${KINGDOM}/troops`).listDocuments();
+  troops.forEach(troop => batch.delete(troop));
+  const supplies = await angularFirestore.collection(`kingdoms/${KINGDOM}/supplies`).listDocuments();
+  supplies.forEach(supply => batch.delete(supply));
+  const charms = await angularFirestore.collection(`kingdoms/${KINGDOM}/charms`).listDocuments();
+  charms.forEach(charm => batch.delete(charm));
+  const letters = await angularFirestore.collection(`kingdoms/${KINGDOM}/letters`).listDocuments();
+  letters.forEach(letter => batch.delete(letter));
+  const enchantments = await angularFirestore.collection(`kingdoms/${KINGDOM}/enchantments`).listDocuments();
+  enchantments.forEach(letter => batch.delete(letter));
+  const incantations = await angularFirestore.collection(`kingdoms/${KINGDOM}/incantations`).listDocuments();
+  incantations.forEach(letter => batch.delete(letter));
+  batch.delete(angularFirestore.doc(`kingdoms/${KINGDOM}`));
+  await batch.commit();
 };
 
 //========================================================================================
@@ -2396,6 +2421,7 @@ export const addEnchantment = async (kingdomId: string, enchantment: any, origin
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${kingdomEnchantment.docs[0].id}`), { turns: admin.firestore.FieldValue.increment(turns) });
     batch.update(angularFirestore.doc(`kingdoms/${originId}/incantations/${kingdomEnchantment.docs[0].id}`), { turns: admin.firestore.FieldValue.increment(turns) });
   } else {
+    // shared id
     const id = angularFirestore.collection(`kingdoms/${originId}/incantations`).doc().id;
     const kingdomTarget = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
     batch.create(angularFirestore.collection(`kingdoms/${originId}/incantations`).doc(id), { id: enchantment.id, spell: enchantment, to: kingdomTarget, turns: turns });
@@ -2420,7 +2446,7 @@ export const addEnchantment = async (kingdomId: string, enchantment: any, origin
  * @param kingdomId
  * @param enchantmentId
  */
-const dispelIncantation = async (kingdomId: string, enchantmentId: string) => {
+export const dispelIncantation = async (kingdomId: string, enchantmentId: string) => {
   const batch = angularFirestore.batch();
   const response = await removeEnchantment(kingdomId, enchantmentId, batch);
   await batch.commit();
@@ -2432,7 +2458,7 @@ const dispelIncantation = async (kingdomId: string, enchantmentId: string) => {
  * @param kingdomId
  * @param enchantmentId
  */
-const removeEnchantment = async (kingdomId: string, enchantmentId: string, batch: FirebaseFirestore.WriteBatch) => {
+export const removeEnchantment = async (kingdomId: string, enchantmentId: string, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomEnchantment = (await angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`).get()).data();
   if (kingdomEnchantment) {
     // origin
@@ -2457,7 +2483,7 @@ const removeEnchantment = async (kingdomId: string, enchantmentId: string, batch
  * @param kingdomId
  * @param enchantmentId
  */
-const breakEnchantment = async (kingdomId: string, enchantmentId: string) => {
+export const breakEnchantment = async (kingdomId: string, enchantmentId: string) => {
   const kingdomEnchantment = (await angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`).get()).data();
   if (kingdomEnchantment) {
     const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'mana').limit(1).get()).docs[0].data();
@@ -2467,7 +2493,7 @@ const breakEnchantment = async (kingdomId: string, enchantmentId: string) => {
       // const kingdomOrigin = (await angularFirestore.doc(`kingdoms/${kingdomEnchantment.from}`).get()).data();
       // const kingdomTarget = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
       const chance = 100;
-      if (random(0,100) <= chance) {
+      if (random(0, 100) <= chance) {
         const batch = angularFirestore.batch();
         // origin
         batch.delete(angularFirestore.doc(`kingdoms/${kingdomEnchantment.from.id}/incantations/${enchantmentId}`));
@@ -2504,22 +2530,25 @@ const breakEnchantment = async (kingdomId: string, enchantmentId: string) => {
  * @param description
  * @param image
  */
-const foundateClan = async (kingdomId: string, name: string, description: string, image: string) => {
-  const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0].data();
-  if (CLAN_COST <= kingdomGold.quantity) {
-    const batch = angularFirestore.batch();
-    const leader = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
-    const clan = (await (await angularFirestore.collection('clans').add({
-      name: name,
-      description: description,
-      image: image,
-      leader: leader,
-      power: leader?.power,
-    })).get());
-    batch.create(angularFirestore.collection(`clans/${clan.id}/members`).doc(leader?.id), leader);
-    batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { clan: { ...clan.data(), fid: clan.id } });
-    await addSupply(kingdomId, 'gold', -CLAN_COST, batch);
-    await batch.commit();
+export const foundateClan = async (kingdomId: string, name: string, description: string, image: string) => {
+  const kingdomClan = (await angularFirestore.collection(`clans`).where('name', '==', name).limit(1).get());
+  if (!kingdomClan.docs.length) {
+    const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0].data();
+    if (CLAN_COST <= kingdomGold.quantity) {
+      const batch = angularFirestore.batch();
+      const leader = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
+      const clan = (await (await angularFirestore.collection('clans').add({
+        name: name,
+        description: description,
+        image: image,
+        leader: leader,
+        power: leader?.power,
+      })).get());
+      batch.create(angularFirestore.collection(`clans/${clan.id}/members`).doc(leader?.id), leader);
+      batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { clan: { ...clan.data(), fid: clan.id } });
+      await addSupply(kingdomId, 'gold', -CLAN_COST, batch);
+      await batch.commit();
+    } else throw new Error('api.error.clan');
   } else throw new Error('api.error.clan');
 };
 
@@ -2528,7 +2557,7 @@ const foundateClan = async (kingdomId: string, name: string, description: string
  * @param kingdomId
  * @param clanId
  */
-const joinClan = async (kingdomId: string, clanId: string) => {
+export const joinClan = async (kingdomId: string, clanId: string) => {
   const kingdom = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
   const clan = await angularFirestore.doc(`clans/${clanId}`).get();
   const batch = angularFirestore.batch();
@@ -2543,7 +2572,7 @@ const joinClan = async (kingdomId: string, clanId: string) => {
  * @param kingdomId
  * @param clanId
  */
-const leaveClan = async (kingdomId: string, clanId: string) => {
+export const leaveClan = async (kingdomId: string, clanId: string) => {
   const kingdom = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
   const batch = angularFirestore.batch();
   batch.update(angularFirestore.doc(`clans/${clanId}`), { power: admin.firestore.FieldValue.increment(-kingdom?.power) });
@@ -2563,8 +2592,8 @@ const leaveClan = async (kingdomId: string, clanId: string) => {
  * @param kingdomId
  * @param guildId
  */
-const favorGuild = async (kingdomId: string, guildId: string) => {
-  const guild = await (await angularFirestore.doc(`guilds/${guildId}`).get()).data();
+export const favorGuild = async (kingdomId: string, guildId: string) => {
+  const guild = (await angularFirestore.doc(`guilds/${guildId}`).get()).data();
   const guilded = moment(admin.firestore.Timestamp.now().toMillis()).add(GUILD_TIME, 'seconds');
   await angularFirestore.doc(`kingdoms/${kingdomId}`).update({
     guild: guild,

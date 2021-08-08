@@ -1,8 +1,7 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import { createKingdom, KingdomType, addLetter, sendLetter, readLetter, removeLetters } from '../index';
-import { deleteKingdom } from '../fixtures';
+import { createKingdom, deleteKingdom, KingdomType, addLetter, sendLetter, readLetter, removeLetters } from '../index';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -12,26 +11,24 @@ const config: admin.AppOptions = {
 const tester = functions(config);
 
 const KINGDOM = 'LETTER';
-const COLOR = KingdomType.GREEN;
 const SUBJECT = 'lorem ipsum';
 const MESSAGE = 'lorem ipsum dolor sit amet';
 
-describe.skip(KINGDOM, () => {
+describe(KINGDOM, () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
+
+  beforeAll(async () => {
+    await createKingdom(KINGDOM, KingdomType.GREEN, KINGDOM, 0, 0);
+  });
 
   beforeEach(() => {
     batch = admin.firestore().batch();
   });
 
-  afterAll(() => {
+  afterAll(async () => {
+    await deleteKingdom(KINGDOM);
     tester.cleanup();
-  });
-
-  it('should CREATE the KINGDOM', async () => {
-    await createKingdom(KINGDOM, COLOR, KINGDOM, 0, 0);
-    const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
-    expect(kingdom.exists).toBe(true);
   });
 
   it('should ADD the LETTER', async () => {
@@ -65,12 +62,6 @@ describe.skip(KINGDOM, () => {
     await removeLetters(KINGDOM, lettersBefore.map(letter => letter.id));
     const lettersAfter = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/letters`).get())).docs;
     expect(lettersAfter.length).toBe(0);
-  });
-
-  it('should DELETE the KINGDOM', async () => {
-    await deleteKingdom(KINGDOM, admin.firestore());
-    const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
-    expect(kingdom.exists).toBe(false);
   });
 
 });

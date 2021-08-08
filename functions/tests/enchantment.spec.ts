@@ -1,8 +1,7 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import { createKingdom, KingdomType } from '../index';
-import { deleteKingdom } from '../fixtures';
+import * as backend from '../index';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -12,35 +11,71 @@ const config: admin.AppOptions = {
 const tester = functions(config);
 
 const KINGDOM = 'ENCHANTMENT';
-const COLOR = KingdomType.WHITE;
+const OWN_ENCHANTMENT = 'climate-control';
+const FORFEIT_ENCHANTMENT = 'meteor-storm';
 
 describe(KINGDOM, () => {
   // common batch
-  // let batch: FirebaseFirestore.WriteBatch;
+  let batch: FirebaseFirestore.WriteBatch;
 
-  beforeEach(() => {
-    // batch = admin.firestore().batch();
+  beforeAll(async () => {
+    await backend.createKingdom(KINGDOM, backend.KingdomType.WHITE, KINGDOM, 0, 0);
   });
 
-  afterAll(() => {
+  beforeEach(() => {
+    batch = admin.firestore().batch();
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  afterAll(async () => {
+    await backend.deleteKingdom(KINGDOM);
     tester.cleanup();
   });
 
-  it('should CREATE the KINGDOM', async () => {
-    await createKingdom(KINGDOM, COLOR, KINGDOM, 0, 0);
-    const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
-    expect(kingdom.exists).toBe(true);
-  });
-
   it('should ADD the ENCHANTMENT', async () => {
-    // TODO
-    // await addEnchantment(KINGDOM, enchantment, KINGDOM, 300);
+    const turns = 300;
+    const spell = (await admin.firestore().doc(`spells/${OWN_ENCHANTMENT}`).get()).data();
+    const balanceSupplySpy = jest.spyOn(backend, 'balanceSupply');
+    const balanceBonusSpy = jest.spyOn(backend, 'balanceBonus');
+    await backend.addEnchantment(KINGDOM, spell, KINGDOM, turns, batch);
+    await batch.commit();
+    expect(balanceSupplySpy).toHaveBeenCalledTimes(6);
+    expect(balanceBonusSpy).toHaveBeenCalledTimes(3);
+    const enchantment = (await admin.firestore().collection(`kingdoms/${KINGDOM}/enchantments`).where('id', '==', OWN_ENCHANTMENT).limit(1).get()).docs[0];
+    expect(enchantment.exists).toBe(true);
+    expect(enchantment.data().turns).toBe(turns);
+    const incantation = (await admin.firestore().collection(`kingdoms/${KINGDOM}/incantations`).where('id', '==', OWN_ENCHANTMENT).limit(1).get()).docs[0];
+    expect(incantation.exists).toBe(true);
+    expect(incantation.data().turns).toBe(turns);
   });
 
-  it('should DELETE the KINGDOM', async () => {
-    await deleteKingdom(KINGDOM, admin.firestore());
-    const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
-    expect(kingdom.exists).toBe(false);
+  it('should REMOVE the ENCHANTMENT', async () => {
+    const balanceSupplySpy = jest.spyOn(backend, 'balanceSupply');
+    const balanceBonusSpy = jest.spyOn(backend, 'balanceBonus');
+    const enchantmentBefore = (await admin.firestore().collection(`kingdoms/${KINGDOM}/enchantments`).where('id', '==', OWN_ENCHANTMENT).limit(1).get()).docs[0];
+    expect(enchantmentBefore.exists).toBe(true);
+    await backend.removeEnchantment(KINGDOM, enchantmentBefore.id, batch);
+    await batch.commit();
+    expect(balanceSupplySpy).toHaveBeenCalledTimes(6);
+    expect(balanceBonusSpy).toHaveBeenCalledTimes(3);
+    const enchantmentAfter = (await admin.firestore().collection(`kingdoms/${KINGDOM}/enchantments`).where('id', '==', OWN_ENCHANTMENT).limit(1).get()).docs[0];
+    expect(enchantmentAfter).not.toBeDefined();
+  });
+
+  it('should BREAK the ENCHANTMENT', async () => {
+    const turns = 300;
+    const balanceSupplySpy = jest.spyOn(backend, 'balanceSupply');
+    const balanceBonusSpy = jest.spyOn(backend, 'balanceBonus');
+    const spell = (await admin.firestore().doc(`spells/${FORFEIT_ENCHANTMENT}`).get()).data();
+    await backend.addEnchantment(KINGDOM, spell, KINGDOM, turns, batch);
+    await batch.commit();
+    const incantation = (await admin.firestore().collection(`kingdoms/${KINGDOM}/incantations`).where('id', '==', FORFEIT_ENCHANTMENT).limit(1).get()).docs[0];
+    expect((await backend.breakEnchantment(KINGDOM, incantation.id) as any).success).toBe(true);
+    expect(balanceSupplySpy).toHaveBeenCalledTimes(12);
+    expect(balanceBonusSpy).toHaveBeenCalledTimes(6);
   });
 
 });

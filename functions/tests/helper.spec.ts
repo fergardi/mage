@@ -2,7 +2,7 @@ import 'jest';
 import { random, calculate, MAX_TURNS } from '../index';
 import * as moment from 'moment';
 
-describe.skip('HELPER', () => {
+describe('HELPER', () => {
 
   it('should RETURN a RANDOM number', () => {
     const n = random(0, 10);
@@ -11,7 +11,7 @@ describe.skip('HELPER', () => {
     expect(n).toBeLessThanOrEqual(10);
   });
 
-  it('should CALCULATE the TURNS from TIME', () => {
+  it('should CALCULATE the TURNS since TIMESTAMP', () => {
     const now = moment.now();
     const oneMinuteAgo = moment().subtract(1, 'minute').subtract(1, 'second');
     expect(calculate(oneMinuteAgo, now, MAX_TURNS, 3)).toBe(0);

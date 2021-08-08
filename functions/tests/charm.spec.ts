@@ -1,8 +1,7 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import { createKingdom, KingdomType, addCharm, researchCharm, assignCharm, conjureCharm } from '../index';
-import { deleteKingdom } from '../fixtures';
+import * as backend from '../index';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -12,67 +11,65 @@ const config: admin.AppOptions = {
 const tester = functions(config);
 
 const KINGDOM = 'CHARM';
-const COLOR = KingdomType.BLUE;
 const SPELL = 'animate-skeleton';
 
-describe.skip(KINGDOM, () => {
+describe(KINGDOM, () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
+
+  beforeAll(async () => {
+    await backend.createKingdom(KINGDOM, backend.KingdomType.BLUE, KINGDOM, 0, 0);
+  });
 
   beforeEach(() => {
     batch = admin.firestore().batch();
   });
 
-  afterAll(() => {
+  afterAll(async () => {
+    await backend.deleteKingdom(KINGDOM);
     tester.cleanup();
-  });
-
-  it('should CREATE the KINGDOM', async () => {
-    await createKingdom(KINGDOM, COLOR, KINGDOM, 0, 0);
-    const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
-    expect(kingdom.exists).toBe(true);
   });
 
   it('should ADD the CHARM', async () => {
     const spell = (await admin.firestore().doc(`spells/${SPELL}`).get()).data();
     jest.spyOn(batch, 'create');
-    await addCharm(KINGDOM, spell, 200, batch);
+    await backend.addCharm(KINGDOM, spell, 200, batch);
     expect(batch.create).toHaveBeenCalled();
     await batch.commit();
     batch = admin.firestore().batch();
     jest.spyOn(batch, 'update');
-    await addCharm(KINGDOM, spell, 200, batch);
+    await backend.addCharm(KINGDOM, spell, 200, batch);
     expect(batch.update).toHaveBeenCalled();
     await batch.commit();
   });
 
   it('should RESEARCH the CHARM', async () => {
     const charmBefore = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
+    expect(charmBefore.exists).toBe(true);
     expect(charmBefore.data().turns).toBe(400);
     expect(charmBefore.data().completed).toBe(false);
-    await researchCharm(KINGDOM, charmBefore.id, 100);
+    await backend.researchCharm(KINGDOM, charmBefore.id, 100);
     const charmAfter = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
+    expect(charmAfter.exists).toBe(true);
     expect(charmAfter.data().turns).toBe(500);
     expect(charmAfter.data().completed).toBe(true);
   });
 
   it('should ASSIGN the CHARM', async () => {
     const charmBefore = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
+    expect(charmBefore.exists).toBe(true);
     expect(charmBefore.data().assignment).toBe(0);
-    await assignCharm(KINGDOM, charmBefore.id, 2);
+    await backend.assignCharm(KINGDOM, charmBefore.id, 2);
     const charmAfter = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
+    expect(charmAfter.exists).toBe(true);
     expect(charmAfter.data().assignment).toBe(2);
   });
 
-  it('should CONJURE the CHARM for SUMMON', async () => {
+  it('should CONJURE the CHARM for TROOP', async () => {
     const charm = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
-    expect((await conjureCharm(KINGDOM, charm.id, KINGDOM) as any).unit).toBe('unit.skeleton.name');
-  });
-
-  it('should DELETE the KINGDOM', async () => {
-    await deleteKingdom(KINGDOM, admin.firestore());
-    const kingdom = await admin.firestore().doc(`kingdoms/${KINGDOM}`).get();
-    expect(kingdom.exists).toBe(false);
+    const addTroopSpy = jest.spyOn(backend, 'addTroop');
+    expect((await backend.conjureCharm(KINGDOM, charm.id, KINGDOM) as any).unit).toBe('unit.skeleton.name');
+    expect(addTroopSpy).toHaveBeenCalled();
   });
 
 });
