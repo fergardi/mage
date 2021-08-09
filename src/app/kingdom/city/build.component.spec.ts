@@ -82,6 +82,14 @@ describe('BuildComponent', () => {
     expect(ApiServiceStub.buildStructure).toHaveBeenCalledWith(component.uid, component.building.fid, component.form.value.quantity);
   });
 
+  it('should BUILD some LANDS and CATCH errors', async () => {
+    component.form.patchValue({ quantity: component.kingdomLand.quantity });
+    component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'buildStructure').and.throwError(new Error('test'));
+    await component.build();
+    expect(ApiServiceStub.buildStructure).toThrowError('test');
+  });
+
   it('should NOT BUILD some LANDS', async () => {
     component.form.patchValue({ quantity: 9999999 });
     component.form.updateValueAndValidity();
@@ -89,6 +97,32 @@ describe('BuildComponent', () => {
     await component.build();
     expect(component.form.valid).toBeFalse();
     expect(ApiServiceStub.buildStructure).not.toHaveBeenCalled();
+  });
+
+  it('should DEMOLISH some LANDS', async () => {
+    component.form.patchValue({ quantity: 5 });
+    component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'demolishStructure');
+    await component.demolish();
+    expect(component.form.valid).toBeTrue();
+    expect(ApiServiceStub.demolishStructure).toHaveBeenCalledWith(component.uid, component.building.fid, component.form.value.quantity);
+  });
+
+  it('should DEMOLISH some LANDS and CATCH errors', async () => {
+    component.form.patchValue({ quantity: 5 });
+    component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'demolishStructure').and.throwError(new Error('test'));
+    await component.demolish();
+    expect(ApiServiceStub.demolishStructure).toThrowError('test');
+  });
+
+  it('should NOT DEMOLISH some LANDS', async () => {
+    component.form.patchValue({ quantity: 9999999 });
+    component.form.updateValueAndValidity();
+    spyOn(ApiServiceStub, 'demolishStructure');
+    await component.demolish();
+    expect(component.form.valid).toBeFalse();
+    expect(ApiServiceStub.demolishStructure).not.toHaveBeenCalled();
   });
 
 });

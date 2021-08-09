@@ -19,17 +19,19 @@ export interface AuthStateModel {
   popup: string | null;
 }
 
+export const initial: AuthStateModel = {
+  uid: null,
+  kingdom: null,
+  supplies: [],
+  buildings: [],
+  logged: false,
+  clock: null,
+  popup: null,
+};
+
 @State<AuthStateModel>({
   name: 'auth',
-  defaults: {
-    uid: null,
-    kingdom: null,
-    supplies: [],
-    buildings: [],
-    logged: false,
-    clock: null,
-    popup: null,
-  },
+  defaults: initial,
 })
 @Injectable()
 export class AuthState implements NgxsOnInit {
@@ -51,8 +53,9 @@ export class AuthState implements NgxsOnInit {
 
   @Selector()
   public static getKingdomTurn(state: AuthStateModel): any {
-    if (state) {
-      const kingdomTurn = JSON.parse(JSON.stringify(state.supplies.find(supply => supply.id === 'turn')));
+    const turns = state.supplies.find(supply => supply.id === 'turn');
+    if (state && turns) {
+      const kingdomTurn = JSON.parse(JSON.stringify(turns));
       kingdomTurn.quantity = calculate(kingdomTurn.timestamp.seconds * 1000, Date.now(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
       return kingdomTurn;
     }
@@ -147,7 +150,7 @@ export class AuthState implements NgxsOnInit {
         clock: new Date(),
       });
     }, 1000);
-    this.angularFireAuth.authState.subscribe(user => {
+    this.angularFireAuth.authState.subscribe((user: any) => {
       if (user) {
         ctx.dispatch(new SetUserAction(user.uid));
         ctx.dispatch(new SetKingdomAction(user.uid));
@@ -156,7 +159,7 @@ export class AuthState implements NgxsOnInit {
         this.notificationService.success('user.auth.authorized');
         const route = localStorage.getItem('route') || '/kingdom/city';
         // fix to use #fragments
-        let tree = this.router.parseUrl(route);
+        const tree = this.router.parseUrl(route);
         const fragment = tree.fragment;
         tree.queryParams = {};
         tree.fragment = null;

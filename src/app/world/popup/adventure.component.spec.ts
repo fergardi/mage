@@ -69,16 +69,16 @@ describe('AdventureComponent', () => {
   });
 
   it('should START an ADVENTURE', async () => {
-    spyOn(ApiServiceStub, 'adventureReward');
+    spyOn(ApiServiceStub, 'adventureQuest');
     await component.adventure();
-    expect(ApiServiceStub.adventureReward).toHaveBeenCalledWith(component.uid, component.data.quest.id);
+    expect(ApiServiceStub.adventureQuest).toHaveBeenCalledWith(component.uid, component.data.quest.id);
   });
 
   it('should NOT START an ADVENTURE', async () => {
     component.kingdomTurn.quantity = 0;
-    spyOn(ApiServiceStub, 'adventureReward');
+    spyOn(ApiServiceStub, 'adventureQuest');
     await component.adventure();
-    expect(ApiServiceStub.adventureReward).not.toHaveBeenCalled();
+    expect(ApiServiceStub.adventureQuest).not.toHaveBeenCalled();
   });
 
 });

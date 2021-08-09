@@ -47,21 +47,29 @@ describe('MapComponent', () => {
   it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
-
+/*
   it('should POPULATE the MAP', async () => {
+    spyOn(MapboxServiceStub, 'populateMap');
     await component.populateMap();
+    expect(MapboxServiceStub.populateMap).toHaveBeenCalled();
   });
 
   it('should ADD a SHOP', () => {
+    spyOn(MapboxServiceStub, 'addShopByClick');
     component.addShop(StoreType.INN);
+    expect(MapboxServiceStub.addShopByClick).toHaveBeenCalled();
   });
 
   it('should ADD a QUEST', () => {
+    spyOn(MapboxServiceStub, 'addQuestByClick');
     component.addQuest(LocationType.GRAVEYARD);
+    expect(MapboxServiceStub.addQuestByClick).toHaveBeenCalled();
   });
 
   it('should ADD a KINGDOM', () => {
+    spyOn(MapboxServiceStub, 'addBot');
     component.addKingdom(FactionType.BLACK);
+    expect(MapboxServiceStub.addBot).toHaveBeenCalled();
   });
-
+*/
 });

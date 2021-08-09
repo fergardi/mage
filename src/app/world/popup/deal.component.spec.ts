@@ -74,16 +74,16 @@ describe('DealComponent', () => {
   });
 
   it('should DEAL a GOOD', async () => {
-    spyOn(ApiServiceStub, 'dealGood');
+    spyOn(ApiServiceStub, 'tradeDeal');
     await component.deal();
-    expect(ApiServiceStub.dealGood).toHaveBeenCalledWith(component.uid, component.data.shop.id, 'charms', component.data.deal.fid);
+    expect(ApiServiceStub.tradeDeal).toHaveBeenCalledWith(component.uid, component.data.shop.id, 'charms', component.data.deal.fid);
   });
 
   it('should NOT DEAL a GOOD', async () => {
     component.kingdomGold.quantity = 0;
-    spyOn(ApiServiceStub, 'dealGood');
+    spyOn(ApiServiceStub, 'tradeDeal');
     await component.deal();
-    expect(ApiServiceStub.dealGood).not.toHaveBeenCalled();
+    expect(ApiServiceStub.tradeDeal).not.toHaveBeenCalled();
   });
 
 });

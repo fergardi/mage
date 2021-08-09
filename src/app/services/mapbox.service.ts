@@ -28,12 +28,10 @@ export class MapboxService {
 
   private mapbox = (mapboxgl as typeof mapboxgl);
   public map: mapboxgl.Map = null;
-  private markers: Marker[] = [];
+  public markers: Marker[] = [];
   private offset: number = 10;
   private uid: string;
   private primaryColor: string = null;
-  // private idle: boolean = false;
-  // private timeout: NodeJS.Timeout = undefined;
 
   constructor(
     private componentService: ComponentService,
@@ -44,7 +42,7 @@ export class MapboxService {
     this.mapbox.accessToken = environment.mapbox.token;
   }
 
-  initialize(container: string) {
+  initialize(container: string | HTMLElement) {
     this.primaryColor = window.getComputedStyle(document.body).getPropertyValue('--primary-color');
     this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.map = new mapboxgl.Map({
@@ -63,56 +61,31 @@ export class MapboxService {
     this.map.on('load', () => {
       // add fog
       this.map.setFog({
-        'range': [0.5, 10.0],
-        'color': '#FFFFFF',
+        range: [0.5, 10.0],
+        color: '#FFFFFF',
         'horizon-blend': 0.1,
       });
       // add the DEM source as a terrain layer
       this.map.addSource('mapbox-dem', {
-        'type': 'raster-dem',
-        'url': 'mapbox://mapbox.terrain-rgb',
-        'tileSize': 512,
-        'maxzoom': environment.mapbox.zoom,
+        type: 'raster-dem',
+        url: 'mapbox://mapbox.terrain-rgb',
+        tileSize: 512,
+        maxzoom: environment.mapbox.zoom,
       });
       // add the DEM source as a terrain layer with exaggerated height
       this.map.setTerrain({
-        'source': 'mapbox-dem',
-        'exaggeration': 3,
+        source: 'mapbox-dem',
+        exaggeration: 3,
       });
       // add a sky layer that will show when the map is highly pitched
       this.map.addLayer({
-        'id': 'sky-day',
-        'type': 'sky',
-        'paint': {
+        id: 'sky-day',
+        type: 'sky',
+        paint: {
           'sky-type': 'gradient',
         },
       });
-      /*
-      const rotateCamera = (timestamp: number) => {
-        if (this.idle) this.map.rotateTo((timestamp / 1000) % 360, { animate: true, easing: (t) => t, duration: 0 });
-        window.requestAnimationFrame((t) => rotateCamera(0));
-      }
-      rotateCamera(this.map.getBearing());
-      */
     });
-    /*
-    this.map.on('idle', () => {
-      if (!this.idle && !this.timeout) {
-        this.timeout = setTimeout(() => {
-          this.idle = true;
-          clearTimeout(this.timeout);
-          this.timeout = undefined;
-        }, 10000);
-      }
-    });
-    this.map.on('click', () => this.idle = false);
-    this.map.on('mousedown', () => this.idle = false);
-    this.map.on('touchstart', () => this.idle = false);
-    this.map.on('boxzoomstart', () => this.idle = false);
-    this.map.on('drag', () => this.idle = false);
-    this.map.on('zoomstart', () => this.idle = false);
-    this.map.on('wheel', () => this.idle = false);
-    */
     this.map.on('moveend', () => this.refreshMarkers());
   }
 
@@ -124,44 +97,12 @@ export class MapboxService {
   }
 
   refreshMarkers(): void {
-    this.markers.forEach((marker: any) => {
+    this.markers.forEach((marker: Marker) => {
       if (marker.id !== this.uid && (this.map.getZoom() < environment.mapbox.zoom || !this.markerVisible(marker))) {
-        marker.marker._element.style.display = 'none';
+        marker.marker.getElement().style.display = 'none';
       } else {
-        marker.marker._element.style.display = 'block';
+        marker.marker.getElement().style.display = 'block';
       }
-    });
-  }
-
-  addMe(): void {
-    navigator.geolocation.getCurrentPosition(async position => {
-      await this.apiService.addKingdom(this.uid, FactionType.BLACK, position.coords.latitude, position.coords.longitude, 'Fergardi');
-      this.goTo(position.coords.latitude, position.coords.longitude, true);
-    }, null, {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
-    });
-  }
-
-  addBot(type: FactionType): void {
-    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      await this.apiService.addKingdom(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
-      this.notificationService.warning('world.map.update');
-    });
-  }
-
-  addShopByClick(type: StoreType): void {
-    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      await this.apiService.addShop(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
-      this.notificationService.warning('world.map.update');
-    });
-  }
-
-  addQuestByClick(type: LocationType): void {
-    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      await this.apiService.addQuest(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
-      this.notificationService.warning('world.map.update');
     });
   }
 
@@ -188,6 +129,7 @@ export class MapboxService {
       className: 'dialog-responsive',
     })
     .setDOMContent(document.createElement('div') as HTMLDivElement)
+    // open
     .on('open', ($event: any) => {
       p = this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type });
       p.ref.changeDetectorRef.detectChanges();
@@ -195,7 +137,7 @@ export class MapboxService {
       s = (p.ref.instance as PopupComponent).opened
       .asObservable()
       .pipe(distinctUntilChanged())
-      .subscribe(async open => {
+      .subscribe(async (open: boolean) => {
         if (open) {
           await new Promise(resolve => setTimeout(resolve, 500));
           this.map.easeTo({
@@ -205,6 +147,7 @@ export class MapboxService {
         }
       });
     })
+    // close
     .on('close', () => {
       marker.getPopup().setDOMContent(document.createElement('div') as HTMLDivElement);
       if (p && p.ref) {
@@ -277,12 +220,46 @@ export class MapboxService {
     if (this.map) this.map.resize();
   }
 
+  addMe(): void {
+    navigator.geolocation.getCurrentPosition(async position => {
+      await this.apiService.addKingdom(this.uid, FactionType.BLACK, position.coords.latitude, position.coords.longitude, 'Fergardi');
+      this.goTo(position.coords.latitude, position.coords.longitude, true);
+    }, null, {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    });
+  }
+/*
+  addBot(type: FactionType): void {
+    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
+      await this.apiService.addKingdom(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
+      this.notificationService.warning('world.map.update');
+    });
+  }
+
+  addShopByClick(type: StoreType): void {
+    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
+      await this.apiService.addShop(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
+      this.notificationService.warning('world.map.update');
+    });
+  }
+
+  addQuestByClick(type: LocationType): void {
+    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
+      await this.apiService.addQuest(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
+      this.notificationService.warning('world.map.update');
+    });
+  }
+
   async populateMap() {
     const elements: any[] = [
+      // shops
       { type: MarkerType.SHOP, subtype: StoreType.INN, query: '[building=hotel]', radius: 2000 },
       { type: MarkerType.SHOP, subtype: StoreType.MERCENARY, query: '[amenity=police]', radius: 5000 },
       { type: MarkerType.SHOP, subtype: StoreType.SORCERER, query: '[building=university]', radius: 2000 },
       { type: MarkerType.SHOP, subtype: StoreType.MERCHANT, query: '[shop=mall]', radius: 5000 },
+      // quests
       { type: MarkerType.QUEST, subtype: LocationType.GRAVEYARD, query: '[landuse=cemetery]', radius: 5000 },
       { type: MarkerType.QUEST, subtype: LocationType.LAKE, query: '[sport=swimming]', radius: 5000 },
       { type: MarkerType.QUEST, subtype: LocationType.FOREST, query: '[leisure=park]', radius: 1000 },
@@ -329,9 +306,5 @@ export class MapboxService {
       }
     });
   }
-
-  openPopup(latitude: number, longitude: number): void {
-    this.map.fire('click', { lngLat: { lon: longitude, lat: latitude }});
-  }
-
+*/
 }

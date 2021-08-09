@@ -58,7 +58,42 @@ export const BottomSheetRefStub: any = {
   close: () => null,
 };
 
-export const ApiServiceStub: any = {
+interface ApiServiceStubInterface {
+  taxGold: any;
+  disbandTroop: any;
+  bidAuction: any;
+  recruitUnit: any;
+  readLetter: any;
+  battleKingdom: any;
+  refreshAuction: any;
+  exploreLand: any;
+  chargeMana: any;
+  buildStructure: any;
+  activateArtifact: any;
+  offerGod: any;
+  conjureCharm: any;
+  assignArmy: any;
+  researchCharm: any;
+  removeLetters: any;
+  buyEmporium: any;
+  sendLetter: any;
+  foundateClan: any;
+  assignCharm: any;
+  assignArtifact: any;
+  breakEnchantment: any;
+  dispelIncantation: any;
+  adventureQuest: any;
+  tradeDeal: any;
+  addShop: any;
+  addQuest: any;
+  dischargeContract: any;
+  favorGuild: any;
+  joinClan: any;
+  leaveClan: any;
+  demolishStructure: any;
+}
+
+export const ApiServiceStub: ApiServiceStubInterface = {
   taxGold: () => null,
   disbandTroop: () => null,
   bidAuction: () => null,
@@ -82,14 +117,15 @@ export const ApiServiceStub: any = {
   assignArtifact: () => null,
   breakEnchantment: () => null,
   dispelIncantation: () => null,
-  adventureReward: () => null,
-  dealGood: () => null,
+  adventureQuest: () => null,
+  tradeDeal: () => null,
   addShop: () => null,
   addQuest: () => null,
   dischargeContract: () => null,
   favorGuild: () => null,
   joinClan: () => null,
   leaveClan: () => null,
+  demolishStructure: () => null,
 };
 
 export const CacheServiceStub: any = {

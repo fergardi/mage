@@ -62,7 +62,7 @@ export class AdventureComponent implements OnInit {
     if (this.data.quest.turns <= this.kingdomTurn.quantity) {
       this.loadingService.startLoading();
       try {
-        const dealt = await this.apiService.adventureReward(this.uid, this.data.quest.id);
+        const dealt = await this.apiService.adventureQuest(this.uid, this.data.quest.id);
         this.notificationService.success('world.adventure.success');
         this.close();
       } catch (error) {

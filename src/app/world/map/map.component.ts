@@ -73,7 +73,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.locations = await this.cacheService.getLocations();
     this.factions = (await this.cacheService.getFactions()).filter((faction: any) => faction.id !== 'grey');
   }
-
+/*
   addShop(type: StoreType) {
     this.notificationService.warning('world.map.add');
     this.mapboxService.addShopByClick(type);
@@ -98,7 +98,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.notificationService.warning('world.map.update');
     await this.mapboxService.populateMap();
   }
-
+*/
   ngOnDestroy(): void {
     this.mapboxService.clearMarkers();
   }

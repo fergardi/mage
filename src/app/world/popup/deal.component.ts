@@ -79,7 +79,7 @@ export class DealComponent implements OnInit {
             : this.data.shop.store.id === 'merchant'
               ? 'artifacts'
               : 'charms';
-        const dealt = await this.apiService.dealGood(this.uid, this.data.shop.id, collection, this.data.deal.fid);
+        const dealt = await this.apiService.tradeDeal(this.uid, this.data.shop.id, collection, this.data.deal.fid);
         this.notificationService.success('world.deal.success');
         this.close();
       } catch (error) {
