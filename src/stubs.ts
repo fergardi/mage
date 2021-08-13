@@ -181,6 +181,7 @@ export const AngularFirestoreStub: any = {
         unit: { name: 'test', description: 'test', faction: { id: 'red' } },
         hero: { name: 'test', description: 'test', faction: { id: 'red' } },
         timestamp: { toMillis: () => 0 },
+        auctioned: { toMillis: () => 0 },
         id: 'test',
         name: 'test',
         turns: 1,
@@ -201,6 +202,10 @@ export const LoadingServiceStub: any = {
 };
 
 export const AngularFireAuthStub: any = {
+  signInWithEmailAndPassword: () => Promise.resolve(),
+  createUserWithEmailAndPassword: () => Promise.resolve(),
+  sendPasswordResetEmail: () => Promise.resolve(),
+  signOut: () => Promise.resolve(),
   auth: jasmine.createSpyObj('auth', {
     signInAnonymously: Promise.resolve(),
     signInWithEmailAndPassword: Promise.resolve(),

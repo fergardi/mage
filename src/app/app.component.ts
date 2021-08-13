@@ -23,8 +23,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // anchors
     this.router.events.subscribe((event: RouterEvent) => {
-      if (event instanceof NavigationEnd) {
-        if (event.url !== '/user/landing') localStorage.setItem('route', event.url);
+      if (event instanceof NavigationEnd && event.url !== '/user/landing') {
+        localStorage.setItem('route', event.url);
       }
       if (event instanceof Scroll && event.anchor && isPlatformBrowser(this.platformId)) {
         setTimeout(() => {

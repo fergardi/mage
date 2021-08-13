@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AuctionComponent } from './auction.component';
-import { MatDialogStub, StoreStub, CacheServiceStub, ApiServiceStub, LoadingServiceStub, AngularFirestoreStub } from 'src/stubs';
+import { MatDialogStub, StoreStub, CacheServiceStub, ApiServiceStub, LoadingServiceStub, AngularFirestoreStub, EventStub } from 'src/stubs';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
@@ -27,6 +27,9 @@ import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
 import { MatChipsModule } from '@angular/material/chips';
+import { BidComponent } from './bid.component';
+import { TomeComponent } from 'src/app/user/encyclopedia/tome.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('AuctionComponent', () => {
   let component: AuctionComponent;
@@ -52,6 +55,7 @@ describe('AuctionComponent', () => {
         MatListModule,
         MatBadgeModule,
         MatChipsModule,
+        MatSnackBarModule,
       ],
       declarations: [
         AuctionComponent,
@@ -80,4 +84,23 @@ describe('AuctionComponent', () => {
   it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should CREATE the INSTANCE', async () => {
+    spyOn(ApiServiceStub, 'refreshAuction');
+    await component.refreshAuctions();
+    expect(ApiServiceStub.refreshAuction).toHaveBeenCalled();
+  });
+
+  it('should OPEN the BID dialog', () => {
+    spyOn(MatDialogStub, 'open');
+    component.openBidDialog(null, EventStub);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(BidComponent, { panelClass: 'dialog-responsive', data: null });
+  });
+
+  it('should OPEN the TOME dialog', () => {
+    spyOn(MatDialogStub, 'open');
+    component.openTomeDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(TomeComponent, { panelClass: 'dialog-responsive', data: null });
+  });
+
 });

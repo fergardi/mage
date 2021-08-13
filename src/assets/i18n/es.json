@@ -507,7 +507,8 @@
       "bid": "Pujar",
       "subject": "Casa de Subastas",
       "won": "La subasta ha terminado y tu reino ha resultado ganador. Las nuevas adquisiciones se han enviado a tu reino.",
-      "outbid": "Te han sobrepujado en una subasta. Se te ha devuelto el 90% del Oro de tu puja anterior."
+      "outbid": "Te han sobrepujado en una subasta. Se te ha devuelto el 90% del Oro de tu puja anterior.",
+      "error": "Ha ocurrido un problema"
     },
     "bid": {
       "name": "Puja",

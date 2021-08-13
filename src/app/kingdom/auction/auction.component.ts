@@ -15,6 +15,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { TomeComponent } from 'src/app/user/encyclopedia/tome.component';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-auction',
@@ -41,7 +42,7 @@ export class AuctionComponent implements OnInit {
       options: [],
     },
   };
-  data: MatTableDataSource<any> = new MatTableDataSource([]);
+  table: MatTableDataSource<any> = new MatTableDataSource([]);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -54,28 +55,29 @@ export class AuctionComponent implements OnInit {
     private apiService: ApiService,
     private loadingService: LoadingService,
     private angularFirestore: AngularFirestore,
+    private notificationService: NotificationService,
     public tutorialService: TutorialService,
   ) { }
 
   ngOnInit(): void {
     this.angularFirestore.collection<any>('auctions').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async auctions => {
-      const data = auctions.map(auction => {
+      const data = auctions.map((auction: any) => {
         auction.join = auction.hero || auction.item || auction.spell || auction.unit;
         return auction;
       });
-      this.data = new MatTableDataSource(data);
-      this.data.paginator = this.paginator;
-      this.data.sort = this.sort;
-      this.data.sortingDataAccessor = this.createSorter();
-      this.data.filterPredicate = this.createFilter();
-      this.filters.faction.options = [...new Set(data.map(auction => auction.join.faction))];
+      this.table = new MatTableDataSource(data);
+      this.table.paginator = this.paginator;
+      this.table.sort = this.sort;
+      this.table.sortingDataAccessor = this.createSorter();
+      this.table.filterPredicate = this.createFilter();
+      this.filters.faction.options = [...new Set(data.map((auction: any) => auction.join.faction))];
       this.applyFilter();
       await this.refreshAuctions();
     });
   }
 
   applyFilter() {
-    this.data.filter = JSON.stringify({
+    this.table.filter = JSON.stringify({
       name: this.filters.name.value,
       faction: this.filters.faction.value,
     });
@@ -101,12 +103,13 @@ export class AuctionComponent implements OnInit {
   }
 
   async refreshAuctions() {
-    if (!this.data.data.length || (this.data.data.length && moment().isAfter(moment(this.data.data[0].auctioned.toMillis())))) {
+    if (!this.table.data.length || (this.table.data.length && moment().isAfter(moment(this.table.data[0].auctioned.toMillis())))) {
       this.loadingService.startLoading();
       try {
         await this.apiService.refreshAuction();
       } catch (error) {
         console.error(error);
+        this.notificationService.error('kingdom.auction.error');
       }
       this.loadingService.stopLoading();
     }
