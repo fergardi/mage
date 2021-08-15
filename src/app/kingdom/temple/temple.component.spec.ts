@@ -18,6 +18,7 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
+import { BreakComponent } from './break.component';
 
 describe('TempleComponent', () => {
   let component: TempleComponent;
@@ -71,6 +72,12 @@ describe('TempleComponent', () => {
     spyOn(MatDialogStub, 'open');
     component.openDispelDialog(null);
     expect(MatDialogStub.open).toHaveBeenCalledWith(DispelComponent, { panelClass: 'dialog-responsive', data: null });
+  });
+
+  it('should OPEN the BREAK dialog', () => {
+    spyOn(MatDialogStub, 'open');
+    component.openBreakDialog(null);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(BreakComponent, { panelClass: 'dialog-responsive', data: null });
   });
 
 });

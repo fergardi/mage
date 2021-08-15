@@ -118,6 +118,16 @@ export class AuthState implements NgxsOnInit {
   }
 
   @Selector()
+  public static getKingdomTree(state: AuthStateModel): any {
+    return state && state.kingdom && state.kingdom.tree;
+  }
+
+  @Selector()
+  public static getKingdomPerks(state: AuthStateModel): any {
+    return state && state.kingdom && state.kingdom.perks;
+  }
+
+  @Selector()
   public static getKingdom(state: AuthStateModel): any {
     return state && state.kingdom;
   }

@@ -198,4 +198,10 @@ export class ApiService {
     return this.httpClient.post(`${environment.functions.url}/kingdom/${kingdomId}/world/quest/${questId}`, undefined).toPromise();
   }
 
+  plantTree(kingdomId: string, tree: any) {
+    return this.httpClient.put(`${environment.functions.url}/kingdom/${kingdomId}/tree`, {
+      tree: tree,
+    }).toPromise();
+  }
+
 }

@@ -354,4 +354,13 @@ describe('ApiService', () => {
     expect(response).toBe(null);
   });
 
+  it('should PLANT the TREE', async () => {
+    const request = service.plantTree('bot', 'tree');
+    const mock = httpMock.expectOne(`${environment.functions.url}/kingdom/bot/tree`);
+    mock.flush(null);
+    const response = await request;
+    expect(mock.request.method).toEqual(HttpVerb.PUT);
+    expect(response).toBe(null);
+  });
+
 });

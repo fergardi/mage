@@ -4,26 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as moment from 'moment';
-
-export enum FixtureType {
-  'ATTACKS' = 'attacks',
-  'FACTIONS' = 'factions',
-  'FAMILIES' = 'families',
-  'CATEGORIES' = 'categories',
-  'GODS' = 'gods',
-  'RESOURCES' = 'resources',
-  'SKILLS' = 'skills',
-  'STRUCTURES' = 'structures',
-  'GUILDS' = 'guilds',
-  'UNITS' = 'units',
-  'ITEMS' = 'items',
-  'STORES' = 'stores',
-  'LOCATIONS' = 'locations',
-  'SPELLS' = 'spells',
-  'HEROES' = 'heroes',
-  'KINGDOMS' = 'kingdoms',
-  'LEGENDS' = 'legends',
-}
+import { CollectionType } from './cache.service';
 
 @Injectable({
   providedIn: 'root',
@@ -47,6 +28,7 @@ export class FirebaseService {
   heroes: any[] = [];
   kingdoms: any[] = [];
   legends: any[] = [];
+  perks: any[] = [];
 
   joinedAttacks: any[] = [];
   joinedFactions: any[] = [];
@@ -64,6 +46,7 @@ export class FirebaseService {
   joinedSpells: any[] = [];
   joinedHeroes: any[] = [];
   joinedLegends: any[] = [];
+  joinedPerks: any[] = [];
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -89,16 +72,22 @@ export class FirebaseService {
     // if (element.item) this.joinObject(element, 'item', await this.cacheService.getItems());
     // if (element.items) this.joinObject(element, 'items', await this.cacheService.getItems());
     if (element.resources) this.joinObject(element, 'resources', this.resources);
+    if (element.perks) this.joinObject(element, 'perks', this.perks, true);
   }
 
-  joinObject(element: any, subCollection: string, collection: any[]) {
+  joinObject(element: any, subCollection: string, collection: any[], recursive: boolean = false) {
     if (element[subCollection] instanceof Array) {
-      element[subCollection].forEach((subElement, subElementIndex, subElementArray) => {
+      element[subCollection].forEach((subElement: any, subElementIndex: number, subElementArray: any[]) => {
         if (typeof subElement === 'string') {
           element[subCollection][subElementIndex] = JSON.parse(JSON.stringify(collection.find(el => el['id'] === subElement.replace(/^\+|^\-|^\//g, ''))));
+          if (recursive) {
+            this.joinObject(element[subCollection][subElementIndex], 'perks', this.perks, true);
+          }
         }
       });
-      element[subCollection] = element[subCollection].slice().sort((a: any, b: any) => a?.name - b?.name);
+      element[subCollection] = recursive
+        ? element[subCollection].slice().sort((a: any, b: any) => a?.sort - b?.sort)
+        : element[subCollection].slice().sort((a: any, b: any) => a?.name - b?.name);
     }
     if (typeof element[subCollection] === 'string') {
       element[subCollection] = JSON.parse(JSON.stringify(collection.find(el => el['id'] === element[subCollection].replace(/^\+|^\-|^\//g, ''))));
@@ -122,6 +111,7 @@ export class FirebaseService {
     this.spells = await this.httpClient.get<any[]>('assets/fixtures/spells.json').toPromise();
     this.heroes = await this.httpClient.get<any[]>('assets/fixtures/heroes.json').toPromise();
     this.legends = await this.httpClient.get<any[]>('assets/fixtures/legends.json').toPromise();
+    this.perks = await this.httpClient.get<any[]>('assets/fixtures/perks.json').toPromise();
   }
 
   async importFixtures(collection: string, elements: any[], batch: firebase.firestore.WriteBatch) {
@@ -129,112 +119,117 @@ export class FirebaseService {
       element.random = index;
       if (element.timestamp) {
         element.timestamp = moment(element.timestamp, 'DD/MM/YYYY', true).toDate();
-        console.log('timestamping', element.timestamp);
       }
       batch.set(this.angularFirestore.collection(collection).doc(element.id).ref, element);
     });
   }
 
-  loadFixtures(fixtures: FixtureType[]) {
+  loadFixtures(fixtures: CollectionType[]) {
     this.angularFireAuth.authState.subscribe(async user => {
       if (user && fixtures.length) {
         const batch = this.angularFirestore.firestore.batch();
         await this.readFixtures();
         this.joinedFactions = JSON.parse(JSON.stringify(this.factions));
         this.joinedFactions.forEach(faction => this.joinFixtures(faction));
-        if (fixtures.includes(FixtureType.FACTIONS)) {
-          console.log(`Loading ${FixtureType.FACTIONS}...`);
-          this.importFixtures(FixtureType.FACTIONS, this.joinedFactions, batch);
+        if (fixtures.includes(CollectionType.FACTIONS)) {
+          console.log(`Loading ${CollectionType.FACTIONS}...`);
+          this.importFixtures(CollectionType.FACTIONS, this.joinedFactions, batch);
         }
         this.joinedAttacks = JSON.parse(JSON.stringify(this.attacks));
         this.joinedAttacks.forEach(attack => this.joinFixtures(attack));
-        if (fixtures.includes(FixtureType.ATTACKS)) {
-          console.log(`Loading ${FixtureType.ATTACKS}...`);
-          this.importFixtures(FixtureType.ATTACKS, this.joinedAttacks, batch);
+        if (fixtures.includes(CollectionType.ATTACKS)) {
+          console.log(`Loading ${CollectionType.ATTACKS}...`);
+          this.importFixtures(CollectionType.ATTACKS, this.joinedAttacks, batch);
         }
         this.joinedGuilds = JSON.parse(JSON.stringify(this.guilds));
         this.joinedGuilds.forEach(guild => this.joinFixtures(guild));
-        if (fixtures.includes(FixtureType.GUILDS)) {
-          console.log(`Loading ${FixtureType.GUILDS}...`);
-          this.importFixtures(FixtureType.GUILDS, this.joinedGuilds, batch);
+        if (fixtures.includes(CollectionType.GUILDS)) {
+          console.log(`Loading ${CollectionType.GUILDS}...`);
+          this.importFixtures(CollectionType.GUILDS, this.joinedGuilds, batch);
         }
         this.joinedFamilies = JSON.parse(JSON.stringify(this.families));
         this.joinedFamilies.forEach(family => this.joinFixtures(family));
-        if (fixtures.includes(FixtureType.FAMILIES)) {
-          console.log(`Loading ${FixtureType.FAMILIES}...`);
-          this.importFixtures(FixtureType.FAMILIES, this.joinedFamilies, batch);
+        if (fixtures.includes(CollectionType.FAMILIES)) {
+          console.log(`Loading ${CollectionType.FAMILIES}...`);
+          this.importFixtures(CollectionType.FAMILIES, this.joinedFamilies, batch);
         }
         this.joinedCategories = JSON.parse(JSON.stringify(this.categories));
         this.joinedCategories.forEach(category => this.joinFixtures(category));
-        if (fixtures.includes(FixtureType.CATEGORIES)) {
-          console.log(`Loading ${FixtureType.CATEGORIES}...`);
-          this.importFixtures(FixtureType.CATEGORIES, this.joinedCategories, batch);
+        if (fixtures.includes(CollectionType.CATEGORIES)) {
+          console.log(`Loading ${CollectionType.CATEGORIES}...`);
+          this.importFixtures(CollectionType.CATEGORIES, this.joinedCategories, batch);
         }
         this.joinedGods = JSON.parse(JSON.stringify(this.gods));
         this.joinedGods.forEach(god => this.joinFixtures(god));
-        if (fixtures.includes(FixtureType.GODS)) {
-          console.log(`Loading ${FixtureType.GODS}...`);
-          this.importFixtures(FixtureType.GODS, this.joinedGods, batch);
+        if (fixtures.includes(CollectionType.GODS)) {
+          console.log(`Loading ${CollectionType.GODS}...`);
+          this.importFixtures(CollectionType.GODS, this.joinedGods, batch);
         }
         this.joinedResources = JSON.parse(JSON.stringify(this.resources));
         this.joinedResources.forEach(resource => this.joinFixtures(resource));
-        if (fixtures.includes(FixtureType.RESOURCES)) {
-          console.log(`Loading ${FixtureType.RESOURCES}...`);
-          this.importFixtures(FixtureType.RESOURCES, this.joinedResources, batch);
+        if (fixtures.includes(CollectionType.RESOURCES)) {
+          console.log(`Loading ${CollectionType.RESOURCES}...`);
+          this.importFixtures(CollectionType.RESOURCES, this.joinedResources, batch);
         }
         this.joinedStructures = JSON.parse(JSON.stringify(this.structures));
         this.joinedStructures.forEach(structure => this.joinFixtures(structure));
-        if (fixtures.includes(FixtureType.STRUCTURES)) {
-          console.log(`Loading ${FixtureType.STRUCTURES}...`);
-          this.importFixtures(FixtureType.STRUCTURES, this.joinedStructures, batch);
+        if (fixtures.includes(CollectionType.STRUCTURES)) {
+          console.log(`Loading ${CollectionType.STRUCTURES}...`);
+          this.importFixtures(CollectionType.STRUCTURES, this.joinedStructures, batch);
         }
         this.joinedSkills = JSON.parse(JSON.stringify(this.skills));
         this.joinedSkills.forEach(skill => this.joinFixtures(skill));
-        if (fixtures.includes(FixtureType.SKILLS)) {
-          console.log(`Loading ${FixtureType.SKILLS}...`);
-          this.importFixtures(FixtureType.SKILLS, this.joinedSkills, batch);
+        if (fixtures.includes(CollectionType.SKILLS)) {
+          console.log(`Loading ${CollectionType.SKILLS}...`);
+          this.importFixtures(CollectionType.SKILLS, this.joinedSkills, batch);
         }
         this.joinedUnits = JSON.parse(JSON.stringify(this.units));
         this.joinedUnits.forEach(unit => this.joinFixtures(unit));
-        if (fixtures.includes(FixtureType.UNITS)) {
-          console.log(`Loading ${FixtureType.UNITS}...`);
-          this.importFixtures(FixtureType.UNITS, this.joinedUnits, batch);
+        if (fixtures.includes(CollectionType.UNITS)) {
+          console.log(`Loading ${CollectionType.UNITS}...`);
+          this.importFixtures(CollectionType.UNITS, this.joinedUnits, batch);
         }
         this.joinedSpells = JSON.parse(JSON.stringify(this.spells));
         this.joinedSpells.forEach(spell => this.joinFixtures(spell));
-        if (fixtures.includes(FixtureType.SPELLS)) {
-          console.log(`Loading ${FixtureType.SPELLS}...`);
-          this.importFixtures(FixtureType.SPELLS, this.joinedSpells, batch);
+        if (fixtures.includes(CollectionType.SPELLS)) {
+          console.log(`Loading ${CollectionType.SPELLS}...`);
+          this.importFixtures(CollectionType.SPELLS, this.joinedSpells, batch);
         }
         this.joinedItems = JSON.parse(JSON.stringify(this.items));
         this.joinedItems.forEach(item => this.joinFixtures(item));
-        if (fixtures.includes(FixtureType.ITEMS)) {
-          console.log(`Loading ${FixtureType.ITEMS}...`);
-          this.importFixtures(FixtureType.ITEMS, this.joinedItems, batch);
+        if (fixtures.includes(CollectionType.ITEMS)) {
+          console.log(`Loading ${CollectionType.ITEMS}...`);
+          this.importFixtures(CollectionType.ITEMS, this.joinedItems, batch);
         }
         this.joinedHeroes = JSON.parse(JSON.stringify(this.heroes));
         this.joinedHeroes.forEach(hero => this.joinFixtures(hero));
-        if (fixtures.includes(FixtureType.HEROES)) {
-          console.log(`Loading ${FixtureType.HEROES}...`);
-          this.importFixtures(FixtureType.HEROES, this.joinedHeroes, batch);
+        if (fixtures.includes(CollectionType.HEROES)) {
+          console.log(`Loading ${CollectionType.HEROES}...`);
+          this.importFixtures(CollectionType.HEROES, this.joinedHeroes, batch);
         }
         this.joinedStores = JSON.parse(JSON.stringify(this.stores));
         this.joinedStores.forEach(store => this.joinFixtures(store));
-        if (fixtures.includes(FixtureType.STORES)) {
-          console.log(`Loading ${FixtureType.STORES}...`);
-          this.importFixtures(FixtureType.STORES, this.joinedStores, batch);
+        if (fixtures.includes(CollectionType.STORES)) {
+          console.log(`Loading ${CollectionType.STORES}...`);
+          this.importFixtures(CollectionType.STORES, this.joinedStores, batch);
         }
         this.joinedLocations = JSON.parse(JSON.stringify(this.locations));
         this.joinedLocations.forEach(quest => this.joinFixtures(quest));
-        if (fixtures.includes(FixtureType.LOCATIONS)) {
-          console.log(`Loading ${FixtureType.LOCATIONS}...`);
-          this.importFixtures(FixtureType.LOCATIONS, this.joinedLocations, batch);
+        if (fixtures.includes(CollectionType.LOCATIONS)) {
+          console.log(`Loading ${CollectionType.LOCATIONS}...`);
+          this.importFixtures(CollectionType.LOCATIONS, this.joinedLocations, batch);
         }
         this.joinedLegends = JSON.parse(JSON.stringify(this.legends));
         this.joinedLegends.forEach(legend => this.joinFixtures(legend));
-        if (fixtures.includes(FixtureType.LEGENDS)) {
-          console.log(`Loading ${FixtureType.LEGENDS}...`);
-          this.importFixtures(FixtureType.LEGENDS, this.joinedLegends, batch);
+        if (fixtures.includes(CollectionType.LEGENDS)) {
+          console.log(`Loading ${CollectionType.LEGENDS}...`);
+          this.importFixtures(CollectionType.LEGENDS, this.joinedLegends, batch);
+        }
+        this.joinedPerks = JSON.parse(JSON.stringify(this.perks));
+        this.joinedPerks.forEach(perk => this.joinFixtures(perk));
+        if (fixtures.includes(CollectionType.PERKS)) {
+          console.log(`Loading ${CollectionType.PERKS}...`);
+          this.importFixtures(CollectionType.PERKS, this.joinedPerks, batch);
         }
         await batch.commit();
         console.log('Fixtures loaded!');

@@ -18,6 +18,8 @@ export enum CollectionType {
   'PACKS' = 'packs',
   'GUILDS' = 'guilds',
   'ATTACKS' = 'attacks',
+  'LEGENDS' = 'legends',
+  'PERKS' = 'perks',
 }
 
 @Injectable({
@@ -63,6 +65,8 @@ export class CacheService {
         return this.getStores();
       case CollectionType.LOCATIONS:
         return this.getLocations();
+      case CollectionType.PERKS:
+        return this.getPerks();
     }
   }
 
@@ -208,5 +212,14 @@ export class CacheService {
       localStorage.setItem(CollectionType.ITEMS, JSON.stringify([...items]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.ITEMS));
+  }
+
+  async getPerks() {
+    if (!localStorage.getItem(CollectionType.PERKS)) {
+      const snapshot = await this.angularFirestore.collection<any>(CollectionType.PERKS).get().toPromise();
+      const perks = snapshot.docs.map(perk => perk.data());
+      localStorage.setItem(CollectionType.PERKS, JSON.stringify([...perks]));
+    }
+    return JSON.parse(localStorage.getItem(CollectionType.PERKS));
   }
 }

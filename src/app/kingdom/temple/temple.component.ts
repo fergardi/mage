@@ -40,8 +40,8 @@ export class TempleComponent implements OnInit {
     .pipe(untilDestroyed(this))
     .subscribe(([gods, enchantments, incantations]) => {
       this.kingdomGods = gods;
-      this.kingdomEnchantments = enchantments.sort((a, b) => a.turns - b.turns);
-      this.kingdomIncantations = incantations.sort((a, b) => a.turns - b.turns);
+      this.kingdomEnchantments = enchantments.sort((a: any, b: any) => a.turns - b.turns);
+      this.kingdomIncantations = incantations.sort((a: any, b: any) => a.turns - b.turns);
     });
   }
 

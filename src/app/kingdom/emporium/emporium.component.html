@@ -39,6 +39,36 @@
 
     <mat-card>
       <mat-card-header>
+        <img mat-card-avatar src="/assets/images/cards/tree.png">
+        <mat-card-title>{{ 'kingdom.tree.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'kingdom.tree.description' | translate }}</mat-card-subtitle>
+        <div class="mat-card-extras">
+          <button mat-icon-button (click)="this.tutorialService.start('tour.tree')"><mat-icon>help</mat-icon></button>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>star</mat-icon>{{ emporiumPerks.length }}</mat-chip></mat-chip-list>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p [innerHTML]="'kingdom.tree.help' | translate | icon"></p>
+      </mat-card-content>
+
+      <mat-card-content class="tree" tourAnchor="tour.tree">
+        <app-perk [perk]="kingdomTree" [points]="kingdomPerks" [disabled]="false" *ngIf="kingdomTree"></app-perk>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <span class="fill-space"></span>
+        <button mat-button (click)="resetTree(kingdomTree)">{{ 'kingdom.tree.reset' | translate }}</button>
+        <button mat-raised-button color="primary" (click)="saveTree()">{{ 'kingdom.tree.save' | translate }}</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+
+  <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
+
+    <mat-card>
+      <mat-card-header>
         <img mat-card-avatar src="/assets/images/cards/mining.png">
         <mat-card-title>{{ 'kingdom.mining.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.mining.description' | translate }}</mat-card-subtitle>

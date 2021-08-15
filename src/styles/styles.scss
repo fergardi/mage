@@ -334,6 +334,9 @@ $list-item-height: 60px;
       }
     }
   }
+  .mat-card-actions {
+    display: flex;
+  }
 }
 .mat-card.map-popup {
   .mat-card-avatar {
@@ -811,6 +814,18 @@ $list-item-height: 60px;
 }
 .cdk-overlay-pane.mat-snack-bar-handset .mat-snack-bar-container { // mobile
   // margin-top: 8px;
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                       TOOLTIPS                                       *
+ *                                                                                      */
+//========================================================================================
+
+.mat-tooltip {
+  white-space: pre-line;
+  text-align: center;
+  font-size: 0.85rem;
 }
 
 //========================================================================================

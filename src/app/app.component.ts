@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { LoadingService } from './services/loading.service';
-import { FirebaseService, FixtureType } from './services/firebase.service';
+import { FirebaseService } from './services/firebase.service';
 import { TutorialService } from './services/tutorial.service';
 import { Router, Scroll, RouterEvent, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { CollectionType } from './services/cache.service';
 
 @Component({
   selector: 'app-root',
@@ -40,22 +41,23 @@ export class AppComponent implements OnInit {
     // fixtures
     this.tutorialService.initialize();
     this.firebaseService.loadFixtures([
-      // FixtureType.FACTIONS,
-      // FixtureType.ATTACKS,
-      // FixtureType.CATEGORIES,
-      // FixtureType.FAMILIES,
-      // FixtureType.GODS,
-      // FixtureType.GUILDS,
-      // FixtureType.RESOURCES,
-      // FixtureType.STRUCTURES,
-      // FixtureType.SKILLS,
-      // FixtureType.UNITS,
-      // FixtureType.SPELLS,
-      // FixtureType.ITEMS,
-      // FixtureType.HEROES,
-      // FixtureType.STORES,
-      // FixtureType.LOCATIONS,
-      // FixtureType.LEGENDS,
+      // CollectionType.FACTIONS,
+      // CollectionType.ATTACKS,
+      // CollectionType.CATEGORIES,
+      // CollectionType.FAMILIES,
+      // CollectionType.GODS,
+      // CollectionType.GUILDS,
+      // CollectionType.RESOURCES,
+      // CollectionType.STRUCTURES,
+      // CollectionType.SKILLS,
+      // CollectionType.UNITS,
+      // CollectionType.SPELLS,
+      // CollectionType.ITEMS,
+      // CollectionType.HEROES,
+      // CollectionType.STORES,
+      // CollectionType.LOCATIONS,
+      // CollectionType.LEGENDS,
+      // CollectionType.PERKS,
     ]);
   }
 }

@@ -35,6 +35,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
 // plugins
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { NgxCurrencyModule, CurrencyMaskInputMode } from 'ngx-currency';
@@ -100,6 +101,7 @@ const modules = [
   MatProgressSpinnerModule,
   MatBottomSheetModule,
   MatExpansionModule,
+  MatTooltipModule,
 ];
 
 @NgModule({

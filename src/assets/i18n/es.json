@@ -748,6 +748,15 @@
       "message": "La compra se ha realizado correctamente. Las nuevas adquisiciones se han enviado a tu reino.",
       "from": "Mercado Negro"
     },
+    "tree": {
+      "name": "Genealogía",
+      "description": "Beneficios adicionales",
+      "help": "En el árbol genealógico puedes invertir tus <gem> para escoger qué conocimientos ancestrales has heredado de tu familia durante siglos. Cada ventaja otorga un pequeño beneficio asociado a un elemento muy concreto.",
+      "save": "Guardar",
+      "reset": "Reiniciar",
+      "success": "Has reestablecido tu genealogía",
+      "error": "Ha ocurrido un problema"
+    },
     "buy": {
       "name": "Compra",
       "help": "Vas a adquirir un Artefacto a cambio de varias <gem>.",
@@ -1287,6 +1296,60 @@
     "water-elemental": {
       "name": "Elementales de Agua",
       "description": ""
+    }
+  },
+  "perk": {
+    "strategy": {
+      "name": "Estrategia",
+      "description": "Reclutas +{{ recruitBonus }}% Tropas de forma gratuita"
+    },
+    "agriculture": {
+      "name": "Agricultura",
+      "description": "Tus Granjas producen +{{ goldBonus }}% Oro adicional"
+    },
+    "alchemy": {
+      "name": "Alquimia",
+      "description": "Tus Nodos producen +{{ manaBonus }}% Maná adicional"
+    },
+    "architecture": {
+      "name": "Arquitectura",
+      "description": "Tus Edificios se construyen +{{ constructionBonus }}% más rápido"
+    },
+    "culture": {
+      "name": "Cultura",
+      "description": "Tus Pueblos atraen +{{ populationBonus }}% Población adicional"
+    },
+    "teology": {
+      "name": "Teología",
+      "description": "Realizar ofrendas es +{{ godBonus }}% más barato"
+    },
+    "cartography": {
+      "name": "Cartografía",
+      "description": "Al explorar encuentas +{{ landBonus }}% Tierras adicionales"
+    },
+    "metalurgy": {
+      "name": "Metalurgia",
+      "description": "Tus Tropas tienen +{{ attackBonus }}% Ataque adicional"
+    },
+    "medicine": {
+      "name": "Medicina",
+      "description": "Tus Tropas tienen +{{ healthBonus }}% Vida adicional"
+    },
+    "forge": {
+      "name": "Forja",
+      "description": "Tus Tropas tienen +{{ defenseBonus }}% Defensa adicional"
+    },
+    "science": {
+      "name": "Ciencia",
+      "description": "Investigar Hechizos es +{{ researchBonus }}% más rápido"
+    },
+    "mysticism": {
+      "name": "Misticismo",
+      "description": "Tu Defensa Mágica aumenta +{{ magicalDefenseBonus }}%"
+    },
+    "masonry": {
+      "name": "Mampostería",
+      "description": "Tu Defensa Física aumenta +{{ physicalDefenseBonus }}%"
     }
   },
   "spell": {
