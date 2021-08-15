@@ -87,7 +87,7 @@ export class FirebaseService {
       });
       element[subCollection] = recursive
         ? element[subCollection].slice().sort((a: any, b: any) => a?.sort - b?.sort)
-        : element[subCollection].slice().sort((a: any, b: any) => a?.name - b?.name);
+        : element[subCollection].slice().sort((a: any, b: any) => a?.name.localeCompare(b?.name));
     }
     if (typeof element[subCollection] === 'string') {
       element[subCollection] = JSON.parse(JSON.stringify(collection.find(el => el['id'] === element[subCollection].replace(/^\+|^\-|^\//g, ''))));

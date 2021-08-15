@@ -1,6 +1,7 @@
 import 'jest';
-import { random, calculate, MAX_TURNS } from '../index';
+import { random, calculate } from '../src/index';
 import * as moment from 'moment';
+import { MAX_TURNS } from '../src/aux';
 
 describe('HELPER', () => {
 

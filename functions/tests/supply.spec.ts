@@ -1,7 +1,8 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import * as backend from '../index';
+import * as backend from '../src/index';
+import { KingdomType, SupplyType, BonusType } from '../src/aux';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -17,7 +18,7 @@ describe(KINGDOM, () => {
   let batch: FirebaseFirestore.WriteBatch;
 
   beforeAll(async () => {
-    await backend.createKingdom(KINGDOM, backend.KingdomType.BLACK, KINGDOM, 0, 0);
+    await backend.createKingdom(KINGDOM, KingdomType.BLACK, KINGDOM, 0, 0);
   });
 
   beforeEach(() => {
@@ -46,7 +47,7 @@ describe(KINGDOM, () => {
 
   it('should BALANCE the SUPPLY', async () => {
     jest.spyOn(batch, 'update');
-    await backend.balanceSupply(KINGDOM, backend.SupplyType.GEM, 10, batch);
+    await backend.balanceSupply(KINGDOM, SupplyType.GEM, 10, batch);
     expect(batch.update).toHaveBeenCalled();
   });
 
@@ -58,11 +59,11 @@ describe(KINGDOM, () => {
 
   it('should BALANCE the BONUS', async () => {
     jest.spyOn(batch, 'update');
-    await backend.balanceBonus(KINGDOM, backend.BonusType.EXPLORE, 10, batch);
+    await backend.balanceBonus(KINGDOM, BonusType.EXPLORE, 10, batch);
     expect(batch.update).toHaveBeenCalled();
-    await backend.balanceBonus(KINGDOM, backend.BonusType.BUILD, 10, batch);
+    await backend.balanceBonus(KINGDOM, BonusType.BUILD, 10, batch);
     expect(batch.update).toHaveBeenCalled();
-    await backend.balanceBonus(KINGDOM, backend.BonusType.RESEARCH, 10, batch);
+    await backend.balanceBonus(KINGDOM, BonusType.RESEARCH, 10, batch);
     expect(batch.update).toHaveBeenCalled();
   });
 

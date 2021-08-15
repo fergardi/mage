@@ -2,7 +2,8 @@ import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
 import * as moment from 'moment';
-import * as backend from '../index';
+import * as backend from '../src/index';
+import { KingdomType, BID_RATIO } from '../src/aux';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -18,7 +19,7 @@ describe(KINGDOM, () => {
   let batch: FirebaseFirestore.WriteBatch;
 
   beforeAll(async () => {
-    await backend.createKingdom(KINGDOM, backend.KingdomType.RED, KINGDOM, 0, 0);
+    await backend.createKingdom(KINGDOM, KingdomType.RED, KINGDOM, 0, 0);
   });
 
   beforeEach(() => {
@@ -53,7 +54,7 @@ describe(KINGDOM, () => {
   it('should BID the AUCTION', async () => {
     const auction = (await admin.firestore().collection(`auctions`).get()).docs[0];
     expect(auction.exists).toBe(true);
-    const bid = Math.ceil(auction.data().gold * backend.BID_RATIO);
+    const bid = Math.ceil(auction.data().gold * BID_RATIO);
     const gold = (await admin.firestore().collection(`kingdoms/${KINGDOM}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
     await admin.firestore().doc(`kingdoms/${KINGDOM}/supplies/${gold.id}`).update({ quantity: 999999999 });
     expect((await backend.bidAuction(KINGDOM, auction.id, bid)).gold).toBe(bid);

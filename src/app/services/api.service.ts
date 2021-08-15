@@ -198,9 +198,10 @@ export class ApiService {
     return this.httpClient.post(`${environment.functions.url}/kingdom/${kingdomId}/world/quest/${questId}`, undefined).toPromise();
   }
 
-  plantTree(kingdomId: string, tree: any) {
+  plantTree(kingdomId: string, tree: any, gems: number) {
     return this.httpClient.put(`${environment.functions.url}/kingdom/${kingdomId}/tree`, {
       tree: tree,
+      gems: gems,
     }).toPromise();
   }
 

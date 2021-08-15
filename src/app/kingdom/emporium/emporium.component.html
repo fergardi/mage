@@ -53,13 +53,14 @@
       </mat-card-content>
 
       <mat-card-content class="tree" tourAnchor="tour.tree">
-        <app-perk [perk]="kingdomTree" [points]="kingdomPerks" [disabled]="false" *ngIf="kingdomTree"></app-perk>
+        <app-perk [perk]="kingdomTree" [disabled]="false" *ngIf="kingdomTree" (increasedPerk)="increaseGems($event)"></app-perk>
       </mat-card-content>
 
       <mat-card-actions>
         <span class="fill-space"></span>
-        <button mat-button (click)="resetTree(kingdomTree)">{{ 'kingdom.tree.reset' | translate }}</button>
-        <button mat-raised-button color="primary" (click)="saveTree()">{{ 'kingdom.tree.save' | translate }}</button>
+        <!--<button mat-button (click)="clearTree(kingdomTree)">{{ 'kingdom.tree.clear' | translate }}</button>-->
+        <button mat-button (click)="resetTree()">{{ 'kingdom.tree.reset' | translate }}</button>
+        <button mat-raised-button color="primary" (click)="saveTree()">({{ kingdomPerks }}<img class="mat-icon" src="/assets/images/resources/gem.png">) {{ 'kingdom.tree.save' | translate }}</button>
       </mat-card-actions>
     </mat-card>
 

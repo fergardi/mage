@@ -11,8 +11,7 @@
   },
   "compileOnSave": true,
   "include": [
-    "index.ts",
-    "tests/battle.spec.ts",
+    "src/index.ts",
     "tests/**/*.spec.ts"
   ],
   "sourceRoot": ".",

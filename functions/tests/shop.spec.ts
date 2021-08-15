@@ -1,7 +1,8 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import * as backend from '../index';
+import * as backend from '../src/index';
+import { KingdomType, StoreType } from '../src/aux';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -17,7 +18,7 @@ describe(KINGDOM, () => {
   let batch: FirebaseFirestore.WriteBatch;
 
   beforeAll(async () => {
-    await backend.createKingdom(KINGDOM, backend.KingdomType.WHITE, KINGDOM, 0, 0);
+    await backend.createKingdom(KINGDOM, KingdomType.WHITE, KINGDOM, 0, 0);
   });
 
   beforeEach(() => {
@@ -30,16 +31,16 @@ describe(KINGDOM, () => {
   });
 
   it('should CHECK the SHOP', async () => {
-    await backend.checkShop(undefined, 0.1, 0.1, backend.StoreType.INN, 'test1');
+    await backend.checkShop(undefined, 0.1, 0.1, StoreType.INN, 'test1');
     const inn = (await admin.firestore().collection(`shops`).where('name', '==', 'test1').get()).docs[0];
     expect(inn.exists).toBe(true);
-    await backend.checkShop(undefined, 0.2, 0.2, backend.StoreType.MERCENARY, 'test2');
+    await backend.checkShop(undefined, 0.2, 0.2, StoreType.MERCENARY, 'test2');
     const mercenary = (await admin.firestore().collection(`shops`).where('name', '==', 'test2').get()).docs[0];
     expect(mercenary.exists).toBe(true);
-    await backend.checkShop(undefined, 0.4, 0.3, backend.StoreType.MERCHANT, 'test3');
+    await backend.checkShop(undefined, 0.4, 0.3, StoreType.MERCHANT, 'test3');
     const merchant = (await admin.firestore().collection(`shops`).where('name', '==', 'test3').get()).docs[0];
     expect(merchant.exists).toBe(true);
-    await backend.checkShop(undefined, 0.4, 0.4, backend.StoreType.SORCERER, 'test4');
+    await backend.checkShop(undefined, 0.4, 0.4, StoreType.SORCERER, 'test4');
     const sorcerer = (await admin.firestore().collection(`shops`).where('name', '==', 'test4').get()).docs[0];
     expect(sorcerer.exists).toBe(true);
   });
@@ -53,26 +54,26 @@ describe(KINGDOM, () => {
     const addLetterSpy = jest.spyOn(backend, 'addLetter');
     const checkShopSpy = jest.spyOn(backend, 'checkShop');
     for (const shop of shops) { // async
-      switch ((shop.data() as any).type as backend.StoreType) {
-        case backend.StoreType.INN:
+      switch ((shop.data() as any).type as StoreType) {
+        case StoreType.INN:
           const contracts = await admin.firestore().collection(`shops/${shop.id}/contracts`).listDocuments();
           for (const contract of contracts) { // async
             await backend.tradeDeal(KINGDOM, shop.id,'contracts', contract.id);
           }
           break;
-        case backend.StoreType.MERCENARY:
+        case StoreType.MERCENARY:
           const troops = await admin.firestore().collection(`shops/${shop.id}/troops`).listDocuments();
           for (const troop of troops) { // async
             await backend.tradeDeal(KINGDOM, shop.id, 'troops', troop.id);
           }
           break;
-        case backend.StoreType.MERCHANT:
+        case StoreType.MERCHANT:
           const artifacts = await admin.firestore().collection(`shops/${shop.id}/artifacts`).listDocuments();
           for (const artifact of artifacts) { // async
             await backend.tradeDeal(KINGDOM, shop.id, 'artifacts', artifact.id);
           }
           break;
-        case backend.StoreType.SORCERER:
+        case StoreType.SORCERER:
           const charms = await admin.firestore().collection(`shops/${shop.id}/charms`).listDocuments();
           for (const charm of charms) { // async
             await backend.tradeDeal(KINGDOM, shop.id, 'charms', charm.id);
@@ -88,20 +89,20 @@ describe(KINGDOM, () => {
   it('should DELETE the SHOPS', async () => {
     const shops = (await admin.firestore().collection(`shops`).where('name', '>=', 'test').get()).docs;
     for (const shop of shops) {
-      switch ((shop.data() as any).type as backend.StoreType) {
-        case backend.StoreType.INN:
+      switch ((shop.data() as any).type as StoreType) {
+        case StoreType.INN:
           const contracts = await admin.firestore().collection(`shops/${shop.id}/contracts`).listDocuments();
           contracts.map(contract => batch.delete(contract));
           break;
-        case backend.StoreType.MERCENARY:
+        case StoreType.MERCENARY:
           const troops = await admin.firestore().collection(`shops/${shop.id}/troops`).listDocuments();
           troops.map(troop => batch.delete(troop));
           break;
-        case backend.StoreType.MERCHANT:
+        case StoreType.MERCHANT:
           const artifacts = await admin.firestore().collection(`shops/${shop.id}/artifacts`).listDocuments();
           artifacts.map(artifact => batch.delete(artifact));
           break;
-        case backend.StoreType.SORCERER:
+        case StoreType.SORCERER:
           const charms = await admin.firestore().collection(`shops/${shop.id}/charms`).listDocuments();
           charms.map(charm => batch.delete(charm));
           break;

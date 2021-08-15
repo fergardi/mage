@@ -68,6 +68,7 @@ export class EncyclopediaComponent implements OnInit {
       this.cacheService.getAttacks(),
       this.cacheService.getLocations(),
       this.cacheService.getStores(),
+      this.cacheService.getPerks(),
     ]);
     data = data.reduce((a: any[], b: any) => a.concat(b), []);
     this.table = new MatTableDataSource(data);
@@ -87,7 +88,10 @@ export class EncyclopediaComponent implements OnInit {
     const legendary = new Array({ name: 'category.legendary.name', value: true });
     const types = [...new Set(data.map(row => row.type))].map((type: string) => ({ name: `type.${type}.name`, value: type }));
     const subtypes = [...new Set(data.filter(row => row.subtype).map(row => row.subtype))].map((subtype: string) => ({ name: `type.${subtype}.name`, value: subtype }));
-    this.filters.type.options = [legendary, types, subtypes].reduce((a: any[], b: any) => a.concat(b), []); // TODO fix duplicates with types and subtypes
+    this.filters.type.options = [legendary, types, subtypes]
+    .reduce((a: any[], b: any) => a.concat(b), [])
+    .filter((value: any, index: number, array: any[]) => array.findIndex((element: any) => (element.name === value.name)) === index) // https://stackoverflow.com/a/56757215/2477303
+    .sort((a: any, b: any) => this.translateService.instant(a.name).localeCompare(this.translateService.instant(b.name)));
     this.table.filterPredicate = this.createFilter();
     this.applyFilter();
     // topics
@@ -121,7 +125,7 @@ export class EncyclopediaComponent implements OnInit {
       const filters = JSON.parse(filter);
       return (this.translateService.instant(data.name).toLowerCase().normalize('NFD').replace(normalize, '').includes(filters.name.toLowerCase().normalize('NFD').replace(normalize, ''))
         || this.translateService.instant(data.description).toLowerCase().normalize('NFD').replace(normalize, '').includes(filters.name.toLowerCase().normalize('NFD').replace(normalize, '')))
-        && (!filters.type.length || filters.type.every(element => [data.type, data.subtype, data.legendary].includes(element)))
+        && (!filters.type.length || filters.type.every((element: any) => [data.type, data.subtype, data.legendary].includes(element)))
         && (!filters.faction || data.faction.id.toLowerCase().includes(filters.faction.id));
     };
     return filterFunction;

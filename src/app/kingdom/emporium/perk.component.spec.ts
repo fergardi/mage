@@ -1,25 +1,53 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { PerkComponent } from './perk.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { IconPipe } from 'src/app/pipes/icon.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBadgeModule } from '@angular/material/badge';
 
-describe('PerkComponent', () => {
+fdescribe('PerkComponent', () => {
   let component: PerkComponent;
   let fixture: ComponentFixture<PerkComponent>;
+  const perk: any = {
+    name: 'test',
+    description: 'test',
+    image: 'test',
+    level: 0,
+    max: 1,
+    perks: [],
+  };
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ PerkComponent ]
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        TranslateModule.forRoot(),
+        MatTooltipModule,
+        MatBadgeModule,
+      ],
+      declarations: [
+        PerkComponent,
+        IconPipe,
+      ],
     })
     .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PerkComponent);
     component = fixture.componentInstance;
+    component.disabled = false;
+    component.perk = perk;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should CREATE the COMPONENT', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should INCREASE the PERK', () => {
+    expect(component.perk.level).toBe(0);
+    component.increasePerk(component.perk);
+    expect(component.perk.level).toBe(1);
+  });
+
 });

@@ -1,7 +1,8 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import * as backend from '../index';
+import * as backend from '../src/index';
+import { KingdomType } from '../src/aux';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -18,7 +19,7 @@ describe(KINGDOM, () => {
   let batch: FirebaseFirestore.WriteBatch;
 
   beforeAll(async () => {
-    await backend.createKingdom(KINGDOM, backend.KingdomType.WHITE, KINGDOM, 0, 0);
+    await backend.createKingdom(KINGDOM, KingdomType.WHITE, KINGDOM, 0, 0);
   });
 
   beforeEach(() => {

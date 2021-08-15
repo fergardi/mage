@@ -1,7 +1,8 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import { createKingdom, deleteKingdom, KingdomType, addLetter, sendLetter, readLetter, removeLetters } from '../index';
+import { createKingdom, deleteKingdom, addLetter, sendLetter, readLetter, removeLetters } from '../src/index';
+import { KingdomType } from '../src/aux';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',

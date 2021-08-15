@@ -25,6 +25,7 @@ export class EmporiumComponent implements OnInit {
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   kingdomPerks: number = 0;
   kingdomTree: any = null;
+  originalTree: any = null;
   emporiumItems: any[] = [];
   emporiumPacks: any[] = [];
   emporiumPerks: any[] = [];
@@ -44,8 +45,8 @@ export class EmporiumComponent implements OnInit {
     this.emporiumPacks = (await this.cacheService.getPacks()).sort((a: any, b: any) => a.quantity - b.quantity);
     this.emporiumPerks = (await this.cacheService.getPerks());
     this.tree$.pipe(untilDestroyed(this)).subscribe((tree: any) => {
-      this.kingdomPerks = this.store.selectSnapshot(AuthState.getKingdomPerks);
-      this.kingdomTree = JSON.parse(JSON.stringify(tree)); // copy for live editing
+      this.originalTree = tree; // copy for live editing
+      this.kingdomTree = JSON.parse(JSON.stringify(tree));
     });
   }
 
@@ -69,6 +70,10 @@ export class EmporiumComponent implements OnInit {
     return null;
   }
 
+  increaseGems($event: number): void {
+    this.kingdomPerks += $event;
+  }
+
   async saveTree(): Promise<void> {
     if (true) { // TODO
       this.loadingService.startLoading();
@@ -88,7 +93,7 @@ export class EmporiumComponent implements OnInit {
           mysticism: this.findTree(this.kingdomTree, 'mysticism'),
           masonry: this.findTree(this.kingdomTree, 'masonry'),
         };
-        await this.apiService.plantTree(this.uid, tree);
+        await this.apiService.plantTree(this.uid, tree, this.kingdomPerks);
         this.notificationService.success('kingdom.tree.success');
       } catch (error) {
         console.error(error);
@@ -100,10 +105,15 @@ export class EmporiumComponent implements OnInit {
     }
   }
 
-  resetTree(node: any): void {
-    this.kingdomPerks = 10;
+  resetTree(): void {
+    this.kingdomTree = JSON.parse(JSON.stringify(this.originalTree));
+    this.kingdomPerks = 0;
+  }
+
+  clearTree(node: any): void {
+    this.kingdomPerks = 0;
     node.level = 0;
-    node.perks.forEach((perk: any) => this.resetTree(perk));
+    node.perks.forEach((perk: any) => this.clearTree(perk));
   }
 
 }
