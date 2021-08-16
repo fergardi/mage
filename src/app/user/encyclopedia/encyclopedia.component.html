@@ -4,7 +4,7 @@
 
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/encyclopedia.png">
+        <img mat-card-avatar src="/assets/images/cards/encyclopedia.png" [alt]="'kingdom.encyclopedia.name' | translate">
         <mat-card-title>{{ 'user.encyclopedia.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'user.encyclopedia.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
@@ -33,7 +33,7 @@
                     <mat-list dense>
                       <mat-list-item [ngClass]="option.id">
                         <div mat-list-avatar>
-                          <img mat-list-avatar [src]="option.image">
+                          <img mat-list-avatar [src]="option.image" [alt]="option.name | translate">
                         </div>
                         <div mat-line>{{ option.name | translate }}</div>
                       </mat-list-item>
@@ -47,7 +47,7 @@
                   <mat-option *ngFor="let option of filters[column].options" [value]="option.value">
                     <mat-chip-list>
                       <mat-chip color="primary" selected [ngClass]="option.name.includes('legendary') ? 'legendary' : ''">
-                        <img class="icon" [src]="option.name.includes('legendary') ? '/assets/images/icons/legendary.png' : '/assets/images/icons/type.png'">{{ option.name | translate }}
+                        <img class="icon" [src]="option.name.includes('legendary') ? '/assets/images/icons/legendary.png' : '/assets/images/icons/type.png'" [alt]="option.name | translate">{{ option.name | translate }}
                       </mat-chip>
                     </mat-chip-list>
                   </mat-option>
@@ -62,18 +62,18 @@
                 <mat-list dense>
                   <mat-list-item [ngClass]="[row.faction.id, (row | legendary) ? 'legendary' : 'common']">
                     <div mat-list-avatar [matBadge]="row.level || '?'" matBadgePosition="above before">
-                      <img mat-list-avatar [src]="row.image" [ngClass]="row.type === 'god' ? 'squared' : ''">
+                      <img mat-list-avatar [src]="row.image" [ngClass]="row.type === 'god' ? 'squared' : ''" [alt]="row.name | translate">
                     </div>
                     <div mat-line>{{ row.name | translate }}</div>
                     <div mat-line class="mat-card-subtitle" *ngIf="row.type !== 'unit'" [innerHTML]="row.description | translate | icon:row"></div>
                     <div mat-line class="mat-card-subtitle" *ngIf="row.type === 'unit'">
-                      <img [title]="family.name | translate" class="icon" *ngFor="let family of row.families" [src]="family.image">
-                      <img [title]="skill.name | translate" class="icon" *ngFor="let skill of row.skills" [src]="skill.image">
-                      <img [title]="category.name | translate" class="icon" *ngFor="let category of row.categories" [src]="category.image">
-                      <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="row.legendary" src="/assets/images/icons/legendary.png">
+                      <img [title]="family.name | translate" class="icon" *ngFor="let family of row.families" [src]="family.image" [alt]="family.name | translate">
+                      <img [title]="skill.name | translate" class="icon" *ngFor="let skill of row.skills" [src]="skill.image" [alt]="skill.name | translate">
+                      <img [title]="category.name | translate" class="icon" *ngFor="let category of row.categories" [src]="category.image" [alt]="category.name | translate">
+                      <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="row.legendary" src="/assets/images/icons/legendary.png" [alt]="'category.legendary.name' | translate">
                     </div>
                     <div mat-line class="mat-card-subtitle" *ngIf="row.type === 'unit' && row.resistances && row.resistances.length">
-                      <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of row.resistances" [src]="category.image">
+                      <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of row.resistances" [src]="category.image" [alt]="'category.resistance.name' | translate">
                     </div>
                   </mat-list-item>
                 </mat-list>
@@ -83,7 +83,7 @@
                 <mat-list dense>
                   <mat-list-item [ngClass]="row.faction.id">
                     <div mat-list-avatar>
-                      <img mat-list-avatar [src]="row.faction.image">
+                      <img mat-list-avatar [src]="row.faction.image" [alt]="row.faction.name | translate">
                     </div>
                     <div mat-line>{{ row.faction.name | translate }}</div>
                     <div mat-line class="mat-card-subtitle" [innerHTML]="row.faction.description | translate | icon:row.faction"></div>
@@ -93,9 +93,9 @@
 
               <ng-template [ngIf]="column === 'type'">
                 <mat-chip-list>
-                  <mat-chip color="primary" selected><img class="icon" src="/assets/images/icons/type.png">{{ 'type.' + row.type + '.name'  | translate }}</mat-chip>
-                  <mat-chip color="primary" selected *ngIf="row.subtype"><img class="icon" src="/assets/images/icons/type.png">{{ 'type.' + row.subtype + '.name'  | translate }}</mat-chip>
-                  <mat-chip color="primary" selected *ngIf="row.legendary" class="legendary"><img class="icon" src="/assets/images/icons/legendary.png">{{ 'category.legendary.name' | translate }}</mat-chip>
+                  <mat-chip color="primary" selected><img class="icon" src="/assets/images/icons/type.png" [alt]="'type.' + row.type + '.name' | translate">{{ 'type.' + row.type + '.name'  | translate }}</mat-chip>
+                  <mat-chip color="primary" selected *ngIf="row.subtype"><img class="icon" src="/assets/images/icons/type.png" [alt]="'type.' + row.subtype + '.name' | translate">{{ 'type.' + row.subtype + '.name'  | translate }}</mat-chip>
+                  <mat-chip color="primary" selected *ngIf="row.legendary" class="legendary"><img class="icon" src="/assets/images/icons/legendary.png" [alt]="'category.legendary.name' | translate">{{ 'category.legendary.name' | translate }}</mat-chip>
                 </mat-chip-list>
               </ng-template>
 
@@ -121,7 +121,7 @@
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" *ngFor="let topic, let i = index of topics" [attr.id]="i === 0 ? 'help' : ''">
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar [src]="'/assets/images/cards/' + topic.name + '.png'">
+        <img mat-card-avatar [src]="'/assets/images/cards/' + topic.name + '.png'" [alt]="topic.name | translate">
         <mat-card-title>{{ topic.surname + '.' + topic.name + '.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ topic.surname + '.' + topic.name + '.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -130,21 +130,21 @@
           <ng-container *ngFor="let example of topic.examples">
             <mat-list-item [ngClass]="[example.faction.id, example.legendary ? 'legendary' : 'common']">
               <div mat-list-avatar [matBadge]="example.type === 'report' ? '!' : '?'" matBadgePosition="above before">
-                <img mat-list-avatar [src]="example.image" [ngClass]="example.type === 'god' ? 'squared' : ''">
+                <img mat-list-avatar [src]="example.image" [ngClass]="example.type === 'god' ? 'squared' : ''" [alt]="example.name | translate">
               </div>
               <div mat-line>{{ example.name | translate }}</div>
               <div mat-line class="mat-card-subtitle" *ngIf="example.type !== 'unit'" [innerHTML]="example.description | translate | icon:example"></div>
               <div mat-line class="mat-card-subtitle" *ngIf="example.type === 'unit'">
-                <img [title]="family.name | translate" class="icon" *ngFor="let family of example.families" [src]="family.image">
-                <img [title]="skill.name | translate" class="icon" *ngFor="let skill of example.skills" [src]="skill.image">
-                <img [title]="category.name | translate" class="icon" *ngFor="let category of example.categories" [src]="category.image">
-                <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="example.legendary" src="/assets/images/icons/legendary.png">
+                <img [title]="family.name | translate" class="icon" *ngFor="let family of example.families" [src]="family.image" [alt]="family.name | translate">
+                <img [title]="skill.name | translate" class="icon" *ngFor="let skill of example.skills" [src]="skill.image" [alt]="skill.name | translate">
+                <img [title]="category.name | translate" class="icon" *ngFor="let category of example.categories" [src]="category.image" [alt]="category.name | translate">
+                <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="example.legendary" src="/assets/images/icons/legendary.png" [alt]="'category.legendary.name' | translate">
               </div>
               <div mat-line class="mat-card-subtitle" *ngIf="example.type === 'unit' && example.resistances && example.resistances.length">
-                <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of example.resistances" [src]="category.image">
+                <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of example.resistances" [src]="category.image" [alt]="'category.resistance.name' | translate">
               </div>
               <div mat-list-avatar matBadge="?" matBadgePosition="above after" *ngIf="topic.suffix">
-                <img mat-list-avatar [src]="topic.suffix">
+                <img mat-list-avatar [src]="topic.suffix" [alt]="'type.resource.name' | translate">
               </div>
             </mat-list-item>
           </ng-container>
@@ -159,7 +159,7 @@
   <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" id="changelog">
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/changelog.png">
+        <img mat-card-avatar src="/assets/images/cards/changelog.png" [alt]="'user.changelog.name' | translate">
         <mat-card-title>{{ 'user.changelog.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'user.changelog.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
@@ -186,7 +186,7 @@
   <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" id="bonfire">
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/bonfire.png">
+        <img mat-card-avatar src="/assets/images/cards/bonfire.png" [alt]="'user.bonfire.name' | translate">
         <mat-card-title>{{ 'user.bonfire.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'user.bonfire.description' | translate }}</mat-card-subtitle>
       </mat-card-header>

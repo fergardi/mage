@@ -20,7 +20,7 @@
               <mat-list dense>
                 <mat-list-item>
                   <div mat-list-avatar>
-                    <img mat-list-avatar [src]="form.value.faction.image">
+                    <img mat-list-avatar [src]="form.value.faction.image" [alt]="form.value.faction.name | translate">
                   </div>
                   <div mat-line>{{ form.value.faction.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" [innerHTML]="form.value.faction.description | translate | icon:form.value.faction"></div>
@@ -31,7 +31,7 @@
               <mat-list dense>
                 <mat-list-item>
                   <div mat-list-avatar>
-                    <img mat-list-avatar [src]="faction.image">
+                    <img mat-list-avatar [src]="faction.image" [alt]="faction.name | translate">
                   </div>
                   <div mat-line>{{ faction.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" [innerHTML]="faction.description | translate | icon:faction"></div>
@@ -65,7 +65,7 @@
 
       <mat-card-actions>
         <button mat-stroked-button type="button" (click)="google()" class="flag-menu">
-          <img src="/assets/images/brands/google.png">
+          <img src="/assets/images/brands/google.png" alt="Google">
           <span>Google</span>
         </button>
         <span class="fill-space"></span>

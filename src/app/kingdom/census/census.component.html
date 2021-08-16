@@ -2,7 +2,7 @@
   <mat-card>
 
     <mat-card-header>
-      <img mat-card-avatar src="/assets/images/cards/census.png">
+      <img mat-card-avatar src="/assets/images/cards/census.png" [alt]="'kingdom.census.name' | translate">
       <mat-card-title>{{ 'kingdom.census.name' | translate }}</mat-card-title>
       <mat-card-subtitle>{{ 'kingdom.census.description' | translate }}</mat-card-subtitle>
       <div class="mat-card-extras">
@@ -34,12 +34,12 @@
               <mat-list dense>
                 <mat-list-item [ngClass]="[kingdom.faction.id, kingdom.fid === uid ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="kingdom.position | long" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="kingdom.faction.image">
+                    <img mat-list-avatar [src]="kingdom.faction.image" [alt]="kingdom.faction.name | translate">
                   </div>
                   <div mat-line>{{ kingdom.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle">{{ kingdom.faction.name | translate }}</div>
                   <div mat-list-avatar [matBadge]="kingdom.power | short" matBadgePosition="above after">
-                    <img mat-list-avatar src="/assets/images/icons/power.png">
+                    <img mat-list-avatar src="/assets/images/icons/power.png" [alt]="'icon.power.name' | translate">
                   </div>
                 </mat-list-item>
               </mat-list>
@@ -49,12 +49,12 @@
               <mat-list dense *ngIf="kingdom.clan">
                 <mat-list-item class="grey">
                   <div mat-list-avatar>
-                    <img mat-list-avatar [src]="kingdom.clan.image">
+                    <img mat-list-avatar [src]="kingdom.clan.image" [alt]="'kingdom.clan.name' | translate">
                   </div>
                   <div mat-line>{{ kingdom.clan.name }}</div>
                   <div mat-line class="mat-card-subtitle">{{ kingdom.clan.description }}</div>
                   <div mat-list-avatar [matBadge]="kingdom.clan.power | short" matBadgePosition="above after">
-                    <img mat-list-avatar src="/assets/images/icons/power.png">
+                    <img mat-list-avatar src="/assets/images/icons/power.png" [alt]="'icon.power.name' | translate">
                   </div>
                 </mat-list-item>
               </mat-list>

@@ -4,7 +4,7 @@
 
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/city.png">
+        <img mat-card-avatar src="/assets/images/cards/city.png" [alt]="'kingdom.city.name' | translate">
         <mat-card-title>{{ 'kingdom.city.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.city.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
@@ -18,12 +18,12 @@
         <mat-action-list dense tourAnchor="tour.city">
           <button mat-list-item *ngFor="let building of kingdomBuildings$ | async" (click)="openBuildDialog(building)" class="common">
             <div mat-list-avatar [matBadge]="building.quantity | long" matBadgePosition="above before">
-              <img mat-list-avatar [src]="building.structure.image">
+              <img mat-list-avatar [src]="building.structure.image" [alt]="building.structure.name | translate">
             </div>
             <div mat-line>{{ building.structure.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="building.structure.description | translate | icon:building.structure"></div>
             <div mat-list-avatar [matBadge]="Math.ceil(((workshop$ | async)?.quantity + 1) / building.structure.turnRatio) + ('resource.turn.ratio' | translate)" matBadgePosition="above after">
-              <img mat-list-avatar src="/assets/images/resources/turn.png">
+              <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate"> [alt]="'resource.turn.name' | translate">
             </div>
           </button>
         </mat-action-list>
@@ -43,7 +43,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/cards/tax.png">
+            <img mat-card-avatar src="/assets/images/cards/tax.png" [alt]="'kingdom.tax.name' | translate">
             <mat-card-title>{{ 'kingdom.tax.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.tax.description' | translate }}</mat-card-subtitle>
             <div class="mat-card-extras">
@@ -57,12 +57,12 @@
             <mat-action-list dense tourAnchor="tour.tax">
               <button mat-list-item *ngIf="village$" (click)="openTaxDialog(village$)" class="common">
                 <div mat-list-avatar [matBadge]="(village$ | async)?.quantity | long" matBadgePosition="above before">
-                  <img mat-list-avatar [src]="(village$ | async)?.structure.image">
+                  <img mat-list-avatar [src]="(village$ | async)?.structure.image" [alt]="(village$ | async)?.structure.name | translate">
                 </div>
                 <div mat-line>{{ (village$ | async)?.structure.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="(village$ | async)?.structure.description | translate | icon:(village$ | async)?.structure"></div>
                 <div mat-list-avatar matBadge="?" matBadgePosition="above after">
-                  <img mat-list-avatar src="/assets/images/resources/turn.png">
+                  <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate"> [alt]="'resource.turn.name' | translate">
                 </div>
               </button>
             </mat-action-list>
@@ -78,7 +78,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/cards/charge.png">
+            <img mat-card-avatar src="/assets/images/cards/charge.png" [alt]="'kingdom.charge.name' | translate">
             <mat-card-title>{{ 'kingdom.charge.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.charge.description' | translate }}</mat-card-subtitle>
             <div class="mat-card-extras">
@@ -92,12 +92,12 @@
             <mat-action-list dense tourAnchor="tour.charge">
               <button mat-list-item *ngIf="node$" (click)="openChargeDialog(node$)" class="common">
                 <div mat-list-avatar [matBadge]="(node$ | async)?.quantity | long" matBadgePosition="above before">
-                  <img mat-list-avatar [src]="(node$ | async)?.structure.image">
+                  <img mat-list-avatar [src]="(node$ | async)?.structure.image" [alt]="(village$ | async)?.structure.name | translate">
                 </div>
                 <div mat-line>{{ (node$ | async)?.structure.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="(node$ | async)?.structure.description | translate | icon:(node$ | async)?.structure"></div>
                 <div mat-list-avatar matBadge="?" matBadgePosition="above after">
-                  <img mat-list-avatar src="/assets/images/resources/turn.png">
+                  <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate"> [alt]="'resource.turn.name' | translate">
                 </div>
               </button>
             </mat-action-list>
@@ -113,7 +113,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/cards/explore.png">
+            <img mat-card-avatar src="/assets/images/cards/explore.png" [alt]="'kingdom.explore.name' | translate">
             <mat-card-title>{{ 'kingdom.explore.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.explore.description' | translate }}</mat-card-subtitle>
             <div class="mat-card-extras">
@@ -127,12 +127,12 @@
             <mat-action-list dense tourAnchor="tour.explore">
               <button mat-list-item *ngIf="land$ | async" (click)="openExploreDialog(land$)" class="common">
                 <div mat-list-avatar [matBadge]="(land$ | async)?.quantity | long" matBadgePosition="above before">
-                  <img mat-list-avatar src="/assets/images/resources/land.png">
+                  <img mat-list-avatar src="/assets/images/resources/land.png" [alt]="'resource.turn.name' | translate">
                 </div>
                 <div mat-line>{{ 'resource.land.name' | translate }}</div>
                 <div mat-line class="mat-card-subtitle">{{ 'resource.land.description' | translate }}</div>
                 <div mat-list-avatar matBadge="?" matBadgePosition="above after">
-                  <img mat-list-avatar src="/assets/images/resources/turn.png">
+                  <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate">
                 </div>
               </button>
             </mat-action-list>

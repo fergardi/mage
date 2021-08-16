@@ -2,14 +2,14 @@
 
   <!-- kingdom -->
   <mat-card-header *ngIf="data.type === PopupType.KINGDOM">
-    <img mat-card-avatar [src]="data.faction.marker">
+    <img mat-card-avatar [src]="data.faction.marker" [alt]="data.faction.name | translate">
     <mat-card-title>{{ data.name }}</mat-card-title>
     <mat-card-subtitle>{{ data.faction.name | translate }}</mat-card-subtitle>
   </mat-card-header>
 
   <!-- shop -->
   <mat-card-header *ngIf="data.type === PopupType.SHOP">
-    <img mat-card-avatar [src]="data.store.image">
+    <img mat-card-avatar [src]="data.store.image" [alt]="data.store.name | translate">
     <mat-card-title>{{ data.store.name | translate }}</mat-card-title>
     <mat-card-subtitle>{{ data.name }}</mat-card-subtitle>
     <mat-chip-list>
@@ -19,7 +19,7 @@
 
   <!-- quest -->
   <mat-card-header *ngIf="data.type === PopupType.QUEST">
-    <img mat-card-avatar [src]="data.location.image">
+    <img mat-card-avatar [src]="data.location.image" [alt]="data.location.name | translate">
     <mat-card-title>{{ data.location.name | translate }}</mat-card-title>
     <mat-card-subtitle>{{ data.name }}</mat-card-subtitle>
     <mat-chip-list>
@@ -34,16 +34,17 @@
       <mat-list dense>
         <mat-list-item *ngFor="let troop of kingdomTroops" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar matBadge="?" matBadgePosition="above before">
-            <img mat-list-avatar [src]="troop.unit.image">
+            <img mat-list-avatar [src]="troop.unit.image" [alt]="troop.unit.name | translate">
           </div>
           <div mat-line>{{ troop.unit.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">
-            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image">
-            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image">
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image" [alt]="family.name | translate">
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image" [alt]="skill.name | translate">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image" [alt]="category.name | translate">
+            <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="troop.unit.legendary" src="/assets/images/icons/legendary.png" [alt]="'category.legendary.name' | translate" [alt]="'category.legendary.name' | translate">
           </div>
           <div mat-line class="mat-card-subtitle" *ngIf="troop.unit.resistances && troop.unit.resistances.length">
-            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image" [alt]="'category.resistance.name' | translate">
           </div>
         </mat-list-item>
       </mat-list>
@@ -55,12 +56,12 @@
       <mat-action-list dense>
         <button mat-list-item *ngFor="let contract of shopContracts" [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']" (click)="openDealDialog(contract)">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
-            <img mat-list-avatar [src]="contract.hero.image">
+            <img mat-list-avatar [src]="contract.hero.image" [alt]="contract.hero.name | translate">
           </div>
           <div mat-line>{{ contract.hero.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="contract.hero.description | translate | icon:contract.hero"></div>
           <div mat-list-avatar [matBadge]="contract.gold | long" matBadgePosition="above after">
-            <img mat-list-avatar src="/assets/images/resources/gold.png">
+            <img mat-list-avatar src="/assets/images/resources/gold.png" [alt]="'resource.gold.name' | translate">
           </div>
         </button>
       </mat-action-list>
@@ -72,19 +73,20 @@
       <mat-action-list dense>
         <button mat-list-item *ngFor="let troop of shopTroops" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']" (click)="openDealDialog(troop)">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="troop.unit.image">
+            <img mat-list-avatar [src]="troop.unit.image" [alt]="troop.unit.name | translate">
           </div>
           <div mat-line>{{ troop.unit.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">
-            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image">
-            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image">
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image" [alt]="family.name | translate">
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image" [alt]="skill.name | translate">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image" [alt]="category.name | translate">
+            <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="troop.unit.legendary" src="/assets/images/icons/legendary.png" [alt]="'category.legendary.name' | translate" [alt]="'category.legendary.name' | translate">
           </div>
           <div mat-line class="mat-card-subtitle" *ngIf="troop.unit.resistances && troop.unit.resistances.length">
-            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image" [alt]="'category.resistance.name' | translate">
           </div>
           <div mat-list-avatar [matBadge]="troop.gold | long" matBadgePosition="above after">
-            <img mat-list-avatar src="/assets/images/resources/gold.png">
+            <img mat-list-avatar src="/assets/images/resources/gold.png" [alt]="'resource.gold.name' | translate">
           </div>
         </button>
       </mat-action-list>
@@ -96,12 +98,12 @@
       <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of shopArtifacts" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']" (click)="openDealDialog(artifact)">
           <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
-            <img mat-list-avatar [src]="artifact.item.image">
+            <img mat-list-avatar [src]="artifact.item.image" [alt]="artifact.item.name | translate">
           </div>
           <div mat-line>{{ artifact.item.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item"></div>
           <div mat-list-avatar [matBadge]="artifact.gold | long" matBadgePosition="above after">
-            <img mat-list-avatar src="/assets/images/resources/gold.png">
+            <img mat-list-avatar src="/assets/images/resources/gold.png" [alt]="'resource.gold.name' | translate">
           </div>
         </button>
       </mat-action-list>
@@ -113,12 +115,12 @@
       <mat-action-list dense>
         <button mat-list-item *ngFor="let charm of shopCharms" [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']" (click)="openDealDialog(charm)">
           <div mat-list-avatar [matBadge]="charm.level" matBadgePosition="above before">
-            <img mat-list-avatar [src]="charm.spell.image">
+            <img mat-list-avatar [src]="charm.spell.image" [alt]="charm.spell.name | translate">
           </div>
           <div mat-line>{{ charm.spell.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="charm.spell.description | translate | icon:charm.spell"></div>
           <div mat-list-avatar [matBadge]="charm.gold | long" matBadgePosition="above after">
-            <img mat-list-avatar src="/assets/images/resources/gold.png">
+            <img mat-list-avatar src="/assets/images/resources/gold.png" [alt]="'resource.gold.name' | translate">
           </div>
         </button>
       </mat-action-list>
@@ -130,7 +132,7 @@
       <mat-list dense>
         <mat-list-item *ngFor="let contract of questContracts" [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar matBadge="?" matBadgePosition="above before">
-            <img mat-list-avatar [src]="contract.hero.image">
+            <img mat-list-avatar [src]="contract.hero.image" [alt]="contract.hero.name | translate">
           </div>
           <div mat-line>{{ contract.hero.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="contract.hero.description | translate | icon:contract.hero"></div>
@@ -144,16 +146,17 @@
       <mat-list dense>
         <mat-list-item *ngFor="let troop of questTroops" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']">
           <div mat-list-avatar matBadge="?" matBadgePosition="above before">
-            <img mat-list-avatar [src]="troop.unit.image">
+            <img mat-list-avatar [src]="troop.unit.image" [alt]="troop.unit.name | translate">
           </div>
           <div mat-line>{{ troop.unit.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">
-            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image">
-            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image">
-            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image" [alt]="family.name | translate">
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image" [alt]="skill.name | translate">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image" [alt]="category.name | translate">
+            <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="troop.unit.legendary" src="/assets/images/icons/legendary.png" [alt]="'category.legendary.name' | translate">
           </div>
           <div mat-line class="mat-card-subtitle" *ngIf="troop.unit.resistances && troop.unit.resistances.length">
-            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image" [alt]="'category.resistance.name' | translate">
           </div>
         </mat-list-item>
       </mat-list>
@@ -165,12 +168,12 @@
       <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of questArtifacts" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']" (click)="openAdventureDialog(artifact)" [disabled]="!canAttack">
           <div mat-list-avatar [matBadge]="artifact.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar [src]="artifact.item.image">
+            <img mat-list-avatar [src]="artifact.item.image" [alt]="artifact.item.name | translate">
           </div>
           <div mat-line>{{ artifact.item.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item"></div>
           <div mat-list-avatar [matBadge]="data.turns | long" matBadgePosition="above after">
-            <img mat-list-avatar src="/assets/images/resources/turn.png">
+            <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate">
           </div>
         </button>
       </mat-action-list>

@@ -3,7 +3,7 @@
   <div fxFlex.xl="33" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100">
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/sorcery.png">
+        <img mat-card-avatar src="/assets/images/cards/sorcery.png" [alt]="'kingdom.sorcery.name' | translate">
         <mat-card-title>{{ 'kingdom.sorcery.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.sorcery.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
@@ -18,14 +18,14 @@
           <mat-action-list dense class="dotted" id="0" #kngdmArtifacts="cdkDropList" [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="kingdomArtifacts">
             <button mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag [cdkDragDisabled]="!artifact.item.battle" [ngClass]="[artifact.item.faction.id, artifact.item.battle ? 'handle' : '', artifact.item.legendary ? 'legendary': 'common']" [id]="artifact.fid" (click)="!artifact.item.battle && artifact.item.self ? openActivateDialog(artifact) : null" [disabled]="!artifact.item.battle && !artifact.item.self">
               <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
-                <img mat-list-avatar [src]="artifact.item.image">
+                <img mat-list-avatar [src]="artifact.item.image" [alt]="artifact.item.name | translate">
               </div>
               <div mat-line>{{ artifact.item.name | translate }}</div>
               <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item">
               </div>
               <mat-icon *ngIf="artifact.item.battle">open_with</mat-icon>
               <div mat-list-avatar *ngIf="!artifact.item.battle" [matBadge]="artifact.item.turns" matBadgePosition="above after">
-                <img mat-list-avatar src="/assets/images/resources/turn.png">
+                <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate">
               </div>
             </button>
           </mat-action-list>
@@ -34,7 +34,7 @@
           <mat-action-list dense class="dotted" id="3" #kngdmCharms="cdkDropList" [cdkDropListConnectedTo]="[atckCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="kingdomCharms">
             <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.spell.battle || !charm.completed" [ngClass]="[charm.spell.faction.id, charm.spell.battle && charm.completed ? 'handle' : '', charm.spell.legendary ? 'legendary' : 'common']" (click)="!charm.completed ? openResearchDialog(charm) : !charm.spell.battle ? openConjureDialog(charm) : null" [id]="charm.fid" [disabled]="!charm.spell.battle && !charm.spell.self">
               <div mat-list-avatar [matBadge]="charm.spell.level | short" matBadgePosition="above before">
-                <img mat-list-avatar [src]="charm.spell.image">
+                <img mat-list-avatar [src]="charm.spell.image" [alt]="charm.spell.name | translate">
               </div>
               <div mat-line>{{ charm.spell.name | translate }}</div>
               <div mat-line class="mat-card-subtitle" [innerHTML]="charm.spell.description | translate | icon:charm.spell"></div>
@@ -43,7 +43,7 @@
               </div>
               <mat-icon *ngIf="charm.spell.battle && charm.completed">open_with</mat-icon>
               <div mat-list-avatar *ngIf="!charm.spell.battle || !charm.completed" [matBadge]="!charm.completed ? ((charm.turns) | long) + ' / ' + (charm.spell.turnResearch | long) : charm.spell.turnCost" matBadgePosition="above after">
-                <img mat-list-avatar src="/assets/images/resources/turn.png">
+                <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate">
               </div>
             </button>
           </mat-action-list>
@@ -61,7 +61,7 @@
 
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/cards/arcanism.png">
+            <img mat-card-avatar src="/assets/images/cards/arcanism.png" [alt]="'kingdom.arcanism.name' | translate">
             <mat-card-title>{{ 'kingdom.arcanism.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.arcanism.description' | translate }}</mat-card-subtitle>
             <div class="mat-card-extras">
@@ -76,7 +76,7 @@
               <mat-list dense class="dotted" id="1" #atckArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="attackArtifacts">
                 <mat-list-item *ngFor="let artifact of attackArtifacts" cdkDrag class="handle" [id]="artifact.fid" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary': 'common']">
                   <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="artifact.item.image">
+                    <img mat-list-avatar [src]="artifact.item.image" [alt]="artifact.item.name | translate">
                   </div>
                   <div mat-line>{{ artifact.item.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item"></div>
@@ -88,7 +88,7 @@
               <mat-list dense class="dotted" id="4" #atckCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="attackCharms">
                 <mat-list-item *ngFor="let charm of attackCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="charm.spell.level | short" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="charm.spell.image">
+                    <img mat-list-avatar [src]="charm.spell.image" [alt]="charm.spell.name | translate">
                   </div>
                   <div mat-line>{{ charm.spell.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" [innerHTML]="charm.spell.description | translate | icon:charm.spell"></div>
@@ -106,7 +106,7 @@
       <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100">
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar src="/assets/images/cards/protection.png">
+            <img mat-card-avatar src="/assets/images/cards/protection.png" [alt]="'kingdom.protection.name' | translate">
             <mat-card-title>{{ 'kingdom.protection.name' | translate }}</mat-card-title>
             <mat-card-subtitle>{{ 'kingdom.protection.description' | translate }}</mat-card-subtitle>
             <div class="mat-card-extras">
@@ -121,7 +121,7 @@
               <mat-list dense class="dotted" id="2" #defArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="defenseArtifacts">
                 <mat-list-item *ngFor="let artifact of defenseArtifacts" cdkDrag class="handle" [id]="artifact.fid" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="artifact.item.image">
+                    <img mat-list-avatar [src]="artifact.item.image" [alt]="artifact.item.name | translate">
                   </div>
                   <div mat-line>{{ artifact.item.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item"></div>
@@ -133,7 +133,7 @@
               <mat-list dense class="dotted" id="5" #defCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, atckCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="defenseCharms">
                 <mat-list-item *ngFor="let charm of defenseCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="charm.spell.level | short" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="charm.spell.image">
+                    <img mat-list-avatar [src]="charm.spell.image" [alt]="charm.spell.name | translate">
                   </div>
                   <div mat-line>{{ charm.spell.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" [innerHTML]="charm.spell.description | translate | icon:charm.spell"></div>

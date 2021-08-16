@@ -18,11 +18,11 @@
       <span class="fill-space"></span>
       <!-- language -->
       <button mat-icon-button [matMenuTriggerFor]="language">
-        <img [src]="getFlag()">
+        <img [src]="getLang()?.image" [alt]="getLang()?.lang">
       </button>
       <mat-menu #language="matMenu">
         <a mat-menu-item *ngFor="let l of langs" [ngClass]="{ 'active': translateService.currentLang === l.lang }" (click)="translateService.use(l.lang)" class="flag-menu">
-          <img [src]="l.image">
+          <img [src]="l.image" [alt]="l.lang">
           <span>{{ l.lang.toString().toUpperCase() }}</span>
         </a>
       </mat-menu>
@@ -33,7 +33,7 @@
       <mat-nav-list dense class="router-list">
         <ng-container *ngFor="let group of groups">
           <div matSubheader>
-            <img [src]="group.image">
+            <img [src]="group.image" [alt]="group.name | translate">
             <span>{{ group.name | translate }}</span>
           </div>
           <ng-container *ngFor="let link of group.links">
@@ -44,7 +44,7 @@
               [routerLinkActive]="link.url ? ['active'] : []"
               [routerLinkActiveOptions]="{ exact: true }">
               <div mat-list-avatar [matBadge]="link.name === 'kingdom.archive.name' && reports ? reports : undefined">
-                <img mat-list-avatar [src]="link.image">
+                <img mat-list-avatar [src]="link.image" [alt]="link.name | translate">
               </div>
               <div mat-line>{{ link.name | translate }}</div>
               <div mat-line class="mat-card-subtitle">{{ link.description | translate }}</div>
@@ -73,7 +73,7 @@
             [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
             [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
             matBadgeOverlap="true">
-            <img mat-list-avatar [src]="supply.resource.image">
+            <img mat-list-avatar [src]="supply.resource.image" [alt]="supply.resource.name | translate">
           </div>
         </mat-list-item>
       </mat-nav-list>

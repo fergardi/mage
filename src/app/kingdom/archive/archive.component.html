@@ -2,7 +2,7 @@
 
   <mat-card>
     <mat-card-header>
-      <img mat-card-avatar src="/assets/images/cards/archive.png">
+      <img mat-card-avatar src="/assets/images/cards/archive.png" [alt]="'kingdom.archive.name' | translate">
       <mat-card-title>{{ "kingdom.archive.name" | translate }}</mat-card-title>
       <mat-card-subtitle>{{ "kingdom.archive.description" | translate }}</mat-card-subtitle>
       <div class="mat-card-extras">
@@ -56,7 +56,7 @@
                 <mat-list dense>
                   <mat-list-item [ngClass]="[letter['from'].faction.id, letter['from'].id === uid ? 'legendary' : 'common']">
                     <div mat-list-avatar [matBadge]="!letter.read ? '❕' : undefined" matBadgePosition="above before">
-                      <img mat-list-avatar [src]="letter['from'].faction.image">
+                      <img mat-list-avatar [src]="letter['from'].faction.image" [alt]="'table.column.' + column | translate">
                     </div>
                     <div mat-line>{{ letter['from'].name | translate  }}</div>
                     <div mat-line class="mat-card-subtitle">{{ letter['from'].faction.name | translate }}</div>

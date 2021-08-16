@@ -2,7 +2,7 @@
   <mat-card tourAnchor="tour.legend">
 
     <mat-card-header>
-      <img mat-card-avatar src="/assets/images/cards/legend.png">
+      <img mat-card-avatar src="/assets/images/cards/legend.png" [alt]="'kingdom.legend.name' | translate">
       <mat-card-title>{{ 'user.legend.name' | translate }}</mat-card-title>
       <mat-card-subtitle>{{ 'user.legend.description' | translate }}</mat-card-subtitle>
       <div class="mat-card-extras">
@@ -42,12 +42,12 @@
               <mat-list dense>
                 <mat-list-item [ngClass]="[legend.faction.id, 'legendary']">
                   <div mat-list-avatar [matBadge]="legend.position | long" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="legend.faction.image">
+                    <img mat-list-avatar [src]="legend.faction.image" [alt]="legend.faction.name | translate">
                   </div>
                   <div mat-line>{{ legend.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle">{{ legend.faction.name | translate }}</div>
                   <div mat-list-avatar [matBadge]="legend.power | short" matBadgePosition="above after">
-                    <img mat-list-avatar src="/assets/images/icons/power.png">
+                    <img mat-list-avatar src="/assets/images/icons/power.png" [alt]="'icon.power.name' | translate">
                   </div>
                 </mat-list-item>
               </mat-list>
@@ -57,7 +57,7 @@
               <mat-list dense *ngIf="legend.clan">
                 <mat-list-item>
                   <div mat-list-avatar>
-                    <img mat-list-avatar [src]="legend.clan.image">
+                    <img mat-list-avatar [src]="legend.clan.image" [alt]="'kingdom.clan.name' | translate">
                   </div>
                   <div mat-line>{{ legend.clan.name }}</div>
                   <div mat-line class="mat-card-subtitle">{{ legend.clan.description }}</div>

@@ -115,8 +115,8 @@ export class ShellComponent implements OnInit {
     });
   }
 
-  getFlag(): string {
-    return this.langs.find(l => l.lang === this.translateService.currentLang)?.image;
+  getLang(): any {
+    return this.langs.find(l => l.lang === this.translateService.currentLang);
   }
 
   tour() {

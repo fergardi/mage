@@ -2,17 +2,17 @@
 
   <!-- kingdom -->
   <button *ngIf="data.type === MarkerType.KINGDOM" mat-fab color="primary" class="marker animated bounceIn">
-    <img [src]="data.faction.marker">
+    <img [src]="data.faction.marker" [alt]="data.name">
   </button>
 
   <!-- shop -->
   <button *ngIf="data.type === MarkerType.SHOP" mat-mini-fab color="accent" class="marker animated bounceIn">
-    <img [src]="data.store.image">
+    <img [src]="data.store.image" [alt]="data.store.name | translate">
   </button>
 
   <!-- quest -->
   <button *ngIf="data.type === MarkerType.QUEST" mat-mini-fab color="warn" class="marker animated bounceIn">
-    <img [src]="data.location.image">
+    <img [src]="data.location.image" [alt]="data.location.name | translate">
   </button>
 
 </div>

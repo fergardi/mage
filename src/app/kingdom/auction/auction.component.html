@@ -2,7 +2,7 @@
   <mat-card>
 
     <mat-card-header>
-      <img mat-card-avatar src="/assets/images/cards/auction.png">
+      <img mat-card-avatar src="/assets/images/cards/auction.png" [alt]="'kingdom.auction.name' | translate">
       <mat-card-title>{{ 'kingdom.auction.name' | translate }}</mat-card-title>
       <mat-card-subtitle>{{ 'kingdom.auction.description' | translate }}</mat-card-subtitle>
       <div class="mat-card-extras">
@@ -39,21 +39,21 @@
               <mat-list dense>
                 <mat-list-item [ngClass]="[auction.join.faction.id, auction.join.legendary ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="(auction.quantity || auction.level || auction.spell.level) | short" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="auction.join.image">
+                    <img mat-list-avatar [src]="auction.join.image" [alt]="auction.join.name | translate">
                   </div>
                   <div mat-line>{{ auction.join.name | translate:{name:auction.name} }}</div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['artifact', 'contract', 'charm'].includes(auction.type)" [innerHTML]="auction.join.description | translate | icon:auction.join"></div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['troop'].includes(auction.type)">
-                    <img [title]="family.name | translate" class="icon" *ngFor="let family of auction.join.families" [src]="family.image">
-                    <img [title]="skill.name | translate" class="icon" *ngFor="let skill of auction.join.skills" [src]="skill.image">
-                    <img [title]="category.name | translate" class="icon" *ngFor="let category of auction.join.categories" [src]="category.image">
-                    <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="auction.join.legendary" src="/assets/images/icons/legendary.png">
+                    <img [title]="family.name | translate" class="icon" *ngFor="let family of auction.join.families" [src]="family.image" [alt]="family.name | translate">
+                    <img [title]="skill.name | translate" class="icon" *ngFor="let skill of auction.join.skills" [src]="skill.image" [alt]="skill.name | translate">
+                    <img [title]="category.name | translate" class="icon" *ngFor="let category of auction.join.categories" [src]="category.image" [alt]="category.name | translate">
+                    <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="auction.join.legendary" src="/assets/images/icons/legendary.png" [alt]="'category.legendary.name' | translate">
                   </div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['troop'].includes(auction.type) && auction.join.resistances && auction.join.resistances.length">
-                    <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of auction.join.resistances" [src]="category.image">
+                    <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of auction.join.resistances" [src]="category.image" [alt]="'category.resistance.name' | translate">
                   </div>
                   <div mat-list-avatar [matBadge]="auction.gold | long" matBadgePosition="above after">
-                    <img mat-list-avatar src="/assets/images/resources/gold.png">
+                    <img mat-list-avatar src="/assets/images/resources/gold.png" [alt]="'resource.gold.name' | translate"> [alt]="'resource.gold.name' | translate">
                   </div>
                 </mat-list-item>
               </mat-list>
@@ -63,7 +63,7 @@
               <mat-list dense>
                 <mat-list-item [ngClass]="auction.join.faction.id">
                   <div mat-list-avatar>
-                    <img mat-list-avatar [src]="auction.join.faction.image">
+                    <img mat-list-avatar [src]="auction.join.faction.image" [alt]="auction.join.faction.name | translate">
                   </div>
                   <div mat-line>{{ auction.join.faction.name | translate }}</div>
                   <div mat-line class="mat-card-subtitle" [innerHTML]="auction.join.faction.description | translate | icon:auction.join.faction"></div>

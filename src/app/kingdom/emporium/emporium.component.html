@@ -4,7 +4,7 @@
 
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/emporium.png">
+        <img mat-card-avatar src="/assets/images/cards/emporium.png" [alt]="'kingdom.emporium.name' | translate">
         <mat-card-title>{{ 'kingdom.emporium.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.emporium.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
@@ -18,12 +18,12 @@
         <mat-action-list dense tourAnchor="tour.emporium">
           <button mat-list-item *ngFor="let item of emporiumItems" (click)="openBuyDialog(item)" [ngClass]="item.legendary ? 'legendary' : 'common'">
             <div mat-list-avatar matBadge="1" matBadgePosition="above before">
-              <img mat-list-avatar [src]="item.image">
+              <img mat-list-avatar [src]="item.image" [alt]="item.name | translate">
             </div>
             <div mat-line>{{ item.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="item.description | translate | icon:item"></div>
             <div mat-list-avatar [matBadge]="item.gems" matBadgePosition="above after">
-              <img mat-list-avatar src="/assets/images/resources/gem.png">
+              <img mat-list-avatar src="/assets/images/resources/gem.png" [alt]="'resource.gem.name' | translate">
             </div>
           </button>
         </mat-action-list>
@@ -39,7 +39,7 @@
 
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/tree.png">
+        <img mat-card-avatar src="/assets/images/cards/tree.png" [alt]="'kingdom.tree.name' | translate">
         <mat-card-title>{{ 'kingdom.tree.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.tree.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
@@ -59,7 +59,7 @@
       <mat-card-actions>
         <span class="fill-space"></span>
         <button mat-button (click)="resetTree()">{{ 'kingdom.tree.reset' | translate }}</button>
-        <button mat-raised-button color="primary" [disabled]="!gems" (click)="openPlantDialog()">{{ 'kingdom.tree.save' | translate }} ( {{ gems }} <img class="mat-icon" src="/assets/images/resources/gem.png"> )</button>
+        <button mat-raised-button color="primary" [disabled]="!gems" (click)="openPlantDialog()">{{ 'kingdom.tree.save' | translate }} ( {{ gems }} <img class="mat-icon" src="/assets/images/resources/gem.png" [alt]="'resource.gem.name' | translate"> )</button>
       </mat-card-actions>
     </mat-card>
 
@@ -69,7 +69,7 @@
 
     <mat-card>
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/mining.png">
+        <img mat-card-avatar src="/assets/images/cards/mining.png" [alt]="'kingdom.mining.name' | translate">
         <mat-card-title>{{ 'kingdom.mining.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.mining.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
@@ -83,12 +83,12 @@
         <mat-action-list dense tourAnchor="tour.packs">
           <button mat-list-item *ngFor="let pack of emporiumPacks" class="common" disabled>
             <div mat-list-avatar [matBadge]="pack.quantity" matBadgePosition="above before">
-              <img mat-list-avatar [src]="pack.image">
+              <img mat-list-avatar [src]="pack.image" [alt]="pack.name | translate">
             </div>
             <div mat-line>{{ pack.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ pack.description | translate }}</div>
             <div mat-list-avatar [matBadge]="pack.money + '€'" matBadgePosition="above after">
-              <img mat-list-avatar src="/assets/images/stores/merchant.png">
+              <img mat-list-avatar src="/assets/images/stores/merchant.png" [alt]="'store.merchant.name' | translate">
             </div>
           </button>
         </mat-action-list>
