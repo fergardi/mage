@@ -770,7 +770,7 @@
     },
     "buy": {
       "name": "Compra",
-      "help": "Vas a adquirir un Artefacto a cambio de varias <gem>.",
+      "help": "Vas a adquirir un Artefacto a cambio de varias <gem>. Ten en cuenta que son de un sólo uso.",
       "cancel": "Cancelar",
       "buy": "Comprar",
       "artifact": "Artefacto"

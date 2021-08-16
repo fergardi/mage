@@ -171,6 +171,31 @@ $list-item-height: 60px;
   }
 }
 .mat-list {
+  min-height: $list-item-height;
+  max-height: ($list-item-height * 5);
+  overflow: hidden auto;
+  box-sizing: border-box;
+  &.dotted {
+    padding-top: 0;
+    border: 2px dashed $primary-color;
+    max-height: ($list-item-height * 5);
+    box-sizing: content-box;
+  }
+  .mat-list-item {
+    min-height: $list-item-height !important;
+    max-height: $list-item-height !important;
+    height: $list-item-height !important;
+    overflow: hidden;
+    &.handle {
+      &:hover {
+        cursor: move;
+        background-color: rgba(255, 255, 255, 0.04);
+      }
+      &:active {
+        cursor: grabbing;
+      }
+    }
+  }
   .mat-list-item.grey .mat-list-item-content,
   .mat-list-item.common .mat-list-item-content {
     background: linear-gradient(90deg, rgba(255,255,255,0) 0%, $common-color 50%, rgba(255,255,255,0) 100%);
@@ -239,33 +264,6 @@ $list-item-height: 60px;
   }
   .mat-progress-bar {
     margin-top: 5px;
-  }
-}
-.mat-list {
-  min-height: $list-item-height;
-  max-height: ($list-item-height * 5);
-  overflow: hidden auto;
-  box-sizing: border-box;
-  &.dotted {
-    padding-top: 0;
-    border: 2px dashed $primary-color;
-    max-height: ($list-item-height * 5);
-    box-sizing: content-box;
-  }
-  .mat-list-item {
-    min-height: $list-item-height !important;
-    max-height: $list-item-height !important;
-    height: $list-item-height !important;
-    overflow: hidden;
-    &.handle {
-      &:hover {
-        cursor: move;
-        background-color: rgba(255, 255, 255, 0.04);
-      }
-      &:active {
-        cursor: grabbing;
-      }
-    }
   }
 }
 .mat-list-item-disabled {
@@ -541,6 +539,8 @@ $list-item-height: 60px;
 
 .mat-dialog-container {
   position: relative;
+  background: url('/assets/images/background/papire.jpg') no-repeat center center; // fixed
+  background-size: cover;
   max-width: 97.5vw !important;
   max-height: 97.5vh !important;
   .mat-dialog-content {
@@ -573,10 +573,6 @@ $list-item-height: 60px;
 }
 .mat-dialog-actions {
   justify-content: flex-end;
-}
-.mat-dialog-container {
-  background: url('/assets/images/background/papire.jpg') no-repeat center center; // fixed
-  background-size: cover;
 }
 /*
 .cdk-overlay-container {
