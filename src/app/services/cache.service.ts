@@ -70,154 +70,154 @@ export class CacheService {
     }
   }
 
-  async getFactions() {
+  async getFactions(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.FACTIONS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.FACTIONS).get().toPromise();
-      const factions = snapshot.docs.map(faction => faction.data());
+      const factions = snapshot.docs.map((faction: any) => faction.data());
       localStorage.setItem(CollectionType.FACTIONS, JSON.stringify([...factions]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.FACTIONS));
   }
 
-  async getPacks() {
+  async getPacks(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.PACKS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.PACKS).get().toPromise();
-      const packs = snapshot.docs.map(faction => faction.data());
+      const packs = snapshot.docs.map((faction: any) => faction.data());
       localStorage.setItem(CollectionType.PACKS, JSON.stringify([...packs]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.PACKS));
   }
 
-  async getAttacks() {
+  async getAttacks(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.ATTACKS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.ATTACKS).get().toPromise();
-      const attacks = snapshot.docs.map(attack => attack.data());
+      const attacks = snapshot.docs.map((attack: any) => attack.data());
       localStorage.setItem(CollectionType.ATTACKS, JSON.stringify([...attacks]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.ATTACKS));
   }
 
-  async getGuilds() {
+  async getGuilds(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.GUILDS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.GUILDS).get().toPromise();
-      const guilds = snapshot.docs.map(guild => guild.data());
+      const guilds = snapshot.docs.map((guild: any) => guild.data());
       localStorage.setItem(CollectionType.GUILDS, JSON.stringify([...guilds]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.GUILDS));
   }
 
-  async getStores() {
+  async getStores(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.STORES)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.STORES).get().toPromise();
-      const stores = snapshot.docs.map(store => store.data());
+      const stores = snapshot.docs.map((store: any) => store.data());
       localStorage.setItem(CollectionType.STORES, JSON.stringify([...stores]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.STORES));
   }
 
-  async getResources() {
+  async getResources(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.RESOURCES)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.RESOURCES).get().toPromise();
-      const resources = snapshot.docs.map(resource => resource.data());
+      const resources = snapshot.docs.map((resource: any) => resource.data());
       localStorage.setItem(CollectionType.RESOURCES, JSON.stringify([...resources]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.RESOURCES));
   }
 
-  async getStructures() {
+  async getStructures(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.STRUCTURES)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.STRUCTURES).get().toPromise();
-      const structures = snapshot.docs.map(structure => structure.data());
+      const structures = snapshot.docs.map((structure: any) => structure.data());
       localStorage.setItem(CollectionType.STRUCTURES, JSON.stringify([...structures]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.STRUCTURES));
   }
 
-  async getHeroes() {
+  async getHeroes(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.HEROES)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.HEROES).get().toPromise();
-      const heroes = snapshot.docs.map(hero => hero.data());
+      const heroes = snapshot.docs.map((hero: any) => hero.data());
       localStorage.setItem(CollectionType.HEROES, JSON.stringify([...heroes]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.HEROES));
   }
 
-  async getGods() {
+  async getGods(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.GODS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.GODS).get().toPromise();
-      const gods = snapshot.docs.map(god => god.data());
+      const gods = snapshot.docs.map((god: any) => god.data());
       localStorage.setItem(CollectionType.GODS, JSON.stringify([...gods]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.GODS));
   }
 
-  async getSkills() {
+  async getSkills(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.SKILLS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.SKILLS).get().toPromise();
-      const skills = snapshot.docs.map(skill => skill.data());
+      const skills = snapshot.docs.map((skill: any) => skill.data());
       localStorage.setItem(CollectionType.SKILLS, JSON.stringify([...skills]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.SKILLS));
   }
 
-  async getCategories() {
+  async getCategories(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.CATEGORIES)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.CATEGORIES).get().toPromise();
-      const categories = snapshot.docs.map(category => category.data());
+      const categories = snapshot.docs.map((category: any) => category.data());
       localStorage.setItem(CollectionType.CATEGORIES, JSON.stringify([...categories]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.CATEGORIES));
   }
 
-  async getFamilies() {
+  async getFamilies(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.FAMILIES)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.FAMILIES).get().toPromise();
-      const families = snapshot.docs.map(family => family.data());
+      const families = snapshot.docs.map((family: any) => family.data());
       localStorage.setItem(CollectionType.FAMILIES, JSON.stringify([...families]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.FAMILIES));
   }
 
-  async getLocations() {
+  async getLocations(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.LOCATIONS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.LOCATIONS).get().toPromise();
-      const locations = snapshot.docs.map(location => location.data());
+      const locations = snapshot.docs.map((location: any) => location.data());
       localStorage.setItem(CollectionType.LOCATIONS, JSON.stringify([...locations]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.LOCATIONS));
   }
 
-  async getUnits() {
+  async getUnits(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.UNITS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.UNITS).get().toPromise();
-      const units = snapshot.docs.map(unit => unit.data());
+      const units = snapshot.docs.map((unit: any) => unit.data());
       localStorage.setItem(CollectionType.UNITS, JSON.stringify([...units]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.UNITS));
   }
 
-  async getSpells() {
+  async getSpells(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.SPELLS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.SPELLS).get().toPromise();
-      const spells = snapshot.docs.map(spell => spell.data());
+      const spells = snapshot.docs.map((spell: any) => spell.data());
       localStorage.setItem(CollectionType.SPELLS, JSON.stringify([...spells]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.SPELLS));
   }
 
-  async getItems() {
+  async getItems(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.ITEMS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.ITEMS).get().toPromise();
-      const items = snapshot.docs.map(item => item.data());
+      const items = snapshot.docs.map((item: any) => item.data());
       localStorage.setItem(CollectionType.ITEMS, JSON.stringify([...items]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.ITEMS));
   }
 
-  async getPerks() {
+  async getPerks(): Promise<any[]> {
     if (!localStorage.getItem(CollectionType.PERKS)) {
       const snapshot = await this.angularFirestore.collection<any>(CollectionType.PERKS).get().toPromise();
-      const perks = snapshot.docs.map(perk => perk.data());
+      const perks = snapshot.docs.map((perk: any) => perk.data());
       localStorage.setItem(CollectionType.PERKS, JSON.stringify([...perks]));
     }
     return JSON.parse(localStorage.getItem(CollectionType.PERKS));

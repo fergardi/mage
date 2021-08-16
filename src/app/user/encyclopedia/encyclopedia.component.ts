@@ -86,8 +86,8 @@ export class EncyclopediaComponent implements OnInit {
     );
     this.filters.faction.value = this.filters.faction.options[0];
     const legendary = new Array({ name: 'category.legendary.name', value: true });
-    const types = [...new Set(data.map(row => row.type))].map((type: string) => ({ name: `type.${type}.name`, value: type }));
-    const subtypes = [...new Set(data.filter(row => row.subtype).map(row => row.subtype))].map((subtype: string) => ({ name: `type.${subtype}.name`, value: subtype }));
+    const types = [...new Set(data.map((row: any) => row.type))].map((type: string) => ({ name: `type.${type}.name`, value: type }));
+    const subtypes = [...new Set(data.filter((row: any) => row.subtype).map((row: any) => row.subtype))].map((subtype: string) => ({ name: `type.${subtype}.name`, value: subtype }));
     this.filters.type.options = [legendary, types, subtypes]
     .reduce((a: any[], b: any) => a.concat(b), [])
     .filter((value: any, index: number, array: any[]) => array.findIndex((element: any) => (element.name === value.name)) === index) // https://stackoverflow.com/a/56757215/2477303

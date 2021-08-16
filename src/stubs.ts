@@ -200,8 +200,9 @@ export const LoadingServiceStub: any = {
 
 export const AngularFireAuthStub: any = {
   signInWithEmailAndPassword: () => Promise.resolve(),
-  createUserWithEmailAndPassword: () => ({ user: { uid: 'test' }}),
+  createUserWithEmailAndPassword: () => Promise.resolve(),
   sendPasswordResetEmail: () => Promise.resolve(),
+  signInWithPopup: () => Promise.resolve(),
   signOut: () => Promise.resolve(),
   auth: jasmine.createSpyObj('auth', {
     signInAnonymously: Promise.resolve(),

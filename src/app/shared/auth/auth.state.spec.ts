@@ -1,7 +1,7 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed, waitForAsync, fakeAsync, tick } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { AuthState, AuthStateModel } from './auth.state';
-import { SetUserAction } from './auth.actions';
+import { SetUserAction, LogoutAction, LoginWithGoogleAction } from './auth.actions';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireAuthStub, AngularFirestoreStub, NotificationServiceStub } from 'src/stubs';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -49,6 +49,23 @@ describe('Store', () => {
     const actual = store.selectSnapshot(AuthState.getAuthState);
     expect(actual.uid).toEqual(expected.uid);
   });
+
+  it('should DISPATCH the LOGOUT action', fakeAsync(() => {
+    const expected: AuthStateModel = {
+      uid: null,
+      kingdom: null,
+      supplies: [],
+      buildings: [],
+      logged: false,
+      clock: null,
+      popup: null,
+    };
+    spyOn(AngularFireAuthStub, 'signOut').and.resolveTo(null);
+    store.dispatch(new LogoutAction());
+    tick();
+    const actual = store.selectSnapshot(AuthState.getAuthState);
+    expect(actual.uid).toEqual(expected.uid);
+  }));
 
   it('should SELECT the LOGGEDIN', () => {
     expect(store.selectSnapshot(AuthState.getUserLoggedIn)).toBe(true);
@@ -120,6 +137,10 @@ describe('Store', () => {
 
   it('should SELECT the CLOCK', () => {
     expect(store.selectSnapshot(AuthState.getClock)).toBe(null);
+  });
+
+  it('should SELECT the TREE', () => {
+    expect(store.selectSnapshot(AuthState.getKingdomTree)).toBe(null);
   });
 
 });

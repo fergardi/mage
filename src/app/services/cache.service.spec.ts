@@ -21,67 +21,105 @@ describe('CacheService', () => {
   });
 
   it('should GET the FACTIONS', async () => {
-    await service.get(CollectionType.PACKS);
+    const cache = await service.get(CollectionType.PACKS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the GUILDS', async () => {
-    await service.get(CollectionType.GUILDS);
+    const cache = await service.get(CollectionType.GUILDS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the ATTACKS', async () => {
-    await service.get(CollectionType.ATTACKS);
+    const cache = await service.get(CollectionType.ATTACKS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the SKILLS', async () => {
-    await service.get(CollectionType.SKILLS);
+    const cache = await service.get(CollectionType.SKILLS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the FACTIONS', async () => {
-    await service.get(CollectionType.FACTIONS);
+    const cache = await service.get(CollectionType.FACTIONS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the UNITS', async () => {
-    await service.get(CollectionType.UNITS);
+    const cache = await service.get(CollectionType.UNITS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the FAMILIES', async () => {
-    await service.get(CollectionType.FAMILIES);
+    const cache = await service.get(CollectionType.FAMILIES);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the SPELLS', async () => {
-    await service.get(CollectionType.SPELLS);
+    const cache = await service.get(CollectionType.SPELLS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the STRUCTURES', async () => {
-    await service.get(CollectionType.STRUCTURES);
+    const cache = await service.get(CollectionType.STRUCTURES);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the CATEGORIES', async () => {
-    await service.get(CollectionType.CATEGORIES);
+    const cache = await service.get(CollectionType.CATEGORIES);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the GODS', async () => {
-    await service.get(CollectionType.GODS);
+    const cache = await service.get(CollectionType.GODS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the HEROES', async () => {
-    await service.get(CollectionType.HEROES);
+    const cache = await service.get(CollectionType.HEROES);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the RESOURCES', async () => {
-    await service.get(CollectionType.RESOURCES);
+    const cache = await service.get(CollectionType.RESOURCES);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the ITEMS', async () => {
-    await service.get(CollectionType.ITEMS);
+    const cache = await service.get(CollectionType.ITEMS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the STORES', async () => {
-    await service.get(CollectionType.STORES);
+    const cache = await service.get(CollectionType.STORES);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
   it('should GET the LOCATIONS', async () => {
-    await service.get(CollectionType.LOCATIONS);
+    const cache = await service.get(CollectionType.LOCATIONS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
+  });
+
+  it('should GET the PERKS', async () => {
+    const cache = await service.get(CollectionType.PERKS);
+    expect(cache).toBeInstanceOf(Array);
+    expect(cache.length).toBe(0);
   });
 
 });
