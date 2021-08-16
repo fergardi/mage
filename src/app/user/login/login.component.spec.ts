@@ -41,7 +41,6 @@ describe('LoginComponent', () => {
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
-        { provide: AngularFireAuth, useValue: AngularFireAuthStub },
       ],
     })
     .compileComponents();
@@ -71,36 +70,93 @@ describe('LoginComponent', () => {
     component.changeType(reset);
     expect(component.type).toBe('reset');
   });
-/*
+
   it('should GEOLOCALIZE the BROWSER', async () => {
-    const position = { coords: { latitude: 0, longitude: 0 } };
-    const mockGeolocation: jasmine.SpyObj<Geolocation> = jasmine.createSpyObj('navigator.geolocation', ['getCurrentPosition']);
-    mockGeolocation.getCurrentPosition.and.callFake(() => {
-      return { then: () => position };
+    spyOn(navigator.geolocation, 'getCurrentPosition').and.callFake((...args: any[]) => {
+      const position = { coords: { latitude: 0, longitude: 0 } };
+      args[0](position);
     });
     await component.getCurrentPosition();
     expect(navigator.geolocation.getCurrentPosition).toHaveBeenCalled();
   });
-*/
+
   it('should LOGIN the USER', async () => {
-    const angularFireAuthSpy = spyOn(AngularFireAuthStub, 'signInWithEmailAndPassword');
-    component.type = component.types[0];
+    const event = new MatTabChangeEvent();
+    event.index = 0;
+    component.changeType(event);
+    component.form.patchValue({
+      email: 'test@test.com',
+      username: 'test123',
+      password: 'test123',
+      password2: 'test123',
+      faction: {
+        id: 'black',
+      },
+    });
+    spyOn(AngularFireAuthStub, 'signInWithEmailAndPassword');
     await component.login();
-    expect(angularFireAuthSpy).toHaveBeenCalled();
+    expect(AngularFireAuthStub.signInWithEmailAndPassword).toHaveBeenCalled();
   });
-/*
+
   it('should SIGNUP the ACCOUNT', async () => {
-    const angularFireAuthSpy = spyOn(AngularFireAuthStub, 'createUserWithEmailAndPassword');
-    component.type = component.types[1];
+    const event = new MatTabChangeEvent();
+    event.index = 1;
+    component.changeType(event);
+    component.form.patchValue({
+      email: 'test@test.com',
+      username: 'test123',
+      password: 'test123',
+      password2: 'test123',
+      faction: {
+        id: 'black',
+      },
+    });
+    component.form.updateValueAndValidity();
+    spyOn(AngularFireAuthStub, 'createUserWithEmailAndPassword').and.resolveTo({ user: {uid: 'test' } });
+    spyOn(navigator.geolocation, 'getCurrentPosition').and.callFake((...args: any[]) => {
+      const position = { coords: { latitude: 0, longitude: 0 } };
+      args[0](position);
+    });
     await component.login();
-    expect(angularFireAuthSpy).toHaveBeenCalled();
+    expect(AngularFireAuthStub.createUserWithEmailAndPassword).toHaveBeenCalled();
   });
-*/
+
   it('should RESET the PASSWORD', async () => {
-    const angularFireAuthSpy = spyOn(AngularFireAuthStub, 'sendPasswordResetEmail');
-    component.type = component.types[2];
+    const event = new MatTabChangeEvent();
+    event.index = 2;
+    component.changeType(event);
+    component.form.patchValue({
+      email: 'test@test.com',
+      username: 'test123',
+      password: 'test123',
+      password2: 'test123',
+      faction: {
+        id: 'black',
+      },
+    });
+    spyOn(AngularFireAuthStub, 'sendPasswordResetEmail');
     await component.login();
-    expect(angularFireAuthSpy).toHaveBeenCalled();
+    expect(AngularFireAuthStub.sendPasswordResetEmail).toHaveBeenCalled();
+  });
+
+  it('should FAIL the LOGIN', async () => {
+    const event = new MatTabChangeEvent();
+    event.index = 0;
+    component.changeType(event);
+    component.form.patchValue({
+      email: 'test@test.com',
+      username: 'test123',
+      password: 'test123',
+      password2: 'test123',
+      faction: {
+        id: 'black',
+      },
+    });
+    spyOn(AngularFireAuthStub, 'signInWithEmailAndPassword').and.rejectWith(new Error('test'));
+    spyOn(AngularFireAuthStub, 'signOut');
+    await component.login();
+    expect(AngularFireAuthStub.signInWithEmailAndPassword).toHaveBeenCalled();
+    expect(AngularFireAuthStub.signOut).toHaveBeenCalled();
   });
 
 });

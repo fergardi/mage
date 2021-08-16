@@ -48,21 +48,21 @@ describe('AppComponent', () => {
   });
 
   it('should LISTEN the NAVIGATION', () => {
-    const localStorageSpy = spyOn(localStorage, 'setItem');
+    spyOn(localStorage, 'setItem');
     const navigation = new NavigationEnd(0, '/test', '/test');
     (router.events as Subject<NavigationEnd>).next(navigation);
-    expect(localStorageSpy).toHaveBeenCalled();
+    expect(localStorage.setItem).toHaveBeenCalled();
   });
 
   it('should LISTEN the SCROLL', fakeAsync(() => {
-    const windowSpy = spyOn(window, 'scrollTo');
+    spyOn(window, 'scrollTo');
     const navigation = new NavigationEnd(0, '/test', '/test');
     const scroll = new Scroll(navigation, [0 , 0], 'test');
     (router.events as Subject<Scroll>).next(scroll);
     tick(1500);
     fixture.detectChanges();
     fixture.whenStable().then(() => {
-      expect(windowSpy).toHaveBeenCalled();
+      expect(window.scrollTo).toHaveBeenCalled();
     });
   }));
 

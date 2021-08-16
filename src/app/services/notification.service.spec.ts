@@ -28,29 +28,29 @@ describe('NotificationService', () => {
   });
 
   it('should SHOW an ERROR notification', () => {
-    const serviceSpy = spyOn(service, 'error').and.callThrough();
+    spyOn(service, 'error').and.callThrough();
     spyOn(SnackBarStub, 'open').and.returnValue({ afterDismissed: () => of(null) });
     service.error('error');
-    expect(serviceSpy).toHaveBeenCalledWith('error');
+    expect(service.error).toHaveBeenCalledWith('error');
     expect(SnackBarStub.open).toHaveBeenCalled();
   });
 
   it('should SHOW a WARNING notification', () => {
-    const serviceSpy = spyOn(service, 'warning').and.callThrough();
+    spyOn(service, 'warning').and.callThrough();
     spyOn(SnackBarStub, 'open').and.returnValue({ afterDismissed: () => of(null) });
     service.warning('warning');
-    expect(serviceSpy).toHaveBeenCalledWith('warning');
+    expect(service.warning).toHaveBeenCalledWith('warning');
     expect(SnackBarStub.open).toHaveBeenCalled();
   });
 
   it('should SHOW a SUCCESS notification', () => {
-    const serviceSpy = spyOn(service, 'success').and.callThrough();
+    spyOn(service, 'success').and.callThrough();
     spyOn(SnackBarStub, 'open').and.returnValue({ afterDismissed: () => of(null) });
     service.success('success');
-    expect(serviceSpy).toHaveBeenCalledWith('success');
+    expect(service.success).toHaveBeenCalledWith('success');
     expect(SnackBarStub.open).toHaveBeenCalled();
     service.success('success', { number: 0, string: 'test.test' });
-    expect(serviceSpy).toHaveBeenCalledWith('success', { number: '0', string: 'test.test' });
+    expect(service.success).toHaveBeenCalledWith('success', { number: '0', string: 'test.test' });
     expect(SnackBarStub.open).toHaveBeenCalled();
   });
 

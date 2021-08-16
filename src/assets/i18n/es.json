@@ -637,7 +637,7 @@
       "help": "Aquí podrás invertir <turn> en explorar los vastos terrenos a tu alrededor para obtener nuevas <land> libres. Las <land> libres sirven como espacio para construir nuevos edificios en tu reino.",
       "tour": "",
       "cancel": "Cancelar",
-      "hint": "Cuantas más Tierras tengas, menos encontrarás",
+      "hint": "Cuantas más Tierras tengas, menos encontrarás explorando",
       "error": "Ha ocurrido un problema",
       "invalid": "No dispones de suficientes Turnos",
       "explore": "Explorar",

@@ -69,30 +69,32 @@ export class LoginComponent implements OnInit {
   }
 
   async login() {
-    const email = this.form.value.email;
-    const password = this.form.value.password;
-    this.loadingService.startLoading();
-    try {
-      switch (this.type) {
-        case 'login':
-          await this.angularFireAuth.signInWithEmailAndPassword(email, password);
-          break;
-        case 'signup':
-          const position: any = await this.getCurrentPosition();
-          const credentials = await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
-          await this.apiService.createKingdom(credentials.user.uid, this.form.value.faction.id, this.form.value.username, position.coords.latitude, position.coords.longitude);
-          break;
-        case 'reset':
-          await this.angularFireAuth.sendPasswordResetEmail(email);
-          this.notificationService.warning('user.login.check');
-          break;
+    if (this.form.valid) {
+      const email = this.form.value.email;
+      const password = this.form.value.password;
+      this.loadingService.startLoading();
+      try {
+        switch (this.type) {
+          case 'login':
+            await this.angularFireAuth.signInWithEmailAndPassword(email, password);
+            break;
+          case 'signup':
+            const position: any = await this.getCurrentPosition();
+            const credentials = await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
+            await this.apiService.createKingdom(credentials.user.uid, this.form.value.faction.id, this.form.value.username, position.coords.latitude, position.coords.longitude);
+            break;
+          case 'reset':
+            await this.angularFireAuth.sendPasswordResetEmail(email);
+            this.notificationService.warning('user.login.check');
+            break;
+        }
+      } catch (error){
+        await this.angularFireAuth.signOut();
+        console.error(error);
+        this.notificationService.error('user.login.error');
       }
-    } catch (error){
-      await this.angularFireAuth.signOut();
-      console.error(error);
-      this.notificationService.error('user.login.error');
+      this.loadingService.stopLoading();
     }
-    this.loadingService.stopLoading();
   }
 
   async google() {

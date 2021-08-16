@@ -88,6 +88,7 @@ interface ApiServiceStubInterface {
   leaveClan: any;
   demolishStructure: any;
   plantTree: any;
+  createKingdom: any;
 }
 
 export const ApiServiceStub: ApiServiceStubInterface = {
@@ -124,6 +125,7 @@ export const ApiServiceStub: ApiServiceStubInterface = {
   leaveClan: () => Promise.resolve(null),
   demolishStructure: () => Promise.resolve(null),
   plantTree: () => Promise.resolve(null),
+  createKingdom: () => Promise.resolve(null),
 };
 
 export const CacheServiceStub: any = {
@@ -143,6 +145,7 @@ export const CacheServiceStub: any = {
   getStores: () => Promise.resolve([]),
   getLocations: () => Promise.resolve([]),
   getPacks: () => Promise.resolve([]),
+  getPerks: () => Promise.resolve([]),
 };
 
 export const MatDialogRefStub: any = {
@@ -197,7 +200,7 @@ export const LoadingServiceStub: any = {
 
 export const AngularFireAuthStub: any = {
   signInWithEmailAndPassword: () => Promise.resolve(),
-  createUserWithEmailAndPassword: () => Promise.resolve(),
+  createUserWithEmailAndPassword: () => ({ user: { uid: 'test' }}),
   sendPasswordResetEmail: () => Promise.resolve(),
   signOut: () => Promise.resolve(),
   auth: jasmine.createSpyObj('auth', {
