@@ -8,7 +8,7 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
-import { NotificationServiceStub, StoreStub, DialogRefStub, ApiServiceStub } from 'src/stubs';
+import { NotificationServiceStub, StoreStub, MatDialogRefStub, ApiServiceStub } from 'src/stubs';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatListModule } from '@angular/material/list';
@@ -63,7 +63,7 @@ describe('DispelComponent', () => {
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: incantation },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: Store, useValue: StoreStub },
       ],

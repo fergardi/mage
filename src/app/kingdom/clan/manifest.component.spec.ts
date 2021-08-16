@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ManifestComponent } from './manifest.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFirestoreStub, DialogRefStub } from 'src/stubs';
+import { AngularFirestoreStub, MatDialogRefStub } from 'src/stubs';
 import { TranslateModule } from '@ngx-translate/core';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { MatListModule } from '@angular/material/list';
@@ -37,7 +37,7 @@ describe('ManifestComponent', () => {
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: clan },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
       ],
     })

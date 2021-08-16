@@ -5,7 +5,7 @@ import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 
-fdescribe('PerkComponent', () => {
+describe('PerkComponent', () => {
   let component: PerkComponent;
   let fixture: ComponentFixture<PerkComponent>;
   const perk: any = {

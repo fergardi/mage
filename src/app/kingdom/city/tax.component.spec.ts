@@ -4,7 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
-import { StoreStub, DialogRefStub, NotificationServiceStub, ApiServiceStub } from 'src/stubs';
+import { StoreStub, MatDialogRefStub, NotificationServiceStub, ApiServiceStub } from 'src/stubs';
 import { of, Observable } from 'rxjs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -53,7 +53,7 @@ describe('TaxComponent', () => {
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: village$ },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
     })

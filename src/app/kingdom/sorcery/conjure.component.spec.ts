@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ConjureComponent } from './conjure.component';
 import { NotificationService } from 'src/app/services/notification.service';
-import { NotificationServiceStub, DialogRefStub, StoreStub, ApiServiceStub, AngularFirestoreStub } from 'src/stubs';
+import { NotificationServiceStub, MatDialogRefStub, StoreStub, ApiServiceStub, AngularFirestoreStub } from 'src/stubs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
@@ -61,7 +61,7 @@ describe('ConjureComponent', () => {
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: { charm: charm, kingdom: null } },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },

@@ -756,11 +756,17 @@
       "name": "Genealogía",
       "description": "Beneficios adicionales",
       "help": "En el árbol genealógico puedes invertir tus <gem> para escoger qué conocimientos ancestrales has heredado de tu familia durante siglos. Cada ventaja otorga un pequeño beneficio asociado a un elemento muy concreto.",
-      "save": "Guardar",
+      "save": "Replantar",
       "reset": "Reiniciar",
-      "clear": "Limpiar",
       "success": "Has reestablecido tu genealogía",
       "error": "Ha ocurrido un problema"
+    },
+    "plant": {
+      "name": "Replantado",
+      "help": "Vas a replantar tu nuevo árbol genealógico a cambio de varias <gem>, pero ten en cuenta que las anteriores no se te devolverán, sino que sólo agregarás las nuevas.",
+      "cancel": "Cancelar",
+      "plant": "Plantar",
+      "costs": "Costes"
     },
     "buy": {
       "name": "Compra",

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReportComponent } from './report.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogRefStub, ApiServiceStub, StoreStub } from 'src/stubs';
+import { MatDialogRefStub, ApiServiceStub, StoreStub } from 'src/stubs';
 import { TranslateModule } from '@ngx-translate/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
@@ -62,7 +62,7 @@ describe('ReportComponent', () => {
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: report },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: Store, useValue: StoreStub },
       ],

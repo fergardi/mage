@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivateComponent } from './activate.component';
 import { NotificationService } from 'src/app/services/notification.service';
-import { NotificationServiceStub, DialogRefStub, StoreStub, ApiServiceStub, AngularFirestoreStub } from 'src/stubs';
+import { NotificationServiceStub, MatDialogRefStub, StoreStub, ApiServiceStub, AngularFirestoreStub } from 'src/stubs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
@@ -54,7 +54,7 @@ describe('ActivateComponent', () => {
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: artifact },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },

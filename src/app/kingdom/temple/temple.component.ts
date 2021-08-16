@@ -9,6 +9,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { DispelComponent } from './dispel.component';
 import { combineLatest } from 'rxjs';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { BreakComponent } from './break.component';
 
 @Component({
   selector: 'app-temple',
@@ -60,7 +61,7 @@ export class TempleComponent implements OnInit {
   }
 
   openBreakDialog(incantation: any): void {
-    const dialogRef = this.dialog.open(DispelComponent, {
+    const dialogRef = this.dialog.open(BreakComponent, {
       panelClass: 'dialog-responsive',
       data: incantation,
     });

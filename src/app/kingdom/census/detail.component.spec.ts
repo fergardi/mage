@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DetailComponent } from './detail.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogRefStub, AngularFirestoreStub, StoreStub } from 'src/stubs';
+import { MatDialogRefStub, AngularFirestoreStub, StoreStub } from 'src/stubs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Store } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';
@@ -36,7 +36,7 @@ describe('DetailComponent', () => {
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: kingdom },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: Store, useValue: StoreStub },
       ],

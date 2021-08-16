@@ -9,7 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
-import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
+import { ApiServiceStub, NotificationServiceStub, MatDialogRefStub, StoreStub } from 'src/stubs';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -57,7 +57,7 @@ describe('DisbandComponent', () => {
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: troop },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
     })

@@ -3,7 +3,7 @@ import { BattleComponent } from './battle.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification.service';
-import { NotificationServiceStub, StoreStub, DialogRefStub, ApiServiceStub, CacheServiceStub } from 'src/stubs';
+import { NotificationServiceStub, StoreStub, MatDialogRefStub, ApiServiceStub, CacheServiceStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { CacheService } from 'src/app/services/cache.service';
 import { ApiService } from 'src/app/services/api.service';
@@ -53,7 +53,7 @@ describe('BattleComponent', () => {
         { provide: CacheService, useValue: CacheServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: kingdom },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
     })

@@ -1,7 +1,7 @@
 import { Component, Input, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { MatTooltip } from '@angular/material/tooltip';
 
-const PERK_COST: number = 5;
+export const PERK_COST: number = 5;
 
 @Component({
   selector: 'app-perk',

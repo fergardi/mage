@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync, async } from '@angular/core/te
 import { LetterComponent } from './letter.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DialogRefStub, NotificationServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
+import { MatDialogRefStub, NotificationServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -42,7 +42,7 @@ describe('LetterComponent', () => {
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: kingdom },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: Store, useValue: StoreStub },

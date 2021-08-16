@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AdventureComponent } from './adventure.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogRefStub, NotificationServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
+import { MatDialogRefStub, NotificationServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
@@ -47,7 +47,7 @@ describe('AdventureComponent', () => {
         LongPipe,
       ],
       providers: [
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: data },

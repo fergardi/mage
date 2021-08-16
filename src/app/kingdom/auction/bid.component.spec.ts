@@ -10,7 +10,7 @@ import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
-import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
+import { ApiServiceStub, NotificationServiceStub, MatDialogRefStub, StoreStub } from 'src/stubs';
 import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -61,7 +61,7 @@ describe('BidComponent', () => {
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: auction },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
     })

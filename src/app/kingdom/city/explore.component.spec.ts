@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ExploreComponent } from './explore.component';
 import { ApiService } from 'src/app/services/api.service';
-import { ApiServiceStub, NotificationServiceStub, DialogRefStub, StoreStub } from 'src/stubs';
+import { ApiServiceStub, NotificationServiceStub, MatDialogRefStub, StoreStub } from 'src/stubs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
@@ -41,7 +41,7 @@ describe('ExploreComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: StoreStub.select(AuthState.getKingdomLand) },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
     })

@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
-import { StoreStub, DialogRefStub, NotificationServiceStub, ApiServiceStub } from 'src/stubs';
+import { StoreStub, MatDialogRefStub, NotificationServiceStub, ApiServiceStub } from 'src/stubs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
@@ -54,7 +54,7 @@ describe('BuildComponent', () => {
       providers: [
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: MAT_DIALOG_DATA, useValue: building },
         { provide: Store, useValue: StoreStub },
       ],

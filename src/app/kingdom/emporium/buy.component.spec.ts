@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BuyComponent } from './buy.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/services/notification.service';
-import { NotificationServiceStub, DialogRefStub, StoreStub, ApiServiceStub } from 'src/stubs';
+import { NotificationServiceStub, MatDialogRefStub, StoreStub, ApiServiceStub } from 'src/stubs';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';
@@ -48,7 +48,7 @@ describe('BuyComponent', () => {
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: item },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
       ],

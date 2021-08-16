@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TomeComponent } from './tome.component';
-import { DialogRefStub } from 'src/stubs';
+import { MatDialogRefStub } from 'src/stubs';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
@@ -42,7 +42,7 @@ describe('TomeComponent', () => {
       ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: tome },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
       ],
     })
     .compileComponents();

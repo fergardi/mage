@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { OfferComponent } from './offer.component';
 import { NotificationService } from 'src/app/services/notification.service';
-import { NotificationServiceStub, DialogRefStub, StoreStub, ApiServiceStub } from 'src/stubs';
+import { NotificationServiceStub, MatDialogRefStub, StoreStub, ApiServiceStub } from 'src/stubs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngxs/store';
@@ -55,7 +55,7 @@ describe('OfferComponent', () => {
       providers: [
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: god },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
       ],

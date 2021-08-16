@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DealComponent } from './deal.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogRefStub, NotificationServiceStub, StoreStub, ApiServiceStub } from 'src/stubs';
+import { MatDialogRefStub, NotificationServiceStub, StoreStub, ApiServiceStub } from 'src/stubs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
@@ -53,7 +53,7 @@ describe('DealComponent', () => {
       ],
       providers: [
         { provide: Store, useValue: StoreStub },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: data },
         { provide: NotificationService, useValue: NotificationServiceStub },

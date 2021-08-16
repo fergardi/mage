@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DischargeComponent } from './discharge.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogRefStub, NotificationServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
+import { MatDialogRefStub, NotificationServiceStub, ApiServiceStub, StoreStub } from 'src/stubs';
 import { TranslateModule } from '@ngx-translate/core';
 import { LegendaryPipe } from 'src/app/pipes/legendary.pipe';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
@@ -46,7 +46,7 @@ describe('DischargeComponent', () => {
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: MAT_DIALOG_DATA, useValue: contract },
       ],
     })

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ResearchComponent } from './research.component';
 import { NotificationService } from 'src/app/services/notification.service';
-import { NotificationServiceStub, StoreStub, DialogRefStub, ApiServiceStub } from 'src/stubs';
+import { NotificationServiceStub, StoreStub, MatDialogRefStub, ApiServiceStub } from 'src/stubs';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngxs/store';
@@ -56,7 +56,7 @@ describe('ResearchComponent', () => {
         FormBuilder,
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: MAT_DIALOG_DATA, useValue: charm },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
       ],

@@ -36,6 +36,7 @@ import { ManifestComponent } from './clan/manifest.component';
 import { DetailComponent } from './census/detail.component';
 import { BreakComponent } from './temple/break.component';
 import { PerkComponent } from './emporium/perk.component';
+import { PlantComponent } from './emporium/plant.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { PerkComponent } from './emporium/perk.component';
     DetailComponent,
     BreakComponent,
     PerkComponent,
+    PlantComponent,
   ],
   imports: [
     CommonModule,

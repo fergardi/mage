@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ChargeComponent } from './charge.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { StoreStub, DialogRefStub, NotificationServiceStub, ApiServiceStub } from 'src/stubs';
+import { StoreStub, MatDialogRefStub, NotificationServiceStub, ApiServiceStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -43,7 +43,7 @@ describe('ChargeComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: StoreStub.select(AuthState.getKingdomNode) },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
     })

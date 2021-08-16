@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FoundationComponent } from './foundation.component';
 import { LoadingService } from 'src/app/services/loading.service';
-import { LoadingServiceStub, StoreStub, NotificationServiceStub, DialogRefStub, ApiServiceStub } from 'src/stubs';
+import { LoadingServiceStub, StoreStub, NotificationServiceStub, MatDialogRefStub, ApiServiceStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { NotificationService } from 'src/app/services/notification.service';
 import { FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -42,7 +42,7 @@ describe('FoundationComponent', () => {
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: LoadingService, useValue: LoadingServiceStub },
-        { provide: MatDialogRef, useValue: DialogRefStub },
+        { provide: MatDialogRef, useValue: MatDialogRefStub },
         { provide: Store, useValue: StoreStub },
       ],
     })

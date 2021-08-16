@@ -44,23 +44,22 @@
         <mat-card-subtitle>{{ 'kingdom.tree.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
           <button mat-icon-button (click)="this.tutorialService.start('tour.tree')"><mat-icon>help</mat-icon></button>
-          <mat-chip-list><mat-chip color="primary"><mat-icon>star</mat-icon>{{ emporiumPerks.length }}</mat-chip></mat-chip-list>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>loyalty</mat-icon>{{ PERK_COST }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>
-
-      <mat-card-content>
-        <p [innerHTML]="'kingdom.tree.help' | translate | icon"></p>
-      </mat-card-content>
 
       <mat-card-content class="tree" tourAnchor="tour.tree">
         <app-perk [perk]="kingdomTree" [disabled]="false" *ngIf="kingdomTree" (increasedPerk)="increaseGems($event)"></app-perk>
       </mat-card-content>
 
+      <mat-card-content>
+        <p [innerHTML]="'kingdom.tree.help' | translate | icon"></p>
+      </mat-card-content>
+
       <mat-card-actions>
         <span class="fill-space"></span>
-        <!--<button mat-button (click)="clearTree(kingdomTree)">{{ 'kingdom.tree.clear' | translate }}</button>-->
         <button mat-button (click)="resetTree()">{{ 'kingdom.tree.reset' | translate }}</button>
-        <button mat-raised-button color="primary" (click)="saveTree()">({{ kingdomPerks }}<img class="mat-icon" src="/assets/images/resources/gem.png">) {{ 'kingdom.tree.save' | translate }}</button>
+        <button mat-raised-button color="primary" [disabled]="!gems" (click)="openPlantDialog()">{{ 'kingdom.tree.save' | translate }} ( {{ gems }} <img class="mat-icon" src="/assets/images/resources/gem.png"> )</button>
       </mat-card-actions>
     </mat-card>
 
@@ -75,7 +74,7 @@
         <mat-card-subtitle>{{ 'kingdom.mining.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
           <button mat-icon-button (click)="this.tutorialService.start('tour.packs')"><mat-icon>help</mat-icon></button>
-          <mat-chip-list><mat-chip color="primary"><mat-icon>loyalty</mat-icon>{{ emporiumPacks.length | long }}</mat-chip></mat-chip-list>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>redeem</mat-icon>{{ emporiumPacks.length | long }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>
 

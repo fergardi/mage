@@ -50,10 +50,6 @@ export const StoreStub: any = {
   dispatch: (a: any) => of(a),
 };
 
-export const DialogRefStub: any = {
-  close: () => null,
-};
-
 export const BottomSheetRefStub: any = {
   close: () => null,
 };
@@ -91,41 +87,43 @@ interface ApiServiceStubInterface {
   joinClan: any;
   leaveClan: any;
   demolishStructure: any;
+  plantTree: any;
 }
 
 export const ApiServiceStub: ApiServiceStubInterface = {
-  taxGold: () => null,
-  disbandTroop: () => null,
-  bidAuction: () => null,
-  recruitUnit: () => null,
-  readLetter: () => null,
-  battleKingdom: () => null,
-  refreshAuction: () => null,
-  exploreLand: () => null,
-  chargeMana: () => null,
-  buildStructure: () => null,
-  activateArtifact: () => null,
-  offerGod: () => ({ item: 'love-potion' }),
-  conjureCharm: () => null,
-  assignArmy: () => null,
-  researchCharm: () => null,
-  removeLetters: () => null,
-  buyEmporium: () => null,
-  sendLetter: () => null,
-  foundateClan: () => null,
-  assignCharm: () => null,
-  assignArtifact: () => null,
-  breakEnchantment: () => null,
-  dispelIncantation: () => null,
-  adventureQuest: () => null,
-  tradeDeal: () => null,
-  addShop: () => null,
-  addQuest: () => null,
-  dischargeContract: () => null,
-  favorGuild: () => null,
-  joinClan: () => null,
-  leaveClan: () => null,
-  demolishStructure: () => null,
+  taxGold: () => Promise.resolve(null),
+  disbandTroop: () => Promise.resolve(null),
+  bidAuction: () => Promise.resolve(null),
+  recruitUnit: () => Promise.resolve(null),
+  readLetter: () => Promise.resolve(null),
+  battleKingdom: () => Promise.resolve(null),
+  refreshAuction: () => Promise.resolve(null),
+  exploreLand: () => Promise.resolve(null),
+  chargeMana: () => Promise.resolve(null),
+  buildStructure: () => Promise.resolve(null),
+  activateArtifact: () => Promise.resolve(null),
+  offerGod: () => Promise.resolve({ item: 'love-potion' }),
+  conjureCharm: () => Promise.resolve(null),
+  assignArmy: () => Promise.resolve(null),
+  researchCharm: () => Promise.resolve(null),
+  removeLetters: () => Promise.resolve(null),
+  buyEmporium: () => Promise.resolve(null),
+  sendLetter: () => Promise.resolve(null),
+  foundateClan: () => Promise.resolve(null),
+  assignCharm: () => Promise.resolve(null),
+  assignArtifact: () => Promise.resolve(null),
+  breakEnchantment: () => Promise.resolve(null),
+  dispelIncantation: () => Promise.resolve(null),
+  adventureQuest: () => Promise.resolve(null),
+  tradeDeal: () => Promise.resolve(null),
+  addShop: () => Promise.resolve(null),
+  addQuest: () => Promise.resolve(null),
+  dischargeContract: () => Promise.resolve(null),
+  favorGuild: () => Promise.resolve(null),
+  joinClan: () => Promise.resolve(null),
+  leaveClan: () => Promise.resolve(null),
+  demolishStructure: () => Promise.resolve(null),
+  plantTree: () => Promise.resolve(null),
 };
 
 export const CacheServiceStub: any = {
@@ -147,20 +145,16 @@ export const CacheServiceStub: any = {
   getPacks: () => Promise.resolve([]),
 };
 
+export const MatDialogRefStub: any = {
+  close: () => null,
+};
+
 export const MatDialogStub: any = {
-  open() {
-    return {
-      afterClosed: () => of({action: true}),
-    };
-  },
+  open: () => ({ afterClosed: () => of(true) }),
 };
 
 export const MatBottomSheetStub: any = {
-  open() {
-    return {
-      afterClosed: () => of({action: true}),
-    };
-  },
+  open: () => ({ afterClosed: () => of(null) }),
 };
 
 export const EventStub: any = {
