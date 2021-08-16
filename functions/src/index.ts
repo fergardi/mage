@@ -7,7 +7,7 @@ import * as ash from 'express-async-handler';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 // https://stackoverflow.com/a/66124761/2477303
-import { KingdomType, MAX_TURNS, MIN_LANDS, MAX_LANDS, SupplyType, BonusType, AssignmentType, StoreType, VISITATION_TIME, LocationType, BattleReport, TargetType, BattleType, FACTION_MULTIPLIER, BATTLE_ROUNDS, AuctionType, BATTLE_POWER, AUCTION_TIME, OUTBID_RATIO, BID_RATIO, CLAN_COST, GUILD_TIME } from './aux';
+import { KingdomType, MAX_TURNS, MIN_LANDS, MAX_LANDS, SupplyType, BonusType, AssignmentType, StoreType, VISITATION_TIME, LocationType, BattleReport, TargetType, BattleType, FACTION_MULTIPLIER, BATTLE_ROUNDS, AuctionType, BATTLE_POWER, AUCTION_TIME, OUTBID_RATIO, BID_RATIO, CLAN_COST, GUILD_TIME } from './config';
 
 //========================================================================================
 /*                                                                                      *
