@@ -2,7 +2,7 @@ import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
 import * as backend from '../src/index';
-import { KingdomType } from '../src/aux';
+import { KingdomType } from '../src/config';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',

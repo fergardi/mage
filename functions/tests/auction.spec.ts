@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
 import * as moment from 'moment';
 import * as backend from '../src/index';
-import { KingdomType, BID_RATIO } from '../src/aux';
+import { KingdomType, BID_RATIO } from '../src/config';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',

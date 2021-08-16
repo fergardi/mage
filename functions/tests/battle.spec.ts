@@ -2,7 +2,7 @@ import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
 import { applyArtifacts, applyContracts, applyCharms, applyWave, resolveBattle, applyBonuses, applyDamage, applyCasualties } from '../src/index';
-import { BattleReport, CategoryType, BattleType } from '../src/aux';
+import { BattleReport, CategoryType, BattleType } from '../src/config';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
