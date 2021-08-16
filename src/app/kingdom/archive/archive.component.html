@@ -13,7 +13,7 @@
 
     <mat-card-content>
       <p>{{ "kingdom.archive.help" | translate }}</p>
-      <table mat-table matSort [dataSource]="data" matSortActive="timestamp" matSortDirection="desc" tourAnchor="tour.archive">
+      <table mat-table matSort [dataSource]="data" matSortActive="timestamp" matSortDirection="desc" tourAnchor="tour.archive" [attr.aria-label]="'kingdom.archive.name' | translate">
 
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
 

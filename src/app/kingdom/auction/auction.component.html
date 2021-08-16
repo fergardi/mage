@@ -13,7 +13,7 @@
 
     <mat-card-content>
       <p [innerHTML]="'kingdom.auction.help' | translate | icon"></p>
-      <table mat-table matSort matSortActive="name" matSortDirection="asc" [dataSource]="table" tourAnchor="tour.auction">
+      <table mat-table matSort matSortActive="name" matSortDirection="asc" [dataSource]="table" tourAnchor="tour.auction" [attr.aria-label]="'kingdom.auction.name' | translate">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>
             <div mat-sort-header>{{ 'table.column.' + column | translate }}</div>

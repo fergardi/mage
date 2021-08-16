@@ -13,7 +13,7 @@
 
     <mat-card-content>
       <p>{{ 'kingdom.census.help' | translate }}</p>
-      <table mat-table matSort [dataSource]="data" matSortDisableClear tourAnchor="tour.census">
+      <table mat-table matSort [dataSource]="data" matSortDisableClear tourAnchor="tour.census" [attr.aria-label]="'kingdom.census.name' | translate">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>
 

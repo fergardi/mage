@@ -3,7 +3,7 @@
 
     <mat-card fxFlex.xl="25" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="66" fxFlex.xs="100">
       <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/login.png">
+        <img mat-card-avatar src="/assets/images/cards/login.png" [alt]="'user.login.name' | translate">
         <mat-card-title>{{ 'user.login.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'user.login.description' | translate }}</mat-card-subtitle>
       </mat-card-header>
