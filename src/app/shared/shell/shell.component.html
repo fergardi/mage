@@ -69,6 +69,8 @@
         <mat-list-item *ngFor="let supply of kingdomSupplies$ | async; let i = index" (click)="openStatusSheet()">
           <div mat-list-avatar
             [title]="supply.resource.name | translate"
+            [matTooltip]="supply.resource.name | translate"
+            matTooltipPosition="below"
             [matBadge]="supply.timestamp ? (supply.timestamp | turn:supply.resource.max:supply.resource.ratio | async) : (supply.quantity | short)"
             [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
             [matBadgePosition]="i % 2 === 0 ? 'below before' : 'above before'"
