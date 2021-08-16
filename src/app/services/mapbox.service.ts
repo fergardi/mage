@@ -219,7 +219,7 @@ export class MapboxService {
   resizeMap() {
     if (this.map) this.map.resize();
   }
-
+/*
   addMe(): void {
     navigator.geolocation.getCurrentPosition(async position => {
       await this.apiService.addKingdom(this.uid, FactionType.BLACK, position.coords.latitude, position.coords.longitude, 'Fergardi');
@@ -230,7 +230,7 @@ export class MapboxService {
       maximumAge: 0,
     });
   }
-/*
+
   addBot(type: FactionType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
       await this.apiService.addKingdom(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');

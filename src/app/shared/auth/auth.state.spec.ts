@@ -1,7 +1,7 @@
 import { TestBed, waitForAsync, fakeAsync, tick } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { AuthState, AuthStateModel } from './auth.state';
-import { SetUserAction, LogoutAction, LoginWithGoogleAction } from './auth.actions';
+import { SetUserAction, LogoutAction } from './auth.actions';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireAuthStub, AngularFirestoreStub, NotificationServiceStub } from 'src/stubs';
 import { AngularFirestore } from '@angular/fire/firestore';
