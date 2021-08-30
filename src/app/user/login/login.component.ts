@@ -8,6 +8,8 @@ import { LoginWithGoogleAction } from 'src/app/shared/auth/auth.actions';
 import { ApiService } from 'src/app/services/api.service';
 import { CacheService } from 'src/app/services/cache.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { MatDialog } from '@angular/material/dialog';
+import { GeolocationComponent } from './geolocation.component';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
     private apiService: ApiService,
     private cacheService: CacheService,
     private loadingService: LoadingService,
+    private dialog: MatDialog,
   ) {
     this.createForm();
   }
@@ -52,6 +55,12 @@ export class LoginComponent implements OnInit {
   changeType($event: MatTabChangeEvent) {
     this.type = this.types[$event.index];
     this.createForm();
+    if (this.type === 'signup') {
+      this.dialog.open(GeolocationComponent, {
+        panelClass: 'dialog-responsive',
+        data: null,
+      });
+    }
   }
 
   matchValues(matchTo: string): (AbstractControl) => ValidationErrors | null {

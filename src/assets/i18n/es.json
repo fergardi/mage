@@ -289,6 +289,11 @@
       "description": "Comparte tu historia",
       "help": "¿Tienes una sugerencia? ¿Algo no funciona bien? ¿Has encontrado un error? Ponlo en los comentarios.",
       "tour": ""
+    },
+    "geolocation": {
+      "name": "Geolocalización",
+      "description": "<p>La localización de tu nuevo reino vendrá determinada por la geolocalización real y actual del dispositivo desde donde resucites a tu nuevo mago.</p><p>Dado que muchas de las acciones secundarias que puedes hacer en este plano de la realidad se basan en localizaciones reales del entorno (como acceder a tiendas o atacar guaridas de monstruos neutrales, entre otras cosas) y dependen del radio de influencia de tu reino, y el centro de éste depende de tu localización, esta decisión es importante e inalterable durante el resto de la partida.</p><p>Por lo tanto, se te solicitará permiso para acceder a tu posición actual, aunque sólo una vez y solamente para crear tu cuenta.</p>",
+      "close": "Cerrar"
     }
   },
   "world": {

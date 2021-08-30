@@ -10,6 +10,7 @@ import { LandingComponent } from './landing/landing.component';
 import { LegendComponent } from './legend/legend.component';
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { DisqusModule } from 'ngx-disqus';
+import { GeolocationComponent } from './login/geolocation.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { DisqusModule } from 'ngx-disqus';
     TomeComponent,
     LandingComponent,
     LegendComponent,
+    GeolocationComponent,
   ],
   imports: [
     CommonModule,
