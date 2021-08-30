@@ -81,6 +81,7 @@ export class LoginComponent implements OnInit {
           case 'signup':
             const position: any = await this.getCurrentPosition();
             const credentials = await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
+            this.apiService.populateMap(position.coords.latitude, position.coords.longitude);
             await this.apiService.createKingdom(credentials.user.uid, this.form.value.faction.id, this.form.value.username, position.coords.latitude, position.coords.longitude);
             break;
           case 'reset':

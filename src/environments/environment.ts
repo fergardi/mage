@@ -25,9 +25,6 @@ export const environment = {
   functions: {
     url: 'http://localhost:5001/mage-c4259/europe-west1/api',
   },
-  overpass: {
-    url: 'http://overpass-api.de/api/interpreter',
-  },
 };
 
 /*

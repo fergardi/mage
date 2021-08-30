@@ -1,13 +1,40 @@
 'use strict';
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
+import * as axios from 'axios';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as ash from 'express-async-handler';
 import * as moment from 'moment';
+import * as mapboxgl from 'mapbox-gl';
 import * as _ from 'lodash';
 // https://stackoverflow.com/a/66124761/2477303
-import { KingdomType, MAX_TURNS, MIN_LANDS, MAX_LANDS, SupplyType, BonusType, AssignmentType, StoreType, VISITATION_TIME, LocationType, BattleReport, TargetType, BattleType, FACTION_MULTIPLIER, BATTLE_ROUNDS, AuctionType, BATTLE_POWER, AUCTION_TIME, OUTBID_RATIO, BID_RATIO, CLAN_COST, GUILD_TIME } from './config';
+import {
+  MAX_TURNS,
+  MIN_LANDS,
+  MAX_LANDS,
+  VISITATION_TIME,
+  FACTION_MULTIPLIER,
+  BATTLE_ROUNDS,
+  BATTLE_POWER,
+  AUCTION_TIME,
+  OUTBID_RATIO,
+  BID_RATIO,
+  CLAN_COST,
+  GUILD_TIME,
+  MAP_RADIUS,
+  KingdomType,
+  SupplyType,
+  BonusType,
+  AssignmentType,
+  StoreType,
+  LocationType,
+  BattleReport,
+  TargetType,
+  BattleType,
+  AuctionType,
+  MarkerType,
+} from './config';
 
 //========================================================================================
 /*                                                                                      *
@@ -68,6 +95,7 @@ api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQu
 api.get('/kingdom/:kingdomId/world/shop/:shopId/:collectionId/:dealId', ash(async (req: any, res: any) => res.json(await tradeDeal(req.params.kingdomId, req.params.shopId, req.params.collectionId, req.params.dealId))));
 api.post('/kingdom/:kingdomId/world/quest/:questId', ash(async (req: any, res: any) => res.json(await adventureQuest(req.params.kingdomId, req.params.questId))));
 api.put('/kingdom/:kingdomId/tree', ash(async (req: any, res: any) => res.json(await plantTree(req.params.kingdomId, req.body.tree, req.body.gems))));
+api.put('/world/map', ash(async (req: any, res: any) => res.json(await populateMap(parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
 // error handler
 api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));
 
@@ -1463,6 +1491,99 @@ export const adventureQuest = async (kingdomId: string, questId: string) => {
       } else throw new Error('api.error.adventure');
     } else throw new Error('api.error.adventure');
   } else throw new Error('api.error.adventure');
+};
+
+//========================================================================================
+/*                                                                                      *
+ *                                         MAPS                                         *
+ *                                                                                      */
+//========================================================================================
+
+/**
+ * player scans the map by given coordinates and radius
+ * @param latitude
+ * @param longitude
+ * @param radius
+ */
+export const scanMap = async (latitude: number, longitude: number, radius: number) => {
+  const elements: any[] = [
+    // shops
+    { type: MarkerType.SHOP, subtype: StoreType.INN, query: '[building=hotel]', radius: 2000 },
+    { type: MarkerType.SHOP, subtype: StoreType.MERCENARY, query: '[amenity=police]', radius: 5000 },
+    { type: MarkerType.SHOP, subtype: StoreType.SORCERER, query: '[building=university]', radius: 2000 },
+    { type: MarkerType.SHOP, subtype: StoreType.MERCHANT, query: '[shop=mall]', radius: 5000 },
+    // quests
+    { type: MarkerType.QUEST, subtype: LocationType.GRAVEYARD, query: '[landuse=cemetery]', radius: 5000 },
+    { type: MarkerType.QUEST, subtype: LocationType.LAKE, query: '[sport=swimming]', radius: 5000 },
+    { type: MarkerType.QUEST, subtype: LocationType.FOREST, query: '[leisure=park]', radius: 1000 },
+    { type: MarkerType.QUEST, subtype: LocationType.CATHEDRAL, query: '[building=church]', radius: 2000 },
+    { type: MarkerType.QUEST, subtype: LocationType.RUIN, query: '[historic=monument]', radius: 2000 },
+    { type: MarkerType.QUEST, subtype: LocationType.TOWN, query: '[place=village]', radius: 10000 },
+    { type: MarkerType.QUEST, subtype: LocationType.CASTLE, query: '[amenity=townhall]', radius: 5000 },
+    { type: MarkerType.QUEST, subtype: LocationType.CAVE, query: '[amenity=bus_station]', radius: 5000 },
+    { type: MarkerType.QUEST, subtype: LocationType.DUNGEON, query: '[amenity=post_office]', radius: 5000 },
+    { type: MarkerType.QUEST, subtype: LocationType.VOLCANO, query: '[amenity=fire_station]', radius: 10000 },
+    { type: MarkerType.QUEST, subtype: LocationType.PYRAMID, query: '[amenity=bank]', radius: 1000 },
+    { type: MarkerType.QUEST, subtype: LocationType.NEST, query: '[aeroway=terminal]', radius: 50000 },
+    { type: MarkerType.QUEST, subtype: LocationType.BARRACK, query: '[landuse=military]', radius: 50000 },
+    { type: MarkerType.QUEST, subtype: LocationType.SHRINE, query: '[leisure=sports_centre]', radius: 2000 },
+    { type: MarkerType.QUEST, subtype: LocationType.SHIP, query: '[waterway=dock]', radius: 5000 },
+    { type: MarkerType.QUEST, subtype: LocationType.ISLAND, query: '[water=river]', radius: 5000 },
+    { type: MarkerType.QUEST, subtype: LocationType.MINE, query: '[tourism=museum]', radius: 2000 },
+    { type: MarkerType.QUEST, subtype: LocationType.MONOLITH, query: '[amenity=library]', radius: 5000 },
+    { type: MarkerType.QUEST, subtype: LocationType.TOTEM, query: '[amenity=place_of_worship]', radius: 2000 },
+    { type: MarkerType.QUEST, subtype: LocationType.MOUNTAIN, query: '[amenity=cinema]', radius: 5000 },
+  ];
+  try {
+    const bounds: mapboxgl.LngLatBounds = new mapboxgl.LngLat(longitude, latitude).toBounds(radius);
+    let query = '[out:json][timeout:300][bbox];\n';
+    elements.forEach((e: any) => query += `nwr${e.query};convert nwr ::geom=center(geom()),::=::,type="${e.type}",subtype="${e.subtype}";out center;\n`);
+    const bbox = `${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()},${bounds.getNorth()}`;
+    const overpass = new URLSearchParams();
+    overpass.set('data', query);
+    overpass.set('bbox', bbox);
+    const response: any = await axios.default.post('http://overpass-api.de/api/interpreter', overpass.toString(), {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    });
+    return response;
+  } catch (error) {
+    throw new Error('api.error.map');
+  }
+};
+
+/**
+ * player draws the map given the points
+ * @param points
+ */
+export const drawMap = async (points: any[]) => {
+  const groups = _.groupBy(points.filter((e: any) => e.geometry && e.geometry.coordinates && e.tags && e.tags.name), (e: any) => e.tags.subtype);
+  for (const group of Object.keys(groups)) {
+    for (const element of groups[group].slice(0, 1)) {
+      switch (element.tags.type) {
+        case (MarkerType.SHOP):
+          await checkShop(undefined, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+          break;
+        case (MarkerType.QUEST):
+          await checkQuest(undefined, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+          break;
+      }
+    }
+  }
+};
+
+/**
+ * player populates the map by given coordinates
+ * @param latitude
+ * @param longitude
+ */
+export const populateMap = async (latitude: number, longitude: number) => {
+  try {
+    const points = await scanMap(latitude, longitude, MAP_RADIUS);
+    await drawMap(points.data.elements);
+  } catch (error) {
+    console.error(error);
+    throw new Error('api.error.map');
+  }
 };
 
 //========================================================================================

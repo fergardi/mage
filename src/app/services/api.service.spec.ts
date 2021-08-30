@@ -174,9 +174,9 @@ describe('ApiService', () => {
     expect(response).toBe(null);
   });
 
-  it('should QUERY a MAP', async () => {
-    const request = service.mapQuery('query', 'bbox');
-    const mock = httpMock.expectOne(environment.overpass.url);
+  it('should POPULATE a MAP', async () => {
+    const request = service.populateMap(0, 0);
+    const mock = httpMock.expectOne(`${environment.functions.url}/world/map`);
     mock.flush(null);
     const response = await request;
     expect(mock.request.method).toEqual(HttpVerb.POST);

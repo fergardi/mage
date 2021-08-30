@@ -79,7 +79,9 @@ export class ApiService {
   }
 
   assignArmy(kingdomId: string, army: any[]): Promise<any> {
-    return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/army`, { army: army }).toPromise();
+    return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/army`, {
+      army: army,
+    }).toPromise();
   }
 
   buyEmporium(kingdomId: string, itemId: string): Promise<any> {
@@ -90,12 +92,10 @@ export class ApiService {
     return this.httpClient.post(`${environment.functions.url}/kingdom/${kingdomId}/battle/${battleId}/target/${targetId}`, undefined).toPromise();
   }
 
-  mapQuery(query: string, bbox: string): Promise<any> {
-    const form = new URLSearchParams();
-    form.set('data', query);
-    form.set('bbox', bbox);
-    return this.httpClient.post(environment.overpass.url, form.toString(), {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  populateMap(latitude: number, longitude: number): Promise<any> {
+    return this.httpClient.post(`${environment.functions.url}/world/map`, {
+      latitude: latitude,
+      longitude: longitude,
     }).toPromise();
   }
 

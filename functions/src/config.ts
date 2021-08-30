@@ -20,6 +20,7 @@ export const OUTBID_RATIO: number = 0.90;
 export const GUILD_TIME: number = 60;
 export const CLAN_COST: number = 1000000;
 export const FACTION_MULTIPLIER: number = 2;
+export const MAP_RADIUS: number = 10000;
 
 //========================================================================================
 /*                                                                                      *
@@ -124,4 +125,10 @@ export enum AssignmentType {
   NONE,
   ATTACK,
   DEFENSE,
+}
+
+export enum MarkerType {
+  KINGDOM = 'kingdom',
+  SHOP = 'shop',
+  QUEST = 'quest',
 }
