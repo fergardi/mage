@@ -4,6 +4,7 @@ import * as mapboxgl from 'mapbox-gl';
 import { environment } from './environments/environment';
 import { CdkDragDrop, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
 import { IStepOption } from 'ngx-ui-tour-core';
+import { map } from 'lodash';
 
 export const NotificationServiceStub: any = {
   success: () => null,
@@ -89,6 +90,7 @@ interface ApiServiceStubInterface {
   demolishStructure: any;
   plantTree: any;
   createKingdom: any;
+  populateMap: any;
 }
 
 export const ApiServiceStub: ApiServiceStubInterface = {
@@ -126,6 +128,7 @@ export const ApiServiceStub: ApiServiceStubInterface = {
   demolishStructure: () => Promise.resolve(null),
   plantTree: () => Promise.resolve(null),
   createKingdom: () => Promise.resolve(null),
+  populateMap: () => Promise.resolve(null),
 };
 
 export const CacheServiceStub: any = {
@@ -232,7 +235,7 @@ export const MapboxServiceStub: any = {
   initialize: () => {
     const mapbox = (mapboxgl as typeof mapboxgl);
     mapbox.accessToken = environment.mapbox.token;
-    const map = new mapboxgl.Map({
+    const m = new mapboxgl.Map({
       container: 'map',
       style: environment.mapbox.style + '?optimize=true',
       zoom: environment.mapbox.zoom,
@@ -241,14 +244,16 @@ export const MapboxServiceStub: any = {
       attributionControl: true,
       interactive: true,
     });
-    MapboxServiceStub.map = map;
+    MapboxServiceStub.map = m;
   },
   resizeMap: () => null,
   addShopByClick: () => null,
   addQuestByClick: () => null,
-  addBot: () => null,
-  populateMap: () => Promise.resolve(null),
+  addKingdomByClick: () => null,
   clearMarkers: () => null,
+  terminalize: () => {
+    MapboxServiceStub.map.remove();
+  },
 };
 
 export const FirebaseServiceStub: any = {

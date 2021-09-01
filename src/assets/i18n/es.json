@@ -23,7 +23,7 @@
     },
     "resurrection": {
       "name": "Has renacido",
-      "description": "Estás en el más allá, en la más absoluta oscuridad, en otro plano de la realidad. Aquí el mundo es diferente, cargado de partículas mágicas, envuelto en misterio y poder. Lo notas en el agua, lo sientes en la tierra, lo hueles en el aire. Pensabas que era el final, pero en realidad sólo es el principio. Ahora puedes alcanzar tus verdaderos objetivos, desarrollar todo tu potencial, y ser el mejor mago o bruja que ésta desolada tierra haya visto jamás."
+      "description": "Estás en el más allá, en la más absoluta oscuridad, en otro plano de la realidad. Aquí el mundo es diferente, cargado de partículas mágicas, envuelto en misterio y poder. Lo saboreas en el agua, lo sientes en la tierra, lo hueles en el aire. Pensabas que era el final, pero en realidad sólo es el principio. Ahora puedes alcanzar tus verdaderos objetivos, desarrollar todo tu potencial, y ser el mejor mago o bruja que ésta desolada tierra haya visto jamás."
     },
     "choose": {
       "name": "Ëscögë ünä fäcción",
@@ -292,7 +292,7 @@
     },
     "geolocation": {
       "name": "Geolocalización",
-      "description": "<p>La localización de tu nuevo reino vendrá determinada por la geolocalización real y actual del dispositivo desde donde resucites a tu nuevo mago.</p><p>Dado que muchas de las acciones secundarias que puedes hacer en este plano de la realidad se basan en localizaciones reales del entorno (como acceder a tiendas o atacar guaridas de monstruos neutrales, entre otras cosas) y dependen del radio de influencia de tu reino, y el centro de éste depende de tu localización, esta decisión es importante e inalterable durante el resto de la partida.</p><p>Por lo tanto, se te solicitará permiso para acceder a tu posición actual, aunque sólo una vez y solamente para crear tu cuenta.</p>",
+      "description": "<p>La localización de tu nuevo reino vendrá determinada por la geolocalización real y actual del dispositivo desde donde resucites a tu nuevo mago.</p><p>Dado que muchas de las acciones secundarias que puedes hacer en este plano de la realidad se basan en localizaciones reales del entorno (como acceder a tiendas o atacar guaridas de monstruos neutrales, entre otras cosas) y dependen del radio de influencia de tu reino, y el centro de éste depende de tu localización, esta decisión es importante e inalterable durante el resto de la partida.</p><p>Por lo tanto, se te solicitará permiso para acceder a tu posición actual, aunque sólo una vez y solamente para crear tu cuenta.</p><p>Si no das permiso, se te otorgará una posición aleatoria en el mapa, en cualquier ciudad del mundo.</p>",
       "close": "Cerrar"
     }
   },

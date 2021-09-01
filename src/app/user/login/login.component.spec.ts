@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireAuthStub, CacheServiceStub, StoreStub, ApiServiceStub, NotificationServiceStub } from 'src/stubs';
+import { AngularFireAuthStub, CacheServiceStub, StoreStub, ApiServiceStub, NotificationServiceStub, MatDialogStub } from 'src/stubs';
 import { CacheService } from 'src/app/services/cache.service';
 import { ApiService } from 'src/app/services/api.service';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -41,6 +42,7 @@ describe('LoginComponent', () => {
         { provide: Store, useValue: StoreStub },
         { provide: ApiService, useValue: ApiServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
+        { provide: MatDialog, useValue: MatDialogStub },
       ],
     })
     .compileComponents();
@@ -112,7 +114,7 @@ describe('LoginComponent', () => {
       },
     });
     component.form.updateValueAndValidity();
-    spyOn(AngularFireAuthStub, 'createUserWithEmailAndPassword').and.resolveTo({ user: {uid: 'test' } });
+    spyOn(AngularFireAuthStub, 'createUserWithEmailAndPassword').and.resolveTo({ user: { uid: 'test' } });
     spyOn(navigator.geolocation, 'getCurrentPosition').and.callFake((...args: any[]) => {
       const position = { coords: { latitude: 0, longitude: 0 } };
       args[0](position);

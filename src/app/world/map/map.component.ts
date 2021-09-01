@@ -41,10 +41,11 @@ export class MapComponent implements OnInit, OnDestroy {
 
   async ngOnInit(): Promise<void> {
     this.mapboxService.initialize(this.container);
-    this.mapboxService.map.on('load', async () => {
+    this.mapboxService.map.once('load', async () => {
+      console.log('starting map')
       // resize map in case drawer has changed
       this.mapboxService.resizeMap();
-      // print kingdoms surrounding kingdom
+      // print icons surrounding kingdom
       combineLatest([
         this.angularFirestore.collection<any>('kingdoms').valueChanges({ idField: 'fid' }),
         this.angularFirestore.doc<any>(`kingdoms/${this.uid}`).valueChanges()
@@ -73,7 +74,7 @@ export class MapComponent implements OnInit, OnDestroy {
     this.locations = await this.cacheService.getLocations();
     this.factions = (await this.cacheService.getFactions()).filter((faction: any) => faction.id !== 'grey');
   }
-/*
+
   addShop(type: StoreType) {
     this.notificationService.warning('world.map.add');
     this.mapboxService.addShopByClick(type);
@@ -83,24 +84,13 @@ export class MapComponent implements OnInit, OnDestroy {
     this.notificationService.warning('world.map.add');
     this.mapboxService.addQuestByClick(type);
   }
-
   addKingdom(type: FactionType) {
     this.notificationService.warning('world.map.add');
-    this.mapboxService.addBot(type);
+    this.mapboxService.addKingdomByClick(type);
   }
 
-  addMe() {
-    this.notificationService.warning('world.map.add');
-    this.mapboxService.addMe();
-  }
-
-  async populateMap() {
-    this.notificationService.warning('world.map.update');
-    await this.mapboxService.populateMap();
-  }
-*/
   ngOnDestroy(): void {
-    this.mapboxService.clearMarkers();
+    this.mapboxService.terminalize();
   }
 
 }

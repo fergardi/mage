@@ -7,7 +7,7 @@ import { ApiService } from './api.service';
 import { NotificationService } from './notification.service';
 import { AngularFirestoreStub, StoreStub, ApiServiceStub, NotificationServiceStub, MatDialogStub } from 'src/stubs';
 import * as mapboxgl from 'mapbox-gl';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { MarkerType } from '../shared/type/common.type';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -124,6 +124,13 @@ describe('MapboxService', () => {
     service.initialize(container);
     service.addMarker(data, MarkerType.KINGDOM, false, false);
     expect(service.markerVisible(service.markers[0])).toBe(false);
+  });
+
+  it('should TERMINALIZE the MAP', () => {
+    service.initialize(container);
+    expect(service.map).toBeInstanceOf(mapboxgl.Map);
+    service.terminalize();
+    expect(service.map).toBe(null);
   });
 
 });

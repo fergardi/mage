@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatDialogRefStub } from 'src/stubs';
 import { TranslateModule } from '@ngx-translate/core';
 
-fdescribe('GeolocationComponent', () => {
+describe('GeolocationComponent', () => {
   let component: GeolocationComponent;
   let fixture: ComponentFixture<GeolocationComponent>;
 

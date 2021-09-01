@@ -30,7 +30,7 @@ export class MapboxService {
   public map: mapboxgl.Map = null;
   public markers: Marker[] = [];
   private offset: number = 10;
-  private uid: string;
+  private uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   private primaryColor: string = null;
 
   constructor(
@@ -44,7 +44,6 @@ export class MapboxService {
 
   initialize(container: string | HTMLElement) {
     this.primaryColor = window.getComputedStyle(document.body).getPropertyValue('--primary-color');
-    this.uid = this.store.selectSnapshot(AuthState.getUserUID);
     this.map = new mapboxgl.Map({
       container: container,
       style: environment.mapbox.style + '?optimize=true',
@@ -58,7 +57,7 @@ export class MapboxService {
       interactive: true,
     });
     // https://docs.mapbox.com/mapbox-gl-js/example/add-fog/
-    this.map.on('load', () => {
+    this.map.once('load', () => {
       // add fog
       this.map.setFog({
         range: [0.5, 10.0],
@@ -217,94 +216,36 @@ export class MapboxService {
   }
 
   resizeMap() {
-    if (this.map) this.map.resize();
-  }
-/*
-  addMe(): void {
-    navigator.geolocation.getCurrentPosition(async position => {
-      await this.apiService.addKingdom(this.uid, FactionType.BLACK, position.coords.latitude, position.coords.longitude, 'Fergardi');
-      this.goTo(position.coords.latitude, position.coords.longitude, true);
-    }, null, {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
-    });
+    if (this.map) {
+      this.map.resize();
+    }
   }
 
-  addBot(type: FactionType): void {
+  addKingdomByClick(type: FactionType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      await this.apiService.addKingdom(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
+      await this.apiService.addKingdom(null, type, $event.lngLat.lat, $event.lngLat.lng, 'bot-' + (Math.random() + 1).toString(36).substring(7));
       this.notificationService.warning('world.map.update');
     });
   }
 
   addShopByClick(type: StoreType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      await this.apiService.addShop(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
+      await this.apiService.addShop(null, type, $event.lngLat.lat, $event.lngLat.lng, 'shop-' + (Math.random() + 1).toString(36).substring(7));
       this.notificationService.warning('world.map.update');
     });
   }
 
   addQuestByClick(type: LocationType): void {
     this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
-      await this.apiService.addQuest(null, type, $event.lngLat.lat, $event.lngLat.lng, 'test');
+      await this.apiService.addQuest(null, type, $event.lngLat.lat, $event.lngLat.lng, 'quest-' + (Math.random() + 1).toString(36).substring(7));
       this.notificationService.warning('world.map.update');
     });
   }
 
-  async populateMap() {
-    const elements: any[] = [
-      // shops
-      { type: MarkerType.SHOP, subtype: StoreType.INN, query: '[building=hotel]', radius: 2000 },
-      { type: MarkerType.SHOP, subtype: StoreType.MERCENARY, query: '[amenity=police]', radius: 5000 },
-      { type: MarkerType.SHOP, subtype: StoreType.SORCERER, query: '[building=university]', radius: 2000 },
-      { type: MarkerType.SHOP, subtype: StoreType.MERCHANT, query: '[shop=mall]', radius: 5000 },
-      // quests
-      { type: MarkerType.QUEST, subtype: LocationType.GRAVEYARD, query: '[landuse=cemetery]', radius: 5000 },
-      { type: MarkerType.QUEST, subtype: LocationType.LAKE, query: '[sport=swimming]', radius: 5000 },
-      { type: MarkerType.QUEST, subtype: LocationType.FOREST, query: '[leisure=park]', radius: 1000 },
-      { type: MarkerType.QUEST, subtype: LocationType.CATHEDRAL, query: '[building=church]', radius: 2000 },
-      { type: MarkerType.QUEST, subtype: LocationType.RUIN, query: '[historic=monument]', radius: 2000 },
-      { type: MarkerType.QUEST, subtype: LocationType.TOWN, query: '[place=village]', radius: 10000 },
-      { type: MarkerType.QUEST, subtype: LocationType.CASTLE, query: '[amenity=townhall]', radius: 5000 },
-      { type: MarkerType.QUEST, subtype: LocationType.CAVE, query: '[amenity=bus_station]', radius: 5000 },
-      { type: MarkerType.QUEST, subtype: LocationType.DUNGEON, query: '[amenity=post_office]', radius: 5000 },
-      { type: MarkerType.QUEST, subtype: LocationType.VOLCANO, query: '[amenity=fire_station]', radius: 10000 },
-      { type: MarkerType.QUEST, subtype: LocationType.PYRAMID, query: '[amenity=bank]', radius: 1000 },
-      { type: MarkerType.QUEST, subtype: LocationType.NEST, query: '[aeroway=terminal]', radius: 50000 },
-      { type: MarkerType.QUEST, subtype: LocationType.BARRACK, query: '[landuse=military]', radius: 50000 },
-      { type: MarkerType.QUEST, subtype: LocationType.SHRINE, query: '[leisure=sports_centre]', radius: 2000 },
-      { type: MarkerType.QUEST, subtype: LocationType.SHIP, query: '[waterway=dock]', radius: 5000 },
-      { type: MarkerType.QUEST, subtype: LocationType.ISLAND, query: '[water=river]', radius: 5000 },
-      { type: MarkerType.QUEST, subtype: LocationType.MINE, query: '[tourism=museum]', radius: 2000 },
-      { type: MarkerType.QUEST, subtype: LocationType.MONOLITH, query: '[amenity=library]', radius: 5000 },
-      { type: MarkerType.QUEST, subtype: LocationType.TOTEM, query: '[amenity=place_of_worship]', radius: 2000 },
-      { type: MarkerType.QUEST, subtype: LocationType.MOUNTAIN, query: '[amenity=cinema]', radius: 5000 },
-    ];
-    navigator.geolocation.getCurrentPosition(async position => {
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-      const radius = 10000;
-      const limit = 1;
-      const bounds = this.map.getBounds();
-      let query = '[out:json][timeout:300][bbox];\n';
-      elements.forEach((e: any) => query += `nwr${e.query};convert nwr ::geom=center(geom()),::=::,type="${e.type}",subtype="${e.subtype}";out center;\n`);
-      const bbox = `${bounds.getWest()},${bounds.getSouth()},${bounds.getEast()},${bounds.getNorth()}`;
-      const response: any = await this.apiService.mapQuery(query, bbox);
-      const groups = _.groupBy(response.elements.filter((e: any) => e.geometry && e.geometry.coordinates && e.tags && e.tags.name), (e: any) => e.tags.subtype);
-      for (const group of Object.keys(groups)) {
-        for (const element of groups[group].slice(0, limit)) {
-          switch (element.tags.type) {
-            case (MarkerType.SHOP):
-              await this.apiService.addShop(null, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
-              break;
-            case (MarkerType.QUEST):
-              await this.apiService.addQuest(null, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
-              break;
-          }
-        }
-      }
-    });
+  terminalize(): void {
+    this.clearMarkers();
+    this.map.remove();
+    this.map = null;
   }
-*/
+
 }

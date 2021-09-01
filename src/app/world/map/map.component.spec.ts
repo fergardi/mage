@@ -47,12 +47,6 @@ describe('MapComponent', () => {
   it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
-/*
-  it('should POPULATE the MAP', async () => {
-    spyOn(MapboxServiceStub, 'populateMap');
-    await component.populateMap();
-    expect(MapboxServiceStub.populateMap).toHaveBeenCalled();
-  });
 
   it('should ADD a SHOP', () => {
     spyOn(MapboxServiceStub, 'addShopByClick');
@@ -67,9 +61,9 @@ describe('MapComponent', () => {
   });
 
   it('should ADD a KINGDOM', () => {
-    spyOn(MapboxServiceStub, 'addBot');
+    spyOn(MapboxServiceStub, 'addKingdomByClick');
     component.addKingdom(FactionType.BLACK);
-    expect(MapboxServiceStub.addBot).toHaveBeenCalled();
+    expect(MapboxServiceStub.addKingdomByClick).toHaveBeenCalled();
   });
-*/
+
 });
