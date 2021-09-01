@@ -1649,9 +1649,9 @@
       "name": "Curación",
       "description": "Recupera salud a una tropa aliada al azar"
     },
-    "growth": {
-      "name": "Crecimiento",
-      "description": "Aplica <leech> a cada tropa aliada"
+    "hurricane": {
+      "name": "Huracán",
+      "description": "Elimina <flight> a cada tropa enemiga"
     },
     "locust-swarm": {
       "name": "Enjambre de Langostas",
@@ -1675,7 +1675,7 @@
     },
     "calm": {
       "name": "Calma",
-      "description": "Elimina <fear>,<slowness>,<weakness>,<seduction>,<leech> a una tropa aliada al azar"
+      "description": "Elimina <fear>,<slowness>,<weakness> y <seduction> a una tropa aliada al azar"
     },
     "summon-druid": {
       "name": "Invocar Druidas",
@@ -1905,7 +1905,7 @@
     },
     "flight": {
       "name": "Vuelo",
-      "description": "Aumenta su <attack>, <defense> y <health> en +15%"
+      "description": "Aumenta su <initiative> en +2"
     },
     "fear": {
       "name": "Miedo",

@@ -120,10 +120,10 @@
     "description": "skill.flight.description",
     "image": "/assets/images/skills/flight.png",
     "resurrectionBonus": 0,
-    "attackBonus": 15,
-    "defenseBonus": 15,
-    "healthBonus": 15,
-    "initiativeBonus": 0
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "initiativeBonus": 2
   },
   {
     "type": "skill",
