@@ -11,7 +11,7 @@ const config: admin.AppOptions = {
 };
 const tester = functions(config);
 
-const KINGDOM = 'CLAN';
+const KINGDOM = 'GUILD';
 const GUILD = 'mage';
 
 describe(KINGDOM, () => {
