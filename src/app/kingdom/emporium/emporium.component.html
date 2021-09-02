@@ -18,7 +18,7 @@
         <mat-action-list dense tourAnchor="tour.emporium">
           <button mat-list-item *ngFor="let item of emporiumItems" (click)="openBuyDialog(item)" [ngClass]="item.legendary ? 'legendary' : 'common'">
             <div mat-list-avatar matBadge="1" matBadgePosition="above before">
-              <img mat-list-avatar [src]="item.image" [alt]="item.name | translate">
+              <img mat-list-avatar class="animated pulse infinite" [src]="item.image" [alt]="item.name | translate">
             </div>
             <div mat-line>{{ item.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="item.description | translate | icon:item"></div>
@@ -83,7 +83,7 @@
         <mat-action-list dense tourAnchor="tour.packs">
           <button mat-list-item *ngFor="let pack of emporiumPacks" class="common" disabled>
             <div mat-list-avatar [matBadge]="pack.quantity" matBadgePosition="above before">
-              <img mat-list-avatar [src]="pack.image" [alt]="pack.name | translate">
+              <img mat-list-avatar class="animated pulse infinite" [src]="pack.image" [alt]="pack.name | translate">
             </div>
             <div mat-line>{{ pack.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">{{ pack.description | translate }}</div>

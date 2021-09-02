@@ -18,7 +18,7 @@
         <mat-action-list dense tourAnchor="tour.temple">
           <button mat-list-item *ngFor="let god of kingdomGods" [disabled]="god.armageddon" (click)="openOfferDialog(god)" class="grey legendary">
             <div mat-list-avatar matBadge="?" matBadgePosition="above before">
-              <img mat-list-avatar [src]="god.image" class="squared" [alt]="god.name | translate">
+              <img mat-list-avatar class="animated pulse infinite squared" [src]="god.image" [alt]="god.name | translate">
             </div>
             <div mat-line>{{ god.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="god.description | translate | icon:god"></div>
@@ -58,7 +58,7 @@
             <mat-action-list dense tourAnchor="tour.break">
               <button mat-list-item *ngFor="let enchantment of kingdomEnchantments" (click)="openBreakDialog(enchantment)" [ngClass]="[enchantment.spell.faction.id, enchantment.spell.legendary ? 'legendary' : 'common']" [disabled]="enchantment.from.id === uid">
                 <div mat-list-avatar [matBadge]="enchantment.spell.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from.id === uid ? 'accent' : 'warn'">
-                  <img mat-list-avatar [src]="enchantment.spell.image" [alt]="enchantment.spell.name | translate">
+                  <img mat-list-avatar class="animated pulse infinite" [src]="enchantment.spell.image" [alt]="enchantment.spell.name | translate">
                 </div>
                 <div mat-line>{{ enchantment.spell.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="enchantment.spell.description | translate | icon:enchantment.spell"></div>
@@ -96,7 +96,7 @@
             <mat-action-list dense tourAnchor="tour.dispel">
               <button mat-list-item *ngFor="let incantation of kingdomIncantations" (click)="openDispelDialog(incantation)" [ngClass]="[incantation.spell.faction.id, incantation.spell.legendary ? 'legendary' : 'common']">
                 <div mat-list-avatar [matBadge]="incantation.spell.level" matBadgePosition="above before" [matBadgeColor]="incantation.to.id === uid ? 'accent' : 'warn'">
-                  <img mat-list-avatar [src]="incantation.spell.image" [alt]="incantation.spell.name | translate">
+                  <img mat-list-avatar class="animated pulse infinite" [src]="incantation.spell.image" [alt]="incantation.spell.name | translate">
                 </div>
                 <div mat-line>{{ incantation.spell.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="incantation.spell.description | translate | icon:incantation.spell"></div>

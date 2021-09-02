@@ -611,7 +611,7 @@
     "charge": {
       "name": "Meditación",
       "description": "Recarga tus reservas mágicas",
-      "help": "Aquí podrás invertir <turn> en reponer los depósitos de <mana> de tu reino. El <mana> se emplea para pagar los mantenimientos de tus tropas y el lanzamiento de hechizos, entre otras cosas.",
+      "help": "Aquí podrás invertir <turn> en reponer los depósitos de <mana> de tu reino. El <mana> se emplea para pagar los mantenimientos de tus tropas y encantamientos y el lanzamiento de hechizos, entre otras cosas.",
       "tour": "",
       "cancel": "Cancelar",
       "hint": "Cuantos más nodos tengas, más Maná recargarás",
@@ -1655,7 +1655,7 @@
     },
     "locust-swarm": {
       "name": "Enjambre de Langostas",
-      "description": "Elimina <population> del reino enemigo cada <turn> y se puede contagiar"
+      "description": "Destruye <population> cada <turn> y se puede contagiar"
     },
     "natures-favor": {
       "name": "Favor de la Naturaleza",

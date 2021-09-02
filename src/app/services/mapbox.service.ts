@@ -56,9 +56,8 @@ export class MapboxService {
       attributionControl: true,
       interactive: true,
     });
-    // https://docs.mapbox.com/mapbox-gl-js/example/add-fog/
     this.map.once('load', () => {
-      // add fog
+      // add fog https://docs.mapbox.com/mapbox-gl-js/example/add-fog/
       this.map.setFog({
         range: [0.5, 10.0],
         color: '#FFFFFF',
@@ -89,7 +88,7 @@ export class MapboxService {
   }
 
   markerVisible(marker: Marker): boolean {
-    const lngLat: mapboxgl.LngLat = marker.marker.getLngLat()
+    const lngLat: mapboxgl.LngLat = marker.marker.getLngLat();
     return lngLat && lngLat.lat && lngLat.lng
       ? this.map.getBounds().contains(lngLat)
       : false;
@@ -169,8 +168,8 @@ export class MapboxService {
         strokeWeight: 1,
         strokeOpacity: 1,
         refineStroke : false,
-      })
-      .addTo(this.map);
+      });
+      circle.addTo(this.map);
     }
     // center
     if (fly) {
@@ -208,10 +207,9 @@ export class MapboxService {
 
   clearMarkers(type: MarkerType = null): void {
     if (type) {
-      this.markers.filter((marker: Marker) => marker.type === type).forEach((marker: Marker) => this.removeMarker(marker.id));
+      this.markers.filter((marker: Marker) => marker.type === type).slice(0).forEach((marker: Marker) => this.removeMarker(marker.id));
     } else {
-      this.markers.forEach((marker: Marker) => this.removeMarker(marker.id));
-      this.markers = [];
+      this.markers.slice(0).forEach((marker: Marker) => this.removeMarker(marker.id));
     }
   }
 
@@ -242,10 +240,18 @@ export class MapboxService {
     });
   }
 
+  populateMapByClick(): void {
+    this.map.once('click', async ($event: mapboxgl.MapMouseEvent) => {
+      await this.apiService.populateMap($event.lngLat.lat, $event.lngLat.lng);
+      this.notificationService.warning('world.map.update');
+    });
+  }
+
   terminalize(): void {
     this.clearMarkers();
     this.map.remove();
     this.map = null;
+    this.markers = [];
   }
 
 }

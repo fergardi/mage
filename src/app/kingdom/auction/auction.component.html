@@ -39,7 +39,7 @@
               <mat-list dense>
                 <mat-list-item [ngClass]="[auction.join.faction.id, auction.join.legendary ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="(auction.quantity || auction.level || auction.spell.level) | short" matBadgePosition="above before">
-                    <img mat-list-avatar [src]="auction.join.image" [alt]="auction.join.name | translate">
+                    <img mat-list-avatar class="animated pulse infinite" [src]="auction.join.image" [alt]="auction.join.name | translate">
                   </div>
                   <div mat-line>{{ auction.join.name | translate:{name:auction.name} }}</div>
                   <div mat-line class="mat-card-subtitle" *ngIf="['artifact', 'contract', 'charm'].includes(auction.type)" [innerHTML]="auction.join.description | translate | icon:auction.join"></div>

@@ -7,6 +7,7 @@
     <button mat-menu-item [matMenuTriggerFor]="kingdomMenu"><mat-icon>person</mat-icon>Bot</button>
     <button mat-menu-item [matMenuTriggerFor]="shopMenu"><mat-icon>attach_money</mat-icon>Tienda</button>
     <button mat-menu-item [matMenuTriggerFor]="questMenu"><mat-icon>search</mat-icon>Lugar</button>
+    <button mat-menu-item (click)="populateMap()"><mat-icon>map</mat-icon>Mapa</button>
   </mat-menu>
 
   <mat-menu #kingdomMenu="matMenu">

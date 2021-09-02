@@ -13,6 +13,7 @@ import { CacheService } from 'src/app/services/cache.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MarkerType, LocationType, StoreType, FactionType } from 'src/app/shared/type/common.type';
 import { GeoFireClient } from 'geofirex';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @UntilDestroy()
 @Component({
@@ -37,12 +38,14 @@ export class MapComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private cacheService: CacheService,
     private notificationService: NotificationService,
-  ) { }
+    private loadingService: LoadingService,
+  ) {
+    this.loadingService.startLoading();
+  }
 
   async ngOnInit(): Promise<void> {
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.once('load', async () => {
-      console.log('starting map')
       // resize map in case drawer has changed
       this.mapboxService.resizeMap();
       // print icons surrounding kingdom
@@ -68,6 +71,7 @@ export class MapComponent implements OnInit, OnDestroy {
         shops.forEach((shop: any) => this.mapboxService.addMarker(shop, MarkerType.SHOP, false, false));
         this.mapboxService.refreshMarkers();
       });
+      this.loadingService.stopLoading();
     });
     // menus
     this.stores = await this.cacheService.getStores();
@@ -75,18 +79,24 @@ export class MapComponent implements OnInit, OnDestroy {
     this.factions = (await this.cacheService.getFactions()).filter((faction: any) => faction.id !== 'grey');
   }
 
-  addShop(type: StoreType) {
+  addShop(type: StoreType): void {
     this.notificationService.warning('world.map.add');
     this.mapboxService.addShopByClick(type);
   }
 
-  addQuest(type: LocationType) {
+  addQuest(type: LocationType): void {
     this.notificationService.warning('world.map.add');
     this.mapboxService.addQuestByClick(type);
   }
-  addKingdom(type: FactionType) {
+
+  addKingdom(type: FactionType): void {
     this.notificationService.warning('world.map.add');
     this.mapboxService.addKingdomByClick(type);
+  }
+
+  populateMap(): void {
+    this.notificationService.warning('world.map.add');
+    this.mapboxService.populateMapByClick();
   }
 
   ngOnDestroy(): void {

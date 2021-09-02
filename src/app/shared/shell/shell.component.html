@@ -68,7 +68,6 @@
       <mat-nav-list dense class="supply-list" role="navigation" *ngIf="(angularFireAuth.authState | async)" tourAnchor="tour.supplies">
         <mat-list-item *ngFor="let supply of kingdomSupplies$ | async; let i = index" (click)="openStatusSheet()">
           <div mat-list-avatar
-            [title]="supply.resource.name | translate"
             [matTooltip]="supply.resource.name | translate"
             matTooltipPosition="below"
             [matBadge]="supply.timestamp ? (supply.timestamp | turn:supply.resource.max:supply.resource.ratio | async) : (supply.quantity | short)"

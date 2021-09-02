@@ -18,7 +18,7 @@
         <mat-action-list dense tourAnchor="tour.city">
           <button mat-list-item *ngFor="let building of kingdomBuildings$ | async" (click)="openBuildDialog(building)" class="common">
             <div mat-list-avatar [matBadge]="building.quantity | long" matBadgePosition="above before">
-              <img mat-list-avatar [src]="building.structure.image" [alt]="building.structure.name | translate">
+              <img mat-list-avatar class="animated pulse infinite" [src]="building.structure.image" [alt]="building.structure.name | translate">
             </div>
             <div mat-line>{{ building.structure.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="building.structure.description | translate | icon:building.structure"></div>
@@ -57,7 +57,7 @@
             <mat-action-list dense tourAnchor="tour.tax">
               <button mat-list-item *ngIf="village$" (click)="openTaxDialog(village$)" class="common">
                 <div mat-list-avatar [matBadge]="(village$ | async)?.quantity | long" matBadgePosition="above before">
-                  <img mat-list-avatar [src]="(village$ | async)?.structure.image" [alt]="(village$ | async)?.structure.name | translate">
+                  <img mat-list-avatar class="animated pulse infinite" [src]="(village$ | async)?.structure.image" [alt]="(village$ | async)?.structure.name | translate">
                 </div>
                 <div mat-line>{{ (village$ | async)?.structure.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="(village$ | async)?.structure.description | translate | icon:(village$ | async)?.structure"></div>
@@ -92,7 +92,7 @@
             <mat-action-list dense tourAnchor="tour.charge">
               <button mat-list-item *ngIf="node$" (click)="openChargeDialog(node$)" class="common">
                 <div mat-list-avatar [matBadge]="(node$ | async)?.quantity | long" matBadgePosition="above before">
-                  <img mat-list-avatar [src]="(node$ | async)?.structure.image" [alt]="(village$ | async)?.structure.name | translate">
+                  <img mat-list-avatar class="animated pulse infinite" [src]="(node$ | async)?.structure.image" [alt]="(village$ | async)?.structure.name | translate">
                 </div>
                 <div mat-line>{{ (node$ | async)?.structure.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="(node$ | async)?.structure.description | translate | icon:(node$ | async)?.structure"></div>
@@ -127,7 +127,7 @@
             <mat-action-list dense tourAnchor="tour.explore">
               <button mat-list-item *ngIf="land$ | async" (click)="openExploreDialog(land$)" class="common">
                 <div mat-list-avatar [matBadge]="(land$ | async)?.quantity | long" matBadgePosition="above before">
-                  <img mat-list-avatar src="/assets/images/resources/land.png" [alt]="'resource.turn.name' | translate">
+                  <img mat-list-avatar class="animated pulse infinite" src="/assets/images/resources/land.png" [alt]="'resource.turn.name' | translate">
                 </div>
                 <div mat-line>{{ 'resource.land.name' | translate }}</div>
                 <div mat-line class="mat-card-subtitle">{{ 'resource.land.description' | translate }}</div>

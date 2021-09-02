@@ -130,7 +130,7 @@ export class ApiService {
   }
 
   refreshAuction(): Promise<any> {
-    return this.httpClient.put(`${environment.functions.url}/kingdom/auction`, undefined).toPromise();
+    return this.httpClient.put(`${environment.functions.url}/world/auction`, undefined).toPromise();
   }
 
   sendLetter(kingdomId: string, subject: string, message: string, fromId: string): Promise<any> {
