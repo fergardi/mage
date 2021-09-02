@@ -87,15 +87,15 @@ api.delete('/kingdom/:kingdomId/archive', ash(async (req: any, res: any) => res.
 api.patch('/kingdom/:kingdomId/guild/:guildId', ash(async (req: any, res: any) => res.json(await favorGuild(req.params.kingdomId, req.params.guildId))));
 api.patch('/kingdom/:kingdomId/clan/:clanId/join', ash(async (req: any, res: any) => res.json(await joinClan(req.params.kingdomId, req.params.clanId))));
 api.patch('/kingdom/:kingdomId/clan/:clanId/leave', ash(async (req: any, res: any) => res.json(await leaveClan(req.params.kingdomId, req.params.clanId))));
-api.put('/kingdom/auction', ash(async (req: any, res: any) => res.json(await refreshAuctions())));
-api.post('/world/kingdom', ash(async (req: any, res: any) => res.json(await createKingdom(req.body.kingdomId, req.body.factionId, req.body.name, parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
-api.put('/world/clan', ash(async (req: any, res: any) => res.json(await foundateClan(req.body.kingdomId, req.body.name, req.body.description, req.body.image))));
-api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
-api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
 api.get('/kingdom/:kingdomId/world/shop/:shopId/:collectionId/:dealId', ash(async (req: any, res: any) => res.json(await tradeDeal(req.params.kingdomId, req.params.shopId, req.params.collectionId, req.params.dealId))));
 api.post('/kingdom/:kingdomId/world/quest/:questId', ash(async (req: any, res: any) => res.json(await adventureQuest(req.params.kingdomId, req.params.questId))));
 api.put('/kingdom/:kingdomId/tree', ash(async (req: any, res: any) => res.json(await plantTree(req.params.kingdomId, req.body.tree, req.body.gems))));
-api.put('/world/map', ash(async (req: any, res: any) => res.json(await populateMap(parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
+api.post('/world/kingdom', ash(async (req: any, res: any) => res.json(await createKingdom(req.body.kingdomId, req.body.factionId, req.body.name, parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
+api.put('/world/auction', ash(async (req: any, res: any) => res.json(await refreshAuctions())));
+api.put('/world/clan', ash(async (req: any, res: any) => res.json(await foundateClan(req.body.kingdomId, req.body.name, req.body.description, req.body.image))));
+api.put('/world/shop', ash(async (req: any, res: any) => res.json(await checkShop(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.storeType, req.body.name))));
+api.put('/world/quest', ash(async (req: any, res: any) => res.json(await checkQuest(req.body.fid, parseFloat(req.body.latitude), parseFloat(req.body.longitude), req.body.locationType, req.body.name))));
+api.post('/world/map', ash(async (req: any, res: any) => res.json(await populateMap(parseFloat(req.body.latitude), parseFloat(req.body.longitude)))));
 // error handler
 api.use((err: any, req: any, res: any, next: any) => res.status(500).json({ status: 500, error: err.message }));
 
@@ -190,7 +190,7 @@ export const createKingdom = async (kingdomId: string, factionId: KingdomType, n
     }
     case KingdomType.GREEN: {
       troops = ['elf'];
-      charms = ['accuracy', 'ambush', 'druidism', 'beast-council', 'summon-spider', 'call-carnivorous-plant', 'call-centaur', 'climate-control', 'cure', 'growth', 'locust-swarm', 'natures-favor', 'invigorate', 'calm', 'serenity', 'venom', 'call-elf', 'summon-werebear', 'summon-druid', 'sunray'];
+      charms = ['accuracy', 'ambush', 'druidism', 'beast-council', 'summon-spider', 'call-carnivorous-plant', 'call-centaur', 'climate-control', 'cure', 'hurricane', 'locust-swarm', 'natures-favor', 'invigorate', 'calm', 'serenity', 'venom', 'call-elf', 'summon-werebear', 'summon-druid', 'sunray'];
       break;
     }
     case KingdomType.RED: {
@@ -1193,6 +1193,7 @@ export const checkShop = async (fid?: string, latitude?: number, longitude?: num
         innContracts.map(contract => batch.delete(contract));
         const hero = (await angularFirestore.collection('heroes').where('random', '==', random(0, 19)).limit(1).get()).docs[0].data();
         const level = random(1, 10);
+        console.log('creando ', fid, hero.id)
         batch.create(angularFirestore.collection(`shops/${fid}/contracts`).doc(), { id: hero.id, hero: hero, gold: 1000000 * level, level: level });
         break;
       case StoreType.MERCENARY:
@@ -1200,6 +1201,7 @@ export const checkShop = async (fid?: string, latitude?: number, longitude?: num
         mercenaryTroops.map(troop => batch.delete(troop));
         const unit = (await angularFirestore.collection('units').where('random', '==', random(0, 64)).limit(1).get()).docs[0].data();
         const quantity = random(Math.min(...unit.amount), Math.max(...unit.amount));
+        console.log('creando ', fid, unit.id)
         batch.create(angularFirestore.collection(`shops/${fid}/troops`).doc(), { id: unit.id, unit: unit, gold: 1000000 + (quantity * unit.power), quantity: quantity });
         break;
       case StoreType.MERCHANT:
@@ -1207,12 +1209,14 @@ export const checkShop = async (fid?: string, latitude?: number, longitude?: num
         merchantArtifacts.map(artifact => batch.delete(artifact));
         const item = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
         const lot = random(1, 3);
+        console.log('creando ', fid, item.id)
         batch.create(angularFirestore.collection(`shops/${fid}/artifacts`).doc(), { id: item.id, item: item, gold: 1000000 * lot, quantity: lot });
         break;
       case StoreType.SORCERER:
         const sorcererCharms = await angularFirestore.collection(`shops/${fid}/charms`).listDocuments();
         sorcererCharms.map(charm => batch.delete(charm));
         const spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 99)).limit(1).get()).docs[0].data();
+        console.log('creando ', fid, spell.id)
         batch.create(angularFirestore.collection(`shops/${fid}/charms`).doc(), { id: spell.id, spell: spell, gold: 1000000 * spell.level });
         break;
     }
@@ -1315,7 +1319,7 @@ export const checkQuest = async (fid?: string, latitude?: number, longitude?: nu
     let questHeroes: string[] = [];
     let questUnits: string[] = [];
     let questItems: string[] = [];
-    const legendaries: string[] = ['wisdom-tome', 'dragon-egg', 'voodoo-doll', 'golden-feather', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-compass', 'magic-scroll', 'rattle'];
+    const legendaries: string[] = ['enchanted-lamp', 'wisdom-tome', 'dragon-egg', 'voodoo-doll', 'cursed-skull', 'cursed-mask', 'cursed-idol', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-compass', 'rattle', ];
     const items: string[] = ['treasure-chest', 'necronomicon', 'enchanted-lamp', 'wisdom-tome', 'demon-horn', 'lightning-orb', 'dragon-egg', 'crystal-ball', 'agility-potion', 'defense-potion', 'cold-orb', 'earth-orb', 'fire-orb', 'mana-potion', 'light-orb', 'strength-potion', 'love-potion', 'spider-web', 'animal-fang', 'bone-necklace', 'crown-thorns', 'voodoo-doll', 'cursed-skull', 'cursed-mask', 'cursed-idol', 'golem-book', 'letter-thieves', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-beans', 'magic-compass', 'mana-vortex', 'rattle', 'rotten-food', 'snake-eye', 'treasure-map', 'valhalla-horn', 'fairy-wings', 'vampire-teeth', 'holy-grenade', 'powder-barrel', 'vial-venom', 'ancient-rune', 'ice-stone', 'fire-scroll', 'cold-scroll', 'light-scroll', 'earth-scroll', 'lightning-scroll'];
     const demon = ['nightmare', 'medusa', 'cyclop', 'minotaur', 'devil', 'ogre', 'imp'];
     const undead = ['wraith', 'bone-dragon', 'nightmare', 'ghoul', 'lich', 'skeleton', 'vampire', 'werewolf', 'zombie', 'rat'];
@@ -1561,10 +1565,10 @@ export const drawMap = async (points: any[]) => {
     for (const element of groups[group].slice(0, 1)) {
       switch (element.tags.type) {
         case (MarkerType.SHOP):
-          await checkShop(undefined, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+          await checkShop(undefined, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.subtype, element.tags.name);
           break;
         case (MarkerType.QUEST):
-          await checkQuest(undefined, element.tags.subtype, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.name);
+          await checkQuest(undefined, element.geometry.coordinates[1], element.geometry.coordinates[0], element.tags.subtype, element.tags.name);
           break;
       }
     }
@@ -2273,7 +2277,7 @@ export const refreshAuctions = async () => {
             gold: auction.gold || null,
           };
           const from = (await angularFirestore.doc(`kingdoms/${auction.kingdom}`).get()).data();
-          await addLetter(auction.kingdom, 'kingdom.auction.subject', 'kingdom.auction.won', from, batch, data);
+          if (from) await addLetter(auction.kingdom, 'kingdom.auction.subject', 'kingdom.auction.won', from, batch, data);
         }
         await startAuction(auction.type, batch);
         batch.delete(kingdomAuction.ref);
