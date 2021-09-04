@@ -290,30 +290,55 @@ export const deleteKingdom = async (kingdomId: string): Promise<void> => {
 };
 
 /**
+ * searchs a tree node by perk name
+ * @param node
+ * @param perk
+ */
+export const searchPerk = (node: any, perk: string): any | null => {
+  if (node.id === perk) {
+    return node;
+  } else if (node.perks) {
+    let found = null;
+    for (let i = 0; found === null && i < node.perks.length; i++) {
+      found = searchPerk(node.perks[i], perk);
+    }
+    return found;
+  }
+  return null;
+};
+
+/**
+ * updates the tree node with a level
+ * @param node
+ * @param perk
+ * @param level
+ */
+export const updatePerk = (node: any, perk: string, level: number): boolean => {
+  if (node.id === perk) {
+    node.level = level;
+    return true;
+  } else if (node.perks) {
+    let found = false;
+    for (let i = 0; found === false && i < node.perks.length; i++) {
+      found = updatePerk(node.perks[i], perk, level);
+    }
+    return found;
+  }
+  return false;
+};
+
+/**
  * updates the kingdom tree
  * @param kingdomId
  * @param tree
  * @param gems
  */
 export const plantTree = async (kingdomId: string, tree: any, gems: number): Promise<void> => {
-  function updateTree(node: any, perk: string, level: number): boolean {
-    if (node.id === perk) {
-      node.level = level;
-      return true;
-    } else if (node.perks) {
-      let found = false;
-      for (let i = 0; found === false && i < node.perks.length; i++) {
-        found = updateTree(node.perks[i], perk, level);
-      }
-      return found;
-    }
-    return false;
-  }
   const kingdomGem = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'gem').limit(1).get()).docs[0].data();
   if (gems <= kingdomGem.quantity) {
     const batch: FirebaseFirestore.WriteBatch = angularFirestore.batch();
     const baseTree = (await angularFirestore.doc(`perks/strategy`).get()).data();
-    Object.keys(tree).forEach((key: string) => updateTree(baseTree, key, tree[key]));
+    Object.keys(tree).forEach((key: string) => updatePerk(baseTree, key, tree[key]));
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}`), { tree: baseTree });
     await addSupply(kingdomId, 'gem', -gems, batch);
     await batch.commit();
@@ -344,6 +369,24 @@ export const addSupply = async (kingdomId: string, supply: string, quantity: num
     });
     if (quantity < 0) await payMaintenance(kingdomId, Math.abs(quantity), batch);
   } else {
+    const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
+    switch (supply) {
+      case 'gold':
+        const agriculture = searchPerk(tree, 'agriculture');
+        // tslint:disable-next-line: no-parameter-reassignment
+        if (agriculture) quantity = Math.ceil(quantity * (1 + (agriculture.goldBonus * agriculture.level) / 100));
+        break;
+      case 'mana':
+        const alchemy = searchPerk(tree, 'alchemy');
+        // tslint:disable-next-line: no-parameter-reassignment
+        if (alchemy) quantity = Math.ceil(quantity * (1 + (alchemy.manaBonus * alchemy.level) / 100));
+        break;
+      case 'population':
+        const culture = searchPerk(tree, 'culture');
+        // tslint:disable-next-line: no-parameter-reassignment
+        if (culture) quantity = Math.ceil(quantity * (1 + (culture.populationBonus * culture.level) / 100));
+        break;
+    }
     const q = s.max && (s.quantity + quantity > s.max) ? s.max : s.quantity + quantity <= 0 ? 0 : admin.firestore.FieldValue.increment(quantity);
     if (max) batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomSupply.id}`), { quantity: q, max: max });
     else batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/supplies/${kingdomSupply.id}`), { quantity: q });
@@ -562,6 +605,10 @@ const evictMaintenance = async (kingdomId: string, batch: FirebaseFirestore.Writ
  */
 export const addTroop = async (kingdomId: string, unit: any, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
   const kingdomTroop = await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('id', '==', unit.id).limit(1).get();
+  const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
+  const strategy = searchPerk(tree, 'strategy');
+  // tslint:disable-next-line: no-parameter-reassignment
+  if (strategy) quantity = Math.ceil(quantity * (1 + (strategy.troopBonus * strategy.level) / 100));
   if (kingdomTroop.size > 0) {
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/troops/${kingdomTroop.docs[0].id}`), { quantity: admin.firestore.FieldValue.increment(quantity) });
   } else {
@@ -747,6 +794,10 @@ export const assignContract = async (kingdomId: string, contractId: string, assi
  * @param batch
  */
 export const addCharm = async (kingdomId: string, spell: any, turns: number, batch: FirebaseFirestore.WriteBatch) => {
+  const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
+  const science = searchPerk(tree, 'science');
+  // tslint:disable-next-line: no-parameter-reassignment
+  if (science) turns = Math.ceil(turns * (1 + (science.researchBonus * science.level) / 100));
   const kingdomCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('id', '==', spell.id).limit(1).get();
   if (kingdomCharm.size > 0) {
     const charm = kingdomCharm.docs[0]?.data();
@@ -800,7 +851,7 @@ export const assignCharm = async (kingdomId: string, charmId: string, assignment
  * @param targetId
  */
 export const conjureCharm = async (kingdomId: string, charmId: string, targetId: string) => {
-  let result = {};
+  let result: any = {};
   const charm = (await angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`).get()).data();
   if (charm) {
     const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get()).docs[0].data();
@@ -835,6 +886,7 @@ export const conjureCharm = async (kingdomId: string, charmId: string, targetId:
         case 'espionage':
           const from = (await angularFirestore.doc(`kingdoms/${targetId}`).get()).data();
           // TODO
+          // this is done in the espionage section
           await addLetter(kingdomId, 'kingdom.espionage.subject', 'kingdom.espionage.message', from, batch, null);
           break;
         case 'resource':
@@ -1078,6 +1130,10 @@ export const addBuilding = async (kingdomId: string, buildingId: string, quantit
     const stack = building.quantity + quantity <= 0 ? 0 : admin.firestore.FieldValue.increment(quantity);
     batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${kingdomBuilding.id}`), { quantity: stack });
     if (quantity >= 0) {
+      const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
+      const architecture = searchPerk(tree, 'architecture');
+      // tslint:disable-next-line: no-parameter-reassignment
+      if (architecture) quantity = Math.ceil(quantity * (1 + (architecture.constructionBonus * architecture.level) / 100));
       await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor((building.structure.goldProduction - building.structure.goldMaintenance) * quantity), batch);
       await balanceSupply(kingdomId, SupplyType.MANA, Math.floor((building.structure.manaProduction - building.structure.manaMaintenance) * quantity), batch);
       await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor((building.structure.populationProduction - building.structure.populationMaintenance) * quantity), batch);
@@ -1193,7 +1249,6 @@ export const checkShop = async (fid?: string, latitude?: number, longitude?: num
         innContracts.map(contract => batch.delete(contract));
         const hero = (await angularFirestore.collection('heroes').where('random', '==', random(0, 19)).limit(1).get()).docs[0].data();
         const level = random(1, 10);
-        console.log('creando ', fid, hero.id)
         batch.create(angularFirestore.collection(`shops/${fid}/contracts`).doc(), { id: hero.id, hero: hero, gold: 1000000 * level, level: level });
         break;
       case StoreType.MERCENARY:
@@ -1201,7 +1256,6 @@ export const checkShop = async (fid?: string, latitude?: number, longitude?: num
         mercenaryTroops.map(troop => batch.delete(troop));
         const unit = (await angularFirestore.collection('units').where('random', '==', random(0, 64)).limit(1).get()).docs[0].data();
         const quantity = random(Math.min(...unit.amount), Math.max(...unit.amount));
-        console.log('creando ', fid, unit.id)
         batch.create(angularFirestore.collection(`shops/${fid}/troops`).doc(), { id: unit.id, unit: unit, gold: 1000000 + (quantity * unit.power), quantity: quantity });
         break;
       case StoreType.MERCHANT:
@@ -1209,14 +1263,12 @@ export const checkShop = async (fid?: string, latitude?: number, longitude?: num
         merchantArtifacts.map(artifact => batch.delete(artifact));
         const item = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
         const lot = random(1, 3);
-        console.log('creando ', fid, item.id)
         batch.create(angularFirestore.collection(`shops/${fid}/artifacts`).doc(), { id: item.id, item: item, gold: 1000000 * lot, quantity: lot });
         break;
       case StoreType.SORCERER:
         const sorcererCharms = await angularFirestore.collection(`shops/${fid}/charms`).listDocuments();
         sorcererCharms.map(charm => batch.delete(charm));
         const spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 99)).limit(1).get()).docs[0].data();
-        console.log('creando ', fid, spell.id)
         batch.create(angularFirestore.collection(`shops/${fid}/charms`).doc(), { id: spell.id, spell: spell, gold: 1000000 * spell.level });
         break;
     }
@@ -1463,6 +1515,7 @@ export const adventureQuest = async (kingdomId: string, questId: string) => {
     const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', 'turn').limit(1).get()).docs[0].data();
     kingdomTurn.quantity = calculate(kingdomTurn.timestamp.toMillis(), admin.firestore.Timestamp.now().toMillis(), kingdomTurn.resource.max, kingdomTurn.resource.ratio);
     if (worldQuest.turns <= kingdomTurn.quantity) {
+      const kingdomTree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
       const kingdomContracts = (await angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).where('assignment', '==', AssignmentType.ATTACK).limit(3).get()).docs.map(contract => ({ ...contract.data(), fid: contract.id }));
       const kingdomTroops = (await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('assignment', '==', AssignmentType.ATTACK).orderBy('sort', 'asc').limit(5).get()).docs.map(troop => ({ ...troop.data(), fid: troop.id, initialQuantity: troop.data().quantity }));
       const kingdomArtifacts = (await angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).where('assignment', '==', AssignmentType.ATTACK).limit(1).get()).docs.map(artifact => ({ ...artifact.data(), fid: artifact.id }));
@@ -1478,7 +1531,7 @@ export const adventureQuest = async (kingdomId: string, questId: string) => {
           logs: [],
         };
         const batch = angularFirestore.batch();
-        await resolveBattle(kingdomContracts, kingdomTroops, kingdomArtifacts, kingdomCharms, questContracts, questTroops, [], [], BattleType.ADVENTURE, report, kingdomId, batch, undefined, questId);
+        await resolveBattle(kingdomTree, kingdomContracts, kingdomTroops, kingdomArtifacts, kingdomCharms, null, questContracts, questTroops, [], [], BattleType.ADVENTURE, report, kingdomId, batch, undefined, questId);
         await addSupply(kingdomId, 'turn', -worldQuest.turns, batch);
         const data: any = {
           logs: report.logs,
@@ -1509,7 +1562,7 @@ export const adventureQuest = async (kingdomId: string, questId: string) => {
  * @param longitude
  * @param radius
  */
-export const scanMap = async (latitude: number, longitude: number, radius: number) => {
+export const scanMap = async (latitude: number, longitude: number, radius: number): Promise<any> => {
   const elements: any[] = [
     // shops
     { type: MarkerType.SHOP, subtype: StoreType.INN, query: '[building=hotel]', radius: 2000 },
@@ -1551,7 +1604,7 @@ export const scanMap = async (latitude: number, longitude: number, radius: numbe
     });
     return response;
   } catch (error) {
-    throw new Error('api.error.map');
+    throw error;
   }
 };
 
@@ -1597,7 +1650,40 @@ export const populateMap = async (latitude: number, longitude: number) => {
 //========================================================================================
 
 /**
- * applies an artifact over a target
+ * applies a tree over the targets
+ * @param tree
+ * @param targets
+ */
+const applyTree = (tree: any, targets: any[]) => {
+  const metallurgy = searchPerk(tree, 'metallurgy');
+  const medicine = searchPerk(tree, 'medicine');
+  const forge = searchPerk(tree, 'forge');
+  targets.forEach(troop => {
+    if (metallurgy) troop.unit.attackBonus = (troop.unit.attackBonus || 0) + metallurgy.attackBonus * metallurgy.level;
+    if (medicine) troop.unit.healthBonus = (troop.unit.healthBonus || 0) + medicine.healthBonus * medicine.level;
+    if (forge) troop.unit.defenseBonus = (troop.unit.defenseBonus || 0) + forge.defenseBonus * forge.level;
+  });
+};
+
+/**
+ * applies trees in battle
+ * @param attackerTroops
+ * @param attackerTree
+ * @param defenderTroops
+ * @param defenderTree
+ */
+export const applyTrees = (
+  attackerTroops: any[],
+  attackerTree: any,
+  defenderTroops: any[],
+  defenderTree: any,
+) => {
+  if (attackerTree) applyTree(attackerTree, attackerTroops);
+  if (defenderTree) applyTree(defenderTree, defenderTroops);
+};
+
+/**
+ * applies an artifact over the targets
  * @param artifact
  * @param targets
  * @param targetType
@@ -2181,10 +2267,12 @@ export const applyWaves = async (
  * @param batch
  */
 export const resolveBattle = async (
+  attackerTree: any,
   attackerContracts: any[],
   attackerTroops: any[],
   attackerArtifacts: any[],
   attackerCharms: any[],
+  defenderTree: any,
   defenderContracts: any[],
   defenderTroops: any[],
   defenderArtifacts: any[],
@@ -2203,6 +2291,8 @@ export const resolveBattle = async (
   if (defenderTroops.length <= 0 || (battleType === BattleType.PILLAGE && !discovered)) {
     report.victory = true; // pillage undetected, instant victory
   } else {
+    // trees
+    applyTrees(attackerTroops, attackerTree, defenderTroops, defenderTree);
     // artifacts
     applyArtifacts(attackerTroops, attackerArtifacts, defenderTroops, defenderArtifacts, report);
     // charms
@@ -2244,6 +2334,8 @@ export const resolveBattle = async (
  */
 const battleKingdom = async (kingdomId: string, battleId: BattleType, targetId: string) => {
   // TODO
+  // const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
+  // const masonry = searchPerk(tree, 'masonry');
 };
 
 //========================================================================================
@@ -2384,8 +2476,12 @@ export const offerGod = async (kingdomId: string, godId: string, sacrifice: numb
     if (offering === 'turn') kingdomSupply.quantity = calculate(kingdomSupply.timestamp.toMillis(), admin.firestore.Timestamp.now().toMillis(), kingdomSupply.resource.max, kingdomSupply.resource.ratio);
     if (sacrifice >= kingdomGod.increment && sacrifice <= kingdomSupply.quantity) {
       const batch = angularFirestore.batch();
-      batch.update(angularFirestore.doc(`gods/${godId}`), { sacrifice: admin.firestore.FieldValue.increment(sacrifice), armageddon: (kingdomGod.sacrifice + sacrifice) >= kingdomGod[offering] });
       await addSupply(kingdomId, offering, -sacrifice, batch, offering === 'turn' ? kingdomSupply.resource.ratio : null);
+      const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
+      const theology = searchPerk(tree, 'theology');
+      // tslint:disable-next-line: no-parameter-reassignment
+      if (theology) sacrifice = Math.ceil(sacrifice * (1 + (theology.godBonus * theology.level) / 100));
+      batch.update(angularFirestore.doc(`gods/${godId}`), { sacrifice: admin.firestore.FieldValue.increment(sacrifice), armageddon: (kingdomGod.sacrifice + sacrifice) >= kingdomGod[offering] });
       if (!reward) {
         const rewards = ['supply', 'artifact', 'contract', 'enchantment', 'troop', 'building', 'charm'];
         // tslint:disable-next-line: no-parameter-reassignment

@@ -247,7 +247,7 @@
     },
     "encyclopedia": {
       "name": "Enciclopedia",
-      "description": "Conocimiento ilimitado",
+      "description": "Obtén conocimientos",
       "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc. Si lo que buscas no está en esta biblioteca, es que no existe.",
       "tour": "En la enciclopedia encontrarás todo lo que necesites para aprender a jugar, así como las estadísticas de todo lo que existe en este mundo mágico.<br><br>Si aún así tienes más dudas, tienes a tu disposición el Tutorial del juego. Recuerda que a jugar se aprende jugando."
     },
@@ -748,7 +748,7 @@
     },
     "emporium": {
       "name": "Emporio",
-      "description": "Contrabando del mercado negro",
+      "description": "Trafica con gemas",
       "help": "En el emporio puedes gastar tus <gem> adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un importante impulso económico, científico o militar.",
       "tour": "El emporio es el lugar para gastar las <gem> que hayas conseguido para comprar diversos Artefactos o invertir en un Árbol Genealógico que ofrece diversas bonificaciones, como por ejemplo:<ul><li>Construir edificios más deprisa</li><li>Reclutar más tropas</li><li>Investigar hechizos más rápido</li><li>Explorar más tierras</li><li>Generar más recursos</li></ul>También puedes comprar más <gem> con dinero real.",
       "success": "Has adquirido {{ quantity }} {{ item }}",
@@ -759,9 +759,10 @@
     },
     "tree": {
       "name": "Genealogía",
-      "description": "Beneficios adicionales",
+      "description": "Árbol de los ancestros",
       "help": "En el árbol genealógico puedes invertir tus <gem> para escoger qué conocimientos ancestrales has heredado de tu familia durante siglos. Cada ventaja otorga un pequeño beneficio asociado a un elemento muy concreto.",
-      "save": "Replantar",
+      "tour": "",
+      "save": "Plantar",
       "reset": "Reiniciar",
       "success": "Has reestablecido tu genealogía",
       "error": "Ha ocurrido un problema"
@@ -835,16 +836,16 @@
   },
   "pack": {
     "few": {
-      "name": "Puñado de gemas",
-      "description": "Unas pocas gemas en la palma de la mano"
+      "name": "Saquito de gemas",
+      "description": "Contiene algunas <gem>"
     },
     "many": {
-      "name": "Saco de gemas",
-      "description": "Un buen montón de gemas dentro de un saquito"
+      "name": "Cubo de gemas",
+      "description": "Contiene bastantes <gem>"
     },
     "lot": {
-      "name": "Montaña de gemas",
-      "description": "Un montón de gemas en forma de montaña"
+      "name": "Carreta de gemas",
+      "description": "Contiene muchísimas <gem>"
     }
   },
   "structure": {
@@ -1317,7 +1318,7 @@
   "perk": {
     "strategy": {
       "name": "Estrategia",
-      "description": "Al reclutar obtienes +(0/5/10/15)% Tropas de forma gratuita"
+      "description": "Al reclutar e invocar obtienes +(0/5/10/15)% Tropas adicionales"
     },
     "agriculture": {
       "name": "Agricultura",
@@ -1329,21 +1330,21 @@
     },
     "architecture": {
       "name": "Arquitectura",
-      "description": "Tus Edificios se construyen +(0/5/10/15)% más rápido"
+      "description": "Al construir obtienes +(0/5/10/15)% Edificios adicionales"
     },
     "culture": {
       "name": "Cultura",
-      "description": "Tus Pueblos atraen +(0/5/10/15)% Población adicional"
+      "description": "Tus Pueblos generan +(0/5/10/15)% Población adicional"
     },
-    "teology": {
+    "theology": {
       "name": "Teología",
-      "description": "Realizar ofrendas es +(0/5/10/15)% más barato"
+      "description": "Al ofrendar ofreces +(0/5/10/15)% recursos adicionales"
     },
     "cartography": {
       "name": "Cartografía",
-      "description": "Al explorar encuentas +(0/5/10/15)% Tierras adicionales"
+      "description": "Al explorar encuentras +(0/5/10/15)% Tierras adicionales"
     },
-    "metalurgy": {
+    "metallurgy": {
       "name": "Metalurgia",
       "description": "Tus Tropas tienen +(0/5/10/15)% Ataque adicional"
     },
@@ -1357,15 +1358,15 @@
     },
     "science": {
       "name": "Ciencia",
-      "description": "Investigar Hechizos es +(0/5/10/15)% más rápido"
+      "description": "Al investigar inviertes +(0/5/10/15)% Turnos adicionales"
     },
     "mysticism": {
       "name": "Misticismo",
-      "description": "Tu Defensa Mágica aumenta +(0/5/10/15)%"
+      "description": "Tu Defensa Mágica tiene +(0/5/10/15)% adicional"
     },
     "masonry": {
       "name": "Mampostería",
-      "description": "Tu Defensa Física aumenta +(0/5/10/15)%"
+      "description": "Tu Defensa Física tiene +(0/5/10/15)% adicional"
     }
   },
   "spell": {

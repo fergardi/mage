@@ -57,7 +57,8 @@ export class AppComponent implements OnInit {
       // CollectionType.STORES,
       // CollectionType.LOCATIONS,
       // CollectionType.LEGENDS,
-      // CollectionType.PERKS,
+      CollectionType.PERKS,
+      // CollectionType.PACKS,
     ]);
   }
 }

@@ -44,7 +44,7 @@
         <mat-card-subtitle>{{ 'kingdom.tree.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
           <button mat-icon-button (click)="this.tutorialService.start('tour.tree')"><mat-icon>help</mat-icon></button>
-          <mat-chip-list><mat-chip color="primary"><mat-icon>loyalty</mat-icon>{{ PERK_COST }}</mat-chip></mat-chip-list>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>diamond</mat-icon>{{ PERK_COST }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>
 
@@ -73,20 +73,20 @@
         <mat-card-title>{{ 'kingdom.mining.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.mining.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
-          <button mat-icon-button (click)="this.tutorialService.start('tour.packs')"><mat-icon>help</mat-icon></button>
+          <button mat-icon-button (click)="this.tutorialService.start('tour.mining')"><mat-icon>help</mat-icon></button>
           <mat-chip-list><mat-chip color="primary"><mat-icon>redeem</mat-icon>{{ emporiumPacks.length | long }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>
 
       <mat-card-content>
         <div matSubheader>{{ 'card.list.packs' | translate }}:</div>
-        <mat-action-list dense tourAnchor="tour.packs">
+        <mat-action-list dense tourAnchor="tour.mining">
           <button mat-list-item *ngFor="let pack of emporiumPacks" class="common" disabled>
             <div mat-list-avatar [matBadge]="pack.quantity" matBadgePosition="above before">
               <img mat-list-avatar class="animated pulse infinite" [src]="pack.image" [alt]="pack.name | translate">
             </div>
             <div mat-line>{{ pack.name | translate }}</div>
-            <div mat-line class="mat-card-subtitle">{{ pack.description | translate }}</div>
+            <div mat-line class="mat-card-subtitle" [innerHTML]="pack.description | translate | icon:pack"></div>
             <div mat-list-avatar [matBadge]="pack.money + '€'" matBadgePosition="above after">
               <img mat-list-avatar src="/assets/images/stores/merchant.png" [alt]="'store.merchant.name' | translate">
             </div>

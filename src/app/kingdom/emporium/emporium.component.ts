@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { PERK_COST } from './perk.component';
 import { PlantComponent } from './plant.component';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-emporium',
@@ -35,6 +36,7 @@ export class EmporiumComponent implements OnInit {
     private dialog: MatDialog,
     private store: Store,
     public tutorialService: TutorialService,
+    // private angularFirestore: AngularFirestore,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -44,6 +46,12 @@ export class EmporiumComponent implements OnInit {
       this.originalTree = tree;
       this.kingdomTree = JSON.parse(JSON.stringify(tree));
     });
+    /*
+    this.angularFirestore.doc<any>('perks/strategy').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(tree => {
+      this.originalTree = tree;
+      this.kingdomTree = JSON.parse(JSON.stringify(tree));
+    });
+    */
   }
 
   openBuyDialog(item: any): void {

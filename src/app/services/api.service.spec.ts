@@ -193,7 +193,7 @@ describe('ApiService', () => {
   });
 
   it('should ADD a QUEST', async () => {
-    const request = service.addQuest('shop', LocationType.GRAVEYARD, 0, 0, 'test');
+    const request = service.addQuest('quest', LocationType.GRAVEYARD, 0, 0, 'test');
     const mock = httpMock.expectOne(`${environment.functions.url}/world/quest`);
     mock.flush(null);
     const response = await request;
@@ -203,7 +203,7 @@ describe('ApiService', () => {
 
   it('should REFRESH the AUCTION', async () => {
     const request = service.refreshAuction();
-    const mock = httpMock.expectOne(`${environment.functions.url}/kingdom/auction`);
+    const mock = httpMock.expectOne(`${environment.functions.url}/world/auction`);
     mock.flush(null);
     const response = await request;
     expect(mock.request.method).toEqual(HttpVerb.PUT);

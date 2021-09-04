@@ -2,6 +2,7 @@ import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
 import * as backend from '../src/index';
+import * as axios from 'axios';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -19,9 +20,11 @@ describe(KINGDOM, () => {
   });
 
   it('should SCAN the MAP', async () => {
+    jest.spyOn(axios.default, 'post').mockResolvedValue({ data: { elements: [] } });
     const response = await backend.scanMap(0, 0, 1000);
     expect(response.data.elements).toBeInstanceOf(Array);
     expect(response.data.elements.length).toBe(0);
+    expect(axios.default.post).toHaveBeenCalled();
   });
 
   it('should DRAW the MAP', async () => {

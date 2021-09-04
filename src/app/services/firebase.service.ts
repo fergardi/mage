@@ -29,6 +29,7 @@ export class FirebaseService {
   kingdoms: any[] = [];
   legends: any[] = [];
   perks: any[] = [];
+  packs: any[] = [];
 
   joinedAttacks: any[] = [];
   joinedFactions: any[] = [];
@@ -47,6 +48,7 @@ export class FirebaseService {
   joinedHeroes: any[] = [];
   joinedLegends: any[] = [];
   joinedPerks: any[] = [];
+  joinedPacks: any[] = [];
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -112,6 +114,7 @@ export class FirebaseService {
     this.heroes = await this.httpClient.get<any[]>('assets/fixtures/heroes.json').toPromise();
     this.legends = await this.httpClient.get<any[]>('assets/fixtures/legends.json').toPromise();
     this.perks = await this.httpClient.get<any[]>('assets/fixtures/perks.json').toPromise();
+    this.packs = await this.httpClient.get<any[]>('assets/fixtures/packs.json').toPromise();
   }
 
   async importFixtures(collection: string, elements: any[], batch: firebase.firestore.WriteBatch) {
@@ -230,6 +233,12 @@ export class FirebaseService {
         if (fixtures.includes(CollectionType.PERKS)) {
           console.log(`Loading ${CollectionType.PERKS}...`);
           this.importFixtures(CollectionType.PERKS, this.joinedPerks, batch);
+        }
+        this.joinedPacks = JSON.parse(JSON.stringify(this.packs));
+        this.joinedPacks.forEach(pack => this.joinFixtures(pack));
+        if (fixtures.includes(CollectionType.PACKS)) {
+          console.log(`Loading ${CollectionType.PACKS}...`);
+          this.importFixtures(CollectionType.PACKS, this.joinedPacks, batch);
         }
         await batch.commit();
         console.log('Fixtures loaded!');

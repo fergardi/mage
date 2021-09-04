@@ -12,6 +12,7 @@ const config: admin.AppOptions = {
 const tester = functions(config);
 
 const KINGDOM = 'KINGDOM';
+const PERK = 'masonry';
 
 describe(KINGDOM, () => {
   // common batch
@@ -31,7 +32,20 @@ describe(KINGDOM, () => {
     expect(kingdom.exists).toBe(true);
   });
 
-  it('should PLAN the TREE', async () => {
+  it('should FIND the PERK', async () => {
+    const tree = (await admin.firestore().doc(`kingdoms/${KINGDOM}`).get()).data()?.tree;
+    const node = backend.searchPerk(tree, PERK);
+    expect(node).toBeDefined();
+    expect(node.id).toBe(PERK);
+  });
+
+  it('should UPDATE the PERK', async () => {
+    const tree = (await admin.firestore().doc(`kingdoms/${KINGDOM}`).get()).data()?.tree;
+    const node = backend.updatePerk(tree, PERK, 0);
+    expect(node).toBe(true);
+  });
+
+  it('should PLANT the TREE', async () => {
     const treeBefore = (await admin.firestore().doc(`kingdoms/${KINGDOM}`).get()).data()?.tree;
     expect(treeBefore.level).toBe(0);
     const tree = {

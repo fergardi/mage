@@ -66,10 +66,12 @@ describe(KINGDOM, () => {
     expect(charmAfter.data().assignment).toBe(2);
   });
 
-  it('should CONJURE the CHARM for TROOP', async () => {
+  it('should CONJURE the CHARM for TROOPS', async () => {
     const charm = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
     const addTroopSpy = jest.spyOn(backend, 'addTroop');
-    expect((await backend.conjureCharm(KINGDOM, charm.id, KINGDOM) as any).unit).toBe('unit.skeleton.name');
+    const conjured: any = await backend.conjureCharm(KINGDOM, charm.id, KINGDOM);
+    expect(conjured.unit).toBe('unit.skeleton.name');
+    expect(conjured.size).toBeLessThanOrEqual(Math.max(...charm.data().spell.unit.amount));
     expect(addTroopSpy).toHaveBeenCalled();
   });
 
