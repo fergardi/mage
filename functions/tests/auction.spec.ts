@@ -31,6 +31,15 @@ describe(KINGDOM, () => {
     tester.cleanup();
   });
 
+  it('should BID the AUCTION', async () => {
+    const auction = (await admin.firestore().collection(`auctions`).get()).docs[0];
+    expect(auction.exists).toBe(true);
+    const bid = Math.ceil(auction.data().gold * BID_RATIO);
+    const gold = (await admin.firestore().collection(`kingdoms/${KINGDOM}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
+    await admin.firestore().doc(`kingdoms/${KINGDOM}/supplies/${gold.id}`).update({ quantity: 999999999 });
+    expect((await backend.bidAuction(KINGDOM, auction.id, bid)).gold).toBe(bid);
+  });
+
   it('should REFRESH the AUCTIONS', async () => {
     const auctions = await admin.firestore().collection(`auctions`).listDocuments();
     expect(auctions.length).toBe(5);
@@ -49,15 +58,6 @@ describe(KINGDOM, () => {
     expect(addTroopSpy).toHaveBeenCalledTimes(1);
     expect(addLetterSpy).toHaveBeenCalledTimes(5);
     expect(startAuctionSpy).toHaveBeenCalledTimes(5);
-  });
-
-  it('should BID the AUCTION', async () => {
-    const auction = (await admin.firestore().collection(`auctions`).get()).docs[0];
-    expect(auction.exists).toBe(true);
-    const bid = Math.ceil(auction.data().gold * BID_RATIO);
-    const gold = (await admin.firestore().collection(`kingdoms/${KINGDOM}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
-    await admin.firestore().doc(`kingdoms/${KINGDOM}/supplies/${gold.id}`).update({ quantity: 999999999 });
-    expect((await backend.bidAuction(KINGDOM, auction.id, bid)).gold).toBe(bid);
   });
 
 });

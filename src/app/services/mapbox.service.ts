@@ -96,6 +96,7 @@ export class MapboxService {
 
   refreshMarkers(): void {
     this.markers.forEach((marker: Marker) => {
+      console.log(marker, this.uid)
       if (marker.id !== this.uid && (this.map.getZoom() < environment.mapbox.zoom || !this.markerVisible(marker))) {
         marker.marker.getElement().style.display = 'none';
       } else {

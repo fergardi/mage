@@ -1322,51 +1322,51 @@
     },
     "agriculture": {
       "name": "Agricultura",
-      "description": "Tus Granjas producen +(0/5/10/15)% Oro adicional"
+      "description": "Al generar Oro produces +(0/5/10/15)% Oro adicional"
     },
     "alchemy": {
       "name": "Alquimia",
-      "description": "Tus Nodos producen +(0/5/10/15)% Maná adicional"
+      "description": "Al generar Maná produces +(0/5/10/15)% Maná adicional"
     },
     "architecture": {
       "name": "Arquitectura",
-      "description": "Al construir obtienes +(0/5/10/15)% Edificios adicionales"
+      "description": "Al construir Edificios obtienes +(0/5/10/15)% Edificios adicionales"
     },
     "culture": {
       "name": "Cultura",
-      "description": "Tus Pueblos generan +(0/5/10/15)% Población adicional"
+      "description": "Al generar Población produces +(0/5/10/15)% Población adicional"
     },
     "theology": {
       "name": "Teología",
-      "description": "Al ofrendar ofreces +(0/5/10/15)% recursos adicionales"
+      "description": "Al ofrendar recursos ofreces +(0/5/10/15)% recursos adicionales"
     },
     "cartography": {
       "name": "Cartografía",
-      "description": "Al explorar encuentras +(0/5/10/15)% Tierras adicionales"
+      "description": "Al explorar Tierras encuentras +(0/5/10/15)% Tierras adicionales"
     },
     "metallurgy": {
       "name": "Metalurgia",
-      "description": "Tus Tropas tienen +(0/5/10/15)% Ataque adicional"
+      "description": "Tus Tropas tienen +(0/5/10/15)% Ataque adicional en batalla"
     },
     "medicine": {
       "name": "Medicina",
-      "description": "Tus Tropas tienen +(0/5/10/15)% Vida adicional"
+      "description": "Tus Tropas tienen +(0/5/10/15)% Vida adicional en batalla"
     },
     "forge": {
       "name": "Forja",
-      "description": "Tus Tropas tienen +(0/5/10/15)% Defensa adicional"
+      "description": "Tus Tropas tienen +(0/5/10/15)% Defensa adicional en batalla"
     },
     "science": {
       "name": "Ciencia",
-      "description": "Al investigar inviertes +(0/5/10/15)% Turnos adicionales"
+      "description": "Al investigar Hechizos inviertes +(0/5/10/15)% Turnos adicionales"
     },
     "mysticism": {
       "name": "Misticismo",
-      "description": "Tu Defensa Mágica tiene +(0/5/10/15)% adicional"
+      "description": "Tu reino obtiene +(0/5/10/15)% Defensa Mágica adicional contra hechizos"
     },
     "masonry": {
       "name": "Mampostería",
-      "description": "Tu Defensa Física tiene +(0/5/10/15)% adicional"
+      "description": "Tu reino obtiene +(0/5/10/15)% Defensa Física adicional contra ataques"
     }
   },
   "spell": {
@@ -2222,39 +2222,39 @@
   "guild": {
     "knight": {
       "name": "Gremio de Caballeros",
-      "description": "Obtienes +10% de <attack> en las Batallas"
+      "description": "Al generar Población produces +10% <population> adicional"
     },
     "priest": {
       "name": "Gremio de Sanadores",
-      "description": "Obtienes +10% de <health< en las Batallas"
+      "description": "Tus Tropas tienen +10% <health> adicional en batalla"
     },
-    "champion": {
-      "name": "Gremio de Campeones",
-      "description": "Obtienes +10% de <defense> en las Batallas"
+    "mason": {
+      "name": "Gremio de Canteros",
+      "description": "Al construir Edificios obtienes +10% Edificios adicionales"
     },
     "hunter": {
       "name": "Gremio de Cazadores",
-      "description": "Robas +10% de <population> en los Pillajes"
+      "description": "Al explorar Tierras encuentras +10% <land> adicionales"
     },
-    "rogue": {
+    "thief": {
       "name": "Gremio de Ladrones",
-      "description": "Robas +10% de <gold> en los Pillajes"
+      "description": "Al generar Oro produces +10% <gold> adicional"
     },
     "mage": {
       "name": "Gremio de Magos",
-      "description": "Robas +10% de <mana> en los Pillajes"
+      "description": "Al investigar Hechizos inviertes +10% <turn> adicionales"
     },
     "warrior": {
       "name": "Gremio de Guerreros",
-      "description": "Destruyes +10% de Edificios en los Asedios"
+      "description": "Tus Tropas tienen +10% <defense> adicional en batalla"
     },
     "assassin": {
       "name": "Gremio de Asesinos",
-      "description": "Destruyes +10% de Tropas en los Asedios"
+      "description": "Tus Tropas tienen +10% <attack> adicional en batalla"
     },
     "warlock": {
       "name": "Gremio de Brujos",
-      "description": "Destruyes +10% de Recursos en los Asedios"
+      "description": "Al generar Maná produces +10% <mana> adicional"
     }
   }
 }

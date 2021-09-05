@@ -1,7 +1,7 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import { applyArtifacts, applyContracts, applyCharms, applyWave, resolveBattle, applyBonuses, applyDamage, applyCasualties } from '../src/index';
+import { applyArtifacts, applyContracts, applyCharms, applyWave, resolveBattle, applySkills, applyDamage, applyCasualties } from '../src/index';
 import { BattleReport, CategoryType, BattleType } from '../src/config';
 
 const config: admin.AppOptions = {
@@ -289,7 +289,7 @@ describe(KINGDOM, () => {
     expect(attackerTroops[0].unit.attackBonus).toBe(undefined);
     expect(attackerTroops[0].unit.defenseBonus).toBe(undefined);
     expect(attackerTroops[0].unit.initiativeBonus).toBe(undefined);
-    applyBonuses(attackerTroops, defenderTroops);
+    applySkills(attackerTroops, defenderTroops);
     expect(attackerTroops[0].unit.attackBonus).toBe(25);
     expect(attackerTroops[0].unit.defenseBonus).toBe(25);
     expect(attackerTroops[0].unit.initiativeBonus).toBe(-1);
@@ -309,7 +309,7 @@ describe(KINGDOM, () => {
     expect(attackerTroops[0].unit.holyResistance).toBe(undefined);
     expect(attackerTroops[0].unit.lightningResistance).toBe(undefined);
     expect(attackerTroops[0].unit.poisonResistance).toBe(undefined);
-    applyBonuses(attackerTroops, defenderTroops);
+    applySkills(attackerTroops, defenderTroops);
     expect(attackerTroops[0].unit.meleeResistance).toBe(75);
     expect(attackerTroops[0].unit.rangedResistance).toBe(75);
     expect(attackerTroops[0].unit.magicResistance).toBe(75);
@@ -484,7 +484,7 @@ describe(KINGDOM, () => {
     attackerUnits = ['skeleton', 'zombie'];
     defenderUnits = ['orc'];
     await prepareTest();
-    await resolveBattle(attackerContracts, attackerTroops, attackerArtifacts, attackerCharms, defenderContracts, defenderTroops, defenderArtifacts, defenderCharms, BattleType.ADVENTURE, report);
+    await resolveBattle(null, null, attackerContracts, attackerTroops, attackerArtifacts, attackerCharms, null, null, defenderContracts, defenderTroops, defenderArtifacts, defenderCharms, BattleType.ADVENTURE, report);
     expect(attackerTroops.length).toBe(2);
     expect(defenderTroops.length).toBe(0);
     expect(report.attackerPowerLost).toBe(0);
@@ -496,7 +496,7 @@ describe(KINGDOM, () => {
     attackerUnits = ['skeleton'];
     defenderUnits = ['golden-dragon'];
     await prepareTest();
-    await resolveBattle(attackerContracts, attackerTroops, attackerArtifacts, attackerCharms, defenderContracts, defenderTroops, defenderArtifacts, defenderCharms, BattleType.ADVENTURE, report);
+    await resolveBattle(null, null, attackerContracts, attackerTroops, attackerArtifacts, attackerCharms, null, null, defenderContracts, defenderTroops, defenderArtifacts, defenderCharms, BattleType.ADVENTURE, report);
     expect(attackerTroops.length).toBe(0);
     expect(defenderTroops.length).toBe(1);
     expect(report.attackerPowerLost).toBeGreaterThan(0);
@@ -508,7 +508,7 @@ describe(KINGDOM, () => {
     attackerUnits = ['skeleton'];
     defenderUnits = [];
     await prepareTest();
-    await resolveBattle(attackerContracts, attackerTroops, attackerArtifacts, attackerCharms, defenderContracts, defenderTroops, defenderArtifacts, defenderCharms, BattleType.PILLAGE, report);
+    await resolveBattle(null, null, attackerContracts, attackerTroops, attackerArtifacts, attackerCharms, null, null, defenderContracts, defenderTroops, defenderArtifacts, defenderCharms, BattleType.PILLAGE, report);
     expect(attackerTroops.length).toBe(1);
     expect(defenderTroops.length).toBe(0);
     expect(report.attackerPowerLost).toBe(0);

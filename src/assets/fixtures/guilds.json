@@ -6,16 +6,34 @@
     "name": "guild.assassin.name",
     "description": "guild.assassin.description",
     "id": "assassin",
-    "image": "/assets/images/guilds/assassin.png"
+    "image": "/assets/images/guilds/assassin.png",
+    "attackBonus": 10,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "goldBonus": 0,
+    "manaBonus": 0,
+    "populationBonus": 0,
+    "explorationBonus": 0,
+    "constructionBonus": 0,
+    "researchBonus": 0
   },
   {
     "type": "guild",
     "subtype": "battle",
     "faction": "grey",
-    "name": "guild.champion.name",
-    "description": "guild.champion.description",
-    "id": "champion",
-    "image": "/assets/images/guilds/champion.png"
+    "name": "guild.mason.name",
+    "description": "guild.mason.description",
+    "id": "mason",
+    "image": "/assets/images/guilds/mason.png",
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "goldBonus": 0,
+    "manaBonus": 0,
+    "populationBonus": 0,
+    "explorationBonus": 0,
+    "constructionBonus": 10,
+    "researchBonus": 0
   },
   {
     "type": "guild",
@@ -24,7 +42,16 @@
     "name": "guild.hunter.name",
     "description": "guild.hunter.description",
     "id": "hunter",
-    "image": "/assets/images/guilds/hunter.png"
+    "image": "/assets/images/guilds/hunter.png",
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "goldBonus": 0,
+    "manaBonus": 0,
+    "populationBonus": 0,
+    "explorationBonus": 10,
+    "constructionBonus": 0,
+    "researchBonus": 0
   },
   {
     "type": "guild",
@@ -33,7 +60,16 @@
     "name": "guild.knight.name",
     "description": "guild.knight.description",
     "id": "knight",
-    "image": "/assets/images/guilds/knight.png"
+    "image": "/assets/images/guilds/knight.png",
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "goldBonus": 0,
+    "manaBonus": 0,
+    "populationBonus": 10,
+    "explorationBonus": 0,
+    "constructionBonus": 0,
+    "researchBonus": 0
   },
   {
     "type": "guild",
@@ -42,7 +78,16 @@
     "name": "guild.mage.name",
     "description": "guild.mage.description",
     "id": "mage",
-    "image": "/assets/images/guilds/mage.png"
+    "image": "/assets/images/guilds/mage.png",
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "goldBonus": 0,
+    "manaBonus": 0,
+    "populationBonus": 0,
+    "explorationBonus": 0,
+    "constructionBonus": 0,
+    "researchBonus": 10
   },
   {
     "type": "guild",
@@ -51,16 +96,34 @@
     "name": "guild.priest.name",
     "description": "guild.priest.description",
     "id": "priest",
-    "image": "/assets/images/guilds/priest.png"
+    "image": "/assets/images/guilds/priest.png",
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 10,
+    "goldBonus": 0,
+    "manaBonus": 0,
+    "populationBonus": 0,
+    "explorationBonus": 0,
+    "constructionBonus": 0,
+    "researchBonus": 0
   },
   {
     "type": "guild",
     "subtype": "battle",
     "faction": "grey",
-    "name": "guild.rogue.name",
-    "description": "guild.rogue.description",
-    "id": "rogue",
-    "image": "/assets/images/guilds/rogue.png"
+    "name": "guild.thief.name",
+    "description": "guild.thief.description",
+    "id": "thief",
+    "image": "/assets/images/guilds/thief.png",
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "goldBonus": 10,
+    "manaBonus": 0,
+    "populationBonus": 0,
+    "explorationBonus": 0,
+    "constructionBonus": 0,
+    "researchBonus": 0
   },
   {
     "type": "guild",
@@ -69,7 +132,16 @@
     "name": "guild.warlock.name",
     "description": "guild.warlock.description",
     "id": "warlock",
-    "image": "/assets/images/guilds/warlock.png"
+    "image": "/assets/images/guilds/warlock.png",
+    "attackBonus": 0,
+    "defenseBonus": 0,
+    "healthBonus": 0,
+    "goldBonus": 0,
+    "manaBonus": 10,
+    "populationBonus": 0,
+    "explorationBonus": 0,
+    "constructionBonus": 0,
+    "researchBonus": 0
   },
   {
     "type": "guild",
@@ -78,6 +150,15 @@
     "name": "guild.warrior.name",
     "description": "guild.warrior.description",
     "id": "warrior",
-    "image": "/assets/images/guilds/warrior.png"
+    "image": "/assets/images/guilds/warrior.png",
+    "attackBonus": 0,
+    "defenseBonus": 10,
+    "healthBonus": 0,
+    "goldBonus": 0,
+    "manaBonus": 0,
+    "populationBonus": 0,
+    "explorationBonus": 0,
+    "constructionBonus": 0,
+    "researchBonus": 0
   }
 ]

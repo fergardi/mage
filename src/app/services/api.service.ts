@@ -39,11 +39,11 @@ export class ApiService {
   }
 
   disbandTroop(kingdomId: string, troopId: string, quantity: number): Promise<any> {
-    return this.httpClient.request('delete', `${environment.functions.url}/kingdom/${kingdomId}/army/${troopId}/disband/${quantity}`, undefined).toPromise();
+    return this.httpClient.delete(`${environment.functions.url}/kingdom/${kingdomId}/army/${troopId}/disband/${quantity}`, undefined).toPromise();
   }
 
   dischargeContract(kingdomId: string, contractId: string): Promise<any> {
-    return this.httpClient.request('delete', `${environment.functions.url}/kingdom/${kingdomId}/tavern/${contractId}/discharge`, undefined).toPromise();
+    return this.httpClient.delete(`${environment.functions.url}/kingdom/${kingdomId}/tavern/${contractId}/discharge`, undefined).toPromise();
   }
 
   researchCharm(kingdomId: string, charmId: string, turns: number): Promise<any> {
@@ -145,8 +145,8 @@ export class ApiService {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/archive/${letterId}`, undefined).toPromise();
   }
 
-  removeLetters(kingdomId: string, letterIds: string[]): Promise<any> { // https://stackoverflow.com/a/63135636/2477303
-    return this.httpClient.request('delete', `${environment.functions.url}/kingdom/${kingdomId}/archive`, {
+  removeLetters(kingdomId: string, letterIds: string[]): Promise<any> {
+    return this.httpClient.delete(`${environment.functions.url}/kingdom/${kingdomId}/archive`, {
       body: {
         letterIds: letterIds,
       },
@@ -170,7 +170,7 @@ export class ApiService {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/clan/${clanId}/join`, undefined).toPromise();
   }
 
-  leaveClan(kingdomId: string, clanId: string): Promise<any> { // https://stackoverflow.com/a/63135636/2477303
+  leaveClan(kingdomId: string, clanId: string): Promise<any> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/clan/${clanId}/leave`, undefined).toPromise();
   }
 
@@ -182,12 +182,12 @@ export class ApiService {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/sorcery/artifact/${artifactId}/assign/${assignmentId}`, undefined).toPromise();
   }
 
-  dispelIncantation(kingdomId: string, incantationId: string): Promise<any> { // https://stackoverflow.com/a/63135636/2477303
-    return this.httpClient.request('delete', `${environment.functions.url}/kingdom/${kingdomId}/temple/${incantationId}/dispel`, undefined).toPromise();
+  dispelIncantation(kingdomId: string, incantationId: string): Promise<any> {
+    return this.httpClient.delete(`${environment.functions.url}/kingdom/${kingdomId}/temple/${incantationId}/dispel`, undefined).toPromise();
   }
 
-  breakEnchantment(kingdomId: string, enchantmentId: string): Promise<any> { // https://stackoverflow.com/a/63135636/2477303
-    return this.httpClient.request('delete', `${environment.functions.url}/kingdom/${kingdomId}/temple/${enchantmentId}/break`, undefined).toPromise();
+  breakEnchantment(kingdomId: string, enchantmentId: string): Promise<any> {
+    return this.httpClient.delete(`${environment.functions.url}/kingdom/${kingdomId}/temple/${enchantmentId}/break`, undefined).toPromise();
   }
 
   tradeDeal(kingdomId: string, shopId: string, collectionId: string, dealId: string): Promise<any> {
