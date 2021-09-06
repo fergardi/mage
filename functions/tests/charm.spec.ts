@@ -71,7 +71,7 @@ describe(KINGDOM, () => {
     const addTroopSpy = jest.spyOn(backend, 'addTroop');
     const conjured: any = await backend.conjureCharm(KINGDOM, charm.id, KINGDOM);
     expect(conjured.unit).toBe('unit.skeleton.name');
-    expect(conjured.size).toBeLessThanOrEqual(Math.max(...charm.data().spell.unit.amount));
+    expect(conjured.size).toBeLessThanOrEqual(Math.max(...charm.data().spell.units[0].amount));
     expect(addTroopSpy).toHaveBeenCalled();
   });
 

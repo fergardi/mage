@@ -9,7 +9,7 @@
 export const MAX_TURNS: number = 300;
 export const MIN_LANDS: number = 1;
 export const MAX_LANDS: number = 3500;
-// export const BATTLE_TURNS: number = 2;
+export const BATTLE_TURNS: number = 2;
 export const BATTLE_ROUNDS: number = 5;
 export const BATTLE_POWER: number = 20;
 // export const PROTECTION_TIME: number = 60;
@@ -21,6 +21,9 @@ export const GUILD_TIME: number = 60;
 export const CLAN_COST: number = 1000000;
 export const FACTION_MULTIPLIER: number = 2;
 export const MAP_RADIUS: number = 10000;
+export const ATTACK_RATIO: number = 0.05;
+export const PILLAGE_RATIO: number = 0.10;
+export const SIEGE_RATIO: number = 0.15;
 
 //========================================================================================
 /*                                                                                      *

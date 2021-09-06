@@ -44,7 +44,7 @@ const BATTLE_TURNS = 2;
             <mat-list dense>
               <mat-list-item>
                 <div mat-list-avatar>
-                  <img mat-list-avatar [src]="attackType.image">
+                  <img mat-list-avatar class="animated pulse infinite" [src]="attackType.image">
                 </div>
                 <div mat-line>{{ attackType.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="attackType.description | translate | icon:attackType"></div>
@@ -55,7 +55,7 @@ const BATTLE_TURNS = 2;
             <mat-list dense>
               <mat-list-item>
                 <div mat-list-avatar>
-                  <img mat-list-avatar [src]="attack.image">
+                  <img mat-list-avatar class="animated pulse infinite" [src]="attack.image">
                 </div>
                 <div mat-line>{{ attack.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="attack.description | translate | icon:attack"></div>

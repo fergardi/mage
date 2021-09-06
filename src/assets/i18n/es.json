@@ -171,15 +171,15 @@
   "attack": {
     "assault": {
       "name": "Asalto",
-      "description": "Un ataque centrado en destruir tropas y héroes"
+      "description": "Un ataque centrado en conquistar el 5% de <land> del enemigo"
     },
     "pillage": {
       "name": "Pillaje",
-      "description": "Un ataque centrado en robar recursos sin destruir edificios"
+      "description": "Un ataque centrado en robar el 10% de <gold>, <mana> y <population> del enemigo"
     },
     "siege": {
       "name": "Asedio",
-      "description": "Un ataque centrado en destruir edificios sin robar recursos"
+      "description": "Un ataque centrado en destruir el 15% de <land>, <gold>, <mana> y <population> del enemigo"
     }
   },
   "table": {
@@ -247,7 +247,7 @@
     },
     "encyclopedia": {
       "name": "Enciclopedia",
-      "description": "Obtén conocimientos",
+      "description": "Amplía tus conocimientos",
       "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc. Si lo que buscas no está en esta biblioteca, es que no existe.",
       "tour": "En la enciclopedia encontrarás todo lo que necesites para aprender a jugar, así como las estadísticas de todo lo que existe en este mundo mágico.<br><br>Si aún así tienes más dudas, tienes a tu disposición el Tutorial del juego. Recuerda que a jugar se aprende jugando."
     },
@@ -393,6 +393,7 @@
       "hint": "Selecciona el objetivo",
       "success": "Has recibido un mensaje",
       "error": "Ha ocurrido un problema",
+      "subject": "Reporte de Batalla",
       "victory": "Tu ejército ha salido victorioso del combate. Se adjunta el reporte de batalla y las recompensas de la victoria se han enviado a tu reino.",
       "defeat": "Tu ejército ha sido derrotado en combate. Se adjunta el reporte de batalla y no has obtenido ninguna recompensa."
     },
@@ -614,7 +615,7 @@
       "help": "Aquí podrás invertir <turn> en reponer los depósitos de <mana> de tu reino. El <mana> se emplea para pagar los mantenimientos de tus tropas y encantamientos y el lanzamiento de hechizos, entre otras cosas.",
       "tour": "",
       "cancel": "Cancelar",
-      "hint": "Cuantos más nodos tengas, más Maná recargarás",
+      "hint": "Cuantos más Nodos tengas, más Maná recargarás",
       "invalid": "No dispones de suficientes Turnos",
       "error": "Ha ocurrido un problema",
       "charge": "Meditar",
@@ -624,11 +625,11 @@
     },
     "tax": {
       "name": "Tributo",
-      "description": "Exprimir a tus súbditos es lo razonable",
+      "description": "Llena tus arcas reales",
       "help": "Aquí podrás invertir <turn> en cobrar <gold> a los súbditos de tu reino. El <gold> se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
       "tour": "",
       "cancel": "Cancelar",
-      "hint": "Cuantos más pueblos tengas, más Oro recaudarás",
+      "hint": "Cuantos más Pueblos tengas, más Oro recaudarás",
       "invalid": "No dispones de suficientes Turnos",
       "error": "Ha ocurrido un problema",
       "tax": "Tributar",
@@ -653,9 +654,9 @@
     "tavern": {
       "name": "Taberna",
       "description": "Asigna a tus héroes",
-      "help": "Los héroes de tu reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores de batalla ni al <attack> ni a la <defense>. Puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos. Los héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
+      "help": "Los Héroes de tu reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores de batalla ni al <attack> ni a la <defense>. Puedes optar por despedir a un héroe si no puedes pagar sus mantenimientos. No puedes tener héroes repetidos. Los héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
       "tour": "La taberna alberga a los Héroes que contrates en tu reino. Proporcionan pequeños bonuses que pueden ir desde incrementar la producción de recursos hasta aumentar las estadísticas de tus Tropas en la batalla. Puedes asignarlos para:<ul><li>Nada, ni atacan ni defienden, consumen mantenimientos pero proporcionan bonuses pasivos</li><li>Atacar manualmente, hasta 3 Héroes diferentes y su orden es irrelevante</li><li>Defender automáticamente, hasta 3 Héroes diferentes y su orden es irrelevante</li></ul>También los puedes despedir.",
-      "success": "Tus héroes han sido asignados",
+      "success": "Tus Héroes han sido asignados",
       "error": "Ha ocurrido un problema",
       "max": "Max",
       "maximum": "Tu ejército está al completo"
@@ -663,8 +664,8 @@
     "archive": {
       "name": "Archivo",
       "description": "Revisa tu correspondencia",
-      "help": "Aqui puedes ver un listado de todos los mensajes directos que te han enviado otros reinos, así como los informes de batalla, subastas ganadas o sobrepujadas, hechizos, artefactos y encantamientos lanzados contra tu reino.",
-      "tour": "En el archivo puedes consultar los mensajes que llegan diariamente a tu reino:<ul><li>Reportes de batalla</li><li>Movimientos de subasta</li><li>Mensajes de otros reinos</li><li>Activaciones de artifactos</li><li>Conjuraciones de hechizos y encantamientos</li></ul>También los puedes borrar.",
+      "help": "Aqui puedes ver un listado de todos los Mensajes directos que te han enviado otros reinos, así como los informes de batalla, subastas ganadas o sobrepujadas, hechizos, artefactos y encantamientos lanzados contra tu reino.",
+      "tour": "En el archivo puedes consultar los Mensajes que llegan diariamente a tu reino:<ul><li>Reportes de batalla</li><li>Movimientos de subasta</li><li>Mensajes de otros reinos</li><li>Activaciones de artifactos</li><li>Conjuraciones de hechizos y encantamientos</li></ul>También los puedes borrar.",
       "new": "Tienes mensajes nuevos",
       "success": "Mensajes borrados",
       "error": "Ha ocurrido un problema"
@@ -686,7 +687,7 @@
     "clan": {
       "name": "Clan",
       "description": "Forja alianzas",
-      "help": "Puedes unirte a un clan ya existente o fundar tu propio clan para que otros magos y brujas se unan. Un clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio...",
+      "help": "Puedes unirte a un Clan ya existente o fundar tu propio Clan para que otros magos y brujas se unan. Un clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio...",
       "tour": "En el clan puedes ver todos los clanes que existen actualmente, formar un nuevo clan, unirte a un clan o abandonar un clan. Además, podrás unirte y cambiar de gremio semanalmente para disfrutar de bonificaciones militares únicas:<ul><li>Aumentar <attack>, <defense> o <health> de tus Tropas en las Batallas</li><li>Robar más <gold>, <mana> o <population> en los Pillajes</li><li>Destruir más Edificios, Tropas o Recursos en los Asedios</li></ul>",
       "join": "Unirse",
       "leave": "Marcharse",

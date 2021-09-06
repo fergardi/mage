@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
       // CollectionType.CATEGORIES,
       // CollectionType.FAMILIES,
       // CollectionType.GODS,
-      CollectionType.GUILDS,
+      // CollectionType.GUILDS,
       // CollectionType.RESOURCES,
       // CollectionType.STRUCTURES,
       // CollectionType.SKILLS,

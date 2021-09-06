@@ -28,7 +28,7 @@ export enum ArtifactAssignmentType {
             <mat-list dense>
               <mat-list-item [ngClass]="[selectedArtifact.item.faction.id, selectedArtifact.item.legendary ? 'legendary' : 'common']">
                 <div mat-list-avatar [matBadge]="selectedArtifact.quantity" matBadgePosition="above before">
-                  <img mat-list-avatar [src]="selectedArtifact.item.image">
+                  <img mat-list-avatar class="animated pulse infinite" [src]="selectedArtifact.item.image">
                 </div>
                 <div mat-line>{{ selectedArtifact.item.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="selectedArtifact.item.description | translate | icon:selectedArtifact.item"></div>
@@ -42,7 +42,7 @@ export enum ArtifactAssignmentType {
             <mat-list dense>
               <mat-list-item [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']">
                 <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
-                  <img mat-list-avatar [src]="artifact.item.image">
+                  <img mat-list-avatar class="animated pulse infinite" [src]="artifact.item.image">
                 </div>
                 <div mat-line>{{ artifact.item.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item"></div>

@@ -1,7 +1,7 @@
 import 'jest';
 import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
-import { applyArtifacts, applyContracts, applyCharms, applyWave, resolveBattle, applySkills, applyDamage, applyCasualties } from '../src/index';
+import { applyArtifacts, applyContracts, applyCharms, applyWave, resolveBattle, applySkills, applyDamage, applyCasualties, applyGuilds, updatePerk, applyTrees } from '../src/index';
 import { BattleReport, CategoryType, BattleType } from '../src/config';
 
 const config: admin.AppOptions = {
@@ -39,6 +39,12 @@ describe(KINGDOM, () => {
   let defenderHeroes: any[];
   let attackerContracts: any[];
   let defenderContracts: any[];
+  // guilds
+  let attackerGuild: any;
+  let defenderGuild: any;
+  // trees
+  let attackerTree: any;
+  let defenderTree: any;
   // data
   const prepareTest = async () => {
     // troops
@@ -91,6 +97,12 @@ describe(KINGDOM, () => {
         level: HERO_LEVEL,
       });
     }
+    // guild
+    attackerGuild = (await admin.firestore().doc(`guilds/${attackerGuild}`).get()).data();
+    defenderGuild = (await admin.firestore().doc(`guilds/${defenderGuild}`).get()).data();
+    // tree
+    attackerTree = (await admin.firestore().doc(`perks/strategy`).get()).data();
+    defenderTree = (await admin.firestore().doc(`perks/strategy`).get()).data();
   };
 
   beforeEach(() => {
@@ -122,6 +134,32 @@ describe(KINGDOM, () => {
 
   afterAll(() => {
     tester.cleanup();
+  });
+
+  it('should APPLY a GUILD which BONUSES a TROOP', async () => {
+    attackerUnits = ['skeleton'];
+    defenderUnits = ['orc'];
+    attackerGuild = 'assassin';
+    defenderGuild = 'warrior';
+    await prepareTest();
+    expect(attackerTroops[0].unit.attackBonus).toEqual(undefined);
+    expect(defenderTroops[0].unit.defenseBonus).toEqual(undefined);
+    applyGuilds(attackerTroops, attackerGuild, defenderTroops, defenderGuild);
+    expect(attackerTroops[0].unit.attackBonus).toEqual(10);
+    expect(defenderTroops[0].unit.defenseBonus).toEqual(10);
+  });
+
+  it('should APPLY a TREE which BONUSES a TROOP', async () => {
+    attackerUnits = ['skeleton'];
+    defenderUnits = ['orc'];
+    await prepareTest();
+    updatePerk(attackerTree, 'metallurgy', 1);
+    updatePerk(defenderTree, 'forge', 3);
+    expect(attackerTroops[0].unit.attackBonus).toEqual(undefined);
+    expect(defenderTroops[0].unit.defenseBonus).toEqual(undefined);
+    applyTrees(attackerTroops, attackerTree, defenderTroops, defenderTree);
+    expect(attackerTroops[0].unit.attackBonus).toEqual(5);
+    expect(defenderTroops[0].unit.defenseBonus).toEqual(15);
   });
 
   it('should APPLY an ARTIFACT which ADDS a SKILL', async () => {
