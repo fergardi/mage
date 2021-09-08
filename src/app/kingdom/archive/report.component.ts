@@ -26,7 +26,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
       <p>{{ report.message | translate }}</p>
     </div>
     <!-- ESPIONAGE -->
-    <div mat-dialog-content *ngIf="report.data && report.data.intel">
+    <div mat-dialog-content *ngIf="report.data && report.data.intel" class="espionage">
       <!-- SUPPLIES -->
       <div matSubheader>{{ 'kingdom.report.resources' | translate }}:</div>
       <mat-list dense>
@@ -230,6 +230,9 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     ::ng-deep .mat-list-base {
       max-height: none;
     }
+    ::ng-deep .mat-dialog-content.espionage {
+      max-height: 50vh !important;
+    }
     ::ng-deep .mat-list-base .mat-list-item.righted .mat-list-item-content {
       flex-direction: row-reverse !important;
     }
@@ -245,6 +248,9 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     @media screen and (max-width: 960px) {
       ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content .mat-icon {
         margin: 0 !important;
+      }
+      ::ng-deep .mat-dialog-content.espionage {
+        max-height: 35vh !important;
       }
     }
   `],
