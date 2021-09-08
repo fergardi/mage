@@ -550,6 +550,7 @@ $list-item-height: 60px;
     .mat-subheader + .mat-chip-list {
       margin-top: 0;
     }
+    max-height: 50vh !important;
   }
   .mat-dialog-title {
     display: inline-block !important;

@@ -380,7 +380,11 @@
       "defender": "Defensor",
       "counterattack": "Contraatacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño de {{ category }} (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas",
       "bonus": "Aumenta un {{ attack }} % el ataque, un {{ defense }} % la defensa y un {{ health }} % la salud de las tropas aliadas de la(s) familia(s) {{ family }}",
-      "damage": "Inflige {{ damage }} daño de {{ category }} a todas las tropas enemigas y causa {{ casualties }} bajas"
+      "damage": "Inflige {{ damage }} daño de {{ category }} a todas las tropas enemigas y causa {{ casualties }} bajas",
+      "resources": "Recursos",
+      "troops": "Tropas",
+      "contracts": "Contratos",
+      "buildings": "Edificios"
     },
     "battle": {
       "name": "Batalla",
@@ -576,7 +580,7 @@
     },
     "espionage": {
       "subject": "Reporte de Espionaje",
-      "message": "TODO"
+      "message": "A continuación se desglosa el reporte de espionaje del reino objetivo."
     },
     "activate": {
       "name": "Activación",

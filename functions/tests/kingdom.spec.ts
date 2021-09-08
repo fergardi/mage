@@ -17,23 +17,21 @@ const PERK = 'masonry';
 
 describe(ATTACKER + DEFENDER, () => {
   // common batch
-  // let batch: FirebaseFirestore.WriteBatch;
+  let batch: FirebaseFirestore.WriteBatch;
+
+  beforeAll(async () => {
+    await backend.createKingdom(ATTACKER, KingdomType.BLACK, ATTACKER, 0, 0);
+    await backend.createKingdom(DEFENDER, KingdomType.WHITE, DEFENDER, 0, 0);
+  });
 
   beforeEach(() => {
-    // batch = admin.firestore().batch();
+    batch = admin.firestore().batch();
   });
 
   afterAll(async () => {
+    await backend.deleteKingdom(ATTACKER);
+    await backend.deleteKingdom(DEFENDER);
     tester.cleanup();
-  });
-
-  it('should CREATE the KINGDOMS', async () => {
-    await backend.createKingdom(ATTACKER, KingdomType.BLACK, ATTACKER, 0, 0);
-    await backend.createKingdom(DEFENDER, KingdomType.WHITE, DEFENDER, 0, 0);
-    const attacker = await admin.firestore().doc(`kingdoms/${ATTACKER}`).get();
-    const defender = await admin.firestore().doc(`kingdoms/${DEFENDER}`).get();
-    expect(attacker.exists).toBe(true);
-    expect(defender.exists).toBe(true);
   });
 
   it('should FIND the PERK', async () => {
@@ -108,13 +106,11 @@ describe(ATTACKER + DEFENDER, () => {
     expect(addLetterSpy).toHaveBeenCalled();
   });
 
-  it('should DELETE the KINGDOMS', async () => {
-    await backend.deleteKingdom(ATTACKER);
-    await backend.deleteKingdom(DEFENDER);
-    const attacker = await admin.firestore().doc(`kingdoms/${ATTACKER}`).get();
-    const defender = await admin.firestore().doc(`kingdoms/${DEFENDER}`).get();
-    expect(attacker.exists).toBe(false);
-    expect(defender.exists).toBe(false);
+  it('should SPY the KINGDOM', async () => {
+    const addLetterSpy = jest.spyOn(backend, 'addLetter');
+    await backend.spyKingdom(ATTACKER, DEFENDER, batch);
+    await batch.commit();
+    expect(addLetterSpy).toHaveBeenCalled();
   });
 
 });

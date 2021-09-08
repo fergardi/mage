@@ -161,7 +161,7 @@ export const calculateTurns = (from: any, to: any, max: number, ratio: number): 
  * @param latitude
  * @param longitude
  */
-export const createKingdom = async (kingdomId: string, factionId: KingdomType, name: string, latitude: number, longitude: number) => {
+export const createKingdom = async (kingdomId: string, factionId: KingdomType, name: string, latitude: number, longitude: number): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to be CREATED from ${factionId} into ${latitude}, ${longitude}`);
     const batch = angularFirestore.batch();
@@ -370,6 +370,34 @@ export const plantTree = async (kingdomId: string, tree: any, gems: number): Pro
   }
 };
 
+/**
+ * kingdom spies another kingdom
+ * @param kingdomId
+ * @param targetId
+ * @param batch
+ */
+export const spyKingdom = async (kingdomId: string, targetId: string, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
+  try {
+    const targetFrom = (await angularFirestore.doc(`kingdoms/${targetId}`).get()).data();
+    const targetSupplies = (await angularFirestore.collection(`kingdoms/${targetId}/supplies`).where('id', 'in', [SupplyType.GOLD, SupplyType.MANA, SupplyType.POPULATION, SupplyType.LAND]).get()).docs;
+    const targetBuildings = (await angularFirestore.collection(`kingdoms/${targetId}/buildings`).get()).docs;
+    const targetTroops = (await angularFirestore.collection(`kingdoms/${targetId}/troops`).where('assignment', '==', AssignmentType.DEFENSE).get()).docs;
+    const targetContracts = (await angularFirestore.collection(`kingdoms/${targetId}/contracts`).where('assignment', '==', AssignmentType.DEFENSE).get()).docs;
+    const data = {
+      intel: {
+        supplies: targetSupplies.map((supply: FirebaseFirestore.DocumentData) => supply.data()),
+        buildings: targetBuildings.map((building: FirebaseFirestore.DocumentData) => building.data()),
+        troops: targetTroops.map((troop: FirebaseFirestore.DocumentData) => troop.data()),
+        contracts: targetContracts.map((contract: FirebaseFirestore.DocumentData) => contract.data()),
+      },
+    };
+    await addLetter(kingdomId, 'kingdom.espionage.subject', 'kingdom.espionage.message', targetFrom, batch, data);
+  } catch (error) {
+    console.error(`KINGDOM ${kingdomId} could not SPY ${targetId}`, error);
+    throw error;
+  }
+};
+
 //========================================================================================
 /*                                                                                      *
  *                                       SUPPLIES                                       *
@@ -385,7 +413,7 @@ export const plantTree = async (kingdomId: string, tree: any, gems: number): Pro
  * @param ratio
  * @param max
  */
-export const addSupply = async (kingdomId: string, supply: string, quantity: number, batch: FirebaseFirestore.WriteBatch, ratio?: number, max?: number) => {
+export const addSupply = async (kingdomId: string, supply: string, quantity: number, batch: FirebaseFirestore.WriteBatch, ratio?: number, max?: number): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to ADD ${quantity} of ${supply}`);
     const kingdom = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
@@ -454,7 +482,7 @@ export const addSupply = async (kingdomId: string, supply: string, quantity: num
  * @param kingdomId
  * @param turns
  */
-export const chargeMana = async (kingdomId: string, turns: number) => {
+export const chargeMana = async (kingdomId: string, turns: number): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to CHARGE ${turns} turns`);
     const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', SupplyType.TURN).limit(1).get()).docs[0].data();
@@ -480,7 +508,7 @@ export const chargeMana = async (kingdomId: string, turns: number) => {
  * @param kingdomId
  * @param turns
  */
-export const taxGold = async (kingdomId: string, turns: number) => {
+export const taxGold = async (kingdomId: string, turns: number): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to TAX ${turns} turns`);
     const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', SupplyType.TURN).limit(1).get()).docs[0].data();
@@ -506,7 +534,7 @@ export const taxGold = async (kingdomId: string, turns: number) => {
  * @param kingdomId
  * @param turns
  */
-export const exploreLands = async (kingdomId: string, turns: number) => {
+export const exploreLands = async (kingdomId: string, turns: number): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to EXPLORE ${turns} turns`);
     let lands = MIN_LANDS;
@@ -543,7 +571,7 @@ export const exploreLands = async (kingdomId: string, turns: number) => {
  * @param balance
  * @param batch
  */
-export const balanceSupply = async (kingdomId: string, supply: SupplyType, balance: number, batch: FirebaseFirestore.WriteBatch) => {
+export const balanceSupply = async (kingdomId: string, supply: SupplyType, balance: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     if (balance) {
       const kingdomSupply = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', supply).limit(1).get()).docs[0];
@@ -561,7 +589,7 @@ export const balanceSupply = async (kingdomId: string, supply: SupplyType, balan
  * @param power
  * @param batch
  */
-export const balancePower = async (kingdomId: string, power: number, batch: FirebaseFirestore.WriteBatch) => {
+export const balancePower = async (kingdomId: string, power: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     if (power) {
       const kingdom = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
@@ -580,7 +608,7 @@ export const balancePower = async (kingdomId: string, power: number, batch: Fire
  * @param bonus
  * @param batch
  */
-export const balanceBonus = async (kingdomId: string, type: BonusType, bonus: number, batch: FirebaseFirestore.WriteBatch) => {
+export const balanceBonus = async (kingdomId: string, type: BonusType, bonus: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     if (bonus) {
       switch (type) {
@@ -610,7 +638,7 @@ export const balanceBonus = async (kingdomId: string, type: BonusType, bonus: nu
  * @param turns
  * @param batch
  */
-export const payMaintenance = async (kingdomId: string, turns: number, batch: FirebaseFirestore.WriteBatch) => {
+export const payMaintenance = async (kingdomId: string, turns: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     const kingdomGold = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', SupplyType.GOLD).limit(1).get()).docs[0];
     const kingdomMana = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', SupplyType.MANA).limit(1).get()).docs[0];
@@ -646,7 +674,7 @@ export const payMaintenance = async (kingdomId: string, turns: number, batch: Fi
  * @param kingdomId
  * @param batch
  */
-const evictMaintenance = async (kingdomId: string, batch: FirebaseFirestore.WriteBatch) => {
+const evictMaintenance = async (kingdomId: string, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     // letter
     const from = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
@@ -705,7 +733,7 @@ const evictMaintenance = async (kingdomId: string, batch: FirebaseFirestore.Writ
  * @param quantity
  * @param batch
  */
-export const addTroop = async (kingdomId: string, unit: any, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addTroop = async (kingdomId: string, unit: any, quantity: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     const kingdomTroop = await angularFirestore.collection(`kingdoms/${kingdomId}/troops`).where('id', '==', unit.id).limit(1).get();
     const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
@@ -733,7 +761,7 @@ export const addTroop = async (kingdomId: string, unit: any, quantity: number, b
  * @param troopId
  * @param quantity
  */
-export const disbandTroop = async (kingdomId: string, troopId: string, quantity: number) => {
+export const disbandTroop = async (kingdomId: string, troopId: string, quantity: number): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to DISBAND the TROOP ${troopId}`);
     const batch = angularFirestore.batch();
@@ -754,7 +782,7 @@ export const disbandTroop = async (kingdomId: string, troopId: string, quantity:
  * @param quantity
  * @param batch
  */
-export const removeTroop = async (kingdomId: string, troopId: string, quantity: number, batch: FirebaseFirestore.WriteBatch, questId?: string) => {
+export const removeTroop = async (kingdomId: string, troopId: string, quantity: number, batch: FirebaseFirestore.WriteBatch, questId?: string): Promise<any> => {
   try {
     if (!questId) {
       const kingdomTroop = (await angularFirestore.doc(`kingdoms/${kingdomId}/troops/${troopId}`).get()).data();
@@ -798,7 +826,7 @@ export const removeTroop = async (kingdomId: string, troopId: string, quantity: 
  * @param unitId
  * @param quantity
  */
-export const recruitUnit = async (kingdomId: string, unitId: string, quantity: number) => {
+export const recruitUnit = async (kingdomId: string, unitId: string, quantity: number): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to RECRUIT the TROOP ${unitId}`);
     const unit = (await angularFirestore.doc(`units/${unitId}`).get()).data();
@@ -825,7 +853,7 @@ export const recruitUnit = async (kingdomId: string, unitId: string, quantity: n
  * @param kingdomId
  * @param army
  */
-export const assignArmy = async (kingdomId: string, army: any[]) => {
+export const assignArmy = async (kingdomId: string, army: any[]): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to ASSIGN the ARMY`);
     const batch = angularFirestore.batch();
@@ -851,7 +879,7 @@ export const assignArmy = async (kingdomId: string, army: any[]) => {
  * @param level
  * @param batch
  */
-export const addContract = async (kingdomId: string, hero: any, level: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addContract = async (kingdomId: string, hero: any, level: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     const kingdomContract = await angularFirestore.collection(`kingdoms/${kingdomId}/contracts`).where('id', '==', hero.id).limit(1).get();
     if (kingdomContract.size > 0) {
@@ -878,7 +906,7 @@ export const addContract = async (kingdomId: string, hero: any, level: number, b
  * @param kingdomId
  * @param contractId
  */
-export const dischargeContract = async (kingdomId: string, contractId: string) => {
+export const dischargeContract = async (kingdomId: string, contractId: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to DISCHARGE the CONTRACT ${contractId}`);
     const batch = angularFirestore.batch();
@@ -896,7 +924,7 @@ export const dischargeContract = async (kingdomId: string, contractId: string) =
  * @param kingdomId
  * @param contractId
  */
-export const removeContract = async (kingdomId: string, contractId: string, batch: FirebaseFirestore.WriteBatch) => {
+export const removeContract = async (kingdomId: string, contractId: string, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     const kingdomContract = (await angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${contractId}`).get()).data();
     if (kingdomContract) {
@@ -921,7 +949,7 @@ export const removeContract = async (kingdomId: string, contractId: string, batc
  * @param contractId
  * @param assignmentId
  */
-export const assignContract = async (kingdomId: string, contractId: string, assignmentId: number) => {
+export const assignContract = async (kingdomId: string, contractId: string, assignmentId: number): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to ASSIGN the CONTRACT ${contractId}`);
     const kingdomContract = (await angularFirestore.doc(`kingdoms/${kingdomId}/contracts/${contractId}`).get()).data();
@@ -950,7 +978,7 @@ export const assignContract = async (kingdomId: string, contractId: string, assi
  * @param turns
  * @param batch
  */
-export const addCharm = async (kingdomId: string, spell: any, turns: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addCharm = async (kingdomId: string, spell: any, turns: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
     const science = searchPerk(tree, 'science');
@@ -978,7 +1006,7 @@ export const addCharm = async (kingdomId: string, spell: any, turns: number, bat
  * @param charmId
  * @param turns
  */
-export const researchCharm = async (kingdomId: string, charmId: string, turns: number) => {
+export const researchCharm = async (kingdomId: string, charmId: string, turns: number): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to RESEARCH the CHARM ${charmId}`);
     const kingdomTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', SupplyType.TURN).limit(1).get()).docs[0].data();
@@ -1004,7 +1032,7 @@ export const researchCharm = async (kingdomId: string, charmId: string, turns: n
  * @param charmId
  * @param assignmentId
  */
-export const assignCharm = async (kingdomId: string, charmId: string, assignmentId: number) => {
+export const assignCharm = async (kingdomId: string, charmId: string, assignmentId: number): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to ASSIGN the CHARM ${charmId}`);
     const charm = (await angularFirestore.doc(`kingdoms/${kingdomId}/charms/${charmId}`).get()).data();
@@ -1026,7 +1054,7 @@ export const assignCharm = async (kingdomId: string, charmId: string, assignment
  * @param charmId
  * @param targetId
  */
-export const conjureCharm = async (kingdomId: string, charmId: string, targetId: string) => {
+export const conjureCharm = async (kingdomId: string, charmId: string, targetId: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to CONJURE the CHARM ${charmId}`);
     let result: any = {};
@@ -1069,10 +1097,7 @@ export const conjureCharm = async (kingdomId: string, charmId: string, targetId:
             break;
           }
           case 'espionage': {
-            const from = (await angularFirestore.doc(`kingdoms/${targetId}`).get()).data();
-            // TODO
-            // this is done in the espionage section
-            await addLetter(kingdomId, 'kingdom.espionage.subject', 'kingdom.espionage.message', from, batch, null);
+            await spyKingdom(kingdomId, targetId, batch);
             console.log(`KINGDOM ${kingdomId} succesfully SPIES ${targetId}`);
             break;
           }
@@ -1119,7 +1144,7 @@ export const conjureCharm = async (kingdomId: string, charmId: string, targetId:
  * @param kingdomId
  * @param itemId
  */
-export const buyEmporium = async (kingdomId: string, itemId: string) => {
+export const buyEmporium = async (kingdomId: string, itemId: string): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to BUY ${itemId}`);
     const item = (await angularFirestore.doc(`items/${itemId}`).get()).data();
@@ -1155,7 +1180,7 @@ export const buyEmporium = async (kingdomId: string, itemId: string) => {
  * @param quantity
  * @param batch
  */
-export const addArtifact = async (kingdomId: string, item: any, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addArtifact = async (kingdomId: string, item: any, quantity: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     const kingdomArtifact = await angularFirestore.collection(`kingdoms/${kingdomId}/artifacts`).where('id', '==', item.id).limit(1).get();
     if (kingdomArtifact.size > 0) {
@@ -1175,7 +1200,7 @@ export const addArtifact = async (kingdomId: string, item: any, quantity: number
  * @param artifactId
  * @param assignmentId
  */
-export const assignArtifact = async (kingdomId: string, artifactId: string, assignmentId: number) => {
+export const assignArtifact = async (kingdomId: string, artifactId: string, assignmentId: number): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to ASSIGN the ARTIFACT ${artifactId}`);
     const batch = angularFirestore.batch();
@@ -1194,7 +1219,7 @@ export const assignArtifact = async (kingdomId: string, artifactId: string, assi
  * @param artifactId
  * @param targetId
  */
-export const activateArtifact = async (kingdomId: string, artifactId: string, targetId: string) => {
+export const activateArtifact = async (kingdomId: string, artifactId: string, targetId: string): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to ACTIVATE the ARTIFACT ${artifactId} on ${targetId}`);
     let result = {};
@@ -1264,10 +1289,8 @@ export const activateArtifact = async (kingdomId: string, artifactId: string, ta
             break;
           }
           case 'espionage': {
-            const from = (await angularFirestore.doc(`kingdoms/${targetId}`).get()).data();
-            // TODO
-            await addLetter(kingdomId, 'kingdom.espionage.subject', 'kingdom.espionage.message', from, batch, null);
-            console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${artifact.item.id} on ${targetId}`);
+            await spyKingdom(kingdomId, targetId, batch);
+            console.log(`KINGDOM ${kingdomId} succesfully SPIES ${targetId}`);
             break;
           }
           case 'battle': {
@@ -1289,7 +1312,7 @@ export const activateArtifact = async (kingdomId: string, artifactId: string, ta
       } else throw new Error(`KINGDOM ${kingdomId} has not enought TURNS or QUANTITY`);
     } else throw new Error(`KINGDOM ${kingdomId} does not exists or is only for BATTLES`);
   } catch (error) {
-    console.error(`KINGDOM ${kingdomId} could not ASSIGN the ARTIFACT ${artifactId}`, error);
+    console.error(`KINGDOM ${kingdomId} could not ACTIVATE the ARTIFACT ${artifactId}`, error);
     throw error;
   }
 };
@@ -1306,7 +1329,7 @@ export const activateArtifact = async (kingdomId: string, artifactId: string, ta
  * @param buildingId
  * @param quantity
  */
-export const buildStructure = async (kingdomId: string, buildingId: string, quantity: number) => {
+export const buildStructure = async (kingdomId: string, buildingId: string, quantity: number): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to BUILD the STRUCTURE ${buildingId}`);
     const kingdomBuilding = (await angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${buildingId}`).get()).data();
@@ -1345,7 +1368,7 @@ export const buildStructure = async (kingdomId: string, buildingId: string, quan
  * @param buildingId
  * @param quantity
  */
-export const demolishStructure = async (kingdomId: string, buildingId: string, quantity: number) => {
+export const demolishStructure = async (kingdomId: string, buildingId: string, quantity: number): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to DEMOLISH the STRUCTURE ${buildingId}`);
     const kingdomBuilding = (await angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${buildingId}`).get()).data();
@@ -1372,13 +1395,11 @@ export const demolishStructure = async (kingdomId: string, buildingId: string, q
  * @param quantity
  * @param batch
  */
-export const addBuilding = async (kingdomId: string, buildingId: string, quantity: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addBuilding = async (kingdomId: string, buildingId: string, quantity: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     const kingdomBuilding = (await angularFirestore.collection(`kingdoms/${kingdomId}/buildings`).where('id', '==', buildingId).limit(1).get()).docs[0];
     if (kingdomBuilding) {
       const building = kingdomBuilding.data();
-      const stack = building.quantity + quantity <= 0 ? 0 : admin.firestore.FieldValue.increment(quantity);
-      batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${kingdomBuilding.id}`), { quantity: stack });
       if (quantity >= 0) {
         const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
         const architecture = searchPerk(tree, 'architecture');
@@ -1394,6 +1415,8 @@ export const addBuilding = async (kingdomId: string, buildingId: string, quantit
         await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor((building.structure.populationMaintenance - building.structure.populationProduction) * Math.abs(quantity)), batch);
         await balancePower(kingdomId, Math.floor(building.structure.power * Math.abs(quantity)), batch);
       }
+      const stack = building.quantity + quantity <= 0 ? 0 : admin.firestore.FieldValue.increment(quantity);
+      batch.update(angularFirestore.doc(`kingdoms/${kingdomId}/buildings/${kingdomBuilding.id}`), { quantity: stack });
     } else throw new Error(`BUILDING ${buildingId} does not exists`);
   } catch (error) {
     console.error(`KINGDOM ${kingdomId} could not ADD the BUILDING ${buildingId}`, error);
@@ -1416,7 +1439,7 @@ export const addBuilding = async (kingdomId: string, buildingId: string, quantit
  * @param batch
  * @param data
  */
-export const addLetter = async (kingdomId: string, subject: string, message: string, from: any, batch: FirebaseFirestore.WriteBatch, data?: any) => {
+export const addLetter = async (kingdomId: string, subject: string, message: string, from: any, batch: FirebaseFirestore.WriteBatch, data?: any): Promise<void> => {
   try {
     batch.create(angularFirestore.collection(`kingdoms/${kingdomId}/letters`).doc(), {
       to: kingdomId,
@@ -1440,7 +1463,7 @@ export const addLetter = async (kingdomId: string, subject: string, message: str
  * @param message
  * @param fromId
  */
-export const sendLetter = async (kingdomId: string, subject: string, message: string, fromId: string) => {
+export const sendLetter = async (kingdomId: string, subject: string, message: string, fromId: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to SEND the LETTER`);
     const batch = angularFirestore.batch();
@@ -1459,7 +1482,7 @@ export const sendLetter = async (kingdomId: string, subject: string, message: st
  * @param kingdomId
  * @param letterId
  */
-export const readLetter = async (kingdomId: string, letterId: string) => {
+export const readLetter = async (kingdomId: string, letterId: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to READ the LETTER ${letterId}`);
     await angularFirestore.doc(`kingdoms/${kingdomId}/letters/${letterId}`).update({ read: true });
@@ -1475,7 +1498,7 @@ export const readLetter = async (kingdomId: string, letterId: string) => {
  * @param kingdomId
  * @param letterIds
  */
-export const removeLetters = async (kingdomId: string, letterIds: string[]) => {
+export const removeLetters = async (kingdomId: string, letterIds: string[]): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to REMOVE the LETTERS`);
     const batch = angularFirestore.batch();
@@ -1504,7 +1527,7 @@ export const removeLetters = async (kingdomId: string, letterIds: string[]) => {
  * @param type
  * @param name
  */
-export const checkShop = async (fid?: string, latitude?: number, longitude?: number, type?: StoreType, name?: string) => {
+export const checkShop = async (fid?: string, latitude?: number, longitude?: number, type?: StoreType, name?: string): Promise<void> => {
   try {
     console.log(`SHOP ${fid} tries to CHECK for refresh`);
     let update = false;
@@ -1574,7 +1597,7 @@ export const checkShop = async (fid?: string, latitude?: number, longitude?: num
  * @param collectionId
  * @param dealId
  */
-export const tradeDeal = async (kingdomId: string, shopId: string, collectionId: string, dealId: string) => {
+export const tradeDeal = async (kingdomId: string, shopId: string, collectionId: string, dealId: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to TRADE ${shopId} ${collectionId} ${dealId}`);
     const worldDeal = (await angularFirestore.doc(`shops/${shopId}/${collectionId}/${dealId}`).get()).data();
@@ -1645,7 +1668,7 @@ export const tradeDeal = async (kingdomId: string, shopId: string, collectionId:
  * @param type
  * @param name
  */
-export const checkQuest = async (fid?: string, latitude?: number, longitude?: number, type?: LocationType, name?: string) => {
+export const checkQuest = async (fid?: string, latitude?: number, longitude?: number, type?: LocationType, name?: string): Promise<void> => {
   try {
     console.log(`QUEST ${fid} tries to CHECK for refresh`);
     let update = false;
@@ -1818,7 +1841,7 @@ export const checkQuest = async (fid?: string, latitude?: number, longitude?: nu
  * @param kingdomId
  * @param questId
  */
-export const adventureQuest = async (kingdomId: string, questId: string) => {
+export const adventureQuest = async (kingdomId: string, questId: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to ADVENTURE ${questId}`);
     const defenderQuest = (await angularFirestore.doc(`quests/${questId}`).get()).data();
@@ -1953,7 +1976,7 @@ export const scanMap = async (latitude: number, longitude: number, radius: numbe
  * player draws the map given the points
  * @param points
  */
-export const drawMap = async (points: any[]) => {
+export const drawMap = async (points: any[]): Promise<void> => {
   try {
     const groups = _.groupBy(points.filter((e: any) => e.geometry && e.geometry.coordinates && e.tags && e.tags.name), (e: any) => e.tags.subtype);
     for (const group of Object.keys(groups)) {
@@ -1979,7 +2002,7 @@ export const drawMap = async (points: any[]) => {
  * @param latitude
  * @param longitude
  */
-export const populateMap = async (latitude: number, longitude: number) => {
+export const populateMap = async (latitude: number, longitude: number): Promise<void> => {
   try {
     console.log(`MAP tries to POPULATE in [${latitude}, ${longitude}]`);
     const points = await scanMap(latitude, longitude, MAP_RADIUS);
@@ -2002,8 +2025,8 @@ export const populateMap = async (latitude: number, longitude: number) => {
  * @param guild
  * @param targets
  */
-const applyGuild = (guild: any, targets: any[]) => {
-  targets.forEach((troop: any) => {
+const applyGuild = (guild: any, targets: any[]): void => {
+  targets.forEach((troop: any): void => {
     if (guild) {
       troop.unit.attackBonus = (troop.unit.attackBonus || 0) + guild.attackBonus;
       troop.unit.healthBonus = (troop.unit.healthBonus || 0) + guild.healthBonus;
@@ -2024,7 +2047,7 @@ export const applyGuilds = (
   attackerGuild: any,
   defenderTroops: any[],
   defenderGuild: any,
-) => {
+): void => {
   if (attackerGuild) applyGuild(attackerGuild, attackerTroops);
   if (defenderGuild) applyGuild(defenderGuild, defenderTroops);
 };
@@ -2034,7 +2057,7 @@ export const applyGuilds = (
  * @param tree
  * @param targets
  */
-const applyTree = (tree: any, targets: any[]) => {
+const applyTree = (tree: any, targets: any[]): void => {
   const metallurgy = searchPerk(tree, 'metallurgy');
   const medicine = searchPerk(tree, 'medicine');
   const forge = searchPerk(tree, 'forge');
@@ -2057,7 +2080,7 @@ export const applyTrees = (
   attackerTree: any,
   defenderTroops: any[],
   defenderTree: any,
-) => {
+): void => {
   if (attackerTree) applyTree(attackerTree, attackerTroops);
   if (defenderTree) applyTree(defenderTree, defenderTroops);
 };
@@ -2069,12 +2092,12 @@ export const applyTrees = (
  * @param targetType
  * @param balance
  */
-const applyArtifact = (artifact: any, targets: any[], targetType: TargetType, report: BattleReport) => {
+const applyArtifact = (artifact: any, targets: any[], targetType: TargetType, report: BattleReport): void => {
   // skills
   if (artifact.item.skills.length) {
     if (artifact.item.multiple) {
       targets.forEach(troop => {
-        artifact.item.skills.forEach((skill: any) => {
+        artifact.item.skills.forEach((skill: any): void => {
           if (!troop.unit.skills.find((ski: any) => ski.id === skill.id)) {
             troop.unit.skills.push(skill);
           }
@@ -2082,7 +2105,7 @@ const applyArtifact = (artifact: any, targets: any[], targetType: TargetType, re
       });
     } else {
       const randomIndex = random(0, targets.length - 1);
-      artifact.item.skills.forEach((skill: any) => {
+      artifact.item.skills.forEach((skill: any): void => {
         if (!targets[randomIndex].unit.skills.find((ski: any) => ski.id === skill.id)) {
           targets[randomIndex].unit.skills.push(skill);
         }
@@ -2093,7 +2116,7 @@ const applyArtifact = (artifact: any, targets: any[], targetType: TargetType, re
   if (artifact.item.resistances.length) {
     if (artifact.item.multiple) {
       targets.forEach(troop => {
-        artifact.item.resistances.forEach((resistance: any) => {
+        artifact.item.resistances.forEach((resistance: any): void => {
           if (!troop.unit.resistances.find((res: any) => res.id === resistance.id)) {
             troop.unit.resistances.push(resistance);
           }
@@ -2101,7 +2124,7 @@ const applyArtifact = (artifact: any, targets: any[], targetType: TargetType, re
       });
     } else {
       const randomIndex = random(0, targets.length - 1);
-      artifact.item.resistances.forEach((resistance: any) => {
+      artifact.item.resistances.forEach((resistance: any): void => {
         if (!targets[randomIndex].unit.resistances.find((res: any) => res.id === resistance.id)) {
           targets[randomIndex].unit.resistances.push(resistance);
         }
@@ -2146,8 +2169,8 @@ export const applyArtifacts = (
   defenderTroops: any[],
   defenderArtifacts: any[],
   report: BattleReport,
-) => {
-  attackerArtifacts.forEach((artifact: any) => {
+): void => {
+  attackerArtifacts.forEach((artifact: any): void => {
     if (artifact.item.battle) {
       const success = random(0, 100) <= 100;
       if (success) {
@@ -2160,7 +2183,7 @@ export const applyArtifacts = (
       });
     }
   });
-  defenderArtifacts.forEach((artifact: any) => {
+  defenderArtifacts.forEach((artifact: any): void => {
     if (artifact.item.battle) {
       const success = random(0, 100) <= 100;
       if (success) {
@@ -2182,12 +2205,12 @@ export const applyArtifacts = (
  * @param targetType
  * @param report
  */
-const applyCharm = (charm: any, targets: any[], targetType: TargetType, report: BattleReport) => {
+const applyCharm = (charm: any, targets: any[], targetType: TargetType, report: BattleReport): void => {
   // skills
   if (charm.spell.skills.length) {
     if (charm.spell.multiple) {
       targets.forEach(troop => {
-        charm.spell.skills.forEach((skill: any) => {
+        charm.spell.skills.forEach((skill: any): void => {
           if (!charm.spell.removes) {
             if (!troop.unit.skills.find((ski: any) => ski.id === skill.id)) {
               troop.unit.skills.push(skill);
@@ -2201,7 +2224,7 @@ const applyCharm = (charm: any, targets: any[], targetType: TargetType, report: 
       });
     } else {
       const randomIndex = random(0, targets.length - 1);
-      charm.spell.skills.forEach((skill: any) => {
+      charm.spell.skills.forEach((skill: any): void => {
         if (!charm.spell.removes) {
           if (!targets[randomIndex].unit.skills.find((ski: any) => ski.id === skill.id)) {
             targets[randomIndex].unit.skills.push(skill);
@@ -2218,7 +2241,7 @@ const applyCharm = (charm: any, targets: any[], targetType: TargetType, report: 
   if (charm.spell.resistances.length) {
     if (charm.spell.multiple) {
       targets.forEach(troop => {
-        charm.spell.resistances.forEach((resistance: any) => {
+        charm.spell.resistances.forEach((resistance: any): void => {
           if (!troop.unit.resistances.find((res: any) => res.id === resistance.id)) {
             troop.unit.resistances.push(resistance);
           }
@@ -2226,7 +2249,7 @@ const applyCharm = (charm: any, targets: any[], targetType: TargetType, report: 
       });
     } else {
       const randomIndex = random(0, targets.length - 1);
-      charm.spell.resistances.forEach((resistance: any) => {
+      charm.spell.resistances.forEach((resistance: any): void => {
         if (!targets[randomIndex].unit.resistances.find((res: any) => res.id === resistance.id)) {
           targets[randomIndex].unit.resistances.push(resistance);
         }
@@ -2271,8 +2294,8 @@ export const applyCharms = (
   defenderTroops: any[],
   defenderCharms: any[],
   report: BattleReport,
-) => {
-  attackerCharms.forEach((charm: any) => {
+): void => {
+  attackerCharms.forEach((charm: any): void => {
     if (charm.spell.battle) {
       const success = random(0, 100) <= 100;
       if (success) {
@@ -2285,7 +2308,7 @@ export const applyCharms = (
       });
     }
   });
-  defenderCharms.forEach((charm: any) => {
+  defenderCharms.forEach((charm: any): void => {
     if (charm.spell.battle) {
       const success = random(0, 100) <= 100;
       if (success) {
@@ -2307,13 +2330,13 @@ export const applyCharms = (
  * @param targetType
  * @param report
  */
-const applyContract = (contract: any, targets: any[], targetType: TargetType, report: BattleReport) => {
+const applyContract = (contract: any, targets: any[], targetType: TargetType, report: BattleReport): void => {
   if (contract.hero.self) {
     // bonuses
     if (contract.hero.families.length) {
-      contract.hero.families.forEach((family: any) => {
+      contract.hero.families.forEach((family: any): void => {
         targets.forEach(target => {
-          target.unit.families.forEach((f: any) => {
+          target.unit.families.forEach((f: any): void => {
             if (family.id === f.id) {
               target.unit.attackBonus = (target.unit.attackBonus || 0) + contract.hero.attackBonus * contract.level;
               target.unit.defenseBonus = (target.unit.defenseBonus || 0) + contract.hero.defenseBonus * contract.level;
@@ -2376,14 +2399,14 @@ export const applyContracts = (
   defenderTroops: any[],
   defenderContracts: any[],
   report: BattleReport,
-) => {
-  attackerContracts.forEach((contract: any) => {
+): void => {
+  attackerContracts.forEach((contract: any): void => {
     if (contract.hero.battle) {
       if (contract.hero.self) applyContract(contract, attackerTroops, TargetType.ATTACKER, report);
       else applyContract(contract, defenderTroops, TargetType.DEFENDER, report);
     }
   });
-  defenderContracts.forEach((contract: any) => {
+  defenderContracts.forEach((contract: any): void => {
     if (contract.hero.battle) {
       if (contract.hero.self) applyContract(contract, defenderTroops, TargetType.DEFENDER, report);
       else applyContract(contract, attackerTroops, TargetType.ATTACKER, report);
@@ -2397,20 +2420,20 @@ export const applyContracts = (
  */
 const applySkill = (
   troop: any,
-) => {
+): void => {
   // skills
-  troop.unit.skills.forEach((skill: any) => {
+  troop.unit.skills.forEach((skill: any): void => {
     troop.unit.attackBonus = (troop.unit.attackBonus || 0) + skill.attackBonus;
     troop.unit.defenseBonus = (troop.unit.defenseBonus || 0) + skill.defenseBonus;
     troop.unit.healthBonus = (troop.unit.healthBonus || 0) + skill.healthBonus;
     troop.unit.initiativeBonus = (troop.unit.initiativeBonus || 0) + skill.initiativeBonus;
   });
   // categories
-  troop.unit.categories.forEach((category: any) => {
+  troop.unit.categories.forEach((category: any): void => {
     // TODO
   });
   // resistances
-  troop.unit.resistances.forEach((category: any) => {
+  troop.unit.resistances.forEach((category: any): void => {
     troop.unit.meleeResistance = (troop.unit.meleeResistance || 0) + category.meleeResistance;
     troop.unit.rangedResistance = (troop.unit.rangedResistance || 0) + category.rangedResistance;
     troop.unit.magicResistance = (troop.unit.magicResistance || 0) + category.magicResistance;
@@ -2433,11 +2456,11 @@ const applySkill = (
 export const applySkills = (
   attackerTroops: any[],
   defenderTroops: any[],
-) => {
-  attackerTroops.forEach((troop: any) => {
+): void => {
+  attackerTroops.forEach((troop: any): void => {
     applySkill(troop);
   });
-  defenderTroops.forEach((troop: any) => {
+  defenderTroops.forEach((troop: any): void => {
     applySkill(troop);
   });
 };
@@ -2495,7 +2518,7 @@ export const applyCasualties = (
   attackerTroop: any,
   defenderTroop: any,
   damage: number,
-) => {
+): number => {
   const casualties = Math.max(0, Math.min(defenderTroop.quantity, Math.floor((damage * attackerTroop.quantity - defenderTroop.unit.defenseWave * defenderTroop.quantity) / defenderTroop.unit.healthWave)));
   return casualties;
 };
@@ -2512,7 +2535,7 @@ export const applyWave = (
   defenderTroop: any,
   report: BattleReport,
   battleType: BattleType,
-) => {
+): void => {
   // variables
   let attackerCategory = null;
   let defenderQuantity = null;
@@ -2603,7 +2626,7 @@ export const applyWaves = async (
   batch?: FirebaseFirestore.WriteBatch | undefined,
   defenderId?: string | undefined,
   questId?: string | undefined,
-) => {
+): Promise<void> => {
   const rounds = Math.min(Math.max(attackerTroops.length, defenderTroops.length), BATTLE_ROUNDS);
   let attackerIndex = 0;
   let defenderIndex = 0;
@@ -2721,7 +2744,7 @@ export const resolveBattle = async (
  * @param targetId
  * @param battleId
  */
-export const battleKingdom = async (kingdomId: string, battleId: BattleType, targetId: string) => {
+export const battleKingdom = async (kingdomId: string, battleId: BattleType, targetId: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to ATTACK ${targetId} by ${battleId}`);
     const attackerTurn = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', SupplyType.TURN).limit(1).get()).docs[0].data();
@@ -2843,7 +2866,7 @@ export const battleKingdom = async (kingdomId: string, battleId: BattleType, tar
 /**
  * refreshes the auction house
  */
-export const refreshAuctions = async () => {
+export const refreshAuctions = async (): Promise<void> => {
   try {
     console.log(`AUCTIONS try to be REFRESHED`);
     const batch = angularFirestore.batch();
@@ -2895,7 +2918,7 @@ export const refreshAuctions = async () => {
  * @param type
  * @param batch
  */
-export const startAuction = async (type: AuctionType, batch: FirebaseFirestore.WriteBatch) => {
+export const startAuction = async (type: AuctionType, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     console.log(`AUCTION ${type} tries to be STARTED`);
     const auctioned = moment(admin.firestore.Timestamp.now().toMillis()).add(AUCTION_TIME, 'seconds');
@@ -2933,7 +2956,7 @@ export const startAuction = async (type: AuctionType, batch: FirebaseFirestore.W
  * @param auctionId
  * @param gold
  */
-export const bidAuction = async (kingdomId: string, auctionId: string, gold: number) => {
+export const bidAuction = async (kingdomId: string, auctionId: string, gold: number): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to BID ${auctionId}`);
     const auction = (await angularFirestore.doc(`auctions/${auctionId}`).get()).data();
@@ -2982,7 +3005,7 @@ export const bidAuction = async (kingdomId: string, auctionId: string, gold: num
  * @param godId
  * @param sacrifice
  */
-export const offerGod = async (kingdomId: string, godId: string, sacrifice: number, reward?: string) => {
+export const offerGod = async (kingdomId: string, godId: string, sacrifice: number, reward?: string): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to OFFER ${godId}`);
     let result = {};
@@ -3094,7 +3117,7 @@ export const offerGod = async (kingdomId: string, godId: string, sacrifice: numb
  * @param turns
  * @param batch
  */
-export const addEnchantment = async (kingdomId: string, enchantment: any, originId: string, turns: number, batch: FirebaseFirestore.WriteBatch) => {
+export const addEnchantment = async (kingdomId: string, enchantment: any, originId: string, turns: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
     const kingdomEnchantment = await angularFirestore.collection(`kingdoms/${kingdomId}/enchantments`).where('id', '==', enchantment.id).limit(1).get();
     if (kingdomEnchantment.size > 0) {
@@ -3130,7 +3153,7 @@ export const addEnchantment = async (kingdomId: string, enchantment: any, origin
  * @param kingdomId
  * @param enchantmentId
  */
-export const dispelIncantation = async (kingdomId: string, enchantmentId: string) => {
+export const dispelIncantation = async (kingdomId: string, enchantmentId: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to DISPEL ${enchantmentId}`);
     const batch = angularFirestore.batch();
@@ -3149,7 +3172,7 @@ export const dispelIncantation = async (kingdomId: string, enchantmentId: string
  * @param kingdomId
  * @param enchantmentId
  */
-export const removeEnchantment = async (kingdomId: string, enchantmentId: string, batch: FirebaseFirestore.WriteBatch) => {
+export const removeEnchantment = async (kingdomId: string, enchantmentId: string, batch: FirebaseFirestore.WriteBatch): Promise<any> => {
   try {
     const kingdomEnchantment = (await angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`).get()).data();
     if (kingdomEnchantment) {
@@ -3179,7 +3202,7 @@ export const removeEnchantment = async (kingdomId: string, enchantmentId: string
  * @param kingdomId
  * @param enchantmentId
  */
-export const breakEnchantment = async (kingdomId: string, enchantmentId: string) => {
+export const breakEnchantment = async (kingdomId: string, enchantmentId: string): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to BREAK ${enchantmentId}`);
     const kingdomEnchantment = (await angularFirestore.doc(`kingdoms/${kingdomId}/enchantments/${enchantmentId}`).get()).data();
@@ -3234,7 +3257,7 @@ export const breakEnchantment = async (kingdomId: string, enchantmentId: string)
  * @param description
  * @param image
  */
-export const foundateClan = async (kingdomId: string, name: string, description: string, image: string) => {
+export const foundateClan = async (kingdomId: string, name: string, description: string, image: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to FOUNDATE ${name}`);
     const kingdomClan = (await angularFirestore.collection(`clans`).where('name', '==', name).limit(1).get());
@@ -3268,7 +3291,7 @@ export const foundateClan = async (kingdomId: string, name: string, description:
  * @param kingdomId
  * @param clanId
  */
-export const joinClan = async (kingdomId: string, clanId: string) => {
+export const joinClan = async (kingdomId: string, clanId: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to JOIN ${clanId}`);
     const kingdom = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
@@ -3317,7 +3340,7 @@ export const leaveClan = async (kingdomId: string, clanId: string): Promise<void
  * @param kingdomId
  * @param guildId
  */
-export const favorGuild = async (kingdomId: string, guildId: string) => {
+export const favorGuild = async (kingdomId: string, guildId: string): Promise<void> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to FAVOR the GUILD ${guildId}`);
     const guild = (await angularFirestore.doc(`guilds/${guildId}`).get()).data();

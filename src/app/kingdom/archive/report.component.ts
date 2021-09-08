@@ -25,6 +25,61 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
       <div matSubheader>{{ 'kingdom.report.message' | translate }}:</div>
       <p>{{ report.message | translate }}</p>
     </div>
+    <!-- ESPIONAGE -->
+    <div mat-dialog-content *ngIf="report.data && report.data.intel">
+      <!-- SUPPLIES -->
+      <div matSubheader>{{ 'kingdom.report.resources' | translate }}:</div>
+      <mat-list dense>
+        <mat-list-item *ngFor="let supply of report.data.intel.supplies" class="common">
+          <div mat-list-avatar [matBadge]="supply.quantity | short" matBadgePosition="above before">
+            <img mat-list-avatar [src]="supply.resource.image">
+          </div>
+          <div mat-line>{{ supply.resource.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="supply.resource.description | translate | icon:supply.resource"></div>
+        </mat-list-item>
+      </mat-list>
+      <!-- TROOPS -->
+      <div matSubheader>{{ 'kingdom.report.troops' | translate }}:</div>
+      <mat-list dense>
+        <mat-list-item *ngFor="let troop of report.data.intel.troops" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']">
+          <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
+            <img mat-list-avatar [src]="troop.unit.image">
+          </div>
+          <div mat-line>{{ troop.unit.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle">
+            <img [title]="family.name | translate" class="icon" *ngFor="let family of troop.unit.families" [src]="family.image" [alt]="family.name | translate">
+            <img [title]="skill.name | translate" class="icon" *ngFor="let skill of troop.unit.skills" [src]="skill.image" [alt]="skill.name | translate">
+            <img [title]="category.name | translate" class="icon" *ngFor="let category of troop.unit.categories" [src]="category.image" [alt]="category.name | translate">
+            <img [title]="'category.legendary.name' | translate" class="icon" *ngIf="troop.unit.legendary" src="/assets/images/icons/legendary.png" [alt]="'category.legendary.name' | translate">
+          </div>
+          <div mat-line class="mat-card-subtitle" *ngIf="troop.unit.resistances && troop.unit.resistances.length">
+            <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of troop.unit.resistances" [src]="category.image" [alt]="'category.resistance.name' | translate">
+          </div>
+        </mat-list-item>
+      </mat-list>
+      <!-- CONTRACTS -->
+      <div matSubheader>{{ 'kingdom.report.contracts' | translate }}:</div>
+      <mat-list dense>
+        <mat-list-item *ngFor="let contract of report.data.intel.contracts" [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']">
+          <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
+            <img mat-list-avatar [src]="contract.hero.image">
+          </div>
+          <div mat-line>{{ contract.hero.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="contract.hero.description | translate | icon:contract.hero"></div>
+        </mat-list-item>
+      </mat-list>
+      <!-- BUILDINGS -->
+      <div matSubheader>{{ 'kingdom.report.buildings' | translate }}:</div>
+      <mat-list dense>
+        <mat-list-item *ngFor="let building of report.data.intel.buildings" class="common">
+          <div mat-list-avatar [matBadge]="building.quantity | short" matBadgePosition="above before">
+            <img mat-list-avatar [src]="building.structure.image">
+          </div>
+          <div mat-line>{{ building.structure.name | translate }}</div>
+          <div mat-line class="mat-card-subtitle" [innerHTML]="building.structure.description | translate | icon:building.structure"></div>
+        </mat-list-item>
+      </mat-list>
+    </div>
     <!-- BATTLE -->
     <div mat-dialog-content *ngIf="report.data && report.data.logs">
       <div matSubheader>{{ 'kingdom.report.attacker' | translate }}:<span class="fill-space"></span>{{ 'kingdom.report.defender' | translate }}:</div>
@@ -171,6 +226,9 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
     }
     p {
       margin: 0;
+    }
+    ::ng-deep .mat-list-base {
+      max-height: none;
     }
     ::ng-deep .mat-list-base .mat-list-item.righted .mat-list-item-content {
       flex-direction: row-reverse !important;
