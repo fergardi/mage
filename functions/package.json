@@ -37,9 +37,11 @@
     "@types/jest": "^27.0.1",
     "@types/lodash": "^4.14.172",
     "@types/mapbox-gl": "^2.4.1",
+    "@types/supertest": "^2.0.11",
     "firebase-functions-test": "^0.3.2",
     "firebase-tools": "^9.17.0",
     "jest": "^27.1.0",
+    "supertest": "^6.1.6",
     "ts-jest": "^27.0.5",
     "tslint": "^6.1.3",
     "typescript": "^4.4.2"
