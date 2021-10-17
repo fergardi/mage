@@ -308,7 +308,7 @@
     },
     "adventure": {
       "name": "Aventura",
-      "description": "Estás a punto de embarcarte en una aventura para obtener una recompensa, pero primero deberás medirte en batalla contra el grupo de enemigos que lo protegen, gastando Turnos. Lo harás usando los héroes, tropas, artefactos y hechizos que tengas asignados para el ataque.",
+      "description": "Estás a punto de embarcarte en una aventura para intentar obtener un artefacto (además de una <gem>), pero primero deberás medirte en batalla contra el grupo de enemigos que lo protegen, gastando <turn>. Lo harás usando los Héroes, Tropas, Artefactos y Hechizos que tengas asignados para el ataque.",
       "cancel": "Cancelar",
       "start": "Comenzar",
       "success": "La aventura se ha completado",
@@ -319,7 +319,7 @@
     },
     "deal": {
       "name": "Trato",
-      "description": "Estás a punto de adquirir una mercancía a un comerciante a cambio de Oro. Las mercancías se actualizan periódicamente, No se admiten cambios ni devoluciones.",
+      "description": "Estás a punto de adquirir una mercancía a un comerciante a cambio de <gold>. Las mercancías se actualizan periódicamente. No se admiten cambios ni devoluciones.",
       "cancel": "Cancelar",
       "trade": "Intercambiar",
       "success": "El intercambio se ha completado",
@@ -1259,32 +1259,12 @@
       "name": "Arqueros",
       "description": ""
     },
-    "frog": {
-      "name": "Ranas",
-      "description": ""
-    },
     "sheep": {
       "name": "Ovejas",
       "description": ""
     },
-    "bat": {
-      "name": "Murciélagos",
-      "description": ""
-    },
-    "rat": {
-      "name": "Ratas",
-      "description": ""
-    },
-    "imp": {
-      "name": "Diablillos",
-      "description": ""
-    },
     "trained-elephant": {
       "name": "Elefantes de Guerra",
-      "description": ""
-    },
-    "wolf": {
-      "name": "Lobos",
       "description": ""
     },
     "iron-golem": {
@@ -1777,7 +1757,7 @@
     },
     "tranquility": {
       "name": "Tranquilidad",
-      "description": "Aplica <slowness> y <weakness> a cada tropa enemiga"
+      "description": "Convierte en <sheep> a una tropa enemiga al azar"
     },
     "armageddon": {
       "name": "Armagedón",

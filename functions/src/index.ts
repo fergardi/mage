@@ -8,6 +8,17 @@ import * as mapboxgl from 'mapbox-gl';
 import * as _ from 'lodash';
 // https://stackoverflow.com/a/66124761/2477303
 import {
+  KingdomType,
+  SupplyType,
+  BonusType,
+  AssignmentType,
+  StoreType,
+  LocationType,
+  BattleReport,
+  TargetType,
+  BattleType,
+  AuctionType,
+  MarkerType,
   MAX_TURNS,
   MIN_LANDS,
   MAX_LANDS,
@@ -22,20 +33,10 @@ import {
   CLAN_COST,
   GUILD_TIME,
   MAP_RADIUS,
-  KingdomType,
-  SupplyType,
-  BonusType,
-  AssignmentType,
-  StoreType,
-  LocationType,
-  BattleReport,
-  TargetType,
-  BattleType,
-  AuctionType,
-  MarkerType,
   PILLAGE_RATIO,
   SIEGE_RATIO,
   ATTACK_RATIO,
+  QUEST_GEMS,
 } from './config';
 
 //========================================================================================
@@ -1636,25 +1637,25 @@ export const checkQuest = async (fid?: string, latitude?: number, longitude?: nu
     }
     if (update) {
       const questContracts = await angularFirestore.collection(`quests/${fid}/contracts`).listDocuments();
-      questContracts.map(contract => batch.delete(contract));
+      questContracts.map((contract: any) => batch.delete(contract));
       const questTroops = await angularFirestore.collection(`quests/${fid}/troops`).listDocuments();
-      questTroops.map(troop => batch.delete(troop));
+      questTroops.map((troop: any) => batch.delete(troop));
       const questArtifacts = await angularFirestore.collection(`quests/${fid}/artifacts`).listDocuments();
-      questArtifacts.map(artifact => batch.delete(artifact));
+      questArtifacts.map((artifact: any) => batch.delete(artifact));
       let questHeroes: string[] = [];
       let questUnits: string[] = [];
       let questItems: string[] = [];
       const legendaries: string[] = ['enchanted-lamp', 'wisdom-tome', 'dragon-egg', 'voodoo-doll', 'cursed-skull', 'cursed-mask', 'cursed-idol', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-compass', 'rattle', ];
       const items: string[] = ['treasure-chest', 'necronomicon', 'enchanted-lamp', 'wisdom-tome', 'demon-horn', 'lightning-orb', 'dragon-egg', 'crystal-ball', 'agility-potion', 'defense-potion', 'cold-orb', 'earth-orb', 'fire-orb', 'mana-potion', 'light-orb', 'strength-potion', 'love-potion', 'spider-web', 'animal-fang', 'bone-necklace', 'crown-thorns', 'voodoo-doll', 'cursed-skull', 'cursed-mask', 'cursed-idol', 'golem-book', 'letter-thieves', 'lucky-coin', 'lucky-horseshoe', 'lucky-paw', 'magic-beans', 'magic-compass', 'mana-vortex', 'rattle', 'rotten-food', 'snake-eye', 'treasure-map', 'valhalla-horn', 'fairy-wings', 'vampire-teeth', 'holy-grenade', 'powder-barrel', 'vial-venom', 'ancient-rune', 'ice-stone', 'fire-scroll', 'cold-scroll', 'light-scroll', 'earth-scroll', 'lightning-scroll'];
-      const demon = ['nightmare', 'medusa', 'cyclop', 'minotaur', 'devil', 'ogre', 'imp'];
-      const undead = ['wraith', 'bone-dragon', 'nightmare', 'ghoul', 'lich', 'skeleton', 'vampire', 'werewolf', 'zombie', 'rat'];
+      const demon = ['nightmare', 'medusa', 'cyclop', 'minotaur', 'devil', 'ogre'];
+      const undead = ['wraith', 'bone-dragon', 'nightmare', 'ghoul', 'lich', 'skeleton', 'vampire', 'werewolf', 'zombie'];
       const golem = ['iron-golem', 'stone-golem', 'meat-golem', 'wood-golem', 'crystal-golem'];
       const orkish = ['cave-troll', 'centaur', 'druid', 'ogre', 'orc'];
-      const elemental = ['lightning-elemental', 'djinni', 'ice-elemental', 'earth-elemental', 'fire-elemental', 'phoenix', 'light-elemental', 'bat', 'air-elemental', 'water-elemental'];
+      const elemental = ['lightning-elemental', 'djinni', 'ice-elemental', 'earth-elemental', 'fire-elemental', 'phoenix', 'light-elemental', 'air-elemental', 'water-elemental'];
       const giant = ['frost-giant', 'leviathan', 'yeti', 'spider', 'carnivorous-plant', 'hydra', 'cyclop', 'ogre', 'titan'];
       const dragon = ['bone-dragon', 'blue-dragon', 'golden-dragon', 'hydra', 'red-dragon', 'behemoth', 'white-dragon', 'baby-dragon'];
-      const animal = ['werewolf', 'spider', 'centaur', 'elf', 'werebear', 'carnivorous-plant', 'griffon', 'pegasus', 'cavalry', 'frog', 'sheep', 'bat', 'rat', 'imp', 'trained-elephant', 'wolf'];
-      const reptile = ['siren', 'medusa', 'leviathan', 'lizardman', 'hydra', 'frog'];
+      const animal = ['werewolf', 'spider', 'centaur', 'elf', 'werebear', 'carnivorous-plant', 'griffon', 'pegasus', 'cavalry', 'sheep', 'trained-elephant'];
+      const reptile = ['siren', 'medusa', 'leviathan', 'lizardman', 'hydra'];
       const human = ['werewolf', 'siren', 'mage', 'lizardman', 'elf', 'werebear', 'druid', 'berserker', 'angel', 'knight', 'monk', 'templar', 'pegasus', 'paladin', 'cavalry', 'fanatic', 'pikeman', 'fighter', 'archer', 'sheep'];
       switch (type) {
         case LocationType.VOLCANO:
@@ -1844,6 +1845,7 @@ export const adventureQuest = async (kingdomId: string, questId: string): Promis
             data.item = defenderQuestArtifact.item;
             data.quantity = defenderQuestArtifact.quantity;
             await addArtifact(kingdomId, defenderQuestArtifact.item, defenderQuestArtifact.quantity, batch);
+            await addSupply(kingdomId, SupplyType.GEM, QUEST_GEMS, batch);
             await checkQuest(questId);
           }
           const from = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
@@ -2224,6 +2226,12 @@ const applyCharm = (charm: any, targets: any[], targetType: TargetType, report: 
       report.defenderPowerLost += powerLost;
     }
   }
+  // special case sheeps
+  if (charm.spell.units.length && charm.spell.units[0] && charm.spell.units[0].id === 'sheep') {
+    const sheep = charm.spell.units[0];
+    const randomIndex = random(0, targets.length - 1);
+    targets[randomIndex].unit = sheep;
+  }
 };
 
 /**
@@ -2243,6 +2251,7 @@ export const applyCharms = (
 ): void => {
   attackerCharms.forEach((charm: any): void => {
     if (charm.spell.battle) {
+      // TODO
       const success = random(0, 100) <= 100;
       if (success) {
         if (charm.spell.self) applyCharm(charm, attackerTroops, TargetType.ATTACKER, report);
@@ -2256,6 +2265,7 @@ export const applyCharms = (
   });
   defenderCharms.forEach((charm: any): void => {
     if (charm.spell.battle) {
+      // TODO
       const success = random(0, 100) <= 100;
       if (success) {
         if (charm.spell.self) applyCharm(charm, defenderTroops, TargetType.DEFENDER, report);

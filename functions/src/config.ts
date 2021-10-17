@@ -24,6 +24,7 @@ export const MAP_RADIUS: number = 10000;
 export const ATTACK_RATIO: number = 0.05;
 export const PILLAGE_RATIO: number = 0.10;
 export const SIEGE_RATIO: number = 0.15;
+export const QUEST_GEMS: number = 1;
 
 //========================================================================================
 /*                                                                                      *

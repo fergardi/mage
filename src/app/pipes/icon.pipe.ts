@@ -29,7 +29,8 @@ export class IconPipe implements PipeTransform {
     .replace(/<defense>/g, `<img class="icon" title="${this.translateService.instant('type.defense.name')}" src="/assets/images/icons/defense.png">`)
     .replace(/<health>/g, `<img class="icon" title="${this.translateService.instant('type.health.name')}" src="/assets/images/icons/health.png">`)
     .replace(/<initiative>/g, `<img class="icon" title="${this.translateService.instant('type.initiative.name')}" src="/assets/images/icons/initiative.png">`)
-    .replace(/<skeleton>/g, `<img class="icon" title="${this.translateService.instant('unit.skeleton.name')}" src="/assets/images/units/black/skeleton.png">`);
+    .replace(/<skeleton>/g, `<img class="icon" title="${this.translateService.instant('unit.skeleton.name')}" src="/assets/images/units/black/skeleton.png">`)
+    .replace(/<sheep>/g, `<img class="icon" title="${this.translateService.instant('unit.sheep.name')}" src="/assets/images/units/grey/sheep.png">`);
     return this.domSanitizer.bypassSecurityTrustHtml(text);
   }
 
