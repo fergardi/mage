@@ -36,6 +36,7 @@ yarn-error.log
 testem.log
 /typings
 .scannerwork
+.pnpm-debug.log
 
 # System Files
 .DS_Store
