@@ -53,7 +53,7 @@ export class EncyclopediaComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   async ngOnInit(): Promise<void> {
-    let data = await Promise.all([
+    let cached = await Promise.all([
       this.cacheService.getSkills(),
       this.cacheService.getUnits(),
       this.cacheService.getSpells(),
@@ -70,7 +70,7 @@ export class EncyclopediaComponent implements OnInit {
       this.cacheService.getStores(),
       this.cacheService.getPerks(),
     ]);
-    data = data.reduce((a: any[], b: any) => a.concat(b), []);
+    let data: any[] = cached.reduce((a: any[], b: any) => a.concat(b), []);
     this.table = new MatTableDataSource(data);
     this.table.paginator = this.paginator;
     this.table.sort = this.sort;
