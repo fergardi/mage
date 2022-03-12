@@ -11,6 +11,8 @@
     perspective: 100px;
     height: calc(100vh - 64px);
     overflow: hidden auto;
+    background: url('/assets/images/background/parallax.png') no-repeat center center fixed;
+    background-size: cover;
   }
   .parallax-layer {
     position: absolute;
@@ -23,13 +25,13 @@
     background-repeat: no-repeat;
   }
   .parallax-layer-1 {
-    background-image: url("/assets/images/parallax/layer1.png");
+    // background-image: url("/assets/images/parallax/layer1.png");
   }
   .parallax-layer-2 {
-    background-image: url("/assets/images/parallax/layer2.png");
+    // background-image: url("/assets/images/parallax/layer2.png");
   }
   .parallax-layer-3 {
-    background-image: url("/assets/images/parallax/layer3.png");
+    // background-image: url("/assets/images/parallax/layer3.png");
   }
   .parallax-layer-4 {
     display: flex;
@@ -44,28 +46,28 @@
     }
   }
   .parallax-layer-5 {
-    background-image: url("/assets/images/parallax/layer5.png");
+    // background-image: url("/assets/images/parallax/layer5.png");
   }
   .parallax-layer-6 {
-    background-image: url("/assets/images/parallax/layer6.png");
+    // background-image: url("/assets/images/parallax/layer6.png");
   }
   .parallax-layer-7 {
-    background-image: url("/assets/images/parallax/layer7.png");
+    // background-image: url("/assets/images/parallax/layer7.png");
   }
   .parallax-layer-8 {
-    background-image: url("/assets/images/parallax/layer8.png");
+    // background-image: url("/assets/images/parallax/layer8.png");
   }
   .parallax-layer-9 {
-    background-image: url("/assets/images/parallax/layer9.png");
+    // background-image: url("/assets/images/parallax/layer9.png");
   }
   .parallax-layer-10 {
-    background-image: url("/assets/images/parallax/layer10.png");
+    // background-image: url("/assets/images/parallax/layer10.png");
   }
   $parallax-layers: 10;
   @for $i from 1 through $parallax-layers {
     $x: ($parallax-layers - $i) * 0.5;
     .parallax-layer-#{$i} {
-      transform: translateZ(-100px * $x) scale($x + 1);
+      // transform: translateZ(-100px * $x) scale($x + 1);
     }
   }
   .parallax-content {

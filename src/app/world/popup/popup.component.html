@@ -56,7 +56,7 @@
       <mat-action-list dense>
         <button mat-list-item *ngFor="let contract of shopContracts" [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']" (click)="openDealDialog(contract)">
           <div mat-list-avatar [matBadge]="contract.level" matBadgePosition="above before">
-            <img mat-list-avatar class="animated pulse infinite" [src]="contract.hero.image" [alt]="contract.hero.name | translate">
+            <img mat-list-avatar [src]="contract.hero.image" [alt]="contract.hero.name | translate">
           </div>
           <div mat-line>{{ contract.hero.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="contract.hero.description | translate | icon:contract.hero"></div>
@@ -73,7 +73,7 @@
       <mat-action-list dense>
         <button mat-list-item *ngFor="let troop of shopTroops" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']" (click)="openDealDialog(troop)">
           <div mat-list-avatar [matBadge]="troop.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar class="animated pulse infinite" [src]="troop.unit.image" [alt]="troop.unit.name | translate">
+            <img mat-list-avatar [src]="troop.unit.image" [alt]="troop.unit.name | translate">
           </div>
           <div mat-line>{{ troop.unit.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">
@@ -98,7 +98,7 @@
       <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of shopArtifacts" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']" (click)="openDealDialog(artifact)">
           <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
-            <img mat-list-avatar class="animated pulse infinite" [src]="artifact.item.image" [alt]="artifact.item.name | translate">
+            <img mat-list-avatar [src]="artifact.item.image" [alt]="artifact.item.name | translate">
           </div>
           <div mat-line>{{ artifact.item.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item"></div>
@@ -115,7 +115,7 @@
       <mat-action-list dense>
         <button mat-list-item *ngFor="let charm of shopCharms" [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']" (click)="openDealDialog(charm)">
           <div mat-list-avatar [matBadge]="charm.level" matBadgePosition="above before">
-            <img mat-list-avatar class="animated pulse infinite" [src]="charm.spell.image" [alt]="charm.spell.name | translate">
+            <img mat-list-avatar [src]="charm.spell.image" [alt]="charm.spell.name | translate">
           </div>
           <div mat-line>{{ charm.spell.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="charm.spell.description | translate | icon:charm.spell"></div>
@@ -168,7 +168,7 @@
       <mat-action-list dense>
         <button mat-list-item *ngFor="let artifact of questArtifacts" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']" (click)="openAdventureDialog(artifact)" [disabled]="!canAttack">
           <div mat-list-avatar [matBadge]="artifact.quantity | long" matBadgePosition="above before">
-            <img mat-list-avatar class="animated pulse infinite" [src]="artifact.item.image" [alt]="artifact.item.name | translate">
+            <img mat-list-avatar [src]="artifact.item.image" [alt]="artifact.item.name | translate">
           </div>
           <div mat-line>{{ artifact.item.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="artifact.item.description | translate | icon:artifact.item"></div>
