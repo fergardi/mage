@@ -6,7 +6,7 @@ import { Store, Select } from '@ngxs/store';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as geofirex from 'geofirex';
 import * as firebase from 'firebase/app';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, first } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { CacheService } from 'src/app/services/cache.service';
@@ -39,14 +39,12 @@ export class MapComponent implements OnInit, OnDestroy {
     private cacheService: CacheService,
     private notificationService: NotificationService,
     private loadingService: LoadingService,
-  ) {
-    this.loadingService.startLoading();
-  }
+  ) { }
 
   async ngOnInit(): Promise<void> {
     this.mapboxService.initialize(this.container);
     this.mapboxService.map.once('load', async () => {
-      // resize map in case drawer has changed
+      this.loadingService.startLoading();
       this.mapboxService.resizeMap();
       // print icons surrounding kingdom
       combineLatest([
@@ -57,6 +55,7 @@ export class MapComponent implements OnInit, OnDestroy {
         .pipe(switchMap((kingdom: any) => this.geofirex.query(this.angularFirestore.collection<any>('shops').ref).within(kingdom.position, Math.max(1000, kingdom.power) / 1000, 'position'))),
       ])
       .pipe(untilDestroyed(this))
+      .pipe(first()) // to fix the refresh bug
       .subscribe(([kingdoms, quests, shops]) => {
         this.notificationService.warning('world.map.update');
         // this.mapboxService.clearMarkers();
@@ -70,8 +69,8 @@ export class MapComponent implements OnInit, OnDestroy {
         quests.forEach((quest: any) => this.mapboxService.addMarker(quest, MarkerType.QUEST, false, false));
         shops.forEach((shop: any) => this.mapboxService.addMarker(shop, MarkerType.SHOP, false, false));
         this.mapboxService.refreshMarkers();
+        this.loadingService.stopLoading();
       });
-      this.loadingService.stopLoading();
     });
     // menus
     this.stores = await this.cacheService.getStores();

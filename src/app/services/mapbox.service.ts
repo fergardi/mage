@@ -137,7 +137,7 @@ export class MapboxService {
       .pipe(distinctUntilChanged())
       .subscribe(async (open: boolean) => {
         if (open) {
-          await new Promise(resolve => setTimeout(resolve, 500));
+          await new Promise(resolve => setTimeout(resolve, 0));
           this.map.easeTo({
             center: $event.target.getLngLat(),
             offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],
