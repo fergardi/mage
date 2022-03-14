@@ -38,8 +38,9 @@ export class AppComponent implements OnInit {
         }, 1000);
       }
     });
-    // fixtures
+    // tutorial
     this.tutorialService.initialize();
+    // fixtures
     this.firebaseService.loadFixtures([
       // CollectionType.FACTIONS,
       // CollectionType.ATTACKS,
@@ -50,9 +51,9 @@ export class AppComponent implements OnInit {
       // CollectionType.RESOURCES,
       // CollectionType.STRUCTURES,
       // CollectionType.SKILLS,
-      CollectionType.UNITS,
-      CollectionType.SPELLS,
-      CollectionType.ITEMS,
+      // CollectionType.UNITS,
+      // CollectionType.SPELLS,
+      // CollectionType.ITEMS,
       // CollectionType.HEROES,
       // CollectionType.STORES,
       // CollectionType.LOCATIONS,

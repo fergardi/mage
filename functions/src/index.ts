@@ -1480,7 +1480,7 @@ export const checkShop = async (fid?: string, latitude?: number, longitude?: num
     let update = false;
     const batch = angularFirestore.batch();
     const visited = moment(admin.firestore.Timestamp.now().toMillis()).add(VISITATION_TIME, 'seconds');
-    const geopoint = latitude !== undefined && longitude !== undefined ? geofirex.point(latitude, longitude) : null;
+    const geopoint =  latitude && longitude ? geofirex.point(latitude, longitude) : null;
     // tslint:disable-next-line: no-parameter-reassignment
     if (!fid) fid = geopoint.geohash;
     const shop = (await angularFirestore.doc(`shops/${fid}`).get()).data();

@@ -96,7 +96,6 @@ export class MapboxService {
 
   refreshMarkers(): void {
     this.markers.forEach((marker: Marker) => {
-      console.log(marker, this.uid)
       if (marker.id !== this.uid && (this.map.getZoom() < environment.mapbox.zoom || !this.markerVisible(marker))) {
         marker.marker.getElement().style.display = 'none';
       } else {
@@ -138,7 +137,7 @@ export class MapboxService {
       .pipe(distinctUntilChanged())
       .subscribe(async (open: boolean) => {
         if (open) {
-          await new Promise(resolve => setTimeout(resolve, 500));
+          await new Promise(resolve => setTimeout(resolve, 0));
           this.map.easeTo({
             center: $event.target.getLngLat(),
             offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],

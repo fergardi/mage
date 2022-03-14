@@ -41,7 +41,7 @@ export enum CharmAssignmentType {
             <mat-list dense>
               <mat-list-item [ngClass]="[selectedCharm.spell.faction.id, selectedCharm.spell.legendary ? 'legendary' : 'common']">
                 <div mat-list-avatar [matBadge]="selectedCharm.spell.level" matBadgePosition="above before">
-                  <img mat-list-avatar class="animated pulse infinite" [src]="selectedCharm.spell.image">
+                  <img mat-list-avatar [src]="selectedCharm.spell.image">
                 </div>
                 <div mat-line>{{ selectedCharm.spell.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(selectedCharm.spell.type)">{{ selectedCharm.spell.description | translate }}</div>
@@ -56,7 +56,7 @@ export enum CharmAssignmentType {
             <mat-list dense>
               <mat-list-item [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']">
                 <div mat-list-avatar [matBadge]="charm.spell.level" matBadgePosition="above before">
-                  <img mat-list-avatar class="animated pulse infinite" [src]="charm.spell.image">
+                  <img mat-list-avatar [src]="charm.spell.image">
                 </div>
                 <div mat-line>{{ charm.spell.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" *ngIf="['god', 'family', 'skill', 'resource', 'category'].includes(charm.spell.type)">{{ charm.spell.description | translate }}</div>

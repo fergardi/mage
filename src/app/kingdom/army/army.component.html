@@ -17,7 +17,7 @@
         <mat-action-list dense class="dotted" id="0" tourAnchor="tour.army" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="kingdomTroops">
           <button mat-list-item *ngFor="let troop of kingdomTroops" cdkDrag class="handle" [id]="troop.fid" (click)="openDisbandDialog(troop)" [ngClass]="[troop.unit.faction.id, troop.unit.legendary ? 'legendary' : 'common']">
             <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
-              <img mat-list-avatar class="animated pulse infinite" [src]="troop.unit.image" [alt]="troop.unit.name | translate">
+              <img mat-list-avatar [src]="troop.unit.image" [alt]="troop.unit.name | translate">
             </div>
             <div mat-line>{{ troop.unit.name | translate }}</div>
             <div mat-line class="mat-card-subtitle">
@@ -60,7 +60,7 @@
             <mat-list dense class="dotted" id="1" tourAnchor="tour.attack" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="attackTroops">
               <mat-list-item *ngFor="let troop of attackTroops" cdkDrag class="handle" [id]="troop.fid" [ngClass]="troop.unit.faction.id">
                 <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
-                  <img mat-list-avatar class="animated pulse infinite" [src]="troop.unit.image" [alt]="troop.unit.name | translate">
+                  <img mat-list-avatar [src]="troop.unit.image" [alt]="troop.unit.name | translate">
                 </div>
                 <div mat-line>{{ troop.unit.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle">
@@ -101,7 +101,7 @@
             <mat-list dense class="dotted" id="2" tourAnchor="tour.defense" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignTroop($event)" [cdkDropListData]="defenseTroops">
               <mat-list-item *ngFor="let troop of defenseTroops" cdkDrag class="handle" [id]="troop.fid" [ngClass]="troop.unit.faction.id">
                 <div mat-list-avatar [matBadge]="troop.quantity | short" matBadgePosition="above before">
-                  <img mat-list-avatar class="animated pulse infinite" [src]="troop.unit.image" [alt]="troop.unit.name | translate">
+                  <img mat-list-avatar [src]="troop.unit.image" [alt]="troop.unit.name | translate">
                 </div>
                 <div mat-line>{{ troop.unit.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle">
@@ -141,7 +141,7 @@
             <mat-action-list dense tourAnchor="tour.recruit">
               <button mat-list-item *ngFor="let unit of recruitUnits" (click)="openRecruitDialog(unit)" class="common">
                 <div mat-list-avatar matBadge="?" matBadgePosition="above before">
-                  <img mat-list-avatar class="animated pulse infinite" [src]="unit.image" [alt]="unit.name | translate">
+                  <img mat-list-avatar [src]="unit.image" [alt]="unit.name | translate">
                 </div>
                 <div mat-line>{{ unit.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle">

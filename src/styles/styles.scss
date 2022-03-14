@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use '@angular/material' as mat;
 @import url("https://use.typekit.net/jnq3uxd.css");
 
 //========================================================================================
@@ -253,7 +253,7 @@ $list-item-height: 60px;
     line-height: 1.25 !important;
   }
   .mat-list-item-content {
-    .mat-list-avatar:nth-of-type(3) {
+    .mat-list-avatar:nth-of-type(2) {
       order: 9999;
       margin-left: 16px;
     }

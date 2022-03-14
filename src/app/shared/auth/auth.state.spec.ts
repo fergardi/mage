@@ -15,7 +15,10 @@ describe('Store', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NgxsModule.forRoot([AuthState]),
+        NgxsModule.forRoot(
+          [AuthState],
+          { developmentMode: true },
+        ),
         RouterTestingModule.withRoutes(routes),
       ],
       providers: [

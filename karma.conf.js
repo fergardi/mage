@@ -63,6 +63,10 @@ module.exports = function (config) {
     singleRun: true,
     restartOnFileChange: true,
     browsers: ['ChromeHeadless'],
+    captureTimeout: 120000,
+    browserDisconnectTimeout : 120000,
+    browserDisconnectTolerance : 1,
+    browserNoActivityTimeout : 120000,
     /*
     customLaunchers: {
       ChromeDebugger: {

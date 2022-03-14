@@ -14,7 +14,7 @@ export class TutorialService {
 
   ready(route: string) {
     const waitingSteps = this.tourService.steps.filter(step => (step.route as string).includes(route));
-    waitingSteps.forEach(waitingStep => (waitingStep.waitFor as ReplaySubject<void>).next());
+    // waitingSteps.forEach(waitingStep => (waitingStep.waitFor as ReplaySubject<void>).next());
   }
 
   start(step?: string | undefined) {
@@ -24,7 +24,7 @@ export class TutorialService {
 
   initialize() {
     const options: IStepOption = {
-      preventScrolling: false,
+      // preventScrolling: false,
       enableBackdrop: true,
       // waitFor: new ReplaySubject<void>(),
     };
