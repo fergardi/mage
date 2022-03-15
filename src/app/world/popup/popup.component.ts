@@ -65,14 +65,16 @@ export class PopupComponent implements OnInit {
       // shop
       case PopupType.SHOP:
         combineLatest([
+          this.angularFirestore.doc<any>(`shops/${this.data.id}`).valueChanges(),
           this.angularFirestore.collection<any>(`shops/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }),
           this.angularFirestore.collection<any>(`shops/${this.data.id}/troops`).valueChanges({ idField: 'fid' }),
           this.angularFirestore.collection<any>(`shops/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }),
           this.angularFirestore.collection<any>(`shops/${this.data.id}/charms`).valueChanges({ idField: 'fid' }),
         ])
         .pipe(untilDestroyed(this))
-        .subscribe(([contracts, troops, artifacts, charms]) => {
+        .subscribe(([shop, contracts, troops, artifacts, charms]) => {
           this.loadingService.startLoading();
+          this.data.visited = shop.visited;
           this.shopContracts = contracts;
           this.shopTroops = troops;
           this.shopArtifacts = artifacts;
@@ -84,13 +86,15 @@ export class PopupComponent implements OnInit {
       // quest
       case PopupType.QUEST:
         combineLatest([
+          this.angularFirestore.doc<any>(`quests/${this.data.id}`).valueChanges(),
           this.angularFirestore.collection<any>(`quests/${this.data.id}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }),
           this.angularFirestore.collection<any>(`quests/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }),
           this.angularFirestore.collection<any>(`quests/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }),
         ])
         .pipe(untilDestroyed(this))
-        .subscribe(([troops, contracts, artifacts]) => {
+        .subscribe(([quest, troops, contracts, artifacts]) => {
           this.loadingService.startLoading();
+          this.data.visited = quest.visited;
           this.questTroops = troops.sort((a, b) => a.sort - b.sort);
           this.questContracts = contracts;
           this.questArtifacts = artifacts;
