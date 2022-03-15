@@ -6,13 +6,13 @@ export const environment = {
   production: false,
   hmr: false,
   firebase: {
-    apiKey: 'AIzaSyCSVr_n7Ced40pw2qHEhnr3G09UILvB_zc',
-    authDomain: 'mage-c4259.firebaseapp.com',
-    databaseURL: 'https://mage-c4259.firebaseio.com',
-    projectId: 'mage-c4259',
-    storageBucket: 'mage-c4259.appspot.com',
-    messagingSenderId: '210042498621',
-    appId: '1:210042498621:web:c4a21bc796b32d8bf40454',
+    apiKey: "AIzaSyB1gh6k7CJMncQkBqZXaeAI6LlQqogCQHU",
+    authDomain: "mage-b1c51.firebaseapp.com",
+    projectId: "mage-b1c51",
+    storageBucket: "mage-b1c51.appspot.com",
+    messagingSenderId: "766088785551",
+    appId: "1:766088785551:web:b21858c3eb360e138c8afa",
+    measurementId: "G-C151MDL529"
   },
   mapbox: {
     style: 'mapbox://styles/fergardi/ckacdomo73idr1is4dkj2kfil',
@@ -23,7 +23,7 @@ export const environment = {
     pitch: 80,
   },
   functions: {
-    url: 'http://localhost:5001/mage-c4259/europe-west1/api',
+    url: 'http://localhost:5001/mage-b1c51/europe-west1/api',
   },
 };
 

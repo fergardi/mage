@@ -10,6 +10,7 @@ import { CacheService } from 'src/app/services/cache.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GeolocationComponent } from './geolocation.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -44,10 +45,10 @@ export class LoginComponent implements OnInit {
 
   async createForm() {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      username: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(12)] : []],
-      password: ['', this.type !== 'reset' ? [Validators.required, Validators.minLength(6), Validators.maxLength(12)] : []],
-      password2: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(12), this.matchValues('password')] : []],
+      email: ['testing@mage.com', [Validators.required, Validators.email]],
+      username: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(18)] : []],
+      password: ['t3st1ng', this.type !== 'reset' ? [Validators.required, Validators.minLength(6), Validators.maxLength(18)] : []],
+      password2: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(18), this.matchValues('password')] : []],
       faction: [null, this.type === 'signup' ? [Validators.required] : []],
     });
   }
@@ -88,7 +89,12 @@ export class LoginComponent implements OnInit {
             await this.angularFireAuth.signInWithEmailAndPassword(email, password);
             break;
           case 'signup':
-            const position: any = await this.getCurrentPosition();
+            let position = null;
+            try {
+              position = await this.getCurrentPosition();
+            } catch (error: any) {
+              position = { coords: { latitude: environment.mapbox.lat, longitude: environment.mapbox.lng } };
+            }
             const credentials = await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
             this.apiService.populateMap(position.coords.latitude, position.coords.longitude);
             await this.apiService.createKingdom(credentials.user.uid, this.form.value.faction.id, this.form.value.username, position.coords.latitude, position.coords.longitude);
@@ -98,7 +104,7 @@ export class LoginComponent implements OnInit {
             this.notificationService.warning('user.login.check');
             break;
         }
-      } catch (error){
+      } catch (error: any) {
         await this.angularFireAuth.signOut();
         console.error(error);
         this.notificationService.error('user.login.error');

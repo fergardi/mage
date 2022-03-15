@@ -23,7 +23,7 @@
             <div mat-line>{{ building.structure.name | translate }}</div>
             <div mat-line class="mat-card-subtitle" [innerHTML]="building.structure.description | translate | icon:building.structure"></div>
             <div mat-list-avatar [matBadge]="Math.ceil(((workshop$ | async)?.quantity + 1) / building.structure.turnRatio) + ('resource.turn.ratio' | translate)" matBadgePosition="above after">
-              <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate"> [alt]="'resource.turn.name' | translate">
+              <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate">
             </div>
           </button>
         </mat-action-list>
@@ -62,7 +62,7 @@
                 <div mat-line>{{ (village$ | async)?.structure.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="(village$ | async)?.structure.description | translate | icon:(village$ | async)?.structure"></div>
                 <div mat-list-avatar matBadge="?" matBadgePosition="above after">
-                  <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate"> [alt]="'resource.turn.name' | translate">
+                  <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate">
                 </div>
               </button>
             </mat-action-list>
@@ -97,7 +97,7 @@
                 <div mat-line>{{ (node$ | async)?.structure.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="(node$ | async)?.structure.description | translate | icon:(node$ | async)?.structure"></div>
                 <div mat-list-avatar matBadge="?" matBadgePosition="above after">
-                  <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate"> [alt]="'resource.turn.name' | translate">
+                  <img mat-list-avatar src="/assets/images/resources/turn.png" [alt]="'resource.turn.name' | translate">
                 </div>
               </button>
             </mat-action-list>

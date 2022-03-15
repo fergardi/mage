@@ -1,14 +1,14 @@
 {
   "targets": {
-    "mage-c4259": {
+    "mage-b1c51": {
       "hosting": {
         "mage": [
-          "mage-c4259"
+          "mage-b1c51"
         ]
       }
     }
   },
   "projects": {
-    "default": "mage-c4259"
+    "default": "mage-b1c51"
   }
 }

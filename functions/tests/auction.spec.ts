@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions-test';
 import * as admin from 'firebase-admin';
 import * as moment from 'moment';
 import * as backend from '../src/index';
-import { KingdomType, BID_RATIO } from '../src/config';
+import { KingdomType, BID_RATIO, AUCTION_TIME_OUTBID } from '../src/config';
 
 const config: admin.AppOptions = {
   databaseURL: 'https://mage-c4259.firebaseio.com',
@@ -32,12 +32,18 @@ describe(KINGDOM, () => {
   });
 
   it('should BID the AUCTION', async () => {
-    const auction = (await admin.firestore().collection(`auctions`).get()).docs[0];
-    expect(auction.exists).toBe(true);
-    const bid = Math.ceil(auction.data().gold * BID_RATIO);
+    const auction1 = (await admin.firestore().collection(`auctions`).get()).docs[0];
+    expect(auction1.exists).toBe(true);
+    const outdatedAuction = auction1.data();
+    const bid = Math.ceil(outdatedAuction.gold * BID_RATIO);
     const gold = (await admin.firestore().collection(`kingdoms/${KINGDOM}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
     await admin.firestore().doc(`kingdoms/${KINGDOM}/supplies/${gold.id}`).update({ quantity: 999999999 });
-    expect((await backend.bidAuction(KINGDOM, auction.id, bid)).gold).toBe(bid);
+    const bidAuction = await backend.bidAuction(KINGDOM, auction1.id, bid);
+    expect(bidAuction.gold).toBe(bid);
+    const auction2 = (await admin.firestore().collection(`auctions`).get()).docs[0];
+    expect(auction2.exists).toBe(true);
+    const updatedAuction = auction2.data();
+    expect(updatedAuction.auctioned - outdatedAuction.auctioned).toBe(AUCTION_TIME_OUTBID);
   });
 
   it('should REFRESH the AUCTIONS', async () => {

@@ -28,6 +28,7 @@ import {
   BATTLE_POWER,
   BATTLE_TURNS,
   AUCTION_TIME,
+  AUCTION_TIME_OUTBID,
   OUTBID_RATIO,
   BID_RATIO,
   CLAN_COST,
@@ -2935,9 +2936,10 @@ export const bidAuction = async (kingdomId: string, auctionId: string, gold: num
             gold: bid || null,
           };
           await addLetter(auction.kingdom, 'kingdom.auction.subject', 'kingdom.auction.outbid', from, batch, data);
-          console.log(`KINGDOM ${auction.kingdom} wins the AUCTION ${auctionId}`);
+          console.log(`KINGDOM ${auction.kingdom} loses the AUCTION ${auctionId} and refunds ${bid} GOLD`);
         }
-        batch.update(angularFirestore.doc(`auctions/${auctionId}`), { kingdom: kingdomId, gold: gold });
+        const auctioned = moment(auction.auctioned.toMillis()).add(AUCTION_TIME_OUTBID, 'seconds');
+        batch.update(angularFirestore.doc(`auctions/${auctionId}`), { kingdom: kingdomId, gold: gold, auctioned: auctioned });
         await batch.commit();
         console.log(`KINGDOM ${kingdomId} succesfully BIDS ${auctionId}`);
         return { gold: gold };

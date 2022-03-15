@@ -15,6 +15,7 @@ export const BATTLE_POWER: number = 20;
 // export const PROTECTION_TIME: number = 60;
 export const VISITATION_TIME: number = 60;
 export const AUCTION_TIME: number = 60;
+export const AUCTION_TIME_OUTBID: number = 3600;
 export const BID_RATIO: number = 1.10;
 export const OUTBID_RATIO: number = 0.90;
 export const GUILD_TIME: number = 60;

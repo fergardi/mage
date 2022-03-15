@@ -38,6 +38,7 @@ testem.log
 /typings
 .scannerwork
 .pnpm-debug.log
+.angular/*
 
 # System Files
 .DS_Store
