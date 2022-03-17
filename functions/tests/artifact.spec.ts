@@ -5,13 +5,13 @@ import * as backend from '../src/index';
 import { KingdomType } from '../src/config';
 
 const config: admin.AppOptions = {
-  databaseURL: 'https://mage-c4259.firebaseio.com',
-  projectId: 'mage-c4259',
+  databaseURL: 'https://mage-b1c51.firebaseio.com',
+  projectId: 'mage-b1c51',
   credential: admin.credential.cert(require('../credentials/test.json')),
 };
 const tester = functions(config);
 
-const KINGDOM = 'ARTIFACT';
+const KINGDOM = 'TEST_ARTIFACT';
 const COLOR = KingdomType.WHITE;
 const ITEM = 'treasure-chest';
 
@@ -59,7 +59,7 @@ describe(KINGDOM, () => {
     expect(artifactAfter.data().assignment).toBe(2);
   });
 
-  it('should ACTIVATE the ARTIFACT for RESOURCE', async () => {
+  it('should ACTIVATE the ARTIFACT', async () => {
     const artifact = (await admin.firestore().collection(`kingdoms/${KINGDOM}/artifacts`).where('id', '==', ITEM).limit(1).get()).docs[0];
     expect((await backend.activateArtifact(KINGDOM, artifact.id, KINGDOM) as any).resource).toBe('resource.gold.name');
   });

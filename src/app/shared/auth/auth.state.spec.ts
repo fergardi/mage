@@ -75,15 +75,15 @@ describe('Store', () => {
   });
 
   it('should SELECT the CLAN', () => {
-    expect(store.selectSnapshot(AuthState.getKingdomClan)).toBe(null);
+    expect(store.selectSnapshot(AuthState.getKingdomClan)).toBe(undefined);
   });
 
   it('should SELECT the KINGDOM', () => {
-    expect(store.selectSnapshot(AuthState.getKingdom)).toBe(null);
+    expect(store.selectSnapshot(AuthState.getKingdom)).not.toBe(undefined);
   });
 
   it('should SELECT the GUILD', () => {
-    expect(store.selectSnapshot(AuthState.getKingdomGuild)).toBe(null);
+    expect(store.selectSnapshot(AuthState.getKingdomGuild)).toBe(undefined);
   });
 
   it('should SELECT the ACADEMY', () => {
@@ -143,7 +143,7 @@ describe('Store', () => {
   });
 
   it('should SELECT the TREE', () => {
-    expect(store.selectSnapshot(AuthState.getKingdomTree)).toBe(null);
+    expect(store.selectSnapshot(AuthState.getKingdomTree)).toBe(undefined);
   });
 
 });

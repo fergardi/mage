@@ -191,7 +191,9 @@ export const AngularFirestoreStub: any = {
   doc: () => {
     return {
       get: () => ({ toPromise: () => ({ docs: [] }) }),
-      valueChanges: () => of(null),
+      valueChanges: () => of({
+        visited: { toMillis: () => 0 },
+      }),
     };
   },
 };

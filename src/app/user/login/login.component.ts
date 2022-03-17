@@ -78,6 +78,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  random(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
   async login() {
     if (this.form.valid) {
       const email = this.form.value.email;
@@ -93,7 +97,12 @@ export class LoginComponent implements OnInit {
             try {
               position = await this.getCurrentPosition();
             } catch (error: any) {
-              position = { coords: { latitude: environment.mapbox.lat, longitude: environment.mapbox.lng } };
+              position = {
+                coords: {
+                  latitude: this.random(environment.mapbox.lat - 0.02, environment.mapbox.lat + 0.02),
+                  longitude: this.random(environment.mapbox.lng - 0.02, environment.mapbox.lng + 0.02),
+                },
+              };
             }
             const credentials = await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
             this.apiService.populateMap(position.coords.latitude, position.coords.longitude);

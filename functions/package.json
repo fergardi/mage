@@ -10,9 +10,9 @@
     "start": "npm run shell",
     "deploy": "npm run build && firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "test": "jest --runInBand --testTimeout=30000 --watchAll",
-    "jest": "jest --testTimeout=30000 --silent",
-    "ci": "npm run jest && cd ../ && npm run ci",
+    "test:debug": "jest --runInBand --testTimeout=30000 --watchAll",
+    "test:jest": "jest --testTimeout=30000 --silent",
+    "test:ci": "npm run test:jest && cd ../ && npm run test:ci",
     "update": "npm-check -u"
   },
   "engines": {

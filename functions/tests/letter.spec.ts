@@ -5,8 +5,8 @@ import { createKingdom, deleteKingdom, addLetter, sendLetter, readLetter, remove
 import { KingdomType } from '../src/config';
 
 const config: admin.AppOptions = {
-  databaseURL: 'https://mage-c4259.firebaseio.com',
-  projectId: 'mage-c4259',
+  databaseURL: 'https://mage-b1c51.firebaseio.com',
+  projectId: 'mage-b1c51',
   credential: admin.credential.cert(require('../credentials/test.json')),
 };
 const tester = functions(config);

@@ -997,7 +997,64 @@ export const assignCharm = async (kingdomId: string, charmId: string, assignment
 };
 
 /**
- * kingdom conjure spell on target kingdom, even on itself
+ * kingdom conjures a spell over a target
+ * @param kingdomId
+ * @param targetId
+ * @param spell
+ * @param batch
+ */
+export const conjureSpell = async (kingdomId: string, spell: any, targetId: string, batch: FirebaseFirestore.WriteBatch): Promise<any> => {
+  switch (spell.subtype) {
+    case 'summon': {
+      const unit = spell.units[random(0, spell.units.length - 1)];
+      const size = random(Math.min(...unit.amount), Math.max(...unit.amount));
+      await addTroop(targetId, unit, size, batch);
+      console.log(`KINGDOM ${kingdomId} succesfully CONJURES ${spell.id} with ${size} ${unit.id}`);
+      return { unit: `unit.${unit.id}.name`, size: size };
+    }
+    case 'item': {
+      const item = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
+      const lot = 1;
+      await addArtifact(targetId, item, lot, batch);
+      console.log(`KINGDOM ${kingdomId} succesfully CONJURES ${spell.id} with ${lot} ${item.id}`);
+      return { item: `item.${item.id}.name`, quantity: lot };
+    }
+    case 'enchantment': {
+      if (!spell.multiple) {
+        await addEnchantment(targetId, spell, kingdomId, spell.turnDuration, batch);
+        console.log(`KINGDOM ${kingdomId} succesfully ENCHANTS ${targetId} with ${spell.id}`);
+        return { enchantment: `spell.${spell.id}.name`, turns: spell.turnDuration };
+      } else {
+        const kingdomEnchantments = await angularFirestore.collection(`kingdoms/${targetId}/enchantments`).listDocuments();
+        for (const kingdomEnchantment of kingdomEnchantments) { // cannot use forEach due to async/await of batch.commit
+          await removeEnchantment(targetId, kingdomEnchantment.id, batch);
+        }
+        console.log(`KINGDOM ${kingdomId} succesfully DISENCHANTS ${targetId} enchantments`);
+        return { enchantments: kingdomEnchantments.length };
+      }
+    }
+    case 'espionage': {
+      await spyKingdom(kingdomId, targetId, batch);
+      console.log(`KINGDOM ${kingdomId} succesfully SPIES ${targetId}`);
+      return { timestamp: admin.firestore.Timestamp.now().toMillis() };
+    }
+    case 'resource': {
+      // TODO
+      return {};
+    }
+    case 'armageddon': {
+      // this is done in the gods section
+      return {};
+    }
+    case 'battle': {
+      // this is done in the battle section
+      return {};
+    }
+  }
+};
+
+/**
+ * kingdom conjures charm on target kingdom, even on itself
  * @param kingdomId
  * @param charmId
  * @param targetId
@@ -1015,53 +1072,7 @@ export const conjureCharm = async (kingdomId: string, charmId: string, targetId:
         const batch = angularFirestore.batch();
         await addSupply(kingdomId, SupplyType.TURN, -charm.spell.turnCost, batch, kingdomTurn.resource.ratio);
         await addSupply(kingdomId, SupplyType.MANA, -charm.spell.manaCost, batch);
-        switch (charm.spell.subtype) {
-          case 'summon': {
-            const unit = charm.spell.units[random(0, charm.spell.units.length - 1)];
-            const size = random(Math.min(...unit.amount), Math.max(...unit.amount));
-            await addTroop(targetId, unit, size, batch);
-            result = { unit: `unit.${unit.id}.name`, size: size };
-            console.log(`KINGDOM ${kingdomId} succesfully CONJURES ${charm.spell.id} with ${size} ${unit.id}`);
-            break;
-          }
-          case 'item': {
-            const item = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
-            const lot = 1;
-            await addArtifact(targetId, item, lot, batch);
-            result = { item: `item.${item.id}.name`, quantity: lot };
-            console.log(`KINGDOM ${kingdomId} succesfully CONJURES ${charm.spell.id} with ${lot} ${item.id}`);
-            break;
-          }
-          case 'enchantment': {
-            if (!charm.spell.multiple) {
-              await addEnchantment(targetId, charm.spell, kingdomId, charm.spell.turnDuration, batch);
-              result = { enchantment: `spell.${charm.spell.id}.name`, turns: charm.spell.turnDuration };
-              console.log(`KINGDOM ${kingdomId} succesfully ENCHANTS ${targetId} with ${charm.spell.id}`);
-            } else {
-              const kingdomEnchantments = await angularFirestore.collection(`kingdoms/${targetId}/enchantments`).listDocuments();
-              kingdomEnchantments.map(enchantment => batch.delete(enchantment));
-              console.log(`KINGDOM ${kingdomId} succesfully DISENCHANTS ${targetId} enchantments`);
-            }
-            break;
-          }
-          case 'espionage': {
-            await spyKingdom(kingdomId, targetId, batch);
-            console.log(`KINGDOM ${kingdomId} succesfully SPIES ${targetId}`);
-            break;
-          }
-          case 'resource': {
-            // TODO
-            break;
-          }
-          case 'armageddon': {
-            // this is done in the gods section
-            break;
-          }
-          case 'battle': {
-            // this is done in the battle section
-            break;
-          }
-        }
+        result = await conjureSpell(kingdomId, charm.spell, targetId, batch);
         if (targetId !== kingdomId) {
           const data = {
             spell: charm.spell,
@@ -1162,6 +1173,79 @@ export const assignArtifact = async (kingdomId: string, artifactId: string, assi
 };
 
 /**
+ * kingdom activates item on target
+ * @param kingdomId
+ * @param item
+ * @param targetId
+ * @param batch
+ */
+export const activateItem = async (kingdomId: string, item: any, targetId: string, batch: FirebaseFirestore.WriteBatch, ratio?: number): Promise<any> => {
+  switch (item.subtype) {
+    case 'summon': {
+      const unit = item.units[random(0, item.units.length - 1)];
+      const size = random(Math.min(...unit.amount), Math.max(...unit.amount));
+      await addTroop(targetId, unit, size, batch);
+      console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${item.id} on ${targetId} with ${size} ${unit.id}`);
+      return { unit: `unit.${unit.id}.name`, size: size };
+    }
+    case 'resource': {
+      const resource = item.resources[0];
+      const amount = random(Math.min(...item.amount), Math.max(...item.amount));
+      await addSupply(targetId, resource.id, amount, batch, resource.id === SupplyType.TURN ? ratio : undefined);
+      console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${item.id} on ${targetId} with ${amount} ${resource.id}`);
+      return { resource: `resource.${resource.id}.name`, amount: amount };
+    }
+    case 'enchantment': {
+      if (item.spells.length) {
+        const enchantment = item.spells[random(0, item.spells.length - 1)];
+        await addEnchantment(targetId, enchantment, kingdomId, enchantment.turnDuration, batch);
+        console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${item.id} on ${targetId} with ${enchantment.id}`);
+        return { enchantment: `spell.${enchantment.id}.name`, turns: enchantment.turnDuration };
+      } else {
+        const kingdomEnchantments = await angularFirestore.collection(`kingdoms/${targetId}/enchantments`).listDocuments();
+        for (const kingdomEnchantment of kingdomEnchantments) { // cannot use forEach due to async/await of batch.commit
+          await removeEnchantment(targetId, kingdomEnchantment.id, batch);
+        }
+        console.log(`KINGDOM ${kingdomId} succesfully DISENCHANTS ${targetId} enchantments`);
+        return { enchantments: kingdomEnchantments.length };
+      }
+    }
+    case 'item': {
+      const newItem = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
+      const quantity = 1;
+      await addArtifact(targetId, newItem, quantity, batch);
+      console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${item.id} on ${targetId} with ${quantity} ${newItem.id}`);
+      return { item: `item.${newItem.id}.name`, quantity: quantity };
+    }
+    case 'spell': {
+      let spell: any = false;
+      let tries: number = 0;
+      const total: number = 99; // 100 is armageddon
+      while (!spell && tries <= total) {
+        spell = (await angularFirestore.collection('spells').where('random', '==', random(0, total)).limit(1).get()).docs[0].data();
+        spell = (await angularFirestore.collection(`kingdoms/${targetId}/charms`).where('spell.id', '==', spell.id).limit(1).get()).empty ? spell : false;
+        tries++;
+      }
+      if (spell) {
+        await addCharm(targetId, spell, 0, batch);
+        console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${item.id} on ${targetId} with ${spell.id}`);
+        return { spell: `spell.${spell.id}.name` };
+      }
+      return {};
+    }
+    case 'espionage': {
+      await spyKingdom(kingdomId, targetId, batch);
+      console.log(`KINGDOM ${kingdomId} succesfully SPIES ${targetId}`);
+      return { timestamp: admin.firestore.Timestamp.now().toMillis() };
+    }
+    case 'battle': {
+      // this is done in the battle section
+      return {};
+    }
+  }
+}
+
+/**
  * kingdom activates artifacts on target kingdom, even on itself
  * @param kingdomId
  * @param artifactId
@@ -1183,69 +1267,7 @@ export const activateArtifact = async (kingdomId: string, artifactId: string, ta
         } else {
           batch.delete(angularFirestore.doc(`kingdoms/${kingdomId}/artifacts/${artifactId}`));
         }
-        switch (artifact.item.subtype) {
-          case 'summon': {
-            const unit = artifact.item.units[random(0, artifact.item.units.length - 1)];
-            const size = random(Math.min(...unit.amount), Math.max(...unit.amount));
-            await addTroop(targetId, unit, size, batch);
-            result = { unit: `unit.${unit.id}.name`, size: size };
-            console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${artifact.item.id} on ${targetId} with ${size} ${unit.id}`);
-            break;
-          }
-          case 'resource': {
-            const resource = artifact.item.resources[0];
-            const amount = random(Math.min(...artifact.item.amount), Math.max(...artifact.item.amount));
-            await addSupply(targetId, resource.id, amount, batch, resource.id === SupplyType.TURN ? kingdomTurn.resource.ratio : null);
-            result = { resource: `resource.${resource.id}.name`, amount: amount };
-            console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${artifact.item.id} on ${targetId} with ${amount} ${resource.id}`);
-            break;
-          }
-          case 'enchantment': {
-            if (artifact.item.spells.length) {
-              const enchantment = artifact.item.spells[random(0, artifact.item.spells.length - 1)];
-              await addEnchantment(targetId, enchantment, kingdomId, enchantment.turnDuration, batch);
-              result = { enchantment: `spell.${enchantment.id}.name`, turns: enchantment.turnDuration };
-              console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${artifact.item.id} on ${targetId} with ${enchantment.id}`);
-            } else {
-              const kingdomEnchantments = await angularFirestore.collection(`kingdoms/${targetId}/enchantments`).listDocuments();
-              kingdomEnchantments.map(enchantment => batch.delete(enchantment));
-              console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${artifact.item.id} on ${targetId}}`);
-            }
-            break;
-          }
-          case 'item': {
-            const item = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
-            const quantity = 1;
-            await addArtifact(targetId, item, quantity, batch);
-            result = { item: `item.${item.id}.name`, quantity: quantity };
-            console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${artifact.item.id} on ${targetId} with ${quantity} ${item.id}`);
-            break;
-          }
-          case 'spell': {
-            let spell: any = false;
-            let tries: number = 0;
-            while (!spell && tries <= 99) {
-              spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 99)).limit(1).get()).docs[0].data();
-              spell = (await angularFirestore.collection(`kingdoms/${targetId}/charms`).where('spell.id', '==', spell.id).limit(1).get()).empty ? spell : false;
-              tries++;
-            }
-            if (spell) {
-              await addCharm(targetId, spell, 0, batch);
-              result = { spell: `spell.${spell.id}.name` };
-              console.log(`KINGDOM ${kingdomId} succesfully ACTIVATES ${artifact.item.id} on ${targetId} with ${spell.id}`);
-            }
-            break;
-          }
-          case 'espionage': {
-            await spyKingdom(kingdomId, targetId, batch);
-            console.log(`KINGDOM ${kingdomId} succesfully SPIES ${targetId}`);
-            break;
-          }
-          case 'battle': {
-            // this is done in the battle section
-            break;
-          }
-        }
+        result = await activateItem(kingdomId, artifact.item, targetId, batch, kingdomTurn.resource.ratio);
         if (targetId !== kingdomId) {
           const data = {
             item: artifact.item,

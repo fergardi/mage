@@ -5,13 +5,13 @@ import * as backend from '../src/index';
 import { KingdomType } from '../src/config';
 
 const config: admin.AppOptions = {
-  databaseURL: 'https://mage-c4259.firebaseio.com',
-  projectId: 'mage-c4259',
+  databaseURL: 'https://mage-b1c51.firebaseio.com',
+  projectId: 'mage-b1c51',
   credential: admin.credential.cert(require('../credentials/test.json')),
 };
 const tester = functions(config);
 
-const KINGDOM = 'CHARM';
+const KINGDOM = 'TEST_CHARM';
 const SPELL = 'animate-skeleton';
 
 describe(KINGDOM, () => {
@@ -66,13 +66,13 @@ describe(KINGDOM, () => {
     expect(charmAfter.data().assignment).toBe(2);
   });
 
-  it('should CONJURE the CHARM for TROOPS', async () => {
+  it('should CONJURE the CHARM', async () => {
     const charm = (await admin.firestore().collection(`kingdoms/${KINGDOM}/charms`).where('id', '==', SPELL).limit(1).get()).docs[0];
     const addTroopSpy = jest.spyOn(backend, 'addTroop');
     const conjured: any = await backend.conjureCharm(KINGDOM, charm.id, KINGDOM);
     expect(conjured.unit).toBe('unit.skeleton.name');
-    expect(conjured.size).toBeLessThanOrEqual(Math.max(...charm.data().spell.units[0].amount));
+    expect(conjured.size).toBeGreaterThan(0);
     expect(addTroopSpy).toHaveBeenCalled();
   });
-
+  
 });
