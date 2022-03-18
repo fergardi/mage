@@ -1,19 +1,11 @@
 import 'jest';
-import * as functions from 'firebase-functions-test';
-import * as admin from 'firebase-admin';
+import { tester } from './config';
 import * as backend from '../src/index';
 import { KingdomType } from '../src/config';
 
-const config: admin.AppOptions = {
-  databaseURL: 'https://mage-b1c51.firebaseio.com',
-  projectId: 'mage-b1c51',
-  credential: admin.credential.cert(require('../credentials/test.json')),
-};
-const tester = functions(config);
+const KINGDOM = 'TEST_GOD';
 
-const KINGDOM = 'GOD';
-
-describe(KINGDOM, () => {
+describe('Gods', () => {
   // common batch
   // let batch: FirebaseFirestore.WriteBatch;
 

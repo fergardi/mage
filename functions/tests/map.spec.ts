@@ -1,19 +1,9 @@
 import 'jest';
-import * as functions from 'firebase-functions-test';
-import * as admin from 'firebase-admin';
+import { tester } from './config';
 import * as backend from '../src/index';
 import * as axios from 'axios';
 
-const config: admin.AppOptions = {
-  databaseURL: 'https://mage-b1c51.firebaseio.com',
-  projectId: 'mage-b1c51',
-  credential: admin.credential.cert(require('../credentials/test.json')),
-};
-const tester = functions(config);
-
-const KINGDOM = 'MAP';
-
-describe(KINGDOM, () => {
+describe('Maps', () => {
 
   afterAll(async () => {
     tester.cleanup();

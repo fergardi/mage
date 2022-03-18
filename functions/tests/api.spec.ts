@@ -3,7 +3,7 @@ import * as request from 'supertest';
 import * as backend from '../src/index';
 import server from '../src/server';
 
-describe('API', () => {
+describe('APIs', () => {
 
   it('should CALL the FAKE and RETURN the 404', async () => {
     const res = await request(server)

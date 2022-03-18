@@ -1,20 +1,13 @@
 import 'jest';
-import * as functions from 'firebase-functions-test';
+import { tester } from './config';
 import * as admin from 'firebase-admin';
 import * as backend from '../src/index';
 import { KingdomType } from '../src/config';
 
-const config: admin.AppOptions = {
-  databaseURL: 'https://mage-b1c51.firebaseio.com',
-  projectId: 'mage-b1c51',
-  credential: admin.credential.cert(require('../credentials/test.json')),
-};
-const tester = functions(config);
-
-const KINGDOM = 'CONTRACT';
+const KINGDOM = 'TEST_CONTRACT';
 const HERO = 'dragon-rider';
 
-describe(KINGDOM, () => {
+describe('Contracts', () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 

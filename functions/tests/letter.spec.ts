@@ -1,21 +1,14 @@
 import 'jest';
-import * as functions from 'firebase-functions-test';
+import { tester } from './config';
 import * as admin from 'firebase-admin';
 import { createKingdom, deleteKingdom, addLetter, sendLetter, readLetter, removeLetters } from '../src/index';
 import { KingdomType } from '../src/config';
 
-const config: admin.AppOptions = {
-  databaseURL: 'https://mage-b1c51.firebaseio.com',
-  projectId: 'mage-b1c51',
-  credential: admin.credential.cert(require('../credentials/test.json')),
-};
-const tester = functions(config);
-
-const KINGDOM = 'LETTER';
+const KINGDOM = 'TEST_LETTER';
 const SUBJECT = 'lorem ipsum';
 const MESSAGE = 'lorem ipsum dolor sit amet';
 
-describe(KINGDOM, () => {
+describe('Letters', () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 

@@ -1,20 +1,13 @@
 import 'jest';
-import * as functions from 'firebase-functions-test';
+import { tester } from './config';
 import * as admin from 'firebase-admin';
 import * as moment from 'moment';
 import * as backend from '../src/index';
 import { KingdomType, BID_RATIO, AUCTION_TIME_OUTBID } from '../src/config';
 
-const config: admin.AppOptions = {
-  databaseURL: 'https://mage-b1c51.firebaseio.com',
-  projectId: 'mage-b1c51',
-  credential: admin.credential.cert(require('../credentials/test.json')),
-};
-const tester = functions(config);
+const KINGDOM = 'TEST_AUCTION';
 
-const KINGDOM = 'AUCTION';
-
-describe(KINGDOM, () => {
+describe('Auctions', () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 

@@ -3,7 +3,7 @@ import { random, calculateTurns } from '../src/index';
 import * as moment from 'moment';
 import { MAX_TURNS } from '../src/config';
 
-describe('HELPER', () => {
+describe('Helpers', () => {
 
   it('should RETURN a RANDOM number', () => {
     const n = random(0, 10);

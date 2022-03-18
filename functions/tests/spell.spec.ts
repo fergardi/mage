@@ -1,15 +1,8 @@
 import 'jest';
-import * as functions from 'firebase-functions-test';
+import { tester } from './config';
 import * as admin from 'firebase-admin';
 import * as backend from '../src/index';
 import { KingdomType } from '../src/config';
-
-const config: admin.AppOptions = {
-  databaseURL: 'https://mage-b1c51.firebaseio.com',
-  projectId: 'mage-b1c51',
-  credential: admin.credential.cert(require('../credentials/test.json')),
-};
-const tester = functions(config);
 
 const KINGDOM_SOURCE = 'TEST_SPELL_SOURCE';
 const KINGDOM_TARGET = 'TEST_SPELL_TARGET';
@@ -19,7 +12,7 @@ const SPELL_ENCHANTMENT = 'meteor-storm';
 const SPELL_DISENCHANTMENT = 'serenity';
 const SPELL_ESPIONAGE = 'spy';
 
-describe(KINGDOM_SOURCE + ' -> ' + KINGDOM_TARGET, () => {
+describe('Spells', () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 
@@ -60,7 +53,7 @@ describe(KINGDOM_SOURCE + ' -> ' + KINGDOM_TARGET, () => {
     const spell = (await admin.firestore().doc(`spells/${SPELL_ENCHANTMENT}`).get()).data();
     const addEnchantmentSpy = jest.spyOn(backend, 'addEnchantment');
     const conjured: any = await backend.conjureSpell(KINGDOM_SOURCE, spell, KINGDOM_TARGET, batch);
-    expect(conjured.enchantment).toContain('spell.meteor-storm.name');
+    expect(conjured.enchantment).toBe('spell.meteor-storm.name');
     expect(conjured.turns).toBeGreaterThan(0);
     expect(addEnchantmentSpy).toHaveBeenCalled();
   });
@@ -73,7 +66,7 @@ describe(KINGDOM_SOURCE + ' -> ' + KINGDOM_TARGET, () => {
     expect(addEnchantmentSpy).toHaveBeenCalled();
   });
 
-  it('should CONJURE the SPELL for SPIONAGE', async () => {
+  it('should CONJURE the SPELL for ESPIONAGE', async () => {
     const spell = (await admin.firestore().doc(`spells/${SPELL_ESPIONAGE}`).get()).data();
     const spyKingdomSpy = jest.spyOn(backend, 'spyKingdom');
     const conjured: any = await backend.conjureSpell(KINGDOM_SOURCE, spell, KINGDOM_TARGET, batch);

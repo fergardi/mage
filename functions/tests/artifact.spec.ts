@@ -1,26 +1,18 @@
 import 'jest';
-import * as functions from 'firebase-functions-test';
+import { tester } from './config';
 import * as admin from 'firebase-admin';
 import * as backend from '../src/index';
 import { KingdomType } from '../src/config';
 
-const config: admin.AppOptions = {
-  databaseURL: 'https://mage-b1c51.firebaseio.com',
-  projectId: 'mage-b1c51',
-  credential: admin.credential.cert(require('../credentials/test.json')),
-};
-const tester = functions(config);
-
 const KINGDOM = 'TEST_ARTIFACT';
-const COLOR = KingdomType.WHITE;
 const ITEM = 'treasure-chest';
 
-describe(KINGDOM, () => {
+describe('Artifacts', () => {
   // common batch
   let batch: FirebaseFirestore.WriteBatch;
 
   beforeAll(async () => {
-    await backend.createKingdom(KINGDOM, COLOR, KINGDOM, 0, 0);
+    await backend.createKingdom(KINGDOM, KingdomType.WHITE, KINGDOM, 0, 0);
   });
 
   beforeEach(() => {

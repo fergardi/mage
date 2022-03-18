@@ -1,22 +1,14 @@
 import 'jest';
-import * as functions from 'firebase-functions-test';
+import { tester } from './config';
 import * as admin from 'firebase-admin';
 import { applyArtifacts, applyContracts, applyCharms, applyWave, resolveBattle, applySkills, applyDamage, applyCasualties, applyGuilds, updatePerk, applyTrees } from '../src/index';
 import { BattleReport, CategoryType, BattleType } from '../src/config';
 
-const config: admin.AppOptions = {
-  databaseURL: 'https://mage-b1c51.firebaseio.com',
-  projectId: 'mage-b1c51',
-  credential: admin.credential.cert(require('../credentials/test.json')),
-};
-const tester = functions(config);
-
-const KINGDOM = 'BATTLE';
 const ITEMS_QUANTITY: number = 1;
 const UNITS_QUANTITY: number = 100;
 const HERO_LEVEL: number = 10;
 
-describe(KINGDOM, () => {
+describe('Battles', () => {
   // report
   let report: BattleReport;
   // troops
