@@ -4,7 +4,7 @@ import { FirebaseService } from './services/firebase.service';
 import { TutorialService } from './services/tutorial.service';
 import { Router, Scroll, RouterEvent, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
-import { CollectionType } from './services/cache.service';
+// import { CollectionType } from './services/cache.service';
 
 @Component({
   selector: 'app-root',

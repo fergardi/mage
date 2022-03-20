@@ -3133,14 +3133,17 @@ export const addEnchantment = async (kingdomId: string, enchantment: any, origin
  * @param kingdomId
  * @param enchantmentId
  */
-export const dispelIncantation = async (kingdomId: string, enchantmentId: string): Promise<void> => {
+export const dispelIncantation = async (kingdomId: string, enchantmentId: string): Promise<any> => {
   try {
     console.log(`KINGDOM ${kingdomId} tries to DISPEL ${enchantmentId}`);
-    const batch = angularFirestore.batch();
-    const response = await removeEnchantment(kingdomId, enchantmentId, batch);
-    await batch.commit();
-    console.log(`KINGDOM ${kingdomId} succesfully DISPELS ${enchantmentId}`);
-    return response;
+    const incantation = (await angularFirestore.doc(`kingdoms/${kingdomId}/incantations/${enchantmentId}`).get()).data();
+    if (incantation) {
+      const batch = angularFirestore.batch();
+      const response = await removeEnchantment(kingdomId, enchantmentId, batch);
+      await batch.commit();
+      console.log(`KINGDOM ${kingdomId} succesfully DISPELS ${enchantmentId}`);
+      return response;
+    } else throw new Error(`ENCHANTMENT ${enchantmentId} does not exists`);
   } catch (error) {
     console.error(`KINGDOM ${kingdomId} could not DISPEL ${enchantmentId}`, error);
     throw error;

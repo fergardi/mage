@@ -147,7 +147,7 @@ describe('APIs', () => {
   });
 
   it('should CALL the DISPELINCANTATION and RETURN the 200', async () => {
-    jest.spyOn(backend, 'dispelIncantation').mockResolvedValue();
+    jest.spyOn(backend, 'dispelIncantation').mockResolvedValue(null);
     const res = await request(server)
     .delete('/kingdom/:kingdomId/temple/:enchantmentId/dispel')
     .send();

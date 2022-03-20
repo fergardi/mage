@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
 
   random(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
+  }
 
   async login() {
     if (this.form.valid) {

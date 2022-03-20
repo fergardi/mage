@@ -59,7 +59,22 @@ describe('Enchantments', () => {
     expect(enchantmentAfter).not.toBeDefined();
   });
 
-  it('should BREAK the ENCHANTMENT', async () => {
+  it('should DISPEL my ENCHANTMENT', async () => {
+    const turns = 300;
+    const removeEnchantmentSpy = jest.spyOn(backend, 'removeEnchantment');
+    const spell = (await admin.firestore().doc(`spells/${OWN_ENCHANTMENT}`).get()).data();
+    await backend.addEnchantment(KINGDOM, spell, KINGDOM, turns, batch);
+    await batch.commit();
+    const incantation = (await admin.firestore().collection(`kingdoms/${KINGDOM}/incantations`).where('id', '==', OWN_ENCHANTMENT).limit(1).get()).docs[0];
+    expect((await backend.dispelIncantation(KINGDOM, incantation.id)).success).toBe(true);
+    expect(removeEnchantmentSpy).toHaveBeenCalled();
+  });
+
+  it('should DISPEL my ENCHANTMENT and THROW', async () => {
+    await expect(backend.dispelIncantation(KINGDOM, 'undefined')).rejects.toThrowError();
+  });
+
+  it('should BREAK his ENCHANTMENT', async () => {
     const turns = 300;
     const balanceSupplySpy = jest.spyOn(backend, 'balanceSupply');
     const balanceBonusSpy = jest.spyOn(backend, 'balanceBonus');
@@ -67,7 +82,7 @@ describe('Enchantments', () => {
     await backend.addEnchantment(KINGDOM, spell, KINGDOM, turns, batch);
     await batch.commit();
     const incantation = (await admin.firestore().collection(`kingdoms/${KINGDOM}/incantations`).where('id', '==', FORFEIT_ENCHANTMENT).limit(1).get()).docs[0];
-    expect((await backend.breakEnchantment(KINGDOM, incantation.id) as any).success).toBe(true);
+    expect((await backend.breakEnchantment(KINGDOM, incantation.id)).success).toBe(true);
     expect(balanceSupplySpy).toHaveBeenCalledTimes(12);
     expect(balanceBonusSpy).toHaveBeenCalledTimes(6);
   });
