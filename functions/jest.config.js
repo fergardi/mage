@@ -15,4 +15,5 @@ module.exports = {
     ['lcov', { 'projectRoot': '../' }],
     'text-summary',
   ],
+  testTimeout: 60000
 };

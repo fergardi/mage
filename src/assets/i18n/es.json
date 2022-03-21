@@ -1437,7 +1437,7 @@
     },
     "fireball": {
       "name": "Bola de Fuego",
-      "description": "Inflige daño de <fire> a una tropa enemiga"
+      "description": "Inflige daño de <fire> a una tropa enemiga al azar"
     },
     "battle-chant": {
       "name": "Cántico de Batalla",
@@ -1465,7 +1465,7 @@
     },
     "inferno": {
       "name": "Infierno",
-      "description": "Inflige daño de <fire> a cada tropa enemiga"
+      "description": "Inflige mucho daño de <fire> a cada tropa enemiga"
     },
     "flame-shield": {
       "name": "Escudos de Llamas",
@@ -1573,7 +1573,7 @@
     },
     "freeze": {
       "name": "Congelar",
-      "description": "Inflige daño de <cold> a una tropa enemiga al azar"
+      "description": "Inflige daño de <cold> a cada tropa enemiga"
     },
     "ice-wall": {
       "name": "Muro Helado",
@@ -1633,7 +1633,7 @@
     },
     "cure": {
       "name": "Curación",
-      "description": "Recupera salud a una tropa aliada al azar"
+      "description": "Resucita unas pocas unidades de una tropa aliada"
     },
     "hurricane": {
       "name": "Huracán",
@@ -1705,7 +1705,7 @@
     },
     "healing": {
       "name": "Sanación",
-      "description": "Recupera salud a cada tropa aliada"
+      "description": "Resucita unas pocas unidades de una tropa aliada"
     },
     "divine-protection": {
       "name": "Protección Divina",
@@ -1713,7 +1713,7 @@
     },
     "exorcism": {
       "name": "Exorcismo",
-      "description": "Inflige daño de <holy> a cada tropa enemiga"
+      "description": "Inflige daño de <holy> a una tropa enemiga al azar"
     },
     "endurance": {
       "name": "Resistencia",
@@ -1733,7 +1733,7 @@
     },
     "resurrection": {
       "name": "Resurección",
-      "description": "Aplica <regeneration> a todas tus tropas"
+      "description": "Resucita a muchas unidades de cada tropas aliada"
     },
     "shield-light": {
       "name": "Escudos de Luz",

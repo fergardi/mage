@@ -6,13 +6,6 @@ import { KingdomType } from '../src/config';
 
 const KINGDOM_SOURCE = 'TEST_ITEM_SOURCE';
 const KINGDOM_TARGET = 'TEST_ITEM_TARGET';
-const ITEM_RESOURCE = 'treasure-chest';
-const ITEM_UNIT = 'cold-orb';
-const ITEM_ITEM = 'treasure-map';
-const ITEM_ENCHANTMENT = 'cursed-skull';
-const ITEM_DISENCHANTMENT = 'rattle';
-const ITEM_ESPIONAGE = 'crystal-ball';
-const ITEM_SPELL = 'wisdom-tome';
 
 describe('Items', () => {
   // common batch
@@ -33,63 +26,104 @@ describe('Items', () => {
     tester.cleanup();
   });
 
-  it('should ACTIVATE the ITEM for TROOP', async () => {
-    const item = (await admin.firestore().doc(`items/${ITEM_UNIT}`).get()).data();
+  it.each([
+    'necronomicon',
+    'enchanted-lamp',
+    'demon-horn',
+    'lightning-orb',
+    'dragon-egg',
+    'cold-orb',
+    'earth-orb',
+    'fire-orb',
+    'light-orb',
+    'animal-fang',
+    'bone-necklace',
+    'golem-book',
+    'magic-beans',
+    'snake-eye',
+    'valhalla-horn',
+  ])('should ACTIVATE the ITEM %s for TROOP', async (id) => {
+    const item = (await admin.firestore().doc(`items/${id}`).get()).data();
     const addTroopSpy = jest.spyOn(backend, 'addTroop');
-    const result = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
-    expect(result.unit).toBe('unit.ice-elemental.name');
-    expect(result.size).toBeGreaterThan(0);
+    const activated = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
+    expect(activated.unit).toContain('unit.');
+    expect(activated.size).toBeGreaterThan(0);
     expect(addTroopSpy).toHaveBeenCalled();
   });
 
-  it('should ACTIVATE the ITEM for RESOURCE', async () => {
-    const item = (await admin.firestore().doc(`items/${ITEM_RESOURCE}`).get()).data();
+  it.each([
+    'treasure-chest',
+    //'mana-potion',
+    'love-potion',
+    'voodoo-doll',
+    'letter-thieves',
+    'magic-compass',
+    //'mana-vortex',
+    'rotten-food',
+  ])('should ACTIVATE the ITEM %s for RESOURCE', async (id) => {
+    const item = (await admin.firestore().doc(`items/${id}`).get()).data();
     const addSupplySpy = jest.spyOn(backend, 'addSupply');
-    const result = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
-    expect(result.resource).toBe('resource.gold.name');
-    expect(result.amount).toBeGreaterThan(0);
+    const activated = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
+    expect(activated.resource).toContain('resource.');
+    expect(activated.amount).not.toBe(0);
     expect(addSupplySpy).toHaveBeenCalled();
   });
 
-  it('should ACTIVATE the ITEM for ITEM', async () => {
-    const item = (await admin.firestore().doc(`items/${ITEM_ITEM}`).get()).data();
+  it.each([
+    'treasure-map',
+  ])('should ACTIVATE the ITEM %s for ITEM', async (id) => {
+    const item = (await admin.firestore().doc(`items/${id}`).get()).data();
     const addArtifactSpy = jest.spyOn(backend, 'addArtifact');
-    const conjured: any = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
-    expect(conjured.item).toContain('item.');
-    expect(conjured.quantity).toBeGreaterThan(0);
+    const activated: any = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
+    expect(activated.item).toContain('item.');
+    expect(activated.quantity).toBeGreaterThan(0);
     expect(addArtifactSpy).toHaveBeenCalled();
   });
 
-  it('should ACTIVATE the ITEM for ENCHANTMENT', async () => {
-    const item = (await admin.firestore().doc(`items/${ITEM_ENCHANTMENT}`).get()).data();
+  it.each([
+    'cursed-skull',
+    'cursed-mask',
+    'cursed-idol',
+    'lucky-coin',
+    'lucky-horseshoe',
+    'lucky-paw',
+    //'rattle',
+  ])('should ACTIVATE the ITEM %s for ENCHANTMENT', async (id) => {
+    const item = (await admin.firestore().doc(`items/${id}`).get()).data();
     const addEnchantmentSpy = jest.spyOn(backend, 'addEnchantment');
-    const conjured: any = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
-    expect(conjured.enchantment).toContain('spell.');
-    expect(conjured.turns).toBeGreaterThan(0);
+    const activated: any = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
+    expect(activated.enchantment).toContain('spell.');
+    expect(activated.turns).toBeGreaterThan(0);
     expect(addEnchantmentSpy).toHaveBeenCalled();
   });
 
-  it('should ACTIVATE the ITEM for DISENCHANTMENT', async () => {
-    const item = (await admin.firestore().doc(`items/${ITEM_DISENCHANTMENT}`).get()).data();
+  it.each([
+    'rattle',
+  ])('should ACTIVATE the ITEM %s for DISENCHANTMENT', async (id) => {
+    const item = (await admin.firestore().doc(`items/${id}`).get()).data();
     const addEnchantmentSpy = jest.spyOn(backend, 'addEnchantment');
-    const conjured: any = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
-    expect(conjured.enchantments).toBeGreaterThanOrEqual(0);
+    const activated: any = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
+    expect(activated.enchantments).toBeGreaterThanOrEqual(0);
     expect(addEnchantmentSpy).toHaveBeenCalled();
   });
 
-  it('should ACTIVATE the ITEM for ESPIONAGE', async () => {
-    const item = (await admin.firestore().doc(`items/${ITEM_ESPIONAGE}`).get()).data();
+  it.each([
+    'crystal-ball',
+  ])('should ACTIVATE the ITEM %s for ESPIONAGE', async (id) => {
+    const item = (await admin.firestore().doc(`items/${id}`).get()).data();
     const spyKingdomSpy = jest.spyOn(backend, 'spyKingdom');
-    const conjured: any = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
-    expect(conjured.timestamp).toBeGreaterThan(0);
+    const activated: any = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
+    expect(activated.timestamp).toBeGreaterThan(0);
     expect(spyKingdomSpy).toHaveBeenCalled();
   });
 
-  it('should ACTIVATE the ITEM for SPELL', async () => {
-    const item = (await admin.firestore().doc(`items/${ITEM_SPELL}`).get()).data();
+  it.each([
+    'wisdom-tome',
+  ])('should ACTIVATE the ITEM %s for SPELL', async (id) => {
+    const item = (await admin.firestore().doc(`items/${id}`).get()).data();
     const addCharmSpy = jest.spyOn(backend, 'addCharm');
-    const conjured: any = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
-    expect(conjured.spell).toContain('spell.');
+    const activated: any = await backend.activateItem(KINGDOM_SOURCE, item, KINGDOM_TARGET, batch);
+    expect(activated.spell).toContain('spell.');
     expect(addCharmSpy).toHaveBeenCalled();
   });
 

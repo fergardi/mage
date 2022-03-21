@@ -6,11 +6,6 @@ import { KingdomType } from '../src/config';
 
 const KINGDOM_SOURCE = 'TEST_SPELL_SOURCE';
 const KINGDOM_TARGET = 'TEST_SPELL_TARGET';
-const SPELL_UNIT = 'animate-skeleton';
-const SPELL_ITEM = 'locate-artifact';
-const SPELL_ENCHANTMENT = 'meteor-storm';
-const SPELL_DISENCHANTMENT = 'serenity';
-const SPELL_ESPIONAGE = 'spy';
 
 describe('Spells', () => {
   // common batch
@@ -31,17 +26,56 @@ describe('Spells', () => {
     tester.cleanup();
   });
 
-  it('should CONJURE the SPELL for TROOP', async () => {
-    const spell = (await admin.firestore().doc(`spells/${SPELL_UNIT}`).get()).data();
+  it.each([
+    'animate-skeleton',
+    'animate-zombie',
+    'animate-ghoul',
+    'night-living-dead',
+    'summon-wraith',
+    'summon-lich',
+    'summon-vampire',
+    'call-berserker',
+    'call-orc',
+    'summon-minotaur',
+    'summon-ogre',
+    'summon-lizardman',
+    'call-cyclop',
+    'call-frost-giant',
+    'call-cave-troll',
+    'call-yeti',
+    'summon-mage',
+    'summon-medusa',
+    'summon-djinni',
+    'conjure-elemental',
+    'beast-council',
+    'summon-spider',
+    'call-carnivorous-plant',
+    'call-centaur',
+    'call-elf',
+    'summon-werebear',
+    'summon-druid',
+    'call-pegasus',
+    'call-knight',
+    'call-templar',
+    'prayer',
+    'summon-angel',
+    'summon-titan',
+    'summon-monk',
+  ])('should CONJURE the SPELL %s for TROOP', async (id) => {
+    const spell = (await admin.firestore().doc(`spells/${id}`).get()).data();
     const addTroopSpy = jest.spyOn(backend, 'addTroop');
     const conjured: any = await backend.conjureSpell(KINGDOM_SOURCE, spell, KINGDOM_TARGET, batch);
-    expect(conjured.unit).toBe('unit.skeleton.name');
+    expect(conjured.unit).toContain('unit.');
     expect(conjured.size).toBeGreaterThan(0);
     expect(addTroopSpy).toHaveBeenCalled();
   });
 
-  it('should CONJURE the SPELL for ITEM', async () => {
-    const spell = (await admin.firestore().doc(`spells/${SPELL_ITEM}`).get()).data();
+  it.each([
+    //'destroy-artifact',
+    'steal-artifact',
+    'locate-artifact',
+  ])('should CONJURE the SPELL %s for ITEM', async (id) => {
+    const spell = (await admin.firestore().doc(`spells/${id}`).get()).data();
     const addArtifactSpy = jest.spyOn(backend, 'addArtifact');
     const conjured: any = await backend.conjureSpell(KINGDOM_SOURCE, spell, KINGDOM_TARGET, batch);
     expect(conjured.item).toContain('item.');
@@ -49,25 +83,49 @@ describe('Spells', () => {
     expect(addArtifactSpy).toHaveBeenCalled();
   });
 
-  it('should CONJURE the SPELL for ENCHANTMENT', async () => {
-    const spell = (await admin.firestore().doc(`spells/${SPELL_ENCHANTMENT}`).get()).data();
+  it.each([
+    'death-decay',
+    'shroud-darkness',
+    'soul-pact',
+    'plague',
+    'blood-ritual',
+    'meteor-storm',
+    'fire-wall',
+    'concentration',
+    'confuse',
+    'ice-wall',
+    'laziness',
+    'druidism',
+    'climate-control',
+    'locust-swarm',
+    'natures-favor',
+    //'serenity',
+    'sunray',
+    'divine-protection',
+    'peace-prosperity',
+  ])('should CONJURE the SPELL %s for ENCHANTMENT', async (id) => {
+    const spell = (await admin.firestore().doc(`spells/${id}`).get()).data();
     const addEnchantmentSpy = jest.spyOn(backend, 'addEnchantment');
     const conjured: any = await backend.conjureSpell(KINGDOM_SOURCE, spell, KINGDOM_TARGET, batch);
-    expect(conjured.enchantment).toBe('spell.meteor-storm.name');
+    expect(conjured.enchantment).toContain('spell.');
     expect(conjured.turns).toBeGreaterThan(0);
     expect(addEnchantmentSpy).toHaveBeenCalled();
   });
 
-  it('should CONJURE the SPELL for DISENCHANTMENT', async () => {
-    const spell = (await admin.firestore().doc(`spells/${SPELL_DISENCHANTMENT}`).get()).data();
+  it.each([
+    'serenity',
+  ])('should CONJURE the SPELL %s for DISENCHANTMENT', async (id) => {
+    const spell = (await admin.firestore().doc(`spells/${id}`).get()).data();
     const addEnchantmentSpy = jest.spyOn(backend, 'addEnchantment');
     const conjured: any = await backend.conjureSpell(KINGDOM_SOURCE, spell, KINGDOM_TARGET, batch);
     expect(conjured.enchantments).toBeGreaterThanOrEqual(0);
     expect(addEnchantmentSpy).toHaveBeenCalled();
   });
 
-  it('should CONJURE the SPELL for ESPIONAGE', async () => {
-    const spell = (await admin.firestore().doc(`spells/${SPELL_ESPIONAGE}`).get()).data();
+  it.each([
+    'spy',
+  ])('should CONJURE the SPELL %s for ESPIONAGE', async (id) => {
+    const spell = (await admin.firestore().doc(`spells/${id}`).get()).data();
     const spyKingdomSpy = jest.spyOn(backend, 'spyKingdom');
     const conjured: any = await backend.conjureSpell(KINGDOM_SOURCE, spell, KINGDOM_TARGET, batch);
     expect(conjured.timestamp).toBeGreaterThan(0);

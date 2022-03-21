@@ -62,7 +62,7 @@
     "resources": [],
     "spells": [],
     "amount": [],
-    "battle": true,
+    "battle": false,
     "self": true,
     "multiple": false,
     "gems": 3,

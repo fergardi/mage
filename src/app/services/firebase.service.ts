@@ -81,6 +81,7 @@ export class FirebaseService {
     if (element[subCollection] instanceof Array) {
       element[subCollection].forEach((subElement: any, subElementIndex: number, subElementArray: any[]) => {
         if (typeof subElement === 'string') {
+          if (collection.find(el => el['id'] === subElement.replace(/^\+|^\-|^\//g, '')) === undefined) console.log(element.id, subCollection, subElement);
           element[subCollection][subElementIndex] = JSON.parse(JSON.stringify(collection.find(el => el['id'] === subElement.replace(/^\+|^\-|^\//g, ''))));
           if (recursive) {
             this.joinObject(element[subCollection][subElementIndex], 'perks', this.perks, true);

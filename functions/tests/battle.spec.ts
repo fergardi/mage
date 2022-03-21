@@ -154,61 +154,73 @@ describe('Battles', () => {
     expect(defenderTroops[0].unit.defenseBonus).toEqual(15);
   });
 
-  it('should APPLY an ARTIFACT which ADDS a SKILL', async () => {
+  it.each([
+    ['agility-potion', 'haste'],
+    ['defense-potion', 'scales'],
+    ['strength-potion', 'strength'],
+    ['spider-web', 'slowness'],
+    ['crown-thorns', 'weakness'],
+    ['fairy-wings', 'flight'],
+    ['vampire-teeth', 'leech'],
+  ])('should APPLY the ARTIFACT "%s" which ADDS the SKILL "%s"', async (item, skill) => {
     attackerUnits = ['skeleton'];
     defenderUnits = ['orc'];
-    attackerItems = ['agility-potion', 'spider-web'];
-    defenderItems = ['fairy-wings'];
+    attackerItems = [item];
+    defenderItems = [item];
     await prepareTest();
     expect(attackerTroops[0].unit.skills).toEqual(expect.not.arrayContaining([
-      expect.objectContaining({ id: 'haste' }),
-      expect.objectContaining({ id: 'slowness' }),
+      expect.objectContaining({ id: skill }),
     ]));
     expect(defenderTroops[0].unit.skills).toEqual(expect.not.arrayContaining([
-      expect.objectContaining({ id: 'flight' }),
+      expect.objectContaining({ id: skill }),
     ]));
     applyArtifacts(attackerTroops, attackerArtifacts, defenderTroops, defenderArtifacts, report);
     expect(attackerTroops[0].unit.skills).toEqual(expect.arrayContaining([
-      expect.objectContaining({ id: 'haste' }),
+      expect.objectContaining({ id: skill }),
     ]));
     expect(defenderTroops[0].unit.skills).toEqual(expect.arrayContaining([
-      expect.objectContaining({ id: 'flight' }),
-      expect.objectContaining({ id: 'slowness' }),
+      expect.objectContaining({ id: skill }),
     ]));
   });
 
-  it('should APPLY an ARTIFACT which ADDS a RESISTANCE', async () => {
+  it.each([
+    ['fire-scroll', 'fire'],
+    ['cold-scroll', 'cold'],
+    ['light-scroll', 'holy'],
+    ['earth-scroll', 'poison'],
+    ['lightning-scroll', 'lightning'],
+  ])('should APPLY an ARTIFACT "%s" which ADDS the RESISTANCE "%s"', async (item, resistance) => {
     attackerUnits = ['skeleton'];
     defenderUnits = ['orc'];
-    attackerItems = ['light-scroll', 'fire-scroll', 'earth-scroll'];
-    defenderItems = ['lightning-scroll', 'cold-scroll'];
+    attackerItems = [item];
+    defenderItems = [item];
     await prepareTest();
     expect(attackerTroops[0].unit.resistances).toEqual(expect.not.arrayContaining([
-      expect.objectContaining({ id: 'fire' }),
-      expect.objectContaining({ id: 'holy' }),
-      expect.objectContaining({ id: 'poison' }),
+      expect.objectContaining({ id: resistance }),
     ]));
     expect(defenderTroops[0].unit.resistances).toEqual(expect.not.arrayContaining([
-      expect.objectContaining({ id: 'lightning' }),
-      expect.objectContaining({ id: 'cold' }),
+      expect.objectContaining({ id: resistance }),
     ]));
     applyArtifacts(attackerTroops, attackerArtifacts, defenderTroops, defenderArtifacts, report);
     expect(attackerTroops[0].unit.resistances).toEqual(expect.arrayContaining([
-      expect.objectContaining({ id: 'fire' }),
-      expect.objectContaining({ id: 'holy' }),
-      expect.objectContaining({ id: 'poison' }),
+      expect.objectContaining({ id: resistance }),
     ]));
     expect(defenderTroops[0].unit.resistances).toEqual(expect.arrayContaining([
-      expect.objectContaining({ id: 'lightning' }),
-      expect.objectContaining({ id: 'cold' }),
+      expect.objectContaining({ id: resistance }),
     ]));
   });
 
-  it('should APPLY an ARTIFACT which DAMAGES a TROOP', async () => {
+  it.each([
+    'holy-grenade',
+    'powder-barrel',
+    'vial-venom',
+    'ancient-rune',
+    'ice-stone',
+  ])('should APPLY an ARTIFACT "%s" which DAMAGES a TROOP', async (item) => {
     attackerUnits = ['skeleton'];
     defenderUnits = ['orc'];
-    attackerItems = ['holy-grenade'];
-    defenderItems = ['vial-venom'];
+    attackerItems = [item];
+    defenderItems = [item];
     await prepareTest();
     expect(attackerTroops[0].quantity).toEqual(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toEqual(UNITS_QUANTITY);
@@ -217,36 +229,47 @@ describe('Battles', () => {
     expect(defenderTroops[0].quantity).toBeLessThan(UNITS_QUANTITY);
   });
 
-  it('should APPLY a CONTRACT which BONUSES a TROOP', async () => {
-    attackerUnits = ['skeleton'];
-    defenderUnits = ['orc'];
-    attackerHeroes = ['necrophage'];
-    defenderHeroes = ['orc-king'];
+  it.each([
+    ['dragon-rider', 'red-dragon'],
+    ['demon-prince', 'minotaur'],
+    ['orc-king', 'orc'],
+    ['commander', 'knight'],
+    ['beast-master', 'griffon'],
+    ['golem-golem', 'iron-golem'],
+    ['elementalist', 'air-elemental'],
+    ['necrophage', 'skeleton'],
+  ])('should APPLY the CONTRACT "%s" which BONUSES the UNIT "%s"', async (hero, unit) => {
+    attackerUnits = [unit];
+    defenderUnits = [unit];
+    attackerHeroes = [hero];
+    defenderHeroes = [hero];
     await prepareTest();
-    expect(attackerTroops[0].unit.attack).toEqual(100);
     expect(attackerTroops[0].unit.attackBonus).toEqual(undefined);
     expect(attackerTroops[0].unit.defenseBonus).toEqual(undefined);
     expect(attackerTroops[0].unit.healthBonus).toEqual(undefined);
-    expect(defenderTroops[0].unit.attack).toEqual(100);
     expect(defenderTroops[0].unit.attackBonus).toEqual(undefined);
     expect(defenderTroops[0].unit.defenseBonus).toEqual(undefined);
     expect(defenderTroops[0].unit.healthBonus).toEqual(undefined);
     applyContracts(attackerTroops, attackerContracts, defenderTroops, defenderContracts, report);
-    expect(attackerTroops[0].unit.attack).toEqual(100);
-    expect(attackerTroops[0].unit.attackBonus).toEqual(attackerContracts[0].hero.attackBonus * attackerContracts[0].level);
-    expect(attackerTroops[0].unit.defenseBonus).toEqual(attackerContracts[0].hero.defenseBonus * attackerContracts[0].level);
-    expect(attackerTroops[0].unit.healthBonus).toEqual(attackerContracts[0].hero.healthBonus * attackerContracts[0].level);
-    expect(defenderTroops[0].unit.attack).toEqual(100);
-    expect(defenderTroops[0].unit.attackBonus).toEqual(defenderContracts[0].hero.attackBonus * defenderContracts[0].level);
-    expect(defenderTroops[0].unit.defenseBonus).toEqual(defenderContracts[0].hero.defenseBonus * defenderContracts[0].level);
-    expect(defenderTroops[0].unit.healthBonus).toEqual(defenderContracts[0].hero.healthBonus * defenderContracts[0].level);
+    expect(attackerTroops[0].unit.attackBonus).toBeGreaterThanOrEqual(0);
+    expect(attackerTroops[0].unit.defenseBonus).toBeGreaterThanOrEqual(0);
+    expect(attackerTroops[0].unit.healthBonus).toBeGreaterThanOrEqual(0);
+    expect(defenderTroops[0].unit.attackBonus).toBeGreaterThanOrEqual(0);
+    expect(defenderTroops[0].unit.defenseBonus).toBeGreaterThanOrEqual(0);
+    expect(defenderTroops[0].unit.healthBonus).toBeGreaterThanOrEqual(0);
   });
 
-  it('should APPLY a CONTRACT which DAMAGES a TROOP', async () => {
+  it.each([
+    'pyromancer',
+    'colossus',
+    'swamp-thing',
+    'illusionist',
+    'soul-reaper',
+  ])('should APPLY the CONTRACT "%s" which DAMAGES a TROOP', async (hero) => {
     attackerUnits = ['skeleton'];
     defenderUnits = ['orc'];
-    attackerHeroes = ['pyromancer'];
-    defenderHeroes = ['colossus'];
+    attackerHeroes = [hero];
+    defenderHeroes = [hero];
     await prepareTest();
     expect(attackerTroops[0].quantity).toEqual(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toEqual(UNITS_QUANTITY);
@@ -255,61 +278,97 @@ describe('Battles', () => {
     expect(defenderTroops[0].quantity).toBeLessThan(UNITS_QUANTITY);
   });
 
-  it('should APPLY a CHARM which ADDS a SKILL', async () => {
+  it.each([
+    ['vampirism', ['leech', 'flight']],
+    ['terror', ['fear']],
+    ['necromancy', ['regeneration']],
+    ['full-moon', ['strength', 'haste']],
+    ['witchcraft', ['seduction', 'slowness']],
+    ['curse', ['weakness']],
+    ['succubus-kiss', ['seduction']],
+    ['flame-shield', ['scales', 'slowness']],
+    ['flame-blade', ['strength', 'slowness']],
+    ['flame-arrow', ['haste', 'weakness']],
+    ['fatigue', ['weakness', 'slowness']],
+    ['frenzy', ['strength', 'weakness', 'leech']],
+    ['levitation', ['flight']],
+    ['fog', ['slowness', 'weakness']],
+    ['hallucination', ['seduction', 'fear']],
+    ['invisibility', ['strength', 'haste']],
+    ['celerity', ['haste']],
+    ['accuracy', ['strength']],
+    ['ambush', ['haste']],
+    ['invigorate', ['regeneration', 'scales']],
+    ['blaze', ['weakness', 'fear']],
+    ['miracle', ['regeneration', 'flight', 'scales', 'strength', 'haste']],
+    ['resurrection', ['regeneration']],
+    ['shield-light', ['scales']],
+    ['sword-light', ['strength']],
+  ])('should APPLY the CHARM "%s" which ADDS the SKILL %o', async (spell, skills) => {
     attackerUnits = ['skeleton'];
     defenderUnits = ['orc'];
-    attackerSpells = ['shield-light'];
-    defenderSpells = ['vampirism'];
+    attackerSpells = [spell];
+    defenderSpells = [spell];
     await prepareTest();
-    expect(attackerTroops[0].unit.skills).toEqual(expect.not.arrayContaining([
-      expect.objectContaining({ id: 'scales' }),
-    ]));
-    expect(defenderTroops[0].unit.skills).toEqual(expect.not.arrayContaining([
-      expect.objectContaining({ id: 'leech' }),
-      expect.objectContaining({ id: 'flight' }),
-    ]));
+    expect(attackerTroops[0].unit.skills).toEqual(expect.not.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
+    expect(defenderTroops[0].unit.skills).toEqual(expect.not.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
     applyCharms(attackerTroops, attackerCharms, defenderTroops, defenderCharms, report);
-    expect(attackerTroops[0].unit.skills).toEqual(expect.arrayContaining([
-      expect.objectContaining({ id: 'scales' }),
-    ]));
-    expect(defenderTroops[0].unit.skills).toEqual(expect.arrayContaining([
-      expect.objectContaining({ id: 'leech' }),
-      expect.objectContaining({ id: 'flight' }),
-    ]));
+    expect(attackerTroops[0].unit.skills).toEqual(expect.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
+    expect(defenderTroops[0].unit.skills).toEqual(expect.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
   });
 
-  it('should APPLY a CHARM which REMOVES a SKILL', async () => {
-    attackerUnits = ['golden-dragon'];
-    defenderUnits = ['phoenix'];
-    attackerSpells = ['corruption'];
-    defenderSpells = ['gravity'];
+  fit.each([
+    ['corruption', ['regeneration'], 'phoenix'],
+    ['battle-chant', ['scales', 'strength'], 'iron-golem'],
+    ['gravity', ['flight'], 'vampire'],
+    ['hurricane', ['flight'], 'devil'],
+    ['calm', ['weakness', 'slowness', 'fear', 'seduction'], 'cyclop'],
+    ['calm', ['weakness', 'slowness', 'fear', 'seduction'], 'ogre'],
+    ['calm', ['weakness', 'slowness', 'fear', 'seduction'], 'sheep'],
+    ['calm', ['weakness', 'slowness', 'fear', 'seduction'], 'djinni'],
+  ])('should APPLY the CHARM "%s" which REMOVES the SKILL(s) "%o" from the TROOP "%s"', async (charm, skills, unit) => {
+    attackerUnits = [unit];
+    defenderUnits = [unit];
+    attackerSpells = [charm];
+    defenderSpells = [charm];
     await prepareTest();
-    expect(attackerTroops[0].unit.skills).toEqual(expect.arrayContaining([
-      expect.objectContaining({ id: 'flight' }),
-    ]));
-    expect(defenderTroops[0].unit.skills).toEqual(expect.arrayContaining([
-      expect.objectContaining({ id: 'regeneration' }),
-    ]));
+    //expect(attackerTroops[0].unit.skills).toContainEqual(expect.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
+    //expect(defenderTroops[0].unit.skills).toContainEqual(expect.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
     applyCharms(attackerTroops, attackerCharms, defenderTroops, defenderCharms, report);
-    expect(attackerTroops[0].unit.skills).toEqual(expect.not.arrayContaining([
-      expect.objectContaining({ id: 'flight' }),
-    ]));
-    expect(defenderTroops[0].unit.skills).toEqual(expect.not.arrayContaining([
-      expect.objectContaining({ id: 'regeneration' }),
-    ]));
+    expect(attackerTroops[0].unit.skills).toEqual(expect.not.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
+    expect(defenderTroops[0].unit.skills).toEqual(expect.not.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
   });
 
-  it('should APPLY a CHARM which DAMAGES a TROOP', async () => {
+  it.each([
+    'chain-lightning',
+    'fireball',
+    'inferno',
+    'freeze',
+    'venom',
+    'exorcism',
+  ])('should APPLY the CHARM "%s" which DAMAGES a TROOP', async (charm) => {
     attackerUnits = ['skeleton'];
     defenderUnits = ['orc'];
-    attackerSpells = ['chain-lightning'];
-    defenderSpells = ['fireball'];
+    attackerSpells = [charm];
+    defenderSpells = [charm];
     await prepareTest();
     expect(attackerTroops[0].quantity).toBe(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toBe(UNITS_QUANTITY);
     applyCharms(attackerTroops, attackerCharms, defenderTroops, defenderCharms, report);
     expect(attackerTroops[0].quantity).toBeLessThan(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toBeLessThan(UNITS_QUANTITY);
+  });
+
+  it.each([
+    'cure',
+    'healing',
+    'resurrection',
+  ])('should APPLY the CHARM "%s" which RESURRECTS a TROOP', async (charm) => {
+    attackerUnits = ['skeleton'];
+    defenderUnits = ['orc'];
+    attackerSpells = [charm];
+    defenderSpells = [charm];
+    // TODO
   });
 
   it('should APPLY a BONUS from SKILL to a TROOP', async () => {
@@ -494,7 +553,7 @@ describe('Battles', () => {
     await prepareTest();
     expect(attackerTroops[0].quantity).toBe(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toBe(UNITS_QUANTITY);
-    applyWave(attackerTroops[0], defenderTroops[0], report, BattleType.ADVENTURE); // favors attacker in case of initiative draw
+    applyWave(attackerTroops[0], defenderTroops[0], report, BattleType.ADVENTURE); // favors attacker in case of initiative tie
     expect(attackerTroops[0].quantity).toBe(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toBeLessThan(UNITS_QUANTITY);
   });
@@ -505,7 +564,7 @@ describe('Battles', () => {
     await prepareTest();
     expect(attackerTroops[0].quantity).toBe(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toBe(UNITS_QUANTITY);
-    applyWave(attackerTroops[0], defenderTroops[0], report, BattleType.SIEGE); // favors defender in case of initiative draw
+    applyWave(attackerTroops[0], defenderTroops[0], report, BattleType.SIEGE); // favors defender in case of initiative tie
     expect(attackerTroops[0].quantity).toBeLessThan(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toBe(UNITS_QUANTITY);
   });
