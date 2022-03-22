@@ -5,7 +5,6 @@ import * as backend from '../src/index';
 import { KingdomType } from '../src/config';
 
 const KINGDOM = 'TEST_STRUCTURE';
-const STRUCTURE = 'farm';
 
 describe('Structures', () => {
   // common batch
@@ -24,38 +23,60 @@ describe('Structures', () => {
     tester.cleanup();
   });
 
-  it('should ADD the BUILDING', async () => {
-    const quantity = 100;
-    const structureBefore = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', STRUCTURE).limit(1)).get()).docs[0];
-    expect(structureBefore.exists).toBe(true);
-    expect(structureBefore.data().quantity).toBeGreaterThan(0);
-    await backend.addBuilding(KINGDOM, STRUCTURE, quantity, batch);
+  it.each([
+    'barrier',
+    'farm',
+    'fortress',
+    'academy',
+    'node',
+    'village',
+    'workshop',
+  ])('should ADD the BUILDING %s', async (structure) => {
+    const quantity = 1;
+    const structureBefore = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', structure).limit(1)).get()).docs[0].data();
+    expect(structureBefore.quantity).toBeGreaterThanOrEqual(0);
+    await backend.addBuilding(KINGDOM, structure, quantity, batch);
     await batch.commit();
-    const structureAfter = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', STRUCTURE).limit(1)).get()).docs[0];
-    expect(structureAfter.exists).toBe(true);
-    expect(structureAfter.data().quantity).toBe(structureBefore.data().quantity + quantity);
+    const structureAfter = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', structure).limit(1)).get()).docs[0].data();
+    expect(structureAfter.quantity).toBe(structureBefore.quantity + quantity);
   });
 
-  it('should BUILD the STRUCTURE', async () => {
-    const quantity = 100;
-    const structureBefore = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', STRUCTURE).limit(1)).get()).docs[0];
-    expect(structureBefore.exists).toBe(true);
-    expect(structureBefore.data().quantity).toBeGreaterThan(0);
-    expect((await backend.buildStructure(KINGDOM, structureBefore?.id, quantity) as any).quantity).toBe(quantity);
-    const structureAfter = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', STRUCTURE).limit(1)).get()).docs[0];
-    expect(structureAfter.exists).toBe(true);
-    expect(structureAfter.data().quantity).toBe(structureBefore.data().quantity + quantity);
+  it.each([
+    'barrier',
+    'farm',
+    'fortress',
+    'academy',
+    'node',
+    'village',
+    'workshop',
+  ])('should BUILD the STRUCTURE %s', async (structure) => {
+    const quantity = 1;
+    const structureBefore = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', structure).limit(1)).get()).docs[0];
+    const structureBeforeData = structureBefore.data();
+    expect(structureBeforeData.quantity).toBeGreaterThanOrEqual(0);
+    expect((await backend.buildStructure(KINGDOM, structureBefore.id, quantity) as any).quantity).toBe(quantity);
+    const structureAfter = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', structure).limit(1)).get()).docs[0];
+    const structureAfterData = structureAfter.data();
+    expect(structureAfterData.quantity).toBe(structureBeforeData.quantity + quantity);
   });
 
-  it('should DEMOLISH the STRUCTURE', async () => {
-    const quantity = 100;
-    const structureBefore = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', STRUCTURE).limit(1)).get()).docs[0];
-    expect(structureBefore.exists).toBe(true);
-    expect(structureBefore.data().quantity).toBeGreaterThan(0);
+  it.each([
+    //'barrier',
+    'farm',
+    //'fortress',
+    //'academy',
+    'node',
+    'village',
+    //'workshop',
+  ])('should DEMOLISH the STRUCTURE %s', async (structure) => {
+    const quantity = 1;
+    const structureBefore = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', structure).limit(1)).get()).docs[0];
+    const structureBeforeData = structureBefore.data();
+    expect(structureBeforeData.quantity).toBeGreaterThanOrEqual(0);
     expect((await backend.demolishStructure(KINGDOM, structureBefore?.id, quantity) as any).quantity).toBe(quantity);
-    const structureAfter = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', STRUCTURE).limit(1)).get()).docs[0];
-    expect(structureAfter.exists).toBe(true);
-    expect(structureAfter.data().quantity).toBe(structureBefore.data().quantity - quantity);
+    const structureAfter = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', structure).limit(1)).get()).docs[0];
+    const structureAfterData = structureAfter.data();
+    expect(structureAfterData.quantity).toBe(structureBeforeData.quantity - quantity);
   });
 
 });

@@ -317,7 +317,7 @@ describe('Battles', () => {
     expect(defenderTroops[0].unit.skills).toEqual(expect.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
   });
 
-  fit.each([
+  it.each([
     ['corruption', ['regeneration'], 'phoenix'],
     ['battle-chant', ['scales', 'strength'], 'iron-golem'],
     ['gravity', ['flight'], 'vampire'],

@@ -759,7 +759,7 @@ export const removeTroop = async (kingdomId: string, troopId: string, quantity: 
         } else {
           batch.update(angularFirestore.doc(`quests/${questId}/troops/${troopId}`), { quantity: admin.firestore.FieldValue.increment(-quantity) });
         }
-        return;
+        return {};
       } else throw new Error(`QUEST ${questId} does not exists`);
     }
   } catch (error) {
