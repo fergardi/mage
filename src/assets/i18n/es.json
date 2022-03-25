@@ -1633,7 +1633,7 @@
     },
     "cure": {
       "name": "Curación",
-      "description": "Resucita unas pocas unidades de una tropa aliada"
+      "description": "Aplica <regeneration> a una tropa aliada al azar"
     },
     "hurricane": {
       "name": "Huracán",
@@ -1649,7 +1649,7 @@
     },
     "invigorate": {
       "name": "Vigorizar",
-      "description": "Aplica <regeneration> y <scales> a una tropa aliada al azar"
+      "description": "Aplica <regeneration>, <scales> y <strength> a una tropa aliada al azar"
     },
     "venom": {
       "name": "Ponzoña",
@@ -1705,7 +1705,7 @@
     },
     "healing": {
       "name": "Sanación",
-      "description": "Resucita unas pocas unidades de una tropa aliada"
+      "description": "Aplica <regeneration> a una tropa aliada al azar"
     },
     "divine-protection": {
       "name": "Protección Divina",
@@ -1733,7 +1733,7 @@
     },
     "resurrection": {
       "name": "Resurección",
-      "description": "Resucita a muchas unidades de cada tropas aliada"
+      "description": "Aplica <regeneration> a cada tropa aliada"
     },
     "shield-light": {
       "name": "Escudos de Luz",
@@ -1945,7 +1945,7 @@
     },
     "necromancer": {
       "name": "Nigromante Putrefacto",
-      "description": "Resucita tropas muertas como <skeleton> por nivel"
+      "description": "Resucita algunas de tus tropas muertas por nivel"
     },
     "orc-king": {
       "name": "Rey de los Orcos",

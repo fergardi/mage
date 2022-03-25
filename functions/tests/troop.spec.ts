@@ -5,7 +5,8 @@ import * as backend from '../src/index';
 import { KingdomType } from '../src/config';
 
 const KINGDOM = 'TEST_TROOP';
-const UNIT = 'archer';
+const UNIT = 'knight';
+const UNIT_DISBANDABLE = 'archer';
 const UNIT_UNDISBANDABLE = 'devil';
 
 describe('Troops', () => {
@@ -102,13 +103,11 @@ describe('Troops', () => {
     await expect(backend.recruitUnit(KINGDOM, unit, 1)).rejects.toThrowError();
   });
 
-  it('should ADD the TROOP', async () => {
-    const quantity = 100;
-    const unit = (await admin.firestore().doc(`units/${UNIT}`).get()).data();
-    await backend.addTroop(KINGDOM, unit, quantity, batch);
-    await batch.commit();
+  it('should ADD the UNIT', async () => {
+    const quantity = 10;
+    await backend.addUnit(KINGDOM, UNIT, quantity);
     const troop = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT).limit(1).get()).docs[0].data();
-    expect(troop.quantity).toBe(200);
+    expect(troop.quantity).toBe(quantity);
   });
 
   it('should ASSIGN the ARMY', async () => {
@@ -126,31 +125,17 @@ describe('Troops', () => {
   });
 
   it('should DISBAND the TROOP', async () => {
-    const troop = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT).limit(1).get()).docs[0];
+    const troop = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT_DISBANDABLE).limit(1).get()).docs[0];
     const result = await backend.disbandTroop(KINGDOM, troop.id, 100);
     expect(result.quantity).toBe(100);
   });
 
   it('should NOT DISBAND the TROOP', async () => {
     const troopBefore = (await admin.firestore().doc(`units/${UNIT_UNDISBANDABLE}`).get()).data();
-    await backend.addTroop(KINGDOM, troopBefore, 100, batch);
+    await backend.addTroop(KINGDOM, troopBefore, 1, batch);
     await batch.commit();
     const troop = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT_UNDISBANDABLE).limit(1).get()).docs[0];
-    await expect(backend.disbandTroop(KINGDOM, troop.id, 100)).rejects.toThrowError();
-  });
-
-  it('should REMOVE the TROOP', async () => {
-    const troop = (await admin.firestore().collection(`kingdoms/${KINGDOM}/troops`).where('id', '==', UNIT).limit(1).get()).docs[0];
-    expect(troop.data().quantity).toBe(100);
-    jest.spyOn(batch, 'update');
-    await backend.removeTroop(KINGDOM, troop.id, 50, batch);
-    expect(batch.update).toHaveBeenCalled();
-    await batch.commit();
-    batch = admin.firestore().batch();
-    jest.spyOn(batch, 'delete');
-    await backend.removeTroop(KINGDOM, troop.id, 50, batch);
-    expect(batch.delete).toHaveBeenCalled();
-    await batch.commit();
+    await expect(backend.disbandTroop(KINGDOM, troop.id, 1)).rejects.toThrowError();
   });
 
 });

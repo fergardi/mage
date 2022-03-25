@@ -714,7 +714,7 @@
     "families": ["undead"],
     "categories": [],
     "resistances": [],
-    "units": ["skeleton"],
+    "units": [],
     "resources": [],
     "spells": [],
     "attack": 1600,

@@ -298,13 +298,15 @@ describe('Battles', () => {
     ['celerity', ['haste']],
     ['accuracy', ['strength']],
     ['ambush', ['haste']],
-    ['invigorate', ['regeneration', 'scales']],
+    ['invigorate', ['regeneration', 'scales', 'strength']],
     ['blaze', ['weakness', 'fear']],
     ['miracle', ['regeneration', 'flight', 'scales', 'strength', 'haste']],
     ['resurrection', ['regeneration']],
+    ['healing', ['regeneration']],
+    ['cure', ['regeneration']],
     ['shield-light', ['scales']],
     ['sword-light', ['strength']],
-  ])('should APPLY the CHARM "%s" which ADDS the SKILL %o', async (spell, skills) => {
+  ])('should APPLY the CHARM "%s" which ADDS the SKILL(s) %o', async (spell, skills) => {
     attackerUnits = ['skeleton'];
     defenderUnits = ['orc'];
     attackerSpells = [spell];
@@ -326,11 +328,11 @@ describe('Battles', () => {
     ['calm', ['weakness', 'slowness', 'fear', 'seduction'], 'ogre'],
     ['calm', ['weakness', 'slowness', 'fear', 'seduction'], 'sheep'],
     ['calm', ['weakness', 'slowness', 'fear', 'seduction'], 'djinni'],
-  ])('should APPLY the CHARM "%s" which REMOVES the SKILL(s) "%o" from the TROOP "%s"', async (charm, skills, unit) => {
+  ])('should APPLY the CHARM "%s" which REMOVES the SKILL(s) "%o" from the TROOP "%s"', async (spell, skills, unit) => {
     attackerUnits = [unit];
     defenderUnits = [unit];
-    attackerSpells = [charm];
-    defenderSpells = [charm];
+    attackerSpells = [spell];
+    defenderSpells = [spell];
     await prepareTest();
     //expect(attackerTroops[0].unit.skills).toContainEqual(expect.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
     //expect(defenderTroops[0].unit.skills).toContainEqual(expect.arrayContaining(skills.map(skill => expect.objectContaining({ id: skill }))));
@@ -346,29 +348,17 @@ describe('Battles', () => {
     'freeze',
     'venom',
     'exorcism',
-  ])('should APPLY the CHARM "%s" which DAMAGES a TROOP', async (charm) => {
+  ])('should APPLY the CHARM "%s" which DAMAGES a TROOP', async (spell) => {
     attackerUnits = ['skeleton'];
     defenderUnits = ['orc'];
-    attackerSpells = [charm];
-    defenderSpells = [charm];
+    attackerSpells = [spell];
+    defenderSpells = [spell];
     await prepareTest();
     expect(attackerTroops[0].quantity).toBe(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toBe(UNITS_QUANTITY);
     applyCharms(attackerTroops, attackerCharms, defenderTroops, defenderCharms, report);
     expect(attackerTroops[0].quantity).toBeLessThan(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toBeLessThan(UNITS_QUANTITY);
-  });
-
-  it.each([
-    'cure',
-    'healing',
-    'resurrection',
-  ])('should APPLY the CHARM "%s" which RESURRECTS a TROOP', async (charm) => {
-    attackerUnits = ['skeleton'];
-    defenderUnits = ['orc'];
-    attackerSpells = [charm];
-    defenderSpells = [charm];
-    // TODO
   });
 
   it('should APPLY a BONUS from SKILL to a TROOP', async () => {
@@ -567,6 +557,33 @@ describe('Battles', () => {
     applyWave(attackerTroops[0], defenderTroops[0], report, BattleType.SIEGE); // favors defender in case of initiative tie
     expect(attackerTroops[0].quantity).toBeLessThan(UNITS_QUANTITY);
     expect(defenderTroops[0].quantity).toBe(UNITS_QUANTITY);
+  });
+
+  it.each([
+    'necromancy',
+    'resurrection',
+    'healing',
+    'cure',
+  ])('should APPLY the REVIVAL %s to a TROOP', async (spell) => {
+    attackerUnits = ['skeleton'];
+    defenderUnits = ['orc'];
+    attackerSpells = [spell];
+    defenderSpells = [spell];
+    attackerHeroes = ['necromancer'];
+    defenderHeroes = ['necromancer'];
+    await prepareTest();
+    expect(attackerTroops[0].quantity).toBe(UNITS_QUANTITY);
+    expect(defenderTroops[0].quantity).toBe(UNITS_QUANTITY);
+    await resolveBattle(null, null, attackerContracts, attackerTroops, attackerArtifacts, attackerCharms, null, null, defenderContracts, defenderTroops, defenderArtifacts, defenderCharms, BattleType.ADVENTURE, report);
+    expect(attackerTroops[0].unit.skills[0].id).toBe('regeneration');
+    expect(attackerTroops[0].unit.resurrectionBonus).toBe(35); // 25% + 10%
+    expect(attackerTroops[0].quantity).toBe(100);
+    expect(attackerTroops[0].casualties).toBe(0);
+    expect(defenderTroops[0].unit.skills[0].id).toBe('regeneration');
+    expect(defenderTroops[0].unit.resurrectionBonus).toBe(35); // 25% + 10%
+    expect(defenderTroops[0].casualties).toBe(72);
+    expect(defenderTroops[0].quantity).not.toBe(28); // 100 - 72 = 28
+    expect(defenderTroops[0].quantity).toBe(54); // 28 + (72 * 35 / 100) = 54
   });
 
   it('should WIN an ADVENTURE', async () => {

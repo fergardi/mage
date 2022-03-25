@@ -5,6 +5,7 @@ import * as backend from '../src/index';
 import { KingdomType, StoreType } from '../src/config';
 
 const KINGDOM = 'TEST_SHOP';
+const SHOP = 'TEST_';
 
 describe('Shops', () => {
   // common batch
@@ -23,25 +24,21 @@ describe('Shops', () => {
     tester.cleanup();
   });
 
-  it('should CHECK the SHOP', async () => {
-    await backend.checkShop(undefined, 0.1, 0.1, StoreType.INN, 'test1');
-    const inn = (await admin.firestore().collection(`shops`).where('name', '==', 'test1').get()).docs[0];
-    expect(inn.exists).toBe(true);
-    await backend.checkShop(undefined, 0.2, 0.2, StoreType.MERCENARY, 'test2');
-    const mercenary = (await admin.firestore().collection(`shops`).where('name', '==', 'test2').get()).docs[0];
-    expect(mercenary.exists).toBe(true);
-    await backend.checkShop(undefined, 0.4, 0.3, StoreType.MERCHANT, 'test3');
-    const merchant = (await admin.firestore().collection(`shops`).where('name', '==', 'test3').get()).docs[0];
-    expect(merchant.exists).toBe(true);
-    await backend.checkShop(undefined, 0.4, 0.4, StoreType.SORCERER, 'test4');
-    const sorcerer = (await admin.firestore().collection(`shops`).where('name', '==', 'test4').get()).docs[0];
-    expect(sorcerer.exists).toBe(true);
+  it.each([
+    StoreType.INN,
+    StoreType.MERCENARY,
+    StoreType.MERCHANT,
+    StoreType.SORCERER,
+  ])('should CHECK the SHOP %s', async (type) => {
+    await backend.checkShop(undefined, Math.random(), Math.random(), type, SHOP+type);
+    const shop = (await admin.firestore().collection(`shops`).where('name', '==', SHOP+type).get()).docs[0];
+    expect(shop.exists).toBe(true);
   });
 
   it('should TRADE the DEAL and UPDATE', async () => {
     const gold = (await admin.firestore().collection(`kingdoms/${KINGDOM}/supplies`).where('id', '==', 'gold').limit(1).get()).docs[0];
     await admin.firestore().doc(`kingdoms/${KINGDOM}/supplies/${gold.id}`).update({ quantity: 999999999 });
-    const shops = (await admin.firestore().collection(`shops`).where('name', '>=', 'test').get()).docs;
+    const shops = (await admin.firestore().collection(`shops`).where('name', '>=', SHOP).get()).docs;
     expect(shops.length).toBe(4);
     const tradeDealSpy = jest.spyOn(backend, 'tradeDeal');
     const addLetterSpy = jest.spyOn(backend, 'addLetter');
@@ -80,7 +77,8 @@ describe('Shops', () => {
   });
 
   it('should DELETE the SHOPS', async () => {
-    const shops = (await admin.firestore().collection(`shops`).where('name', '>=', 'test').get()).docs;
+    const shops = (await admin.firestore().collection(`shops`).where('name', '>=', SHOP).get()).docs;
+    expect(shops.length).toBe(4);
     for (const shop of shops) {
       switch ((shop.data() as any).type as StoreType) {
         case StoreType.INN:

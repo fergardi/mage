@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       // CollectionType.UNITS,
       // CollectionType.SPELLS,
       // CollectionType.ITEMS,
-      // CollectionType.HEROES,
+      // CollectionType.HEROES, 
       // CollectionType.STORES,
       // CollectionType.LOCATIONS,
       // CollectionType.LEGENDS,
