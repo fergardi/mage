@@ -129,6 +129,7 @@ $white-color: mat.get-color-from-palette($theme-white);
 
 $common-color: mat.get-color-from-palette($theme-common);
 $legendary-color: darkgoldenrod;
+$gray-color: rgba(255, 255, 255, 0.7);
 
 // https://sass-lang.com/documentation/breaking-changes/css-vars
 :root { // to extract with JS and use with external libraries (chartjs, mapboxgljs, etc)
@@ -179,6 +180,9 @@ $list-item-height: 60px;
     border: 2px dashed $primary-color;
     max-height: ($list-item-height * 5);
     box-sizing: content-box;
+    &.undotted {
+      border-color: $gray-color;
+    }
   }
   .mat-list-item {
     min-height: $list-item-height !important;
@@ -222,8 +226,9 @@ $list-item-height: 60px;
   }
 }
 .mat-list-base {
+  position: relative;
   padding-top: 0px !important;
- .mat-list-avatar {
+  .mat-list-avatar {
     width: 50px !important;
     height: 50px !important;
     border-radius: 50%;
@@ -233,6 +238,17 @@ $list-item-height: 60px;
   }
   .mat-subheader:first-child {
     margin-top: 0 !important;
+  }
+  .placeholder {
+    position: absolute;
+    color: $gray-color;
+    font-size: 0.85rem;
+    min-height: $list-item-height;
+    font-style: italic;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 .mat-list-base:not(.mat-nav-list) {
@@ -267,6 +283,9 @@ $list-item-height: 60px;
 }
 .mat-list-item-disabled {
   opacity: 0.5;
+}
+.mat-list + .mat-list {
+  margin-top: 16px;
 }
 
 //========================================================================================
@@ -390,7 +409,7 @@ $list-item-height: 60px;
   box-sizing: border-box;
 }
 .mat-subheader {
-  color: rgba(255, 255, 255, 0.7);
+  color: $gray-color;
   font-size: 12px;
   line-height: 8px;
   padding: 8px 0 !important;
@@ -398,6 +417,10 @@ $list-item-height: 60px;
 .mat-subheader,
 .mat-card-subtitle {
   font-style: italic;
+}
+.mat-card-content .mat-subheader {
+  height: 40px;
+  font-size: 0.85rem;
 }
 
 //========================================================================================
@@ -719,7 +742,7 @@ $list-item-height: 60px;
 //========================================================================================
 
 .mat-select-panel .mat-option {
-  height: 60px !important;
+  height: $list-item-height !important;
 }
 .mat-select-trigger .mat-select-value {
   overflow: visible;

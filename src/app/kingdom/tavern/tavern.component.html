@@ -13,8 +13,8 @@
       </mat-card-header>
 
       <mat-card-content>
-        <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
         <mat-action-list dense class="dotted" tourAnchor="tour.tavern" id="0" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="kingdomContracts">
+          <div class="placeholder">{{ 'card.list.contracts' | translate }}</div>
           <button mat-list-item *ngFor="let contract of kingdomContracts" cdkDrag class="handle" [id]="contract.fid" (click)="openDischargeDialog(contract)" [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="contract.hero.image" [alt]="contract.hero.name | translate">
@@ -44,8 +44,8 @@
       </mat-card-header>
 
       <mat-card-content>
-        <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
         <mat-list dense class="dotted" id="1" tourAnchor="tour.leadership" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="attackContracts">
+          <div class="placeholder">{{ 'card.list.contracts' | translate }}</div>
           <mat-list-item *ngFor="let contract of attackContracts" cdkDrag class="handle" [id]="contract.fid" [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="contract.hero.image" [alt]="contract.hero.name | translate">
@@ -75,8 +75,8 @@
       </mat-card-header>
 
       <mat-card-content>
-        <div matSubheader>{{ 'card.list.contracts' | translate }}:</div>
         <mat-list dense class="dotted" id="2" tourAnchor="tour.guard" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignContract($event)" [cdkDropListData]="defenseContracts">
+          <div class="placeholder">{{ 'card.list.contracts' | translate }}</div>
           <mat-list-item *ngFor="let contract of defenseContracts" cdkDrag class="handle" [id]="contract.fid" [ngClass]="[contract.hero.faction.id, contract.hero.legendary ? 'legendary' : 'common']">
             <div mat-list-avatar [matBadge]="contract.level | short" matBadgePosition="above before">
               <img mat-list-avatar [src]="contract.hero.image" [alt]="'kingdom.clan.name' | translate">

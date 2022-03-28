@@ -577,8 +577,8 @@ describe('Battles', () => {
     await resolveBattle(null, null, attackerContracts, attackerTroops, attackerArtifacts, attackerCharms, null, null, defenderContracts, defenderTroops, defenderArtifacts, defenderCharms, BattleType.ADVENTURE, report);
     expect(attackerTroops[0].unit.skills[0].id).toBe('regeneration');
     expect(attackerTroops[0].unit.resurrectionBonus).toBe(35); // 25% + 10%
-    expect(attackerTroops[0].quantity).toBe(100);
     expect(attackerTroops[0].casualties).toBe(0);
+    expect(attackerTroops[0].quantity).toBe(100);
     expect(defenderTroops[0].unit.skills[0].id).toBe('regeneration');
     expect(defenderTroops[0].unit.resurrectionBonus).toBe(35); // 25% + 10%
     expect(defenderTroops[0].casualties).toBe(72);

@@ -1,6 +1,4 @@
 .app-shell {
-  // background-image: url('/assets/images/background/pattern.jpg');
-  // background-image: url('https://image.freepik.com/free-vector/decorative-background-with-purple-damask-pattern_1048-3458.jpg');
   background: url('/assets/images/background/parallax.png') no-repeat center center fixed;
   background-size: cover;
   .sidenav-container {
@@ -19,7 +17,7 @@
     overflow: hidden;
   }
   .sidenav {
-    width: 300px;
+    width: 270px;
     overflow: hidden;
     ::ng-deep .mat-nav-list {
       overflow-y: auto;

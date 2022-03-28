@@ -13,9 +13,9 @@
       </mat-card-header>
 
       <mat-card-content>
-        <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
         <div tourAnchor="tour.sorcery">
           <mat-action-list dense class="dotted" id="0" #kngdmArtifacts="cdkDropList" [cdkDropListConnectedTo]="[atckArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="kingdomArtifacts">
+            <div class="placeholder">{{ 'card.list.artifacts' | translate }}</div>
             <button mat-list-item *ngFor="let artifact of kingdomArtifacts" cdkDrag [cdkDragDisabled]="!artifact.item.battle" [ngClass]="[artifact.item.faction.id, artifact.item.battle ? 'handle' : '', artifact.item.legendary ? 'legendary': 'common']" [id]="artifact.fid" (click)="!artifact.item.battle && artifact.item.self ? openActivateDialog(artifact) : null" [disabled]="!artifact.item.battle && !artifact.item.self">
               <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
                 <img mat-list-avatar [src]="artifact.item.image" [alt]="artifact.item.name | translate">
@@ -30,8 +30,8 @@
             </button>
           </mat-action-list>
 
-          <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
           <mat-action-list dense class="dotted" id="3" #kngdmCharms="cdkDropList" [cdkDropListConnectedTo]="[atckCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="kingdomCharms">
+            <div class="placeholder">{{ 'card.list.charms' | translate }}</div>
             <button mat-list-item *ngFor="let charm of kingdomCharms" cdkDrag [cdkDragDisabled]="!charm.spell.battle || !charm.completed" [ngClass]="[charm.spell.faction.id, charm.spell.battle && charm.completed ? 'handle' : '', charm.spell.legendary ? 'legendary' : 'common']" (click)="!charm.completed ? openResearchDialog(charm) : !charm.spell.battle ? openConjureDialog(charm) : null" [id]="charm.fid" [disabled]="!charm.spell.battle && !charm.spell.self">
               <div mat-list-avatar [matBadge]="charm.spell.level | short" matBadgePosition="above before">
                 <img mat-list-avatar [src]="charm.spell.image" [alt]="charm.spell.name | translate">
@@ -71,9 +71,9 @@
           </mat-card-header>
 
           <mat-card-content>
-            <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
             <div tourAnchor="tour.arcanism">
               <mat-list dense class="dotted" id="1" #atckArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, defArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="attackArtifacts">
+                <div class="placeholder">{{ 'card.list.artifacts' | translate }}</div>
                 <mat-list-item *ngFor="let artifact of attackArtifacts" cdkDrag class="handle" [id]="artifact.fid" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary': 'common']">
                   <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
                     <img mat-list-avatar [src]="artifact.item.image" [alt]="artifact.item.name | translate">
@@ -84,8 +84,8 @@
                 </mat-list-item>
               </mat-list>
 
-              <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
               <mat-list dense class="dotted" id="4" #atckCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, defCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="attackCharms">
+                <div class="placeholder">{{ 'card.list.charms' | translate }}</div>
                 <mat-list-item *ngFor="let charm of attackCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="charm.spell.level | short" matBadgePosition="above before">
                     <img mat-list-avatar [src]="charm.spell.image" [alt]="charm.spell.name | translate">
@@ -116,9 +116,9 @@
           </mat-card-header>
 
           <mat-card-content>
-            <div matSubheader>{{ 'card.list.artifacts' | translate }}:</div>
             <div tourAnchor="tour.protection">
               <mat-list dense class="dotted" id="2" #defArtifacts="cdkDropList" [cdkDropListConnectedTo]="[kngdmArtifacts, atckArtifacts]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignArtifact($event)" [cdkDropListData]="defenseArtifacts">
+                <div class="placeholder">{{ 'card.list.artifacts' | translate }}</div>
                 <mat-list-item *ngFor="let artifact of defenseArtifacts" cdkDrag class="handle" [id]="artifact.fid" [ngClass]="[artifact.item.faction.id, artifact.item.legendary ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="artifact.quantity" matBadgePosition="above before">
                     <img mat-list-avatar [src]="artifact.item.image" [alt]="artifact.item.name | translate">
@@ -129,8 +129,8 @@
                 </mat-list-item>
               </mat-list>
 
-              <div matSubheader>{{ 'card.list.charms' | translate }}:</div>
               <mat-list dense class="dotted" id="5" #defCharms="cdkDropList" [cdkDropListConnectedTo]="[kngdmCharms, atckCharms]" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="assignCharm($event)" [cdkDropListData]="defenseCharms">
+                <div class="placeholder">{{ 'card.list.charms' | translate }}</div>
                 <mat-list-item *ngFor="let charm of defenseCharms" cdkDrag class="handle" [id]="charm.fid" [ngClass]="[charm.spell.faction.id, charm.spell.legendary ? 'legendary' : 'common']">
                   <div mat-list-avatar [matBadge]="charm.spell.level | short" matBadgePosition="above before">
                     <img mat-list-avatar [src]="charm.spell.image" [alt]="charm.spell.name | translate">

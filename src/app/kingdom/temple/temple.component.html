@@ -14,7 +14,6 @@
       </mat-card-header>
 
       <mat-card-content>
-        <div matSubheader>{{ 'card.list.gods' | translate }}:</div>
         <mat-action-list dense tourAnchor="tour.temple">
           <button mat-list-item *ngFor="let god of kingdomGods" [disabled]="god.armageddon" (click)="openOfferDialog(god)" class="grey legendary">
             <div mat-list-avatar matBadge="?" matBadgePosition="above before">
@@ -54,8 +53,8 @@
           </mat-card-header>
 
           <mat-card-content>
-            <div matSubheader>{{ 'card.list.enchantments' | translate }}:</div>
-            <mat-action-list dense tourAnchor="tour.break">
+            <mat-action-list dense class="dotted undotted" tourAnchor="tour.break">
+              <div class="placeholder">{{ 'card.list.enchantments' | translate }}</div>
               <button mat-list-item *ngFor="let enchantment of kingdomEnchantments" (click)="openBreakDialog(enchantment)" [ngClass]="[enchantment.spell.faction.id, enchantment.spell.legendary ? 'legendary' : 'common']" [disabled]="enchantment.from.id === uid">
                 <div mat-list-avatar [matBadge]="enchantment.spell.level" matBadgePosition="above before" [matBadgeColor]="enchantment.from.id === uid ? 'accent' : 'warn'">
                   <img mat-list-avatar [src]="enchantment.spell.image" [alt]="enchantment.spell.name | translate">
@@ -92,8 +91,8 @@
           </mat-card-header>
 
           <mat-card-content>
-            <div matSubheader>{{ 'card.list.incantations' | translate }}:</div>
-            <mat-action-list dense tourAnchor="tour.dispel">
+            <mat-action-list dense class="dotted undotted" tourAnchor="tour.dispel">
+              <div class="placeholder">{{ 'card.list.incantations' | translate }}</div>
               <button mat-list-item *ngFor="let incantation of kingdomIncantations" (click)="openDispelDialog(incantation)" [ngClass]="[incantation.spell.faction.id, incantation.spell.legendary ? 'legendary' : 'common']">
                 <div mat-list-avatar [matBadge]="incantation.spell.level" matBadgePosition="above before" [matBadgeColor]="incantation.to.id === uid ? 'accent' : 'warn'">
                   <img mat-list-avatar [src]="incantation.spell.image" [alt]="incantation.spell.name | translate">

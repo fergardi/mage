@@ -4317,7 +4317,7 @@
     "items": [],
     "level": 10,
     "amount": [],
-    "turnCost": 10,
+    "turnCost": 1000,
     "turnResearch": 50000,
     "turnDuration": 0,
     "manaCost": 10000000,
