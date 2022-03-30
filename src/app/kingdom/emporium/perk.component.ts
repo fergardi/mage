@@ -23,10 +23,12 @@ export const PERK_COST: number = 5;
   styles: [`
     .perk {
       display: inline-block;
-      margin: 10px 5px;
+      margin: 3px;
     }
     .perk button {
       transition: all 0.5s ease;
+      width: 50px;
+      height: 50px;
     }
     ::ng-deep .mat-fab .mat-button-wrapper {
       padding: 0;

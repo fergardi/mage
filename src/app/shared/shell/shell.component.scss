@@ -62,12 +62,15 @@
       padding: 0;
     }
   }
-  .mat-subheader img {
-    width: 44px;
-    height: 44px;
-    margin: -8px 8px -8px 0px;
+  .mat-subheader.righted {
+    width: 100%;
+    justify-content: flex-end;
+    img {
+      width: 44px;
+      height: 44px;
+      margin: -8px 0px -8px 8px;
+    }
   }
-
 }
 
 @media screen and (max-width: 960px) {

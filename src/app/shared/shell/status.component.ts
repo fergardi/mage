@@ -5,8 +5,8 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 @Component({
   selector: 'app-status',
   template: `
-    <div matSubheader>{{ 'card.list.resources' | translate }}:<span class="fill-space"></span>{{ 'card.list.production' | translate }}:</div>
     <mat-list dense class="app-status">
+      <div matSubheader>{{ 'card.list.resources' | translate }}:<span class="fill-space"></span>{{ 'card.list.production' | translate }}:</div>
       <ng-container *ngFor="let supply of kingdomSupplies$ | async; let i = index">
         <mat-list-item>
           <div mat-list-avatar
@@ -27,11 +27,28 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
           </div>
         </mat-list-item>
       </ng-container>
+      <div matSubheader class="center">{{ 'spell.armageddon.name' | translate }}</div>
+      <mat-list-item>
+        <div mat-list-avatar>
+          <img mat-list-avatar src="/assets/images/spells/grey/armageddon.png">
+        </div>
+        <div mat-line>{{ 'spell.armageddon.name' | translate }}</div>
+        <div mat-line class="mat-card-subtitle">{{ 'spell.armageddon.description' | translate }}</div>
+        <div mat-line>
+          <mat-progress-bar value="40"></mat-progress-bar>
+        </div>
+        <div mat-list-avatar>
+          <img mat-list-avatar src="/assets/images/spells/grey/armageddon.png">
+        </div>
+      </mat-list-item>
     </mat-list>
   `,
   styles: [`
     .app-status.mat-list.mat-list-base {
       max-height: 100%;
+    }
+    .mat-subheader.center {
+      justify-content: center;
     }
   `],
 })

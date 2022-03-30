@@ -22,10 +22,10 @@ import { LoadingService } from 'src/app/services/loading.service';
           <div mat-line>{{ god.name | translate }}</div>
           <div mat-line class="mat-card-subtitle" [innerHTML]="god.description | translate | icon:god"></div>
           <div mat-line>
-            <mat-progress-bar [value]="god.sacrifice * 100 / (god.gold || god.mana || god.population || god.land || god.turn)"></mat-progress-bar>
+            <mat-progress-bar [value]="god.sacrifice * 100 / (god.gold || god.mana || god.population || god.land || god.turn || god.gem)"></mat-progress-bar>
           </div>
           <div mat-list-avatar [matBadge]="(god.sacrifice | short) + ' / ' + ((god.gold || god.mana || god.population || god.land || god.turn) | short)" matBadgePosition="above after">
-            <img mat-list-avatar [src]="god.gold ? '/assets/images/resources/gold.png' : god.mana ? '/assets/images/resources/mana.png' : god.population ? '/assets/images/resources/population.png' : god.land ? '/assets/images/resources/land.png' : '/assets/images/resources/turn.png'">
+            <img mat-list-avatar [src]="god.gold ? '/assets/images/resources/gold.png' : god.mana ? '/assets/images/resources/mana.png' : god.population ? '/assets/images/resources/population.png' : god.land ? '/assets/images/resources/land.png' : god.turn ? '/assets/images/resources/turn.png' : '/assets/images/resources/gem.png'">
           </div>
         </mat-list-item>
       </mat-list>
@@ -44,11 +44,7 @@ import { LoadingService } from 'src/app/services/loading.service';
     <div mat-dialog-content>
       <div matSubheader>{{ 'kingdom.offer.costs' | translate }}:</div>
       <mat-chip-list>
-        <mat-chip color="primary" selected *ngIf="god.gold > 0"><img class="icon" src="/assets/images/resources/gold.png">{{ god.increment | long }}</mat-chip>
-        <mat-chip color="primary" selected *ngIf="god.mana > 0"><img class="icon" src="/assets/images/resources/mana.png">{{ god.increment | long }}</mat-chip>
-        <mat-chip color="primary" selected *ngIf="god.population > 0"><img class="icon" src="/assets/images/resources/population.png">{{ god.increment | long }}</mat-chip>
-        <mat-chip color="primary" selected *ngIf="god.land > 0"><img class="icon" src="/assets/images/resources/land.png">{{ god.increment | long }}</mat-chip>
-        <mat-chip color="primary" selected *ngIf="god.turn > 0"><img class="icon" src="/assets/images/resources/turn.png">{{ god.increment | long }}</mat-chip>
+        <mat-chip color="primary" selected><img class="icon" [src]="god.gold ? '/assets/images/resources/gold.png' : god.mana ? '/assets/images/resources/mana.png' : god.population ? '/assets/images/resources/population.png' : god.land ? '/assets/images/resources/land.png' : god.turn ? '/assets/images/resources/turn.png' : '/assets/images/resources/gem.png'">{{ god.increment | long }}</mat-chip>
       </mat-chip-list>
     </div>
     <div mat-dialog-actions>
@@ -74,7 +70,8 @@ export class OfferComponent implements OnInit {
   kingdomMana: any = this.store.selectSnapshot(AuthState.getKingdomMana);
   kingdomPopulation: any = this.store.selectSnapshot(AuthState.getKingdomPopulation);
   kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
-
+  kingdomGem: any = this.store.selectSnapshot(AuthState.getKingdomGem);
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) public god: any,
     private dialogRef: MatDialogRef<OfferComponent>,
@@ -94,7 +91,9 @@ export class OfferComponent implements OnInit {
           ? this.kingdomPopulation.quantity
           : this.god.land
             ? this.kingdomLand.quantity
-            : this.kingdomTurn.quantity;
+            : this.god.turn
+              ? this.kingdomTurn.quantity
+              : this.kingdomGem.quantity;
     this.form = this.formBuilder.group({
       sacrifice: [this.god.increment, [Validators.required, Validators.min(this.god.increment), Validators.max(max)]],
     });

@@ -32,9 +32,9 @@
       <!-- links -->
       <mat-nav-list dense class="router-list">
         <ng-container *ngFor="let group of groups">
-          <div matSubheader>
-            <img [src]="group.image" [alt]="group.name | translate">
+          <div class="mat-subheader righted">
             <span>{{ group.name | translate }}</span>
+            <img [src]="group.image" [alt]="group.name | translate">
           </div>
           <ng-container *ngFor="let link of group.links">
             <a mat-list-item

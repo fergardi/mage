@@ -24,8 +24,8 @@
             <div mat-line>
               <mat-progress-bar [value]="god.sacrifice * 100 / (god.gold || god.mana || god.population || god.land || god.turn)"></mat-progress-bar>
             </div>
-            <div mat-list-avatar [matBadge]="god.armageddon ? null : (god.sacrifice | short) + ' / ' + ((god.gold || god.mana || god.population || god.land || god.turn) | short)" matBadgePosition="above after">
-              <img mat-list-avatar [src]="god.armageddon ? '/assets/images/spells/grey/armageddon.png' : god.gold ? '/assets/images/resources/gold.png' : god.mana ? '/assets/images/resources/mana.png' : god.population ? '/assets/images/resources/population.png' : god.land ? '/assets/images/resources/land.png' : '/assets/images/resources/turn.png'" [alt]="'spell.armageddon.name' | translate">
+            <div mat-list-avatar [matBadge]="god.armageddon ? null : (god.sacrifice | short) + ' / ' + ((god.gold || god.mana || god.population || god.land || god.turn || god.gem) | short)" matBadgePosition="above after">
+              <img mat-list-avatar [src]="god.armageddon ? '/assets/images/spells/grey/armageddon.png' : god.gold ? '/assets/images/resources/gold.png' : god.mana ? '/assets/images/resources/mana.png' : god.population ? '/assets/images/resources/population.png' : god.land ? '/assets/images/resources/land.png' : god.turn ? '/assets/images/resources/turn.png': '/assets/images/resources/gem.png'" [alt]="'spell.armageddon.name' | translate">
             </div>
           </button>
         </mat-action-list>

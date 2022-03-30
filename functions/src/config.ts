@@ -50,7 +50,6 @@ export type RequestResponse = {
  *                                                                                      */
 //========================================================================================
 
-
 export enum KingdomType {
   RED = 'red',
   GREEN = 'green',
@@ -147,4 +146,14 @@ export enum MarkerType {
   KINGDOM = 'kingdom',
   SHOP = 'shop',
   QUEST = 'quest',
+}
+
+export enum RewardType {
+  ARTIFACT = 'artifact',
+  CHARM = 'charm',
+  ENCHANTMENT = 'enchantment',
+  CONTRACT = 'contract',
+  TROOP = 'troop',
+  SUPPLY = 'supply',
+  BUILDING = 'building',
 }

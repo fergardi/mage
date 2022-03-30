@@ -7,7 +7,7 @@
     "description": "pack.few.description",
     "image": "/assets/images/packs/few.png",
     "quantity": 20,
-    "money": 0.99
+    "money": 0.49
   },
   {
     "id": "many",
@@ -17,7 +17,7 @@
     "description": "pack.many.description",
     "image": "/assets/images/packs/many.png",
     "quantity": 50,
-    "money": 1.99
+    "money": 0.99
   },
   {
     "id": "lot",
@@ -26,7 +26,7 @@
     "name": "pack.lot.name",
     "description": "pack.lot.description",
     "image": "/assets/images/packs/lot.png",
-    "quantity": 100,
-    "money": 2.99
+    "quantity": 150,
+    "money": 1.99
   }
 ]

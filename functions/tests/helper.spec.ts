@@ -1,17 +1,37 @@
 import 'jest';
-import { random, calculateTurns } from '../src/index';
+import { random, calculateTurns, randomType } from '../src/index';
 import * as moment from 'moment';
-import { MAX_TURNS } from '../src/config';
+import { AssignmentType, AuctionType, BattleType, BonusType, CategoryType, KingdomType, LocationType, MarkerType, MAX_TURNS, RewardType, StoreType, SupplyType, TargetType } from '../src/config';
 
 describe('Helpers', () => {
 
   it('should RETURN a RANDOM number', () => {
-    const n = random(0, 10);
+    const min = 0;
+    const max = 10;
+    const n = random(min, max);
     expect(typeof n).toBe('number');
-    expect(n).toBeGreaterThanOrEqual(0);
-    expect(n).toBeLessThanOrEqual(10);
+    expect(n).toBeGreaterThanOrEqual(min);
+    expect(n).toBeLessThanOrEqual(max);
   });
 
+  it.each([
+    ['kingdom', KingdomType],
+    ['bonus', BonusType],
+    ['target', TargetType],
+    ['battle', BattleType],
+    ['store', StoreType],
+    ['category', CategoryType],
+    ['location', LocationType],
+    ['auction', AuctionType],
+    ['supply', SupplyType],
+    ['assignment', AssignmentType],
+    ['marker', MarkerType],
+    ['reward', RewardType],
+  ])('should RETURN a RANDOM "%s"', (name, type) => {
+    const t = randomType(type);
+    expect(Object.values(type).includes(t)).toBeTruthy();
+  });
+  
   it('should CALCULATE the TURNS since TIMESTAMP', () => {
     const now = moment.now();
     const oneMinuteAgo = moment().subtract(1, 'minute').subtract(1, 'second');

@@ -38,8 +38,8 @@
       "description": "Hay muchas maneras distintas de alcanzar la gloria, sólo tienes que encontrar la que más se adapte a tu estilo de juego. La verdadera sabiduría está en mantener un equilibrio perfecto entre todas ellas."
     },
     "conjure": {
-      "name": "Conjura poderosos hechizos",
-      "description": "Investiga, compra, encuentra y lanza conjuros, invocaciones, encantamientos, maldiciones y artefactos, ya sea a ti mismo o reinos enemigos."
+      "name": "Conjura poderosos Hechizos",
+      "description": "Investiga, compra, encuentra y lanza conjuros, invocaciones, encantamientos, maldiciones y Artefactos, ya sea a ti mismo o reinos enemigos."
     },
     "army": {
       "name": "Comanda grandes ejércitos",
@@ -51,11 +51,11 @@
     },
     "tavern": {
       "name": "Contrata héroes únicos",
-      "description": "Los héroes vagabundean por los reinos en busca de trabajo. Otorgan bonificaciones únicas a tus tropas, tus recursos o tus edificios, y te asistirán en las batallas."
+      "description": "Los héroes vagabundean por los reinos en busca de trabajo. Otorgan bonificaciones únicas a tus Tropas, tus recursos o tus edificios, y te asistirán en las batallas."
     },
     "auction": {
       "name": "Comercia con otros reinos",
-      "description": "Compra y vende artefactos, hechizos y héroes en el mercado negro, pujando con otros reinos en una casa de subastas en tiempo real."
+      "description": "Compra y vende Artefactos, Hechizos y héroes en el mercado negro, pujando con otros reinos en una casa de subastas en tiempo real."
     },
     "city": {
       "name": "Gestiona tu capital",
@@ -248,7 +248,7 @@
     "encyclopedia": {
       "name": "Enciclopedia",
       "description": "Amplía tus conocimientos",
-      "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: tropas, artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc. Si lo que buscas no está en esta biblioteca, es que no existe.",
+      "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: Tropas, Artefactos, héroes, dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc. Si lo que buscas no está en esta biblioteca, es que no existe.",
       "tour": "En la enciclopedia encontrarás todo lo que necesites para aprender a jugar, así como las estadísticas de todo lo que existe en este mundo mágico.<br><br>Si aún así tienes más dudas, tienes a tu disposición el Tutorial del juego. Recuerda que a jugar se aprende jugando."
     },
     "tome": {
@@ -308,7 +308,7 @@
     },
     "adventure": {
       "name": "Aventura",
-      "description": "Estás a punto de embarcarte en una aventura para intentar obtener un artefacto (además de una <gem>), pero primero deberás medirte en batalla contra el grupo de enemigos que lo protegen, gastando <turn>. Lo harás usando los Héroes, Tropas, Artefactos y Hechizos que tengas asignados para el ataque.",
+      "description": "Estás a punto de embarcarte en una aventura para intentar obtener un Artefacto (además de una <gem>), pero primero deberás medirte en batalla contra el grupo de enemigos que lo protegen, gastando <turn>. Lo harás usando los Héroes, Tropas, Artefactos y Hechizos que tengas asignados para el ataque.",
       "cancel": "Cancelar",
       "start": "Comenzar",
       "success": "La aventura se ha completado",
@@ -342,23 +342,23 @@
     },
     "leadership": {
       "name": "Liderazgo",
-      "description": "Comanda tus tropas",
-      "help": "Los héroes que tengas asignados al Liderazo irán al <attack> en batalla contra cualquier reino que ataques o aventura que emprendas, y proporcionarán sus bonificadores a las tropas correspondientes. Los héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
+      "description": "Comanda tus Tropas",
+      "help": "Los héroes que tengas asignados al Liderazo irán al <attack> en batalla contra cualquier reino que ataques o aventura que emprendas, y proporcionarán sus bonificadores a las Tropas correspondientes. Los héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
       "tour": "",
       "max": "Max"
     },
     "guard": {
       "name": "Guardia",
       "description": "Vigila tus dominios",
-      "help": "Los héroes que tengas asignados a la Guardia irán en <defense> en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
+      "help": "Los héroes que tengas asignados a la Guardia irán en <defense> en batalla contra cualquier reino que te ataque, y proporcionarán sus bonificadores a las Tropas correspondientes. También proporcionan sus habilidades pasivas al reino mientras tanto. Los héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
       "tour": "",
       "max": "Max"
     },
     "census": {
       "name": "Censo",
       "description": "Conoce a tus enemigos",
-      "help": "En el censo puedes ver una lista completa de todos los reinos que comparten este plano de la realidad, ordenados por poder. Desde aquí puedes realizar la mayoría de acciones ofensivas, como activar artefactos o lanzar hechizos, o iniciar batallas. También puedes mandar mensajes a otros reinos.",
-      "tour": "El censo tiene una lista actualizada de todos los reinos, ordenados por <power> de mayor a menor. Desde aquí puedes realizar diferentes acciones sobre otros reinos:<ul><li>Comenzar ataques<ul><li>Batallas normales</li><li>Pillajes de recursos</li><li>Asedios contra edificios</li></ul></li><li>Conjurar hechizos y encantamientos</li><li>Activar artefactos</li><li>Enviar mensajes</li></ul>El primer jugador será el ganador de la temporada.",
+      "help": "En el censo puedes ver una lista completa de todos los reinos que comparten este plano de la realidad, ordenados por poder. Desde aquí puedes realizar la mayoría de acciones ofensivas, como activar Artefactos o lanzar Hechizos, o iniciar batallas. También puedes mandar mensajes a otros reinos.",
+      "tour": "El censo tiene una lista actualizada de todos los reinos, ordenados por <power> de mayor a menor. Desde aquí puedes realizar diferentes acciones sobre otros reinos:<ul><li>Comenzar ataques<ul><li>Batallas normales</li><li>Pillajes de recursos</li><li>Asedios contra edificios</li></ul></li><li>Conjurar Hechizos y encantamientos</li><li>Activar Artefactos</li><li>Enviar mensajes</li></ul>El primer jugador será el ganador de la temporada.",
       "protection": "Protegido",
       "report": "Se ha enviado el reporte de batalla"
     },
@@ -379,8 +379,8 @@
       "attack": "Atacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño de {{ category }} (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas",
       "defender": "Defensor",
       "counterattack": "Contraatacan {{ quantity }} con {{ initiative }} iniciativa, infligen {{ attack }} daño de {{ category }} (menos {{ defense }} defensa) contra {{ health }} salud y causan {{ casualties }} bajas",
-      "bonus": "Aumenta un {{ attack }} % el ataque, un {{ defense }} % la defensa y un {{ health }} % la salud de las tropas aliadas de la(s) familia(s) {{ family }}",
-      "damage": "Inflige {{ damage }} daño de {{ category }} a todas las tropas enemigas y causa {{ casualties }} bajas",
+      "bonus": "Aumenta un {{ attack }} % el ataque, un {{ defense }} % la defensa y un {{ health }} % la salud de las Tropas aliadas de la(s) familia(s) {{ family }}",
+      "damage": "Inflige {{ damage }} daño de {{ category }} a todas las Tropas enemigas y causa {{ casualties }} bajas",
       "resources": "Recursos",
       "troops": "Tropas",
       "contracts": "Contratos",
@@ -388,7 +388,7 @@
     },
     "battle": {
       "name": "Batalla",
-      "description": "Declara la guerra a un reino enemigo. El asedio se centra en destruir edificios, el pillaje en robar recursos, y el asalto en diezmar ejércitos. Usarás las tropas, héroes, hechizos y artefactos que tengas asignadas al ataque.",
+      "description": "Declara la guerra a un reino enemigo. El asedio se centra en destruir edificios, el pillaje en robar recursos, y el asalto en diezmar ejércitos. Usarás las Tropas, héroes, Hechizos y Artefactos que tengas asignadas al ataque.",
       "attack": "Atacar",
       "cancel": "Cancelar",
       "type": "Tipo de ataque",
@@ -403,29 +403,29 @@
     },
     "army": {
       "name": "Ejército",
-      "description": "Gestiona tus tropas",
-      "help": "En el ejército podrás ver un listado de todas tus Tropas en espera, sin asignar ni al <attack> ni a la <defense>. Puedes tener cualquier número de tropas en espera, pero ten en cuenta que pueden consumir <gold>, <mana> o <population> al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
+      "description": "Gestiona tus Tropas",
+      "help": "En el ejército podrás ver un listado de todas tus Tropas en espera, sin asignar ni al <attack> ni a la <defense>. Puedes tener cualquier número de Tropas en espera, pero ten en cuenta que pueden consumir <gold>, <mana> o <population> al turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
       "tour": "El ejército se compone de Tropas, y son tu principal motor en las conquistas territoriales, permitiendo robar <gold>, <mana>, <population>, <land>, además de reducir <power> enemigo. Puedes asignarlas para:<ul><li>Nada, ni atacan ni defienden, pero consumen recursos igualmente</li><li>Atacar manualmente, hasta 5 Tropas diferentes y en el orden especificado</li><li>Defender automáticamente, hasta 5 Tropas diferentes y en el orden especificado</li></ul>También las puedes desbandar.",
       "max": "Max",
       "maximum": "Tu ejército está al completo",
-      "success": "Los cambios de tus tropas se han guardado",
+      "success": "Los cambios de tus Tropas se han guardado",
       "error": "Ha ocurrido un problema"
     },
     "disband": {
       "name": "Desbande",
-      "description": "Puedes desbandar tropas que no quieras seguir manteniendo bajo tu mando, siempre y cuando no estén asignadas al <attack> o a la <defense>, y que no consuman <population> por su mantenimiento.",
+      "description": "Puedes desbandar Tropas que no quieras seguir manteniendo bajo tu mando, siempre y cuando no estén asignadas al <attack> o a la <defense>, y que no consuman <population> por su mantenimiento.",
       "quantity": "Cantidad",
       "cancel": "Cancelar",
       "disband": "Desbandar",
-      "hint": "No puedes desbandar unidades que consuman Población",
-      "invalid": "No tienes suficientes tropas",
+      "hint": "No puedes desbandar Tropas que consuman Población",
+      "invalid": "No tienes suficientes Tropas",
       "error": "Ha ocurrido un problema",
       "success": "Has desbandado {{ quantity }} {{ unit }}",
       "troop": "Tropa",
       "platoon": "Pelotón",
       "maintenances": "Mantenimientos",
       "subject": "Abandono",
-      "message": "Tus tropas te han abandonado por no poder pagar debidamente sus mantenimientos..."
+      "message": "Tus Tropas te han abandonado por no poder pagar debidamente sus mantenimientos..."
     },
     "discharge": {
       "name": "Despido",
@@ -442,21 +442,21 @@
     "attack": {
       "name": "Ataque",
       "description": "Ordena tus fuerzas ofensivas",
-      "help": "Aquí podrás organizar tus tropas al atacar a otros reinos, asignándolas como tropas ofensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha relevancia en las batallas.",
+      "help": "Aquí podrás organizar tus Tropas al atacar a otros reinos, asignándolas como Tropas ofensivas. Ten en cuenta que, aunque tengas muchas Tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha relevancia en las batallas.",
       "tour": "",
       "max": "Max"
     },
     "defense": {
       "name": "Defensa",
       "description": "Ordena tus fuerzas defensivas",
-      "help": "Aquí podrás organizar tus tropas a la defensa de tu capital, asignándolas como tropas defensivas. Ten en cuenta que, aunque tengas muchas tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha relevancia en las batallas.",
+      "help": "Aquí podrás organizar tus Tropas a la defensa de tu capital, asignándolas como Tropas defensivas. Ten en cuenta que, aunque tengas muchas Tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha relevancia en las batallas.",
       "tour": "",
       "max": "Max"
     },
     "recruit": {
       "name": "Reclutamiento",
-      "description": "Recluta tropas básicas",
-      "help": "Aqui puedes gastar <gold> para adquirir tropas básicas para tus ejércitos. Reclutar no consume <turn>, por lo que es una buena forma de reorganizarse militarmente tras una derrota.",
+      "description": "Recluta Tropas básicas",
+      "help": "Aqui puedes gastar <gold> para adquirir Tropas básicas para tus ejércitos. Reclutar no consume <turn>, por lo que es una buena forma de reorganizarse militarmente tras una derrota.",
       "tour": "",
       "hint": "Debes tener suficiente Oro",
       "invalid": "No tienes suficiente Oro",
@@ -516,7 +516,7 @@
     "auction": {
       "name": "Subasta",
       "description": "Comercia con otros reinos",
-      "help": "En la subasta puedes pujar <gold> contra otros reinos para adquirir artefactos, tropas, contratos o hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de <gold> que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de <gold> de tu puja original, así que asegúrate de pujar con cuidado.",
+      "help": "En la subasta puedes pujar <gold> contra otros reinos para adquirir Artefactos, Tropas, contratos o Hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de <gold> que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de <gold> de tu puja original, así que asegúrate de pujar con cuidado.",
       "tour": "La subasta es el único lugar en el que puedes adquirir bienes a cambio de <gold>, además del mapa del mundo, pero a diferencia de éste son independientes de la zona geográfica pues son comunes para todos los jugadores:<ul><li>Son renovadas periódicamente</li><li>Debes pujar mínimo un 10% más de <gold> que el anterior</li><li>Solo recibirás el 90% de tu <gold> si te sobrepujan</li><li>No puedes subastar tus propios bienes</li><li>Los Hechizos se adquieren sin investigar</li><li>Los Héroes repetidos aumentan sus niveles</li></ul>",
       "bid": "Pujar",
       "subject": "Casa de Subastas",
@@ -539,11 +539,11 @@
     },
     "sorcery": {
       "name": "Magia",
-      "description": "Conjura tus hechizos y artefactos",
-      "help": "Aquí podrás ver un listado de todos tus hechizos y artefactos disponibles, sin asignar ni al <attack> ni a la <defense>. Puedes conjurar hechizos y/o activar artefactos, siempre que puedan usarse fuera de las batallas y tengas <mana>. También podrás completar investigaciones pendientes para desbloquear nuevos hechizos, invirtiendo <turn>. Para lanzar hechizos agresivos, hazlo desde el Censo.",
+      "description": "Conjura tus Hechizos y Artefactos",
+      "help": "Aquí podrás ver un listado de todos tus Hechizos y Artefactos disponibles, sin asignar ni al <attack> ni a la <defense>. Puedes conjurar Hechizos y/o activar Artefactos, siempre que puedan usarse fuera de las batallas y tengas <mana>. También podrás completar investigaciones pendientes para desbloquear nuevos Hechizos, invirtiendo <turn>. Para lanzar Hechizos agresivos, hazlo desde el Censo.",
       "tour": "La magia te permite invertir turnos en la investigación de nuevos y poderosos Hechizos, activar tus Artefactos, y gestionar cuales de ellos se usarán tanto en el ataque como en la defensa de tu reino. Puedes asignarlos para:<ul><li>Atacar manualmente, hasta 1 Artefacto y 1 Hechizo, si puedes pagar su <mana></li><li>Defender automáticamente, hasta 1 Artefacto y 1 Hechizo, si puedes pagar su <mana>",
       "maximum": "No puedes superar el máximo",
-      "success": "Tus hechizos y artefactos han sido asignados",
+      "success": "Tus Hechizos y Artefactos han sido asignados",
       "error": "Ha ocurrido un problema",
       "max": "Max"
     },
@@ -555,18 +555,18 @@
       "error": "Ha ocurrido un problema",
       "research": "Investigar",
       "cancel": "Cancelar",
-      "success": "Has avanzado la investigación del hechizo",
+      "success": "Has avanzado la investigación del Hechizo",
       "charm": "Hechizo",
       "quantity": "Cantidad"
     },
     "conjure": {
       "name": "Conjuración",
-      "description": "Aqui puedes gastar <turn> y <mana> para conjurar tus hechizos investigados. Conjurar hechizos sobre otros reinos no siempre funciona debido a la protección mágica.",
+      "description": "Aqui puedes gastar <turn> y <mana> para conjurar tus Hechizos investigados. Conjurar Hechizos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Debes tener suficientes Turnos y Maná",
       "error": "Ha ocurrido un problema",
       "conjure": "Conjurar",
       "cancel": "Cancelar",
-      "select": "Escoge un hechizo",
+      "select": "Escoge un Hechizo",
       "summon": "Has invocado {{ size }} {{ unit }}",
       "resource": "Has obtenido/destruido {{ amount }} {{ resource }}",
       "enchantment": "Has encantado {{ enchantment }} durante {{ turns }} Turnos",
@@ -576,7 +576,7 @@
       "charm": "Hechizo",
       "costs": "Costes",
       "subject": "Conjuración de Hechizo",
-      "message": "Se ha conjurado un hechizo enemigo contra tu reino. ¡Ésta osadía no quedará impune!"
+      "message": "Se ha conjurado un Hechizo enemigo contra tu reino. ¡Ésta osadía no quedará impune!"
     },
     "espionage": {
       "subject": "Reporte de Espionaje",
@@ -584,12 +584,12 @@
     },
     "activate": {
       "name": "Activación",
-      "description": "Activa artefactos sobre tu reino o sobre otros reinos. Cada activación consume el artefacto y <turn>. Activar artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
+      "description": "Activa Artefactos sobre tu reino o sobre otros reinos. Cada activación consume el Artefacto y <turn>. Activar Artefactos sobre otros reinos no siempre funciona debido a la protección mágica.",
       "hint": "Selecciona el objetivo",
       "error": "Ha ocurrido un problema",
       "activate": "Activar",
       "cancel": "Cancelar",
-      "select": "Escoge un artefacto",
+      "select": "Escoge un Artefacto",
       "summon": "Has invocado {{ size }} {{ unit }}",
       "resource": "Has obtenido/destruido {{ amount }} {{ resource }}",
       "enchantment": "Has encantado {{ enchantment }} durante {{ turns }} Turnos",
@@ -597,26 +597,26 @@
       "spell": "Has descubierto {{ spell }}",
       "artifact": "Artefacto",
       "subject": "Activación de Artefacto",
-      "message": "Se ha activado un artefacto enemigo contra tu reino. ¡Ésta osadía no quedará impune!"
+      "message": "Se ha activado un Artefacto enemigo contra tu reino. ¡Ésta osadía no quedará impune!"
     },
     "arcanism": {
       "name": "Arcanismo",
       "description": "Organiza tus artimañas ofensivas",
-      "help": "Aquí podrás organizar tus hechizos y artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos hechizos y artefactos, solo podrás asignar algunos al <attack>, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente <mana> disponible.",
+      "help": "Aquí podrás organizar tus Hechizos y Artefactos al atacar a otros reinos. Ten en cuenta que, aunque tengas muchos Hechizos y Artefactos, solo podrás asignar algunos al <attack>, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los Artefactos que los Hechizos, y éstos últimos solo si tienes el suficiente <mana> disponible.",
       "tour": "",
       "max": "Max"
     },
     "protection": {
       "name": "Protección",
       "description": "Organiza tus artimañas defensivas",
-      "help": "Aquí podrás organizar tus hechizos y artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas hechizos y artefactos, solo podrás asignar algunos a la <defense>, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los artefactos que los hechizos, y éstos últimos solo si tienes el suficiente <mana> disponible.",
+      "help": "Aquí podrás organizar tus Hechizos y Artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas Hechizos y Artefactos, solo podrás asignar algunos a la <defense>, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los Artefactos que los Hechizos, y éstos últimos solo si tienes el suficiente <mana> disponible.",
       "tour": "",
       "max": "Max"
     },
     "charge": {
       "name": "Meditación",
       "description": "Recarga tus reservas mágicas",
-      "help": "Aquí podrás invertir <turn> en reponer los depósitos de <mana> de tu reino. El <mana> se emplea para pagar los mantenimientos de tus tropas y encantamientos y el lanzamiento de hechizos, entre otras cosas.",
+      "help": "Aquí podrás invertir <turn> en reponer los depósitos de <mana> de tu reino. El <mana> se emplea para pagar los mantenimientos de tus Tropas y encantamientos y el lanzamiento de Hechizos, entre otras cosas.",
       "tour": "",
       "cancel": "Cancelar",
       "hint": "Cuantos más Nodos tengas, más Maná recargarás",
@@ -630,7 +630,7 @@
     "tax": {
       "name": "Tributo",
       "description": "Llena tus arcas reales",
-      "help": "Aquí podrás invertir <turn> en cobrar <gold> a los súbditos de tu reino. El <gold> se emplea para pagar los mantenimientos de tus tropas y para contratar héroes, complacer a los dioses y comprar artefactos, entre otras cosas.",
+      "help": "Aquí podrás invertir <turn> en cobrar <gold> a los súbditos de tu reino. El <gold> se emplea para pagar los mantenimientos de tus Tropas y para contratar héroes, complacer a los dioses y comprar Artefactos, entre otras cosas.",
       "tour": "",
       "cancel": "Cancelar",
       "hint": "Cuantos más Pueblos tengas, más Oro recaudarás",
@@ -668,8 +668,8 @@
     "archive": {
       "name": "Archivo",
       "description": "Revisa tu correspondencia",
-      "help": "Aqui puedes ver un listado de todos los Mensajes directos que te han enviado otros reinos, así como los informes de batalla, subastas ganadas o sobrepujadas, hechizos, artefactos y encantamientos lanzados contra tu reino.",
-      "tour": "En el archivo puedes consultar los Mensajes que llegan diariamente a tu reino:<ul><li>Reportes de batalla</li><li>Movimientos de subasta</li><li>Mensajes de otros reinos</li><li>Activaciones de artifactos</li><li>Conjuraciones de hechizos y encantamientos</li></ul>También los puedes borrar.",
+      "help": "Aqui puedes ver un listado de todos los Mensajes directos que te han enviado otros reinos, así como los informes de batalla, subastas ganadas o sobrepujadas, Hechizos, Artefactos y encantamientos lanzados contra tu reino.",
+      "tour": "En el archivo puedes consultar los Mensajes que llegan diariamente a tu reino:<ul><li>Reportes de batalla</li><li>Movimientos de subasta</li><li>Mensajes de otros reinos</li><li>Activaciones de artifactos</li><li>Conjuraciones de Hechizos y encantamientos</li></ul>También los puedes borrar.",
       "new": "Tienes mensajes nuevos",
       "success": "Mensajes borrados",
       "error": "Ha ocurrido un problema"
@@ -724,14 +724,14 @@
     "temple": {
       "name": "Templo",
       "description": "Complace a los dioses",
-      "help": "Puedes ofrecer <gold>, <mana>, <population>, <turn> y <land> a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, artefactos, tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
+      "help": "Puedes ofrecer <gold>, <mana>, <population>, <turn> y <land> a los distintos dioses de este plano de la realidad para que otorguen su favor a tu reino, y finalmente para que convoquen el Armagedón. Los favores incluyen encantamientos, Artefactos, Tropas o recursos. Pero ten cuidado con lo que deseas, pues los dioses son caprichosos...",
       "tour": "En el templo se puede ofrecer <gold>, <mana>, <population>, <land> o <turn> a los dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar a un dios, obtendrás su favor, que puede ir desde regalar un Artefacto hasta maldecir tu reino con el más terrible de los encantamientos.<br><br>También puedes ver los encantamientos de tu reino y tratar de romperlos usando <mana>, si así lo deseas:<ul><li>De tu reino a tu reino</li><li>De tu reino a otro reino</li><li>De otro reino a tu reino</li></ul>",
       "hero": "Te han otorgado el héroe {{ hero }} ({{ level }})",
-      "unit": "Te han otorgado la tropa {{ unit }} ({{ quantity }})",
+      "unit": "Te han otorgado la Tropa {{ unit }} ({{ quantity }})",
       "enchantment": "Te han encantado con {{ enchantment }} ({{ turns }})",
-      "item": "Te han otorgado el artefacto {{ item }} ({{ quantity }})",
+      "item": "Te han otorgado el Artefacto {{ item }} ({{ quantity }})",
       "building": "Te han construido {{ building }} ({{ number }})",
-      "spell": "Te han enseñado el hechizo {{ spell }} ({{ turns }})",
+      "spell": "Te han enseñado el Hechizo {{ spell }} ({{ turns }})",
       "gold": "Te han otorgado Oro ({{ gold }})",
       "mana": "Te han otorgado Maná ({{ mana }})",
       "population": "Te han otorgado Población ({{ population }})",
@@ -754,8 +754,8 @@
     "emporium": {
       "name": "Emporio",
       "description": "Trafica con gemas",
-      "help": "En el emporio puedes gastar tus <gem> adquiriendo valiosos artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un importante impulso económico, científico o militar.",
-      "tour": "El emporio es el lugar para gastar las <gem> que hayas conseguido para comprar diversos Artefactos o invertir en un Árbol Genealógico que ofrece diversas bonificaciones, como por ejemplo:<ul><li>Construir edificios más deprisa</li><li>Reclutar más tropas</li><li>Investigar hechizos más rápido</li><li>Explorar más tierras</li><li>Generar más recursos</li></ul>También puedes comprar más <gem> con dinero real.",
+      "help": "En el emporio puedes gastar tus <gem> adquiriendo valiosos Artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un importante impulso económico, científico o militar.",
+      "tour": "El emporio es el lugar para gastar las <gem> que hayas conseguido para comprar diversos Artefactos o invertir en un Árbol Genealógico que ofrece diversas bonificaciones, como por ejemplo:<ul><li>Construir edificios más deprisa</li><li>Reclutar más Tropas</li><li>Investigar Hechizos más rápido</li><li>Explorar más tierras</li><li>Generar más recursos</li></ul>También puedes comprar más <gem> con dinero real.",
       "success": "Has adquirido {{ quantity }} {{ item }}",
       "error": "Ha ocurrido un problema",
       "subject": "Compra realizada",
@@ -788,7 +788,7 @@
     },
     "build": {
       "name": "Construcción",
-      "description": "Invierte <land>, <gold> y <turn> para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos hechizos, encantamientos y artefactos pueden destruir tus edificios, así como las batallas o los asedios. Cuantos más talleres tengas, menos <turn> gastarás al construir. Otros factores que pueden influir en esto son ciertos encantamientos y héroes aliados. También puedes demoler edificios si así lo deseas.",
+      "description": "Invierte <land>, <gold> y <turn> para edificar nuevas estructuras en tu capital. Ten en cuenta que ciertos Hechizos, encantamientos y Artefactos pueden destruir tus edificios, así como las batallas o los asedios. Cuantos más talleres tengas, menos <turn> gastarás al construir. Otros factores que pueden influir en esto son ciertos encantamientos y héroes aliados. También puedes demoler edificios si así lo deseas.",
       "cancel": "Cancelar",
       "build": "Construir",
       "demolish": "Demoler",
@@ -812,7 +812,7 @@
     "blue": {
       "name": "Mental",
       "description": "Fuerte vs <white><black> y débil vs <green><red>",
-      "help": "Centrados en la investigación, esta escuela de magos basa su estrategia en el dominio de hechizos de todos los colores."
+      "help": "Centrados en la investigación, esta escuela de magos basa su estrategia en el dominio de Hechizos de todos los colores."
     },
     "white": {
       "name": "Ascendente",
@@ -856,11 +856,11 @@
   "structure": {
     "barrack": {
       "name": "Barracones",
-      "description": "Aumentan la capacidad de tropas"
+      "description": "Aumentan la capacidad de Tropas"
     },
     "barrier": {
       "name": "Barreras",
-      "description": "Aumentan la defensa mágica de tu reino contra hechizos, artefactos y encantamientos"
+      "description": "Aumentan la defensa mágica de tu reino contra Hechizos, Artefactos y encantamientos"
     },
     "node": {
       "name": "Nodos",
@@ -880,7 +880,7 @@
     },
     "academy": {
       "name": "Academias",
-      "description": "Aumentan la velocidad de investigación de hechizos de tu reino"
+      "description": "Aumentan la velocidad de investigación de Hechizos de tu reino"
     },
     "fortress": {
       "name": "Fortalezas",
@@ -894,11 +894,11 @@
     },
     "merchant": {
       "name": "Mercader Ambulante",
-      "description": "Adquiere artefactos peculiares"
+      "description": "Adquiere Artefactos peculiares"
     },
     "mercenary": {
       "name": "Campamento de Mercenarios",
-      "description": "Incorpora tropas a tu ejército"
+      "description": "Incorpora Tropas a tu ejército"
     },
     "sorcerer": {
       "name": "Escuela de Magia",
@@ -1347,7 +1347,7 @@
     },
     "mysticism": {
       "name": "Misticismo",
-      "description": "Tu reino obtiene +(0/5/10/15)% Defensa Mágica adicional contra hechizos"
+      "description": "Tu reino obtiene +(0/5/10/15)% Defensa Mágica adicional contra Hechizos"
     },
     "masonry": {
       "name": "Mampostería",
@@ -1357,43 +1357,43 @@
   "spell": {
     "animate-skeleton": {
       "name": "Animar Esqueletos",
-      "description": "Convoca una tropa de <skeleton>"
+      "description": "Convoca una Tropa de <skeleton>"
     },
     "animate-zombie": {
       "name": "Animar Zombies",
-      "description": "Convoca una tropa de <zombie>"
+      "description": "Convoca una Tropa de <zombie>"
     },
     "animate-ghoul": {
       "name": "Animar Necrófagos",
-      "description": "Convoca una tropa de <ghoul>"
+      "description": "Convoca una Tropa de <ghoul>"
     },
     "vampirism": {
       "name": "Vampirismo",
-      "description": "Aplica <leech> y <flight> a una tropa aliada"
+      "description": "Aplica <leech> y <flight> a una Tropa aliada"
     },
     "terror": {
       "name": "Terror",
-      "description": "Aplica <fear> a cada tropa enemiga"
+      "description": "Aplica <fear> a cada Tropa enemiga"
     },
     "night-living-dead": {
       "name": "Noche de los Muertos Vivientes",
-      "description": "Convoca una tropa de <undead> al azar"
+      "description": "Convoca una Tropa de <undead> al azar"
     },
     "necromancy": {
       "name": "Toque de Nigromancia",
-      "description": "Aplica <regeneration> a una tropa al azar"
+      "description": "Aplica <regeneration> a una Tropa al azar"
     },
     "summon-wraith": {
       "name": "Invocar Apariciones",
-      "description": "Convoca una tropa de <wraith>"
+      "description": "Convoca una Tropa de <wraith>"
     },
     "summon-lich": {
       "name": "Invocar Liches",
-      "description": "Convoca una tropa de <lich>"
+      "description": "Convoca una Tropa de <lich>"
     },
     "summon-vampire": {
       "name": "Invocar Vampiros",
-      "description": "Convoca una tropa de <vampire>"
+      "description": "Convoca una Tropa de <vampire>"
     },
     "death-decay": {
       "name": "Muerte y Putrefacción",
@@ -1413,23 +1413,23 @@
     },
     "chain-lightning": {
       "name": "Cadena de Relámpagos",
-      "description": "Inflige daño de <lightning> a cada tropa enemiga"
+      "description": "Inflige daño de <lightning> a cada Tropa enemiga"
     },
     "corruption": {
       "name": "Corrupción",
-      "description": "Elimina <regeneration> de cada tropa enemiga"
+      "description": "Elimina <regeneration> de cada Tropa enemiga"
     },
     "witchcraft": {
       "name": "Brujería",
-      "description": "Aplica <seduction> y <slowness> a cada tropa enemiga"
+      "description": "Aplica <seduction> y <slowness> a cada Tropa enemiga"
     },
     "full-moon": {
       "name": "Luna Llena",
-      "description": "Aplica <strength> y <haste> a cada tropa aliada"
+      "description": "Aplica <strength> y <haste> a cada Tropa aliada"
     },
     "curse": {
       "name": "Maldición",
-      "description": "Aplica <weakness> a una tropa enemiga"
+      "description": "Aplica <weakness> a una Tropa enemiga"
     },
     "blood-ritual": {
       "name": "Ritual Sangriento",
@@ -1437,51 +1437,51 @@
     },
     "fireball": {
       "name": "Bola de Fuego",
-      "description": "Inflige daño de <fire> a una tropa enemiga al azar"
+      "description": "Inflige daño de <fire> a una Tropa enemiga al azar"
     },
     "battle-chant": {
       "name": "Cántico de Batalla",
-      "description": "Elimina <strength> y <scales> de cada tropa enemiga"
+      "description": "Elimina <strength> y <scales> de cada Tropa enemiga"
     },
     "call-lizardman": {
       "name": "Llamar Hombres Lagarto",
-      "description": "Convoca una tropa de <lizardman>"
+      "description": "Convoca una Tropa de <lizardman>"
     },
     "call-berserker": {
       "name": "Llamar Berserkers",
-      "description": "Convoca una tropa de <berserker>"
+      "description": "Convoca una Tropa de <berserker>"
     },
     "call-orc": {
       "name": "Llamar Orcos",
-      "description": "Convoca una tropa de <orc>"
+      "description": "Convoca una Tropa de <orc>"
     },
     "succubus-kiss": {
       "name": "Beso del Súcubo",
-      "description": "Aplica <seduction> a una tropa enemiga al azar"
+      "description": "Aplica <seduction> a una Tropa enemiga al azar"
     },
     "destroy-artifact": {
       "name": "Destruir Artefacto",
-      "description": "Destruye uno o varios artefactos enemigos"
+      "description": "Destruye uno o varios Artefactos enemigos"
     },
     "inferno": {
       "name": "Infierno",
-      "description": "Inflige mucho daño de <fire> a cada tropa enemiga"
+      "description": "Inflige mucho daño de <fire> a cada Tropa enemiga"
     },
     "flame-shield": {
       "name": "Escudos de Llamas",
-      "description": "Aplica <scales> y <slowness> a todas tus tropas"
+      "description": "Aplica <scales> y <slowness> a todas tus Tropas"
     },
     "flame-blade": {
       "name": "Espadas Flamígueras",
-      "description": "Aplica <strength> y <slowness> a todas tus tropas"
+      "description": "Aplica <strength> y <slowness> a todas tus Tropas"
     },
     "flame-arrow": {
       "name": "Flechas de Fuego",
-      "description": "Aplica <haste> y <weakness> a todas tus tropas"
+      "description": "Aplica <haste> y <weakness> a todas tus Tropas"
     },
     "gravity": {
       "name": "Gravedad",
-      "description": "Elimina <flight> de cada tropa enemiga"
+      "description": "Elimina <flight> de cada Tropa enemiga"
     },
     "meteor-storm": {
       "name": "Tormenta de Meteoritos",
@@ -1489,23 +1489,23 @@
     },
     "fatigue": {
       "name": "Fatiga",
-      "description": "Aplica <weakness> y <slowness> cada tropa enemiga"
+      "description": "Aplica <weakness> y <slowness> cada Tropa enemiga"
     },
     "summon-minotaur": {
       "name": "Invocar Minotauros",
-      "description": "Convoca una tropa de <minotaur>"
+      "description": "Convoca una Tropa de <minotaur>"
     },
     "summon-ogre": {
       "name": "Invocar Ogros",
-      "description": "Convoca una tropa de <ogre>"
+      "description": "Convoca una Tropa de <ogre>"
     },
     "summon-lizardman": {
       "name": "Invocar Hombres Lagarto",
-      "description": "Convoca una tropa de <lizardman>"
+      "description": "Convoca una Tropa de <lizardman>"
     },
     "call-cyclop": {
       "name": "Llamar Cíclopes",
-      "description": "Convoca una tropa de <cyclop>"
+      "description": "Convoca una Tropa de <cyclop>"
     },
     "volcano": {
       "name": "Erupción Volcánica",
@@ -1517,31 +1517,31 @@
     },
     "frenzy": {
       "name": "Locura",
-      "description": "Aplica <strength>, <weakness> y <leech> a una tropa aliada al azar"
+      "description": "Aplica <strength>, <weakness> y <leech> a una Tropa aliada al azar"
     },
     "call-frost-giant": {
       "name": "Llamar Gigantes de Escarcha",
-      "description": "Convoca una tropa de <frost-giant>"
+      "description": "Convoca una Tropa de <frost-giant>"
     },
     "call-cave-troll": {
       "name": "Llamar Trolls de Cueva",
-      "description": "Convoca una tropa de <cave-troll>"
+      "description": "Convoca una Tropa de <cave-troll>"
     },
     "call-yeti": {
       "name": "Llamar Yetis",
-      "description": "Convoca una tropa de <yeti>"
+      "description": "Convoca una Tropa de <yeti>"
     },
     "summon-mage": {
       "name": "Invocar Magos",
-      "description": "Convoca una tropa de <mage>"
+      "description": "Convoca una Tropa de <mage>"
     },
     "summon-medusa": {
       "name": "Invocar Medusas",
-      "description": "Convoca una tropa de <medusa>"
+      "description": "Convoca una Tropa de <medusa>"
     },
     "summon-djinni": {
       "name": "Invocar Genios",
-      "description": "Convoca una tropa de <djinni>"
+      "description": "Convoca una Tropa de <djinni>"
     },
     "concentration": {
       "name": "Concentración",
@@ -1553,15 +1553,15 @@
     },
     "conjure-elemental": {
       "name": "Conjurar Elementales",
-      "description": "Convoca una tropa de <elemental> al azar"
+      "description": "Convoca una Tropa de <elemental> al azar"
     },
     "levitation": {
       "name": "Levitación",
-      "description": "Aplica <flight> a una tropa aliada al azar"
+      "description": "Aplica <flight> a una Tropa aliada al azar"
     },
     "fog": {
       "name": "Niebla",
-      "description": "Aplica <slowness> y <weakness> a cada tropa enemiga y aliada"
+      "description": "Aplica <slowness> y <weakness> a cada Tropa enemiga y aliada"
     },
     "avarice": {
       "name": "Avaricia",
@@ -1569,11 +1569,11 @@
     },
     "hallucination": {
       "name": "Alucinación",
-      "description": "Aplica <seduction> y <fear> a cada tropa enemiga"
+      "description": "Aplica <seduction> y <fear> a cada Tropa enemiga"
     },
     "freeze": {
       "name": "Congelar",
-      "description": "Inflige daño de <cold> a cada tropa enemiga"
+      "description": "Inflige daño de <cold> a cada Tropa enemiga"
     },
     "ice-wall": {
       "name": "Muro Helado",
@@ -1581,7 +1581,7 @@
     },
     "invisibility": {
       "name": "Invisibilidad",
-      "description": "Aplica <strength> y <haste> a una tropa aliada al azar"
+      "description": "Aplica <strength> y <haste> a una Tropa aliada al azar"
     },
     "laziness": {
       "name": "Pereza",
@@ -1589,7 +1589,7 @@
     },
     "celerity": {
       "name": "Celeridad",
-      "description": "Aplica <haste> a cada tropa aliada"
+      "description": "Aplica <haste> a cada Tropa aliada"
     },
     "spy": {
       "name": "Espejo Espía",
@@ -1597,15 +1597,15 @@
     },
     "steal-artifact": {
       "name": "Robar Artefacto",
-      "description": "Roba un artefacto enemigo al azar"
+      "description": "Roba un Artefacto enemigo al azar"
     },
     "accuracy": {
       "name": "Puntería",
-      "description": "Aplica <strength> a cada tropa aliada"
+      "description": "Aplica <strength> a cada Tropa aliada"
     },
     "ambush": {
       "name": "Emboscada",
-      "description": "Aplica <haste> a cada tropa aliada"
+      "description": "Aplica <haste> a cada Tropa aliada"
     },
     "druidism": {
       "name": "Druidismo",
@@ -1613,19 +1613,19 @@
     },
     "beast-council": {
       "name": "Concilio de las Bestias",
-      "description": "Convoca una tropa de <animal> o <reptile> al azar"
+      "description": "Convoca una Tropa de <animal> o <reptile> al azar"
     },
     "call-elf": {
       "name": "Llamar Elfos",
-      "description": "Convoca una tropa de <elf>"
+      "description": "Convoca una Tropa de <elf>"
     },
     "call-carnivorous-plant": {
       "name": "Llamar Plantas Carnívoras",
-      "description": "Convoca una tropa de <carnivorous-plant>"
+      "description": "Convoca una Tropa de <carnivorous-plant>"
     },
     "call-centaur": {
       "name": "Llamar Centauros",
-      "description": "Convoca una tropa de <centaur>"
+      "description": "Convoca una Tropa de <centaur>"
     },
     "climate-control": {
       "name": "Control del Clima",
@@ -1633,11 +1633,11 @@
     },
     "cure": {
       "name": "Curación",
-      "description": "Aplica <regeneration> a una tropa aliada al azar"
+      "description": "Aplica <regeneration> a una Tropa aliada al azar"
     },
     "hurricane": {
       "name": "Huracán",
-      "description": "Elimina <flight> a cada tropa enemiga"
+      "description": "Elimina <flight> a cada Tropa enemiga"
     },
     "locust-swarm": {
       "name": "Enjambre de Langostas",
@@ -1649,11 +1649,11 @@
     },
     "invigorate": {
       "name": "Vigorizar",
-      "description": "Aplica <regeneration>, <scales> y <strength> a una tropa aliada al azar"
+      "description": "Aplica <regeneration>, <scales> y <strength> a una Tropa aliada al azar"
     },
     "venom": {
       "name": "Ponzoña",
-      "description": "Inflige daño de <poison> a una tropa enemiga al azar"
+      "description": "Inflige daño de <poison> a una Tropa enemiga al azar"
     },
     "serenity": {
       "name": "Serenidad",
@@ -1661,19 +1661,19 @@
     },
     "calm": {
       "name": "Calma",
-      "description": "Elimina <fear>,<slowness>,<weakness> y <seduction> a una tropa aliada al azar"
+      "description": "Elimina <fear>,<slowness>,<weakness> y <seduction> a una Tropa aliada al azar"
     },
     "summon-druid": {
       "name": "Invocar Druidas",
-      "description": "Convoca una tropa de <druid>"
+      "description": "Convoca una Tropa de <druid>"
     },
     "summon-werebear": {
       "name": "Invocar Hombres Oso",
-      "description": "Convoca una tropa de <werebear>"
+      "description": "Convoca una Tropa de <werebear>"
     },
     "summon-spider": {
       "name": "Invocar Arañas",
-      "description": "Convoca una tropa de <spider>"
+      "description": "Convoca una Tropa de <spider>"
     },
     "sunray": {
       "name": "Rayo de Sol",
@@ -1681,31 +1681,31 @@
     },
     "wrath": {
       "name": "Ira",
-      "description": "Elimina <strength> de cada tropa enemiga y aliada"
+      "description": "Elimina <strength> de cada Tropa enemiga y aliada"
     },
     "call-pegasus": {
       "name": "Llamar Pegasos",
-      "description": "Convoca una tropa de <pegasus>"
+      "description": "Convoca una Tropa de <pegasus>"
     },
     "call-knight": {
       "name": "Llamar Caballeros",
-      "description": "Convoca una tropa de <knight>"
+      "description": "Convoca una Tropa de <knight>"
     },
     "call-templar": {
       "name": "Llamar Templarios",
-      "description": "Convoca una tropa de <templar>"
+      "description": "Convoca una Tropa de <templar>"
     },
     "blaze": {
       "name": "Destello",
-      "description": "Aplica <fear> y <weakness> a cada tropa enemiga"
+      "description": "Aplica <fear> y <weakness> a cada Tropa enemiga"
     },
     "prayer": {
       "name": "Plegaria",
-      "description": "Convoca una tropa de <human> al azar"
+      "description": "Convoca una Tropa de <human> al azar"
     },
     "healing": {
       "name": "Sanación",
-      "description": "Aplica <regeneration> a una tropa aliada al azar"
+      "description": "Aplica <regeneration> a una Tropa aliada al azar"
     },
     "divine-protection": {
       "name": "Protección Divina",
@@ -1713,19 +1713,19 @@
     },
     "exorcism": {
       "name": "Exorcismo",
-      "description": "Inflige daño de <holy> a una tropa enemiga al azar"
+      "description": "Inflige daño de <holy> a una Tropa enemiga al azar"
     },
     "endurance": {
       "name": "Resistencia",
-      "description": "Elimina <scales> de cada tropa enemiga y aliada"
+      "description": "Elimina <scales> de cada Tropa enemiga y aliada"
     },
     "locate-artifact": {
       "name": "Localizar Artefacto",
-      "description": "Encuentra un artefacto al azar"
+      "description": "Encuentra un Artefacto al azar"
     },
     "miracle": {
       "name": "Milagro",
-      "description": "Aplica <regeneration>,<strength>,<scales>,<haste> y <flight> a una tropa aliada al azar"
+      "description": "Aplica <regeneration>,<strength>,<scales>,<haste> y <flight> a una Tropa aliada al azar"
     },
     "peace-prosperity": {
       "name": "Paz y Prosperidad",
@@ -1733,31 +1733,31 @@
     },
     "resurrection": {
       "name": "Resurección",
-      "description": "Aplica <regeneration> a cada tropa aliada"
+      "description": "Aplica <regeneration> a cada Tropa aliada"
     },
     "shield-light": {
       "name": "Escudos de Luz",
-      "description": "Aplica <scales> a cada tropa aliada"
+      "description": "Aplica <scales> a cada Tropa aliada"
     },
     "summon-angel": {
       "name": "Invocar Ángeles",
-      "description": "Convoca una tropa de <angel>"
+      "description": "Convoca una Tropa de <angel>"
     },
     "summon-titan": {
       "name": "Invocar Titanes",
-      "description": "Convoca una tropa de <titan>"
+      "description": "Convoca una Tropa de <titan>"
     },
     "summon-monk": {
       "name": "Invocar Monjes",
-      "description": "Convoca una tropa de <monk>"
+      "description": "Convoca una Tropa de <monk>"
     },
     "sword-light": {
       "name": "Espadas de Luz",
-      "description": "Aplica <strength> a cada tropa aliada"
+      "description": "Aplica <strength> a cada Tropa aliada"
     },
     "tranquility": {
       "name": "Tranquilidad",
-      "description": "Convierte en <sheep> a una tropa enemiga al azar"
+      "description": "Convierte en <sheep> a una Tropa enemiga al azar"
     },
     "armageddon": {
       "name": "Armagedón",
@@ -1859,7 +1859,7 @@
   "skill": {
     "regeneration": {
       "name": "Regeneración",
-      "description": "Resucita +25% tropas tras la batalla"
+      "description": "Resucita +25% Tropas tras la batalla"
     },
     "leech": {
       "name": "Robar Vida",
@@ -1945,7 +1945,7 @@
     },
     "necromancer": {
       "name": "Nigromante Putrefacto",
-      "description": "Resucita algunas de tus tropas muertas por nivel"
+      "description": "Resucita algunas de tus Tropas muertas por nivel"
     },
     "orc-king": {
       "name": "Rey de los Orcos",
@@ -1961,23 +1961,23 @@
     },
     "illusionist": {
       "name": "Ilusionista Congelado",
-      "description": "Inflige a cada tropa enemiga daño de <cold> por nivel"
+      "description": "Inflige a cada Tropa enemiga daño de <cold> por nivel"
     },
     "soul-reaper": {
       "name": "Segador de Almas",
-      "description": "Inflige a cada tropa enemiga daño de <lightning> por nivel"
+      "description": "Inflige a cada Tropa enemiga daño de <lightning> por nivel"
     },
     "swamp-thing": {
       "name": "Monstruo del Pantano",
-      "description": "Inflige a cada tropa enemiga daño de <poison> por nivel"
+      "description": "Inflige a cada Tropa enemiga daño de <poison> por nivel"
     },
     "pyromancer": {
       "name": "Piromante Abrasado",
-      "description": "Inflige a cada tropa enemiga daño de <fire> por nivel"
+      "description": "Inflige a cada Tropa enemiga daño de <fire> por nivel"
     },
     "colossus": {
       "name": "Coloso Imponente",
-      "description": "Inflige a cada tropa enemiga daño de <holy> por nivel"
+      "description": "Inflige a cada Tropa enemiga daño de <holy> por nivel"
     }
   },
   "item": {
@@ -1987,27 +1987,27 @@
     },
     "necronomicon": {
       "name": "Libro de los Muertos",
-      "description": "Convoca una tropa de <undead>"
+      "description": "Convoca una Tropa de <undead>"
     },
     "enchanted-lamp": {
       "name": "Lámpara Maravillosa",
-      "description": "Convoca una tropa de <elemental>"
+      "description": "Convoca una Tropa de <elemental>"
     },
     "wisdom-tome": {
       "name": "Tomo de Sabiduría",
-      "description": "Intenta descubrir un hechizo nuevo"
+      "description": "Intenta descubrir un Hechizo nuevo"
     },
     "demon-horn": {
       "name": "Cuerno de Demonio",
-      "description": "Convoca una tropa de <demon>"
+      "description": "Convoca una Tropa de <demon>"
     },
     "lightning-orb": {
       "name": "Orbe de Rayos",
-      "description": "Convoca una tropa de <lightning-elemental>"
+      "description": "Convoca una Tropa de <lightning-elemental>"
     },
     "dragon-egg": {
       "name": "Huevo de Dragón",
-      "description": "Convoca una tropa de <dragon>"
+      "description": "Convoca una Tropa de <dragon>"
     },
     "crystal-ball": {
       "name": "Bola de Cristal",
@@ -2015,23 +2015,23 @@
     },
     "agility-potion": {
       "name": "Poción de Agilidad",
-      "description": "Aplica <haste> a cada tropa aliada"
+      "description": "Aplica <haste> a cada Tropa aliada"
     },
     "defense-potion": {
       "name": "Poción de Defensa",
-      "description": "Aplica <scales> a cada tropa aliada"
+      "description": "Aplica <scales> a cada Tropa aliada"
     },
     "cold-orb": {
       "name": "Orbe de Hielo",
-      "description": "Convoca una tropa de <ice-elemental>"
+      "description": "Convoca una Tropa de <ice-elemental>"
     },
     "earth-orb": {
       "name": "Orbe de Tierra",
-      "description": "Convoca una tropa de <earth-elemental>"
+      "description": "Convoca una Tropa de <earth-elemental>"
     },
     "fire-orb": {
       "name": "Orbe de Fuego",
-      "description": "Convoca una tropa de <fire-elemental>"
+      "description": "Convoca una Tropa de <fire-elemental>"
     },
     "mana-potion": {
       "name": "Poción de Maná",
@@ -2039,11 +2039,11 @@
     },
     "light-orb": {
       "name": "Orbe de Luz",
-      "description": "Conjura una tropa de <light-elemental>"
+      "description": "Conjura una Tropa de <light-elemental>"
     },
     "strength-potion": {
       "name": "Poción de Fuerza",
-      "description": "Aplica <strength> a cada tropa aliada"
+      "description": "Aplica <strength> a cada Tropa aliada"
     },
     "love-potion": {
       "name": "Poción de Amor",
@@ -2051,19 +2051,19 @@
     },
     "spider-web": {
       "name": "Tela de Araña",
-      "description": "Aplica <slowness> a cada tropa enemiga"
+      "description": "Aplica <slowness> a cada Tropa enemiga"
     },
     "animal-fang": {
       "name": "Colmillo Animal",
-      "description": "Convoca una tropa de <animal>"
+      "description": "Convoca una Tropa de <animal>"
     },
     "bone-necklace": {
       "name": "Collar de Hueso",
-      "description": "Convoca una tropa de <orkish>"
+      "description": "Convoca una Tropa de <orkish>"
     },
     "crown-thorns": {
       "name": "Corona de Espinas",
-      "description": "Aplica <weakness> a cada tropa enemiga"
+      "description": "Aplica <weakness> a cada Tropa enemiga"
     },
     "voodoo-doll": {
       "name": "Muñeca Voodoo",
@@ -2083,7 +2083,7 @@
     },
     "golem-book": {
       "name": "Libro de Invocación del Gólem",
-      "description": "Convoca una tropa de <golem>"
+      "description": "Convoca una Tropa de <golem>"
     },
     "letter-thieves": {
       "name": "Carta del Gremio de Ladrones",
@@ -2103,7 +2103,7 @@
     },
     "magic-beans": {
       "name": "Judías Mágicas",
-      "description": "Convoca una tropa de <giant>"
+      "description": "Convoca una Tropa de <giant>"
     },
     "magic-compass": {
       "name": "Brújula Mágica",
@@ -2123,63 +2123,63 @@
     },
     "snake-eye": {
       "name": "Ojo de Serpiente",
-      "description": "Convoca una tropa de <reptile>"
+      "description": "Convoca una Tropa de <reptile>"
     },
     "treasure-map": {
       "name": "Mapa del Tesoro",
-      "description": "Encuentra un artefacto aleatorio"
+      "description": "Encuentra un Artefacto aleatorio"
     },
     "valhalla-horn": {
       "name": "Cuerno del Valhalla",
-      "description": "Convoca una tropa de <human>"
+      "description": "Convoca una Tropa de <human>"
     },
     "fairy-wings": {
       "name": "Alas de Hada",
-      "description": "Aplica <flight> a una tropa aliada al azar"
+      "description": "Aplica <flight> a una Tropa aliada al azar"
     },
     "vampire-teeth": {
       "name": "Colmillo de Vampiro",
-      "description": "Aplica <leech> a cada tropa aliada"
+      "description": "Aplica <leech> a cada Tropa aliada"
     },
     "fire-scroll": {
       "name": "Pergamino de Resistencia al Fuego",
-      "description": "Aplica resistencia a <fire> a cada tropa aliada"
+      "description": "Aplica resistencia a <fire> a cada Tropa aliada"
     },
     "lightning-scroll": {
       "name": "Pergamino de Resistencia al Rayo",
-      "description": "Aplica resistencia a <lightning> a cada tropa aliada"
+      "description": "Aplica resistencia a <lightning> a cada Tropa aliada"
     },
     "light-scroll": {
       "name": "Pergamino de Resistencia a Sagrado",
-      "description": "Aplica resistencia a <holy> a cada tropa aliada"
+      "description": "Aplica resistencia a <holy> a cada Tropa aliada"
     },
     "cold-scroll": {
       "name": "Pergamino de Resistencia al Frío",
-      "description": "Aplica resistencia a <cold> a cada tropa aliada"
+      "description": "Aplica resistencia a <cold> a cada Tropa aliada"
     },
     "earth-scroll": {
       "name": "Pergamino de Resistencia al Veneno",
-      "description": "Aplica resistencia a <poison> a cada tropa aliada"
+      "description": "Aplica resistencia a <poison> a cada Tropa aliada"
     },
     "holy-grenade": {
       "name": "Santa Granada",
-      "description": "Inlfige daño de <holy> a cada tropa enemiga"
+      "description": "Inlfige daño de <holy> a cada Tropa enemiga"
     },
     "powder-barrel": {
       "name": "Barril de Pólvora",
-      "description": "Inflige daño de <fire> a cada tropa enemiga"
+      "description": "Inflige daño de <fire> a cada Tropa enemiga"
     },
     "ancient-rune": {
       "name": "Runa Antigua",
-      "description": "Inflige daño de <lightning> a cada tropa enemiga"
+      "description": "Inflige daño de <lightning> a cada Tropa enemiga"
     },
     "ice-stone": {
       "name": "Piedra Helada",
-      "description": "Inflige daño de <cold> a cada tropa enemiga"
+      "description": "Inflige daño de <cold> a cada Tropa enemiga"
     },
     "vial-venom": {
       "name": "Vial de Veneno",
-      "description": "Inflige daño de <poison> a cada tropa enemiga"
+      "description": "Inflige daño de <poison> a cada Tropa enemiga"
     }
   },
   "god": {
@@ -2202,6 +2202,10 @@
     "pestilence": {
       "name": "Portador de la Pestilencia",
       "description": "Guardián del Sello de <population>"
+    },
+    "despair": {
+      "name": "Semblante de la Desesperación",
+      "description": "Guardián del Sello de <gem>"
     }
   },
   "guild": {
