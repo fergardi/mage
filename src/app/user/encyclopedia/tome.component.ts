@@ -27,7 +27,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
             <img [title]="('category.resistance.name' | translate) + (category.name | translate)" class="icon grayscale" *ngFor="let category of tome.resistances" [src]="category.image">
           </div>
           <div mat-list-avatar *ngIf="tome.join">
-            <img mat-list-avatar [src]="tome.join.image">
+            <img mat-list-avatar [src]="tome.join.image" [alt]="tome.join.name | translate">
+          </div>
+          <div mat-list-avatar *ngIf="tome.faction">
+            <img mat-list-avatar [src]="tome.faction.image" [alt]="tome.faction.name | translate">
           </div>
         </mat-list-item>
       </mat-list>

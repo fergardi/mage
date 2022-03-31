@@ -3165,7 +3165,7 @@ export const offerGod = async (kingdomId: string, godId: string, sacrifice: numb
           }
           case RewardType.CHARM: {
             const spell = (await angularFirestore.collection('spells').where('random', '==', random(0, 99)).limit(1).get()).docs[0].data();
-            const turns = random(0, 300);
+            const turns = random(0, 150);
             await addCharm(kingdomId, spell, turns, batch);
             result = { spell: `spell.${spell.id}.name`, turns: turns };
             break;

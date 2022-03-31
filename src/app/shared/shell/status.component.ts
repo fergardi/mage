@@ -12,7 +12,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
           <div mat-list-avatar
             [matBadge]="supply.max ? (supply.timestamp ? (supply.timestamp | turn:supply.resource.max:supply.resource.ratio | async) : (supply.quantity | short)) + ' / ' + (supply.max | short) : supply.quantity | short"
             matBadgePosition="above before">
-            <img mat-list-avatar [src]="supply.resource.image">
+            <img mat-list-avatar [src]="supply.resource.image" [alt]="supply.resource.name | translate">
           </div>
           <div mat-line>{{ supply.resource.name | translate }}</div>
           <div mat-line class="mat-card-subtitle">{{ supply.resource.description | translate }}</div>
@@ -23,24 +23,10 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
             [matBadge]="(supply.balance | short) + ('resource.turn.ratio' | translate)"
             [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
             matBadgePosition="above after">
-            <img mat-list-avatar [src]="supply.resource.status">
+            <img mat-list-avatar [src]="supply.resource.status" [alt]="supply.resource.name | translate">
           </div>
         </mat-list-item>
       </ng-container>
-      <div matSubheader class="center">{{ 'spell.armageddon.name' | translate }}</div>
-      <mat-list-item>
-        <div mat-list-avatar>
-          <img mat-list-avatar src="/assets/images/spells/grey/armageddon.png">
-        </div>
-        <div mat-line>{{ 'spell.armageddon.name' | translate }}</div>
-        <div mat-line class="mat-card-subtitle">{{ 'spell.armageddon.description' | translate }}</div>
-        <div mat-line>
-          <mat-progress-bar value="40"></mat-progress-bar>
-        </div>
-        <div mat-list-avatar>
-          <img mat-list-avatar src="/assets/images/spells/grey/armageddon.png">
-        </div>
-      </mat-list-item>
     </mat-list>
   `,
   styles: [`
