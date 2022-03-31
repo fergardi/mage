@@ -26,7 +26,8 @@ export class TutorialService {
     const options: IStepOption = {
       // preventScrolling: false,
       enableBackdrop: true,
-      // waitFor: new ReplaySubject<void>(),
+      delayAfterNavigation: 500,
+      // closeOnOutsideClick: true,
     };
     this.tourService.disableHotkeys();
     this.tourService.initialize([

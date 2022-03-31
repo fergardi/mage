@@ -16,6 +16,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { TomeComponent } from 'src/app/user/encyclopedia/tome.component';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { CacheService } from 'src/app/services/cache.service';
 
 @Component({
   selector: 'app-auction',
@@ -57,6 +58,7 @@ export class AuctionComponent implements OnInit {
     private angularFirestore: AngularFirestore,
     private notificationService: NotificationService,
     public tutorialService: TutorialService,
+    private cacheService: CacheService,
   ) { }
 
   ngOnInit(): void {
@@ -70,7 +72,12 @@ export class AuctionComponent implements OnInit {
       this.table.sort = this.sort;
       this.table.sortingDataAccessor = this.createSorter();
       this.table.filterPredicate = this.createFilter();
-      this.filters.faction.options = [...new Set(data.map((auction: any) => auction.join.faction))];
+      // this.filters.faction.options = [...new Set(data.map((auction: any) => auction.join.faction))];
+      this.filters.faction.options = this.filters.faction.options.concat(
+        [{ id: '', name: 'table.filter.any', image: '/assets/images/factions/grey.png' }],
+        await this.cacheService.getFactions(),
+      );
+      this.filters.faction.value = this.filters.faction.options[0];
       this.applyFilter();
       await this.refreshAuctions();
     });
@@ -97,9 +104,28 @@ export class AuctionComponent implements OnInit {
       const filters = JSON.parse(filter);
       return (this.translateService.instant(data.join.name).toLowerCase().includes(filters.name)
         || this.translateService.instant(data.join.description).toLowerCase().includes(filters.name))
-        && data.join.faction.id.toLowerCase().includes(filters.faction);
+        && (!filters.faction || data.join.faction.id.toLowerCase().includes(filters.faction.id));
     };
     return filterFunction;
+  }
+
+  clearFilter(): void {
+    this.filters.name.value = '';
+    this.filters.faction.value = this.filters.faction.options[0];
+    if (this.table.paginator) {
+      this.table.paginator.pageSize = this.table.paginator.pageSizeOptions[0];
+      this.table.paginator.pageIndex = 0;
+    }
+    if (this.table.sort) {
+      if (this.table.sort.active !== 'name' && this.table.sort.direction !== 'asc') {
+        this.table.sort.sort({
+          id: 'name',
+          start: 'asc',
+          disableClear: false,
+        });
+      }
+    }
+    this.applyFilter();
   }
 
   async refreshAuctions() {

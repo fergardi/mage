@@ -70,7 +70,7 @@ export class EncyclopediaComponent implements OnInit {
       this.cacheService.getStores(),
       this.cacheService.getPerks(),
     ]);
-    let data: any[] = cached.reduce((a: any[], b: any) => a.concat(b), []);
+    const data: any[] = cached.reduce((a: any[], b: any) => a.concat(b), []);
     this.table = new MatTableDataSource(data);
     this.table.paginator = this.paginator;
     this.table.sort = this.sort;
@@ -93,8 +93,6 @@ export class EncyclopediaComponent implements OnInit {
     .filter((value: any, index: number, array: any[]) => array.findIndex((element: any) => (element.name === value.name)) === index) // https://stackoverflow.com/a/56757215/2477303
     .sort((a: any, b: any) => this.translateService.instant(a.name).localeCompare(this.translateService.instant(b.name)));
     this.table.filterPredicate = this.createFilter();
-    this.applyFilter();
-    // topics
     this.topics = [
       { surname: 'kingdom', name: 'city', examples: this.table.data.filter((item: any) => ['barrier', 'node'].includes(item.id)), suffix: '/assets/images/resources/land.png' },
       { surname: 'kingdom', name: 'auction', examples: this.table.data.filter((item: any) => ['shield-light', 'crypt-keeper'].includes(item.id)), suffix: '/assets/images/resources/gold.png' },
@@ -109,6 +107,7 @@ export class EncyclopediaComponent implements OnInit {
       { surname: 'kingdom', name: 'temple', examples: this.table.data.filter((item: any) => ['death', 'famine'].includes(item.id)), suffix: '/assets/images/spells/grey/armageddon.png' },
       { surname: 'user', name: 'encyclopedia', examples: this.table.data.filter((item: any) => ['breath', 'dragon'].includes(item.id)) },
     ];
+    this.applyFilter();
   }
 
   applyFilter(): void {

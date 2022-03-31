@@ -24,11 +24,26 @@
                 <mat-icon>close</mat-icon>
               </button>
             </mat-form-field>
-
+<!--
             <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'select'">
               <mat-select [(ngModel)]="filters[column].value" (selectionChange)="applyFilter()">
                 <mat-option value="">{{ 'table.filter.any' | translate }}</mat-option>
                 <mat-option *ngFor="let option of filters[column].options" [value]="option.value">{{ option.name | translate }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+-->
+            <mat-form-field class="table-filter" *ngIf="filters[column] && filters[column].type === 'select'">
+              <mat-select [(ngModel)]="filters[column].value" (selectionChange)="applyFilter()">
+                <mat-option *ngFor="let option of filters[column].options" [value]="option">
+                  <mat-list dense>
+                    <mat-list-item [ngClass]="option.id">
+                      <div mat-list-avatar>
+                        <img mat-list-avatar [src]="option.image" [alt]="option.name | translate">
+                      </div>
+                      <div mat-line>{{ option.name | translate }}</div>
+                    </mat-list-item>
+                  </mat-list>
+                </mat-option>
               </mat-select>
             </mat-form-field>
           </mat-header-cell>
@@ -86,7 +101,14 @@
         <mat-row *matRowDef="let auction; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.bid' : null" (click)="openTomeDialog(auction.join)"></mat-row>
       </table>
 
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <button mat-mini-fab color="primary" (click)="clearFilter()"><mat-icon>clear</mat-icon></button>
+          <span class="fill-space"></span>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
     </mat-card-content>
   </mat-card>
 </div>
