@@ -172,7 +172,7 @@ $list-item-height: 60px;
 }
 .mat-list {
   min-height: $list-item-height;
-  max-height: ($list-item-height * 3) - ($list-item-height / 2);
+  max-height: calc(($list-item-height * 3) - ($list-item-height / 2));
   overflow: hidden auto;
   box-sizing: border-box;
   &.dotted {

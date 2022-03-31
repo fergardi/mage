@@ -45,7 +45,7 @@ export class ShellComponent implements OnInit {
     { name: 'shell.group.spy', image: '/assets/images/cards/spy.png', links: [
         { url: '/kingdom/census', name: 'kingdom.census.name', description: 'kingdom.census.description', image: '/assets/images/cards/census.png' },
         { url: '/kingdom/archive', name: 'kingdom.archive.name', description: 'kingdom.archive.description', image: '/assets/images/cards/archive.png' },
-        { url: '/kingdom/clan', name: 'kingdom.clan.name', description: 'kingdom.clan.description', image: '/assets/images/cards/clan.png', disabled: true },
+        { url: '/kingdom/clan', name: 'kingdom.clan.name', description: 'kingdom.clan.description', image: '/assets/images/cards/clan.png' },
       ],
     },
     { name: 'shell.group.scholar', image: '/assets/images/cards/scholar.png', links: [

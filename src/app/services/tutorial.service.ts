@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { TourService } from 'ngx-ui-tour-md-menu';
-import { ReplaySubject } from 'rxjs';
 import { IStepOption } from 'ngx-ui-tour-core';
 
 @Injectable({
@@ -12,11 +11,6 @@ export class TutorialService {
     private tourService: TourService,
   ) { }
 
-  ready(route: string) {
-    const waitingSteps = this.tourService.steps.filter(step => (step.route as string).includes(route));
-    // waitingSteps.forEach(waitingStep => (waitingStep.waitFor as ReplaySubject<void>).next());
-  }
-
   start(step?: string | undefined) {
     if (step) this.tourService.startAt(step);
     else this.tourService.start();
@@ -27,6 +21,7 @@ export class TutorialService {
       // preventScrolling: false,
       enableBackdrop: true,
       delayAfterNavigation: 500,
+      // TODO: fix typed dependency
       // closeOnOutsideClick: true,
     };
     this.tourService.disableHotkeys();
