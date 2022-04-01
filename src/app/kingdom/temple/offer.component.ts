@@ -118,6 +118,7 @@ export class OfferComponent implements OnInit {
         if (offered.hasOwnProperty('mana')) this.notificationService.success('kingdom.temple.mana', offered);
         if (offered.hasOwnProperty('population')) this.notificationService.success('kingdom.temple.population', offered);
         if (offered.hasOwnProperty('land')) this.notificationService.success('kingdom.temple.land', offered);
+        if (offered.hasOwnProperty('gem')) this.notificationService.success('kingdom.temple.gem', offered);
         if (offered.hasOwnProperty('spell')) this.notificationService.success('kingdom.temple.spell', offered);
         if (offered.hasOwnProperty('building')) this.notificationService.success('kingdom.temple.building', offered);
         this.close();

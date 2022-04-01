@@ -68,8 +68,8 @@ export class ShellComponent implements OnInit {
     map((result: any) => result.matches),
     shareReplay(),
   );
-  public reports: number = 0;
   @ViewChild(MatSidenav, {static: true}) drawer: MatSidenav;
+  public reports: number = 0;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -102,16 +102,14 @@ export class ShellComponent implements OnInit {
     });
   }
 
-  async toggle() {
+  async toggle(): Promise<void> {
     await this.drawer.toggle();
     this.mapboxService.resizeMap();
   }
 
-  close() {
+  close(): void {
     this.isHandset$.subscribe(async isHandset => {
-      if (isHandset) {
-        await this.drawer.close();
-      }
+      if (isHandset) await this.drawer.close();
     });
   }
 
@@ -119,20 +117,20 @@ export class ShellComponent implements OnInit {
     return this.langs.find(l => l.lang === this.translateService.currentLang);
   }
 
-  tour() {
+  tour(): void {
     this.tutorialService.start();
   }
 
-  login($element: any) {
+  login($element: any): void {
     this.domService.scrollToTop($element);
     this.router.navigate(['/user/landing']);
   }
 
-  logout() {
+  logout(): void {
     this.store.dispatch(new LogoutAction());
   }
 
-  openStatusSheet() {
+  openStatusSheet(): void {
     const sheetRef = this.bottomSheet.open(StatusComponent, {
       data: this.kingdomSupplies$,
     });

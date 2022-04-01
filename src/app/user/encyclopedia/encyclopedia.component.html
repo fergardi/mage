@@ -156,6 +156,20 @@
     </mat-card>
   </div>
 
+  <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" id="bonfire">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="/assets/images/cards/bonfire.png" [alt]="'user.bonfire.name' | translate">
+        <mat-card-title>{{ 'user.bonfire.name' | translate }}</mat-card-title>
+        <mat-card-subtitle>{{ 'user.bonfire.description' | translate }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ 'user.bonfire.help' | translate }}</p>
+        <disqus identifier="/help"></disqus>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
   <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" id="changelog">
     <mat-card>
       <mat-card-header>
@@ -179,20 +193,6 @@
             </ul>
           </mat-expansion-panel>
         </mat-accordion>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <div fxFlex.xl="50" fxFlex.lg="50" fxFlex.md="50" fxFlex.sm="100" fxFlex.xs="100" id="bonfire">
-    <mat-card>
-      <mat-card-header>
-        <img mat-card-avatar src="/assets/images/cards/bonfire.png" [alt]="'user.bonfire.name' | translate">
-        <mat-card-title>{{ 'user.bonfire.name' | translate }}</mat-card-title>
-        <mat-card-subtitle>{{ 'user.bonfire.description' | translate }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p>{{ 'user.bonfire.help' | translate }}</p>
-        <disqus identifier="/help"></disqus>
       </mat-card-content>
     </mat-card>
   </div>

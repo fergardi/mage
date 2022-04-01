@@ -249,7 +249,7 @@
       "name": "Enciclopedia",
       "description": "Amplía tus conocimientos",
       "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: Tropas, Artefactos, Héroes, Dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc. Si lo que buscas no está en esta biblioteca, es que no existe.",
-      "tour": "En la enciclopedia encontrarás todo lo que necesites para aprender a jugar, así como las estadísticas de todo lo que existe en este mundo mágico.<br><br>Si aún así tienes más dudas, tienes a tu disposición el Tutorial del juego. Recuerda que a jugar se aprende jugando."
+      "tour": "<p>En la enciclopedia encontrarás todo lo que necesites para aprender a jugar, así como las estadísticas de todo lo que existe en este mundo mágico.</p><p>Si aún así tienes más dudas, tienes a tu disposición el Tutorial del juego. Recuerda que a jugar se aprende jugando.</p>"
     },
     "tome": {
       "name": "Tomo",
@@ -332,35 +332,317 @@
     "supplies": {
       "name": "Recursos",
       "description": "",
-      "tour": ""
+      "tour": "<p>En la parte superior se muestran los seis tipos de recursos diferentes a los que puede tener acceso tu Reino:</p><ul><li><gold> para adquirir nuevos bienes</li><li><mana> para conjurar Hechizos o Encantamientos</li><li><population> para generar prosperidad en tu Reino</li><li><land> para construir nuevos Edificios</li><li><turn> para realizar cualquier actividad</li><li><gem> para conseguir mejoras adicionales</li></ul><p>Accediendo a cada uno podrás ver un resumen de la producción.</p>"
     },
     "city": {
       "name": "Ciudad",
       "description": "Administra tu capital",
       "help": "En la ciudad puedes invertir <turn>, <gold>, y <land> en construir edificios que te proporcionarán más recursos, protección, y en general un avance significativo en la velocidad de desarrollo de tu Reino. Ten en cuenta que cuantos más talleres tengas, menos <turn> necesitarás.",
-      "tour": "La ciudad es el punto más importante de tu Reino a tener en cuenta. En tu capital serás capaz de obtener <gold> de tus súbditos, cargar <mana> en casos de extrema necesidad, explorar territorios para obtener nuevas <land>, y finalmente utilizarlas para construir nuevos edificios que mejoren permanentemente tus estadísticas económicas, como por ejemplo:<ul><li>Incrementar tu producción de <gold>, <mana> y <population> al turno</li><li>Incrementar tu velocidad de construcción y de investigación</li><li>Incrementar tu Protección Física y Mágica</li><li>Incrementar tu cantidad de <land></li></ul>"
+      "tour": "<p>La ciudad es el punto más importante de tu Reino a tener en cuenta. En tu capital serás capaz de obtener <gold> de tus súbditos, cargar <mana> en casos de extrema necesidad, explorar territorios para obtener nuevas <land>, y finalmente utilizarlas para construir nuevos edificios que mejoren permanentemente tus estadísticas económicas, como por ejemplo:</p><ul><li>Incrementar tu producción de <gold>, <mana> y <population></li><li>Incrementar tu velocidad de construcción</li><li>Incrementar tu velocidad de investigación</li><li>Incrementar tu Protección Física y Mágica</li></ul></p>"
+    },
+    "tax": {
+      "name": "Tributo",
+      "description": "Llena tus arcas reales",
+      "help": "Aquí podrás invertir <turn> en cobrar <gold> a los súbditos de tu Reino. El <gold> se emplea para pagar los mantenimientos de tus Tropas y para contratar Héroes, complacer a los Dioses y comprar Artefactos, entre otras cosas.",
+      "tour": "<p>A veces necesitarás más <gold> del que dispones actualmente para Pujar en la Subasta o para comprar un nuevo Artefacto en una Tienda del Mundo. Para ello puedes Tributar a tus ciudadanos, gastando <turn> para obtener <gold> dependiendo del número de <population> que tengas.</p>",
+      "cancel": "Cancelar",
+      "hint": "Cuantos más Pueblos tengas, más Oro recaudarás",
+      "invalid": "No dispones de suficientes Turnos",
+      "error": "Ha ocurrido un problema",
+      "tax": "Tributar",
+      "source": "Origen",
+      "quantity": "Cantidad",
+      "success": "Has recaudado {{ gold }} Oro"
+    },
+    "charge": {
+      "name": "Meditación",
+      "description": "Recarga tus reservas mágicas",
+      "help": "Aquí podrás invertir <turn> en reponer los depósitos de <mana> de tu Reino. El <mana> se emplea para pagar los mantenimientos de tus Tropas y Encantamientos y el lanzamiento de Hechizos, entre otras cosas.",
+      "tour": "<p>A veces necesitarás más <mana> del que dispones actualmente para conjurar un Hechizo o pagar mantenimientos. Para ello puedes Meditar, gastando <turn> para obtener <mana> dependiendo del número de <node> que tengas.</p>",
+      "cancel": "Cancelar",
+      "hint": "Cuantos más Nodos tengas, más Maná recargarás",
+      "invalid": "No dispones de suficientes Turnos",
+      "error": "Ha ocurrido un problema",
+      "charge": "Meditar",
+      "success": "Has recargado {{ mana }} Maná",
+      "source": "Origen",
+      "quantity": "Cantidad"
+    },
+    "explore": {
+      "name": "Exploración",
+      "description": "Anexiona nuevos territorios a tu Reino",
+      "help": "Aquí podrás invertir <turn> en explorar los vastos terrenos a tu alrededor para obtener nuevas <land> libres. Las <land> libres sirven como espacio para construir nuevos edificios en tu Reino.",
+      "tour": "<p>En términos generales, tu <land> limitará cuán poderoso puede llegar a ser tu Reino, puesto que a mayores y más grandes ejércitos y encantamientos, más mantenimientos tendrás que pagar. Por tanto, tu producitividad deberá ser mayor, y cuantas más <land> poseas, más fácil será generar recursos. <br><br>Pero también, cuantas más <land> tengas, menos encontrarás explorando. Sólo se pueden conseguir hasta 3.500 <land> explorando, el resto deberás obtenerla por otros medios.</p><p>Como la guerra, por ejemplo.",
+      "cancel": "Cancelar",
+      "hint": "Cuantas más Tierras tengas, menos encontrarás explorando",
+      "error": "Ha ocurrido un problema",
+      "invalid": "No dispones de suficientes Turnos",
+      "explore": "Explorar",
+      "success": "Has encontrado {{ lands }} Tierras",
+      "discovery": "Descubrimiento",
+      "quantity": "Cantidad"
+    },
+    "auction": {
+      "name": "Subasta",
+      "description": "Comercia con otros Reinos",
+      "help": "En la subasta puedes pujar <gold> contra otros Reinos para adquirir Artefactos, Tropas, Contratos o Hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de <gold> que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de <gold> de tu puja original, así que asegúrate de pujar con cuidado.",
+      "tour": "<p>La subasta es el único lugar en el que puedes adquirir bienes a cambio de <gold>, además del mapa del mundo, pero a diferencia de éste son independientes de la zona geográfica pues son comunes para todos los jugadores:</p><ul><li>Son renovadas periódicamente</li><li>Se atrasan con cada puja adicional</li><li>Debes pujar como mínimo un 10% más de <gold></li><li>Solo recibirás el 90% de tu <gold> si te sobrepujan</li><li>No puedes subastar tus propios bienes</li><li>No puedes sobrepujarte a tí mismo</li><li>Los Hechizos se adquieren sin investigar</li><li>Los Héroes repetidos aumentan sus niveles</li></ul>",
+      "bid": "Pujar",
+      "subject": "Casa de Subastas",
+      "won": "La subasta ha terminado y tu Reino ha resultado ganador. Las nuevas adquisiciones se han enviado a tu Reino.",
+      "outbid": "Te han sobrepujado en una subasta. Se te ha devuelto el 90% del Oro de tu puja anterior.",
+      "error": "Ha ocurrido un problema"
+    },
+    "bid": {
+      "name": "Puja",
+      "description": "Comercia con otros Reinos",
+      "help": "Debes pujar como mínimo un 10% más de <gold> que la puja anterior, y si alguien te sobrepuja, se te devolverá solo el 90% de tu <gold> original, así que puja con inteligencia.",
+      "tour": null,
+      "cancel": "Cancelar",
+      "bid": "Pujar",
+      "hint": "Ofrece como mínimo un 10% más Oro que la puja anterior",
+      "invalid": "La puja no supera el mínimo o no dispones de suficiente Oro",
+      "error": "Ha ocurrido un problema",
+      "success": "Puja aceptada",
+      "data": "Nota",
+      "quantity": "Cantidad"
+    },
+    "emporium": {
+      "name": "Emporio",
+      "description": "Trafica con gemas",
+      "help": "En el emporio puedes gastar tus <gem> adquiriendo valiosos Artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un importante impulso económico, científico o militar.",
+      "tour": "<p>El emporio es el lugar para gastar las <gem> que hayas conseguido para comprar diversos Artefactos o invertir en un Árbol Genealógico que ofrece diversas bonificaciones, como por ejemplo:</p><ul><li>Construir edificios más deprisa</li><li>Reclutar más Tropas</li><li>Investigar Hechizos más rápido</li><li>Explorar más tierras</li><li>Generar más recursos</li></ul><p>También puedes comprar más <gem> con dinero real.</p>",
+      "success": "Has adquirido {{ quantity }} {{ item }}",
+      "error": "Ha ocurrido un problema",
+      "subject": "Compra realizada",
+      "message": "La compra se ha realizado correctamente. Las nuevas adquisiciones se han enviado a tu Reino.",
+      "from": "Mercado Negro"
+    },
+    "tree": {
+      "name": "Genealogía",
+      "description": "Árbol de los ancestros",
+      "help": "En el árbol genealógico puedes invertir tus <gem> para escoger qué conocimientos ancestrales has heredado de tu familia durante siglos. Cada ventaja otorga un pequeño beneficio asociado a un elemento muy concreto.",
+      "tour": "<p>Este árbol de habilidades ofrece diferentes ventajas a tu Reino. Cuanto más avanzada sea una habilidad, más <gem> requerirá para ser desbloqueada. Puedes replantar el árbol en cualquier momento, pero deberás pagar los costes asociados.</p>",
+      "save": "Replantar",
+      "reset": "Reiniciar",
+      "success": "Has reestablecido tu genealogía",
+      "error": "Ha ocurrido un problema"
+    },
+    "mining": {
+      "name": "Minería",
+      "description": "Extraer gemas de la tierra",
+      "help": "Puedes pagar a unos amables gnomos para que extraigan <gem> de las profundas minas bajo tu Reino, a cambio de dinero real.",
+      "tour": "<p>Con estas modestas donaciones ayudarás al creador del juego a mantener el coste de los servidores, y de regalo se te ofrecerán algunas <gem> para usarlas durante la partida.</p>"
+    },
+    "army": {
+      "name": "Ejército",
+      "description": "Gestiona tus Tropas",
+      "help": "En el ejército podrás ver un listado de todas tus Tropas en espera, sin asignar ni al <attack> ni a la <defense>. Puedes tener cualquier número de Tropas en espera, pero ten en cuenta que pueden consumir <gold>, <mana> o <population> al Turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
+      "tour": "<p>El ejército se compone de Tropas, y son tu principal motor en las conquistas territoriales, permitiendo robar <gold>, <mana>, <population>, <land>, además de reducir <power> enemigo. Puedes asignarlas para:</p><ul><li>Nada, ni atacan ni defienden, pero consumen recursos igualmente</li><li>Atacar manualmente, hasta 5 Tropas diferentes y en el orden especificado</li><li>Defender automáticamente, hasta 5 Tropas diferentes y en el orden especificado</li></ul><p>También las puedes desbandar.</p>",
+      "max": "Max",
+      "maximum": "Tu ejército está al completo",
+      "success": "Los cambios de tus Tropas se han guardado",
+      "error": "Ha ocurrido un problema"
+    },
+    "attack": {
+      "name": "Ataque",
+      "description": "Ordena tus fuerzas ofensivas",
+      "help": "Aquí podrás organizar tus Tropas al atacar a otros Reinos, asignándolas como Tropas ofensivas. Ten en cuenta que, aunque tengas muchas Tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha relevancia en las batallas.",
+      "tour": "Solo las tropas asignadas al ataque entrarán en batalla al atacar a un Reino enemigo. Cada Tropa tiene unos valores predefinidos de Ataque, Defensa, Vida, Iniciativa, Resistencias, etc. Algunos Héroes, Artefactos o Hechizos pueden alterar esos valores. Durante la batalla, las tropas se emparejan una a una dependiendo del orden en el que estén organizadas, tanto para el atacante como para el defensor. Una vez emparejadas, la tropa con mayor Iniciativa atacará a su pareja, que entonces contraatacará con lo que quede de su pelotón. Esto se repetirá hasta que todas las tropas hayan participado al menos una vez en la batalla. Al terminar, se comprobará quién ha perdido más Poder durante la lucha, que será considerado perdedor de la misma, otorgando ciertos bienes al vencedor en compensación, dependiendo del tipo de ataque, como <gold>, <mana>, <population> o <land>.",
+      "max": "Max"
+    },
+    "defense": {
+      "name": "Defensa",
+      "description": "Ordena tus fuerzas defensivas",
+      "help": "Aquí podrás organizar tus Tropas a la defensa de tu capital, asignándolas como Tropas defensivas. Ten en cuenta que, aunque tengas muchas Tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha relevancia en las batallas.",
+      "tour": "Solo las tropas asignadas a la defensa entrarán en batalla al defender tu Reino de ataques enemigos. Cada Tropa tiene unos valores predefinidos de Ataque, Defensa, Vida, Iniciativa, Resistencias, etc. Algunos Héroes, Artefactos o Hechizos pueden alterar esos valores. Durante la batalla, las tropas se emparejan una a una dependiendo del orden en el que estén organizadas, tanto para el atacante como para el defensor. Una vez emparejadas, la tropa con mayor Iniciativa atacará a su pareja, que entonces contraatacará con lo que quede de su pelotón. Esto se repetirá hasta que todas las tropas hayan participado al menos una vez en la batalla. Al terminar, se comprobará quién ha perdido más Poder durante la lucha, que será considerado perdedor de la misma, otorgando ciertos bienes al vencedor en compensación, dependiendo del tipo de ataque, como <gold>, <mana>, <population> o <land>.",
+      "max": "Max"
+    },
+    "recruit": {
+      "name": "Reclutamiento",
+      "description": "Recluta Tropas básicas",
+      "help": "Aqui puedes gastar <gold> para adquirir Tropas básicas para tus ejércitos. Reclutar no consume <turn>, por lo que es una buena forma de reorganizarse militarmente tras una derrota.",
+      "tour": "Reclutar Tropas pagando <gold> puede no parecer óptimo, pero teniendo en cuenta que no consume <turn>, puede ser interesante en ciertos momentos dados:<ul><li>Cuando tenemos muy altos mantenimientos</li><li>Cuando queremos espiar a otro Reino</li><li>Cuando queremos carne de cañón</li></ul>",
+      "hint": "Debes tener suficiente Oro",
+      "invalid": "No tienes suficiente Oro",
+      "error": "Ha ocurrido un problema",
+      "recruit": "Reclutar",
+      "cancel": "Cancelar",
+      "quantity": "Cantidad",
+      "success": "Has reclutado {{ quantity }} {{ unit }}",
+      "troop": "Tropa",
+      "platoon": "Pelotón",
+      "costs": "Costes"
+    },
+    "tavern": {
+      "name": "Taberna",
+      "description": "Asigna a tus Héroes",
+      "help": "Los Héroes de tu Reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores de batalla ni al <attack> ni a la <defense>. Puedes optar por despedir a un Héroe si no puedes pagar sus mantenimientos. No puedes tener Héroes repetidos. Los Héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
+      "tour": "<p>La taberna alberga a los Héroes que contrates en tu Reino. Proporcionan pequeños bonuses que pueden ir desde incrementar la producción de recursos hasta aumentar las estadísticas de tus Tropas en la batalla. Puedes asignarlos para:</p><ul><li>Nada, ni atacan ni defienden, consumen mantenimientos pero proporcionan bonuses pasivos</li><li>Atacar manualmente, hasta 3 Héroes diferentes y su orden es irrelevante</li><li>Defender automáticamente, hasta 3 Héroes diferentes y su orden es irrelevante</li></ul><p>También los puedes despedir.</p>",
+      "success": "Tus Héroes han sido asignados",
+      "error": "Ha ocurrido un problema",
+      "max": "Max",
+      "maximum": "Tu ejército está al completo"
     },
     "leadership": {
       "name": "Liderazgo",
       "description": "Comanda tus Tropas",
-      "help": "Los Héroes que tengas asignados al Liderazo irán al <attack> en batalla contra cualquier Reino que ataques o aventura que emprendas, y proporcionarán sus bonificadores a las Tropas correspondientes. Los Héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
-      "tour": "",
+      "help": "Los Héroes que tengas asignados al Liderazo irán al <attack> en batalla contra cualquier Reino que ataques o aventura que emprendas, y proporcionarán sus bonificadores a las Tropas correspondientes.",
+      "tour": "<p>Los Héroes en Liderazgo pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.</p>",
       "max": "Max"
     },
     "guard": {
       "name": "Guardia",
       "description": "Vigila tus dominios",
-      "help": "Los Héroes que tengas asignados a la Guardia irán en <defense> en batalla contra cualquier Reino que te ataque, y proporcionarán sus bonificadores a las Tropas correspondientes. También proporcionan sus habilidades pasivas al Reino mientras tanto. Los Héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.",
-      "tour": "",
+      "help": "Los Héroes que tengas asignados a la Guardia irán en <defense> en batalla contra cualquier Reino que te ataque, y proporcionarán sus bonificadores a las Tropas correspondientes. También proporcionan sus habilidades pasivas al Reino mientras tanto.",
+      "tour": "<p>Los Héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.</p>",
       "max": "Max"
     },
     "census": {
       "name": "Censo",
       "description": "Conoce a tus enemigos",
       "help": "En el censo puedes ver una lista completa de todos los Reinos que comparten este plano de la realidad, ordenados por poder. Desde aquí puedes realizar la mayoría de acciones ofensivas, como activar Artefactos o lanzar Hechizos, o iniciar batallas. También puedes mandar mensajes a otros Reinos.",
-      "tour": "El censo tiene una lista actualizada de todos los Reinos, ordenados por <power> de mayor a menor. Desde aquí puedes realizar diferentes acciones sobre otros Reinos:<ul><li>Comenzar ataques<ul><li>Batallas normales</li><li>Pillajes de recursos</li><li>Asedios contra edificios</li></ul></li><li>Conjurar Hechizos y encantamientos</li><li>Activar Artefactos</li><li>Enviar mensajes</li></ul>El primer jugador será el ganador de la temporada.",
+      "tour": "<p>El censo tiene una lista actualizada de todos los Reinos, ordenados por <power> de mayor a menor. Desde aquí puedes realizar diferentes acciones sobre otros Reinos:</p><ul><li>Comenzar ataques<ul><li>Batallas normales</li><li>Pillajes de recursos</li><li>Asedios contra edificios</li></ul></li><li>Conjurar Hechizos y encantamientos</li><li>Activar Artefactos</li><li>Enviar mensajes</li></ul><p>El primer jugador será el ganador de la temporada.</p>",
       "protection": "Protegido",
       "report": "Se ha enviado el reporte de batalla"
+    },
+    "archive": {
+      "name": "Archivo",
+      "description": "Revisa tu correspondencia",
+      "help": "Aqui puedes ver un listado de todos los Mensajes directos que te han enviado otros Reinos, así como los informes de batalla, subastas ganadas o sobrepujadas, Hechizos, Artefactos y Encantamientos lanzados contra tu Reino.",
+      "tour": "<p>En el archivo puedes consultar los Mensajes que llegan diariamente a tu Reino:</p><ul><li>Reportes de batalla</li><li>Movimientos de subasta</li><li>Mensajes de otros reinos</li><li>Activaciones de artifactos</li><li>Conjuraciones de Hechizos y encantamientos</li></ul><p>También los puedes borrar.</p>",
+      "new": "Tienes mensajes nuevos",
+      "success": "Mensajes borrados",
+      "error": "Ha ocurrido un problema"
+    },
+    "clan": {
+      "name": "Clan",
+      "description": "Forja alianzas",
+      "help": "Puedes unirte a un Clan ya existente o fundar tu propio Clan para que otros magos y brujas se unan. Un clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio...",
+      "tour": "<p>En el clan puedes ver todos los clanes que existen actualmente, formar un nuevo clan, unirte a un clan o abandonar un clan. Formar un nuevo clan te costará bastante <gold>.</p>",
+      "join": "Unirse",
+      "leave": "Marcharse",
+      "found": "Fundar",
+      "none": "Ninguno",
+      "success": "Solicitud aprobada",
+      "error": "Ha ocurrido un problema"
+    },
+    "guild": {
+      "name": "Gremio",
+      "description": "Favorece a un colectivo",
+      "help": "Puedes otorgar el favor de tu Reino a un Gremio en concreto. Como agradecimiento, dicho Gremio te otorgará un bonus adicional en los ataques a otros Reinos (Batallas, Pillajes o Asedios). Sólo puedes cambiar de Gremio una vez cada cierto tiempo.",
+      "tour": "<p>Además, podrás unirte y cambiar de Gremio semanalmente para disfrutar de bonificaciones militares únicas:</p><ul><li>Aumentar <attack>, <defense> o <health> de tus Tropas en las Batallas</li><li>Robar más <gold>, <mana> o <population> en los Pillajes</li><li>Destruir más Edificios, Tropas o Recursos en los Asedios</li></ul>",
+      "hint": "Debes esperar 7 días antes de cambiar de Gremio",
+      "select": "Escoge un Gremio",
+      "favor": "Favorecer",
+      "cancel": "Cancelar",
+      "success": "Has favorecido al Gremio",
+      "error": "Ha ocurrido un problema"
+    },
+    "sorcery": {
+      "name": "Magia",
+      "description": "Conjura tus Hechizos y Artefactos",
+      "help": "Aquí podrás ver un listado de todos tus Hechizos y Artefactos disponibles, sin asignar ni al <attack> ni a la <defense>. Puedes conjurar Hechizos y/o activar Artefactos, siempre que puedan usarse fuera de las batallas y tengas <mana>. También podrás completar investigaciones pendientes para desbloquear nuevos Hechizos, invirtiendo <turn>. Para lanzar Hechizos agresivos, hazlo desde el Censo.",
+      "tour": "<p>La magia te permite invertir Turnos en la investigación de nuevos y poderosos Hechizos, activar tus Artefactos, y gestionar cuales de ellos se usarán tanto en el ataque como en la defensa de tu Reino. Puedes asignarlos para:</p><ul><li>Atacar manualmente, hasta 1 Artefacto y 1 Hechizo, si puedes pagar su <mana></li><li>Defender automáticamente, hasta 1 Artefacto y 1 Hechizo, si puedes pagar su <mana></li></ul>",
+      "maximum": "No puedes superar el máximo",
+      "success": "Tus Hechizos y Artefactos han sido asignados",
+      "error": "Ha ocurrido un problema",
+      "max": "Max"
+    },
+    "arcanism": {
+      "name": "Arcanismo",
+      "description": "Organiza tus artimañas ofensivas",
+      "help": "Aquí podrás organizar tus Hechizos y Artefactos al atacar a otros Reinos. Ten en cuenta que, aunque tengas muchos Hechizos y Artefactos, solo podrás asignar algunos al <attack>, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los Artefactos que los Hechizos, y éstos últimos solo si tienes el suficiente <mana> disponible.",
+      "tour": "<p>Los Hechizos pueden alterar significativamente el resultado de las batallas. No solo puedes fortalezar a tus Tropas o debilitar a las Tropas enemigas, también podrás causar daño directo, resucitar, etc.</p>",
+      "max": "Max"
+    },
+    "protection": {
+      "name": "Protección",
+      "description": "Organiza tus artimañas defensivas",
+      "help": "Aquí podrás organizar tus Hechizos y Artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas Hechizos y Artefactos, solo podrás asignar algunos a la <defense>, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los Artefactos que los Hechizos, y éstos últimos solo si tienes el suficiente <mana> disponible.",
+      "tour": "<p>Los Hechizos pueden alterar significativamente el resultado de las batallas. No solo puedes fortalezar a tus Tropas o debilitar a las Tropas enemigas, también podrás causar daño directo, resucitar, etc.</p>",
+      "max": "Max"
+    },
+    "research": {
+      "name": "Investigación",
+      "description": "Aqui puedes invertir <turn> para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos <turn> necesitarás.",
+      "hint": "Invierte Turnos en investigar",
+      "invalid": "No dispones de suficientes Turnos",
+      "error": "Ha ocurrido un problema",
+      "research": "Investigar",
+      "cancel": "Cancelar",
+      "success": "Has avanzado la investigación del Hechizo",
+      "charm": "Hechizo",
+      "quantity": "Cantidad"
+    },
+    "conjure": {
+      "name": "Conjuración",
+      "description": "Aqui puedes gastar <turn> y <mana> para conjurar tus Hechizos investigados. Conjurar Hechizos sobre otros Reinos no siempre funciona debido a la Protección Mágica.",
+      "hint": "Debes tener suficientes Turnos y Maná",
+      "error": "Ha ocurrido un problema",
+      "conjure": "Conjurar",
+      "cancel": "Cancelar",
+      "select": "Escoge un Hechizo",
+      "summon": "Has invocado {{ size }} {{ unit }}",
+      "resource": "Has obtenido/destruido {{ amount }} {{ resource }}",
+      "enchantment": "Has encantado {{ enchantment }} durante {{ turns }} Turnos",
+      "item": "Has encontrado {{ quantity }} {{ item }}",
+      "spell": "Has descubierto {{ spell }}",
+      "success": "Conjuro completado",
+      "charm": "Hechizo",
+      "costs": "Costes",
+      "subject": "Conjuración de Hechizo",
+      "message": "Se ha conjurado un Hechizo enemigo contra tu Reino. ¡Ésta osadía no quedará impune!"
+    },
+    "temple": {
+      "name": "Templo",
+      "description": "Complace a los Dioses",
+      "help": "Puedes ofrecer <gold>, <mana>, <population>, <land>, <turn> y <gem> a los distintos Dioses de este plano de la realidad para que otorguen su favor a tu Reino, y finalmente para que convoquen el Armagedón. Los favores incluyen Encantamientos, Artefactos, Tropas o recursos. Pero ten cuidado con lo que deseas, pues los Dioses son caprichosos...",
+      "tour": "<p>En el Templo se puede ofrecer <gold>, <mana>, <population>, <land>, <turn> o <gem> a los Dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar ofrendas a un Dios, obtendrás su favor, que puede ser una cantidad al azar de:</p><ul><li>Encantamientos o Maldiciones</li><li>Niveles de Héroe</li><li>Artefactos</li><li>Tropas</li><li>Edificios</li><li>Hechizos para investigar</li><li>Recursos (ganancia o pérdida)</li></ul>",
+      "hero": "Te han otorgado el Héroe {{ hero }} ({{ level }})",
+      "unit": "Te han otorgado la Tropa {{ unit }} ({{ quantity }})",
+      "enchantment": "Te han encantado con {{ enchantment }} ({{ turns }})",
+      "item": "Te han otorgado el Artefacto {{ item }} ({{ quantity }})",
+      "building": "Te han construido {{ building }} ({{ number }})",
+      "spell": "Te han enseñado el Hechizo {{ spell }} ({{ turns }})",
+      "gold": "Te han otorgado Oro ({{ gold }})",
+      "mana": "Te han otorgado Maná ({{ mana }})",
+      "population": "Te han otorgado Población ({{ population }})",
+      "land": "Te han otorgado Tierras ({{ land }})",
+      "turn": "Te han otorgado Turnos ({{ turn }})",
+      "gem": "Te han otorgado Gemas ({{ gem }})"
+    },
+    "break": {
+      "name": "Desvanecimiento",
+      "description": "Rompe Encantamientos",
+      "help": "Aqui puedes gastar <mana> y <turn> para rezar y tratar de desvanecer un Encantamiento del que seas objetivo (pero no su origen). El éxito dependerá de la diferencia de Protección Mágica entre ambos Reinos.",
+      "tour": "<p>Los Encantamientos pueden ser de varios tipos:</p><ul><li>De tu Reino a tu Reino (Encantamientos)</li><li>De tu Reino a otro Reino (Maldiciones)</li><li>De otro Reino a tu Reino (Maldiciones)</li></ul>",
+      "hint": "Debes tener suficiente Maná",
+      "invalid": "No tienes suficiente Maná",
+      "error": "Ha ocurrido un problema",
+      "from": "Fuente",
+      "break": "Desvanecer",
+      "cancel": "Cancelar",
+      "enchantment": "Encantamiento",
+      "costs": "Costes",
+      "success": "Los Encantamientos se han desvanecido"
+    },
+    "dispel": {
+      "name": "Liberación",
+      "description": "Libera maleficios",
+      "help": "Aqui puedes gastar <mana> y <turn> para rezar y tratar de liberar una Maldición de la que seas el origen (incluso siendo su objetivo). Siempre se tiene éxito.",
+      "tour": "<p>Los Encantamientos pueden ser de varios tipos:</p><ul><li>De tu Reino a tu Reino (Encantamientos)</li><li>De tu Reino a otro Reino (Maldiciones)</li><li>De otro Reino a tu Reino (Maldiciones)</li></ul>",
+      "hint": "Debes tener suficiente Maná",
+      "invalid": "No tienes suficiente Maná",
+      "error": "Ha ocurrido un problema",
+      "to": "Objetivo",
+      "dispel": "Liberar",
+      "cancel": "Cancelar",
+      "incantation": "Maleficio",
+      "maintenances": "Mantenimientos",
+      "success": "Los maleficios se han liberado",
+      "subject": "Abandono",
+      "message": "Tu Encantamiento se ha liberado por no poder pagar debidamente su mantenimiento..."
     },
     "detail": {
       "name": "Detalle del Reino",
@@ -401,16 +683,6 @@
       "victory": "Tu ejército ha salido victorioso del combate. Se adjunta el reporte de batalla y las recompensas de la victoria se han enviado a tu Reino.",
       "defeat": "Tu ejército ha sido derrotado en combate. Se adjunta el reporte de batalla y no has obtenido ninguna recompensa."
     },
-    "army": {
-      "name": "Ejército",
-      "description": "Gestiona tus Tropas",
-      "help": "En el ejército podrás ver un listado de todas tus Tropas en espera, sin asignar ni al <attack> ni a la <defense>. Puedes tener cualquier número de Tropas en espera, pero ten en cuenta que pueden consumir <gold>, <mana> o <population> al Turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
-      "tour": "El ejército se compone de Tropas, y son tu principal motor en las conquistas territoriales, permitiendo robar <gold>, <mana>, <population>, <land>, además de reducir <power> enemigo. Puedes asignarlas para:<ul><li>Nada, ni atacan ni defienden, pero consumen recursos igualmente</li><li>Atacar manualmente, hasta 5 Tropas diferentes y en el orden especificado</li><li>Defender automáticamente, hasta 5 Tropas diferentes y en el orden especificado</li></ul>También las puedes desbandar.",
-      "max": "Max",
-      "maximum": "Tu ejército está al completo",
-      "success": "Los cambios de tus Tropas se han guardado",
-      "error": "Ha ocurrido un problema"
-    },
     "disband": {
       "name": "Desbande",
       "description": "Puedes desbandar Tropas que no quieras seguir manteniendo bajo tu mando, siempre y cuando no estén asignadas al <attack> o a la <defense>, y que no consuman <population> por su mantenimiento.",
@@ -439,145 +711,6 @@
       "subject": "Abandono",
       "message": "Tu Héroe te ha abandonado por no poder pagar debidamente su mantenimiento..."
     },
-    "attack": {
-      "name": "Ataque",
-      "description": "Ordena tus fuerzas ofensivas",
-      "help": "Aquí podrás organizar tus Tropas al atacar a otros Reinos, asignándolas como Tropas ofensivas. Ten en cuenta que, aunque tengas muchas Tropas, solo podrás asignar algunas al ataque, y su orden tiene mucha relevancia en las batallas.",
-      "tour": "",
-      "max": "Max"
-    },
-    "defense": {
-      "name": "Defensa",
-      "description": "Ordena tus fuerzas defensivas",
-      "help": "Aquí podrás organizar tus Tropas a la defensa de tu capital, asignándolas como Tropas defensivas. Ten en cuenta que, aunque tengas muchas Tropas, solo podrás asignar algunas a la defensa, y su orden tiene mucha relevancia en las batallas.",
-      "tour": "",
-      "max": "Max"
-    },
-    "recruit": {
-      "name": "Reclutamiento",
-      "description": "Recluta Tropas básicas",
-      "help": "Aqui puedes gastar <gold> para adquirir Tropas básicas para tus ejércitos. Reclutar no consume <turn>, por lo que es una buena forma de reorganizarse militarmente tras una derrota.",
-      "tour": "",
-      "hint": "Debes tener suficiente Oro",
-      "invalid": "No tienes suficiente Oro",
-      "error": "Ha ocurrido un problema",
-      "recruit": "Reclutar",
-      "cancel": "Cancelar",
-      "quantity": "Cantidad",
-      "success": "Has reclutado {{ quantity }} {{ unit }}",
-      "troop": "Tropa",
-      "platoon": "Pelotón",
-      "costs": "Costes"
-    },
-    "break": {
-      "name": "Desvanecimiento",
-      "description": "Rompe Encantamientos",
-      "help": "Aqui puedes gastar <mana> para rezar y tratar de desvanecer un Encantamiento del que seas objetivo (pero no su fuente). El éxito dependerá de la diferencia de Protección Mágica entre ambos Reinos.",
-      "tour": "",
-      "hint": "Debes tener suficiente Maná",
-      "invalid": "No tienes suficiente Maná",
-      "error": "Ha ocurrido un problema",
-      "from": "Fuente",
-      "break": "Desvanecer",
-      "cancel": "Cancelar",
-      "enchantment": "Encantamiento",
-      "costs": "Costes",
-      "success": "Los Encantamientos se han desvanecido"
-    },
-    "dispel": {
-      "name": "Liberación",
-      "description": "Libera maleficios",
-      "help": "Aqui puedes gastar <mana> para rezar y tratar de liberar un maleficio del que seas fuente (incluso siendo su objetivo). Siempre se tiene éxito.",
-      "tour": "",
-      "hint": "Debes tener suficiente Maná",
-      "invalid": "No tienes suficiente Maná",
-      "error": "Ha ocurrido un problema",
-      "to": "Objetivo",
-      "dispel": "Liberar",
-      "cancel": "Cancelar",
-      "incantation": "Maleficio",
-      "maintenances": "Mantenimientos",
-      "success": "Los maleficios se han liberado",
-      "subject": "Abandono",
-      "message": "Tu Encantamiento se ha liberado por no poder pagar debidamente su mantenimiento..."
-    },
-    "guild": {
-      "name": "Gremio",
-      "description": "Favorece a un colectivo",
-      "help": "Puedes otorgar el favor de tu Reino a un Gremio en concreto. Como agradecimiento, dicho Gremio te otorgará un bonus adicional en los ataques a otros Reinos (Batallas, Pillajes o Asedios). Sólo puedes cambiar de Gremio una vez cada cierto tiempo.",
-      "tour": "",
-      "hint": "Debes esperar 7 días antes de cambiar de Gremio",
-      "select": "Escoge un Gremio",
-      "favor": "Favorecer",
-      "cancel": "Cancelar",
-      "success": "Has favorecido al Gremio",
-      "error": "Ha ocurrido un problema"
-    },
-    "auction": {
-      "name": "Subasta",
-      "description": "Comercia con otros Reinos",
-      "help": "En la subasta puedes pujar <gold> contra otros Reinos para adquirir Artefactos, Tropas, Contratos o Hechizos. Las subastas se renuevan diariamente, y te pueden sobrepujar. Para superar una subasta debes ofrecer como mínimo un 10% más de <gold> que la puja anterior, y si te sobrepujan, sólo se te devolverá el 90% de <gold> de tu puja original, así que asegúrate de pujar con cuidado.",
-      "tour": "La subasta es el único lugar en el que puedes adquirir bienes a cambio de <gold>, además del mapa del mundo, pero a diferencia de éste son independientes de la zona geográfica pues son comunes para todos los jugadores:<ul><li>Son renovadas periódicamente</li><li>Se atrasan con cada puja adicional</li><li>Debes pujar como mínimo un 10% más de <gold></li><li>Solo recibirás el 90% de tu <gold> si te sobrepujan</li><li>No puedes subastar tus propios bienes</li><li>No puedes sobrepujarte a tí mismo</li><li>Los Hechizos se adquieren sin investigar</li><li>Los Héroes repetidos aumentan sus niveles</li></ul>",
-      "bid": "Pujar",
-      "subject": "Casa de Subastas",
-      "won": "La subasta ha terminado y tu Reino ha resultado ganador. Las nuevas adquisiciones se han enviado a tu Reino.",
-      "outbid": "Te han sobrepujado en una subasta. Se te ha devuelto el 90% del Oro de tu puja anterior.",
-      "error": "Ha ocurrido un problema"
-    },
-    "bid": {
-      "name": "Puja",
-      "description": "Comercia con otros Reinos",
-      "help": "Debes pujar como mínimo un 10% más de <gold> que la puja anterior, y si alguien te sobrepuja, se te devolverá solo el 90% de tu <gold> original, así que puja con inteligencia.",
-      "cancel": "Cancelar",
-      "bid": "Pujar",
-      "hint": "Ofrece como mínimo un 10% más Oro que la puja anterior",
-      "invalid": "La puja no supera el mínimo o no dispones de suficiente Oro",
-      "error": "Ha ocurrido un problema",
-      "success": "Puja aceptada",
-      "data": "Nota",
-      "quantity": "Cantidad"
-    },
-    "sorcery": {
-      "name": "Magia",
-      "description": "Conjura tus Hechizos y Artefactos",
-      "help": "Aquí podrás ver un listado de todos tus Hechizos y Artefactos disponibles, sin asignar ni al <attack> ni a la <defense>. Puedes conjurar Hechizos y/o activar Artefactos, siempre que puedan usarse fuera de las batallas y tengas <mana>. También podrás completar investigaciones pendientes para desbloquear nuevos Hechizos, invirtiendo <turn>. Para lanzar Hechizos agresivos, hazlo desde el Censo.",
-      "tour": "La magia te permite invertir Turnos en la investigación de nuevos y poderosos Hechizos, activar tus Artefactos, y gestionar cuales de ellos se usarán tanto en el ataque como en la defensa de tu Reino. Puedes asignarlos para:<ul><li>Atacar manualmente, hasta 1 Artefacto y 1 Hechizo, si puedes pagar su <mana></li><li>Defender automáticamente, hasta 1 Artefacto y 1 Hechizo, si puedes pagar su <mana>",
-      "maximum": "No puedes superar el máximo",
-      "success": "Tus Hechizos y Artefactos han sido asignados",
-      "error": "Ha ocurrido un problema",
-      "max": "Max"
-    },
-    "research": {
-      "name": "Investigación",
-      "description": "Aqui puedes invertir <turn> para completar las investigaciones pendientes. Ten en cuenta que cuantas más Academias poseas, menos <turn> necesitarás.",
-      "hint": "Invierte Turnos en investigar",
-      "invalid": "No dispones de suficientes Turnos",
-      "error": "Ha ocurrido un problema",
-      "research": "Investigar",
-      "cancel": "Cancelar",
-      "success": "Has avanzado la investigación del Hechizo",
-      "charm": "Hechizo",
-      "quantity": "Cantidad"
-    },
-    "conjure": {
-      "name": "Conjuración",
-      "description": "Aqui puedes gastar <turn> y <mana> para conjurar tus Hechizos investigados. Conjurar Hechizos sobre otros Reinos no siempre funciona debido a la Protección Mágica.",
-      "hint": "Debes tener suficientes Turnos y Maná",
-      "error": "Ha ocurrido un problema",
-      "conjure": "Conjurar",
-      "cancel": "Cancelar",
-      "select": "Escoge un Hechizo",
-      "summon": "Has invocado {{ size }} {{ unit }}",
-      "resource": "Has obtenido/destruido {{ amount }} {{ resource }}",
-      "enchantment": "Has encantado {{ enchantment }} durante {{ turns }} Turnos",
-      "item": "Has encontrado {{ quantity }} {{ item }}",
-      "spell": "Has descubierto {{ spell }}",
-      "success": "Conjuro completado",
-      "charm": "Hechizo",
-      "costs": "Costes",
-      "subject": "Conjuración de Hechizo",
-      "message": "Se ha conjurado un Hechizo enemigo contra tu Reino. ¡Ésta osadía no quedará impune!"
-    },
     "espionage": {
       "subject": "Reporte de Espionaje",
       "message": "A continuación se desglosa el reporte de espionaje del Reino objetivo."
@@ -599,81 +732,6 @@
       "subject": "Activación de Artefacto",
       "message": "Se ha activado un Artefacto enemigo contra tu Reino. ¡Ésta osadía no quedará impune!"
     },
-    "arcanism": {
-      "name": "Arcanismo",
-      "description": "Organiza tus artimañas ofensivas",
-      "help": "Aquí podrás organizar tus Hechizos y Artefactos al atacar a otros Reinos. Ten en cuenta que, aunque tengas muchos Hechizos y Artefactos, solo podrás asignar algunos al <attack>, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los Artefactos que los Hechizos, y éstos últimos solo si tienes el suficiente <mana> disponible.",
-      "tour": "",
-      "max": "Max"
-    },
-    "protection": {
-      "name": "Protección",
-      "description": "Organiza tus artimañas defensivas",
-      "help": "Aquí podrás organizar tus Hechizos y Artefactos a la defensa de tu capital. Ten en cuenta que, aunque tengas muchas Hechizos y Artefactos, solo podrás asignar algunos a la <defense>, y solo si pueden usarse en las batallas. El orden importa, puesto que se utilizarán antes los Artefactos que los Hechizos, y éstos últimos solo si tienes el suficiente <mana> disponible.",
-      "tour": "",
-      "max": "Max"
-    },
-    "charge": {
-      "name": "Meditación",
-      "description": "Recarga tus reservas mágicas",
-      "help": "Aquí podrás invertir <turn> en reponer los depósitos de <mana> de tu Reino. El <mana> se emplea para pagar los mantenimientos de tus Tropas y Encantamientos y el lanzamiento de Hechizos, entre otras cosas.",
-      "tour": "",
-      "cancel": "Cancelar",
-      "hint": "Cuantos más Nodos tengas, más Maná recargarás",
-      "invalid": "No dispones de suficientes Turnos",
-      "error": "Ha ocurrido un problema",
-      "charge": "Meditar",
-      "success": "Has recargado {{ mana }} Maná",
-      "source": "Origen",
-      "quantity": "Cantidad"
-    },
-    "tax": {
-      "name": "Tributo",
-      "description": "Llena tus arcas reales",
-      "help": "Aquí podrás invertir <turn> en cobrar <gold> a los súbditos de tu Reino. El <gold> se emplea para pagar los mantenimientos de tus Tropas y para contratar Héroes, complacer a los Dioses y comprar Artefactos, entre otras cosas.",
-      "tour": "",
-      "cancel": "Cancelar",
-      "hint": "Cuantos más Pueblos tengas, más Oro recaudarás",
-      "invalid": "No dispones de suficientes Turnos",
-      "error": "Ha ocurrido un problema",
-      "tax": "Tributar",
-      "source": "Origen",
-      "quantity": "Cantidad",
-      "success": "Has recaudado {{ gold }} Oro"
-    },
-    "explore": {
-      "name": "Exploración",
-      "description": "Anexiona nuevos territorios a tu Reino",
-      "help": "Aquí podrás invertir <turn> en explorar los vastos terrenos a tu alrededor para obtener nuevas <land> libres. Las <land> libres sirven como espacio para construir nuevos edificios en tu Reino.",
-      "tour": "",
-      "cancel": "Cancelar",
-      "hint": "Cuantas más Tierras tengas, menos encontrarás explorando",
-      "error": "Ha ocurrido un problema",
-      "invalid": "No dispones de suficientes Turnos",
-      "explore": "Explorar",
-      "success": "Has encontrado {{ lands }} Tierras",
-      "discovery": "Descubrimiento",
-      "quantity": "Cantidad"
-    },
-    "tavern": {
-      "name": "Taberna",
-      "description": "Asigna a tus Héroes",
-      "help": "Los Héroes de tu Reino sin asignar se quedarán pasando el rato en la taberna, pero no aplicarán sus bonificadores de batalla ni al <attack> ni a la <defense>. Puedes optar por despedir a un Héroe si no puedes pagar sus mantenimientos. No puedes tener Héroes repetidos. Los Héroes que pasan el rato en la taberna no pueden ganar experiencia ni subir de nivel, pero tampoco pueden morir en combate.",
-      "tour": "La taberna alberga a los Héroes que contrates en tu Reino. Proporcionan pequeños bonuses que pueden ir desde incrementar la producción de recursos hasta aumentar las estadísticas de tus Tropas en la batalla. Puedes asignarlos para:<ul><li>Nada, ni atacan ni defienden, consumen mantenimientos pero proporcionan bonuses pasivos</li><li>Atacar manualmente, hasta 3 Héroes diferentes y su orden es irrelevante</li><li>Defender automáticamente, hasta 3 Héroes diferentes y su orden es irrelevante</li></ul>También los puedes despedir.",
-      "success": "Tus Héroes han sido asignados",
-      "error": "Ha ocurrido un problema",
-      "max": "Max",
-      "maximum": "Tu ejército está al completo"
-    },
-    "archive": {
-      "name": "Archivo",
-      "description": "Revisa tu correspondencia",
-      "help": "Aqui puedes ver un listado de todos los Mensajes directos que te han enviado otros Reinos, así como los informes de batalla, subastas ganadas o sobrepujadas, Hechizos, Artefactos y Encantamientos lanzados contra tu Reino.",
-      "tour": "En el archivo puedes consultar los Mensajes que llegan diariamente a tu Reino:<ul><li>Reportes de batalla</li><li>Movimientos de subasta</li><li>Mensajes de otros reinos</li><li>Activaciones de artifactos</li><li>Conjuraciones de Hechizos y encantamientos</li></ul>También los puedes borrar.",
-      "new": "Tienes mensajes nuevos",
-      "success": "Mensajes borrados",
-      "error": "Ha ocurrido un problema"
-    },
     "letter": {
       "name": "Redactar",
       "description": "Desde aquí puedes enviar un respetuoso y cordial mensaje a un Reino enemigo, o incluso a tí mismo como método de recordatorio.",
@@ -687,18 +745,6 @@
       "error": "Ha ocurrido un problema",
       "invalid": "Campo no válido",
       "contents": "Contenido"
-    },
-    "clan": {
-      "name": "Clan",
-      "description": "Forja alianzas",
-      "help": "Puedes unirte a un Clan ya existente o fundar tu propio Clan para que otros magos y brujas se unan. Un clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio...",
-      "tour": "En el clan puedes ver todos los clanes que existen actualmente, formar un nuevo clan, unirte a un clan o abandonar un clan. Además, podrás unirte y cambiar de Gremio semanalmente para disfrutar de bonificaciones militares únicas:<ul><li>Aumentar <attack>, <defense> o <health> de tus Tropas en las Batallas</li><li>Robar más <gold>, <mana> o <population> en los Pillajes</li><li>Destruir más Edificios, Tropas o Recursos en los Asedios</li></ul>",
-      "join": "Unirse",
-      "leave": "Marcharse",
-      "found": "Fundar",
-      "none": "Ninguno",
-      "success": "Solicitud aprobada",
-      "error": "Ha ocurrido un problema"
     },
     "foundation": {
       "name": "Fundar nuevo clan",
@@ -721,26 +767,9 @@
       "members": "Miembros",
       "close": "Cerrar"
     },
-    "temple": {
-      "name": "Templo",
-      "description": "Complace a los Dioses",
-      "help": "Puedes ofrecer <gold>, <mana>, <population>, <land>, <turn> y <gem> a los distintos Dioses de este plano de la realidad para que otorguen su favor a tu Reino, y finalmente para que convoquen el Armagedón. Los favores incluyen Encantamientos, Artefactos, Tropas o recursos. Pero ten cuidado con lo que deseas, pues los Dioses son caprichosos...",
-      "tour": "En el templo se puede ofrecer <gold>, <mana>, <population>, <land>, <turn> o <gem> a los Dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar a un Dios, obtendrás su favor, que puede ir desde regalar un Artefacto hasta maldecir tu Reino con el más terrible de los Encantamientos.<br><br>También puedes ver los Encantamientos de tu Reino y tratar de romperlos usando <mana>, si así lo deseas:<ul><li>De tu Reino a tu reino</li><li>De tu Reino a otro reino</li><li>De otro Reino a tu reino</li></ul>",
-      "hero": "Te han otorgado el Héroe {{ hero }} ({{ level }})",
-      "unit": "Te han otorgado la Tropa {{ unit }} ({{ quantity }})",
-      "enchantment": "Te han encantado con {{ enchantment }} ({{ turns }})",
-      "item": "Te han otorgado el Artefacto {{ item }} ({{ quantity }})",
-      "building": "Te han construido {{ building }} ({{ number }})",
-      "spell": "Te han enseñado el Hechizo {{ spell }} ({{ turns }})",
-      "gold": "Te han otorgado Oro ({{ gold }})",
-      "mana": "Te han otorgado Maná ({{ mana }})",
-      "population": "Te han otorgado Población ({{ population }})",
-      "land": "Te han otorgado Tierras ({{ land }})",
-      "turn": "Te han otorgado Turnos ({{ turn }})"
-    },
     "offer": {
       "name": "Ofrenda",
-      "description": "Ofrece recursos a tu Dios como sacrificio para obtener favores. Las ofrendas de todos los Reinos se acumulan poco a poco, y cuando un Dios se considere satisfecho, romperá uno de los cinco sellos. Cuando se rompan todos, desencadenarán el Armagedón sobre este plano de la realidad.",
+      "description": "Ofrece recursos a tu Dios como sacrificio para obtener favores. Las ofrendas de todos los Reinos se acumulan poco a poco, y cuando un Dios se considere satisfecho, romperá uno de los seis sellos. Cuando se rompan todos, desencadenarán el Armagedón sobre este plano de la realidad.",
       "cancel": "Cancelar",
       "offer": "Ofrecer",
       "hint": "Debes ofrecer como mínimo {{ increment }} a tu Dios",
@@ -750,27 +779,6 @@
       "costs": "Costes",
       "quantity": "Cantidad",
       "god": "Dios"
-    },
-    "emporium": {
-      "name": "Emporio",
-      "description": "Trafica con gemas",
-      "help": "En el emporio puedes gastar tus <gem> adquiriendo valiosos Artefactos del mercado negro. La mayoría pueden proporcionarte una valiosa ventaja táctica en batalla o un importante impulso económico, científico o militar.",
-      "tour": "El emporio es el lugar para gastar las <gem> que hayas conseguido para comprar diversos Artefactos o invertir en un Árbol Genealógico que ofrece diversas bonificaciones, como por ejemplo:<ul><li>Construir edificios más deprisa</li><li>Reclutar más Tropas</li><li>Investigar Hechizos más rápido</li><li>Explorar más tierras</li><li>Generar más recursos</li></ul>También puedes comprar más <gem> con dinero real.",
-      "success": "Has adquirido {{ quantity }} {{ item }}",
-      "error": "Ha ocurrido un problema",
-      "subject": "Compra realizada",
-      "message": "La compra se ha realizado correctamente. Las nuevas adquisiciones se han enviado a tu Reino.",
-      "from": "Mercado Negro"
-    },
-    "tree": {
-      "name": "Genealogía",
-      "description": "Árbol de los ancestros",
-      "help": "En el árbol genealógico puedes invertir tus <gem> para escoger qué conocimientos ancestrales has heredado de tu familia durante siglos. Cada ventaja otorga un pequeño beneficio asociado a un elemento muy concreto.",
-      "tour": "",
-      "save": "Replantar",
-      "reset": "Reiniciar",
-      "success": "Has reestablecido tu genealogía",
-      "error": "Ha ocurrido un problema"
     },
     "plant": {
       "name": "Replantado",
@@ -800,12 +808,6 @@
       "error": "Ha ocurrido un problema",
       "built": "Has construido {{ quantity }} {{ structure }}",
       "demolished": "Has demolido {{ quantity }} {{ structure }}"
-    },
-    "mining": {
-      "name": "Minería",
-      "description": "Extraer gemas de la tierra",
-      "help": "Puedes pagar a unos amables gnomos para que extraigan <gem> de las profundas minas bajo tu Reino, a cambio de dinero real.",
-      "tour": ""
     }
   },
   "faction": {

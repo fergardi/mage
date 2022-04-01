@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TourService } from 'ngx-ui-tour-md-menu';
-import { IStepOption } from 'ngx-ui-tour-core';
+import { TourService, IStepOption } from 'ngx-ui-tour-md-menu';
 
 @Injectable({
   providedIn: 'root',
@@ -18,11 +17,10 @@ export class TutorialService {
 
   initialize() {
     const options: IStepOption = {
-      // preventScrolling: false,
+      disablePageScrolling: false,
       enableBackdrop: true,
       delayAfterNavigation: 500,
-      // TODO: fix typed dependency
-      // closeOnOutsideClick: true,
+      closeOnOutsideClick: true,
     };
     this.tourService.disableHotkeys();
     this.tourService.initialize([
