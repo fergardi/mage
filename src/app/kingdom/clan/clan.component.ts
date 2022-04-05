@@ -43,7 +43,7 @@ export class ClanComponent implements OnInit {
       value: '',
     },
   };
-  data: MatTableDataSource<any> = new MatTableDataSource();
+  table: MatTableDataSource<any> = new MatTableDataSource();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -66,11 +66,11 @@ export class ClanComponent implements OnInit {
     ])
     .pipe(untilDestroyed(this))
     .subscribe(([clans, kingdomGuild]) => {
-      this.data = new MatTableDataSource(clans);
-      this.data.paginator = this.paginator;
-      this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
-      this.data.sort = this.sort;
-      this.data.filterPredicate = this.createFilter();
+      this.table = new MatTableDataSource(clans);
+      this.table.paginator = this.paginator;
+      this.table.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
+      this.table.sort = this.sort;
+      this.table.filterPredicate = this.createFilter();
       this.applyFilter();
       if (kingdomGuild) {
         this.kingdomGuild = this.kingdomGuilds.find(guild => guild.id === kingdomGuild.guild.id);
@@ -80,7 +80,7 @@ export class ClanComponent implements OnInit {
   }
 
   applyFilter(): void {
-    this.data.filter = JSON.stringify({
+    this.table.filter = JSON.stringify({
       name: this.filters.name.value,
     });
   }
@@ -91,6 +91,24 @@ export class ClanComponent implements OnInit {
       return data.name.toLowerCase().includes(filters.name);
     };
     return filterFunction;
+  }
+
+  clearFilter(): void {
+    this.filters.name.value = '';
+    if (this.table.paginator) {
+      this.table.paginator.pageSize = this.table.paginator.pageSizeOptions[0];
+      this.table.paginator.pageIndex = 0;
+    }
+    if (this.table.sort) {
+      if (this.table.sort.active !== 'name' && this.table.sort.direction !== 'desc') {
+        this.table.sort.sort({
+          id: 'name',
+          start: 'desc',
+          disableClear: false,
+        });
+      }
+    }
+    this.applyFilter();
   }
 
   async joinClan(clan: any, $event: Event) {

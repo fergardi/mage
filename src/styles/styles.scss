@@ -172,7 +172,7 @@ $list-item-height: 60px;
 }
 .mat-list {
   min-height: $list-item-height;
-  max-height: calc(($list-item-height * 3) - ($list-item-height / 2));
+  max-height: calc(($list-item-height * 5) - ($list-item-height / 2));
   overflow: hidden auto;
   box-sizing: border-box;
   &.dotted {
@@ -461,6 +461,15 @@ $list-item-height: 60px;
   }
   .mat-form-field-infix {
     width: auto;
+  }
+  .mat-toolbar {
+    background-color: transparent;
+    .mat-toolbar-row {
+      padding: 0px;
+    }
+    .mat-mini-fab + .mat-mini-fab {
+      margin: 0 0 0 10px;
+    }
   }
 }
 .mat-menu-item.active,

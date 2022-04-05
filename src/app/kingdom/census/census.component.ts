@@ -15,7 +15,6 @@ import { ConjureComponent } from '../sorcery/conjure.component';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DetailComponent } from './detail.component';
-import { TourService } from 'ngx-ui-tour-core';
 import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
@@ -44,7 +43,7 @@ export class CensusComponent implements OnInit {
       value: '',
     },
   };
-  data: MatTableDataSource<any> = new MatTableDataSource();
+  table: MatTableDataSource<any> = new MatTableDataSource();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -58,22 +57,22 @@ export class CensusComponent implements OnInit {
 
   ngOnInit(): void {
     this.angularFirestore.collection<any>('kingdoms').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
-      this.data = new MatTableDataSource(kingdoms.sort((a, b) => b.power - a.power).map((kingdom, index) => {
+      this.table = new MatTableDataSource(kingdoms.sort((a, b) => b.power - a.power).map((kingdom, index) => {
         return {
           ...kingdom,
           position: index + 1,
         };
       }));
-      this.data.paginator = this.paginator;
-      this.data.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
-      this.data.sort = this.sort;
-      this.data.filterPredicate = this.createFilter();
+      this.table.paginator = this.paginator;
+      this.table.sortingDataAccessor = (obj, property) => property === 'name' ? obj['power'] : obj[property];
+      this.table.sort = this.sort;
+      this.table.filterPredicate = this.createFilter();
       this.applyFilter();
     });
   }
 
   applyFilter() {
-    this.data.filter = JSON.stringify({
+    this.table.filter = JSON.stringify({
       name: this.filters.name.value,
       clan: this.filters.clan.value,
     });
@@ -88,6 +87,25 @@ export class CensusComponent implements OnInit {
           || (data.clan && data.clan.description.toLowerCase().includes(filters.clan));
     };
     return filterFunction;
+  }
+
+  clearFilter(): void {
+    this.filters.name.value = '';
+    this.filters.clan.value = '';
+    if (this.table.paginator) {
+      this.table.paginator.pageSize = this.table.paginator.pageSizeOptions[0];
+      this.table.paginator.pageIndex = 0;
+    }
+    if (this.table.sort) {
+      if (this.table.sort.active !== 'name' && this.table.sort.direction !== 'desc') {
+        this.table.sort.sort({
+          id: 'name',
+          start: 'desc',
+          disableClear: false,
+        });
+      }
+    }
+    this.applyFilter();
   }
 
   openAttackDialog(kingdom: any, $event: Event): void {

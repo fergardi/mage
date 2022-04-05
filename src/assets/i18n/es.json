@@ -493,7 +493,7 @@
     },
     "guard": {
       "name": "Guardia",
-      "description": "Vigila tus dominios",
+      "description": "Defiende tu Reino",
       "help": "Los Héroes que tengas asignados a la Guardia irán en <defense> en batalla contra cualquier Reino que te ataque, y proporcionarán sus bonificadores a las Tropas correspondientes. También proporcionan sus habilidades pasivas al Reino mientras tanto.",
       "tour": "<p>Los Héroes en Guardia pueden ganar experiencia en combate y subir de nivel, pero también pueden morir en batalla. Su orden no tiene relevancia en las batallas.</p>",
       "max": "Max"
@@ -531,7 +531,7 @@
       "name": "Gremio",
       "description": "Favorece a un colectivo",
       "help": "Puedes otorgar el favor de tu Reino a un Gremio en concreto. Como agradecimiento, dicho Gremio te otorgará un bonus adicional en los ataques a otros Reinos (Batallas, Pillajes o Asedios). Sólo puedes cambiar de Gremio una vez cada cierto tiempo.",
-      "tour": "<p>Además, podrás unirte y cambiar de Gremio semanalmente para disfrutar de bonificaciones militares únicas:</p><ul><li>Aumentar <attack>, <defense> o <health> de tus Tropas en las Batallas</li><li>Robar más <gold>, <mana> o <population> en los Pillajes</li><li>Destruir más Edificios, Tropas o Recursos en los Asedios</li></ul>",
+      "tour": "<p>Podrás unirte y cambiar de Gremio semanalmente para disfrutar de bonificaciones adicionales únicas:</p><ul><li>Aumentar <attack>, <defense> o <health> de tus Tropas en las Batallas de tipo Asalto</li><li>Robar más <gold>, <mana> o <population> en las Batallas de tipo Pillaje</li><li>Destruir más Edificios, Tropas o Recursos en los Asedios</li></ul>",
       "hint": "Debes esperar 7 días antes de cambiar de Gremio",
       "select": "Escoge un Gremio",
       "favor": "Favorecer",

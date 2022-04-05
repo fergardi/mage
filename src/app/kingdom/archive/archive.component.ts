@@ -44,7 +44,7 @@ export class ArchiveComponent implements OnInit {
     },
   };
   selection: SelectionModel<any> = new SelectionModel<any>(true, []);
-  data: MatTableDataSource<any> = new MatTableDataSource([]);
+  table: MatTableDataSource<any> = new MatTableDataSource([]);
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -64,16 +64,16 @@ export class ArchiveComponent implements OnInit {
   ngOnInit(): void {
     this.dateAdapter.setLocale(this.translateService.currentLang);
     this.angularFirestore.collection<any>(`kingdoms/${this.uid}/letters`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(letters => {
-      this.data = new MatTableDataSource(letters);
-      this.data.paginator = this.paginator;
-      this.data.sort = this.sort;
-      this.data.filterPredicate = this.createFilter();
+      this.table = new MatTableDataSource(letters);
+      this.table.paginator = this.paginator;
+      this.table.sort = this.sort;
+      this.table.filterPredicate = this.createFilter();
       this.applyFilter();
     });
   }
 
   applyFilter(): void {
-    this.data.filter = JSON.stringify({
+    this.table.filter = JSON.stringify({
       from: this.filters.from.value,
       subject: this.filters.subject.value,
       timestamp: this.filters.timestamp.value,
@@ -91,14 +91,33 @@ export class ArchiveComponent implements OnInit {
     return filterFunction;
   }
 
+  clearFilter(): void {
+    this.filters.name.value = '';
+    this.filters.clan.value = '';
+    if (this.table.paginator) {
+      this.table.paginator.pageSize = this.table.paginator.pageSizeOptions[0];
+      this.table.paginator.pageIndex = 0;
+    }
+    if (this.table.sort) {
+      if (this.table.sort.active !== 'timestamp' && this.table.sort.direction !== 'desc') {
+        this.table.sort.sort({
+          id: 'timestamp',
+          start: 'desc',
+          disableClear: false,
+        });
+      }
+    }
+    this.applyFilter();
+  }
+
   isAllSelected(): boolean {
-    return this.data.data.length === this.selection.selected.length;
+    return this.table.data.length === this.selection.selected.length;
   }
 
   masterToggle(): void {
     this.isAllSelected()
       ? this.selection.clear()
-      : this.data.data.forEach(row => this.selection.select(row));
+      : this.table.data.forEach(row => this.selection.select(row));
   }
 
   async openReportDialog(report: any) {

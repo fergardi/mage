@@ -7,13 +7,13 @@
       <mat-card-subtitle>{{ 'kingdom.census.description' | translate }}</mat-card-subtitle>
       <div class="mat-card-extras">
         <button mat-icon-button (click)="this.tutorialService.start('tour.census')"><mat-icon>help</mat-icon></button>
-        <mat-chip-list><mat-chip color="primary"><mat-icon>person</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
+        <mat-chip-list><mat-chip color="primary"><mat-icon>person</mat-icon>{{ table.data.length | long }}</mat-chip></mat-chip-list>
       </div>
     </mat-card-header>
 
     <mat-card-content>
       <p>{{ 'kingdom.census.help' | translate }}</p>
-      <table mat-table matSort [dataSource]="data" matSortDisableClear tourAnchor="tour.census" [attr.aria-label]="'kingdom.census.name' | translate">
+      <table mat-table matSort matSortActive="name" matSortDirection="desc" [dataSource]="table" matSortDisableClear tourAnchor="tour.census" [attr.aria-label]="'kingdom.census.name' | translate">
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
           <mat-header-cell class="table-header" *matHeaderCellDef>
 
@@ -88,7 +88,14 @@
         <mat-row *matRowDef="let kingdom; columns: columns; let i = index" [tourAnchor]="i === 0 ? 'tour.kingdom' : null" (click)="openDetailDialog(kingdom)"></mat-row>
       </table>
 
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <button mat-mini-fab color="primary" (click)="clearFilter()"><mat-icon>rule</mat-icon></button>
+          <span class="fill-space"></span>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
     </mat-card-content>
   </mat-card>
 </div>

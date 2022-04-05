@@ -53,7 +53,7 @@ export class EncyclopediaComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   async ngOnInit(): Promise<void> {
-    let cached = await Promise.all([
+    const cached = await Promise.all([
       this.cacheService.getSkills(),
       this.cacheService.getUnits(),
       this.cacheService.getSpells(),

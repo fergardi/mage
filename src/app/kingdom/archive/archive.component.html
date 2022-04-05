@@ -7,13 +7,13 @@
       <mat-card-subtitle>{{ "kingdom.archive.description" | translate }}</mat-card-subtitle>
       <div class="mat-card-extras">
         <button mat-icon-button (click)="this.tutorialService.start('tour.archive')"><mat-icon>help</mat-icon></button>
-        <mat-chip-list><mat-chip color="primary"><mat-icon>email</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
+        <mat-chip-list><mat-chip color="primary"><mat-icon>email</mat-icon>{{ table.data.length | long }}</mat-chip></mat-chip-list>
       </div>
     </mat-card-header>
 
     <mat-card-content>
       <p>{{ "kingdom.archive.help" | translate }}</p>
-      <table mat-table matSort [dataSource]="data" matSortActive="timestamp" matSortDirection="desc" tourAnchor="tour.archive" [attr.aria-label]="'kingdom.archive.name' | translate">
+      <table mat-table matSort matSortActive="timestamp" matSortDirection="desc" [dataSource]="table" tourAnchor="tour.archive" [attr.aria-label]="'kingdom.archive.name' | translate">
 
         <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
 
@@ -84,6 +84,7 @@
       <mat-toolbar>
         <mat-toolbar-row>
           <button mat-mini-fab color="primary" [disabled]="!selection.selected.length" (click)="deleteReports()"><mat-icon>delete</mat-icon></button>
+          <button mat-mini-fab color="primary" (click)="clearFilter()"><mat-icon>rule</mat-icon></button>
           <span class="fill-space"></span>
           <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </mat-toolbar-row>

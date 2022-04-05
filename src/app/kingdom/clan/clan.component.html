@@ -9,13 +9,13 @@
         <mat-card-subtitle>{{ 'kingdom.clan.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
           <button mat-icon-button (click)="this.tutorialService.start('tour.clan')"><mat-icon>help</mat-icon></button>
-          <mat-chip-list><mat-chip color="primary"><mat-icon>people</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
+          <mat-chip-list><mat-chip color="primary"><mat-icon>people</mat-icon>{{ table.data.length | long }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>
 
       <mat-card-content>
         <p [innerHTML]="'kingdom.clan.help' | translate"></p>
-        <table mat-table matSort [dataSource]="data" matSortDisableClear tourAnchor="tour.clan" [attr.aria-label]="'kingdom.clan.name' | translate">
+        <table mat-table matSort matSortActive="name" matSortDirection="desc" [dataSource]="table" matSortDisableClear tourAnchor="tour.clan" [attr.aria-label]="'kingdom.clan.name' | translate">
           <ng-container matColumnDef="{{ column }}" *ngFor="let column of columns">
             <mat-header-cell class="table-header" *matHeaderCellDef>
 
@@ -66,6 +66,7 @@
         <mat-toolbar>
           <mat-toolbar-row>
             <button mat-mini-fab color="primary" title="{{ 'kingdom.clan.found' | translate }}" (click)="openFoundationDialog()" [disabled]="(kingdomClan$ | async)"><mat-icon>thumbs_up_down</mat-icon></button>
+            <button mat-mini-fab color="primary" (click)="clearFilter()"><mat-icon>rule</mat-icon></button>
             <span class="fill-space"></span>
             <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
           </mat-toolbar-row>

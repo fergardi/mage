@@ -3,12 +3,6 @@
   .mat-column-select {
     overflow: initial;
   }
-  .mat-toolbar {
-    background-color: transparent;
-    .mat-toolbar-row {
-      padding: 0px;
-    }
-  }
   .mat-cell:first-of-type {
     padding-left: 6px !important;
   }
@@ -20,7 +14,7 @@
     margin-left: 6px;
   }
 }
-
+/*
 // responsive custom table
 @media screen and (max-width: 960px) {
   .kingdom-archive {
@@ -44,3 +38,4 @@
     }
   }
 }
+*/

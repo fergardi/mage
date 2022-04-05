@@ -377,7 +377,7 @@ export const addSupply = async (kingdomId: string, supply: string, quantity: num
     console.info(`KINGDOM ${kingdomId} tries to ADD ${quantity} of ${supply}`);
     const kingdom = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
     const tree = kingdom?.tree;
-    // const guild = kingdom?.guild;
+    const guild = kingdom?.guild;
     const kingdomSupply = (await angularFirestore.collection(`kingdoms/${kingdomId}/supplies`).where('id', '==', supply).limit(1).get()).docs[0];
     const s = kingdomSupply.data();
     switch (supply) {
@@ -396,30 +396,33 @@ export const addSupply = async (kingdomId: string, supply: string, quantity: num
       case SupplyType.GOLD:
         if (quantity > 0) {
           const agriculture = searchPerk(tree, 'agriculture');
+          const goldBonus = (agriculture.goldBonus * agriculture.level) + guild.goldBonus;
           // tslint:disable-next-line: no-parameter-reassignment
-          quantity = Math.ceil(quantity * (1 + (agriculture.goldBonus * agriculture.level) / 100));
-          // if (guild.id === 'thieft')
+          quantity = Math.ceil(quantity * (1 + (goldBonus / 100)));
         }
         break;
       case SupplyType.MANA:
         if (quantity > 0) {
           const alchemy = searchPerk(tree, 'alchemy');
+          const manaBonus = (alchemy.manaBonus * alchemy.level) + guild.manaBonus;
           // tslint:disable-next-line: no-parameter-reassignment
-          quantity = Math.ceil(quantity * (1 + (alchemy.manaBonus * alchemy.level) / 100));
+          quantity = Math.ceil(quantity * (1 + (manaBonus / 100)));
         }
         break;
       case SupplyType.POPULATION:
         if (quantity > 0) {
           const culture = searchPerk(tree, 'culture');
+          const populationBonus = (culture.populationBonus * culture.level) + guild.populationBonus;
           // tslint:disable-next-line: no-parameter-reassignment
-          quantity = Math.ceil(quantity * (1 + (culture.populationBonus * culture.level) / 100));
+          quantity = Math.ceil(quantity * (1 + (populationBonus / 100)));
         }
         break;
       case SupplyType.LAND:
         if (quantity > 0) {
           const cartography = searchPerk(tree, 'cartography');
+          const explorationBonus = (cartography.explorationBonus * cartography.level) + guild.explorationBonus;
           // tslint:disable-next-line: no-parameter-reassignment
-          quantity = Math.ceil(quantity * (1 + (cartography.explorationBonus * cartography.level) / 100));
+          quantity = Math.ceil(quantity * (1 + (explorationBonus / 100)));
         }
         break;
       case SupplyType.GEM:
@@ -954,16 +957,19 @@ export const assignContract = async (kingdomId: string, contractId: string, assi
 /**
  * add charm to a kingdom
  * @param kingdomId
- * @param spellId
+ * @param spell
  * @param turns
  * @param batch
  */
 export const addCharm = async (kingdomId: string, spell: any, turns: number, batch: FirebaseFirestore.WriteBatch): Promise<void> => {
   try {
-    const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
+    const kingdom = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
+    const tree = kingdom?.tree;
+    const guild = kingdom?.guild;
     const science = searchPerk(tree, 'science');
+    const researchBonus = (science.researchBonus * science.level) + guild.researchBonus;
     // tslint:disable-next-line: no-parameter-reassignment
-    if (science) turns = Math.ceil(turns * (1 + (science.researchBonus * science.level) / 100));
+    turns = Math.ceil(turns * (1 + (researchBonus / 100)));
     const kingdomCharm = await angularFirestore.collection(`kingdoms/${kingdomId}/charms`).where('id', '==', spell.id).limit(1).get();
     if (kingdomCharm.size > 0) {
       const charm = kingdomCharm.docs[0]?.data();
@@ -1403,10 +1409,13 @@ export const addBuilding = async (kingdomId: string, buildingId: string, quantit
     if (kingdomBuilding) {
       const building = kingdomBuilding.data();
       if (quantity >= 0) {
-        const tree = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data()?.tree;
+        const kingdom = (await angularFirestore.doc(`kingdoms/${kingdomId}`).get()).data();
+        const tree = kingdom?.tree;
+        const guild = kingdom?.guild;
         const architecture = searchPerk(tree, 'architecture');
+        const constructionBonus = (architecture ? (architecture.constructionBonus * architecture.level) : 0) + guild.constructionBonus;
         // tslint:disable-next-line: no-parameter-reassignment
-        if (architecture) quantity = Math.ceil(quantity * (1 + (architecture.constructionBonus * architecture.level) / 100));
+        quantity = Math.ceil(quantity * (1 + (constructionBonus / 100)));
         await balanceSupply(kingdomId, SupplyType.GOLD, Math.floor((building.structure.goldProduction - building.structure.goldMaintenance) * quantity), batch);
         await balanceSupply(kingdomId, SupplyType.MANA, Math.floor((building.structure.manaProduction - building.structure.manaMaintenance) * quantity), batch);
         await balanceSupply(kingdomId, SupplyType.POPULATION, Math.floor((building.structure.populationProduction - building.structure.populationMaintenance) * quantity), batch);
