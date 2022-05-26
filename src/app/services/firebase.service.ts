@@ -163,12 +163,6 @@ export class FirebaseService {
           console.debug(`Loading ${CollectionType.CATEGORIES}...`);
           this.importFixtures(CollectionType.CATEGORIES, this.joinedCategories, batch);
         }
-        this.joinedGods = JSON.parse(JSON.stringify(this.gods));
-        this.joinedGods.forEach(god => this.joinFixtures(god));
-        if (fixtures.includes(CollectionType.GODS)) {
-          console.debug(`Loading ${CollectionType.GODS}...`);
-          this.importFixtures(CollectionType.GODS, this.joinedGods, batch);
-        }
         this.joinedResources = JSON.parse(JSON.stringify(this.resources));
         this.joinedResources.forEach(resource => this.joinFixtures(resource));
         if (fixtures.includes(CollectionType.RESOURCES)) {
@@ -210,6 +204,12 @@ export class FirebaseService {
         if (fixtures.includes(CollectionType.HEROES)) {
           console.debug(`Loading ${CollectionType.HEROES}...`);
           this.importFixtures(CollectionType.HEROES, this.joinedHeroes, batch);
+        }
+        this.joinedGods = JSON.parse(JSON.stringify(this.gods));
+        this.joinedGods.forEach(god => this.joinFixtures(god));
+        if (fixtures.includes(CollectionType.GODS)) {
+          console.debug(`Loading ${CollectionType.GODS}...`);
+          this.importFixtures(CollectionType.GODS, this.joinedGods, batch);
         }
         this.joinedStores = JSON.parse(JSON.stringify(this.stores));
         this.joinedStores.forEach(store => this.joinFixtures(store));

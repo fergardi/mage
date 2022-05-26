@@ -67,7 +67,7 @@
     },
     "temple": {
       "name": "Sobrevive al fin del mundo",
-      "description": "Honra y realiza sacrificios a los distintos Dioses para que te otorguen su favor y finalmente rompan los cinco sellos del Armagedón, provocando el apocalipsis y finalizando la partida."
+      "description": "Honra y realiza sacrificios a los distintos Dioses para que te otorguen su favor y finalmente rompan los sellos del Armagedón, provocando el apocalipsis y finalizando la partida."
     },
     "victory": {
       "name": "Älcänzä lä victöriä",
@@ -253,7 +253,7 @@
     },
     "tome": {
       "name": "Tomo",
-      "help": "Tus eruditos encuentran un viejo y polvoriento pergamino en la antigua biblioteca real. Los grabados, descoloridos por el paso del tiempo pero todavía legibles, contienen todo lo necesario para calmar tu sed de sabiduría. Sonríes, pues el conocimiento es la mitad de la batalla.",
+      "help": "Tus eruditos encuentran un viejo y polvoriento pergamino en la antigua biblioteca real. Los grabados, descoloridos por el paso del tiempo pero todavía legibles, contienen todo lo necesario para calmar tu sed de sabiduría. Sonríes, pues el conocimiento es la mitad de la batalla. La otra mitad es la violencia extrema.",
       "close": "Cerrar",
       "goldCost": "{{ number }}",
       "manaCost": "{{ number }}",

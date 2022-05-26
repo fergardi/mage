@@ -4,7 +4,7 @@ import { FirebaseService } from './services/firebase.service';
 import { TutorialService } from './services/tutorial.service';
 import { Router, Scroll, RouterEvent, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
-import { CollectionType } from './services/cache.service';
+// import { CollectionType } from './services/cache.service';
 
 @Component({
   selector: 'app-root',
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       // CollectionType.SPELLS,
       // CollectionType.ITEMS,
       // CollectionType.HEROES,
-      CollectionType.GODS,
+      // CollectionType.GODS,
       // CollectionType.STORES,
       // CollectionType.LOCATIONS,
       // CollectionType.LEGENDS,

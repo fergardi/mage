@@ -62,13 +62,13 @@
       padding: 0;
     }
   }
-  .mat-subheader.righted {
+  .mat-subheader.tabbed {
     width: 100%;
-    justify-content: flex-end;
+    margin-left: 60px;
     img {
-      width: 44px;
-      height: 44px;
-      margin: -8px 0px -8px 8px;
+      width: 40px;
+      height: 40px;
+      margin: 0 8px 0 0;
     }
   }
 }
