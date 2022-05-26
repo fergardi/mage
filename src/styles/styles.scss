@@ -47,7 +47,8 @@ $custom-typography: mat.define-typography-config(
 .mat-toolbar .logo,
 .mat-dialog-title,
 .mat-button-base,
-.app-landing h1, .app-landing h3 {
+.mat-expansion-panel-header,
+.app-landing h1,.app-landing h3 {
   font-family: 'Uncial Antiqua', cursive !important;
 }
 html {
@@ -259,9 +260,7 @@ $list-item-height: 60px;
 .mat-list-base:not(.supply-list) {
   .mat-list-item {
     box-sizing: border-box;
-    &+ .mat-list-item {
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-    }
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
   }
   .mat-line {
     white-space: pre-wrap !important;
@@ -390,7 +389,7 @@ $list-item-height: 60px;
 }
 .mat-card,
 .mat-bottom-sheet-container,
-.mat-expansion-panel,
+//.mat-expansion-panel,
 .mat-drawer {
   background: url('/assets/images/background/tablet.jpg') no-repeat center center; // fixed
   background-size: cover;
@@ -820,6 +819,34 @@ $list-item-height: 60px;
 
 //========================================================================================
 /*                                                                                      *
+ *                                      ACCORDIONS                                      *
+ *                                                                                      */
+//========================================================================================
+
+.mat-accordion {
+  .mat-expansion-panel {
+    background: transparent;
+    .mat-expansion-panel-header {
+      height: 60px;
+      padding-left: 0;
+      .mat-expansion-panel-header-title {
+        flex-grow: 0;
+      }
+      .mat-expansion-panel-header-description {
+        font-size: 0.95rem;
+        color: white;
+      }
+    }
+    .mat-expansion-panel-content {
+      .mat-expansion-panel-body {
+        padding: 0;
+      }
+    }
+  }
+}
+
+//========================================================================================
+/*                                                                                      *
  *                                        PANELS                                        *
  *                                                                                      */
 //========================================================================================
@@ -834,14 +861,14 @@ $list-item-height: 60px;
  *                                       SNACKBARS                                      *
  *                                                                                      */
 //========================================================================================
-
+/*
 .cdk-overlay-pane .mat-snack-bar-container { // desktop
-  // margin-top: 70px;
+  margin-top: 70px;
 }
 .cdk-overlay-pane.mat-snack-bar-handset .mat-snack-bar-container { // mobile
-  // margin-top: 8px;
+  margin-top: 8px;
 }
-
+*/
 //========================================================================================
 /*                                                                                      *
  *                                       TOOLTIPS                                       *

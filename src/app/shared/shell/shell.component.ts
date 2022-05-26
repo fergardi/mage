@@ -16,6 +16,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { StatusComponent } from './status.component';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-shell',
@@ -24,6 +25,7 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 })
 export class ShellComponent implements OnInit {
 
+  public reports: number = 0;
   langs: any[] = [
     { lang: 'es', image: '/assets/images/languages/es.png' },
     { lang: 'en', image: '/assets/images/languages/en.png' },
@@ -55,6 +57,7 @@ export class ShellComponent implements OnInit {
       ],
     },
   ];
+
   @Select((state: any) => state.auth.supplies) kingdomSupplies$: Observable<any[]>;
   link$: Observable<any> = this.router.events
   .pipe(
@@ -63,13 +66,14 @@ export class ShellComponent implements OnInit {
       return this.groups.reduce((a, b) => a.concat(b.links), []).find((link: any) => event.url.includes(link.url));
     }),
   );
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset])
+  isHandset$: Observable<boolean> = this.breakpointObserver
+  .observe([Breakpoints.Handset])
   .pipe(
     map((result: any) => result.matches),
     shareReplay(),
   );
   @ViewChild(MatSidenav, {static: true}) drawer: MatSidenav;
-  public reports: number = 0;
+  @ViewChild(MatAccordion, {static: true}) accordion: MatAccordion;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -91,6 +95,13 @@ export class ShellComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // accordion nav
+    this.router.events.subscribe((event: RouterEvent) => {
+      if (event instanceof NavigationEnd && event.url !== '/user/landing') {
+        // TODO: accordion index
+      }
+    });
+    // alerts
     this.store.select(AuthState.getUserUID).subscribe(uid => {
       if (uid) {
         this.angularFirestore.collection<any>(`kingdoms/${uid}/letters`, x => x.where('read', '==', false)).valueChanges().subscribe(reports => {
