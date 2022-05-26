@@ -30,7 +30,7 @@
     "geofirex": "^0.1.0",
     "lodash": "^4.17.21",
     "mapbox-gl": "^2.4.1",
-    "moment": "^2.29.1"
+    "moment": "^2.29.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
