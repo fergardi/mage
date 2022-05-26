@@ -19,6 +19,9 @@ import {
   BattleType,
   AuctionType,
   MarkerType,
+  RewardType,
+  SpellType,
+  ArtifactType,
   MAX_TURNS,
   MIN_LANDS,
   MAX_LANDS,
@@ -38,7 +41,6 @@ import {
   SIEGE_RATIO,
   ATTACK_RATIO,
   QUEST_GEMS,
-  RewardType,
 } from './config';
 
 //========================================================================================
@@ -1043,21 +1045,21 @@ export const assignCharm = async (kingdomId: string, charmId: string, assignment
  */
 export const conjureSpell = async (kingdomId: string, spell: any, targetId: string, batch: FirebaseFirestore.WriteBatch): Promise<any> => {
   switch (spell.subtype) {
-    case 'summon': {
+    case SpellType.SUMMON: {
       const unit = spell.units[random(0, spell.units.length - 1)];
       const size = random(Math.min(...unit.amount), Math.max(...unit.amount));
       await addTroop(targetId, unit, size, batch);
       console.info(`KINGDOM ${kingdomId} succesfully CONJURES ${spell.id} with ${size} ${unit.id}`);
       return { unit: `unit.${unit.id}.name`, size: size };
     }
-    case 'item': {
+    case SpellType.ITEM: {
       const item = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
       const lot = 1;
       await addArtifact(targetId, item, lot, batch);
       console.info(`KINGDOM ${kingdomId} succesfully CONJURES ${spell.id} with ${lot} ${item.id}`);
       return { item: `item.${item.id}.name`, quantity: lot };
     }
-    case 'enchantment': {
+    case SpellType.ENCHANTMENT: {
       if (!spell.multiple) {
         await addEnchantment(targetId, spell, kingdomId, spell.turnDuration, batch);
         console.info(`KINGDOM ${kingdomId} succesfully ENCHANTS ${targetId} with ${spell.id}`);
@@ -1071,20 +1073,20 @@ export const conjureSpell = async (kingdomId: string, spell: any, targetId: stri
         return { enchantments: kingdomEnchantments.length };
       }
     }
-    case 'espionage': {
+    case SpellType.ESPIONAGE: {
       await spyKingdom(kingdomId, targetId, batch);
       console.info(`KINGDOM ${kingdomId} succesfully SPIES ${targetId}`);
       return { timestamp: admin.firestore.Timestamp.now().toMillis() };
     }
-    case 'resource': {
+    case SpellType.RESOURCE: {
       // TODO
       return {};
     }
-    case 'armageddon': {
+    case SpellType.ARMAGEDDON: {
       // this is done in the gods section
       return {};
     }
-    case 'battle': {
+    case SpellType.BATTLE: {
       // this is done in the battle section
       return {};
     }
@@ -1219,21 +1221,21 @@ export const assignArtifact = async (kingdomId: string, artifactId: string, assi
  */
 export const activateItem = async (kingdomId: string, item: any, targetId: string, batch: FirebaseFirestore.WriteBatch, ratio?: number): Promise<any> => {
   switch (item.subtype) {
-    case 'summon': {
+    case ArtifactType.SUMMON: {
       const unit = item.units[random(0, item.units.length - 1)];
       const size = random(Math.min(...unit.amount), Math.max(...unit.amount));
       await addTroop(targetId, unit, size, batch);
       console.info(`KINGDOM ${kingdomId} succesfully ACTIVATES ${item.id} on ${targetId} with ${size} ${unit.id}`);
       return { unit: `unit.${unit.id}.name`, size: size };
     }
-    case 'resource': {
+    case ArtifactType.RESOURCE: {
       const resource = item.resources[0];
       const amount = random(Math.min(...item.amount), Math.max(...item.amount));
       await addSupply(targetId, resource.id, amount, batch, resource.id === SupplyType.TURN ? ratio : undefined);
       console.info(`KINGDOM ${kingdomId} succesfully ACTIVATES ${item.id} on ${targetId} with ${amount} ${resource.id}`);
       return { resource: `resource.${resource.id}.name`, amount: amount };
     }
-    case 'enchantment': {
+    case ArtifactType.ENCHANTMENT: {
       if (item.spells.length) {
         const enchantment = item.spells[random(0, item.spells.length - 1)];
         await addEnchantment(targetId, enchantment, kingdomId, enchantment.turnDuration, batch);
@@ -1248,14 +1250,14 @@ export const activateItem = async (kingdomId: string, item: any, targetId: strin
         return { enchantments: kingdomEnchantments.length };
       }
     }
-    case 'item': {
+    case ArtifactType.ITEM: {
       const finding = (await angularFirestore.collection('items').where('random', '==', random(0, 49)).limit(1).get()).docs[0].data();
       const quantity = 1;
       await addArtifact(targetId, finding, quantity, batch);
       console.info(`KINGDOM ${kingdomId} succesfully ACTIVATES ${item.id} on ${targetId} with ${quantity} ${finding.id}`);
       return { item: `item.${finding.id}.name`, quantity: quantity };
     }
-    case 'spell': {
+    case ArtifactType.SPELL: {
       let spell: any = false;
       let tries: number = 0;
       const total: number = 99; // 100 is armageddon
@@ -1271,12 +1273,12 @@ export const activateItem = async (kingdomId: string, item: any, targetId: strin
       }
       return {};
     }
-    case 'espionage': {
+    case ArtifactType.ESPIONAGE: {
       await spyKingdom(kingdomId, targetId, batch);
       console.info(`KINGDOM ${kingdomId} succesfully SPIES ${targetId}`);
       return { timestamp: admin.firestore.Timestamp.now().toMillis() };
     }
-    case 'battle': {
+    case ArtifactType.BATTLE: {
       // this is done in the battle section
       return {};
     }
@@ -2074,9 +2076,9 @@ const applyTree = (tree: any, targets: any[]): void => {
   const medicine = searchPerk(tree, 'medicine');
   const forge = searchPerk(tree, 'forge');
   targets.forEach(troop => {
-    if (metallurgy) troop.unit.attackBonus = (troop.unit.attackBonus || 0) + metallurgy.attackBonus * metallurgy.level;
-    if (medicine) troop.unit.healthBonus = (troop.unit.healthBonus || 0) + medicine.healthBonus * medicine.level;
-    if (forge) troop.unit.defenseBonus = (troop.unit.defenseBonus || 0) + forge.defenseBonus * forge.level;
+    if (metallurgy) troop.unit.attackBonus = (troop.unit.attackBonus || 0) + (metallurgy.attackBonus * metallurgy.level);
+    if (medicine) troop.unit.healthBonus = (troop.unit.healthBonus || 0) + (medicine.healthBonus * medicine.level);
+    if (forge) troop.unit.defenseBonus = (troop.unit.defenseBonus || 0) + (forge.defenseBonus * forge.level);
   });
 };
 
@@ -2362,9 +2364,9 @@ const applyContract = (contract: any, targets: any[], targetType: TargetType, re
         targets.forEach(target => {
           target.unit.families.forEach((f: any): void => {
             if (family.id === f.id) {
-              target.unit.attackBonus = (target.unit.attackBonus || 0) + contract.hero.attackBonus * contract.level;
-              target.unit.defenseBonus = (target.unit.defenseBonus || 0) + contract.hero.defenseBonus * contract.level;
-              target.unit.healthBonus = (target.unit.healthBonus || 0) + contract.hero.healthBonus * contract.level;
+              target.unit.attackBonus = (target.unit.attackBonus || 0) + (contract.hero.attackBonus * contract.level);
+              target.unit.defenseBonus = (target.unit.defenseBonus || 0) + (contract.hero.defenseBonus * contract.level);
+              target.unit.healthBonus = (target.unit.healthBonus || 0) + (contract.hero.healthBonus * contract.level);
             }
           });
         });
@@ -2373,7 +2375,7 @@ const applyContract = (contract: any, targets: any[], targetType: TargetType, re
     // revivals
     if (contract.hero.resurrectionBonus > 0) {
       targets.forEach(target => {
-        target.unit.resurrectionBonus = (target.unit.resurrectionBonus || 0) + contract.hero.resurrectionBonus * contract.level;
+        target.unit.resurrectionBonus = (target.unit.resurrectionBonus || 0) + (contract.hero.resurrectionBonus * contract.level);
       });
     }
     report.logs.push({

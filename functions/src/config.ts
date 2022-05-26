@@ -157,3 +157,24 @@ export enum RewardType {
   SUPPLY = 'supply',
   BUILDING = 'building',
 }
+
+export enum SpellType {
+  SUMMON = 'summon',
+  RESOURCE = 'resource',
+  ENCHANTMENT = 'enchantment',
+  ITEM = 'item',
+  SPELL = 'spell',
+  ESPIONAGE = 'espionage',
+  BATTLE = 'battle',
+  ARMAGEDDON = 'armageddon',
+}
+
+export enum ArtifactType {
+  SUMMON = 'summon',
+  RESOURCE = 'resource',
+  ENCHANTMENT = 'enchantment',
+  ITEM = 'item',
+  SPELL = 'spell',
+  ESPIONAGE = 'espionage',
+  BATTLE = 'battle',
+}

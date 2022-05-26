@@ -63,7 +63,7 @@
     },
     "clan": {
       "name": "Forja alianzas",
-      "description": "Únete a un clan o funda uno nuevo y une fuerzas con otros Reinos para consolidar vuestro poder en esta tierra baldía y sin esperanza."
+      "description": "Únete a un Clan o funda uno nuevo y une fuerzas con otros Reinos para consolidar vuestro poder en esta tierra baldía y sin esperanza."
     },
     "temple": {
       "name": "Sobrevive al fin del mundo",
@@ -80,10 +80,10 @@
   },
   "shell": {
     "group": {
-      "merchant": "Gremio de Mercaderes",
-      "militia": "Gremio de Milicianos",
-      "spy": "Gremio de Espías",
-      "scholar": "Gremio de Eruditos"
+      "merchant": "Logia de Mercaderes",
+      "militia": "Logia de Milicianos",
+      "spy": "Logia de Espías",
+      "scholar": "Logia de Eruditos"
     }
   },
   "type": {
@@ -249,7 +249,7 @@
       "name": "Enciclopedia",
       "description": "Amplía tus conocimientos",
       "help": "En esta enciclopedia encontrarás pergaminos de todos los elementos que conforman este plano de la realidad: Tropas, Artefactos, Héroes, Dioses, edificios, recursos, habilidades, familias, etc; junto con sus detalles: nombre, descripción, facción a la que pertenecen, tipo, costes, mantenimientos, etc. Si lo que buscas no está en esta biblioteca, es que no existe.",
-      "tour": "<p>En la enciclopedia encontrarás todo lo que necesites para aprender a jugar, así como las estadísticas de todo lo que existe en este mundo mágico.</p><p>Si aún así tienes más dudas, tienes a tu disposición el Tutorial del juego. Recuerda que a jugar se aprende jugando.</p>"
+      "tour": "<p>En la enciclopedia encontrarás todo lo que necesites para aprender a jugar, así como las estadísticas de todo lo que existe en este mundo mágico.</p><p>Si aún así tienes más dudas, tienes a tu disposición el Tutorial del juego. Recuerda que el movimiento se demuestra andando, y a jugar se aprende jugando.</p>"
     },
     "tome": {
       "name": "Tomo",
@@ -272,10 +272,10 @@
       "initiative": "Iniciativa {{ number }}",
       "power": "Poder {{ number }}",
       "type": "Tipo",
-      "statistics": "Estadísticas",
-      "maintenances": "Mantenimientos",
-      "costs": "Costes",
-      "production": "Producción",
+      "statistics": "Estadísticas (por unidad o por nivel)",
+      "maintenances": "Mantenimientos (por unidad o por nivel)",
+      "costs": "Costes (por unidad o por nivel)",
+      "production": "Producción (por unidad o por nivel)",
       "characteristics": "Características"
     },
     "changelog": {
@@ -372,7 +372,7 @@
       "name": "Exploración",
       "description": "Anexiona nuevos territorios a tu Reino",
       "help": "Aquí podrás invertir <turn> en explorar los vastos terrenos a tu alrededor para obtener nuevas <land> libres. Las <land> libres sirven como espacio para construir nuevos edificios en tu Reino.",
-      "tour": "<p>En términos generales, tu <land> limitará cuán poderoso puede llegar a ser tu Reino, puesto que a mayores y más grandes ejércitos y encantamientos, más mantenimientos tendrás que pagar. Por tanto, tu producitividad deberá ser mayor, y cuantas más <land> poseas, más fácil será generar recursos. <br><br>Pero también, cuantas más <land> tengas, menos encontrarás explorando. Sólo se pueden conseguir hasta 3.500 <land> explorando, el resto deberás obtenerla por otros medios.</p><p>Como la guerra, por ejemplo.",
+      "tour": "<p>En términos generales, tu <land> limitará cuán poderoso puede llegar a ser tu Reino, puesto que a mayores y más grandes ejércitos y Encantamientos, más mantenimientos tendrás que pagar. Por tanto, tu producitividad deberá ser mayor, y cuantas más <land> poseas, más fácil será generar recursos. <br><br>Pero también, cuantas más <land> tengas, menos encontrarás explorando. Sólo se pueden conseguir hasta 3.500 <land> explorando, el resto deberás obtenerla por otros medios.</p><p>Como la guerra, por ejemplo.",
       "cancel": "Cancelar",
       "hint": "Cuantas más Tierras tengas, menos encontrarás explorando",
       "error": "Ha ocurrido un problema",
@@ -438,7 +438,7 @@
       "name": "Ejército",
       "description": "Gestiona tus Tropas",
       "help": "En el ejército podrás ver un listado de todas tus Tropas en espera, sin asignar ni al <attack> ni a la <defense>. Puedes tener cualquier número de Tropas en espera, pero ten en cuenta que pueden consumir <gold>, <mana> o <population> al Turno igualmente. También puedes desbandar aquellas que no te interese conservar.",
-      "tour": "<p>El ejército se compone de Tropas, y son tu principal motor en las conquistas territoriales, permitiendo robar <gold>, <mana>, <population>, <land>, además de reducir <power> enemigo. Puedes asignarlas para:</p><ul><li>Nada, ni atacan ni defienden, pero consumen recursos igualmente</li><li>Atacar manualmente, hasta 5 Tropas diferentes y en el orden especificado</li><li>Defender automáticamente, hasta 5 Tropas diferentes y en el orden especificado</li></ul><p>También las puedes desbandar.</p>",
+      "tour": "<p>El ejército se compone de Tropas, y son tu principal motor en las conquistas territoriales. Tienen una serie de características (iconos de colores) y resistencias (iconos en gris). Puedes asignarlas para:</p><ul><li>Nada, ni atacan ni defienden, pero consumen recursos igualmente</li><li>Atacar manualmente, hasta 5 Tropas diferentes y en el orden especificado</li><li>Defender automáticamente, hasta 5 Tropas diferentes y en el orden especificado</li></ul><p>También las puedes desbandar.</p>",
       "max": "Max",
       "maximum": "Tu ejército está al completo",
       "success": "Los cambios de tus Tropas se han guardado",
@@ -502,7 +502,7 @@
       "name": "Censo",
       "description": "Conoce a tus enemigos",
       "help": "En el censo puedes ver una lista completa de todos los Reinos que comparten este plano de la realidad, ordenados por poder. Desde aquí puedes realizar la mayoría de acciones ofensivas, como activar Artefactos o lanzar Hechizos, o iniciar batallas. También puedes mandar mensajes a otros Reinos.",
-      "tour": "<p>El censo tiene una lista actualizada de todos los Reinos, ordenados por <power> de mayor a menor. Desde aquí puedes realizar diferentes acciones sobre otros Reinos:</p><ul><li>Comenzar ataques<ul><li>Batallas normales</li><li>Pillajes de recursos</li><li>Asedios contra edificios</li></ul></li><li>Conjurar Hechizos y encantamientos</li><li>Activar Artefactos</li><li>Enviar mensajes</li></ul><p>El primer jugador será el ganador de la temporada.</p>",
+      "tour": "<p>El censo tiene una lista actualizada de todos los Reinos, ordenados por <power> de mayor a menor. Desde aquí puedes realizar diferentes acciones sobre otros Reinos:</p><ul><li>Comenzar ataques<ul><li>Batallas (reducir <power>)</li><li>Pillajes (robar <gold>, <mana>, <population> y <land>)</li><li>Asedios (destruir <land>)</li></ul></li><li>Conjurar Hechizos y Encantamientos</li><li>Activar Artefactos</li><li>Enviar Mensajes</li></ul><p>El jugador con más <power> será el ganador de la temporada actual.</p>",
       "protection": "Protegido",
       "report": "Se ha enviado el reporte de batalla"
     },
@@ -510,7 +510,7 @@
       "name": "Archivo",
       "description": "Revisa tu correspondencia",
       "help": "Aqui puedes ver un listado de todos los Mensajes directos que te han enviado otros Reinos, así como los informes de batalla, subastas ganadas o sobrepujadas, Hechizos, Artefactos y Encantamientos lanzados contra tu Reino.",
-      "tour": "<p>En el archivo puedes consultar los Mensajes que llegan diariamente a tu Reino:</p><ul><li>Reportes de batalla</li><li>Movimientos de subasta</li><li>Mensajes de otros reinos</li><li>Activaciones de artifactos</li><li>Conjuraciones de Hechizos y encantamientos</li></ul><p>También los puedes borrar.</p>",
+      "tour": "<p>En el archivo puedes consultar los Mensajes que llegan diariamente a tu Reino:</p><ul><li>Reportes de batalla</li><li>Movimientos de la subasta</li><li>Mensajes de otros reinos</li><li>Activaciones de Artefactos</li><li>Conjuraciones de Hechizos y Encantamientos</li></ul><p>También los puedes borrar.</p>",
       "new": "Tienes mensajes nuevos",
       "success": "Mensajes borrados",
       "error": "Ha ocurrido un problema"
@@ -518,8 +518,8 @@
     "clan": {
       "name": "Clan",
       "description": "Forja alianzas",
-      "help": "Puedes unirte a un Clan ya existente o fundar tu propio Clan para que otros magos y brujas se unan. Un clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio...",
-      "tour": "<p>En el clan puedes ver todos los clanes que existen actualmente, formar un nuevo clan, unirte a un clan o abandonar un clan. Formar un nuevo clan te costará bastante <gold>.</p>",
+      "help": "Puedes unirte a un Clan ya existente o fundar tu propio Clan para que otros magos y brujas se unan. Un Clan no otorga beneficios estratégicos o económicos, más allá de la camaradería y el compañerismo entre sus miembros. Pero tal vez tengan un gran componente disuasorio...",
+      "tour": "<p>En el censo del Clan puedes ver todos los Clanes que existen actualmente, formar un nuevo Clan, unirte a un Clan o abandonar un Clan. Formar un nuevo Clan te costará bastante <gold>.</p>",
       "join": "Unirse",
       "leave": "Marcharse",
       "found": "Fundar",
@@ -530,8 +530,8 @@
     "guild": {
       "name": "Gremio",
       "description": "Favorece a un colectivo",
-      "help": "Puedes otorgar el favor de tu Reino a un Gremio en concreto. Como agradecimiento, dicho Gremio te otorgará un bonus adicional en los ataques a otros Reinos (Batallas, Pillajes o Asedios). Sólo puedes cambiar de Gremio una vez cada cierto tiempo.",
-      "tour": "<p>Podrás unirte y cambiar de Gremio semanalmente para disfrutar de bonificaciones adicionales únicas:</p><ul><li>Aumentar <attack>, <defense> o <health> de tus Tropas en las Batallas de tipo Asalto</li><li>Robar más <gold>, <mana> o <population> en las Batallas de tipo Pillaje</li><li>Destruir más Edificios, Tropas o Recursos en los Asedios</li></ul>",
+      "help": "Puedes otorgar el favor de tu Reino a un Gremio en concreto. Como agradecimiento, dicho Gremio te otorgará un bonus adicional en los ataques a otros Reinos (Batallas, Pillajes o Asedios). Sólo puedes cambiar de Gremio una vez a la semana.",
+      "tour": "<p>Cuando comienzas se te asigna un Gremio al azar. Podrás unirte y cambiar de Gremio semanalmente para disfrutar de bonificaciones adicionales únicas:</p><ul><li>Aumentar <attack>, <defense> o <health> de tus Tropas en las Batallas de tipo Asalto</li><li>Robar más <gold>, <mana> o <population> en las Batallas de tipo Pillaje</li><li>Destruir más Edificios, Tropas o Recursos en los Asedios</li></ul>",
       "hint": "Debes esperar 7 días antes de cambiar de Gremio",
       "select": "Escoge un Gremio",
       "favor": "Favorecer",
@@ -598,7 +598,7 @@
       "name": "Templo",
       "description": "Complace a los Dioses",
       "help": "Puedes ofrecer <gold>, <mana>, <population>, <land>, <turn> y <gem> a los distintos Dioses de este plano de la realidad para que otorguen su favor a tu Reino, y finalmente para que convoquen el Armagedón. Los favores incluyen Encantamientos, Artefactos, Tropas o recursos. Pero ten cuidado con lo que deseas, pues los Dioses son caprichosos...",
-      "tour": "<p>En el Templo se puede ofrecer <gold>, <mana>, <population>, <land>, <turn> o <gem> a los Dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar ofrendas a un Dios, obtendrás su favor, que puede ser una cantidad al azar de:</p><ul><li>Encantamientos o Maldiciones</li><li>Niveles de Héroe</li><li>Artefactos</li><li>Tropas</li><li>Edificios</li><li>Hechizos para investigar</li><li>Recursos (ganancia o pérdida)</li></ul>",
+      "tour": "<p>En el Templo se puede ofrecer <gold>, <mana>, <population>, <land>, <turn> o <gem> a los Dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar ofrendas a un Dios, obtendrás su favor, que puede ser una cantidad al azar (positiva o negativa) de:</p><ul><li>Encantamientos o Maldiciones</li><li>Niveles de Héroes</li><li>Artefactos activables</li><li>Tropas invocadas</li><li>Edificios construidos</li><li>Hechizos investigables</li><li>Recursos</li></ul>",
       "hero": "Te han otorgado el Héroe {{ hero }} ({{ level }})",
       "unit": "Te han otorgado la Tropa {{ unit }} ({{ quantity }})",
       "enchantment": "Te han encantado con {{ enchantment }} ({{ turns }})",
@@ -747,8 +747,8 @@
       "contents": "Contenido"
     },
     "foundation": {
-      "name": "Fundar nuevo clan",
-      "description": "Para consolidar tu poder puedes crear un clan completamente nuevo y ser considerado su líder absoluto e indiscutible. Deberás pagar una cantidad exorbitante de Oro.",
+      "name": "Fundar nuevo Clan",
+      "description": "Para consolidar tu poder puedes crear un Clan completamente nuevo y ser considerado su líder absoluto e indiscutible. Deberás pagar una cantidad exorbitante de Oro.",
       "information": "Información",
       "image": "Imagen",
       "rubric": "Rúbrica",

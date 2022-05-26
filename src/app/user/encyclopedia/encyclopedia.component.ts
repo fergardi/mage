@@ -98,7 +98,7 @@ export class EncyclopediaComponent implements OnInit {
       { surname: 'kingdom', name: 'auction', examples: this.table.data.filter((item: any) => ['shield-light', 'crypt-keeper'].includes(item.id)), suffix: '/assets/images/resources/gold.png' },
       { surname: 'kingdom', name: 'emporium', examples: this.table.data.filter((item: any) => ['magic-compass', 'dragon-egg'].includes(item.id)), suffix: '/assets/images/resources/gem.png' },
       { surname: 'world', name: 'map', examples: this.table.data.filter((item: any) => ['graveyard', 'inn'].includes(item.id)) },
-      { surname: 'kingdom', name: 'army', examples: this.table.data.filter((item: any) => ['bone-dragon', 'hydra'].includes(item.id)) },
+      { surname: 'kingdom', name: 'army', examples: this.table.data.filter((item: any) => ['bone-dragon', 'iron-golem'].includes(item.id)) },
       { surname: 'kingdom', name: 'tavern', examples: this.table.data.filter((item: any) => ['dragon-rider', 'sage'].includes(item.id)) },
       { surname: 'kingdom', name: 'census', examples: [{ name: 'Bot 1', description: 'Bots', type: 'player', image: '/assets/images/factions/black.png', faction: { id: 'black' } }, { name: 'Bot 2', description: 'Bots', type: 'player', image: '/assets/images/factions/white.png', faction: { id: 'white' } }], suffix: '/assets/images/icons/power.png' },
       { surname: 'kingdom', name: 'archive', examples: [{ name: 'Bot 3', description: 'kingdom.report.subject', type: 'report', image: '/assets/images/factions/green.png', faction: { id: 'green' } }, { name: 'Bot 4', description: 'kingdom.auction.subject', type: 'report', image: '/assets/images/factions/blue.png', faction: { id: 'blue' } }] },
