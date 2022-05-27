@@ -50,6 +50,10 @@
   }
   .mat-expansion-panel-header-title,
   .mat-list-base.mat-nav-list.router-list {
+    .mat-list-item.active,
+    .mat-list-item.focus {
+      background-color: #212121;
+    }
     ::ng-deep .mat-list-avatar,
     img {
       width: 60px !important;
