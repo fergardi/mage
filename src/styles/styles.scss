@@ -819,7 +819,7 @@ $list-item-height: 60px;
 
 //========================================================================================
 /*                                                                                      *
- *                                      ACCORDIONS                                      *
+ *                                        PANELS                                        *
  *                                                                                      */
 //========================================================================================
 
@@ -827,8 +827,12 @@ $list-item-height: 60px;
   .mat-expansion-panel {
     background: transparent;
     .mat-expansion-panel-header {
+      background: #212121;
       height: 60px;
       padding-left: 0;
+      &.mat-expanded:focus {
+        background: #212121;
+      }
       .mat-expansion-panel-header-title {
         flex-grow: 0;
       }
@@ -844,17 +848,12 @@ $list-item-height: 60px;
     }
   }
 }
-
-//========================================================================================
-/*                                                                                      *
- *                                        PANELS                                        *
- *                                                                                      */
-//========================================================================================
-
+/*
 .mat-expansion-panel-header.mat-expanded:focus,
 .mat-expansion-panel-header.mat-expanded:hover {
   background: transparent !important;
 }
+*/
 
 //========================================================================================
 /*                                                                                      *

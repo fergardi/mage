@@ -13,7 +13,7 @@
   },
   "landing": {
     "title": {
-      "name": "ÄrchiËnëmägÖ",
+      "name": "ÄrchiËnëMägÖ",
       "description": "Otro plano de la realidad",
       "play": "Renacer"
     },
@@ -595,7 +595,7 @@
       "message": "Se ha conjurado un Hechizo enemigo contra tu Reino. ¡Ésta osadía no quedará impune!"
     },
     "temple": {
-      "name": "Abad",
+      "name": "Obispo",
       "description": "Complace a los Dioses",
       "help": "Puedes ofrecer <gold>, <mana>, <population>, <land>, <turn> y <gem> a los distintos Dioses de este plano de la realidad para que otorguen su favor a tu Reino, y finalmente para que convoquen el Armagedón. Los favores incluyen Encantamientos, Artefactos, Tropas o recursos. Pero ten cuidado con lo que deseas, pues los Dioses son caprichosos...",
       "tour": "<p>En el Templo se puede ofrecer <gold>, <mana>, <population>, <land>, <turn> o <gem> a los Dioses para que rompan sus sellos y se desencadene finalmente el Armageddon, provocando el final de la partida. Al donar ofrendas a un Dios, obtendrás su favor, que puede ser una cantidad al azar (positiva o negativa) de:</p><ul><li>Encantamientos o Maldiciones</li><li>Niveles de Héroes</li><li>Artefactos activables</li><li>Tropas invocadas</li><li>Edificios construidos</li><li>Hechizos investigables</li><li>Recursos</li></ul>",
@@ -628,7 +628,7 @@
       "success": "Los Encantamientos se han desvanecido"
     },
     "dispel": {
-      "name": "Penitente",
+      "name": "Abad",
       "description": "Libera maleficios",
       "help": "Aqui puedes gastar <mana> y <turn> para rezar y tratar de liberar una Maldición de la que seas el origen (incluso siendo su objetivo). Siempre se tiene éxito.",
       "tour": "<p>Los Encantamientos pueden ser de varios tipos:</p><ul><li>De tu Reino a tu Reino (Encantamientos)</li><li>De tu Reino a otro Reino (Maldiciones)</li><li>De otro Reino a tu Reino (Maldiciones)</li></ul>",
