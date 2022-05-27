@@ -30,14 +30,14 @@
     <!-- scroll container -->
     <div class="scroll-container" [ngStyle]="{ height: (isHandset$ | async) === false ? 'calc(100% - 64px)' : 'calc(100% - 56px)' }">
       <mat-accordion>
-        <ng-container *ngFor="let group of groups">
-          <mat-expansion-panel [expanded]="group.id === expanded">
+        <ng-container *ngFor="let district of districts">
+          <mat-expansion-panel [expanded]="district.id === expanded">
             <mat-expansion-panel-header>
-              <mat-panel-title><img [src]="group.image" [alt]="group.name | translate"></mat-panel-title>
-              <mat-panel-description>{{ group.name | translate }}</mat-panel-description>
+              <mat-panel-title><img [src]="district.image" [alt]="district.name | translate"></mat-panel-title>
+              <mat-panel-description>{{ district.name | translate }}</mat-panel-description>
             </mat-expansion-panel-header>
             <mat-nav-list dense class="router-list">
-              <ng-container *ngFor="let link of group.links">
+              <ng-container *ngFor="let link of district.links">
                 <a mat-list-item
                   [disabled]="(angularFireAuth.authState | async) === (false || null || undefined)"
                   (click)="close()"
