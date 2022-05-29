@@ -20,7 +20,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
             <mat-progress-bar [value]="(supply.timestamp ? (supply.timestamp | turn:supply.resource.max:supply.resource.ratio | async) : supply.quantity) * 100 / supply.max"></mat-progress-bar>
           </div>
           <div mat-list-avatar
-            [matBadge]="(supply.balance | short) + ('resource.turn.ratio' | translate)"
+            [matBadge]="(supply.balance > 0 ? '+' : '') + (supply.balance | short) + ('resource.turn.ratio' | translate)"
             [matBadgeColor]="supply.balance === 0 ? 'primary' : supply.balance > 0 ? 'accent' : 'warn'"
             matBadgePosition="above after">
             <img mat-list-avatar [src]="supply.resource.status" [alt]="supply.resource.name | translate">

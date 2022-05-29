@@ -260,7 +260,9 @@ $list-item-height: 60px;
 .mat-list-base:not(.supply-list) {
   .mat-list-item {
     box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    &+ .mat-list-item {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
   }
   .mat-line {
     white-space: pre-wrap !important;
@@ -837,7 +839,7 @@ $list-item-height: 60px;
         flex-grow: 0;
       }
       .mat-expansion-panel-header-description {
-        font-size: 0.95rem;
+        font-size: 1rem;
         color: white;
       }
     }
@@ -848,12 +850,6 @@ $list-item-height: 60px;
     }
   }
 }
-/*
-.mat-expansion-panel-header.mat-expanded:focus,
-.mat-expansion-panel-header.mat-expanded:hover {
-  background: transparent !important;
-}
-*/
 
 //========================================================================================
 /*                                                                                      *
