@@ -54,7 +54,7 @@ describe('Structures', () => {
     const structureBefore = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', structure).limit(1)).get()).docs[0];
     const structureBeforeData = structureBefore.data();
     expect(structureBeforeData.quantity).toBeGreaterThanOrEqual(0);
-    expect((await backend.buildStructure(KINGDOM, structureBefore.id, quantity) as any).quantity).toBe(quantity);
+    expect((await backend.buildStructure(KINGDOM, structureBefore.id, quantity)).quantity).toBe(quantity);
     const structureAfter = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', structure).limit(1)).get()).docs[0];
     const structureAfterData = structureAfter.data();
     expect(structureAfterData.quantity).toBe(structureBeforeData.quantity + quantity);
@@ -73,7 +73,7 @@ describe('Structures', () => {
     const structureBefore = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', structure).limit(1)).get()).docs[0];
     const structureBeforeData = structureBefore.data();
     expect(structureBeforeData.quantity).toBeGreaterThanOrEqual(0);
-    expect((await backend.demolishStructure(KINGDOM, structureBefore?.id, quantity) as any).quantity).toBe(quantity);
+    expect((await backend.demolishStructure(KINGDOM, structureBefore?.id, quantity)).quantity).toBe(quantity);
     const structureAfter = (await (admin.firestore().collection(`kingdoms/${KINGDOM}/buildings`).where('id', '==', structure).limit(1)).get()).docs[0];
     const structureAfterData = structureAfter.data();
     expect(structureAfterData.quantity).toBe(structureBeforeData.quantity - quantity);
