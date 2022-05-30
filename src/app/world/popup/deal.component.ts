@@ -83,8 +83,7 @@ export class DealComponent implements OnInit {
         this.notificationService.success('world.deal.success');
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('world.deal.error');
+        this.notificationService.error('world.deal.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

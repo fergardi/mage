@@ -123,8 +123,7 @@ export class OfferComponent implements OnInit {
         if (offered.hasOwnProperty('building')) this.notificationService.success('kingdom.temple.building', offered);
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.offer.error');
+        this.notificationService.error('kingdom.offer.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

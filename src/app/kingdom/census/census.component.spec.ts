@@ -27,6 +27,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { DetailComponent } from './detail.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 describe('CensusComponent', () => {
   let component: CensusComponent;
@@ -50,6 +51,7 @@ describe('CensusComponent', () => {
         MatInputModule,
         MatListModule,
         MatBadgeModule,
+        MatToolbarModule,
       ],
       declarations: [
         CensusComponent,

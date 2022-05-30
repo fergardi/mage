@@ -119,8 +119,7 @@ export class FoundationComponent implements OnInit {
         this.notificationService.success('kingdom.foundation.success');
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.foundation.error');
+        this.notificationService.error('kingdom.foundation.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

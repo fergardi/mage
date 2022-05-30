@@ -57,8 +57,7 @@ export class PlantComponent {
         this.notificationService.success('kingdom.tree.success', planted);
         this.close(true);
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.tree.error');
+        this.notificationService.error('kingdom.tree.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

@@ -77,8 +77,7 @@ export class SorceryComponent implements OnInit {
         }
       }
     } catch (error) {
-      console.error(error);
-      this.notificationService.error('kingdom.sorcery.error');
+      this.notificationService.error('kingdom.sorcery.error', error as Error);
     }
     this.loadingService.stopLoading();
   }
@@ -98,8 +97,7 @@ export class SorceryComponent implements OnInit {
         }
       }
     } catch (error) {
-      console.error(error);
-      this.notificationService.error('kingdom.sorcery.error');
+      this.notificationService.error('kingdom.sorcery.error', error as Error);
     }
     this.loadingService.stopLoading();
   }

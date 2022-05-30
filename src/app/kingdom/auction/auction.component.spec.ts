@@ -30,6 +30,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { BidComponent } from './bid.component';
 import { TomeComponent } from 'src/app/user/encyclopedia/tome.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 describe('AuctionComponent', () => {
   let component: AuctionComponent;
@@ -56,6 +57,7 @@ describe('AuctionComponent', () => {
         MatBadgeModule,
         MatChipsModule,
         MatSnackBarModule,
+        MatToolbarModule,
       ],
       declarations: [
         AuctionComponent,

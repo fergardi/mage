@@ -65,8 +65,7 @@ export class TavernComponent implements OnInit {
           this.notificationService.success('kingdom.tavern.success');
         }
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.tavern.error');
+        this.notificationService.error('kingdom.tavern.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

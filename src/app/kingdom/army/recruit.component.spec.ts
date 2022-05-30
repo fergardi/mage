@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 describe('RecruitComponent', () => {
   let component: RecruitComponent;
@@ -46,6 +47,7 @@ describe('RecruitComponent', () => {
         BrowserAnimationsModule,
         MatButtonModule,
         MatChipsModule,
+        MatToolbarModule,
       ],
       declarations: [
         LegendaryPipe,

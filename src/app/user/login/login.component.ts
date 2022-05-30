@@ -115,8 +115,7 @@ export class LoginComponent implements OnInit {
         }
       } catch (error: any) {
         await this.angularFireAuth.signOut();
-        console.error(error);
-        this.notificationService.error('user.login.error');
+        this.notificationService.error('user.login.error', error as Error);
       }
       this.loadingService.stopLoading();
     }

@@ -119,8 +119,7 @@ export class BattleComponent implements OnInit {
         this.notificationService.success('kingdom.battle.success');
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.battle.error');
+        this.notificationService.error('kingdom.battle.error', error as Error);
       }
     } else {
       this.notificationService.error('kingdom.battle.error');

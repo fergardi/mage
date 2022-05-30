@@ -84,8 +84,7 @@ export class DispelComponent {
         this.notificationService.success('kingdom.dispel.success');
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.dispel.error');
+        this.notificationService.error('kingdom.dispel.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

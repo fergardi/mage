@@ -66,8 +66,7 @@ export class AdventureComponent implements OnInit {
         this.notificationService.success('world.adventure.success');
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('world.adventure.error');
+        this.notificationService.error('world.adventure.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

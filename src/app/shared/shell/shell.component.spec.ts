@@ -9,7 +9,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { LoadingService } from 'src/app/services/loading.service';
 import { DomService } from 'src/app/services/dom.service';
-import { TourService } from 'ngx-ui-tour-core';
+import { TourService } from 'ngx-ui-tour-md-menu';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
@@ -26,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Router } from '@angular/router';
 import { MatBottomSheetModule, MatBottomSheet } from '@angular/material/bottom-sheet';
 import { StatusComponent } from './status.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 describe('ShellComponent', () => {
   let component: ShellComponent;
@@ -47,6 +48,7 @@ describe('ShellComponent', () => {
         MatButtonModule,
         MatSelectModule,
         MatBottomSheetModule,
+        MatExpansionModule,
       ],
       declarations: [
         ShellComponent,

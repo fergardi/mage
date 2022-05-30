@@ -90,8 +90,7 @@ export class ArmyComponent implements OnInit {
       const assigned = await this.apiService.assignArmy(this.uid, army);
       this.notificationService.success('kingdom.army.success');
     } catch (error) {
-      console.error(error);
-      this.notificationService.error('kingdom.army.error');
+      this.notificationService.error('kingdom.army.error', error as Error);
     }
     this.loadingService.stopLoading();
   }

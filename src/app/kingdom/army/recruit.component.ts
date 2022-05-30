@@ -101,8 +101,7 @@ export class RecruitComponent implements OnInit {
         this.notificationService.success('kingdom.recruit.success', recruited);
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.recruit.error');
+        this.notificationService.error('kingdom.recruit.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

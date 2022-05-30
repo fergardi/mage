@@ -69,8 +69,7 @@ export class DischargeComponent {
       this.notificationService.success('kingdom.discharge.success', discharged);
       this.close();
     } catch (error) {
-      console.error(error);
-      this.notificationService.error('kingdom.discharge.error');
+      this.notificationService.error('kingdom.discharge.error', error as Error);
     }
     this.loadingService.stopLoading();
   }

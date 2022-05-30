@@ -82,8 +82,7 @@ export class BreakComponent {
         this.notificationService.success('kingdom.break.success');
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.break.error');
+        this.notificationService.error('kingdom.break.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

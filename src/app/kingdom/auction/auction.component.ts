@@ -134,8 +134,7 @@ export class AuctionComponent implements OnInit {
       try {
         await this.apiService.refreshAuction();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.auction.error');
+        this.notificationService.error('kingdom.auction.error', error as Error);
       }
       this.loadingService.stopLoading();
     }

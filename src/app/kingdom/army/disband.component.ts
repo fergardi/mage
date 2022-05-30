@@ -98,8 +98,7 @@ export class DisbandComponent implements OnInit {
         this.notificationService.success('kingdom.disband.success', disbanded);
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.disband.error');
+        this.notificationService.error('kingdom.disband.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

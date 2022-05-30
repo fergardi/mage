@@ -115,11 +115,10 @@ export class ClanComponent implements OnInit {
     $event.stopPropagation();
     this.loadingService.startLoading();
     try {
-      const joined = await this.apiService.joinClan(this.uid, clan.fid);
+      await this.apiService.joinClan(this.uid, clan.fid);
       this.notificationService.success('kingdom.clan.success');
     } catch (error) {
-      console.error(error);
-      this.notificationService.error('kingdom.clan.error');
+      this.notificationService.error('kingdom.clan.error', error as Error);
     }
     this.loadingService.stopLoading();
   }
@@ -128,11 +127,10 @@ export class ClanComponent implements OnInit {
     $event.stopPropagation();
     this.loadingService.startLoading();
     try {
-      const joined = await this.apiService.leaveClan(this.uid, clan.fid);
+      await this.apiService.leaveClan(this.uid, clan.fid);
       this.notificationService.success('kingdom.clan.success');
     } catch (error) {
-      console.error(error);
-      this.notificationService.error('kingdom.clan.error');
+      this.notificationService.error('kingdom.clan.error', error as Error);
     }
     this.loadingService.stopLoading();
   }
@@ -161,11 +159,10 @@ export class ClanComponent implements OnInit {
     if (this.kingdomGuild && this.canBeFavored()) {
       this.loadingService.startLoading();
       try {
-        const favored = await this.apiService.favorGuild(this.uid, this.kingdomGuild.id);
+        await this.apiService.favorGuild(this.uid, this.kingdomGuild.id);
         this.notificationService.success('kingdom.guild.success');
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.guild.error');
+        this.notificationService.error('kingdom.guild.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

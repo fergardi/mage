@@ -131,8 +131,7 @@ export class ConjureComponent implements OnInit {
         if (this.selectedCharm.spell.subtype === 'enchantment' && this.selectedCharm.spell.multiple) this.notificationService.success('kingdom.dispel.success');
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.conjure.error');
+        this.notificationService.error('kingdom.conjure.error', error as Error);
       }
     } else {
       this.notificationService.error('kingdom.conjure.error');

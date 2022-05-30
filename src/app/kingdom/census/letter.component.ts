@@ -84,8 +84,7 @@ export class LetterComponent implements OnInit {
         this.notificationService.success('kingdom.letter.success');
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.letter.error');
+        this.notificationService.error('kingdom.letter.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

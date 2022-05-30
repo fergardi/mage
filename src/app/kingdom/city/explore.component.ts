@@ -84,8 +84,7 @@ export class ExploreComponent implements OnInit {
         this.notificationService.success('kingdom.explore.success', explored);
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.explore.error');
+        this.notificationService.error('kingdom.explore.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

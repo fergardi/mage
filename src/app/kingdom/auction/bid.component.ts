@@ -91,8 +91,7 @@ export class BidComponent implements OnInit {
         this.notificationService.success('kingdom.bid.success');
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.bid.error');
+        this.notificationService.error('kingdom.bid.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

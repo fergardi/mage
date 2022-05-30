@@ -96,8 +96,7 @@ export class BuildComponent implements OnInit {
         this.notificationService.success('kingdom.build.built', built);
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.build.error');
+        this.notificationService.error('kingdom.build.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {
@@ -113,8 +112,7 @@ export class BuildComponent implements OnInit {
         this.notificationService.success('kingdom.build.demolished', demolished);
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.build.error');
+        this.notificationService.error('kingdom.build.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

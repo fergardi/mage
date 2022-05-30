@@ -95,8 +95,9 @@ export class NotificationService {
     this.snackBarQueue.next(this.snackBarQueue.value.concat([{ message, type, showing: false }]));
   }
 
-  error(text: string): void {
-    const message = this.translateService.instant(text);
+  error(text: string, error?: Error): void {
+    let message = this.translateService.instant(text);
+    message += error ? ` (${error.message})` : '';
     const type = SnackBarType.ERROR;
     this.snackBarQueue.next(this.snackBarQueue.value.concat([{ message, type, showing: false }]));
   }

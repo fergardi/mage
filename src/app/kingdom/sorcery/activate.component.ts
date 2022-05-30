@@ -112,8 +112,7 @@ export class ActivateComponent implements OnInit {
         if (artifact.item.subtype === 'enchantment' && !artifact.item.spells.length) this.notificationService.success('kingdom.dispel.success');
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.activate.error');
+        this.notificationService.error('kingdom.activate.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

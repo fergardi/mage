@@ -84,8 +84,7 @@ export class TaxComponent implements OnInit {
         this.notificationService.success('kingdom.tax.success', taxed);
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.tax.error');
+        this.notificationService.error('kingdom.tax.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

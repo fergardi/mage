@@ -3,8 +3,7 @@ import { of, Observable } from 'rxjs';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from './environments/environment';
 import { CdkDragDrop, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
-import { IStepOption } from 'ngx-ui-tour-core';
-import { map } from 'lodash';
+import { IStepOption } from 'ngx-ui-tour-md-menu';
 
 export const NotificationServiceStub: any = {
   success: () => null,

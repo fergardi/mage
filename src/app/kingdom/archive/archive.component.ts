@@ -137,8 +137,7 @@ export class ArchiveComponent implements OnInit {
         this.selection.clear();
         this.notificationService.success('kingdom.archive.success');
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.archive.error');
+        this.notificationService.error('kingdom.archive.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

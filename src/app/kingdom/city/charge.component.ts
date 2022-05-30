@@ -84,8 +84,7 @@ export class ChargeComponent implements OnInit {
         this.notificationService.success('kingdom.charge.success', charged);
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.charge.error');
+        this.notificationService.error('kingdom.charge.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {

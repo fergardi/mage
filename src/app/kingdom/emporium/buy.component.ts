@@ -60,8 +60,7 @@ export class BuyComponent {
         this.notificationService.success('kingdom.emporium.success', bought);
         this.close();
       } catch (error) {
-        console.error(error);
-        this.notificationService.error('kingdom.emporium.error');
+        this.notificationService.error('kingdom.emporium.error', error as Error);
       }
       this.loadingService.stopLoading();
     } else {
