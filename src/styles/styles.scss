@@ -131,6 +131,7 @@ $white-color: mat.get-color-from-palette($theme-white);
 $common-color: mat.get-color-from-palette($theme-common);
 $legendary-color: darkgoldenrod;
 $gray-color: rgba(255, 255, 255, 0.7);
+$bg-color: #212121;
 
 // https://sass-lang.com/documentation/breaking-changes/css-vars
 :root { // to extract with JS and use with external libraries (chartjs, mapboxgljs, etc)
@@ -337,6 +338,9 @@ $list-item-height: 60px;
 }
 .mat-card {
   .mat-card-header {
+    background-color: $bg-color;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     .mat-card-header-text {
       width: 100%;
       display: flex;
@@ -355,18 +359,19 @@ $list-item-height: 60px;
   }
 }
 .mat-card.map-popup {
-  .mat-card-avatar {
-    height: 70px !important;
-    width: 70px !important;
-    border: 2px solid $primary-color;
+  .mat-card-header {
+    margin: -16px;
+    padding: 16px 16px 0 16px;
+    .mat-card-avatar {
+      height: 70px !important;
+      width: 70px !important;
+      border: 2px solid $primary-color;
+    }
   }
 }
 .mat-card:not(.map-popup) {
   .mat-card-header {
-    background-color: #212121;
     margin: -16px -16px 0px -16px !important;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
     .mat-card-avatar {
       height: 100px;
       width: auto;
@@ -829,11 +834,11 @@ $list-item-height: 60px;
   .mat-expansion-panel {
     background: transparent;
     .mat-expansion-panel-header {
-      background: #212121;
+      background: $bg-color;
       height: 60px;
       padding-left: 0;
       &.mat-expanded:focus {
-        background: #212121;
+        background: $bg-color;
       }
       .mat-expansion-panel-header-title {
         flex-grow: 0;
