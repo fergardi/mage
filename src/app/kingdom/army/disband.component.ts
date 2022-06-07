@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Troop } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-disband',
@@ -71,7 +72,7 @@ export class DisbandComponent implements OnInit {
   uid = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public troop: any,
+    @Inject(MAT_DIALOG_DATA) public troop: Troop,
     private dialogRef: MatDialogRef<DisbandComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,

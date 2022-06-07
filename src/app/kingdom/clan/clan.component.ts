@@ -18,6 +18,7 @@ import { FoundationComponent } from './foundation.component';
 import { Observable, combineLatest } from 'rxjs';
 import { ManifestComponent } from './manifest.component';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { Clan, Filter, Guild, Kingdom } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-clan',
@@ -31,19 +32,22 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 @UntilDestroy()
 export class ClanComponent implements OnInit {
 
-  kingdomGuilds: any[] = [];
-  kingdomGuild: any = null;
-  kingdomClan$: Observable<any> = this.store.select(AuthState.getKingdomClan);
+  kingdomGuilds: Array<Guild> = [];
+  kingdomGuild: Guild = null;
+  kingdomClan$: Observable<Clan> = this.store.select(AuthState.getKingdomClan);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomGuilded: any = null;
-  columns = ['name', 'actions'];
-  filters: any = {
+  kingdomGuilded: number = null;
+  columns = [
+    'name',
+    'actions',
+  ];
+  filters: Filter = {
     name: {
       type: 'text',
       value: '',
     },
   };
-  table: MatTableDataSource<any> = new MatTableDataSource();
+  table: MatTableDataSource<Clan> = new MatTableDataSource();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -61,8 +65,8 @@ export class ClanComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.kingdomGuilds = await this.cacheService.getGuilds();
     combineLatest([
-      this.angularFirestore.collection<any>('clans').valueChanges({ idField: 'fid' }),
-      this.store.select(AuthState.getKingdomGuild).pipe(map(((data: string) => JSON.parse(data)))),
+      this.angularFirestore.collection<Clan>('clans').valueChanges({ idField: 'fid' }),
+      this.store.select(AuthState.getKingdomGuild).pipe(map(((data: string) => JSON.parse(data) as { guild: Guild, guilded: number }))),
     ])
     .pipe(untilDestroyed(this))
     .subscribe(([clans, kingdomGuild]) => {
@@ -85,8 +89,8 @@ export class ClanComponent implements OnInit {
     });
   }
 
-  createFilter(): (data: any, filter: string) => boolean {
-    const filterFunction = (data: any, filter: string): boolean => {
+  createFilter(): (data: Clan, filter: string) => boolean {
+    const filterFunction = (data: Clan, filter: string): boolean => {
       const filters = JSON.parse(filter);
       return data.name.toLowerCase().includes(filters.name);
     };
@@ -111,34 +115,39 @@ export class ClanComponent implements OnInit {
     this.applyFilter();
   }
 
-  async joinClan(clan: any, $event: Event) {
-    $event.stopPropagation();
-    this.loadingService.startLoading();
+  async joinClan(clan: Clan, $event: Event): Promise<void> {
     try {
+      $event.stopPropagation();
+      this.loadingService.startLoading();
       await this.apiService.joinClan(this.uid, clan.fid);
       this.notificationService.success('kingdom.clan.success');
     } catch (error) {
       this.notificationService.error('kingdom.clan.error', error as Error);
+    } finally {
+      this.loadingService.stopLoading();
     }
-    this.loadingService.stopLoading();
   }
 
-  async leaveClan(clan: any, $event: Event) {
-    $event.stopPropagation();
-    this.loadingService.startLoading();
+  async leaveClan(clan: Clan, $event: Event): Promise<void> {
     try {
+      $event.stopPropagation();
+      this.loadingService.startLoading();
       await this.apiService.leaveClan(this.uid, clan.fid);
       this.notificationService.success('kingdom.clan.success');
     } catch (error) {
       this.notificationService.error('kingdom.clan.error', error as Error);
+    } finally {
+      this.loadingService.stopLoading();
     }
-    this.loadingService.stopLoading();
   }
 
-  openManifestDialog(clan: any): void {
+  openManifestDialog(clan: Clan): void {
     const dialogRef = this.dialog.open(ManifestComponent, {
       panelClass: 'dialog-responsive',
-      data: { ...clan, members: [] },
+      data: {
+        ...clan,
+        members: [],
+      },
     });
   }
 
@@ -155,16 +164,17 @@ export class ClanComponent implements OnInit {
       : false;
   }
 
-  async favorGuild() {
+  async favorGuild(): Promise<void> {
     if (this.kingdomGuild && this.canBeFavored()) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         await this.apiService.favorGuild(this.uid, this.kingdomGuild.id);
         this.notificationService.success('kingdom.guild.success');
       } catch (error) {
         this.notificationService.error('kingdom.guild.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.guild.error');
     }

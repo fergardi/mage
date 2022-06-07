@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Tome } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-tome',
@@ -103,7 +104,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class TomeComponent {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public tome: any,
+    @Inject(MAT_DIALOG_DATA) public tome: Tome,
     private dialogRef: MatDialogRef<TomeComponent>,
   ) { }
 

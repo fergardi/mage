@@ -8,7 +8,7 @@ import { NotificationService } from './notification.service';
 import { AngularFirestoreStub, StoreStub, ApiServiceStub, NotificationServiceStub, MatDialogStub } from 'src/stubs';
 import * as mapboxgl from 'mapbox-gl';
 import { Component } from '@angular/core';
-import { MarkerType } from '../shared/type/common.type';
+import { MarkerType } from '../shared/type/enum.type';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({

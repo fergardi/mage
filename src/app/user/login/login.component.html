@@ -1,7 +1,7 @@
 <div class="app-login">
   <form [formGroup]="form" (ngSubmit)="login()" fxLayout="row" fxLayoutAlign="center center">
 
-    <mat-card fxFlex.xl="25" fxFlex.lg="33" fxFlex.md="50" fxFlex.sm="66" fxFlex.xs="100">
+    <mat-card fxFlex.xl="33" fxFlex.lg="50" fxFlex.md="66" fxFlex.sm="66" fxFlex.xs="100">
       <mat-card-header>
         <img mat-card-avatar src="/assets/images/cards/login.png" [alt]="'user.login.name' | translate">
         <mat-card-title>{{ 'user.login.name' | translate }}</mat-card-title>
@@ -10,15 +10,15 @@
 
       <mat-card-content>
         <mat-tab-group mat-align-tabs="center" (selectedTabChange)="changeType($event)">
-          <mat-tab *ngFor="let type of types" [label]="'user.login.' + type | translate"></mat-tab>
+          <mat-tab *ngFor="let type of loginTypes" [label]="'user.login.' + type | translate"></mat-tab>
         </mat-tab-group>
 
-        <mat-form-field *ngIf="type === 'signup'">
+        <mat-form-field *ngIf="loginType === LoginType.SIGNUP">
           <mat-label>{{ 'user.login.faction' | translate }}</mat-label>
           <mat-select formControlName="faction">
             <mat-select-trigger *ngIf="form.value.faction">
               <mat-list dense>
-                <mat-list-item>
+                <mat-list-item [ngClass]="form.value.faction.id">
                   <div mat-list-avatar>
                     <img mat-list-avatar [src]="form.value.faction.image" [alt]="form.value.faction.name | translate">
                   </div>
@@ -29,7 +29,7 @@
             </mat-select-trigger>
             <mat-option *ngFor="let faction of factions" [value]="faction">
               <mat-list dense>
-                <mat-list-item>
+                <mat-list-item [ngClass]="faction.id">
                   <div mat-list-avatar>
                     <img mat-list-avatar [src]="faction.image" [alt]="faction.name | translate">
                   </div>
@@ -42,7 +42,7 @@
           <mat-error>{{ 'user.login.unfactioned' | translate }}</mat-error>
         </mat-form-field>
 
-        <mat-form-field *ngIf="type === 'signup'">
+        <mat-form-field *ngIf="loginType === LoginType.SIGNUP">
           <input matInput type="text" formControlName="username" placeholder="{{ 'user.login.username' | translate }}" autocomplete="off">
           <mat-error>{{ 'user.login.invalid' | translate }}</mat-error>
         </mat-form-field>
@@ -52,12 +52,12 @@
           <mat-error>{{ 'user.login.invalid' | translate }}</mat-error>
         </mat-form-field>
 
-        <mat-form-field *ngIf="type !== 'reset'">
+        <mat-form-field *ngIf="loginType !== LoginType.RESET">
           <input matInput type="password" formControlName="password" placeholder="{{ 'user.login.password' | translate }}" autocomplete="off">
           <mat-error>{{ 'user.login.insecure' | translate }}</mat-error>
         </mat-form-field>
 
-        <mat-form-field *ngIf="type === 'signup'">
+        <mat-form-field *ngIf="loginType === LoginType.SIGNUP">
           <input matInput type="password" formControlName="password2" placeholder="{{ 'user.login.password2' | translate }}" autocomplete="off">
           <mat-error>{{ 'user.login.mismatch' | translate }}</mat-error>
         </mat-form-field>

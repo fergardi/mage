@@ -1,5 +1,6 @@
 import { Component, Input, ViewChildren, QueryList, Output, EventEmitter } from '@angular/core';
 import { MatTooltip } from '@angular/material/tooltip';
+import { Perk } from 'src/app/shared/type/interface.model';
 
 export const PERK_COST: number = 5;
 
@@ -53,13 +54,13 @@ export const PERK_COST: number = 5;
 })
 export class PerkComponent {
 
-  @Input() perk: any;
+  @Input() perk: Perk;
   @Input() disabled: boolean;
   @Output() increasedPerk = new EventEmitter<number>();
 
   @ViewChildren(MatTooltip) tooltips: QueryList<MatTooltip>;
 
-  increasePerk(perk: any): void {
+  increasePerk(perk: Perk): void {
     if (perk.level < perk.max) {
       perk.level++;
       this.increasedPerk.emit(PERK_COST);

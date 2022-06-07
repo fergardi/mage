@@ -20,7 +20,7 @@ import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { PaginatorIntl } from './shared/custom/paginator.intl';
 import { NgxCurrencyModule } from 'ngx-currency';
-import { DisqusModule } from "ngx-disqus";
+import { DisqusModule } from 'ngx-disqus';
 
 // AOT compilation support
 export function httpLoaderFactory(http: HttpClient) {
@@ -28,7 +28,7 @@ export function httpLoaderFactory(http: HttpClient) {
 }
 
 // i18n initializer to force translations to be loaded before startup
-export function appInitializerFactory(translateService: TranslateService): () => Promise<any> {
+export function appInitializerFactory(translateService: TranslateService): () => Promise<void> {
   return () => {
     translateService.setDefaultLang('es');
     return translateService.use('es').toPromise();

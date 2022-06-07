@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Building, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-build',
@@ -60,16 +61,16 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class BuildComponent implements OnInit {
 
-  form: FormGroup = null;
-  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
-  kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
-  kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
-  kingdomWorkshop: any = this.store.selectSnapshot(AuthState.getKingdomWorkshop);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomTurn: Supply = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomGold: Supply = this.store.selectSnapshot(AuthState.getKingdomGold);
+  kingdomLand: Supply = this.store.selectSnapshot(AuthState.getKingdomLand);
+  kingdomWorkshop: Building = this.store.selectSnapshot(AuthState.getKingdomWorkshop);
+  form: FormGroup = null;
   Math: any = Math;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public building: any,
+    @Inject(MAT_DIALOG_DATA) public building: Building,
     private dialogRef: MatDialogRef<BuildComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
@@ -88,47 +89,49 @@ export class BuildComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async build() {
+  async build(): Promise<void> {
     if (this.form.valid && this.land() <= this.kingdomLand.quantity && this.gold() <= this.kingdomGold.quantity && this.turn() <= this.kingdomTurn.quantity) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const built = await this.apiService.buildStructure(this.uid, this.building.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.build.built', built);
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.build.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.build.error');
     }
   }
 
-  async demolish() {
+  async demolish(): Promise<void> {
     if (this.form.valid && this.land() <= this.building.quantity) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const demolished = await this.apiService.demolishStructure(this.uid, this.building.fid, this.form.value.quantity);
         this.notificationService.success('kingdom.build.demolished', demolished);
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.build.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.build.error');
     }
   }
 
-  turn() {
+  turn(): number {
     return Math.ceil(this.form.value.quantity / Math.ceil((this.kingdomWorkshop.quantity + 1) / this.building.structure.turnRatio));
   }
 
-  gold() {
+  gold(): number {
     return this.form.value.quantity * this.building.structure.goldCost;
   }
 
-  land() {
+  land(): number {
     return this.form.value.quantity || 0;
   }
 

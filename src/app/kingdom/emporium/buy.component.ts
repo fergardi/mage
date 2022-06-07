@@ -5,6 +5,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Item, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-buy',
@@ -37,10 +38,10 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class BuyComponent {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomGem: any = this.store.selectSnapshot(AuthState.getKingdomGem);
+  kingdomGem: Supply = this.store.selectSnapshot(AuthState.getKingdomGem);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public item: any,
+    @Inject(MAT_DIALOG_DATA) public item: Item,
     private dialogRef: MatDialogRef<BuyComponent>,
     private store: Store,
     private apiService: ApiService,
@@ -52,17 +53,18 @@ export class BuyComponent {
     this.dialogRef.close();
   }
 
-  async buy() {
+  async buy(): Promise<void> {
     if (this.item.gems <= this.kingdomGem.quantity) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const bought = await this.apiService.buyEmporium(this.uid, this.item.id);
         this.notificationService.success('kingdom.emporium.success', bought);
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.emporium.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.emporium.error');
     }

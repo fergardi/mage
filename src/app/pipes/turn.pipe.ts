@@ -9,9 +9,10 @@ import { map } from 'rxjs/operators';
 })
 export class TurnPipe implements PipeTransform {
 
+  // @Select(AuthState.getClock) clock$: Observable<Date>;
   @Select((state: any) => state.auth.clock) clock$: Observable<Date>;
 
-  transform(timestamp: any, max: number, ratio: number): Observable<number> {
+  transform(timestamp: firebase.firestore.Timestamp, max: number, ratio: number): Observable<number> {
     return this.clock$.pipe(
       map(time => {
         return calculate(timestamp.toMillis(), time, max, ratio);
@@ -21,7 +22,7 @@ export class TurnPipe implements PipeTransform {
 
 }
 
-export const calculate = (from: any, to: any, max: number, ratio: number): number => {
+export const calculate = (from: number | Date, to: number | Date, max: number, ratio: number): number => {
   const start = moment(from);
   const end = moment(to);
   const minutes = moment.duration(end.diff(start)).asMinutes();

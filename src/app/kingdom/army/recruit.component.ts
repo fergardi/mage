@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Supply, Unit } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-recruit',
@@ -65,12 +66,12 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class RecruitComponent implements OnInit {
 
-  form: FormGroup = null;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
+  kingdomGold: Supply = this.store.selectSnapshot(AuthState.getKingdomGold);
+  form: FormGroup = null;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public unit: any,
+    @Inject(MAT_DIALOG_DATA) public unit: Unit,
     private dialogRef: MatDialogRef<RecruitComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
@@ -93,17 +94,18 @@ export class RecruitComponent implements OnInit {
     return this.form.value.quantity * this.unit.gold;
   }
 
-  async recruit() {
+  async recruit(): Promise<void> {
     if (this.form.valid && this.gold() <= this.kingdomGold.quantity) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const recruited = await this.apiService.recruitUnit(this.uid, this.unit.id, this.form.value.quantity);
         this.notificationService.success('kingdom.recruit.success', recruited);
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.recruit.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.recruit.error');
     }

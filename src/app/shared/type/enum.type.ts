@@ -46,4 +46,24 @@ export enum FactionType {
   GREEN = 'green',
   BLUE = 'blue',
   BLACK = 'black',
+  // GREY = 'grey',
+}
+
+export enum AssignmentType {
+  NONE = 0,
+  ATTACK = 1,
+  DEFENSE = 2,
+}
+
+export enum BattleType {
+  SIEGE = 'siege',
+  PILLAGE = 'pillage',
+  ATTACK = 'attack',
+  ADVENTURE = 'adventure',
+}
+
+export enum LoginType {
+  LOGIN = 'login',
+  SIGNUP = 'signup',
+  RESET = 'reset',
 }

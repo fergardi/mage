@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MarkerType } from 'src/app/shared/type/common.type';
+import { MarkerType } from 'src/app/shared/type/enum.type';
 
 @Component({
   selector: 'app-marker',

@@ -7,6 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Observable } from 'rxjs';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Building, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-tax',
@@ -52,12 +53,12 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class TaxComponent implements OnInit {
 
-  form: FormGroup = null;
-  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomTurn: Supply = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  form: FormGroup = null;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public village$: Observable<any>,
+    @Inject(MAT_DIALOG_DATA) public village$: Observable<Building>,
     private dialogRef: MatDialogRef<TaxComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
@@ -76,17 +77,18 @@ export class TaxComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async tax() {
+  async tax(): Promise<void> {
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const taxed = await this.apiService.taxGold(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.tax.success', taxed);
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.tax.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.tax.error');
     }

@@ -13,12 +13,8 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { combineLatest } from 'rxjs';
 import { TutorialService } from 'src/app/services/tutorial.service';
-
-export enum TroopAssignmentType {
-  NONE,
-  ATTACK,
-  DEFENSE,
-}
+import { Troop, TroopSort, Unit } from 'src/app/shared/type/interface.model';
+import { AssignmentType } from 'src/app/shared/type/enum.type';
 
 const MAXIMUM_TROOPS = 5;
 
@@ -32,10 +28,10 @@ const MAXIMUM_TROOPS = 5;
 export class ArmyComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomTroops: any[] = [];
-  attackTroops: any[] = [];
-  defenseTroops: any[] = [];
-  recruitUnits: any[] = [];
+  kingdomTroops: Array<Troop> = [];
+  attackTroops: Array<Troop> = [];
+  defenseTroops: Array<Troop> = [];
+  recruitUnits: Array<Unit> = [];
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -49,19 +45,19 @@ export class ArmyComponent implements OnInit {
 
   ngOnInit(): void {
     combineLatest([
-      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/troops`).valueChanges({ idField: 'fid' }),
-      this.angularFirestore.collection<any>(`units`, ref => ref.where('recruitable', '==', true)).valueChanges({ idField: 'fid' }),
+      this.angularFirestore.collection<Troop>(`kingdoms/${this.uid}/troops`).valueChanges({ idField: 'fid' }),
+      this.angularFirestore.collection<Unit>(`units`, ref => ref.where('recruitable', '==', true)).valueChanges({ idField: 'fid' }),
     ])
     .pipe(untilDestroyed(this))
     .subscribe(([troops, units]) => {
-      this.kingdomTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.NONE || !troop.assignment).sort((a, b) => a.sort - b.sort);
-      this.attackTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.ATTACK).sort((a, b) => a.sort - b.sort);
-      this.defenseTroops = troops.filter(troop => troop.assignment === TroopAssignmentType.DEFENSE).sort((a, b) => a.sort - b.sort);
+      this.kingdomTroops = troops.filter(troop => troop.assignment === AssignmentType.NONE || !troop.assignment).sort((a, b) => a.sort - b.sort);
+      this.attackTroops = troops.filter(troop => troop.assignment === AssignmentType.ATTACK).sort((a, b) => a.sort - b.sort);
+      this.defenseTroops = troops.filter(troop => troop.assignment === AssignmentType.DEFENSE).sort((a, b) => a.sort - b.sort);
       this.recruitUnits = units.sort((a, b) => a.gold - b.gold);
     });
   }
 
-  async assignTroop($event: CdkDragDrop<any>) {
+  async assignTroop($event: CdkDragDrop<Array<string>>): Promise<void> {
     if ($event.container && (Number($event.container.id) === 0 || $event.previousContainer === $event.container || $event.container.data.length < MAXIMUM_TROOPS)) {
       if ($event.previousContainer === $event.container) {
         moveItemInArray($event.container.data, $event.previousIndex, $event.currentIndex);
@@ -74,35 +70,36 @@ export class ArmyComponent implements OnInit {
     }
   }
 
-  async updateArmy() {
-    this.loadingService.startLoading();
+  async updateArmy(): Promise<void> {
     try {
-      const army = [];
+      this.loadingService.startLoading();
+      const army = new Array<TroopSort>();
       this.kingdomTroops.forEach((kingdomTroop, index) => {
-        army.push({ troopId: kingdomTroop.fid, sort: 1000 + index, assignment: TroopAssignmentType.NONE });
+        army.push({ troopId: kingdomTroop.fid, sort: 1000 + index, assignment: AssignmentType.NONE });
       });
       this.attackTroops.forEach((attackTroop, index) => {
-        army.push({ troopId: attackTroop.fid, sort: 2000 + index, assignment: TroopAssignmentType.ATTACK });
+        army.push({ troopId: attackTroop.fid, sort: 2000 + index, assignment: AssignmentType.ATTACK });
       });
       this.defenseTroops.forEach((defenseTroop, index) => {
-        army.push({ troopId: defenseTroop.fid, sort: 3000 + index, assignment: TroopAssignmentType.DEFENSE });
+        army.push({ troopId: defenseTroop.fid, sort: 3000 + index, assignment: AssignmentType.DEFENSE });
       });
-      const assigned = await this.apiService.assignArmy(this.uid, army);
+      await this.apiService.assignArmy(this.uid, army);
       this.notificationService.success('kingdom.army.success');
     } catch (error) {
       this.notificationService.error('kingdom.army.error', error as Error);
+    } finally {
+      this.loadingService.stopLoading();
     }
-    this.loadingService.stopLoading();
   }
 
-  openRecruitDialog(unit: any): void {
+  openRecruitDialog(unit: Unit): void {
     const dialogRef = this.dialog.open(RecruitComponent, {
       panelClass: 'dialog-responsive',
       data: unit,
     });
   }
 
-  openDisbandDialog(troop: any): void {
+  openDisbandDialog(troop: Troop): void {
     const dialogRef = this.dialog.open(DisbandComponent, {
       panelClass: 'dialog-responsive',
       data: troop,

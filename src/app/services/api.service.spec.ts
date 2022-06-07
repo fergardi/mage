@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from './api.service';
 import { environment } from 'src/environments/environment';
-import { StoreType, LocationType, FactionType } from '../shared/type/common.type';
+import { StoreType, LocationType, FactionType } from '../shared/type/enum.type';
 
 enum HttpVerb {
   GET = 'GET',

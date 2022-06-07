@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
-import { StoreType, LocationType, FactionType } from 'src/app/shared/type/common.type';
+import { StoreType, LocationType, FactionType } from 'src/app/shared/type/enum.type';
 
 describe('MapComponent', () => {
   let component: MapComponent;

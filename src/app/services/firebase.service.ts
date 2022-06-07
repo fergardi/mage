@@ -5,50 +5,52 @@ import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as moment from 'moment';
 import { CollectionType } from './cache.service';
+import { Store } from '@ngxs/store';
+import { Attack, Faction, Family, Category, God, Resource, Skill, Structure, Guild, Unit, Item, Spell, Perk, Pack, Location, Hero } from '../shared/type/interface.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseService {
 
-  attacks: any[] = [];
-  factions: any[] = [];
-  families: any[] = [];
-  categories: any[] = [];
-  gods: any[] = [];
-  resources: any[] = [];
-  skills: any[] = [];
-  structures: any[] = [];
-  guilds: any[] = [];
-  units: any[] = [];
-  items: any[] = [];
-  stores: any[] = [];
-  locations: any[] = [];
-  spells: any[] = [];
-  heroes: any[] = [];
-  kingdoms: any[] = [];
-  legends: any[] = [];
-  perks: any[] = [];
-  packs: any[] = [];
+  attacks: Array<Attack> = [];
+  factions: Array<Faction> = [];
+  families: Array<Family> = [];
+  categories: Array<Category> = [];
+  gods: Array<God> = [];
+  resources: Array<Resource> = [];
+  skills: Array<Skill> = [];
+  structures: Array<Structure> = [];
+  guilds: Array<Guild> = [];
+  units: Array<Unit> = [];
+  items: Array<Item> = [];
+  stores: Array<Store> = [];
+  locations: Array<Location> = [];
+  spells: Array<Spell> = [];
+  heroes: Array<Hero> = [];
+  // kingdoms: Array<Kingdom> = [];
+  // legends: Array<Legend> = [];
+  perks: Array<Perk> = [];
+  packs: Array<Pack> = [];
 
-  joinedAttacks: any[] = [];
-  joinedFactions: any[] = [];
-  joinedFamilies: any[] = [];
-  joinedCategories: any[] = [];
-  joinedGods: any[] = [];
-  joinedResources: any[] = [];
-  joinedSkills: any[] = [];
-  joinedStructures: any[] = [];
-  joinedGuilds: any[] = [];
-  joinedUnits: any[] = [];
-  joinedItems: any[] = [];
-  joinedStores: any[] = [];
-  joinedLocations: any[] = [];
-  joinedSpells: any[] = [];
-  joinedHeroes: any[] = [];
-  joinedLegends: any[] = [];
-  joinedPerks: any[] = [];
-  joinedPacks: any[] = [];
+  joinedAttacks: Array<Attack> = [];
+  joinedFactions: Array<Faction> = [];
+  joinedFamilies: Array<Family> = [];
+  joinedCategories: Array<Category> = [];
+  joinedGods: Array<God> = [];
+  joinedResources: Array<Resource> = [];
+  joinedSkills: Array<Skill> = [];
+  joinedStructures: Array<Structure> = [];
+  joinedGuilds: Array<Guild> = [];
+  joinedUnits: Array<Unit> = [];
+  joinedItems: Array<Item> = [];
+  joinedStores: Array<Store> = [];
+  joinedLocations: Array<Location> = [];
+  joinedSpells: Array<Spell> = [];
+  joinedHeroes: Array<Hero> = [];
+  // joinedLegends: Array<Legend> = [];
+  joinedPerks: Array<Perk> = [];
+  joinedPacks: Array<Pack> = [];
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -98,24 +100,24 @@ export class FirebaseService {
   }
 
   async readFixtures() {
-    this.attacks = await this.httpClient.get<any[]>('assets/fixtures/attacks.json').toPromise();
-    this.factions = await this.httpClient.get<any[]>('assets/fixtures/factions.json').toPromise();
-    this.families = await this.httpClient.get<any[]>('assets/fixtures/families.json').toPromise();
-    this.categories = await this.httpClient.get<any[]>('assets/fixtures/categories.json').toPromise();
-    this.gods = await this.httpClient.get<any[]>('assets/fixtures/gods.json').toPromise();
-    this.resources = await this.httpClient.get<any[]>('assets/fixtures/resources.json').toPromise();
-    this.skills = await this.httpClient.get<any[]>('assets/fixtures/skills.json').toPromise();
-    this.structures = await this.httpClient.get<any[]>('assets/fixtures/structures.json').toPromise();
-    this.guilds = await this.httpClient.get<any[]>('assets/fixtures/guilds.json').toPromise();
-    this.units = await this.httpClient.get<any[]>('assets/fixtures/units.json').toPromise();
-    this.items = await this.httpClient.get<any[]>('assets/fixtures/items.json').toPromise();
-    this.stores = await this.httpClient.get<any[]>('assets/fixtures/stores.json').toPromise();
-    this.locations = await this.httpClient.get<any[]>('assets/fixtures/locations.json').toPromise();
-    this.spells = await this.httpClient.get<any[]>('assets/fixtures/spells.json').toPromise();
-    this.heroes = await this.httpClient.get<any[]>('assets/fixtures/heroes.json').toPromise();
-    this.legends = await this.httpClient.get<any[]>('assets/fixtures/legends.json').toPromise();
-    this.perks = await this.httpClient.get<any[]>('assets/fixtures/perks.json').toPromise();
-    this.packs = await this.httpClient.get<any[]>('assets/fixtures/packs.json').toPromise();
+    this.attacks = await this.httpClient.get<Array<Attack>>('assets/fixtures/attacks.json').toPromise();
+    this.factions = await this.httpClient.get<Array<Faction>>('assets/fixtures/factions.json').toPromise();
+    this.families = await this.httpClient.get<Array<Family>>('assets/fixtures/families.json').toPromise();
+    this.categories = await this.httpClient.get<Array<Category>>('assets/fixtures/categories.json').toPromise();
+    this.gods = await this.httpClient.get<Array<God>>('assets/fixtures/gods.json').toPromise();
+    this.resources = await this.httpClient.get<Array<Resource>>('assets/fixtures/resources.json').toPromise();
+    this.skills = await this.httpClient.get<Array<Skill>>('assets/fixtures/skills.json').toPromise();
+    this.structures = await this.httpClient.get<Array<Structure>>('assets/fixtures/structures.json').toPromise();
+    this.guilds = await this.httpClient.get<Array<Guild>>('assets/fixtures/guilds.json').toPromise();
+    this.units = await this.httpClient.get<Array<Unit>>('assets/fixtures/units.json').toPromise();
+    this.items = await this.httpClient.get<Array<Item>>('assets/fixtures/items.json').toPromise();
+    this.stores = await this.httpClient.get<Array<Store>>('assets/fixtures/stores.json').toPromise();
+    this.locations = await this.httpClient.get<Array<Location>>('assets/fixtures/locations.json').toPromise();
+    this.spells = await this.httpClient.get<Array<Spell>>('assets/fixtures/spells.json').toPromise();
+    this.heroes = await this.httpClient.get<Array<Hero>>('assets/fixtures/heroes.json').toPromise();
+    // this.legends = await this.httpClient.get<Array<Legend>>('assets/fixtures/legends.json').toPromise();
+    this.perks = await this.httpClient.get<Array<Perk>>('assets/fixtures/perks.json').toPromise();
+    this.packs = await this.httpClient.get<Array<Pack>>('assets/fixtures/packs.json').toPromise();
   }
 
   async importFixtures(collection: string, elements: any[], batch: firebase.firestore.WriteBatch) {
@@ -223,12 +225,14 @@ export class FirebaseService {
           console.debug(`Loading ${CollectionType.LOCATIONS}...`);
           this.importFixtures(CollectionType.LOCATIONS, this.joinedLocations, batch);
         }
+        /*
         this.joinedLegends = JSON.parse(JSON.stringify(this.legends));
         this.joinedLegends.forEach(legend => this.joinFixtures(legend));
         if (fixtures.includes(CollectionType.LEGENDS)) {
           console.debug(`Loading ${CollectionType.LEGENDS}...`);
           this.importFixtures(CollectionType.LEGENDS, this.joinedLegends, batch);
         }
+        */
         this.joinedPerks = JSON.parse(JSON.stringify(this.perks));
         this.joinedPerks.forEach(perk => this.joinFixtures(perk));
         if (fixtures.includes(CollectionType.PERKS)) {

@@ -6,6 +6,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Auction, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-bid',
@@ -61,10 +62,10 @@ export class BidComponent implements OnInit {
 
   form: FormGroup = null;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
+  kingdomGold: Supply = this.store.selectSnapshot(AuthState.getKingdomGold);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public auction: any,
+    @Inject(MAT_DIALOG_DATA) public auction: Auction,
     private dialogRef: MatDialogRef<BidComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,

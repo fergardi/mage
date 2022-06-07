@@ -11,6 +11,8 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { MatDialog } from '@angular/material/dialog';
 import { GeolocationComponent } from './geolocation.component';
 import { environment } from 'src/environments/environment';
+import { Faction, Position } from 'src/app/shared/type/interface.model';
+import { LoginType } from 'src/app/shared/type/enum.type';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +21,11 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
 
+  LoginType: typeof LoginType = LoginType;
+  loginTypes = [LoginType.LOGIN, LoginType.SIGNUP, LoginType.RESET] as const;
+  loginType = LoginType.LOGIN;
   form: FormGroup;
-  types =  ['login', 'signup', 'reset'] as const;
-  type = 'login';
-  message: string;
-  factions: any[] = [];
+  factions: Array<Faction> = [];
 
   constructor(
     public angularFireAuth: AngularFireAuth,
@@ -40,23 +42,23 @@ export class LoginComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const factions = await this.cacheService.getFactions();
-    this.factions = factions.filter((faction: any) => faction.id !== 'grey');
+    this.factions = factions.filter(faction => faction.id !== 'grey');
   }
 
   async createForm() {
     this.form = this.formBuilder.group({
       email: ['testing@mage.com', [Validators.required, Validators.email]],
-      username: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(18)] : []],
-      password: ['t3st1ng', this.type !== 'reset' ? [Validators.required, Validators.minLength(6), Validators.maxLength(18)] : []],
-      password2: ['', this.type === 'signup' ? [Validators.required, Validators.minLength(6), Validators.maxLength(18), this.matchValues('password')] : []],
-      faction: [null, this.type === 'signup' ? [Validators.required] : []],
+      username: ['', this.loginType === LoginType.SIGNUP ? [Validators.required, Validators.minLength(6), Validators.maxLength(18)] : []],
+      password: ['t3st1ng', this.loginType !== LoginType.RESET ? [Validators.required, Validators.minLength(6), Validators.maxLength(18)] : []],
+      password2: ['', this.loginType === LoginType.SIGNUP ? [Validators.required, Validators.minLength(6), Validators.maxLength(18), this.matchValues('password')] : []],
+      faction: [null, this.loginType === LoginType.SIGNUP ? [Validators.required] : []],
     });
   }
 
-  changeType($event: MatTabChangeEvent) {
-    this.type = this.types[$event.index];
+  changeType($event: MatTabChangeEvent): void {
+    this.loginType = this.loginTypes[$event.index];
     this.createForm();
-    if (this.type === 'signup') {
+    if (this.loginType === LoginType.SIGNUP) {
       this.dialog.open(GeolocationComponent, {
         panelClass: 'dialog-responsive',
         data: null,
@@ -72,7 +74,7 @@ export class LoginComponent implements OnInit {
     };
   }
 
-  async getCurrentPosition() {
+  async getCurrentPosition(): Promise<Position> {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 });
     });
@@ -82,46 +84,48 @@ export class LoginComponent implements OnInit {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  async login() {
+  async login(): Promise<void> {
     if (this.form.valid) {
-      const email = this.form.value.email;
-      const password = this.form.value.password;
-      this.loadingService.startLoading();
       try {
-        switch (this.type) {
-          case 'login':
+        this.loadingService.startLoading();
+        const email = this.form.value.email;
+        const password = this.form.value.password;
+        switch (this.loginType) {
+          case LoginType.LOGIN:
             await this.angularFireAuth.signInWithEmailAndPassword(email, password);
             break;
-          case 'signup':
-            let position = null;
+          case LoginType.SIGNUP:
+            let position: Position = null;
             try {
               position = await this.getCurrentPosition();
-            } catch (error: any) {
+            } catch (error) {
               position = {
                 coords: {
                   latitude: this.random(environment.mapbox.lat - 0.02, environment.mapbox.lat + 0.02),
                   longitude: this.random(environment.mapbox.lng - 0.02, environment.mapbox.lng + 0.02),
                 },
               };
+              this.notificationService.warning('user.login.default');
             }
             const credentials = await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
             this.apiService.populateMap(position.coords.latitude, position.coords.longitude);
             await this.apiService.createKingdom(credentials.user.uid, this.form.value.faction.id, this.form.value.username, position.coords.latitude, position.coords.longitude);
             break;
-          case 'reset':
+          case LoginType.RESET:
             await this.angularFireAuth.sendPasswordResetEmail(email);
             this.notificationService.warning('user.login.check');
             break;
         }
-      } catch (error: any) {
+      } catch (error) {
         await this.angularFireAuth.signOut();
         this.notificationService.error('user.login.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     }
   }
 
-  async google() {
+  async google(): Promise<void> {
     this.store.dispatch(new LoginWithGoogleAction());
   }
 

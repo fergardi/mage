@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { God, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-offer',
@@ -65,15 +66,15 @@ export class OfferComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   form: FormGroup = null;
-  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
-  kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
-  kingdomMana: any = this.store.selectSnapshot(AuthState.getKingdomMana);
-  kingdomPopulation: any = this.store.selectSnapshot(AuthState.getKingdomPopulation);
-  kingdomLand: any = this.store.selectSnapshot(AuthState.getKingdomLand);
-  kingdomGem: any = this.store.selectSnapshot(AuthState.getKingdomGem);
+  kingdomTurn: Supply = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomGold: Supply = this.store.selectSnapshot(AuthState.getKingdomGold);
+  kingdomMana: Supply = this.store.selectSnapshot(AuthState.getKingdomMana);
+  kingdomPopulation: Supply = this.store.selectSnapshot(AuthState.getKingdomPopulation);
+  kingdomLand: Supply = this.store.selectSnapshot(AuthState.getKingdomLand);
+  kingdomGem: Supply = this.store.selectSnapshot(AuthState.getKingdomGem);
   
   constructor(
-    @Inject(MAT_DIALOG_DATA) public god: any,
+    @Inject(MAT_DIALOG_DATA) public god: God,
     private dialogRef: MatDialogRef<OfferComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
@@ -105,10 +106,10 @@ export class OfferComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async offer() {
+  async offer(): Promise<void> {
     if (this.form.valid) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const offered = await this.apiService.offerGod(this.uid, this.god.fid, this.form.value.sacrifice);
         if (offered.hasOwnProperty('hero')) this.notificationService.success('kingdom.temple.hero', offered);
         if (offered.hasOwnProperty('item')) this.notificationService.success('kingdom.temple.item', offered);
@@ -124,8 +125,9 @@ export class OfferComponent implements OnInit {
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.offer.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.offer.error');
     }

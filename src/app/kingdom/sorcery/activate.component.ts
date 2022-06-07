@@ -7,12 +7,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { LoadingService } from 'src/app/services/loading.service';
-
-export enum ArtifactAssignmentType {
-  NONE,
-  ATTACK,
-  DEFENSE,
-}
+import { AssignmentType } from 'src/app/shared/type/enum.type';
+import { Artifact, Kingdom, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-activate',
@@ -70,14 +66,14 @@ export enum ArtifactAssignmentType {
 export class ActivateComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
-  kingdomArtifacts: any[] = [];
-  selectedArtifact: any = null;
+  kingdomTurn: Supply = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomArtifacts: Array<Artifact> = [];
+  selectedArtifact: Artifact = null;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public activation: {
-      artifact: any,
-      kingdom: any,
+      artifact: Artifact,
+      kingdom: Kingdom,
     },
     private dialogRef: MatDialogRef<ActivateComponent>,
     private angularFirestore: AngularFirestore,
@@ -88,7 +84,7 @@ export class ActivateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/artifacts`, ref => ref.where('assignment', '==', ArtifactAssignmentType.NONE).where('item.battle', '==', false).where('item.self', '==', !this.activation.kingdom)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
+    this.angularFirestore.collection<Artifact>(`kingdoms/${this.uid}/artifacts`, ref => ref.where('assignment', '==', AssignmentType.NONE).where('item.battle', '==', false).where('item.self', '==', !this.activation.kingdom)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(artifacts => {
       this.kingdomArtifacts = artifacts;
       if (this.activation.artifact) this.selectedArtifact = this.kingdomArtifacts.find(artifact => artifact.fid === this.activation.artifact.fid);
     });
@@ -98,10 +94,10 @@ export class ActivateComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async activate() {
+  async activate(): Promise<void> {
     if (this.selectedArtifact.quantity && this.selectedArtifact.item.turns <= this.kingdomTurn.quantity) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const artifact = this.selectedArtifact; // copy because the artifact may be the last one and gets deleted from server
         const activated = await this.apiService.activateArtifact(this.uid, this.selectedArtifact.fid, this.activation.kingdom ? this.activation.kingdom.fid : this.uid);
         if (artifact.item.subtype === 'summon') this.notificationService.success('kingdom.activate.summon', activated);
@@ -113,8 +109,9 @@ export class ActivateComponent implements OnInit {
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.activate.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.activate.error');
     }

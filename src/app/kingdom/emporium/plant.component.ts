@@ -5,6 +5,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Perk, Supply, Tree } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-plant',
@@ -34,10 +35,13 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class PlantComponent {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomGem: any = this.store.selectSnapshot(AuthState.getKingdomGem);
+  kingdomGem: Supply = this.store.selectSnapshot(AuthState.getKingdomGem);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public tree: any,
+    @Inject(MAT_DIALOG_DATA) public tree: {
+      branches: Tree,
+      gems: number,
+    },
     private dialogRef: MatDialogRef<PlantComponent>,
     private store: Store,
     private apiService: ApiService,
@@ -51,15 +55,16 @@ export class PlantComponent {
 
   async plant(): Promise<void> {
     if (this.tree.gems <= this.kingdomGem.quantity) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const planted = await this.apiService.plantTree(this.uid, this.tree.branches, this.tree.gems);
         this.notificationService.success('kingdom.tree.success', planted);
         this.close(true);
       } catch (error) {
         this.notificationService.error('kingdom.tree.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.tree.error');
     }

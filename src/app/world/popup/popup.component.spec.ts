@@ -4,7 +4,7 @@ import { MatDialogStub, AngularFirestoreStub, StoreStub, ApiServiceStub } from '
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatCardModule } from '@angular/material/card';
-import { PopupType } from 'src/app/shared/type/common.type';
+import { PopupType } from 'src/app/shared/type/enum.type';
 import { DealComponent } from './deal.component';
 import { AdventureComponent } from './adventure.component';
 import { AngularFirestore } from '@angular/fire/firestore';

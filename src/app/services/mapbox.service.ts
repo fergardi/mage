@@ -9,7 +9,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from '../shared/auth/auth.state';
 import { ApiService } from './api.service';
 import * as _ from 'lodash';
-import { MarkerType, FactionType, StoreType, LocationType } from '../shared/type/common.type';
+import { MarkerType, FactionType, StoreType, LocationType } from '../shared/type/enum.type';
 import { NotificationService } from './notification.service';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -129,7 +129,8 @@ export class MapboxService {
     .setDOMContent(document.createElement('div') as HTMLDivElement)
     // open
     .on('open', ($event: any) => {
-      p = this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type });
+      p = this.componentService
+      .injectComponent(PopupComponent, component => component.data = { ...data, type: type });
       p.ref.changeDetectorRef.detectChanges();
       marker.getPopup().setDOMContent(p.html);
       s = (p.ref.instance as PopupComponent).opened
@@ -138,6 +139,7 @@ export class MapboxService {
       .subscribe(async (open: boolean) => {
         if (open) {
           await new Promise(resolve => setTimeout(resolve, 0));
+          console.log($event)
           this.map.easeTo({
             center: $event.target.getLngLat(),
             offset: [0, ($event.target.getElement().clientHeight / 2) + this.offset],

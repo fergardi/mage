@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Supply } from 'src/app/shared/type/interface.model';
 
 const CLAN_COST = 1000000;
 
@@ -77,11 +78,11 @@ const CLAN_COST = 1000000;
 })
 export class FoundationComponent implements OnInit {
 
-  form: FormGroup = null;
-  kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomGold: Supply = this.store.selectSnapshot(AuthState.getKingdomGold);
   images: string[] = [];
-  CLAN_COST = CLAN_COST;
+  form: FormGroup = null;
+  readonly CLAN_COST = CLAN_COST;
 
   constructor(
     private dialogRef: MatDialogRef<FoundationComponent>,
@@ -111,17 +112,18 @@ export class FoundationComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async foundation() {
+  async foundation(): Promise<void> {
     if (this.form.valid && CLAN_COST <= this.kingdomGold.quantity) {
-      this.loadingService.startLoading();
       try {
-        const founded = await this.apiService.foundateClan(this.uid, this.form.value.name, this.form.value.description, this.form.value.image);
+        this.loadingService.startLoading();
+        await this.apiService.foundateClan(this.uid, this.form.value.name, this.form.value.description, this.form.value.image);
         this.notificationService.success('kingdom.foundation.success');
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.foundation.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.foundation.error');
     }

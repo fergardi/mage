@@ -7,12 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { LoadingService } from 'src/app/services/loading.service';
-
-export enum CharmAssignmentType {
-  NONE,
-  ATTACK,
-  DEFENSE,
-}
+import { Charm, Kingdom, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-conjure',
@@ -92,13 +87,16 @@ export enum CharmAssignmentType {
 export class ConjureComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
-  kingdomMana: any = this.store.selectSnapshot(AuthState.getKingdomMana);
-  kingdomCharms: any[] = null;
-  selectedCharm: any = null;
+  kingdomTurn: Supply = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomMana: Supply = this.store.selectSnapshot(AuthState.getKingdomMana);
+  kingdomCharms: Array<Charm> = [];
+  selectedCharm: Charm = null;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public conjuration: any,
+    @Inject(MAT_DIALOG_DATA) public conjuration: {
+      kingdom: Kingdom,
+      charm: Charm,
+    },
     private dialogRef: MatDialogRef<ConjureComponent>,
     private store: Store,
     private apiService: ApiService,
@@ -108,7 +106,7 @@ export class ConjureComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/charms`, ref => ref.where('spell.battle', '==', false).where('spell.self', '==', !this.conjuration.kingdom)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(charms => {
+    this.angularFirestore.collection<Charm>(`kingdoms/${this.uid}/charms`, ref => ref.where('spell.battle', '==', false).where('spell.self', '==', !this.conjuration.kingdom)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(charms => {
       this.kingdomCharms = charms;
       if (this.conjuration.charm) this.selectedCharm = this.kingdomCharms.find(charm => charm.fid === this.conjuration.charm.fid);
     });
@@ -118,10 +116,10 @@ export class ConjureComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async conjure() {
+  async conjure(): Promise<void> {
     if (this.selectedCharm.spell.turnCost <= this.kingdomTurn.quantity && this.selectedCharm.spell.manaCost <= this.kingdomMana.quantity) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const conjured = await this.apiService.conjureCharm(this.uid, this.selectedCharm.fid, this.conjuration.kingdom ? this.conjuration.kingdom.fid : this.uid);
         if (this.selectedCharm.spell.subtype === 'summon') this.notificationService.success('kingdom.conjure.summon', conjured);
         if (this.selectedCharm.spell.subtype === 'resource') this.notificationService.success('kingdom.conjure.resource', conjured);
@@ -132,11 +130,12 @@ export class ConjureComponent implements OnInit {
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.conjure.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
     } else {
       this.notificationService.error('kingdom.conjure.error');
     }
-    this.loadingService.stopLoading();
   }
 
 }

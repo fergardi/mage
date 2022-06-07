@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MarkerComponent } from './marker.component';
-import { MarkerType } from 'src/app/shared/type/common.type';
+import { MarkerType } from 'src/app/shared/type/enum.type';
 
 describe('MarkerComponent', () => {
   let component: MarkerComponent;

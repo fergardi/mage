@@ -1,4 +1,4 @@
-import { Injectable, Injector, ApplicationRef, ComponentFactoryResolver, ComponentRef, Type } from '@angular/core';
+import { Injectable, Injector, ApplicationRef, ComponentFactoryResolver, ComponentRef, Type, Component } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 export interface InjectableHTML {
