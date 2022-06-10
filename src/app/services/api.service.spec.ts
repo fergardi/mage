@@ -2,7 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from './api.service';
 import { environment } from 'src/environments/environment';
-import { StoreType, LocationType, FactionType } from '../shared/type/enum.type';
+import { StoreType, LocationType, FactionType, BattleType } from '../shared/type/enum.type';
+import { Tree } from '../shared/type/interface.model';
 
 enum HttpVerb {
   GET = 'GET',
@@ -166,8 +167,8 @@ describe('ApiService', () => {
   });
 
   it('should BATTLE a KINGDOM', async () => {
-    const request = service.battleKingdom('bot1', 'bot2', 0);
-    const mock = httpMock.expectOne(`${environment.functions.url}/kingdom/bot1/battle/0/target/bot2`);
+    const request = service.battleKingdom('bot1', 'bot2', BattleType.ATTACK);
+    const mock = httpMock.expectOne(`${environment.functions.url}/kingdom/bot1/battle/attack/target/bot2`);
     mock.flush(null);
     const response = await request;
     expect(mock.request.method).toEqual(HttpVerb.POST);
@@ -355,7 +356,10 @@ describe('ApiService', () => {
   });
 
   it('should PLANT the TREE', async () => {
-    const request = service.plantTree('bot', 'tree', 0);
+    const tree: Tree = {
+      test: 0,
+    };
+    const request = service.plantTree('bot', tree, 0);
     const mock = httpMock.expectOne(`${environment.functions.url}/kingdom/bot/tree`);
     mock.flush(null);
     const response = await request;

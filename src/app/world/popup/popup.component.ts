@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
-import { Artifact, Charm, Contract, Deal, Kingdom, Quest, Reward, Shop, Troop } from 'src/app/shared/type/interface.model';
+import { Artifact, Charm, Contract, Deal, Popup, Quest, Reward, Shop, Troop } from 'src/app/shared/type/interface.model';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @UntilDestroy()
@@ -24,7 +24,7 @@ export class PopupComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   opened: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  data: any = null;
+  data: Popup = null; // Kingdom | Quest | Shop
   shopContracts: Array<Contract> = [];
   shopArtifacts: Array<Artifact> = [];
   shopTroops: Array<Troop> = [];

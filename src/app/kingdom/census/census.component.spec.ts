@@ -28,10 +28,29 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { DetailComponent } from './detail.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Kingdom } from 'src/app/shared/type/interface.model';
 
 describe('CensusComponent', () => {
   let component: CensusComponent;
   let fixture: ComponentFixture<CensusComponent>;
+  const kingdom: Kingdom = {
+    artifacts: [],
+    buildings: [],
+    charms: [],
+    supplies: [],
+    troops: [],
+    clan: undefined,
+    coordinates: undefined,
+    faction: undefined,
+    guild: undefined,
+    attacked: null,
+    guilded: null,
+    id: '',
+    name: '',
+    position: undefined,
+    power: 0,
+    tree: undefined,
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -108,7 +127,6 @@ describe('CensusComponent', () => {
   });
 
   it('should SHOW in MAP', inject([Router], async (router: Router) => {
-    const kingdom = { fid: 0 };
     spyOn(router, 'navigate').and.stub();
     await component.showInMap(kingdom, EventStub);
     expect(router.navigate).toHaveBeenCalledWith([`/world/map/${kingdom.fid}`]);

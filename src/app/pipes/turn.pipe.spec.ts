@@ -2,12 +2,11 @@ import { TurnPipe, calculate } from './turn.pipe';
 import { of } from 'rxjs';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
+import firebase from 'firebase';
 
 describe('TurnPipe', () => {
   let pipe: TurnPipe;
-  const timestamp = {
-    toMillis: () => 0,
-  };
+  const timestamp = firebase.firestore.Timestamp.now();
 
   beforeEach(() => {
     pipe = new TurnPipe();
@@ -20,8 +19,8 @@ describe('TurnPipe', () => {
   it('should TRANSFORM', () => {
     Object.defineProperty(pipe, 'clock$', { writable: true });
     pipe.clock$ = of(new Date());
-    (pipe.transform(timestamp, 300, 3) as Observable<number>).subscribe((turns: number) => {
-      expect(turns).toBe(300);
+    (pipe.transform(timestamp, 300, 3) as Observable<number>).subscribe(turns => {
+      expect(turns).toBe(0);
     });
   });
 

@@ -6,7 +6,6 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { CacheService } from 'src/app/services/cache.service';
-import { BattleType } from 'src/app/shared/type/enum.type';
 import { Attack, Kingdom, Supply } from 'src/app/shared/type/interface.model';
 
 const BATTLE_TURNS = 2;

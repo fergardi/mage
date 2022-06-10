@@ -28,15 +28,37 @@ import { routes } from 'src/app/app-routing.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ManifestComponent } from './manifest.component';
 import { FoundationComponent } from './foundation.component';
+import { Clan, Guild } from 'src/app/shared/type/interface.model';
+import { GuildType } from 'src/app/shared/type/enum.type';
 
 describe('ClanComponent', () => {
   let component: ClanComponent;
   let fixture: ComponentFixture<ClanComponent>;
-  const clan: any = {
+  const clan: Clan = {
     fid: 'test',
     name: 'test',
     description: 'test',
     image: 'test',
+    members: [],
+    leader: null,
+    power: 0,
+  };
+  const guild: Guild = {
+    subtype: 'test',
+    faction: null,
+    name: 'test',
+    description: 'test',
+    id: GuildType.HUNTER,
+    image: 'test',
+    attackBonus: 10,
+    defenseBonus: 0,
+    healthBonus: 0,
+    goldBonus: 0,
+    manaBonus: 0,
+    populationBonus: 0,
+    explorationBonus: 0,
+    constructionBonus: 0,
+    researchBonus: 0,
   };
 
   beforeEach(waitForAsync(() => {
@@ -100,7 +122,7 @@ describe('ClanComponent', () => {
   });
 
   it('should JOIN the CLAN', async () => {
-    component.kingdomGuild = { id: 'hunter' };
+    component.kingdomGuild = guild;
     spyOn(component, 'canBeFavored').and.returnValue(true);
     spyOn(ApiServiceStub, 'joinClan');
     await component.joinClan(clan, new Event('click'));
@@ -126,7 +148,7 @@ describe('ClanComponent', () => {
   });
 
   it('should FAVOR the GUILD', async () => {
-    component.kingdomGuild = { id: 'hunter' };
+    component.kingdomGuild = guild;
     spyOn(component, 'canBeFavored').and.returnValue(true);
     spyOn(ApiServiceStub, 'favorGuild');
     await component.favorGuild();
@@ -134,7 +156,7 @@ describe('ClanComponent', () => {
   });
 
   it('should FAVOR the GUILD and CATCH the ERROR', async () => {
-    component.kingdomGuild = { id: 'hunter' };
+    component.kingdomGuild = guild;
     spyOn(component, 'canBeFavored').and.returnValue(true);
     spyOn(ApiServiceStub, 'favorGuild').and.throwError(new Error('test'));
     await component.favorGuild();

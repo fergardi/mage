@@ -22,10 +22,19 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
+import { Troop } from 'src/app/shared/type/interface.model';
 
 describe('ArmyComponent', () => {
   let component: ArmyComponent;
   let fixture: ComponentFixture<ArmyComponent>;
+  const troop: Troop = {
+    id: '',
+    quantity: 10,
+    unit: undefined,
+    troopId: '',
+    assignment: 0,
+    sort: 0,
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -73,13 +82,15 @@ describe('ArmyComponent', () => {
     const eventFactory = new DragDropEventFactory<any>();
     const event: CdkDragDrop<any, any> = eventFactory.createEvent(0, 0);
     component.assignTroop(event);
+    // TODO expect
   });
 
   it('should UPDATE the ARMY', () => {
-    component.kingdomTroops = [{ fid: 'test '}];
-    component.attackTroops = [{ fid: 'test '}];
-    component.defenseTroops = [{ fid: 'test '}];
+    component.kingdomTroops = [troop];
+    component.attackTroops = [troop];
+    component.defenseTroops = [troop];
     component.updateArmy();
+    // TODO expect
   });
 
   it('should OPEN the RECRUIT dialog', () => {

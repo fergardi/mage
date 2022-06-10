@@ -22,7 +22,7 @@ export class TurnPipe implements PipeTransform {
 
 }
 
-export const calculate = (from: number | Date, to: number | Date, max: number, ratio: number): number => {
+export const calculate = (from: number | Date | moment.Moment, to: number | Date | moment.Moment, max: number, ratio: number): number => {
   const start = moment(from);
   const end = moment(to);
   const minutes = moment.duration(end.diff(start)).asMinutes();

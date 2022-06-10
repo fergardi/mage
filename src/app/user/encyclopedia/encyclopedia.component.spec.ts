@@ -23,7 +23,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 
-describe('EncyclopediaComponent', () => {
+fdescribe('EncyclopediaComponent', () => {
   let component: EncyclopediaComponent;
   let fixture: ComponentFixture<EncyclopediaComponent>;
 

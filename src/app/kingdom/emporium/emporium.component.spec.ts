@@ -65,7 +65,7 @@ describe('EmporiumComponent', () => {
     fixture = TestBed.createComponent(EmporiumComponent);
     component = fixture.componentInstance;
     Object.defineProperty(component, 'tree$', { writable: true });
-    component.tree$ = of({});
+    component.tree$ = of(null);
     component.kingdomTree = tree;
     fixture.detectChanges();
   });

@@ -4,17 +4,36 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
+import { Perk } from 'src/app/shared/type/interface.model';
 
 describe('PerkComponent', () => {
   let component: PerkComponent;
   let fixture: ComponentFixture<PerkComponent>;
-  const perk: any = {
+  const perk: Perk = {
+    type: 'test',
+    subtype: 'test',
+    faction: 'test',
+    id: 'test',
     name: 'test',
     description: 'test',
     image: 'test',
+    sort: 0,
     level: 0,
     max: 1,
     perks: [],
+    troopBonus: 0,
+    goldBonus: 0,
+    manaBonus: 0,
+    populationBonus: 0,
+    constructionBonus: 0,
+    godBonus: 0,
+    explorationBonus: 0,
+    attackBonus: 0,
+    defenseBonus: 0,
+    healthBonus: 0,
+    researchBonus: 0,
+    magicalDefenseBonus: 0,
+    physicalDefenseBonus: 0,
   };
 
   beforeEach(waitForAsync(() => {

@@ -1,5 +1,5 @@
-import { firestore } from 'firebase';
-import { AssignmentType, LocationType, PopupType, StoreType } from './enum.type';
+import MapboxCircle from 'mapbox-gl-circle';
+import { AssignmentType, FactionType, GuildType, LocationType, MarkerType, PopupType, StoreType } from './enum.type';
 
 export interface Faction {
   type: string;
@@ -10,7 +10,7 @@ export interface Faction {
   marker: string;
   opposites: Array<string>;
   adjacents: Array<string>;
-  id: string;
+  id: FactionType;
 }
 
 export interface Position {
@@ -219,12 +219,11 @@ export interface Supply {
 }
 
 export interface Guild {
-  type: string;
   subtype: string;
   faction: Faction;
   name: string;
   description: string;
-  id: string;
+  id: GuildType;
   image: string;
   attackBonus: number;
   defenseBonus: number;
@@ -239,11 +238,12 @@ export interface Guild {
 
 export interface Kingdom {
   fid?: string;
-  artifacts: Array<Artifact>;
+  artifacts?: Array<Artifact>;
   buildings: Array<Building>;
-  charms: Array<Charm>;
+  charms?: Array<Charm>;
   supplies: Array<Supply>;
-  troops: Array<Troop>;
+  troops?: Array<Troop>;
+  contracts?: Array<Contract>;
   clan: Clan | null;
   coordinates: Coordinates;
   faction: Faction;
@@ -467,7 +467,7 @@ export interface Quest {
   turns: number;
   location: Location;
   name: string;
-  type: LocationType;
+  type: LocationType | StoreType | PopupType; // to be extended by Popup
   visited: firebase.firestore.Timestamp;
   artifacts?: Array<Artifact>;
   troops?: Array<Troop>;
@@ -488,7 +488,7 @@ export interface Shop {
   id: string;
   store: Store;
   name: string;
-  type: StoreType;
+  type: StoreType | LocationType | PopupType; // to be extended with Popup
   visited: firebase.firestore.Timestamp;
   artifacts?: Array<Artifact>;
   troops?: Array<Troop>;
@@ -582,8 +582,21 @@ export interface Topic {
   suffix?: string;
 }
 
-export type Tome = any; // TODO
+export interface Marker {
+  id: string;
+  type: MarkerType;
+  marker: mapboxgl.Marker;
+  circle: MapboxCircle;
+}
+
+export interface Popup extends Kingdom, Shop, Quest {
+  // TODO
+}
+
+export interface Tome extends Skill {
+  // TODO
+}
 
 export interface ApiResponse {
-
+  [name: string]: any; // TODO
 }

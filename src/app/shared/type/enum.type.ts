@@ -46,7 +46,7 @@ export enum FactionType {
   GREEN = 'green',
   BLUE = 'blue',
   BLACK = 'black',
-  // GREY = 'grey',
+  GREY = 'grey',
 }
 
 export enum AssignmentType {
@@ -66,4 +66,16 @@ export enum LoginType {
   LOGIN = 'login',
   SIGNUP = 'signup',
   RESET = 'reset',
+}
+
+export enum GuildType {
+  ASSASSIN = 'assassin',
+  HUNTER = 'hunter',
+  KNIGHT = 'knight',
+  MAGE = 'mage',
+  MASON = 'mason',
+  PRIEST = 'priest',
+  THIEF = 'thief',
+  WARLOCK = 'warlock',
+  WARRIOR = 'warrior',
 }

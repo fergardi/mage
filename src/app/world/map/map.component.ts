@@ -75,7 +75,7 @@ export class MapComponent implements OnInit, OnDestroy {
     // menus
     this.stores = await this.cacheService.getStores();
     this.locations = await this.cacheService.getLocations();
-    this.factions = (await this.cacheService.getFactions()).filter(faction => faction.id !== 'grey');
+    this.factions = (await this.cacheService.getFactions()).filter(faction => faction.id !== FactionType.GREY);
   }
 
   addShop(type: StoreType): void {
