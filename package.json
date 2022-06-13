@@ -14,7 +14,7 @@
     "test:e2e": "ng e2e",
     "test:sonar": "sonar-scanner",
     "test:ci": "npm run test:karma && npm run test:sonar",
-    "update": "npm-check -u && npm run postinstall"
+    "update": "npm-check -u"
   },
   "private": true,
   "dependencies": {
