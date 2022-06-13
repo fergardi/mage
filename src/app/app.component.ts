@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     public loadingService: LoadingService,
     private tutorialService: TutorialService,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: any,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
   ngOnInit(): void {

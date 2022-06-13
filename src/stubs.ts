@@ -4,6 +4,7 @@ import * as mapboxgl from 'mapbox-gl';
 import { environment } from './environments/environment';
 import { CdkDragDrop, CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
 import { IStepOption } from 'ngx-ui-tour-md-menu';
+import { GuildType } from './app/shared/type/enum.type';
 
 export const NotificationServiceStub: any = {
   success: () => null,
@@ -39,7 +40,7 @@ export const StoreStub: any = {
       case AuthState.getUserLoggedIn:
         return true;
       case AuthState.getKingdomGuild:
-        return JSON.stringify({ guild: { id: 'hunter' }, guilded: new Date().getTime() });
+        return JSON.stringify({ guild: { id: GuildType.HUNTER }, guilded: new Date().getTime() });
       default:
         return selector;
     }
@@ -142,7 +143,7 @@ export const CacheServiceStub: any = {
   getFamilies: () => Promise.resolve([]),
   getCategories: () => Promise.resolve([]),
   getGuilds: () => Promise.resolve([{ id: 'hunter', name: 'test', faction: { id: 'grey' } }]),
-  getAttacks: () => Promise.resolve([]),
+  getAttacks: () => Promise.resolve([{ id: 'test', name: 'test', faction: { id: 'grey' } }]),
   getFactions: () => Promise.resolve([{ id: 'test', name: 'test' }]),
   getStores: () => Promise.resolve([]),
   getLocations: () => Promise.resolve([]),

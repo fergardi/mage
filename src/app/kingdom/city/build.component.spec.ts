@@ -15,22 +15,52 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Building, Faction, Structure } from 'src/app/shared/type/interface.model';
+import { FactionType } from 'src/app/shared/type/enum.type';
 
 describe('BuildComponent', () => {
   let component: BuildComponent;
   let fixture: ComponentFixture<BuildComponent>;
-  const building: any = {
+  const faction: Faction = {
+    type: undefined,
+    subtype: null,
+    name: undefined,
+    description: undefined,
+    image: undefined,
+    marker: undefined,
+    opposites: [],
+    adjacents: [],
+    id: FactionType.BLACK,
+  };
+  const structure: Structure = {
+    name: 'test',
+    image: 'assets/images/structures/academy.png',
+    turnRatio: 10,
+    goldCost: 1,
+    faction: faction,
+    type: '',
+    subtype: '',
+    description: '',
+    id: '',
+    resources: [],
+    manaCost: 0,
+    populationCost: 0,
+    goldProduction: 0,
+    manaProduction: 0,
+    populationProduction: 0,
+    goldMaintenance: 0,
+    manaMaintenance: 0,
+    populationMaintenance: 0,
+    goldCapacity: 0,
+    manaCapacity: 0,
+    populationCapacity: 0,
+    power: 0
+  }
+  const building: Building = {
     fid: 'test',
     quantity: 10,
-    structure: {
-      name: 'test',
-      image: 'assets/images/structures/academy.png',
-      turnRatio: 10,
-      goldCost: 1,
-      faction: {
-        id: 'grey',
-      },
-    },
+    structure: structure,
+    id: ''
   };
 
   beforeEach(waitForAsync(() => {

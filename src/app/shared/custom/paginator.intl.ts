@@ -12,7 +12,7 @@ export class PaginatorIntl extends MatPaginatorIntl {
     private translateParser: TranslateParser,
   ) {
     super();
-    this.translateService.onLangChange.subscribe((e: Event) => this.getTranslations());
+    this.translateService.onLangChange.subscribe(($event: Event) => this.getTranslations());
     this.getTranslations();
   }
 
@@ -24,7 +24,7 @@ export class PaginatorIntl extends MatPaginatorIntl {
       'paginator.firstPageLabel',
       'paginator.lastPageLabel',
       'paginator.rangeLabelIntl',
-    ]).subscribe((translation: any) => {
+    ]).subscribe((translation: unknown) => {
       this.itemsPerPageLabel = translation['paginator.itemsPerPageLabel'];
       this.nextPageLabel = translation['paginator.nextPageLabel'];
       this.previousPageLabel = translation['paginator.previousPageLabel'];

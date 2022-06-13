@@ -5,6 +5,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { Contract } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-discharge',
@@ -47,10 +48,10 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 })
 export class DischargeComponent {
 
-  uid = this.store.selectSnapshot(AuthState.getUserUID);
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public contract: any,
+    @Inject(MAT_DIALOG_DATA) public contract: Contract,
     private dialogRef: MatDialogRef<DischargeComponent>,
     private loadingService: LoadingService,
     private notificationService: NotificationService,
@@ -62,16 +63,17 @@ export class DischargeComponent {
     this.dialogRef.close();
   }
 
-  async discharge() {
-    this.loadingService.startLoading();
+  async discharge(): Promise<void> {
     try {
+      this.loadingService.startLoading();
       const discharged = await this.apiService.dischargeContract(this.uid, this.contract.fid);
       this.notificationService.success('kingdom.discharge.success', discharged);
       this.close();
     } catch (error) {
       this.notificationService.error('kingdom.discharge.error', error as Error);
+    } finally {
+      this.loadingService.stopLoading();
     }
-    this.loadingService.stopLoading();
   }
 
 }

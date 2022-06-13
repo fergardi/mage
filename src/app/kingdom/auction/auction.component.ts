@@ -17,6 +17,7 @@ import { TomeComponent } from 'src/app/user/encyclopedia/tome.component';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { CacheService } from 'src/app/services/cache.service';
+import { Auction, Filter, Tome } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-auction',
@@ -27,12 +28,12 @@ import { CacheService } from 'src/app/services/cache.service';
 @UntilDestroy()
 export class AuctionComponent implements OnInit {
 
-  columns: string[] = [
+  columns = [
     'name',
     'faction',
     'actions',
   ];
-  filters: any = {
+  filters: Filter = {
     name: {
       type: 'text',
       value: '',
@@ -43,8 +44,8 @@ export class AuctionComponent implements OnInit {
       options: [],
     },
   };
-  table: MatTableDataSource<any> = new MatTableDataSource([]);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  table: MatTableDataSource<Auction> = new MatTableDataSource([]);
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -62,8 +63,8 @@ export class AuctionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.angularFirestore.collection<any>('auctions').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async auctions => {
-      const data = auctions.map((auction: any) => {
+    this.angularFirestore.collection<Auction>('auctions').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async auctions => {
+      const data = auctions.map((auction: Auction) => {
         auction.join = auction.hero || auction.item || auction.spell || auction.unit;
         return auction;
       });
@@ -72,9 +73,9 @@ export class AuctionComponent implements OnInit {
       this.table.sort = this.sort;
       this.table.sortingDataAccessor = this.createSorter();
       this.table.filterPredicate = this.createFilter();
-      // this.filters.faction.options = [...new Set(data.map((auction: any) => auction.join.faction))];
+      // this.filters.faction.options = [...new Set(data.map((auction: Auction) => auction.join.faction))];
       this.filters.faction.options = this.filters.faction.options.concat(
-        [{ id: '', name: 'table.filter.any', image: '/assets/images/factions/grey.png' }],
+        [{ id: '', name: 'table.filter.anything', image: '/assets/images/factions/grey.png' }],
         await this.cacheService.getFactions(),
       );
       this.filters.faction.value = this.filters.faction.options[0];
@@ -90,8 +91,8 @@ export class AuctionComponent implements OnInit {
     });
   }
 
-  createSorter(): (obj: any, property: string) => any {
-    const sorterFunction = (obj: any, property: string): any => {
+  createSorter(): (obj: Auction, property: string) => string {
+    const sorterFunction = (obj: Auction, property: string): string => {
       if (property === 'name') return this.translateService.instant(obj['join']['name']);
       if (property === 'faction') return this.translateService.instant(obj['join']['faction']['name']);
       return obj[property];
@@ -99,8 +100,8 @@ export class AuctionComponent implements OnInit {
     return sorterFunction;
   }
 
-  createFilter(): (data: any, filter: string) => boolean {
-    const filterFunction = (data: any, filter: string): boolean => {
+  createFilter(): (data: Auction, filter: string) => boolean {
+    const filterFunction = (data: Auction, filter: string): boolean => {
       const filters = JSON.parse(filter);
       return (this.translateService.instant(data.join.name).toLowerCase().includes(filters.name)
         || this.translateService.instant(data.join.description).toLowerCase().includes(filters.name))
@@ -128,19 +129,20 @@ export class AuctionComponent implements OnInit {
     this.applyFilter();
   }
 
-  async refreshAuctions() {
+  async refreshAuctions(): Promise<void> {
     if (!this.table.data.length || (this.table.data.length && moment().isAfter(moment(this.table.data[0].auctioned.toMillis())))) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         await this.apiService.refreshAuction();
       } catch (error) {
         this.notificationService.error('kingdom.auction.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     }
   }
 
-  openBidDialog(auction: any, $event: Event): void {
+  openBidDialog(auction: Auction, $event: Event): void {
     $event.stopPropagation();
     const dialogRef = this.dialog.open(BidComponent, {
       panelClass: 'dialog-responsive',
@@ -148,7 +150,7 @@ export class AuctionComponent implements OnInit {
     });
   }
 
-  openTomeDialog(tome: any): void {
+  openTomeDialog(tome: Tome): void {
     const dialogRef = this.dialog.open(TomeComponent, {
       panelClass: 'dialog-responsive',
       data: tome,

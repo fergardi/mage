@@ -6,6 +6,7 @@ import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Charm, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-research',
@@ -55,11 +56,11 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class ResearchComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomTurn: Supply = this.store.selectSnapshot(AuthState.getKingdomTurn);
   form: FormGroup = null;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public charm: any,
+    @Inject(MAT_DIALOG_DATA) public charm: Charm,
     private dialogRef: MatDialogRef<ResearchComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
@@ -78,17 +79,18 @@ export class ResearchComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async research() {
+  async research(): Promise<void> {
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
-      this.loadingService.startLoading();
       try {
-        const researched = await this.apiService.researchCharm(this.uid, this.charm.fid, this.form.value.turns);
+        this.loadingService.startLoading();
+        await this.apiService.researchCharm(this.uid, this.charm.fid, this.form.value.turns);
         this.notificationService.success('kingdom.research.success');
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.research.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.research.error');
     }

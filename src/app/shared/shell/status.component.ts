@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { Supply } from '../type/interface.model';
 
 @Component({
   selector: 'app-status',
@@ -41,7 +42,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 export class StatusComponent {
 
   constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public kingdomSupplies$: Observable<any[]>,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public kingdomSupplies$: Observable<Array<Supply>>,
   ) { }
 
 }

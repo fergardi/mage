@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DetailComponent } from './detail.component';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { Filter, Kingdom } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-census',
@@ -31,9 +32,12 @@ export class CensusComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   clock: Date = this.store.selectSnapshot(AuthState.getClock);
-  protection: number = 8;
-  columns = ['name', 'clan', 'actions'];
-  filters: any = {
+  columns = [
+    'name',
+    'clan',
+    'actions',
+  ];
+  filters: Filter = {
     name: {
       type: 'text',
       value: '',
@@ -43,7 +47,7 @@ export class CensusComponent implements OnInit {
       value: '',
     },
   };
-  table: MatTableDataSource<any> = new MatTableDataSource();
+  table: MatTableDataSource<Kingdom> = new MatTableDataSource();
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -56,7 +60,7 @@ export class CensusComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.angularFirestore.collection<any>('kingdoms').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
+    this.angularFirestore.collection<Kingdom>('kingdoms').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(async kingdoms => {
       this.table = new MatTableDataSource(kingdoms.sort((a, b) => b.power - a.power).map((kingdom, index) => {
         return {
           ...kingdom,
@@ -71,15 +75,15 @@ export class CensusComponent implements OnInit {
     });
   }
 
-  applyFilter() {
+  applyFilter(): void {
     this.table.filter = JSON.stringify({
       name: this.filters.name.value,
       clan: this.filters.clan.value,
     });
   }
 
-  createFilter(): (data: any, filter: string) => boolean {
-    const filterFunction = (data: any, filter: string): boolean => {
+  createFilter(): (data: Kingdom, filter: string) => boolean {
+    const filterFunction = (data: Kingdom, filter: string): boolean => {
       const filters = JSON.parse(filter);
       return data.name.toLowerCase().includes(filters.name)
         && (!filters.clan
@@ -108,7 +112,7 @@ export class CensusComponent implements OnInit {
     this.applyFilter();
   }
 
-  openAttackDialog(kingdom: any, $event: Event): void {
+  openAttackDialog(kingdom: Kingdom, $event: Event): void {
     $event.stopPropagation();
     const dialogRef = this.dialog.open(BattleComponent, {
       panelClass: 'dialog-responsive',
@@ -116,7 +120,7 @@ export class CensusComponent implements OnInit {
     });
   }
 
-  openLetterDialog(kingdom: any, $event: Event): void {
+  openLetterDialog(kingdom: Kingdom, $event: Event): void {
     $event.stopPropagation();
     const dialogRef = this.dialog.open(LetterComponent, {
       panelClass: 'dialog-responsive',
@@ -124,7 +128,7 @@ export class CensusComponent implements OnInit {
     });
   }
 
-  openActivateDialog(kingdom: any, $event: Event): void {
+  openActivateDialog(kingdom: Kingdom, $event: Event): void {
     $event.stopPropagation();
     const dialogRef = this.dialog.open(ActivateComponent, {
       panelClass: 'dialog-responsive',
@@ -135,7 +139,7 @@ export class CensusComponent implements OnInit {
     });
   }
 
-  openConjureDialog(kingdom: any, $event: Event): void {
+  openConjureDialog(kingdom: Kingdom, $event: Event): void {
     $event.stopPropagation();
     const dialogRef = this.dialog.open(ConjureComponent, {
       panelClass: 'dialog-responsive',
@@ -146,19 +150,19 @@ export class CensusComponent implements OnInit {
     });
   }
 
-  openDetailDialog(kingdom: any): void {
+  openDetailDialog(kingdom: Kingdom): void {
     const dialogRef = this.dialog.open(DetailComponent, {
       panelClass: 'dialog-responsive',
       data: kingdom,
     });
   }
 
-  async showInMap(kingdom: any, $event: Event) {
+  async showInMap(kingdom: Kingdom, $event: Event) {
     $event.stopPropagation();
     await this.router.navigate([`/world/map/${kingdom.fid}`]);
   }
 
-  canBeAttacked(kingdom: any): boolean {
+  canBeAttacked(kingdom: Kingdom): boolean {
     return kingdom.attacked
       ? moment(this.clock).isAfter(moment(kingdom.attacked.toMillis()))
       : true;

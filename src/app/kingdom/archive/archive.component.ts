@@ -17,6 +17,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DateAdapter } from '@angular/material/core';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { Filter, Letter } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-archive',
@@ -27,9 +28,14 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 @UntilDestroy()
 export class ArchiveComponent implements OnInit {
 
-  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  columns = ['select', 'from', 'subject', 'timestamp'];
-  filters: any = {
+  uid = this.store.selectSnapshot(AuthState.getUserUID);
+  columns = [
+    'select',
+    'from',
+    'subject',
+    'timestamp',
+  ];
+  filters: Filter = {
     from: {
       type: 'text',
       value: '',
@@ -43,8 +49,10 @@ export class ArchiveComponent implements OnInit {
       value: null,
     },
   };
-  selection: SelectionModel<any> = new SelectionModel<any>(true, []);
-  table: MatTableDataSource<any> = new MatTableDataSource([]);
+  selection: SelectionModel<Letter> = new SelectionModel<Letter>(true, []);
+  table: MatTableDataSource<Letter> = new MatTableDataSource([]);
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -54,16 +62,13 @@ export class ArchiveComponent implements OnInit {
     private translateService: TranslateService,
     private apiService: ApiService,
     private loadingService: LoadingService,
-    private dateAdapter: DateAdapter<any>,
+    private dateAdapter: DateAdapter<Letter>,
     public tutorialService: TutorialService,
   ) { }
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-
   ngOnInit(): void {
     this.dateAdapter.setLocale(this.translateService.currentLang);
-    this.angularFirestore.collection<any>(`kingdoms/${this.uid}/letters`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(letters => {
+    this.angularFirestore.collection<Letter>(`kingdoms/${this.uid}/letters`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(letters => {
       this.table = new MatTableDataSource(letters);
       this.table.paginator = this.paginator;
       this.table.sort = this.sort;
@@ -80,8 +85,8 @@ export class ArchiveComponent implements OnInit {
     });
   }
 
-  createFilter(): (data: any, filter: string) => boolean {
-    const filterFunction = (data: any, filter: string): boolean => {
+  createFilter(): (data: Letter, filter: string) => boolean {
+    const filterFunction = (data: Letter, filter: string): boolean => {
       const filters = JSON.parse(filter);
       return data && data.from && data.from.name && data.subject
         && this.translateService.instant(data.from.name).toLowerCase().includes(filters.from)
@@ -93,7 +98,6 @@ export class ArchiveComponent implements OnInit {
 
   clearFilter(): void {
     this.filters.name.value = '';
-    this.filters.clan.value = '';
     if (this.table.paginator) {
       this.table.paginator.pageSize = this.table.paginator.pageSizeOptions[0];
       this.table.paginator.pageIndex = 0;
@@ -120,7 +124,7 @@ export class ArchiveComponent implements OnInit {
       : this.table.data.forEach(row => this.selection.select(row));
   }
 
-  async openReportDialog(report: any) {
+  async openReportDialog(report: Letter): Promise<void> {
     if (report.data) report.data.join = report.data.hero || report.data.item || report.data.spell || report.data.unit;
     const dialogRef = this.dialog.open(ReportComponent, {
       panelClass: 'dialog-responsive',
@@ -128,18 +132,19 @@ export class ArchiveComponent implements OnInit {
     });
   }
 
-  async deleteReports() {
+  async deleteReports(): Promise<void> {
     if (this.selection.selected.length) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const fids = this.selection.selected.map(letter => letter.fid);
         await this.apiService.removeLetters(this.uid, fids);
         this.selection.clear();
         this.notificationService.success('kingdom.archive.success');
       } catch (error) {
         this.notificationService.error('kingdom.archive.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.archive.error');
     }

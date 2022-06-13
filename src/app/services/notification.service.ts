@@ -77,7 +77,7 @@ export class NotificationService {
     });
   }
 
-  success(text: string, variable?: any): void {
+  success(text: string, variable?: unknown): void {
     if (variable) {
       Object.keys(variable).forEach((key, index) => {
         if (typeof variable[key] === 'number') variable[key] = new LongPipe().transform(variable[key]);

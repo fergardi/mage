@@ -1,19 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FirebaseService } from 'src/app/services/firebase.service';
-import { TroopAssignmentType } from '../army/army.component';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { CacheService } from 'src/app/services/cache.service';
-
-export enum BattleType {
-  'siege' = 'siege',
-  'pillage' = 'pillage',
-  'assault' = 'assault',
-}
+import { Attack, Kingdom, Supply } from 'src/app/shared/type/interface.model';
 
 const BATTLE_TURNS = 2;
 
@@ -39,19 +32,8 @@ const BATTLE_TURNS = 2;
       <div matSubheader>{{ 'kingdom.battle.select' | translate }}:</div>
       <mat-form-field>
         <mat-label>{{ 'kingdom.battle.type' | translate }}</mat-label>
-        <mat-select [(ngModel)]="attackType">
+        <mat-select [(ngModel)]="attack">
           <mat-select-trigger>
-            <mat-list dense>
-              <mat-list-item>
-                <div mat-list-avatar>
-                  <img mat-list-avatar [src]="attackType.image">
-                </div>
-                <div mat-line>{{ attackType.name | translate }}</div>
-                <div mat-line class="mat-card-subtitle" [innerHTML]="attackType.description | translate | icon:attackType"></div>
-              </mat-list-item>
-            </mat-list>
-          </mat-select-trigger>
-          <mat-option *ngFor="let attack of attackTypes" [value]="attack">
             <mat-list dense>
               <mat-list-item>
                 <div mat-list-avatar>
@@ -59,6 +41,17 @@ const BATTLE_TURNS = 2;
                 </div>
                 <div mat-line>{{ attack.name | translate }}</div>
                 <div mat-line class="mat-card-subtitle" [innerHTML]="attack.description | translate | icon:attack"></div>
+              </mat-list-item>
+            </mat-list>
+          </mat-select-trigger>
+          <mat-option *ngFor="let atk of attacks" [value]="atk">
+            <mat-list dense>
+              <mat-list-item>
+                <div mat-list-avatar>
+                  <img mat-list-avatar [src]="atk.image">
+                </div>
+                <div mat-line>{{ atk.name | translate }}</div>
+                <div mat-line class="mat-card-subtitle" [innerHTML]="atk.description | translate | icon:atk"></div>
               </mat-list-item>
             </mat-list>
           </mat-option>
@@ -87,13 +80,13 @@ export class BattleComponent implements OnInit {
 
   readonly BATTLE_TURNS = BATTLE_TURNS;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
-  loading: boolean = false;
-  attackTypes: any[] = [];
-  attackType: any = BattleType.assault;
+  kingdomTurn: Supply = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  attacks: Array<Attack> = [];
+  attack: Attack = null;
+  loading = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public kingdom: any,
+    @Inject(MAT_DIALOG_DATA) public kingdom: Kingdom,
     private dialogRef: MatDialogRef<BattleComponent>,
     private store: Store,
     private apiService: ApiService,
@@ -103,28 +96,29 @@ export class BattleComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const attacks = await this.cacheService.getAttacks();
-    this.attackTypes = attacks;
-    this.attackType = this.attackTypes[0];
+    this.attacks = attacks;
+    this.attack = this.attacks[0];
   }
 
   close(): void {
     this.dialogRef.close();
   }
 
-  async battle() {
-    this.loading = true;
+  async battle(): Promise<void> {
     if (this.BATTLE_TURNS <= this.kingdomTurn.quantity) {
       try {
-        const battled = await this.apiService.battleKingdom(this.uid, this.kingdom.fid, this.attackType.id);
+        this.loading = true;
+        await this.apiService.battleKingdom(this.uid, this.kingdom.fid, this.attack.id);
         this.notificationService.success('kingdom.battle.success');
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.battle.error', error as Error);
+      } finally {
+        this.loading = false;
       }
     } else {
       this.notificationService.error('kingdom.battle.error');
     }
-    this.loading = false;
   }
 
 }

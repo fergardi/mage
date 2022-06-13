@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy } from '@ngneat/until-destroy';
 import { fadeInOnEnterAnimation } from 'angular-animations';
 import { BuildComponent } from './build.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,8 +8,9 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { TaxComponent } from './tax.component';
 import { ChargeComponent } from './charge.component';
 import { ExploreComponent } from './explore.component';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { Building, Supply } from 'src/app/shared/type/interface.model';
 
 @UntilDestroy()
 @Component({
@@ -21,13 +22,13 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 export class CityComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  @Select(AuthState.getKingdomBuildings) kingdomBuildings$: Observable<any[]>;
-  @Select(AuthState.getKingdomVillage) village$: Observable<any>;
-  @Select(AuthState.getKingdomNode) node$: Observable<any>;
-  @Select(AuthState.getKingdomWorkshop) workshop$: Observable<any>;
-  @Select(AuthState.getKingdomLand) land$: Observable<any>;
-  @Select(AuthState.getKingdomTurn) turn$: Observable<any>;
-  Math: any = Math;
+  @Select(AuthState.getKingdomBuildings) kingdomBuildings$: Observable<Array<Building>>;
+  @Select(AuthState.getKingdomVillage) village$: Observable<Building>;
+  @Select(AuthState.getKingdomNode) node$: Observable<Building>;
+  @Select(AuthState.getKingdomWorkshop) workshop$: Observable<Building>;
+  @Select(AuthState.getKingdomLand) land$: Observable<Supply>;
+  @Select(AuthState.getKingdomTurn) turn$: Observable<Supply>;
+  Math: Math = Math;
 
   constructor(
     private dialog: MatDialog,
@@ -52,28 +53,28 @@ export class CityComponent implements OnInit {
     */
   }
 
-  openBuildDialog(building: any): void {
+  openBuildDialog(building: Observable<Building>): void {
     const dialogRef = this.dialog.open(BuildComponent, {
       panelClass: 'dialog-responsive',
       data: building,
     });
   }
 
-  openTaxDialog(village$: any): void {
+  openTaxDialog(village$: Observable<Building>): void {
     const dialogRef = this.dialog.open(TaxComponent, {
       panelClass: 'dialog-responsive',
       data: village$,
     });
   }
 
-  openChargeDialog(node$: any): void {
+  openChargeDialog(node$: Observable<Building>): void {
     const dialogRef = this.dialog.open(ChargeComponent, {
       panelClass: 'dialog-responsive',
       data: node$,
     });
   }
 
-  openExploreDialog(land$: Observable<any>): void {
+  openExploreDialog(land$: Observable<Supply>): void {
     const dialogRef = this.dialog.open(ExploreComponent, {
       panelClass: 'dialog-responsive',
       data: land$,

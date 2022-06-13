@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MatDialog } from '@angular/material/dialog';
-import { PopupType } from 'src/app/shared/type/common.type';
+import { PopupType, AssignmentType } from 'src/app/shared/type/enum.type';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AdventureComponent } from './adventure.component';
 import { DealComponent } from './deal.component';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import * as moment from 'moment';
 import { ApiService } from 'src/app/services/api.service';
-import { TroopAssignmentType } from 'src/app/kingdom/army/army.component';
 import { LoadingService } from 'src/app/services/loading.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { Artifact, Charm, Contract, Deal, Popup, Quest, Reward, Shop, Troop } from 'src/app/shared/type/interface.model';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @UntilDestroy()
 @Component({
@@ -23,17 +24,17 @@ export class PopupComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   opened: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  data: any = null;
-  shopContracts: any[] = [];
-  shopArtifacts: any[] = [];
-  shopTroops: any[] = [];
-  kingdomTroops: any[] = [];
-  shopCharms: any[] = [];
-  questContracts: any[] = [];
-  questTroops: any[] = [];
-  questArtifacts: any[] = [];
+  data: Popup = null; // Kingdom | Quest | Shop
+  shopContracts: Array<Contract> = [];
+  shopArtifacts: Array<Artifact> = [];
+  shopTroops: Array<Troop> = [];
+  kingdomTroops: Array<Troop> = [];
+  shopCharms: Array<Charm> = [];
+  questContracts: Array<Contract> = [];
+  questTroops: Array<Troop> = [];
+  questArtifacts: Array<Artifact> = [];
   PopupType: typeof PopupType = PopupType;
-  canAttack: boolean = false;
+  canAttack = false;
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -41,18 +42,19 @@ export class PopupComponent implements OnInit {
     private apiService: ApiService,
     private loadingService: LoadingService,
     private store: Store,
+    private notificationService: NotificationService,
   ) { }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     // check refresh
     await this.checkRefresh();
     // attack enabled
-    this.canAttack = (await this.angularFirestore.collection<any>(`kingdoms/${this.uid}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.ATTACK)).get().toPromise()).docs.length !== 0;
+    this.canAttack = (await this.angularFirestore.collection<Troop>(`kingdoms/${this.uid}/troops`, ref => ref.where('assignment', '==', AssignmentType.ATTACK)).get().toPromise()).docs.length !== 0;
     switch (this.data.type) {
       // kingdom
-      case PopupType.KINGDOM:
+      case PopupType.KINGDOM: {
         combineLatest([
-          this.angularFirestore.collection<any>(`kingdoms/${this.data.id}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }),
+          this.angularFirestore.collection<Troop>(`kingdoms/${this.data.id}/troops`, ref => ref.where('assignment', '==', AssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }),
         ])
         .pipe(untilDestroyed(this))
         .subscribe(([troops]) => {
@@ -62,14 +64,15 @@ export class PopupComponent implements OnInit {
           this.loadingService.stopLoading();
         });
         break;
+      }
       // shop
-      case PopupType.SHOP:
+      case PopupType.SHOP: {
         combineLatest([
-          this.angularFirestore.doc<any>(`shops/${this.data.id}`).valueChanges(),
-          this.angularFirestore.collection<any>(`shops/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }),
-          this.angularFirestore.collection<any>(`shops/${this.data.id}/troops`).valueChanges({ idField: 'fid' }),
-          this.angularFirestore.collection<any>(`shops/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }),
-          this.angularFirestore.collection<any>(`shops/${this.data.id}/charms`).valueChanges({ idField: 'fid' }),
+          this.angularFirestore.doc<Shop>(`shops/${this.data.id}`).valueChanges(),
+          this.angularFirestore.collection<Contract>(`shops/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }),
+          this.angularFirestore.collection<Troop>(`shops/${this.data.id}/troops`).valueChanges({ idField: 'fid' }),
+          this.angularFirestore.collection<Artifact>(`shops/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }),
+          this.angularFirestore.collection<Charm>(`shops/${this.data.id}/charms`).valueChanges({ idField: 'fid' }),
         ])
         .pipe(untilDestroyed(this))
         .subscribe(([shop, contracts, troops, artifacts, charms]) => {
@@ -83,13 +86,14 @@ export class PopupComponent implements OnInit {
           this.loadingService.stopLoading();
         });
         break;
+      }
       // quest
-      case PopupType.QUEST:
+      case PopupType.QUEST: {
         combineLatest([
-          this.angularFirestore.doc<any>(`quests/${this.data.id}`).valueChanges(),
-          this.angularFirestore.collection<any>(`quests/${this.data.id}/troops`, ref => ref.where('assignment', '==', TroopAssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }),
-          this.angularFirestore.collection<any>(`quests/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }),
-          this.angularFirestore.collection<any>(`quests/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }),
+          this.angularFirestore.doc<Quest>(`quests/${this.data.id}`).valueChanges(),
+          this.angularFirestore.collection<Troop>(`quests/${this.data.id}/troops`, ref => ref.where('assignment', '==', AssignmentType.DEFENSE)).valueChanges({ idField: 'fid' }),
+          this.angularFirestore.collection<Contract>(`quests/${this.data.id}/contracts`).valueChanges({ idField: 'fid' }),
+          this.angularFirestore.collection<Artifact>(`quests/${this.data.id}/artifacts`).valueChanges({ idField: 'fid' }),
         ])
         .pipe(untilDestroyed(this))
         .subscribe(([quest, troops, contracts, artifacts]) => {
@@ -102,40 +106,42 @@ export class PopupComponent implements OnInit {
           this.loadingService.stopLoading();
         });
         break;
+      }
     }
   }
 
-  async checkRefresh() {
+  async checkRefresh(): Promise<void> {
     if (this.data.type !== PopupType.KINGDOM && this.data.visited && moment().isAfter(moment(this.data.visited.toMillis()))) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         await this.data.type === PopupType.SHOP
         ? this.apiService.addShop(this.data.id, this.data.store.id)
         : this.apiService.addQuest(this.data.id, this.data.location.id);
       } catch (error) {
-        console.error(error);
+        this.notificationService.error('world.deal.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     }
   }
 
-  openDealDialog(deal: any): void {
+  openDealDialog(deal: Deal): void {
     deal.join = deal.hero || deal.item || deal.spell || deal.unit;
     const dialogRef = this.dialog.open(DealComponent, {
       panelClass: 'dialog-responsive',
       data: {
         deal: deal,
-        shop: this.data,
+        shop: this.data as Shop,
       },
     });
   }
 
-  openAdventureDialog(reward: any): void {
+  openAdventureDialog(reward: Reward): void {
     const dialogRef = this.dialog.open(AdventureComponent, {
       panelClass: 'dialog-responsive',
       data: {
         reward: reward,
-        quest: this.data,
+        quest: this.data as Quest,
       },
     });
   }

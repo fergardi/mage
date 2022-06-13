@@ -17,19 +17,72 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { Charm, Faction, Spell } from 'src/app/shared/type/interface.model';
+import { AssignmentType, FactionType } from 'src/app/shared/type/enum.type';
 
 describe('ResearchComponent', () => {
   let component: ResearchComponent;
   let fixture: ComponentFixture<ResearchComponent>;
-  const charm: any = {
-    spell: {
-      image: 'assets/images/spells/white/peace-prosperity.png',
-      faction: { id: 'red' },
-      name: 'test',
-      level: 3,
-      turnResearch: 10,
-    },
+  const faction: Faction = {
+    type: undefined,
+    subtype: null,
+    name: undefined,
+    description: undefined,
+    image: undefined,
+    marker: undefined,
+    opposites: [],
+    adjacents: [],
+    id: FactionType.BLACK,
+  };
+  const spell: Spell = {
+    image: 'assets/images/spells/white/peace-prosperity.png',
+    faction: faction,
+    name: 'test',
+    level: 3,
+    turnResearch: 10,
+    type: '',
+    subtype: '',
+    description: '',
+    id: '',
+    skills: [],
+    families: [],
+    categories: [],
+    resistances: [],
+    units: [],
+    resources: [],
+    heroes: [],
+    items: [],
+    amount: [],
+    turnCost: 0,
+    turnDuration: 0,
+    manaCost: 0,
+    goldMaintenance: 0,
+    manaMaintenance: 0,
+    populationMaintenance: 0,
+    goldProduction: 0,
+    manaProduction: 0,
+    populationProduction: 0,
+    landProduction: 0,
+    researchBonus: 0,
+    buildBonus: 0,
+    physicalDefense: 0,
+    magicalDefense: 0,
+    summon: false,
+    epidemic: false,
+    dispellable: false,
+    battle: false,
+    removes: false,
+    self: false,
+    multiple: false,
+    global: false,
+    legendary: false
+  }
+  const charm: Charm = {
+    spell: spell,
     turns: 5,
+    assignment: AssignmentType.NONE,
+    completed: false,
+    id: ''
   };
 
   beforeEach(waitForAsync(() => {

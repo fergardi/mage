@@ -16,18 +16,58 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Attack, Faction, Kingdom, Supply } from 'src/app/shared/type/interface.model';
+import { FactionType } from 'src/app/shared/type/enum.type';
 
 describe('BattleComponent', () => {
   let component: BattleComponent;
   let fixture: ComponentFixture<BattleComponent>;
-  const kingdom = {
+  const faction: Faction = {
+    type: undefined,
+    subtype: null,
+    name: undefined,
+    description: undefined,
+    image: undefined,
+    marker: undefined,
+    opposites: [],
+    adjacents: [],
+    id: FactionType.BLACK,
+  };
+  const attack: Attack = {
+    type: '',
+    subtype: '',
+    id: '',
+    faction: faction,
+    name: '',
+    description: '',
+    image: ''
+  }
+  const kingdom: Kingdom = {
     fid: 'test',
-    faction: 'black',
+    faction: faction,
     name: 'test',
-    join: {
-      name: 'test',
-      image: 'assets/images/factions/black.png',
-    },
+    artifacts: [],
+    buildings: [],
+    charms: [],
+    supplies: [],
+    troops: [],
+    clan: undefined,
+    coordinates: undefined,
+    guild: undefined,
+    attacked: null,
+    guilded: null,
+    id: '',
+    position: undefined,
+    power: 0,
+    tree: undefined,
+  };
+  const turn: Supply = {
+    balance: 0,
+    id: '',
+    max: 0,
+    quantity: 0,
+    resource: undefined,
+    timestamp: null,
   };
 
   beforeEach(waitForAsync(() => {
@@ -64,6 +104,7 @@ describe('BattleComponent', () => {
     fixture = TestBed.createComponent(BattleComponent);
     (fixture.nativeElement as HTMLDivElement).classList.add('mat-dialog-container');
     component = fixture.componentInstance;
+    component.attack = attack;
     fixture.detectChanges();
   });
 
@@ -72,12 +113,14 @@ describe('BattleComponent', () => {
   });
 
   it('should ATTACK another kingdom with ENOUGH TURNS', async () => {
-    component.kingdomTurn = { quantity: component.BATTLE_TURNS + 1 };
+    turn.quantity = component.BATTLE_TURNS;
+    component.kingdomTurn = turn;
     await component.battle();
   });
 
   it('should NOT ATTACK another kingdom with NOT ENOUGH TURNS', async () => {
-    component.kingdomTurn = { quantity: 0 };
+    turn.quantity = 0;
+    component.kingdomTurn = turn;
     await component.battle();
   });
 

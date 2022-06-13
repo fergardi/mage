@@ -6,6 +6,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { Kingdom } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-letter',
@@ -56,7 +57,7 @@ export class LetterComponent implements OnInit {
   form: FormGroup = null;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public kingdom: any,
+    @Inject(MAT_DIALOG_DATA) public kingdom: Kingdom,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<LetterComponent>,
     private loadingService: LoadingService,
@@ -76,17 +77,18 @@ export class LetterComponent implements OnInit {
     this.form.reset();
   }
 
-  async send() {
+  async send(): Promise<void> {
     if (this.form.valid) {
-      this.loadingService.startLoading();
       try {
-        const sent = await this.apiService.sendLetter(this.kingdom.fid, this.form.value.subject, this.form.value.message, this.uid);
+        this.loadingService.startLoading();
+        await this.apiService.sendLetter(this.kingdom.fid, this.form.value.subject, this.form.value.message, this.uid);
         this.notificationService.success('kingdom.letter.success');
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.letter.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.letter.error');
     }

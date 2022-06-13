@@ -5,6 +5,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ApiService } from 'src/app/services/api.service';
+import { Enchantment, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-break',
@@ -59,10 +60,10 @@ import { ApiService } from 'src/app/services/api.service';
 export class BreakComponent {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomMana: any = this.store.selectSnapshot(AuthState.getKingdomMana);
+  kingdomMana: Supply = this.store.selectSnapshot(AuthState.getKingdomMana);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public enchantment: any,
+    @Inject(MAT_DIALOG_DATA) public enchantment: Enchantment,
     private dialogRef: MatDialogRef<BreakComponent>,
     private notificationService: NotificationService,
     private store: Store,
@@ -76,15 +77,16 @@ export class BreakComponent {
 
   async break() {
     if (this.enchantment.spell.manaCost <= this.kingdomMana.quantity) {
-      this.loadingService.startLoading();
       try {
-        const broken = await this.apiService.breakEnchantment(this.uid, this.enchantment.fid);
+        this.loadingService.startLoading();
+        await this.apiService.breakEnchantment(this.uid, this.enchantment.fid);
         this.notificationService.success('kingdom.break.success');
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.break.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.break.error');
     }

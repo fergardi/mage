@@ -7,7 +7,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MapboxService } from 'src/app/services/mapbox.service';
-import { Store, Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
 import { DomService } from 'src/app/services/dom.service';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -17,6 +17,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { StatusComponent } from './status.component';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { MatAccordion } from '@angular/material/expansion';
+import { Lang, District, Letter, Supply } from '../type/interface.model';
 
 @Component({
   selector: 'app-shell',
@@ -27,12 +28,12 @@ export class ShellComponent implements OnInit {
 
   public reports: number = 0;
   public expanded: string = null;
-  langs: any[] = [
+  langs: Array<Lang> = [
     { lang: 'es', image: '/assets/images/languages/es.png' },
     { lang: 'en', image: '/assets/images/languages/en.png' },
     { lang: 'fr', image: '/assets/images/languages/fr.png' },
   ];
-  districts: any[] = [
+  districts: Array<District> = [
     { id: 'artisan', name: 'shell.district.artisan', image: '/assets/images/cards/artisan.png', links: [
         { url: '/kingdom/city', name: 'kingdom.city.name', description: 'kingdom.city.description', image: '/assets/images/cards/city.png' },
         { url: '/kingdom/auction', name: 'kingdom.auction.name', description: 'kingdom.auction.description', image: '/assets/images/cards/auction.png' },
@@ -59,18 +60,18 @@ export class ShellComponent implements OnInit {
     },
   ];
 
-  @Select((state: any) => state.auth.supplies) kingdomSupplies$: Observable<any[]>;
-  link$: Observable<any> = this.router.events
+  @Select(AuthState.getKingdomSupplies) kingdomSupplies$: Observable<Array<Supply>>;
+  link$: Observable<District> = this.router.events
   .pipe(
     filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd),
     map((event: NavigationEnd) => {
-      return this.districts.reduce((a, b) => a.concat(b.links), []).find((link: any) => event.url.includes(link.url));
+      return this.districts.reduce((a, b) => a.concat(b.links), []).find(link => event.url.includes(link.url));
     }),
   );
-  isHandset$: Observable<boolean> = this.breakpointObserver
+  isHandset$ = this.breakpointObserver
   .observe([Breakpoints.Handset])
   .pipe(
-    map((result: any) => result.matches),
+    map(result => result.matches),
     shareReplay(),
   );
   @ViewChild(MatSidenav, {static: true}) drawer: MatSidenav;
@@ -99,14 +100,14 @@ export class ShellComponent implements OnInit {
     // accordion nav
     this.router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationEnd && event.url !== '/user/landing') {
-        const group = this.districts.find((g: any) => g.links.find((l: any) => event.url.includes(l.url)));
+        const group = this.districts.find(district => district.links.find(street => event.url.includes(street.url)));
         this.expanded = group ? group.id : null;
       }
     });
     // alerts
     this.store.select(AuthState.getUserUID).subscribe(uid => {
       if (uid) {
-        this.angularFirestore.collection<any>(`kingdoms/${uid}/letters`, x => x.where('read', '==', false)).valueChanges().subscribe(reports => {
+        this.angularFirestore.collection<Letter>(`kingdoms/${uid}/letters`, x => x.where('read', '==', false)).valueChanges().subscribe(reports => {
           const oldReports = this.reports;
           this.reports = reports.length;
           if (this.reports > oldReports) this.notificationService.warning('kingdom.archive.new');
@@ -134,7 +135,7 @@ export class ShellComponent implements OnInit {
     this.tutorialService.start();
   }
 
-  login($element: any): void {
+  login($element: HTMLElement): void {
     this.domService.scrollToTop($element);
     this.router.navigate(['/user/landing']);
   }

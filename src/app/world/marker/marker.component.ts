@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { MarkerType } from 'src/app/shared/type/common.type';
+import { MarkerType } from 'src/app/shared/type/enum.type';
+import { Marker } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-marker',
@@ -8,7 +9,7 @@ import { MarkerType } from 'src/app/shared/type/common.type';
 })
 export class MarkerComponent {
 
-  data: any = null;
+  data: Marker = null;
   MarkerType: typeof MarkerType = MarkerType;
 
 }

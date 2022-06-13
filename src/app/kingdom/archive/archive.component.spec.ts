@@ -25,10 +25,34 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatChipsModule } from '@angular/material/chips';
+import { Kingdom, Letter } from 'src/app/shared/type/interface.model';
 
 describe('ArchiveComponent', () => {
   let component: ArchiveComponent;
   let fixture: ComponentFixture<ArchiveComponent>;
+  const kingdom: Kingdom = {
+    buildings: [],
+    supplies: [],
+    clan: undefined,
+    coordinates: undefined,
+    faction: undefined,
+    guild: undefined,
+    attacked: null,
+    guilded: null,
+    id: 'test',
+    name: '',
+    position: undefined,
+    power: 0,
+    tree: undefined,
+  };
+  const letter: Letter = {
+    fid: 'test',
+    read: false,
+    from: kingdom,
+    subject: '',
+    message: '',
+    timestamp: null,
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -78,14 +102,13 @@ describe('ArchiveComponent', () => {
   });
 
   it('should OPEN the REPORT dialog', () => {
-    const report = { message: null };
     spyOn(MatDialogStub, 'open');
-    component.openReportDialog(report);
-    expect(MatDialogStub.open).toHaveBeenCalledWith(ReportComponent, { panelClass: 'dialog-responsive', data: report });
+    component.openReportDialog(letter);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(ReportComponent, { panelClass: 'dialog-responsive', data: letter });
   });
 
   it('should REMOVE the LETTERS', async () => {
-    component.selection.select({ fid: 'test' });
+    component.selection.select(letter);
     spyOn(ApiServiceStub, 'removeLetters');
     await component.deleteReports();
     expect(ApiServiceStub.removeLetters).toHaveBeenCalledWith(component.uid, ['test']);

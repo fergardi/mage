@@ -5,6 +5,8 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Deal, Shop, Supply } from 'src/app/shared/type/interface.model';
+import { StoreType } from 'src/app/shared/type/enum.type';
 
 @Component({
   selector: 'app-deal',
@@ -44,15 +46,15 @@ import { LoadingService } from 'src/app/services/loading.service';
   styles: [
   ],
 })
-export class DealComponent implements OnInit {
+export class DealComponent {
 
-  kingdomGold: any = this.store.selectSnapshot(AuthState.getKingdomGold);
+  kingdomGold: Supply = this.store.selectSnapshot(AuthState.getKingdomGold);
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: {
-      deal: any,
-      shop: any,
+      deal: Deal,
+      shop: Shop,
     },
     private dialogRef: MatDialogRef<DealComponent>,
     private notificationService: NotificationService,
@@ -61,31 +63,36 @@ export class DealComponent implements OnInit {
     private loadingService: LoadingService,
   ) { }
 
-  ngOnInit(): void {
-  }
-
   close(): void {
     this.dialogRef.close();
   }
 
+  getCollection(type: StoreType): string {
+    switch (type) {
+      case StoreType.MERCENARY:
+        return 'troops';
+      case StoreType.INN:
+        return 'contracts';
+      case StoreType.MERCHANT:
+        return 'artifacts';
+      case StoreType.SORCERER:
+        return 'charms';
+    }
+  }
+
   async deal(): Promise<void> {
     if (this.data.deal.gold <= this.kingdomGold.quantity) {
-      this.loadingService.startLoading();
       try {
-        const collection = this.data.shop.store.id === 'mercenary'
-          ? 'troops'
-          : this.data.shop.store.id === 'inn'
-            ? 'contracts'
-            : this.data.shop.store.id === 'merchant'
-              ? 'artifacts'
-              : 'charms';
-        const dealt = await this.apiService.tradeDeal(this.uid, this.data.shop.id, collection, this.data.deal.fid);
+        this.loadingService.startLoading();
+        const collection = this.getCollection(this.data.shop.store.id);
+        await this.apiService.tradeDeal(this.uid, this.data.shop.id, collection, this.data.deal.fid);
         this.notificationService.success('world.deal.success');
         this.close();
       } catch (error) {
         this.notificationService.error('world.deal.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('world.deal.error');
     }

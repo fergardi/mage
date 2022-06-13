@@ -7,6 +7,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { Observable } from 'rxjs';
+import { Building, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-explore',
@@ -53,11 +54,11 @@ import { Observable } from 'rxjs';
 export class ExploreComponent implements OnInit {
 
   form: FormGroup = null;
-  uid = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  uid: string = this.store.selectSnapshot(AuthState.getUserUID);
+  kingdomTurn: Supply = this.store.selectSnapshot(AuthState.getKingdomTurn);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public land$: Observable<any>,
+    @Inject(MAT_DIALOG_DATA) public land$: Observable<Supply>,
     private dialogRef: MatDialogRef<ExploreComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
@@ -76,17 +77,18 @@ export class ExploreComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async explore() {
+  async explore(): Promise<void> {
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const explored = await this.apiService.exploreLand(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.explore.success', explored);
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.explore.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.explore.error');
     }

@@ -7,6 +7,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { Observable } from 'rxjs';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Building, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-charge',
@@ -54,10 +55,10 @@ export class ChargeComponent implements OnInit {
 
   form: FormGroup = null;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomTurn: any = this.store.selectSnapshot(AuthState.getKingdomTurn);
+  kingdomTurn: Supply = this.store.selectSnapshot(AuthState.getKingdomTurn);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public node$: Observable<any>,
+    @Inject(MAT_DIALOG_DATA) public node$: Observable<Building>,
     private dialogRef: MatDialogRef<ChargeComponent>,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService,
@@ -76,17 +77,18 @@ export class ChargeComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async charge() {
+  async charge(): Promise<void> {
     if (this.form.valid && this.form.value.turns <= this.kingdomTurn.quantity) {
-      this.loadingService.startLoading();
       try {
+        this.loadingService.startLoading();
         const charged = await this.apiService.chargeMana(this.uid, this.form.value.turns);
         this.notificationService.success('kingdom.charge.success', charged);
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.charge.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.charge.error');
     }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { StoreType, LocationType, FactionType } from 'src/app/shared/type/common.type';
+import { StoreType, LocationType, FactionType } from 'src/app/shared/type/enum.type';
+import { ApiResponse, Tree, TroopSort } from '../shared/type/interface.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class ApiService {
     private httpClient: HttpClient,
   ) { }
 
-  createKingdom(kingdomId: string, factionId: string, name: string, latitude: number, longitude: number): Promise<any> {
+  createKingdom(kingdomId: string, factionId: string, name: string, latitude: number, longitude: number): Promise<ApiResponse> {
     return this.httpClient.post(`${environment.functions.url}/world/kingdom`, {
       kingdomId: kingdomId,
       name: name,
@@ -22,84 +23,84 @@ export class ApiService {
     }).toPromise();
   }
 
-  exploreLand(kingdomId: string, turns: number): Promise<any> {
+  exploreLand(kingdomId: string, turns: number): Promise<ApiResponse> {
     return this.httpClient.get(`${environment.functions.url}/kingdom/${kingdomId}/explore/${turns}`).toPromise();
   }
 
-  chargeMana(kingdomId: string, turns: number): Promise<any> {
+  chargeMana(kingdomId: string, turns: number): Promise<ApiResponse> {
     return this.httpClient.get(`${environment.functions.url}/kingdom/${kingdomId}/charge/${turns}`).toPromise();
   }
 
-  taxGold(kingdomId: string, turns: number): Promise<any> {
+  taxGold(kingdomId: string, turns: number): Promise<ApiResponse> {
     return this.httpClient.get(`${environment.functions.url}/kingdom/${kingdomId}/tax/${turns}`).toPromise();
   }
 
-  recruitUnit(kingdomId: string, unitId: string, quantity: number): Promise<any> {
+  recruitUnit(kingdomId: string, unitId: string, quantity: number): Promise<ApiResponse> {
     return this.httpClient.get(`${environment.functions.url}/kingdom/${kingdomId}/army/${unitId}/recruit/${quantity}`).toPromise();
   }
 
-  disbandTroop(kingdomId: string, troopId: string, quantity: number): Promise<any> {
+  disbandTroop(kingdomId: string, troopId: string, quantity: number): Promise<ApiResponse> {
     return this.httpClient.delete(`${environment.functions.url}/kingdom/${kingdomId}/army/${troopId}/disband/${quantity}`, undefined).toPromise();
   }
 
-  dischargeContract(kingdomId: string, contractId: string): Promise<any> {
+  dischargeContract(kingdomId: string, contractId: string): Promise<ApiResponse> {
     return this.httpClient.delete(`${environment.functions.url}/kingdom/${kingdomId}/tavern/${contractId}/discharge`, undefined).toPromise();
   }
 
-  researchCharm(kingdomId: string, charmId: string, turns: number): Promise<any> {
+  researchCharm(kingdomId: string, charmId: string, turns: number): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/sorcery/${charmId}/research/${turns}`, undefined).toPromise();
   }
 
-  conjureCharm(kingdomId: string, charmId: string, targetId: string): Promise<any> {
+  conjureCharm(kingdomId: string, charmId: string, targetId: string): Promise<ApiResponse> {
     return this.httpClient.post(`${environment.functions.url}/kingdom/${kingdomId}/sorcery/${charmId}/conjure/${targetId}`, undefined).toPromise();
   }
 
-  activateArtifact(kingdomId: string, artifactId: string, targetId: string): Promise<any> {
+  activateArtifact(kingdomId: string, artifactId: string, targetId: string): Promise<ApiResponse> {
     return this.httpClient.request('delete', `${environment.functions.url}/kingdom/${kingdomId}/sorcery/${artifactId}/activate/${targetId}`, undefined).toPromise();
   }
 
-  bidAuction(kingdomId: string, auctionId: string, gold: number): Promise<any> {
+  bidAuction(kingdomId: string, auctionId: string, gold: number): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/auction/${auctionId}/bid/${gold}`, undefined).toPromise();
   }
 
-  offerGod(kingdomId: string, godId: string, gold: number): Promise<any> {
+  offerGod(kingdomId: string, godId: string, gold: number): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/temple/${godId}/offer/${gold}`, undefined).toPromise();
   }
 
-  buildStructure(kingdomId: string, buildingId: string, quantity: number): Promise<any> {
+  buildStructure(kingdomId: string, buildingId: string, quantity: number): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/city/${buildingId}/build/${quantity}`, undefined).toPromise();
   }
 
-  demolishStructure(kingdomId: string, buildingId: string, quantity: number): Promise<any> {
+  demolishStructure(kingdomId: string, buildingId: string, quantity: number): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/city/${buildingId}/demolish/${quantity}`, undefined).toPromise();
   }
 
-  assignContract(kingdomId: string, contractId: string, assignmentId: number): Promise<any> {
+  assignContract(kingdomId: string, contractId: string, assignmentId: number): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/tavern/${contractId}/assign/${assignmentId}`, undefined).toPromise();
   }
 
-  assignArmy(kingdomId: string, army: any[]): Promise<any> {
+  assignArmy(kingdomId: string, army: Array<TroopSort>): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/army`, {
       army: army,
     }).toPromise();
   }
 
-  buyEmporium(kingdomId: string, itemId: string): Promise<any> {
+  buyEmporium(kingdomId: string, itemId: string): Promise<ApiResponse> {
     return this.httpClient.get(`${environment.functions.url}/kingdom/${kingdomId}/emporium/${itemId}`).toPromise();
   }
 
-  battleKingdom(kingdomId: string, targetId: string, battleId: number ): Promise<any> {
+  battleKingdom(kingdomId: string, targetId: string, battleId: string): Promise<ApiResponse> {
     return this.httpClient.post(`${environment.functions.url}/kingdom/${kingdomId}/battle/${battleId}/target/${targetId}`, undefined).toPromise();
   }
 
-  populateMap(latitude: number, longitude: number): Promise<any> {
+  populateMap(latitude: number, longitude: number): Promise<ApiResponse> {
     return this.httpClient.post(`${environment.functions.url}/world/map`, {
       latitude: latitude,
       longitude: longitude,
     }).toPromise();
   }
 
-  addKingdom(kingdomId: string, factionId: FactionType, latitude: number, longitude: number, name: string): Promise<any> {
+  addKingdom(kingdomId: string, factionId: FactionType, latitude: number, longitude: number, name: string): Promise<ApiResponse> {
     return this.httpClient.post(`${environment.functions.url}/world/kingdom`, {
       kingdomId: kingdomId,
       factionId: factionId,
@@ -109,7 +110,7 @@ export class ApiService {
     }).toPromise();
   }
 
-  addShop(fid: string, storeType: StoreType, latitude?: number, longitude?: number, name?: string): Promise<any> {
+  addShop(fid: string, storeType: StoreType, latitude?: number, longitude?: number, name?: string): Promise<ApiResponse> {
     return this.httpClient.put(`${environment.functions.url}/world/shop`, {
       fid: fid,
       storeType: storeType,
@@ -119,7 +120,7 @@ export class ApiService {
     }).toPromise();
   }
 
-  addQuest(fid: string, locationType: LocationType, latitude?: number, longitude?: number, name?: string): Promise<any> {
+  addQuest(fid: string, locationType: LocationType, latitude?: number, longitude?: number, name?: string): Promise<ApiResponse> {
     return this.httpClient.put(`${environment.functions.url}/world/quest`, {
       fid: fid,
       locationType: locationType,
@@ -129,11 +130,11 @@ export class ApiService {
     }).toPromise();
   }
 
-  refreshAuction(): Promise<any> {
+  refreshAuction(): Promise<ApiResponse> {
     return this.httpClient.put(`${environment.functions.url}/world/auction`, undefined).toPromise();
   }
 
-  sendLetter(kingdomId: string, subject: string, message: string, fromId: string): Promise<any> {
+  sendLetter(kingdomId: string, subject: string, message: string, fromId: string): Promise<ApiResponse> {
     return this.httpClient.post(`${environment.functions.url}/kingdom/${kingdomId}/archive`, {
       subject: subject,
       message: message,
@@ -141,11 +142,11 @@ export class ApiService {
     }).toPromise();
   }
 
-  readLetter(kingdomId: string, letterId: string): Promise<any> {
+  readLetter(kingdomId: string, letterId: string): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/archive/${letterId}`, undefined).toPromise();
   }
 
-  removeLetters(kingdomId: string, letterIds: string[]): Promise<any> {
+  removeLetters(kingdomId: string, letterIds: string[]): Promise<ApiResponse> {
     return this.httpClient.delete(`${environment.functions.url}/kingdom/${kingdomId}/archive`, {
       body: {
         letterIds: letterIds,
@@ -153,11 +154,11 @@ export class ApiService {
     }).toPromise();
   }
 
-  favorGuild(kingdomId: string, guildId: string): Promise<any> {
+  favorGuild(kingdomId: string, guildId: string): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/guild/${guildId}`, undefined).toPromise();
   }
 
-  foundateClan(kingdomId: string, name: string, description: string, image: string): Promise<any> {
+  foundateClan(kingdomId: string, name: string, description: string, image: string): Promise<ApiResponse> {
     return this.httpClient.put(`${environment.functions.url}/world/clan`, {
       kingdomId: kingdomId,
       name: name,
@@ -166,39 +167,39 @@ export class ApiService {
     }).toPromise();
   }
 
-  joinClan(kingdomId: string, clanId: string): Promise<any> {
+  joinClan(kingdomId: string, clanId: string): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/clan/${clanId}/join`, undefined).toPromise();
   }
 
-  leaveClan(kingdomId: string, clanId: string): Promise<any> {
+  leaveClan(kingdomId: string, clanId: string): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/clan/${clanId}/leave`, undefined).toPromise();
   }
 
-  assignCharm(kingdomId: string, charmId: string, assignmentId: number): Promise<any> {
+  assignCharm(kingdomId: string, charmId: string, assignmentId: number): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/sorcery/charm/${charmId}/assign/${assignmentId}`, undefined).toPromise();
   }
 
-  assignArtifact(kingdomId: string, artifactId: string, assignmentId: number): Promise<any> {
+  assignArtifact(kingdomId: string, artifactId: string, assignmentId: number): Promise<ApiResponse> {
     return this.httpClient.patch(`${environment.functions.url}/kingdom/${kingdomId}/sorcery/artifact/${artifactId}/assign/${assignmentId}`, undefined).toPromise();
   }
 
-  dispelIncantation(kingdomId: string, incantationId: string): Promise<any> {
+  dispelIncantation(kingdomId: string, incantationId: string): Promise<ApiResponse> {
     return this.httpClient.delete(`${environment.functions.url}/kingdom/${kingdomId}/temple/${incantationId}/dispel`, undefined).toPromise();
   }
 
-  breakEnchantment(kingdomId: string, enchantmentId: string): Promise<any> {
+  breakEnchantment(kingdomId: string, enchantmentId: string): Promise<ApiResponse> {
     return this.httpClient.delete(`${environment.functions.url}/kingdom/${kingdomId}/temple/${enchantmentId}/break`, undefined).toPromise();
   }
 
-  tradeDeal(kingdomId: string, shopId: string, collectionId: string, dealId: string): Promise<any> {
+  tradeDeal(kingdomId: string, shopId: string, collectionId: string, dealId: string): Promise<ApiResponse> {
     return this.httpClient.get(`${environment.functions.url}/kingdom/${kingdomId}/world/shop/${shopId}/${collectionId}/${dealId}`).toPromise();
   }
 
-  adventureQuest(kingdomId: string, questId: string): Promise<any> {
+  adventureQuest(kingdomId: string, questId: string): Promise<ApiResponse> {
     return this.httpClient.post(`${environment.functions.url}/kingdom/${kingdomId}/world/quest/${questId}`, undefined).toPromise();
   }
 
-  plantTree(kingdomId: string, tree: any, gems: number): Promise<any> {
+  plantTree(kingdomId: string, tree: Tree, gems: number): Promise<ApiResponse> {
     return this.httpClient.put(`${environment.functions.url}/kingdom/${kingdomId}/tree`, {
       tree: tree,
       gems: gems,

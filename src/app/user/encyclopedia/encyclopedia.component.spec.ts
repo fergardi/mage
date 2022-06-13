@@ -22,10 +22,32 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
+import { Faction, Tome } from 'src/app/shared/type/interface.model';
+import { FactionType } from 'src/app/shared/type/enum.type';
 
 describe('EncyclopediaComponent', () => {
   let component: EncyclopediaComponent;
   let fixture: ComponentFixture<EncyclopediaComponent>;
+  const faction: Faction = {
+    type: undefined,
+    subtype: null,
+    name: undefined,
+    description: undefined,
+    image: undefined,
+    marker: undefined,
+    opposites: [],
+    adjacents: [],
+    id: FactionType.BLACK,
+  };
+  const tome: Tome = {
+    type: 'god',
+    id: 'death',
+    name: 'god.death.name',
+    description: 'god.death.description',
+    image: '/assets/images/gods/death.png',
+    faction: faction,
+    legendary: true,
+  };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -75,8 +97,8 @@ describe('EncyclopediaComponent', () => {
 
   it('should OPEN the TOME dialog', () => {
     spyOn(MatDialogStub, 'open');
-    component.openTomeDialog(null);
-    expect(MatDialogStub.open).toHaveBeenCalledWith(TomeComponent, { panelClass: 'dialog-responsive', data: null });
+    component.openTomeDialog(tome);
+    expect(MatDialogStub.open).toHaveBeenCalledWith(TomeComponent, { panelClass: 'dialog-responsive', data: tome });
   });
 
   it('should CLEAR the FILTER', () => {

@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { Clan, Kingdom } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-manifest',
@@ -63,7 +64,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 export class ManifestComponent implements OnInit {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public clan: any,
+    @Inject(MAT_DIALOG_DATA) public clan: Clan,
     private dialogRef: MatDialogRef<ManifestComponent>,
     private angularFirestore: AngularFirestore,
   ) { }
@@ -73,7 +74,7 @@ export class ManifestComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.angularFirestore.collection<any>(`clans/${this.clan.fid}/members`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(members => {
+    this.angularFirestore.collection<Kingdom>(`clans/${this.clan.fid}/members`).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(members => {
       this.clan.members = members;
     });
   }

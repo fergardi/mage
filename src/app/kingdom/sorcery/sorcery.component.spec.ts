@@ -71,7 +71,7 @@ describe('SorceryComponent', () => {
     const event: CdkDragDrop<any, any> = eventFactory.createEvent(0, 0);
     // spyOn(ApiServiceStub, 'assignCharm');
     await component.assignCharm(event);
-    // expect(ApiServiceStub.assignCharm).toHaveBeenCalledWith(component.uid, ['test']);
+    // expect(ApiServiceStub.assignCharm).toHaveBeenCalledWith(component.uid, ['test']); // TODO
   });
 
   it('should ASSIGN an ARTIFACT', async () => {
@@ -79,7 +79,7 @@ describe('SorceryComponent', () => {
     const event: CdkDragDrop<any, any> = eventFactory.createEvent(0, 0);
     // spyOn(ApiServiceStub, 'assignArtifact');
     await component.assignArtifact(event);
-    // expect(ApiServiceStub.assignArtifact).toHaveBeenCalledWith(component.uid, ['test']);
+    // expect(ApiServiceStub.assignArtifact).toHaveBeenCalledWith(component.uid, ['test']); // TODO
   });
 
   it('should OPEN the RESEARCH dialog', () => {

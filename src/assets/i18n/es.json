@@ -186,7 +186,7 @@
   "table": {
     "filter": {
       "search": "Buscar",
-      "any": "Cualquiera"
+      "anything": "Cualquiera"
     },
     "column": {
       "name": "Nombre",
@@ -243,6 +243,7 @@
       "accept": "Aceptar",
       "check": "Comprueba tu correo",
       "error": "Ha ocurrido un problema",
+      "default": "Geolocalización aleatoria",
       "faction": "Facción",
       "unfactioned": "Debes escoger una facción"
     },

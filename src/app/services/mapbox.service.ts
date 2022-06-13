@@ -9,17 +9,11 @@ import { Store } from '@ngxs/store';
 import { AuthState } from '../shared/auth/auth.state';
 import { ApiService } from './api.service';
 import * as _ from 'lodash';
-import { MarkerType, FactionType, StoreType, LocationType } from '../shared/type/common.type';
+import { MarkerType, FactionType, StoreType, LocationType } from '../shared/type/enum.type';
 import { NotificationService } from './notification.service';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-
-export interface Marker {
-  id: string;
-  type: MarkerType;
-  marker: mapboxgl.Marker;
-  circle: MapboxCircle;
-}
+import { Marker } from '../shared/type/interface.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +22,7 @@ export class MapboxService {
 
   private mapbox = (mapboxgl as typeof mapboxgl);
   public map: mapboxgl.Map = null;
-  public markers: Marker[] = [];
+  public markers: Array<Marker> = [];
   private offset: number = 10;
   private uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   private primaryColor: string = null;
@@ -129,7 +123,8 @@ export class MapboxService {
     .setDOMContent(document.createElement('div') as HTMLDivElement)
     // open
     .on('open', ($event: any) => {
-      p = this.componentService.injectComponent(PopupComponent, component => component.data = { ...data, type: type });
+      p = this.componentService
+      .injectComponent(PopupComponent, component => component.data = { ...data, type: type });
       p.ref.changeDetectorRef.detectChanges();
       marker.getPopup().setDOMContent(p.html);
       s = (p.ref.instance as PopupComponent).opened

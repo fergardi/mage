@@ -5,6 +5,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ApiService } from 'src/app/services/api.service';
+import { Incantation, Supply } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-dispel',
@@ -61,10 +62,10 @@ import { ApiService } from 'src/app/services/api.service';
 export class DispelComponent {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomMana: any = this.store.selectSnapshot(AuthState.getKingdomMana);
+  kingdomMana: Supply = this.store.selectSnapshot(AuthState.getKingdomMana);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public incantation: any,
+    @Inject(MAT_DIALOG_DATA) public incantation: Incantation,
     private dialogRef: MatDialogRef<DispelComponent>,
     private notificationService: NotificationService,
     private store: Store,
@@ -76,17 +77,18 @@ export class DispelComponent {
     this.dialogRef.close();
   }
 
-  async dispel() {
+  async dispel(): Promise<void> {
     if (this.incantation.spell.manaCost <= this.kingdomMana.quantity) {
-      this.loadingService.startLoading();
       try {
-        const dispelled = await this.apiService.dispelIncantation(this.uid, this.incantation.fid);
+        this.loadingService.startLoading();
+        await this.apiService.dispelIncantation(this.uid, this.incantation.fid);
         this.notificationService.success('kingdom.dispel.success');
         this.close();
       } catch (error) {
         this.notificationService.error('kingdom.dispel.error', error as Error);
+      } finally {
+        this.loadingService.stopLoading();
       }
-      this.loadingService.stopLoading();
     } else {
       this.notificationService.error('kingdom.dispel.error');
     }

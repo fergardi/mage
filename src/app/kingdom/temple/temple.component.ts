@@ -10,6 +10,7 @@ import { DispelComponent } from './dispel.component';
 import { combineLatest } from 'rxjs';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { BreakComponent } from './break.component';
+import { Enchantment, God, Incantation } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-temple',
@@ -21,9 +22,9 @@ import { BreakComponent } from './break.component';
 export class TempleComponent implements OnInit {
 
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
-  kingdomGods: any[] = [];
-  kingdomEnchantments: any[] = [];
-  kingdomIncantations: any[] = [];
+  kingdomGods: Array<God> = [];
+  kingdomEnchantments: Array<Enchantment> = [];
+  kingdomIncantations: Array<Incantation> = [];
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -34,33 +35,33 @@ export class TempleComponent implements OnInit {
 
   ngOnInit(): void {
     combineLatest([
-      this.angularFirestore.collection<any>('gods').valueChanges({ idField: 'fid' }),
-      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/enchantments`).valueChanges({ idField: 'fid' }),
-      this.angularFirestore.collection<any>(`kingdoms/${this.uid}/incantations`).valueChanges({ idField: 'fid' }),
+      this.angularFirestore.collection<God>('gods').valueChanges({ idField: 'fid' }),
+      this.angularFirestore.collection<Enchantment>(`kingdoms/${this.uid}/enchantments`).valueChanges({ idField: 'fid' }),
+      this.angularFirestore.collection<Incantation>(`kingdoms/${this.uid}/incantations`).valueChanges({ idField: 'fid' }),
     ])
     .pipe(untilDestroyed(this))
     .subscribe(([gods, enchantments, incantations]) => {
       this.kingdomGods = gods;
-      this.kingdomEnchantments = enchantments.sort((a: any, b: any) => a.turns - b.turns);
-      this.kingdomIncantations = incantations.sort((a: any, b: any) => a.turns - b.turns);
+      this.kingdomEnchantments = enchantments.sort((a, b) => a.turns - b.turns);
+      this.kingdomIncantations = incantations.sort((a, b) => a.turns - b.turns);
     });
   }
 
-  openOfferDialog(god: any): void {
+  openOfferDialog(god: God): void {
     const dialogRef = this.dialog.open(OfferComponent, {
       panelClass: 'dialog-responsive',
       data: god,
     });
   }
 
-  openDispelDialog(enchantment: any): void {
+  openDispelDialog(enchantment: Enchantment): void {
     const dialogRef = this.dialog.open(DispelComponent, {
       panelClass: 'dialog-responsive',
       data: enchantment,
     });
   }
 
-  openBreakDialog(incantation: any): void {
+  openBreakDialog(incantation: Incantation): void {
     const dialogRef = this.dialog.open(BreakComponent, {
       panelClass: 'dialog-responsive',
       data: incantation,

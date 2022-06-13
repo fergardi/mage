@@ -11,6 +11,7 @@ import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { PERK_COST } from './perk.component';
 import { PlantComponent } from './plant.component';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Item, Pack, Perk, Tree } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-emporium',
@@ -21,15 +22,15 @@ import { AngularFirestore } from '@angular/fire/firestore';
 @UntilDestroy()
 export class EmporiumComponent implements OnInit {
 
-  PERK_COST = PERK_COST;
+  readonly PERK_COST = PERK_COST;
 
-  @Select(AuthState.getKingdomTree) tree$: Observable<any>;
+  @Select(AuthState.getKingdomTree) tree$: Observable<Perk>;
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
   gems: number = 0;
-  kingdomTree: any = null;
-  originalTree: any = null;
-  emporiumItems: any[] = [];
-  emporiumPacks: any[] = [];
+  kingdomTree: Perk = null;
+  originalTree: Perk = null;
+  emporiumItems: Array<Item> = [];
+  emporiumPacks: Array<Pack> = [];
 
   constructor(
     private cacheService: CacheService,
@@ -40,21 +41,21 @@ export class EmporiumComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    this.emporiumItems = (await this.cacheService.getItems()).filter((item: any) => item.gems > 0);
-    this.emporiumPacks = (await this.cacheService.getPacks()).sort((a: any, b: any) => a.quantity - b.quantity);
-    this.tree$.pipe(untilDestroyed(this)).subscribe((tree: any) => {
+    this.emporiumItems = (await this.cacheService.getItems()).filter(item => item.gems > 0);
+    this.emporiumPacks = (await this.cacheService.getPacks()).sort((a, b) => a.quantity - b.quantity);
+    this.tree$.pipe(untilDestroyed(this)).subscribe(tree => {
       this.originalTree = tree;
       this.kingdomTree = JSON.parse(JSON.stringify(tree));
     });
     /*
-    this.angularFirestore.doc<any>('perks/strategy').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(tree => {
+    this.angularFirestore.doc<Perk>('perks/strategy').valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(tree => {
       this.originalTree = tree;
       this.kingdomTree = JSON.parse(JSON.stringify(tree));
     });
     */
   }
 
-  openBuyDialog(item: any): void {
+  openBuyDialog(item: Item): void {
     const dialogRef = this.dialog.open(BuyComponent, {
       panelClass: 'dialog-responsive',
       data: item,
@@ -62,7 +63,7 @@ export class EmporiumComponent implements OnInit {
   }
 
   openPlantDialog(): void {
-    const tree = {
+    const tree: Tree = {
       strategy: this.findTree(this.kingdomTree, 'strategy'),
       agriculture: this.findTree(this.kingdomTree, 'agriculture'),
       alchemy: this.findTree(this.kingdomTree, 'alchemy'),
@@ -91,7 +92,7 @@ export class EmporiumComponent implements OnInit {
     });
   }
 
-  findTree(node: any, perk: string): number {
+  findTree(node: Perk, perk: string): number {
     if (node.id === perk) {
       return node.level;
     } else if (node.perks) {

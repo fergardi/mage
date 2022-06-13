@@ -19,17 +19,36 @@ import { PerkComponent } from './perk.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { PlantComponent } from './plant.component';
+import { Perk } from 'src/app/shared/type/interface.model';
 
 describe('EmporiumComponent', () => {
   let component: EmporiumComponent;
   let fixture: ComponentFixture<EmporiumComponent>;
-  const tree: any = {
+  const tree: Perk = {
     name: 'test',
     description: 'test',
     image: 'test',
     level: 0,
     max: 1,
     perks: [],
+    type: '',
+    subtype: '',
+    faction: undefined,
+    id: '',
+    sort: 0,
+    troopBonus: 0,
+    goldBonus: 0,
+    manaBonus: 0,
+    populationBonus: 0,
+    constructionBonus: 0,
+    godBonus: 0,
+    explorationBonus: 0,
+    attackBonus: 0,
+    defenseBonus: 0,
+    healthBonus: 0,
+    researchBonus: 0,
+    magicalDefenseBonus: 0,
+    physicalDefenseBonus: 0
   };
 
   beforeEach(waitForAsync(() => {
@@ -65,7 +84,7 @@ describe('EmporiumComponent', () => {
     fixture = TestBed.createComponent(EmporiumComponent);
     component = fixture.componentInstance;
     Object.defineProperty(component, 'tree$', { writable: true });
-    component.tree$ = of({});
+    component.tree$ = of(null);
     component.kingdomTree = tree;
     fixture.detectChanges();
   });

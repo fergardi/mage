@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { Kingdom, Troop } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-detail',
@@ -53,18 +54,18 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 @UntilDestroy()
 export class DetailComponent implements OnInit {
 
-  kingdomTroops: any[] = [];
+  kingdomTroops: Array<Troop> = [];
   uid: string = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public kingdom: any,
+    @Inject(MAT_DIALOG_DATA) public kingdom: Kingdom,
     private dialogRef: MatDialogRef<DetailComponent>,
     private angularFirestore: AngularFirestore,
     private store: Store,
   ) { }
 
   ngOnInit(): void {
-    this.angularFirestore.collection<any>(`kingdoms/${this.kingdom.id}/troops`, ref => ref.where('assignment', '==', 2)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
+    this.angularFirestore.collection<Troop>(`kingdoms/${this.kingdom.id}/troops`, ref => ref.where('assignment', '==', 2)).valueChanges({ idField: 'fid' }).pipe(untilDestroyed(this)).subscribe(troops => {
       this.kingdomTroops = troops;
     });
   }

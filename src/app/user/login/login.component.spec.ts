@@ -62,15 +62,15 @@ describe('LoginComponent', () => {
     const login = new MatTabChangeEvent();
     login.index = 0;
     component.changeType(login);
-    expect(component.type).toBe('login');
+    expect(component.loginType).toBe('login');
     const signup = new MatTabChangeEvent();
     signup.index = 1;
     component.changeType(signup);
-    expect(component.type).toBe('signup');
+    expect(component.loginType).toBe('signup');
     const reset = new MatTabChangeEvent();
     reset.index = 2;
     component.changeType(reset);
-    expect(component.type).toBe('reset');
+    expect(component.loginType).toBe('reset');
   });
 
   it('should GEOLOCALIZE the BROWSER', async () => {

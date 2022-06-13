@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
+import { Category, Contract, Family, Letter } from 'src/app/shared/type/interface.model';
 
 @Component({
   selector: 'app-report',
@@ -260,7 +261,7 @@ export class ReportComponent implements OnInit {
   uid = this.store.selectSnapshot(AuthState.getUserUID);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public report: any,
+    @Inject(MAT_DIALOG_DATA) public report: Letter,
     private dialogRef: MatDialogRef<ReportComponent>,
     private apiService: ApiService,
     private store: Store,
@@ -276,12 +277,12 @@ export class ReportComponent implements OnInit {
     }
   }
 
-  getFamilies(contract: any): string {
-    return contract.hero.families.map((family: any) => `<${family.id}>`).join(', ');
+  getFamilies(contract: Contract): string {
+    return contract.hero.families.map((family: Family) => `<${family.id}>`).join(', ');
   }
 
-  getCategories(contract: any): string {
-    return contract.hero.categories.map((category: any) => `<${category.id}>`).join(', ');
+  getCategories(contract: Contract): string {
+    return contract.hero.categories.map((category: Category) => `<${category.id}>`).join(', ');
   }
 
 }
