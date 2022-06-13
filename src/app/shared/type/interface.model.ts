@@ -3,13 +3,13 @@ import { AssignmentType, FactionType, GuildType, LocationType, MarkerType, Popup
 
 export interface Faction {
   type: string;
-  subtype: string | null;
+  subtype: string;
   name: string;
   description: string;
   image: string;
   marker: string;
-  opposites: Array<string>;
-  adjacents: Array<string>;
+  opposites: Array<Category>;
+  adjacents: Array<Category>;
   id: FactionType;
 }
 
@@ -72,13 +72,13 @@ export interface Item {
   name: string;
   description: string;
   id: string;
-  skills: Array<string>; // TODO
-  families: Array<string>; // TODO
-  categories: Array<string>; // TODO
-  resistances: Array<string>; // TODO
-  units: Array<string>; // TODO
-  resources: Array<string>; // TODO
-  spells: Array<string>; // TODO
+  skills: Array<Skill>;
+  families: Array<Family>;
+  categories: Array<Category>;
+  resistances: Array<Category>;
+  units: Array<Unit>;
+  resources: Array<Resource>;
+  spells: Array<Spell>;
   amount: Array<number>;
   battle: boolean;
   self: boolean;
@@ -103,7 +103,7 @@ export interface Structure {
   id: string;
   faction: Faction;
   image: string;
-  resources: Array<string>; // TODO
+  resources: Array<Resource>;
   turnRatio: number;
   goldCost: number;
   manaCost: number;
@@ -149,16 +149,16 @@ export interface Spell {
   id: string;
   image: string;
   faction: Faction;
-  skills: Array<string>; // TODO
-  families: Array<string>; // TODO
-  categories: Array<string>; // TODO
-  resistances: Array<string>; // TODO
-  units: Array<string>; // TODO
-  resources: Array<string>; // TODO
-  heroes: Array<string>; // TODO
-  items: Array<Item>; // TODO
+  skills: Array<Skill>;
+  families: Array<Family>;
+  categories: Array<Category>;
+  resistances: Array<Category>;
+  units: Array<Unit>;
+  resources: Array<Resource>;
+  heroes: Array<Hero>;
+  items: Array<Item>;
   level: number;
-  amount: Array<string>; // TODO
+  amount: Array<number>;
   turnCost: number;
   turnResearch: number;
   turnDuration: number;
@@ -266,10 +266,10 @@ export interface Unit {
   id: string;
   image: string;
   faction: Faction;
-  categories: Array<string>; // TODO
-  resistances: Array<string>; // TODO
-  skills: Array<string>; // TODO
-  families: Array<string>; // TODO
+  categories: Array<Category>;
+  resistances: Array<Category>;
+  skills: Array<Skill>;
+  families: Array<Family>;
   initiative: number;
   attack: number;
   defense: number;
@@ -306,13 +306,13 @@ export interface Hero {
   description: string;
   id: string;
   image: string;
-  skills: Array<string>;
+  skills: Array<Skill>;
   families: Array<Family>;
   categories: Array<Category>;
-  resistances: Array<string>;
-  units: Array<string>;
-  resources: Array<string>;
-  spells: Array<string>;
+  resistances: Array<Category>;
+  units: Array<Unit>;
+  resources: Array<Resource>;
+  spells: Array<Spell>;
   attack: number;
   defense: number;
   health: number;
@@ -584,6 +584,7 @@ export interface Topic {
 
 export interface Marker {
   id: string;
+  name?: string;
   type: MarkerType;
   marker: mapboxgl.Marker;
   circle: MapboxCircle;
@@ -604,7 +605,6 @@ export interface Tome {
   subtype?: string;
   image?: string;
   faction?: Faction;
-  legendary?: boolean;
   skills?: Array<Skill>;
   families?: Array<Family>;
   categories?: Array<Category>;
@@ -614,6 +614,48 @@ export interface Tome {
   adjacents?: Array<Faction>;
   opposites?: Array<Faction>;
   resistances?: Array<Category>;
+  turnRatio?: number;
+  goldCost?: number;
+  manaCost?: number;
+  populationCost?: number;
+  goldProduction?: number;
+  manaProduction?: number;
+  populationProduction?: number;
+  goldMaintenance?: number;
+  manaMaintenance?: number;
+  populationMaintenance?: number;
+  goldCapacity?: number;
+  manaCapacity?: number;
+  populationCapacity?: number;
+  power?: number;
+  initiative?: number;
+  attack?: number;
+  defense?: number;
+  health?: number;
+  gold?: number;
+  level?: number;
+  amount?: Array<number>;
+  recruitable?: boolean;
+  join?: any;
+  heroes?: Array<Hero>;
+  items?: Array<Item>;
+  turnCost?: number;
+  turnResearch?: number;
+  turnDuration?: number;
+  landProduction?: number;
+  researchBonus?: number;
+  buildBonus?: number;
+  physicalDefense?: number;
+  magicalDefense?: number;
+  summon?: boolean;
+  epidemic?: boolean;
+  dispellable?: boolean;
+  battle?: boolean;
+  removes?: boolean;
+  self?: boolean;
+  multiple?: boolean;
+  global?: boolean;
+  legendary?: boolean;
 }
 
 export interface Icon {
@@ -621,12 +663,6 @@ export interface Icon {
   name: string;
   image: string;
 }
-
-/*
-export interface Tome extends Skill, Perk, Faction, God, Family, Guild {
-  id: any;
-}
-*/
 
 export interface ApiResponse {
   [name: string]: any; // TODO

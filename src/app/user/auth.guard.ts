@@ -3,7 +3,6 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Navig
 import { NotificationService } from '../services/notification.service';
 import { Store } from '@ngxs/store';
 import { AuthState } from '../shared/auth/auth.state';
-import { filter } from 'rxjs/operators';
 
 const LANDING_ROUTE: string = '/user/landing';
 

@@ -67,7 +67,7 @@ export class BuildComponent implements OnInit {
   kingdomLand: Supply = this.store.selectSnapshot(AuthState.getKingdomLand);
   kingdomWorkshop: Building = this.store.selectSnapshot(AuthState.getKingdomWorkshop);
   form: FormGroup = null;
-  Math: unknown = Math;
+  Math: Math = Math;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public building: Building,
