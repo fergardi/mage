@@ -15,10 +15,19 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Clan } from 'src/app/shared/type/interface.model';
 
 describe('FoundationComponent', () => {
   let component: FoundationComponent;
   let fixture: ComponentFixture<FoundationComponent>;
+  const clan: Clan = {
+    name: 'test',
+    description: 'test',
+    image: 'test',
+    members: [],
+    leader: undefined,
+    power: 0
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -61,11 +70,6 @@ describe('FoundationComponent', () => {
 
   it('should FOUNDATE a CLAN', async () => {
     component.kingdomGold.quantity = component.CLAN_COST;
-    const clan: any = {
-      name: 'test',
-      description: 'test',
-      image: 'test',
-    };
     component.form.patchValue(clan);
     component.form.updateValueAndValidity();
     spyOn(ApiServiceStub, 'foundateClan');
@@ -75,11 +79,6 @@ describe('FoundationComponent', () => {
 
   it('should NOT FOUNDATE a CLAN', async () => {
     component.kingdomGold.quantity = 0;
-    const clan: any = {
-      name: 'test',
-      description: 'test',
-      image: 'test',
-    };
     component.form.patchValue(clan);
     component.form.updateValueAndValidity();
     spyOn(ApiServiceStub, 'foundateClan');
@@ -89,11 +88,6 @@ describe('FoundationComponent', () => {
 
   it('should NOT FOUNDATE a CLAN and CATCH the ERROR', async () => {
     component.kingdomGold.quantity = component.CLAN_COST;
-    const clan: any = {
-      name: 'test',
-      description: 'test',
-      image: 'test',
-    };
     component.form.patchValue(clan);
     component.form.updateValueAndValidity();
     spyOn(ApiServiceStub, 'foundateClan').and.throwError(new Error('test'));

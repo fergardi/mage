@@ -186,7 +186,7 @@
   "table": {
     "filter": {
       "search": "Buscar",
-      "any": "Cualquiera"
+      "anything": "Cualquiera"
     },
     "column": {
       "name": "Nombre",

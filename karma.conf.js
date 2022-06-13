@@ -11,6 +11,7 @@ module.exports = function (config) {
       require('karma-coverage'),
       // require('karma-scss-preprocessor'),
       require('karma-sonarqube-unit-reporter'),
+      // require('karma-firefox-launcher'),
     ],
     client: {
       clearContext: false,
@@ -62,13 +63,18 @@ module.exports = function (config) {
     autoWatch: true,
     singleRun: true,
     restartOnFileChange: true,
-    browsers: ['ChromeHeadless'],
+    browsers: ['ChromeHeadless'], // TODO firefox
     captureTimeout: 120000,
     browserDisconnectTimeout : 120000,
     browserDisconnectTolerance : 1,
     browserNoActivityTimeout : 120000,
-    /*
     customLaunchers: {
+      FirefoxHeadless: {
+        base: 'FirefoxNightly',
+        flags: [
+            '-headless',
+        ]
+      },
       ChromeDebugger: {
         base: 'Chrome',
         flags: [
@@ -98,7 +104,6 @@ module.exports = function (config) {
           '--disable-web-security',
         ]
       }
-    },
-    */
+    }
   });
 };

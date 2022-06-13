@@ -4,15 +4,27 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
-import { Perk } from 'src/app/shared/type/interface.model';
+import { Faction, Perk } from 'src/app/shared/type/interface.model';
+import { FactionType } from 'src/app/shared/type/enum.type';
 
 describe('PerkComponent', () => {
   let component: PerkComponent;
   let fixture: ComponentFixture<PerkComponent>;
+  const faction: Faction = {
+    type: undefined,
+    subtype: null,
+    name: undefined,
+    description: undefined,
+    image: undefined,
+    marker: undefined,
+    opposites: [],
+    adjacents: [],
+    id: FactionType.GREY,
+  };
   const perk: Perk = {
     type: 'test',
     subtype: 'test',
-    faction: 'test',
+    faction: faction,
     id: 'test',
     name: 'test',
     description: 'test',

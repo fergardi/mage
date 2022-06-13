@@ -14,8 +14,7 @@
     "test:e2e": "ng e2e",
     "test:sonar": "sonar-scanner",
     "test:ci": "npm run test:karma && npm run test:sonar",
-    "update": "npm-check -u && npm run postinstall",
-    "postinstall": "ngcc && pnpx jetifier"
+    "update": "npm-check -u && npm run postinstall"
   },
   "private": true,
   "dependencies": {
@@ -80,6 +79,7 @@
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "^2.0.3",
     "karma-coverage-istanbul-reporter": "~3.0.2",
+    "karma-firefox-launcher": "^2.1.2",
     "karma-jasmine": "^4.0.2",
     "karma-jasmine-html-reporter": "^1.7.0",
     "karma-scss-preprocessor": "^4.0.0",
@@ -92,10 +92,5 @@
     "ts-node": "^10.8.0",
     "tslint": "~6.1.0",
     "typescript": "4.6.4"
-  },
-  "pnpm": {
-    "overrides": {
-      "esbuild": "npm:esbuild-wasm@latest"
-    }
   }
 }

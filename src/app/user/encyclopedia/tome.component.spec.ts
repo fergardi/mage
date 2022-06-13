@@ -9,19 +9,30 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
+import { Faction, Tome } from 'src/app/shared/type/interface.model';
+import { FactionType } from 'src/app/shared/type/enum.type';
 
 describe('TomeComponent', () => {
   let component: TomeComponent;
   let fixture: ComponentFixture<TomeComponent>;
-  const tome: object = {
+  const faction: Faction = {
+    type: undefined,
+    subtype: null,
+    name: undefined,
+    description: undefined,
+    image: undefined,
+    marker: undefined,
+    opposites: [],
+    adjacents: [],
+    id: FactionType.BLACK,
+  };
+  const tome: Tome = {
     type: 'god',
     id: 'death',
     name: 'god.death.name',
     description: 'god.death.description',
     image: '/assets/images/gods/death.png',
-    faction: {
-      id: 'black',
-    },
+    faction: faction,
     legendary: true,
   };
 

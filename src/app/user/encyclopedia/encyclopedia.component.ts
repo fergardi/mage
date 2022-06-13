@@ -32,7 +32,7 @@ export class EncyclopediaComponent implements OnInit {
     },
     faction: {
       type: 'select',
-      value: '',
+      value: null,
       options: [],
     },
     type: {
@@ -55,6 +55,7 @@ export class EncyclopediaComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   async ngOnInit(): Promise<void> {
+    const factions = await this.cacheService.getFactions();
     const cached: Array<Array<Tome>> = await Promise.all([
       this.cacheService.getSkills(),
       this.cacheService.getUnits(),
@@ -83,18 +84,19 @@ export class EncyclopediaComponent implements OnInit {
       return obj[property];
     };
     this.filters.faction.options = this.filters.faction.options.concat(
-      [{ id: '', name: 'table.filter.any', image: '/assets/images/factions/grey.png' }],
-      await this.cacheService.getFactions(),
+      [{ id: '', name: 'table.filter.anything', image: '/assets/images/factions/grey.png' }],
+      factions,
     );
     this.filters.faction.value = this.filters.faction.options[0];
     const legendary = new Array({ name: 'category.legendary.name', value: true });
-    const types = [...new Set(data.map((row: any) => row.type))].map((type: string) => ({ name: `type.${type}.name`, value: type }));
-    const subtypes = [...new Set(data.filter((row: any) => row.subtype).map((row: any) => row.subtype))].map((subtype: string) => ({ name: `type.${subtype}.name`, value: subtype }));
+    const types = [...new Set(data.map(row => row.type))].map(type => ({ name: `type.${type}.name`, value: type }));
+    const subtypes = [...new Set(data.filter(row => row.subtype).map(row => row.subtype))].map(subtype => ({ name: `type.${subtype}.name`, value: subtype }));
     this.filters.type.options = [legendary, types, subtypes]
-    .reduce((a: any[], b: any) => a.concat(b), [])
-    .filter((value: any, index: number, array: any[]) => array.findIndex((element: any) => (element.name === value.name)) === index) // https://stackoverflow.com/a/56757215/2477303
+    .reduce((a: Array<unknown>, b: unknown) => a.concat(b), [])
+    .filter((value: any, index: number, array: Array<any>) => array.findIndex(element => (element.name === value.name)) === index) // https://stackoverflow.com/a/56757215/2477303
     .sort((a: any, b: any) => this.translateService.instant(a.name).localeCompare(this.translateService.instant(b.name)));
     this.table.filterPredicate = this.createFilter();
+    this.applyFilter();
     this.topics = [
       { surname: 'kingdom', name: 'city', examples: this.table.data.filter((item: Tome) => ['barrier', 'node'].includes(item.id)), suffix: '/assets/images/resources/land.png' },
       { surname: 'kingdom', name: 'auction', examples: this.table.data.filter((item: Tome) => ['shield-light', 'crypt-keeper'].includes(item.id)), suffix: '/assets/images/resources/gold.png' },
@@ -102,14 +104,13 @@ export class EncyclopediaComponent implements OnInit {
       { surname: 'world', name: 'map', examples: this.table.data.filter((item: Tome) => ['graveyard', 'inn'].includes(item.id)) },
       { surname: 'kingdom', name: 'army', examples: this.table.data.filter((item: Tome) => ['bone-dragon', 'iron-golem'].includes(item.id)) },
       { surname: 'kingdom', name: 'tavern', examples: this.table.data.filter((item: Tome) => ['dragon-rider', 'sage'].includes(item.id)) },
-      { surname: 'kingdom', name: 'census', examples: [{ name: 'Bot 1', description: 'Bots', type: 'player', image: '/assets/images/factions/black.png', faction: { id: FactionType.BLACK } }, { name: 'Bot 2', description: 'Bots', type: 'player', image: '/assets/images/factions/white.png', faction: { id: 'white' } }], suffix: '/assets/images/icons/power.png' },
-      { surname: 'kingdom', name: 'archive', examples: [{ name: 'Bot 3', description: 'kingdom.report.subject', type: 'report', image: '/assets/images/factions/green.png', faction: { id: 'green' } }, { name: 'Bot 4', description: 'kingdom.auction.subject', type: 'report', image: '/assets/images/factions/blue.png', faction: { id: 'blue' } }] },
+      { surname: 'kingdom', name: 'census', examples: [{ id: 'bot1', name: 'Bot 1', description: 'Bots', type: 'player', image: '/assets/images/factions/black.png', faction: factions.find(f => f.id === FactionType.BLACK) }, { id: 'bot2', name: 'Bot 2', description: 'Bots', type: 'player', image: '/assets/images/factions/white.png', faction: factions.find(f => f.id === FactionType.WHITE) }], suffix: '/assets/images/icons/power.png' },
+      { surname: 'kingdom', name: 'archive', examples: [{ id: 'bot3', name: 'Bot 3', description: 'kingdom.report.subject', type: 'report', image: '/assets/images/factions/green.png', faction: factions.find(f => f.id === FactionType.GREEN) }, { id: 'bot4', name: 'Bot 4', description: 'kingdom.auction.subject', type: 'report', image: '/assets/images/factions/blue.png', faction: factions.find(f => f.id === FactionType.BLUE) }] },
       { surname: 'kingdom', name: 'clan', examples: this.table.data.filter((item: Tome) => ['hunter', 'warrior'].includes(item.id)) },
       { surname: 'kingdom', name: 'sorcery', examples: this.table.data.filter((item: Tome) => ['fireball', 'locust-swarm'].includes(item.id)), suffix: '/assets/images/resources/mana.png' },
       { surname: 'kingdom', name: 'temple', examples: this.table.data.filter((item: Tome) => ['death', 'famine'].includes(item.id)), suffix: '/assets/images/spells/grey/armageddon.png' },
       { surname: 'user', name: 'encyclopedia', examples: this.table.data.filter((item: Tome) => ['breath', 'dragon'].includes(item.id)) },
     ];
-    this.applyFilter();
   }
 
   applyFilter(): void {
@@ -126,7 +127,7 @@ export class EncyclopediaComponent implements OnInit {
       const filters = JSON.parse(filter);
       return (this.translateService.instant(data.name).toLowerCase().normalize('NFD').replace(normalize, '').includes(filters.name.toLowerCase().normalize('NFD').replace(normalize, ''))
         || this.translateService.instant(data.description).toLowerCase().normalize('NFD').replace(normalize, '').includes(filters.name.toLowerCase().normalize('NFD').replace(normalize, '')))
-        && (!filters.type.length || filters.type.every((element: Tome) => [data.type, data.subtype, data.legendary].includes(element)))
+        && (!filters.type.length || filters.type.every((element: any) => [data.type, data.subtype, data.legendary].includes(element)))
         && (!filters.faction || data.faction.id.toLowerCase().includes(filters.faction.id));
     };
     return filterFunction;

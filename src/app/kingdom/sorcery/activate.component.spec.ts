@@ -16,21 +16,51 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Artifact, Faction, Item } from 'src/app/shared/type/interface.model';
+import { AssignmentType, FactionType } from 'src/app/shared/type/enum.type';
 
 describe('ActivateComponent', () => {
   let component: ActivateComponent;
   let fixture: ComponentFixture<ActivateComponent>;
-  const artifact: any = {
-    item: {
-      name: 'test',
-      description: 'test',
-      image: 'assets/images/items/magic-compass.png',
-      turns: 1,
-      faction: {
-        id: 'grey',
-      },
-    },
+  const faction: Faction = {
+    type: undefined,
+    subtype: null,
+    name: undefined,
+    description: undefined,
+    image: undefined,
+    marker: undefined,
+    opposites: [],
+    adjacents: [],
+    id: FactionType.GREY,
+  };
+  const item: Item = {
+    name: 'test',
+    description: 'test',
+    image: 'assets/images/items/magic-compass.png',
+    turns: 1,
+    faction: faction,
+    type: '',
+    subtype: '',
+    id: '',
+    skills: [],
+    families: [],
+    categories: [],
+    resistances: [],
+    units: [],
+    resources: [],
+    spells: [],
+    amount: [],
+    battle: false,
+    self: false,
+    multiple: false,
+    gems: 0,
+    legendary: false
+  }
+  const artifact: Artifact = {
+    item: item,
     quantity: 1,
+    assignment: AssignmentType.NONE,
+    id: ''
   };
 
   beforeEach(waitForAsync(() => {

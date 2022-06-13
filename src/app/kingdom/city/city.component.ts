@@ -28,7 +28,7 @@ export class CityComponent implements OnInit {
   @Select(AuthState.getKingdomWorkshop) workshop$: Observable<Building>;
   @Select(AuthState.getKingdomLand) land$: Observable<Supply>;
   @Select(AuthState.getKingdomTurn) turn$: Observable<Supply>;
-  Math: any = Math;
+  Math: Math = Math;
 
   constructor(
     private dialog: MatDialog,

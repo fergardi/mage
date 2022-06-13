@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { Tome } from '../shared/type/interface.model';
+import { Icon, Tome } from '../shared/type/interface.model';
 
 @Pipe({
   name: 'icon',
@@ -13,10 +13,10 @@ export class IconPipe implements PipeTransform {
     private translateService: TranslateService,
   ) {}
 
-  transform(text: string = '', object?: Tome): SafeHtml {
-    if (text && object) {
-      const terms = [object.skills || [], object.families || [], object.categories || [], object.units || [], object.resources || [], object.spells || [], object.adjacents || [], object.opposites || [], object.resistances || []].reduce((a, b) => a.concat(b), []);
-      terms.forEach((term: Tome) => text = text.replace(`<${term.id}>`, `<img class="icon" title="${this.translateService.instant(term.name)}" src="${term.image}">`));
+  transform(text: string = '', element?: Tome): SafeHtml {
+    if (text && element) {
+      const terms: Array<Icon> = [element.skills || [], element.families || [], element.categories || [], element.units || [], element.resources || [], element.spells || [], element.adjacents || [], element.opposites || [], element.resistances || []].reduce((a: any, b: any) => a.concat(b), []);
+      terms.forEach((term: Icon) => text = text.replace(`<${term.id}>`, `<img class="icon" title="${this.translateService.instant(term.name)}" src="${term.image}">`));
     }
     text = (text || '')
     .replace(/<gold>/g, `<img class="icon" title="${this.translateService.instant('resource.gold.name')}" src="/assets/images/resources/gold.png">`)

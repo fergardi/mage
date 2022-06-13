@@ -39,7 +39,7 @@ export interface Tree {
 export interface Perk {
   type: string;
   subtype: string;
-  faction: string;
+  faction: Faction;
   id: string;
   name: string;
   description: string;
@@ -518,10 +518,10 @@ export interface God {
   name: string;
   description: string;
   image: string;
-  faction: string;
-  units: Array<string>;
-  items: Array<string>;
-  spells: Array<string>;
+  faction: Faction;
+  units: Array<Unit>;
+  items: Array<Item>;
+  spells: Array<Spell>;
   gold: number;
   mana: number;
   population: number;
@@ -563,7 +563,7 @@ export interface Deal {
   fid?: string;
   gold: number;
   quantity: number;
-  join?: Hero | Item | Spell | Unit;
+  join?: any;
   hero?: Hero;
   item?: Item;
   spell?: Spell;
@@ -587,15 +587,46 @@ export interface Marker {
   type: MarkerType;
   marker: mapboxgl.Marker;
   circle: MapboxCircle;
+  store?: Store;
+  location?: Location;
+  faction?: Faction;
 }
 
 export interface Popup extends Kingdom, Shop, Quest {
   // TODO
 }
 
-export interface Tome extends Skill {
-  // TODO
+export interface Tome {
+  id?: string;
+  name?: string;
+  description?: string;
+  type?: string;
+  subtype?: string;
+  image?: string;
+  faction?: Faction;
+  legendary?: boolean;
+  skills?: Array<Skill>;
+  families?: Array<Family>;
+  categories?: Array<Category>;
+  units?: Array<Unit>;
+  resources?: Array<Resource>;
+  spells?: Array<Spell>;
+  adjacents?: Array<Faction>;
+  opposites?: Array<Faction>;
+  resistances?: Array<Category>;
 }
+
+export interface Icon {
+  id: string;
+  name: string;
+  image: string;
+}
+
+/*
+export interface Tome extends Skill, Perk, Faction, God, Family, Guild {
+  id: any;
+}
+*/
 
 export interface ApiResponse {
   [name: string]: any; // TODO

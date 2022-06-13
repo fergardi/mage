@@ -100,7 +100,7 @@ export class ShellComponent implements OnInit {
     // accordion nav
     this.router.events.subscribe((event: RouterEvent) => {
       if (event instanceof NavigationEnd && event.url !== '/user/landing') {
-        const group = this.districts.find((g: any) => g.links.find((l: any) => event.url.includes(l.url)));
+        const group = this.districts.find(district => district.links.find(street => event.url.includes(street.url)));
         this.expanded = group ? group.id : null;
       }
     });
@@ -135,7 +135,7 @@ export class ShellComponent implements OnInit {
     this.tutorialService.start();
   }
 
-  login($element: any): void {
+  login($element: HTMLElement): void {
     this.domService.scrollToTop($element);
     this.router.navigate(['/user/landing']);
   }

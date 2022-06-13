@@ -12,20 +12,68 @@ import { MatChipsModule } from '@angular/material/chips';
 import { NotificationService } from 'src/app/services/notification.service';
 import { ApiService } from 'src/app/services/api.service';
 import { Store } from '@ngxs/store';
+import { Contract, Faction, Hero } from 'src/app/shared/type/interface.model';
+import { AssignmentType, FactionType } from 'src/app/shared/type/enum.type';
 
 describe('DischargeComponent', () => {
   let component: DischargeComponent;
   let fixture: ComponentFixture<DischargeComponent>;
-  const contract: any = {
+  const faction: Faction = {
+    type: undefined,
+    subtype: null,
+    name: undefined,
+    description: undefined,
+    image: undefined,
+    marker: undefined,
+    opposites: [],
+    adjacents: [],
+    id: FactionType.BLACK,
+  };
+  const hero: Hero = {
+    name: 'test',
+    description: 'test',
+    faction: faction,
+    image: 'assets/images/heroes/red/dragon-rider.png',
+    type: '',
+    subtype: '',
+    id: '',
+    skills: [],
+    families: [],
+    categories: [],
+    resistances: [],
+    units: [],
+    resources: [],
+    spells: [],
+    attack: 0,
+    defense: 0,
+    health: 0,
+    power: 0,
+    attackBonus: 0,
+    defenseBonus: 0,
+    healthBonus: 0,
+    resurrectionBonus: 0,
+    exploreBonus: 0,
+    buildBonus: 0,
+    researchBonus: 0,
+    goldProduction: 0,
+    manaProduction: 0,
+    populationProduction: 0,
+    goldMaintenance: 0,
+    manaMaintenance: 0,
+    populationMaintenance: 0,
+    legendary: false,
+    multiple: false,
+    battle: false,
+    self: false
+  }
+  const contract: Contract = {
     fid: 'test',
-    hero: {
-      name: 'test',
-      description: 'test',
-      faction: {
-        id: 'red',
-      },
-      image: 'assets/images/heroes/red/dragon-rider.png',
-    },
+    hero: hero,
+    id: '',
+    level: 0,
+    contractId: '',
+    assignment: AssignmentType.NONE,
+    sort: 0
   };
 
   beforeEach(waitForAsync(() => {

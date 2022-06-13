@@ -1,16 +1,30 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MarkerComponent } from './marker.component';
-import { MarkerType } from 'src/app/shared/type/enum.type';
+import { FactionType, MarkerType } from 'src/app/shared/type/enum.type';
+import { Faction, Marker } from 'src/app/shared/type/interface.model';
 
 describe('MarkerComponent', () => {
   let component: MarkerComponent;
   let fixture: ComponentFixture<MarkerComponent>;
-  const data: any = {
+  const faction: Faction = {
+    type: undefined,
+    subtype: null,
+    name: undefined,
+    description: undefined,
+    image: undefined,
+    marker: undefined,
+    opposites: [],
+    adjacents: [],
+    id: FactionType.BLACK,
+  };
+  const marker: Marker = {
+    id: 'test',
     type: MarkerType.KINGDOM,
-    faction: {
-      id: 'black',
-      image: '',
-    },
+    marker: null,
+    circle: undefined,
+    faction: faction,
+    store: null,
+    location: null,
   };
 
   beforeEach(waitForAsync(() => {
@@ -25,7 +39,7 @@ describe('MarkerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MarkerComponent);
     component = fixture.componentInstance;
-    component.data = data;
+    component.data = marker;
     fixture.detectChanges();
   });
 

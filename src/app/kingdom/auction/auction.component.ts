@@ -75,7 +75,7 @@ export class AuctionComponent implements OnInit {
       this.table.filterPredicate = this.createFilter();
       // this.filters.faction.options = [...new Set(data.map((auction: Auction) => auction.join.faction))];
       this.filters.faction.options = this.filters.faction.options.concat(
-        [{ id: '', name: 'table.filter.any', image: '/assets/images/factions/grey.png' }],
+        [{ id: '', name: 'table.filter.anything', image: '/assets/images/factions/grey.png' }],
         await this.cacheService.getFactions(),
       );
       this.filters.faction.value = this.filters.faction.options[0];

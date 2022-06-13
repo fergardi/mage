@@ -9,17 +9,37 @@ import { LongPipe } from 'src/app/pipes/long.pipe';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
+import { Faction, Kingdom } from 'src/app/shared/type/interface.model';
+import { FactionType } from 'src/app/shared/type/enum.type';
 
 describe('DetailComponent', () => {
   let component: DetailComponent;
   let fixture: ComponentFixture<DetailComponent>;
-  const kingdom: any = {
+  const faction: Faction = {
+    type: undefined,
+    subtype: null,
+    name: undefined,
+    description: undefined,
+    image: undefined,
+    marker: undefined,
+    opposites: [],
+    adjacents: [],
+    id: FactionType.BLACK,
+  };
+  const kingdom: Kingdom = {
     id: 'test',
     name: 'test',
-    faction: {
-      id: 'test',
-      image: 'test',
-    },
+    faction: faction,
+    buildings: [],
+    supplies: [],
+    clan: undefined,
+    coordinates: undefined,
+    guild: undefined,
+    attacked: null,
+    guilded: null,
+    position: undefined,
+    power: 0,
+    tree: undefined,
   };
 
   beforeEach(async () => {
