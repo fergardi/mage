@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { CacheService } from './cache.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFirestoreStub } from 'src/stubs';
 import { CollectionType } from './cache.service';
 

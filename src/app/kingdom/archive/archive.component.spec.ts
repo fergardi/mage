@@ -21,7 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReportComponent } from './report.component';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatChipsModule } from '@angular/material/chips';

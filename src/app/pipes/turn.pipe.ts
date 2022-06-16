@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import firebase from 'firebase/compat';
 
 @Pipe({
   name: 'turn',

@@ -15,7 +15,7 @@ import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Artifact, Faction, Item } from 'src/app/shared/type/interface.model';
 import { AssignmentType, FactionType } from 'src/app/shared/type/enum.type';
 

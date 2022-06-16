@@ -1,11 +1,11 @@
 import { State, Action, Selector, StateContext, NgxsOnInit } from '@ngxs/store';
 import { SetUserAction, SetKingdomAction, SetKingdomSuppliesAction, SetKingdomBuildingsAction, LoginWithGoogleAction, LogoutAction } from './auth.actions';
-import { auth, User } from 'firebase/app';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { User, GoogleAuthProvider } from 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { calculate } from 'src/app/pipes/turn.pipe';
 import { Building, Clan, Kingdom, Perk, Supply } from '../type/interface.model';
@@ -181,7 +181,7 @@ export class AuthState implements NgxsOnInit {
 
   @Action(LoginWithGoogleAction)
   async loginWithGoogle(ctx: StateContext<AuthStateModel>) {
-    await this.angularFireAuth.signInWithPopup(new auth.GoogleAuthProvider());
+    await this.angularFireAuth.signInWithPopup(new GoogleAuthProvider());
   }
 
   @Action(LogoutAction)

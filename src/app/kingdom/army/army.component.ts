@@ -10,7 +10,7 @@ import { DisbandComponent } from './disband.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { combineLatest } from 'rxjs';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { Troop, TroopSort, Unit } from 'src/app/shared/type/interface.model';

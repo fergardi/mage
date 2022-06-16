@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed, waitForAsync, inject, fakeAsync } from '@angular/core/testing';
 import { ShellComponent } from './shell.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireAuthStub, StoreStub, MapboxServiceStub, AngularFirestoreStub, NotificationServiceStub, MatBottomSheetStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LoadingService } from 'src/app/services/loading.service';
 import { DomService } from 'src/app/services/dom.service';
 import { TourService } from 'ngx-ui-tour-md-menu';

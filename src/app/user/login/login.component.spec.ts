@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireAuthStub, CacheServiceStub, StoreStub, ApiServiceStub, NotificationServiceStub, MatDialogStub } from 'src/stubs';
 import { CacheService } from 'src/app/services/cache.service';
 import { ApiService } from 'src/app/services/api.service';

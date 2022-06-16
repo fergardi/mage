@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MapComponent } from './map.component';
 import { NotificationService } from 'src/app/services/notification.service';
 import { NotificationServiceStub, AngularFirestoreStub, MapboxServiceStub, StoreStub, CacheServiceStub, ApiServiceStub } from 'src/stubs';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { Store } from '@ngxs/store';
 import { CacheService } from 'src/app/services/cache.service';

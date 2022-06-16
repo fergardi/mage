@@ -14,7 +14,7 @@ import * as moment from 'moment';
 import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DateAdapter } from '@angular/material/core';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { Filter, Letter } from 'src/app/shared/type/interface.model';

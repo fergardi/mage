@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CacheServiceStub, StoreStub, AngularFirestoreStub, ApiServiceStub, NotificationServiceStub, MatDialogStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { CacheService } from 'src/app/services/cache.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';

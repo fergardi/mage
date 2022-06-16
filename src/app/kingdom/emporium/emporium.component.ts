@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { PERK_COST } from './perk.component';
 import { PlantComponent } from './plant.component';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Item, Pack, Perk, Tree } from 'src/app/shared/type/interface.model';
 
 @Component({

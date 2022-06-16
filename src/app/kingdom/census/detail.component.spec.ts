@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DetailComponent } from './detail.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatDialogRefStub, AngularFirestoreStub, StoreStub } from 'src/stubs';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { LongPipe } from 'src/app/pipes/long.pipe';

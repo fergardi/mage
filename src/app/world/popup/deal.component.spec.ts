@@ -14,7 +14,7 @@ import { Store as SStore } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { Deal, Faction, Shop, Store } from 'src/app/shared/type/interface.model';
 import { FactionType, StoreType } from 'src/app/shared/type/enum.type';
-import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
 
 describe('DealComponent', () => {
   let component: DealComponent;

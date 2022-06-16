@@ -1,5 +1,6 @@
 import MapboxCircle from 'mapbox-gl-circle';
 import { AssignmentType, FactionType, GuildType, LocationType, MarkerType, PopupType, StoreType } from './enum.type';
+import firebase from 'firebase/compat';
 
 export interface Faction {
   type: string;
