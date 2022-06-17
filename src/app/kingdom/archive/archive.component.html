@@ -6,7 +6,7 @@
       <mat-card-title>{{ "kingdom.archive.name" | translate }}</mat-card-title>
       <mat-card-subtitle>{{ "kingdom.archive.description" | translate }}</mat-card-subtitle>
       <div class="mat-card-extras">
-        <button mat-icon-button (click)="this.tutorialService.start('tour.archive')"><mat-icon>help</mat-icon></button>
+        <button mat-icon-button (click)="startTour('tour.archive')"><mat-icon>help</mat-icon></button>
         <mat-chip-list><mat-chip color="primary"><mat-icon>email</mat-icon>{{ table.data.length | long }}</mat-chip></mat-chip-list>
       </div>
     </mat-card-header>

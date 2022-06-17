@@ -157,4 +157,8 @@ export class AuctionComponent implements OnInit {
     });
   }
 
+  startTour(step: string): void {
+    this.tutorialService.start(step);
+  }
+
 }

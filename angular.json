@@ -167,8 +167,10 @@
       }
     }
   },
-  "defaultProject": "mage",
   "cli": {
-    "defaultCollection": "@ngxs/schematics"
+    "schematicCollections": [
+      "@ngxs/schematics"
+    ],
+    "analytics": false
   }
 }

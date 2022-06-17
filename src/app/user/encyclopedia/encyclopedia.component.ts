@@ -160,4 +160,8 @@ export class EncyclopediaComponent implements OnInit {
     this.applyFilter();
   }
 
+  startTour(step: string): void {
+    this.tutorialService.start(step);
+  }
+
 }

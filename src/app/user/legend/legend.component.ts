@@ -76,4 +76,8 @@ export class LegendComponent implements OnInit {
     return filterFunction;
   }
 
+  startTour(step: string): void {
+    this.tutorialService.start(step);
+  }
+
 }

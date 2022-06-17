@@ -59,7 +59,7 @@ export class ClanComponent implements OnInit {
     private loadingService: LoadingService,
     private notificationService: NotificationService,
     private dialog: MatDialog,
-    public tutorialService: TutorialService,
+    private tutorialService: TutorialService,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -178,6 +178,10 @@ export class ClanComponent implements OnInit {
     } else {
       this.notificationService.error('kingdom.guild.error');
     }
+  }
+
+  startTour(step: string): void {
+    this.tutorialService.start(step);
   }
 
 }

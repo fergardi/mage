@@ -56,7 +56,7 @@ export class CensusComponent implements OnInit {
     private dialog: MatDialog,
     private store: Store,
     private router: Router,
-    public tutorialService: TutorialService,
+    private tutorialService: TutorialService,
   ) { }
 
   ngOnInit(): void {
@@ -166,6 +166,10 @@ export class CensusComponent implements OnInit {
     return kingdom.attacked
       ? moment(this.clock).isAfter(moment(kingdom.attacked.toMillis()))
       : true;
+  }
+
+  startTour(step: string): void {
+    this.tutorialService.start(step);
   }
 
 }

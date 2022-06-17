@@ -114,4 +114,8 @@ export class EmporiumComponent implements OnInit {
     this.gems = 0;
   }
 
+  startTour(step: string): void {
+    this.tutorialService.start(step);
+  }
+
 }

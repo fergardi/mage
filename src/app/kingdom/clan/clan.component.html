@@ -8,7 +8,7 @@
         <mat-card-title>{{ 'kingdom.clan.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.clan.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
-          <button mat-icon-button (click)="this.tutorialService.start('tour.clan')"><mat-icon>help</mat-icon></button>
+          <button mat-icon-button (click)="startTour('tour.clan')"><mat-icon>help</mat-icon></button>
           <mat-chip-list><mat-chip color="primary"><mat-icon>people</mat-icon>{{ table.data.length | long }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>
@@ -85,7 +85,7 @@
         <mat-card-title>{{ 'kingdom.guild.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.guild.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
-          <button mat-icon-button (click)="this.tutorialService.start('tour.guild')"><mat-icon>help</mat-icon></button>
+          <button mat-icon-button (click)="startTour('tour.guild')"><mat-icon>help</mat-icon></button>
           <mat-chip-list><mat-chip color="primary"><mat-icon>shield</mat-icon>{{ kingdomGuilds.length | long }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>

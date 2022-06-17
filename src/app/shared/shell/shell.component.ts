@@ -131,16 +131,16 @@ export class ShellComponent implements OnInit {
     return this.langs.find(l => l.lang === this.translateService.currentLang);
   }
 
-  tour(): void {
+  startTour(): void {
     this.tutorialService.start();
   }
 
-  login($element: HTMLElement): void {
+  logIn($element: HTMLElement): void {
     this.domService.scrollToTop($element);
     this.router.navigate(['/user/landing']);
   }
 
-  logout(): void {
+  logOut(): void {
     this.store.dispatch(new LogoutAction());
   }
 

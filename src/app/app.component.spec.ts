@@ -1,13 +1,12 @@
 import { TestBed, waitForAsync, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { TourService } from 'ngx-ui-tour-md-menu';
-import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
+import { TourService, TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { routes } from './app-routing.module';
 import { FirebaseService } from './services/firebase.service';
-import { FirebaseServiceStub } from 'src/stubs';
+import { FirebaseServiceStub, TourServiceStub } from 'src/stubs';
 import { Router, NavigationEnd, Scroll } from '@angular/router';
 import { Subject } from 'rxjs';
 
@@ -27,7 +26,7 @@ describe('AppComponent', () => {
         AppComponent,
       ],
       providers: [
-        TourService,
+        { provide: TourService, useValue: TourServiceStub },
         { provide: FirebaseService, useValue: FirebaseServiceStub },
       ],
       schemas: [

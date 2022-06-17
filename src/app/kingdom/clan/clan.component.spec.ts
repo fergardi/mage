@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ClanComponent } from './clan.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { CacheServiceStub, StoreStub, AngularFirestoreStub, ApiServiceStub, NotificationServiceStub, MatDialogStub } from 'src/stubs';
+import { CacheServiceStub, StoreStub, AngularFirestoreStub, ApiServiceStub, NotificationServiceStub, MatDialogStub, TutorialServiceStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { CacheService } from 'src/app/services/cache.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -20,7 +20,6 @@ import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
-import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -30,6 +29,7 @@ import { ManifestComponent } from './manifest.component';
 import { FoundationComponent } from './foundation.component';
 import { Clan, Guild } from 'src/app/shared/type/interface.model';
 import { GuildType } from 'src/app/shared/type/enum.type';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 describe('ClanComponent', () => {
   let component: ClanComponent;
@@ -66,7 +66,6 @@ describe('ClanComponent', () => {
       imports: [
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes(routes),
-        TourMatMenuModule.forRoot(),
         BrowserAnimationsModule,
         MatCardModule,
         MatTableModule,
@@ -88,6 +87,7 @@ describe('ClanComponent', () => {
         ShortPipe,
       ],
       providers: [
+        { provide: TutorialService, useValue: TutorialServiceStub },
         { provide: CacheService, useValue: CacheServiceStub },
         { provide: Store, useValue: StoreStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },

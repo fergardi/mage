@@ -8,7 +8,7 @@
         <mat-card-title>{{ 'user.encyclopedia.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'user.encyclopedia.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
-          <button mat-icon-button (click)="this.tutorialService.start('tour.encyclopedia')"><mat-icon>help</mat-icon></button>
+          <button mat-icon-button (click)="startTour('tour.encyclopedia')"><mat-icon>help</mat-icon></button>
           <mat-chip-list><mat-chip color="primary"><mat-icon>description</mat-icon>{{ table.data.length | long }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>

@@ -6,7 +6,7 @@
       <mat-card-title>{{ 'user.legend.name' | translate }}</mat-card-title>
       <mat-card-subtitle>{{ 'user.legend.description' | translate }}</mat-card-subtitle>
       <div class="mat-card-extras">
-        <button mat-icon-button (click)="this.tutorialService.start('tour.legend')"><mat-icon>help</mat-icon></button>
+        <button mat-icon-button (click)="startTour('tour.legend')"><mat-icon>help</mat-icon></button>
         <mat-chip-list><mat-chip color="primary"><mat-icon>person</mat-icon>{{ data.data.length | long }}</mat-chip></mat-chip-list>
       </div>
     </mat-card-header>

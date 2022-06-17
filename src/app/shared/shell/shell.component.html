@@ -89,15 +89,15 @@
       <mat-menu #auth="matMenu">
         <ng-container *ngIf="(angularFireAuth.authState | async); else notLogged">
           <a mat-menu-item routerLink="/user/encyclopedia" fragment="help"><mat-icon>help</mat-icon>{{ 'user.menu.help' | translate }}</a>
-          <a mat-menu-item (click)="tour()"><mat-icon>map</mat-icon>{{ 'user.menu.tour' | translate }}</a>
+          <a mat-menu-item (click)="startTour()"><mat-icon>map</mat-icon>{{ 'user.menu.tour' | translate }}</a>
           <a mat-menu-item routerLink="/kingdom/emporium"><mat-icon>local_mall</mat-icon>{{ 'user.menu.store' | translate }}</a>
           <a mat-menu-item routerLink="/user/encyclopedia" fragment="changelog"><mat-icon>description</mat-icon>{{ 'user.menu.changelog' | translate }}</a>
           <a mat-menu-item routerLink="/user/encyclopedia" fragment="bonfire"><mat-icon>question_answer</mat-icon>{{ 'user.menu.bonfire' | translate }}</a>
           <a mat-menu-item routerLink="/user/landing" fragment="legend"><mat-icon>equalizer</mat-icon>{{ 'user.menu.legend' | translate }}</a>
-          <a mat-menu-item (click)="logout()"><mat-icon>lock</mat-icon>{{ 'user.menu.logout' | translate }}</a>
+          <a mat-menu-item (click)="logOut()"><mat-icon>lock</mat-icon>{{ 'user.menu.logout' | translate }}</a>
         </ng-container>
         <ng-template #notLogged>
-          <a mat-menu-item (click)="login(main)"><mat-icon>lock_open</mat-icon>{{ 'user.menu.login' | translate }}</a>
+          <a mat-menu-item (click)="logIn(main)"><mat-icon>lock_open</mat-icon>{{ 'user.menu.login' | translate }}</a>
         </ng-template>
       </mat-menu>
     </mat-toolbar>
