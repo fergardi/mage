@@ -31,7 +31,7 @@ import { Kingdom } from 'src/app/shared/type/interface.model';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 
-fdescribe('CensusComponent', () => {
+describe('CensusComponent', () => {
   let component: CensusComponent;
   let fixture: ComponentFixture<CensusComponent>;
   const kingdom: Kingdom = {
@@ -94,7 +94,7 @@ fdescribe('CensusComponent', () => {
     fixture.detectChanges();
   });
 
-  fit('should CREATE the INSTANCE', () => {
+  it('should CREATE the INSTANCE', () => {
     expect(component).toBeTruthy();
   });
 
