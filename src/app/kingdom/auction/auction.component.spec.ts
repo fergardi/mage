@@ -31,6 +31,7 @@ import { TomeComponent } from 'src/app/user/encyclopedia/tome.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { TutorialService } from 'src/app/services/tutorial.service';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 
 describe('AuctionComponent', () => {
   let component: AuctionComponent;
@@ -41,6 +42,7 @@ describe('AuctionComponent', () => {
       imports: [
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes(routes),
+        TourMatMenuModule.forRoot(),
         BrowserAnimationsModule,
         MatTableModule,
         FormsModule,
