@@ -19,7 +19,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.0.3",
-    "@angular/cdk": "14.0.3",
+    "@angular/cdk": "^14.0.3",
     "@angular/common": "^14.0.3",
     "@angular/compiler": "^14.0.3",
     "@angular/core": "^14.0.3",
@@ -27,7 +27,7 @@
     "@angular/flex-layout": "^13.0.0-beta.38",
     "@angular/forms": "^14.0.3",
     "@angular/localize": "^14.0.3",
-    "@angular/material": "14.0.3",
+    "@angular/material": "^14.0.3",
     "@angular/platform-browser": "^14.0.3",
     "@angular/platform-browser-dynamic": "^14.0.3",
     "@angular/router": "^14.0.3",
@@ -103,7 +103,11 @@
     },
     "ngx-ui-tour-md-menu": {
       "@angular/core": "^14.0.0",
-      "@angular/cdk": "^14.0.0"
+      "@angular/cdk": "^14.0.0",
+      "@angular/material": "^14.0.0"
+    },
+    "@thetsf/geofirex": {
+      "firebase": "^8.10.1"
     }
   }
 }
