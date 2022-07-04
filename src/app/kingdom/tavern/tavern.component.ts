@@ -9,7 +9,7 @@ import { DischargeComponent } from './discharge.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { Contract } from 'src/app/shared/type/interface.model';
 import { AssignmentType } from 'src/app/shared/type/enum.type';
@@ -74,6 +74,10 @@ export class TavernComponent implements OnInit {
       panelClass: 'dialog-responsive',
       data: contract,
     });
+  }
+
+  startTour(step: string): void {
+    this.tutorialService.start(step);
   }
 
 }

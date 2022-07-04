@@ -6,7 +6,7 @@
       <mat-card-title>{{ 'kingdom.census.name' | translate }}</mat-card-title>
       <mat-card-subtitle>{{ 'kingdom.census.description' | translate }}</mat-card-subtitle>
       <div class="mat-card-extras">
-        <button mat-icon-button (click)="this.tutorialService.start('tour.census')"><mat-icon>help</mat-icon></button>
+        <button mat-icon-button (click)="startTour('tour.census')"><mat-icon>help</mat-icon></button>
         <mat-chip-list><mat-chip color="primary"><mat-icon>person</mat-icon>{{ table.data.length | long }}</mat-chip></mat-chip-list>
       </div>
     </mat-card-header>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ResearchComponent } from './research.component';
@@ -130,6 +130,10 @@ export class SorceryComponent implements OnInit {
         kingdom: null,
       },
     });
+  }
+
+  startTour(step: string): void {
+    this.tutorialService.start(step);
   }
 
 }

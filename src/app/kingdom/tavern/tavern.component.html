@@ -7,7 +7,7 @@
         <mat-card-title>{{ 'kingdom.tavern.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.tavern.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
-          <button mat-icon-button (click)="this.tutorialService.start('tour.tavern')"><mat-icon>help</mat-icon></button>
+          <button mat-icon-button (click)="startTour('tour.tavern')"><mat-icon>help</mat-icon></button>
           <mat-chip-list><mat-chip color="primary"><mat-icon>filter_9_plus</mat-icon>{{ 'kingdom.tavern.max' | translate }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>
@@ -38,7 +38,7 @@
         <mat-card-title>{{ 'kingdom.leadership.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.leadership.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
-          <button mat-icon-button (click)="this.tutorialService.start('tour.leadership')"><mat-icon>help</mat-icon></button>
+          <button mat-icon-button (click)="startTour('tour.leadership')"><mat-icon>help</mat-icon></button>
           <mat-chip-list><mat-chip color="primary"><mat-icon>filter_3</mat-icon>{{ 'kingdom.leadership.max' | translate }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>
@@ -69,7 +69,7 @@
         <mat-card-title>{{ 'kingdom.guard.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.guard.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
-          <button mat-icon-button (click)="this.tutorialService.start('tour.guard')"><mat-icon>help</mat-icon></button>
+          <button mat-icon-button (click)="startTour('tour.guard')"><mat-icon>help</mat-icon></button>
           <mat-chip-list><mat-chip color="primary"><mat-icon>filter_3</mat-icon>{{ 'kingdom.guard.max' | translate }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>

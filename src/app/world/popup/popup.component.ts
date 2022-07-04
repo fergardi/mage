@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupType, AssignmentType } from 'src/app/shared/type/enum.type';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AdventureComponent } from './adventure.component';
 import { DealComponent } from './deal.component';
 import { BehaviorSubject, combineLatest } from 'rxjs';

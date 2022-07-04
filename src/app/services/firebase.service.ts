@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { HttpClient } from '@angular/common/http';
-import * as firebase from 'firebase';
-import { AngularFireAuth } from '@angular/fire/auth';
+import firebase from 'firebase/compat';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import * as moment from 'moment';
 import { CollectionType } from './cache.service';
 import { Store } from '@ngxs/store';

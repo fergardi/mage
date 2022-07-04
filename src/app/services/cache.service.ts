@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { AngularFirestore, QueryDocumentSnapshot } from '@angular/fire/compat/firestore';
 import { Attack, Category, Faction, Family, God, Guild, Hero, Item, Location, Pack, Perk, Resource, Skill, Spell, Store, Structure, Unit } from '../shared/type/interface.model';
 
 export enum CollectionType {

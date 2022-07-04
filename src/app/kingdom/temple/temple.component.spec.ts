@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TempleComponent } from './temple.component';
 import { AngularFirestoreStub, MatDialogStub, StoreStub, TutorialServiceStub } from 'src/stubs';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngxs/store';
 import { TranslateModule } from '@ngx-translate/core';

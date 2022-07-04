@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DischargeComponent } from './discharge.component';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatBadgeModule } from '@angular/material/badge';

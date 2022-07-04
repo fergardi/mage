@@ -2,7 +2,7 @@ import { TurnPipe, calculate } from './turn.pipe';
 import { of } from 'rxjs';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
-import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
 
 describe('TurnPipe', () => {
   let pipe: TurnPipe;

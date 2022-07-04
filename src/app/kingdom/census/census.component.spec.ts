@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync, inject } from '@angular/core/testing';
 import { CensusComponent } from './census.component';
-import { AngularFirestoreStub, MatDialogStub, StoreStub, EventStub } from 'src/stubs';
+import { AngularFirestoreStub, MatDialogStub, StoreStub, EventStub, TutorialServiceStub } from 'src/stubs';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { MatDialog } from '@angular/material/dialog';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -25,10 +25,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { MatListModule } from '@angular/material/list';
 import { MatBadgeModule } from '@angular/material/badge';
-import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { DetailComponent } from './detail.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Kingdom } from 'src/app/shared/type/interface.model';
+import { TutorialService } from 'src/app/services/tutorial.service';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 
 describe('CensusComponent', () => {
   let component: CensusComponent;
@@ -78,6 +79,7 @@ describe('CensusComponent', () => {
         ShortPipe,
       ],
       providers: [
+        { provide: TutorialService, useValue: TutorialServiceStub },
         { provide: AngularFirestore, useValue: AngularFirestoreStub },
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },

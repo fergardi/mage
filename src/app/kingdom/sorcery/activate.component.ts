@@ -5,7 +5,7 @@ import { Store } from '@ngxs/store';
 import { AuthState } from 'src/app/shared/auth/auth.state';
 import { ApiService } from 'src/app/services/api.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LoadingService } from 'src/app/services/loading.service';
 import { AssignmentType } from 'src/app/shared/type/enum.type';
 import { Artifact, Kingdom, Supply } from 'src/app/shared/type/interface.model';

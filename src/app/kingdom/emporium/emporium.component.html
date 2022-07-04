@@ -8,7 +8,7 @@
         <mat-card-title>{{ 'kingdom.emporium.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.emporium.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
-          <button mat-icon-button (click)="this.tutorialService.start('tour.emporium')"><mat-icon>help</mat-icon></button>
+          <button mat-icon-button (click)="startTour('tour.emporium')"><mat-icon>help</mat-icon></button>
           <mat-chip-list><mat-chip color="primary"><mat-icon>sell</mat-icon>{{ emporiumItems.length | long }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>
@@ -42,7 +42,7 @@
         <mat-card-title>{{ 'kingdom.tree.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.tree.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
-          <button mat-icon-button (click)="this.tutorialService.start('tour.tree')"><mat-icon>help</mat-icon></button>
+          <button mat-icon-button (click)="startTour('tour.tree')"><mat-icon>help</mat-icon></button>
           <mat-chip-list><mat-chip color="primary"><mat-icon>diamond</mat-icon>{{ PERK_COST }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>
@@ -72,7 +72,7 @@
         <mat-card-title>{{ 'kingdom.mining.name' | translate }}</mat-card-title>
         <mat-card-subtitle>{{ 'kingdom.mining.description' | translate }}</mat-card-subtitle>
         <div class="mat-card-extras">
-          <button mat-icon-button (click)="this.tutorialService.start('tour.mining')"><mat-icon>help</mat-icon></button>
+          <button mat-icon-button (click)="startTour('tour.mining')"><mat-icon>help</mat-icon></button>
           <mat-chip-list><mat-chip color="primary"><mat-icon>redeem</mat-icon>{{ emporiumPacks.length | long }}</mat-chip></mat-chip-list>
         </div>
       </mat-card-header>

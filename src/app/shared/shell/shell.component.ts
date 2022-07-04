@@ -3,14 +3,14 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay, filter } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { Select, Store } from '@ngxs/store';
 import { LogoutAction } from '../auth/auth.actions';
 import { DomService } from 'src/app/services/dom.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AuthState } from '../auth/auth.state';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -131,16 +131,16 @@ export class ShellComponent implements OnInit {
     return this.langs.find(l => l.lang === this.translateService.currentLang);
   }
 
-  tour(): void {
+  startTour(): void {
     this.tutorialService.start();
   }
 
-  login($element: HTMLElement): void {
+  logIn($element: HTMLElement): void {
     this.domService.scrollToTop($element);
     this.router.navigate(['/user/landing']);
   }
 
-  logout(): void {
+  logOut(): void {
     this.store.dispatch(new LogoutAction());
   }
 

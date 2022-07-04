@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { PERK_COST } from './perk.component';
 import { PlantComponent } from './plant.component';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Item, Pack, Perk, Tree } from 'src/app/shared/type/interface.model';
 
 @Component({
@@ -112,6 +112,10 @@ export class EmporiumComponent implements OnInit {
   resetTree(): void {
     this.kingdomTree = JSON.parse(JSON.stringify(this.originalTree));
     this.gems = 0;
+  }
+
+  startTour(step: string): void {
+    this.tutorialService.start(step);
   }
 
 }

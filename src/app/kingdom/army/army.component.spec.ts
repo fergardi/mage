@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DragDropModule, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { DisbandComponent } from './disband.component';
 import { RecruitComponent } from './recruit.component';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatBadgeModule } from '@angular/material/badge';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngxs/store';

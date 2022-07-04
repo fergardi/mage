@@ -6,7 +6,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import * as moment from 'moment';
@@ -59,7 +59,7 @@ export class ClanComponent implements OnInit {
     private loadingService: LoadingService,
     private notificationService: NotificationService,
     private dialog: MatDialog,
-    public tutorialService: TutorialService,
+    private tutorialService: TutorialService,
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -178,6 +178,10 @@ export class ClanComponent implements OnInit {
     } else {
       this.notificationService.error('kingdom.guild.error');
     }
+  }
+
+  startTour(step: string): void {
+    this.tutorialService.start(step);
   }
 
 }

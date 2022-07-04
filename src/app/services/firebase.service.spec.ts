@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { FirebaseService } from './firebase.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { CacheService } from './cache.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AngularFireAuthStub, CacheServiceStub, AngularFirestoreStub } from 'src/stubs';

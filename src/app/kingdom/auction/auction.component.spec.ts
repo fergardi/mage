@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AuctionComponent } from './auction.component';
-import { MatDialogStub, StoreStub, CacheServiceStub, ApiServiceStub, LoadingServiceStub, AngularFirestoreStub, EventStub } from 'src/stubs';
+import { MatDialogStub, StoreStub, CacheServiceStub, ApiServiceStub, LoadingServiceStub, AngularFirestoreStub, EventStub, TutorialServiceStub } from 'src/stubs';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
@@ -17,13 +17,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
 import { LongPipe } from 'src/app/pipes/long.pipe';
 import { MatListModule } from '@angular/material/list';
 import { IconPipe } from 'src/app/pipes/icon.pipe';
 import { MatBadgeModule } from '@angular/material/badge';
-import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
 import { MatChipsModule } from '@angular/material/chips';
@@ -31,6 +30,8 @@ import { BidComponent } from './bid.component';
 import { TomeComponent } from 'src/app/user/encyclopedia/tome.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { TutorialService } from 'src/app/services/tutorial.service';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 
 describe('AuctionComponent', () => {
   let component: AuctionComponent;
@@ -40,8 +41,8 @@ describe('AuctionComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         TranslateModule.forRoot(),
-        TourMatMenuModule.forRoot(),
         RouterTestingModule.withRoutes(routes),
+        TourMatMenuModule.forRoot(),
         BrowserAnimationsModule,
         MatTableModule,
         FormsModule,
@@ -66,6 +67,7 @@ describe('AuctionComponent', () => {
         IconPipe,
       ],
       providers: [
+        { provide: TutorialService, useValue: TutorialServiceStub },
         { provide: MatDialog, useValue: MatDialogStub },
         { provide: Store, useValue: StoreStub },
         { provide: CacheService, useValue: CacheServiceStub },

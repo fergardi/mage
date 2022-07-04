@@ -12,7 +12,7 @@ import { AuthState } from 'src/app/shared/auth/auth.state';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { LoadingService } from 'src/app/services/loading.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { TomeComponent } from 'src/app/user/encyclopedia/tome.component';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -155,6 +155,10 @@ export class AuctionComponent implements OnInit {
       panelClass: 'dialog-responsive',
       data: tome,
     });
+  }
+
+  startTour(step: string): void {
+    this.tutorialService.start(step);
   }
 
 }

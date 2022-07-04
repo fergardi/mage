@@ -1,18 +1,16 @@
 import { ComponentFixture, TestBed, waitForAsync, inject, fakeAsync } from '@angular/core/testing';
 import { ShellComponent } from './shell.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireAuthStub, StoreStub, MapboxServiceStub, AngularFirestoreStub, NotificationServiceStub, MatBottomSheetStub } from 'src/stubs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFireAuthStub, StoreStub, MapboxServiceStub, AngularFirestoreStub, NotificationServiceStub, MatBottomSheetStub, TourServiceStub, TutorialServiceStub } from 'src/stubs';
 import { Store } from '@ngxs/store';
 import { MapboxService } from 'src/app/services/mapbox.service';
 import { NotificationService } from 'src/app/services/notification.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LoadingService } from 'src/app/services/loading.service';
 import { DomService } from 'src/app/services/dom.service';
-import { TourService } from 'ngx-ui-tour-md-menu';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from 'src/app/app-routing.module';
-import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -27,6 +25,7 @@ import { Router } from '@angular/router';
 import { MatBottomSheetModule, MatBottomSheet } from '@angular/material/bottom-sheet';
 import { StatusComponent } from './status.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { TutorialService } from 'src/app/services/tutorial.service';
 
 describe('ShellComponent', () => {
   let component: ShellComponent;
@@ -37,7 +36,6 @@ describe('ShellComponent', () => {
       imports: [
         TranslateModule.forRoot(),
         RouterTestingModule.withRoutes(routes),
-        TourMatMenuModule.forRoot(),
         MatMenuModule,
         BrowserAnimationsModule,
         MatBadgeModule,
@@ -56,7 +54,7 @@ describe('ShellComponent', () => {
       providers: [
         LoadingService,
         DomService,
-        TourService,
+        { provide: TutorialService, useValue: TutorialServiceStub },
         { provide: NotificationService, useValue: NotificationServiceStub },
         { provide: AngularFireAuth, useValue: AngularFireAuthStub },
         { provide: Store, useValue: StoreStub },
@@ -95,18 +93,19 @@ describe('ShellComponent', () => {
 
   it('should LOGIN in the APP', inject([Router], (router: Router) => {
     spyOn(router, 'navigate').and.stub();
-    component.login(null);
+    component.logIn(null);
     expect(router.navigate).toHaveBeenCalledWith(['/user/landing']);
   }));
 
   it('should LOGOUT from the APP', inject([Store], (store: Store) => {
     spyOn(store, 'dispatch').and.stub();
-    component.logout();
+    component.logOut();
     expect(store.dispatch).toHaveBeenCalled();
   }));
 
   it('should START the TOUR', () => {
-    component.tour();
+    component.startTour();
+    // TODO expect tutorialservice start to have been called
   });
 
   it('should OPEN the STATUS sheet', async () => {

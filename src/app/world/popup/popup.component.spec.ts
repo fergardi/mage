@@ -7,14 +7,14 @@ import { MatCardModule } from '@angular/material/card';
 import { FactionType, LocationType, PopupType, StoreType } from 'src/app/shared/type/enum.type';
 import { DealComponent } from './deal.component';
 import { AdventureComponent } from './adventure.component';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngxs/store';
 import { ApiService } from 'src/app/services/api.service';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { Deal, Faction, Popup } from 'src/app/shared/type/interface.model';
 import { NotificationService } from 'src/app/services/notification.service';
-import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
 
 describe('PopupComponent', () => {
   let component: PopupComponent;

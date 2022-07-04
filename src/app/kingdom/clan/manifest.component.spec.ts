@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ManifestComponent } from './manifest.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFirestoreStub, MatDialogRefStub } from 'src/stubs';
 import { TranslateModule } from '@ngx-translate/core';
 import { ShortPipe } from 'src/app/pipes/short.pipe';
